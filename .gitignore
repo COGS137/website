@@ -1,0 +1,11 @@
+.DS_Store
+Thumbs.db
+
+.Rhistory
+.Rprofile
+.Rproj.user
+*.Rproj
+
+# temporarily (while I edit course content)
+static/
+Makefile

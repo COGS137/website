@@ -33,7 +33,7 @@ output: pdf_document
 {.table .table-condensed .table-striped .text-left}
 <span></span>     | <span></span>     | <span></span>    | <span></span>    |  <span></span>      
 ------------------|-------------------|------------------|------------------|------------------ 
-Instructor        | [Shannon Ellis](http://www.shanellis.com/) | <a href="mailto:sellis@ucsd.edu" title="email"><i class="fa fa-envelope"></i></a> &nbsp; <a href="https://github.com/ShanEllis" title="GitHub"><i class="fa fa-github"></i></a> &nbsp; <a href="https://twitter.com/Shannon_E_Ellis" title="Twitter"><i class="fa fa-twitter"></i></a> | TBD | CSB 243
+Instructor        | [Shannon Ellis](http://www.shanellis.com/) | <a href="mailto:sellis@ucsd.edu" title="email"><i class="fa fa-envelope"></i></a> &nbsp; <a href="https://github.com/ShanEllis" title="GitHub"><i class="fa fa-github"></i></a> &nbsp; <a href="https://twitter.com/Shannon_E_Ellis" title="Twitter"><i class="fa fa-twitter"></i></a> | Mon 10AM-12PM | CSB 243
 TA                | TBD              | | TBD | TBD
 IAs               | Shubham Kulkarni | | TBD | TBD
                   | Colin Wang       | | TBD | TBD
@@ -42,7 +42,7 @@ IAs               | Shubham Kulkarni | | TBD | TBD
 - Program at the introductory level in the R statistical programming language
 - Employ the tidyverse suite of packages to interact with, wrangle, visualize, and model data
 - Explain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis
-- Effectively communicate data science projects through visualization, oral presentation, and written reports
+- Communicate data science projects through effective visualization, oral presentation, and written reports
                   
 
 ### Texts
@@ -64,4 +64,4 @@ Note: If you do not have consistent access to the technology needed, please use 
 
 ### Acknowledgements
 
-I want to first recognize [Dr. Mine Çetinkaya-Rundeland](http://www2.stat.duke.edu/~mc301/) for her unparalleled efforts in support of education and educators in data science, statistics, and R programming. This course website was adapted from her [course website](http://www2.stat.duke.edu/courses/Spring18/Sta199/). These course slides/labs/homework...also adapted from Mine's [course](https://github.com/Sta199-S18) and the related [datascienceinabox](https://datasciencebox.org/). I am so very indebted to Mine! I also want to thank the [Open Case Studies](https://www.opencasestudies.org/) team for their tireless work in putting together interesting and topical case studies, a handful of which we use throughout the course. And, finally, thanks to [Allison Horst](https://www.allisonhorst.com/). Your [artwork](https://github.com/allisonhorst/stats-illustrations/) is inspiring, educational, and fun...and is used throughout this course. Further thanks to the R (education) community generally; planning this course was really fun because I had so many awesome resources to choose from. Having these materials made course prep and planning is just another example of what sets the R community apart!
+I want to first recognize [Dr. Mine Çetinkaya-Rundeland](http://www2.stat.duke.edu/~mc301/) for her unparalleled efforts in support of education and educators in data science, statistics, and R programming. This course website was adapted from her [course website](http://www2.stat.duke.edu/courses/Spring18/Sta199/). These course slides/labs/homework...also adapted from Mine's [course](https://github.com/Sta199-S18) and the related [datascienceinabox](https://datasciencebox.org/). I am so *very* indebted to Mine! I also want to thank the [Open Case Studies](https://www.opencasestudies.org/) team for their tireless work in putting together interesting and topical case studies, a handful of which we use throughout the course. And, finally, thanks to [Allison Horst](https://www.allisonhorst.com/), whose [artwork](https://github.com/allisonhorst/stats-illustrations/) is inspiring, educational, and fun...and is used throughout this course. Further, thanks to the R (education) community generally; planning this course was really fun because I had so many awesome resources to choose from. Having these materials made course prep and planning is just another example of what sets the R community apart!

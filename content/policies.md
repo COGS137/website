@@ -97,7 +97,7 @@ On weeks with homework assigned, these are due on Mondays at 11:59 PM.
 
 #### Midterm (12.5%):
 
-There will be a single take-home exam due in week 4, and you will have at least 72 hours to complete it. This exam is meant to assess your understanding of the R programming language prior to us moving into focusing on case studies and full analysis. Exams will be completed individually. Exams will be open-notes and open-Internet; however, you will *not* be permitted to ask questions of one another, the Internet, nor instructional staff while completing the take-home exam.
+There will be a single take-home exam due in week 4, and you will have at least 72 hours to complete it. This exam is meant to assess your understanding of the R programming language prior to us moving into focusing on case studies and full analysis. The exam will be completed individually and will be open-notes and open-Internet; however, you will *not* be permitted to ask questions of one another, the Internet, nor instructional staff while completing the take-home exam.
 
 Your exam will be due Monday Oct 18th at 11:59 PM.
 
@@ -134,9 +134,26 @@ Final project* (1)    | 13%
 
 \* indicates group submission
 
-To calculate final grades, I use the [standard grading scale](https://pages.stolaf.edu/dietz/typical-grading-scale/) and do not round grades up.
+#### Final Grades:
 
+To calculate final grades, I use the standard grading scale and do not round grades up:
 
+{.table .table-condensed .table-striped .text-left}
+ <span></span>        | <span></span>
+----------------------|----------------
+97-100%  | A+
+93-96%   | A
+90-92%   | A-
+87-89%   | B+
+83-86%   | B
+80-82%   | B-
+77-79%   | C+
+73-76%   | C
+70-72%   | C-
+67-69%   | D+
+63-66%   | D
+60-62%   | D-
+<60%     | F
 
 ### Late / missed work
 

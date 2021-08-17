@@ -125,10 +125,10 @@ class: center, middle
 The pipe operator is implemented in the package **magrittr**.
 
 .pull-left[
-![pipe](img/02b/magritte.jpg)
+![pipe](img/06/magritte.jpg)
 ]
 .pull-right[
-![magrittr](img/02b/magrittr.jpg)
+![magrittr](img/06/magrittr.jpg)
 ]
 
 ---
@@ -476,10 +476,10 @@ bike %>%
 ## The two `pull`s in your lives
 
 .pull-left[
-![pipe](img/02b/hex-dplyr.png)
+![pipe](img/06/hex-dplyr.png)
 ]
 .pull-right[
-![magrittr](img/02b/Octocat.png)
+![magrittr](img/06/Octocat.png)
 ]
 
 - Don't get `pull` happy when wrangling data! Only extract out variables if you truly need to, otherwise keep in data frame.

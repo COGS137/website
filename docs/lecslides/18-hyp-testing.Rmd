@@ -471,10 +471,10 @@ class: center, middle
 ]
 
 .pull-left[
-![empirical](img/09a/yawn1.png)
+![empirical](img/18/yawn1.png)
 ]
 .pull-right[
-![empirical](img/09a/yawn2.png)
+![empirical](img/18/yawn2.png)
 ]
 
 ---
@@ -1196,7 +1196,7 @@ on the board.
 is contagious, i.e. does seeing someone yawn and yawning appear to be dependent?
 ]
 
-![yawn-sim-results](img/09b/yawn-sim-results.png)
+![yawn-sim-results](img/18/yawn-sim-results.png)
 
 ---
 

@@ -47,170 +47,22 @@ library(DT)
 
 class: center, middle
 
-# Data types
 
----
 
-## Data types in R
+- Columns (variables) in data frames are accessed with `$`:
 
-* **logical**
-
-* **double**
-
-* **integer**
-
-* **character**
-
-* **lists**
-
-* and some more, but we won't be focusing on those
-
----
-
-## Logical & character
-
-**logical** - boolean values `TRUE` and `FALSE`
-
-```{r}
-typeof(TRUE)
+```{r eval=FALSE}
+dataframe$var_name
 ```
 
-**character** - character strings
+--
 
-```{r}
-typeof("hello")
-typeof('world') # but remember, we use double quotations!
+- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+```{r eval=FALSE}
+install.packages("package_name")
+library(package_name)
 ```
-
----
-
-## Double & integer
-
-**double** - floating point numerical values (default numerical type)
-
-```{r}
-typeof(1.335)
-typeof(7)
-```
-
-**integer** - integer numerical values (indicated with an `L`)
-
-```{r}
-typeof(7L)
-typeof(1:3)
-```
-
----
-
-## Lists
-
-**Lists** are 1d objects that can contain any combination of R objects
-
-.small[
-```{r}
-mylist <- list("A", 1:4, c(TRUE, FALSE), (1:4)/2)
-mylist
-```
-
-```{r}
-str(mylist)
-```
-]
-
----
-
-## Named lists
-
-Because of their more complex structure we often want to name the elements of a list (we 
-can also do this with vectors). This can make reading and accessing the list more 
-straight forward.
-
-.small[
-```{r}
-myotherlist <- list(A = "hello", B = 1:4, "knock knock" = "who's there?")
-str(myotherlist)
-names(myotherlist)
-myotherlist$B
-```
-]
-
----
-
-## Concatenation
-
-Vectors can be constructed using the `c()` function.
-
-```{r}
-c(1, 2, 3)
-c("Hello", "World!")
-c(1, c(2, c(3)))
-```
-
----
-
-## Coercion
-
-R is a dynamically typed language -- it will happily convert between the various types 
-without complaint.
-
-```{r}
-c(1, "Hello")
-c(FALSE, 3L)
-c(1.2, 3L)
-```
-
----
-
-## Missing Values
-
-R uses `NA` to represent missing values in its data structures.
-
-```{r}
-typeof(NA)
-```
-
----
-
-## Other Special Values
-
-`NaN` - Not a number
-
-`Inf` - Positive infinity
-
-`-Inf` - Negative infinity
-
-<br/>
-
-.pull-left[
-```{r}
-pi / 0
-0 / 0
-1/0 + 1/0
-```
-]
-.pull-right[
-```{r}
-1/0 - 1/0
-NaN / NA
-NaN * NA
-```
-]
-
----
-
-## Activity
-
-.question[
-What is the type of the following vectors? Explain why they have that type.
-]
-
-* `c(1, NA+1L, "C")`
-* `c(1L / 0, NA)`
-* `c(1:3, 5)`
-* `c(3L, NaN+1L)`
-* `c(NA, TRUE)`
-
----
 
 ## Example: Cat lovers
 
@@ -325,49 +177,6 @@ cat_lovers <- cat_lovers %>%
 
 ---
 
-## Vectors vs. lists
-
-.pull-left[
-.small[
-```{r, error=TRUE}
-x <- c(8,4,7)
-```
-]
-.small[
-```{r}
-x[1]
-```
-]
-.small[
-```{r}
-x[[1]]
-```
-]
-]
---
-.pull-right[
-.small[
-```{r}
-y <- list(8,4,7)
-```
-]
-.small[
-```{r}
-y[2]
-```
-]
-.small[
-```{r}
-y[[2]]
-```
-]
-]
-
---
-
-<br>
-
-**Note:** When using tidyverse code you'll rarely need to refer to elements using square brackets, but it's good to be aware of this syntax, especially since you might encounter it when searching for help online.
 
 ---
 
@@ -533,7 +342,7 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
 ... stay for the logo
 ]
 .pull-right[
-![](img/05b/hex-forcats.png)
+![](img/03/hex-forcats.png)
 ]
 
 - R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors.

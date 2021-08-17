@@ -1,0 +1,439 @@
+---
+title: "R Basics"
+author: "Prof Ellis"
+date: "2021-09-29"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi = 300) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(emo)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Agenda
+
+- Variable Assignment
+- Variables Types
+- Functions
+- Operators
+---
+
+## Variables & Assignment
+
+Variables are how we store information so that we can access it later.
+
+--
+
+Variables are created and stored using the assignment operator `<-` \*
+
+.footnote[\*Other programming languages use `=` for assignment. R *also* uses that for assignment, but it is more typical to see `<-` in R code, so we'll stick with that]
+
+```{r}
+first_variable <- 3
+```
+
+The above stores the value 3 in the variable `first_variable`
+
+--
+
+This means that if we ever want to reference the information stored in that variable later, we can "call" (mean, type in our code) the variable's name:
+
+```{r}
+first_variable
+```
+
+---
+
+## Variable Type
+
+- Every variable you create in R will be of a specific type.
+
+--
+
+- The type of the variable is determined dynamically on assignment.
+
+--
+
+- Determining the type of a variable with `class()`: 
+
+```{r}
+class(first_variable)
+```
+
+---
+
+## Basic Variable Types
+
+| Variable Type | Explanation | Example|
+|---------------|-------------|--------|
+|character | stores a string | `"cogs137"`, `"hi!"`|
+|numeric | stores whole numbers and decimals | `9`, `9.29`|
+|integer | specifies integer | `9L` (the `L` specifis this is an integer)|
+|logical | Booleans | `TRUE`, `FALSE`|
+|list    | store multiple elements | `list(7, "a", TRUE)`
+
+.footnote[There are many more. We'll get to some but not all in this course.]
+
+
+---
+
+## logical & character
+
+**logical** - Boolean values `TRUE` and `FALSE`
+
+```{r}
+class(TRUE)
+```
+
+--
+
+**character** - character strings
+
+```{r}
+class("hello")
+class('students') # equivalent...but we'll use double quotes!
+```
+
+---
+
+## numeric: double & integer
+
+**double** - floating point numerical values (default numerical type)
+
+```{r}
+class(1.335)
+class(7)
+```
+
+--
+
+**integer** - integer numerical values (indicated with an `L`)
+
+```{r}
+class(7L)
+
+```
+
+---
+
+## lists
+
+So far, every variable has been an .ocean[atomic vector], meaning it only stores a single piece of information.
+
+--
+
+**Lists** are 1d objects that can contain any combination of R objects
+
+.small[
+.pull-left[
+```{r}
+mylist <- list("A", 7L, TRUE, 18.4)
+mylist
+```
+]
+.pull-right[
+```{r}
+str(mylist)
+```
+]]
+
+
+---
+
+## Vectors vs. lists
+
+.pull-left[
+.small[
+```{r, error=TRUE}
+x <- c(8, 4, 7)
+```
+]
+.small[
+```{r}
+x[1]
+```
+]
+.small[
+```{r}
+x[[1]]
+```
+]
+]
+--
+.pull-right[
+.small[
+```{r}
+y <- list(8, 4, 7)
+```
+]
+.small[
+```{r}
+y[2]
+```
+]
+.small[
+```{r}
+y[[2]]
+```
+]
+]
+
+--
+
+<br>
+
+**Note:** When using tidyverse code you'll rarely need to refer to elements using square brackets, but it's good to be aware of this syntax, especially since you might encounter it when searching for help online.
+
+---
+
+## Functions
+
+- `class()` was our first function...but we've just shown a few more.
+
+--
+
+- Functions are (most often) verbs, followed by what they will be applied to in parentheses.
+
+--
+
+Functions are:
+- available from base R
+- available from packages you import
+- defined by you
+
+--
+
+We'll start by getting comfortable with available functions, but in a few days, you'll learn how to write your own! 
+
+---
+
+## Helpful Functions
+
+.pull-left[
+- `class()` - determine high-level variable type
+
+```{r}
+class(mylist)
+```
+
+- `length()`- determine how long an object is
+
+
+```{r}
+# contains 4 elements
+length(mylist)
+```
+]
+--
+.pull-right[
+- `str()` - display the structure of an R object
+
+```{r}
+str(mylist)
+```
+]
+
+---
+
+## Named lists
+
+Because of their more complex structure we often want to name the elements of a list (we can also do this with vectors). This can make reading and accessing the list more straight forward.
+
+.small[
+```{r}
+myotherlist <- list(A = "hello", B = 1:4, "knock knock" = "who's there?")
+str(myotherlist)
+names(myotherlist)
+myotherlist$B
+```
+]
+
+
+---
+
+## Concatenation
+
+Vectors can be constructed using the `c()` function.
+
+```{r}
+c(1, 2, 3)
+c("Hello", "World!")
+c(1, c(2, c(3)))
+```
+
+---
+
+## Coercion
+
+R is a dynamically typed language -- it will happily convert between the various types without complaint.
+
+```{r}
+c(1, "Hello")
+c(FALSE, 3L)
+c(1.2, 3L)
+```
+
+---
+
+## Missing Values
+
+R uses `NA` to represent missing values in its data structures.
+
+```{r}
+typeof(NA)
+```
+
+---
+
+## Other Special Values
+
+`NaN` | Not a number
+
+`Inf` | Positive infinity
+
+`-Inf` | Negative infinity
+
+.pull-left[
+```{r}
+pi / 0
+0 / 0
+1/0 + 1/0
+```
+]
+.pull-right[
+```{r}
+1/0 - 1/0
+NaN / NA
+NaN * NA
+```
+]
+
+---
+
+## Activity
+
+.question[
+What is the type of the following vectors? Explain why they have that type.
+]
+
+* `c(1, NA+1L, "C")`
+* `c(1L / 0, NA)`
+* `c(1:3, 5)`
+* `c(3L, NaN+1L)`
+* `c(NA, TRUE)`
+
+---
+
+## Operators
+
+At its simplest, R is a calculator. To carry out mathematical operations, R uses .ocean[operators].
+
+---
+
+## Arithmetic Operators
+
+|Operator | Description |
+|---------|-------------|
+| + | addition|
+| -	| subtraction|
+| * |	multiplication|
+| /	| division|
+| ^ or ** |	exponentiation|
+| x %% y |	modulus (x mod y) 9%%2 is 1|
+| x %/% y |	integer division 9%/%2 is 4|
+
+---
+### Arithmetic Operators: Examples
+
+```{r}
+7 + 6  
+2 - 3
+4 * 2
+9 / 2
+```
+
+---
+
+### Reminder
+
+Output can be stored to a variable
+
+```{r}
+my_addition <- 7 + 6
+```
+
+--
+
+```{r}
+my_addition
+```
+
+---
+
+## Comparison & Logical Operators
+
+These operators return a Boolean.
+
+|Operator | Description |
+|---------|-------------|
+| <	 | less than |
+| <= | 	less than or equal to |
+| >  | 	greater than |
+| >= | 	greater than or equal to |
+| == | 	exactly equal to |
+| != | 	not equal to | 
+
+---
+
+### Logical Operators: Examples
+
+```{r}
+4 < 12
+4 >= 3
+6 == 6
+7 != 6
+```
+
+---
+class: center, middle
+
+# Recap
+
+---
+
+## Recap
+
+Can you answer these questions?
+
+

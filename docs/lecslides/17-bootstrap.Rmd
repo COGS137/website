@@ -85,10 +85,10 @@ class: center, middle
 A plausible range of values for the population parameter is a **confidence interval**.
 
 .pull-left[
-![spear](img/08b/spear.png)
+![spear](img/17/spear.png)
 ]
 .pull-right[
-![net](img/08b/net.png)
+![net](img/17/net.png)
 ]
 
 - If we report a point estimate, we probably won’t hit the exact population parameter.
@@ -133,7 +133,7 @@ class: center, middle
 
 ## Bootstrapping
 
-<img src="img/08b/boot.png" style="float:right">
+<img src="img/17/boot.png" style="float:right">
 
 - The term **bootstrapping** comes from the phrase "pulling oneself up by one’s 
 bootstraps", which is a metaphor for accomplishing an impossible task without 
@@ -199,14 +199,14 @@ ggplot(data = manhattan, mapping = aes(x = rent)) +
 ## Observed sample vs. bootstrap population
 
 .pull-left[
-![rent-bootsamp](img/08b/rent-bootsamp.png)
+![rent-bootsamp](img/17/rent-bootsamp.png)
 Sample median = $`r manhattan %>% summarise(med_rent = median(rent)) %>% pull()` `r emo::ji("scream")`
 ]
 
 --
 
 .pull-right[
-![rent-bootpop](img/08b/rent-bootpop.png)
+![rent-bootpop](img/17/rent-bootpop.png)
 Population median = `r emo::ji("question")`
 ]
 
@@ -231,7 +231,7 @@ of the bootstrap distribution.
 ## Let's bootstrap
 
 
-![boot-by-hand](img/08b/bootstrap-by-hand.png)
+![boot-by-hand](img/17/bootstrap-by-hand.png)
 
 ---
 
@@ -245,7 +245,7 @@ class: center, middle
 
 The objective of this package is to perform statistical inference using an expressive statistical grammar that coheres with the tidyverse design framework.
 
-![ht-diagram](img/08b/ht-diagram.png)
+![ht-diagram](img/17/ht-diagram.png)
 
 ```{r}
 # install.packages("infer")
@@ -436,7 +436,7 @@ ggplot(data = rent_ci_med, mapping = aes(x = stat)) +
 
 --
 
-![garfield](img/08b/garfield.png)
+![garfield](img/17/garfield.png)
 
 --
 

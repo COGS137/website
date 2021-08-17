@@ -169,7 +169,7 @@ starwars
 
 ## Luke Skywalker
 
-![luke-skywalker](img/02a/luke-skywalker.png)
+![luke-skywalker](img/08/luke-skywalker.png)
 
 ---
 
@@ -189,7 +189,7 @@ Run the following **in the Console** to view the help
 ?starwars
 ```
 
-![starwars-help](img/02a/starwars-help.png)
+![starwars-help](img/08/starwars-help.png)
 
 <div class="question">
 How many rows and columns does this dataset have? What does each row represent? What does each column represent?
@@ -239,7 +239,7 @@ ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
 ## Jabba!
 
 ```{r echo=FALSE, warning=FALSE}
-jabba <- image_read("img/02a/jabba.png")
+jabba <- image_read("img/08/jabba.png")
 
 fig <- image_graph(width = 2400, height = 1200, res = 300)
 ggplot(data = starwars, mapping = aes(x = height, y = mass)) +
@@ -248,8 +248,8 @@ dev.off()
 
 out <- fig %>% image_composite(jabba, offset = "+1000+30")
 
-image_write(out, "img/02a/jabbaplot.png", format = "png")
-knitr::include_graphics("img/02a/jabbaplot.png")
+image_write(out, "img/08/jabbaplot.png", format = "png")
+knitr::include_graphics("img/08/jabbaplot.png")
 ```
 
 ---

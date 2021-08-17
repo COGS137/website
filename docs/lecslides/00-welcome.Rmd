@@ -78,7 +78,7 @@ While R has most/all of the functionality of **YFPL** (your favorite programming
 
 <br>
 
-Data science is an exciting and ever-evolving field that allows you to use data and the scientific process to answer interesting questions and solve important problems.
+Data science is the scientific process of using data to answer interesting questions and/or solve important problems.
 
 ---
 
@@ -132,11 +132,7 @@ Shannon Ellis
 
 # What is this course?
 
-Everything you want to know about the course, and everything you will need for the course will be posted at:
-
-[TBD](TBD)
-
-
+Everything you want to know about the course, and everything you will need for the course will be posted at: [https://cogs137.github.io/website/](https://cogs137.github.io/website/)
 
 --
 
@@ -156,10 +152,37 @@ Everything you want to know about the course, and everything you will need for t
 
 --
 
-- Are there any prerequisites? Yes, some intro to statistics course!
+- Will we be doing stats? Yes.
+
+--
+
+- Are there any prerequisites? Yes, an intro statistics course!
 
 
 ---
+
+## So...I don't have to know how to program already?
+
+.pull-left[
+
+![R First Then Illustration](img/00/r_first_then.png)
+
+.footnote[Artwork by [@allison_horst](https://github.com/allisonhorst/stats-illustrations/) <a href="https://twitter.com/allison_horst" title="allison_horst"><i class="fa fa-twitter"></i></a>]
+
+]
+
+.pull-right[
+
+Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**!
+{{content}}
+
+]
+
+--
+
+After that, we'll focus on delving into interesting statistical analyses through **case studies**.
+{{content}}
+
 
 
 ---
@@ -171,9 +194,9 @@ class: center, middle
 
 ---
 
-## Join RStudio.cloud
+## Login to datahub
 
-Go to [TBD](TBD), and log in.
+Go to [https://datahub.ucsd.edu/](https://datahub.ucsd.edu/), and log in with your SSO.
 
 <font color="#E34132">
 Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
@@ -220,14 +243,20 @@ From Syllabus
 
 From Syllabus 
 
+---
+
+## <img src="img/00/welcome_to_rstats_twitter.png" width="10%" align="left" /> The R Community
+
+
+![R Rollercoaster](img/00/r_rollercoaster.png)
+
+.footnote[Artwork by [@allison_horst](https://github.com/allisonhorst/stats-illustrations/) <a href="https://twitter.com/allison_horst" title="allison_horst"><i class="fa fa-twitter"></i></a>]
 
 ---
 
 ## Academic integrity
 
 From Syllabus 
-
-![image]("https://github.com/allisonhorst/stats-illustrations/blob/master/other-stats-artwork/debugging.jpg")
 
 
 ---

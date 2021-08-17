@@ -1,6 +1,6 @@
 ---
-title: "Lab 01 - Hello R!"
-date: "2018-01-18"
+title: "Lab 01 - Tooling"
+date: "2021-10-01"
 output: 
   tufte::tufte_html:
     tufte_variant: "envisioned"
@@ -18,7 +18,7 @@ options(
   )
 ```
 
-**Due:** 2018-01-25 at noon
+<!-- Add in programming basics  -->
 
 # Introduction
 

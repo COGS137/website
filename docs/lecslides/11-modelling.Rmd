@@ -1,11 +1,11 @@
 ---
-title: "The language of models"
-author: "Dr. Çetinkaya-Rundel"
-date: "2018-02-19"
+title: "Modelling"
+author: "Prof Ellis"
+date: "2021-10-20"
 output:
   xaringan::moon_reader:
     css: "slides.css"
-    logo: img/sta199-logo-hex.png
+    logo: img/cogs137-logo-hex.png
     lib_dir: libs
     nature:
       highlightStyle: github
@@ -119,7 +119,7 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
 ... stay for the logo
 ]
 .pull-right[
-![](img/06a/hex-forcats.png)
+![](img/11/hex-forcats.png)
 ]
 
 .midi[
@@ -175,9 +175,9 @@ class: center, middle
 ## Packages
 
 .pull-left[
-![](img/06a/tidyverse.png)
+![](img/11/tidyverse.png)
 
-![](img/06a/broom.png)
+![](img/11/broom.png)
 ]
 .pull-right[
 - You're familiar with the tidyverse:
@@ -214,7 +214,7 @@ What does the `data/` mean in the code above? Hint: Where is the data file locat
 ## Meet the data curators
 
 .center[
-![](img/06a/sandra-van-ginhoven.png) ![](img/06a/hilary-coe-cronheim.png)
+![](img/11/sandra-van-ginhoven.png) ![](img/11/hilary-coe-cronheim.png)
 
 Sandra van Ginhoven &nbsp; &nbsp; Hilary Coe Cronheim
 
@@ -228,7 +228,7 @@ PhD students in the Duke Art, Law, and Markets Initiative in 2013
 
 ## Auctions today
 
-![](img/06a/auction-video.png)
+![](img/11/auction-video.png)
 
 http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html
 
@@ -236,7 +236,7 @@ http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-painting
 
 ## Auctions back in the day
 
-![](img/06a/old-auction.png)
+![](img/11/old-auction.png)
 
 Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)
 
@@ -244,20 +244,20 @@ Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, P
 
 ## Paris auction market
 
-![](img/06a/auction-trend-paris.png)
+![](img/11/auction-trend-paris.png)
 
 ---
 
 ## Depart pour la chasse
 
-![](img/06a/depart-pour-la-chasse.png)
+![](img/11/depart-pour-la-chasse.png)
 
 ---
 
 ## Auction catalogue text
 
 .pull-left[
-![](img/06a/auction-catalogue.png)
+![](img/11/auction-catalogue.png)
 
 ]
 .pull-right[

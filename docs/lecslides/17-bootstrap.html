@@ -62,10 +62,10 @@ class: center, middle
 A plausible range of values for the population parameter is a **confidence interval**.
 
 .pull-left[
-![spear](img/08b/spear.png)
+![spear](img/17/spear.png)
 ]
 .pull-right[
-![net](img/08b/net.png)
+![net](img/17/net.png)
 ]
 
 - If we report a point estimate, we probably won’t hit the exact population parameter.
@@ -110,7 +110,7 @@ class: center, middle
 
 ## Bootstrapping
 
-&lt;img src="img/08b/boot.png" style="float:right"&gt;
+&lt;img src="img/17/boot.png" style="float:right"&gt;
 
 - The term **bootstrapping** comes from the phrase "pulling oneself up by one’s 
 bootstraps", which is a metaphor for accomplishing an impossible task without 
@@ -151,7 +151,7 @@ manhattan %&gt;% slice(1:10)
 ```
 
 ```
-## # A tibble: 10 x 1
+## # A tibble: 10 × 1
 ##     rent
 ##    &lt;dbl&gt;
 ##  1  3850
@@ -173,7 +173,7 @@ manhattan %&gt;% slice(11:20)
 ```
 
 ```
-## # A tibble: 10 x 1
+## # A tibble: 10 × 1
 ##     rent
 ##    &lt;dbl&gt;
 ##  1  2145
@@ -207,14 +207,14 @@ manhattan %&gt;% slice(11:20)
 ## Observed sample vs. bootstrap population
 
 .pull-left[
-![rent-bootsamp](img/08b/rent-bootsamp.png)
+![rent-bootsamp](img/17/rent-bootsamp.png)
 Sample median = $2350 😱
 ]
 
 --
 
 .pull-right[
-![rent-bootpop](img/08b/rent-bootpop.png)
+![rent-bootpop](img/17/rent-bootpop.png)
 Population median = ❓
 ]
 
@@ -239,7 +239,7 @@ of the bootstrap distribution.
 ## Let's bootstrap
 
 
-![boot-by-hand](img/08b/bootstrap-by-hand.png)
+![boot-by-hand](img/17/bootstrap-by-hand.png)
 
 ---
 
@@ -253,7 +253,7 @@ class: center, middle
 
 The objective of this package is to perform statistical inference using an expressive statistical grammar that coheres with the tidyverse design framework.
 
-![ht-diagram](img/08b/ht-diagram.png)
+![ht-diagram](img/17/ht-diagram.png)
 
 
 ```r
@@ -377,7 +377,7 @@ rent_ci_med %&gt;%
 ```
 
 ```
-## # A tibble: 1 x 2
+## # A tibble: 1 × 2
 ##   lower_bound upper_bound
 ##         &lt;dbl&gt;       &lt;dbl&gt;
 ## 1       2162.        2875
@@ -448,7 +448,7 @@ Commonly used confidence levels in practice are 90%, 95%, and 99%
 
 --
 
-![garfield](img/08b/garfield.png)
+![garfield](img/17/garfield.png)
 
 --
 

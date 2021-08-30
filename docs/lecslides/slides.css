@@ -76,6 +76,10 @@ a, a > code {
   background-color: #E1ECF8;
   padding: 0.25px;
 }
+.warning {
+  background-color: #f8e2e1;
+  padding: 0.25px;
+}
 ul {
   list-style-type: square;
 }

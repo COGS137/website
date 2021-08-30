@@ -47,6 +47,7 @@ library(tidyverse)
 - Variables Types
 - Functions
 - Operators
+
 ---
 
 ## Variables & Assignment
@@ -423,6 +424,17 @@ These operators return a Boolean.
 4 >= 3
 6 == 6
 7 != 6
+```
+
+---
+
+## Packages
+
+- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+```{r eval=FALSE}
+install.packages("package_name")
+library(package_name)
 ```
 
 ---

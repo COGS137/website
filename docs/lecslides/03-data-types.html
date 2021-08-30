@@ -34,44 +34,197 @@ class: center, middle, inverse, title-slide
 
 
 
+
+## Agenda
+
+- Data"sets"
+  - Variable typing
+  - First peak at `dplyr`
+- Factors
+
+
+---
+
 class: center, middle
 
+# Data"sets"
+
+---
+
+## Data "sets" in R
+
+- "set" is in quotation marks because it is not a formal data class
+
+- A tidy data "set" can be one of the following types:
+    + `tibble`
+    + `data.frame`
+
+- We'll often work with `tibble`s:
+    + `readr` package (e.g. `read_csv` function) loads data as a `tibble` by default
+    + `tibble`s are part of the tidyverse, so they work well with other packages we are using
+    + they make minimal assumptions about your data, so are less likely to cause hard to track bugs in your code
+
+---
+
+## Data frames
+
+.midi[
+- A data frame is the most commonly used data structure in R, they are list of equal length vectors (usually atomic, but can be generic). Each vector is treated as a column and elements of the vectors as rows.
+
+- A tibble is a type of data frame that ... makes your life (i.e. data analysis) easier.
+
+- Most often a data frame will be constructed by reading in from a file, but we can create them from scratch.
 
 
-- Columns (variables) in data frames are accessed with `$`:
+```r
+df &lt;- tibble(x = 1:3, y = c("a", "b", "c"))
+class(df)
+```
+
+```
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+```r
+glimpse(df)
+```
+
+```
+## Rows: 3
+## Columns: 2
+## $ x &lt;int&gt; 1, 2, 3
+## $ y &lt;chr&gt; "a", "b", "c"
+```
+]
+---
+
+## Data frames (cont.)
+
+
+```r
+attributes(df)
+```
+
+```
+## $names
+## [1] "x" "y"
+## 
+## $row.names
+## [1] 1 2 3
+## 
+## $class
+## [1] "tbl_df"     "tbl"        "data.frame"
+```
+
+--
+
+Columns (variables) in data frames are accessed with `$`:
 
 
 ```r
 dataframe$var_name
 ```
 
---
-
-- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+---
+## Data frames (cont.)
 
 
 ```r
-install.packages("package_name")
-library(package_name)
+class(df$x)  # access variable type for column
 ```
+
+```
+## [1] "integer"
+```
+
+```r
+class(df$y)  
+```
+
+```
+## [1] "character"
+```
+
+---
+
+### Variable Types
+
+Data stored in columns can include different *kinds* of information...which would require a different *type* (`class`) of variable to be used in R.
+
+.pull-left[
+![](img/03/continuous_discrete.png)
+]
+.pull-right[
+
+R Data Types:
+  + .ocean[Continuous]: numeric, integer
+  + .ocean[Discrete]: factors (we haven't talked about these yet, but will today!)
+]
+
+.footnote[Artwork by [@allison_horst](https://github.com/allisonhorst/stats-illustrations/) &lt;a href="https://twitter.com/allison_horst" title="allison_horst"&gt;&lt;i class="fa fa-twitter"&gt;&lt;/i&gt;&lt;/a&gt;]
+
+---
+
+### Variable Types (cont.)
+
+Sometimes data are non-numeric and store words. Even when that is the case, the data can be conveying different information.
+
+.pull-left[
+![](img/03/nominal_ordinal_binary.png)
+]
+.pull-right[
+
+R Data Types:
+  + .ocean[Nominal]: character
+  + .ocean[Ordinal]: factors
+  + .ocean[Binary]: logical OR numeric OR factors 😱
+]
+
+.footnote[Artwork by [@allison_horst](https://github.com/allisonhorst/stats-illustrations/) &lt;a href="https://twitter.com/allison_horst" title="allison_horst"&gt;&lt;i class="fa fa-twitter"&gt;&lt;/i&gt;&lt;/a&gt;]
+
+---
 
 ## Example: Cat lovers
 
 A survey asked respondents their name and number of cats. The instructions said to enter the number of cats as a numerical value.
+
+--
+
+.warning[
+🚨 There is code ahead that we're not going to discuss in detail today, *but* we will in coming lectures.
+]
 
 .small[
 
 ```r
 cat_lovers &lt;- read_csv("data/cat-lovers.csv")
 ```
+]
+---
 
-<div id="htmlwidget-7dc768d7b3c6fcc60143" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-7dc768d7b3c6fcc60143">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+## The Data
+
+.small[
+
+```r
+cat_lovers %&gt;%
+  datatable()
+```
+
+<div id="htmlwidget-0c9455a37c2faa1776b2" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-0c9455a37c2faa1776b2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
+## The Question
 
-## Oh why won't you work?!
+.question[
+How many respondents have a below average number of cats?
+]
+
+--
+
+### Giving it a first shot...
 
 
 ```r
@@ -91,9 +244,15 @@ cat_lovers %&gt;%
 ## 1    NA
 ```
 
+--
+
+.question[
+💡 maybe there is missing data in the `number_of_cats` column!
+]
+
 ---
 
-## Oh why won't you still work??!!
+## Oh why will you *still* not work??!!
 
 
 ```r
@@ -113,13 +272,17 @@ cat_lovers %&gt;%
 ## 1        NA
 ```
 
+--
+
+.question[
+💡What is the **type** of the `number_of_cats` variable?
+]
+
 ---
 
 ## Take a breath and look at your data
 
-.question[
-What is the type of the `number_of_cats` variable?
-]
+--
 
 
 ```r
@@ -139,8 +302,8 @@ glimpse(cat_lovers)
 ## Let's take another look
 
 .small[
-<div id="htmlwidget-3ff96eeb59a398b72ab2" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-3ff96eeb59a398b72ab2">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-b1db7c86abd7f5b3c5f6" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-b1db7c86abd7f5b3c5f6">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -154,7 +317,7 @@ cat_lovers %&gt;%
     name == "Ginger Clark" ~ 2,
     name == "Doug Bass"    ~ 3,
     TRUE                   ~ as.numeric(number_of_cats)
-    )) %&gt;%
+  )) %&gt;%
   summarise(mean_cats = mean(number_of_cats))
 ```
 
@@ -171,7 +334,7 @@ cat_lovers %&gt;%
 
 ---
 
-## Always you need to respect data types
+## Always respect (&amp; check!) data types
 
 
 ```r
@@ -181,9 +344,9 @@ cat_lovers %&gt;%
       name == "Ginger Clark" ~ "2",
       name == "Doug Bass"    ~ "3",
       TRUE                   ~ number_of_cats
-      ),
+    ),
     number_of_cats = as.numeric(number_of_cats)
-    ) %&gt;%
+  ) %&gt;%
   summarise(mean_cats = mean(number_of_cats))
 ```
 
@@ -206,9 +369,9 @@ cat_lovers &lt;- cat_lovers %&gt;%
       name == "Ginger Clark" ~ "2",
       name == "Doug Bass"    ~ "3",
       TRUE                   ~ number_of_cats
-      ),
+    ),
     number_of_cats = as.numeric(number_of_cats)
-    )
+  )
 ```
 
 ---
@@ -221,102 +384,7 @@ cat_lovers &lt;- cat_lovers %&gt;%
 
 ---
 
-
----
-
-class: center, middle
-
-# Data "set"
-
----
-
-## Data "sets" in R
-
-- "set" is in quotation marks because it is not a formal data class
-
-- A tidy data "set" can be one of the following types:
-    + `tibble`
-    + `data.frame`
-
-- We'll often work with `tibble`s:
-    + `readr` package (e.g. `read_csv` function) loads data as a `tibble` by default
-    + `tibble`s are part of the tidyverse, so they work well with other packages we are using
-    + they make minimal assumptions about your data, so are less likely to cause hard to track bugs in your code
-
----
-
-## Data frames
-
-- A data frame is the most commonly used data structure in R, they are just a list of equal length vectors (usually atomic, but you can use generic as well). Each vector is treated as a column and elements of the vectors as rows.
-
-- A tibble is a type of data frame that ... makes your life (i.e. data analysis) easier.
-
-- Most often a data frame will be constructed by reading in from a file, but we can also create them from scratch.
-
-
-```r
-df &lt;- tibble(x = 1:3, y = c("a", "b", "c"))
-class(df)
-```
-
-```
-## [1] "tbl_df"     "tbl"        "data.frame"
-```
-
-```r
-glimpse(df)
-```
-
-```
-## Rows: 3
-## Columns: 2
-## $ x &lt;int&gt; 1, 2, 3
-## $ y &lt;chr&gt; "a", "b", "c"
-```
-
----
-
-## Data frames (cont.)
-
-
-```r
-attributes(df)
-```
-
-```
-## $names
-## [1] "x" "y"
-## 
-## $row.names
-## [1] 1 2 3
-## 
-## $class
-## [1] "tbl_df"     "tbl"        "data.frame"
-```
-
-```r
-class(df$x)
-```
-
-```
-## [1] "integer"
-```
-
-```r
-class(df$y)
-```
-
-```
-## [1] "character"
-```
-
----
-
 ## Working with tibbles in pipelines
-
-.question[
-How many respondents have below average number of cats?
-]
 
 
 ```r
@@ -332,8 +400,10 @@ cat_lovers %&gt;%
 ## [1] 60
 ```
 
+--
+
 .question[
-Do you believe this number? Why, why not?
+❓ Do you believe this number? Why, why not?
 ]
 
 ---
@@ -362,10 +432,11 @@ class(mean_cats)
 
 ---
 
-## `pull()` can be your new best friend
+### `pull()` can be your new best friend
 
-But use it sparingly!
+...but use it sparingly!
 
+.small[
 
 ```r
 mean_cats &lt;- cat_lovers %&gt;%
@@ -380,7 +451,7 @@ cat_lovers %&gt;%
 ```
 ## [1] 33
 ```
-
+]
 --
 
 
@@ -493,26 +564,25 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
 ## Come for the functionality
 
 .pull-left[
-... stay for the logo
+... stay for the hex
 ]
 .pull-right[
+.small[
 ![](img/03/hex-forcats.png)
-]
+]]
 
 - R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors.
 
-- However, factors are still useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The goal of the forcats package is to provide a suite of useful tools that solve common problems with factors.
+- factors are still useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The goal of the forcats package is to provide a suite of useful tools that solve common problems with factors.
 
-Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
+.footnote[Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)]
 
 ---
 
 ## Recap
-
 - Always best to think of data as part of a tibble
     + This plays nicely with the `tidyverse` as well
     + Rows are observations, columns are variables
-    
 - Be careful about data types / classes
     + Sometimes `R` makes silly assumptions about your data class 
         + Using `tibble`s help, but it might not solve all issues
@@ -522,6 +592,10 @@ Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
     + If you are absolutely sure of a data class, over-write it in your
     tibble so that you don't need to keep having to keep track of it
         + `mutate` the variable with the correct class
+
+
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

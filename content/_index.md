@@ -1,13 +1,6 @@
 ---
 title: 'COGS 137: Practical Data Science in R'
-description: Practical Data Science in R focuses on teaching students how to think
-  rigorously throughout the data science process. To this end, through interaction
-  with unique data sets and  interesting questions, this course helps students 1) gain
-  fluency in the R programming language, 2)  effectively explore & visualize
-  data, 3) use statistical thinking to analyze data and rigorously evaluate their
-  conclusions, and 4) effectively communicate their results. Course objectives are
-  accomplished through hands-on practice, using real-world data to learn via case 
-  studies, and project-based learning.
+description: 
 markup: mmark
 output: pdf_document
 ---
@@ -15,6 +8,15 @@ output: pdf_document
 
 ### Course Info
 
+Practical Data Science in R focuses on teaching students how to think
+  rigorously throughout the data science process. To this end, through interaction
+  with unique data sets and  interesting questions, this course helps students 1) gain
+  fluency in the R programming language, 2)  effectively explore & visualize
+  data, 3) use statistical thinking to analyze data and rigorously evaluate their
+  conclusions, and 4) effectively communicate their results. Course objectives are
+  accomplished through hands-on practice, using real-world data to learn via case 
+  studies, and project-based learning.
+  
 #### Lectures
 
 <font color="#ABC57D"><i class="fas fa-university fa-lg"></i></font> &nbsp; MANDE B-150 
@@ -39,6 +41,7 @@ IAs               | Shubham Kulkarni | | TBD | TBD
                   | Colin Wang       | | TBD | TBD
 
 ### Course Objectives
+  
 - Program at the introductory level in the R statistical programming language
 - Employ the tidyverse suite of packages to interact with, wrangle, visualize, and model data
 - Explain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis

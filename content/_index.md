@@ -36,7 +36,7 @@ Practical Data Science in R focuses on teaching students how to think
 <span></span>     | <span></span>     | <span></span>    | <span></span>    |  <span></span>      
 ------------------|-------------------|------------------|------------------|------------------ 
 Instructor        | [Shannon Ellis](http://www.shanellis.com/) | <a href="mailto:sellis@ucsd.edu" title="email"><i class="fa fa-envelope"></i></a> &nbsp; <a href="https://github.com/ShanEllis" title="GitHub"><i class="fa fa-github"></i></a> &nbsp; <a href="https://twitter.com/Shannon_E_Ellis" title="Twitter"><i class="fa fa-twitter"></i></a> | Mon 10AM-12PM | CSB 243
-TA                | TBD              | | TBD | TBD
+TA                | Sean Trott       | | TBD | TBD
 IAs               | Shubham Kulkarni | | TBD | TBD
                   | Colin Wang       | | TBD | TBD
 

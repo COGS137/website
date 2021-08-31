@@ -50,10 +50,10 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
   url = "/policies"
 [[menu.main]]
   weight = 4
-  identifier = "rstudio"
-  name = "RStudio"
+  identifier = "datahub"
+  name = "Datahub"
   pre = "<i class=\"material-icons\">cloud_queue</i>"
-  url = "https://rstudio.cloud"
+  url = "https://datahub.ucsd.edu/"
 [[menu.main]]
   weight = 5
   identifier = "github"
@@ -70,9 +70,9 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
   url = "https://cogsci.ucsd.edu/"
 [[menu.footer]]
   weight = 2
-  name = "RStudio"
-  pre = "<i class=\"icon-rlogo\" style=\"font-size:150%\"></i>"
-  url = "https://rstudio.cloud/"
+  name = "Datahub"
+  pre = "<i class=\"material-icons\">cloud_queue</i>"
+  url = "https://datahub.ucsd.edu/"
 [[menu.footer]]
   weight = 3
   identifier = "GitHub"

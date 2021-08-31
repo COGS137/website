@@ -1,0 +1,830 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>R Basics</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-09-29" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# R Basics
+### Prof Ellis
+### 2021-09-29
+
+---
+
+
+
+
+
+
+## Agenda
+
+- Variable Assignment
+- Variables Types
+- Functions
+- Operators
+
+---
+
+## Variables &amp; Assignment
+
+Variables are how we store information so that we can access it later.
+
+--
+
+Variables are created and stored using the assignment operator `&lt;-` \*
+
+.footnote[\*Other programming languages use `=` for assignment. R *also* uses that for assignment, but it is more typical to see `&lt;-` in R code, so we'll stick with that]
+
+
+```r
+first_variable &lt;- 3
+```
+
+The above stores the value 3 in the variable `first_variable`
+
+--
+
+This means that if we ever want to reference the information stored in that variable later, we can "call" (mean, type in our code) the variable's name:
+
+
+```r
+first_variable
+```
+
+```
+## [1] 3
+```
+
+---
+
+## Variable Type
+
+- Every variable you create in R will be of a specific type.
+
+--
+
+- The type of the variable is determined dynamically on assignment.
+
+--
+
+- Determining the type of a variable with `class()`: 
+
+
+```r
+class(first_variable)
+```
+
+```
+## [1] "numeric"
+```
+
+---
+
+## Basic Variable Types
+
+| Variable Type | Explanation | Example|
+|---------------|-------------|--------|
+|character | stores a string | `"cogs137"`, `"hi!"`|
+|numeric | stores whole numbers and decimals | `9`, `9.29`|
+|integer | specifies integer | `9L` (the `L` specifis this is an integer)|
+|logical | Booleans | `TRUE`, `FALSE`|
+|list    | store multiple elements | `list(7, "a", TRUE)`
+
+.footnote[There are many more. We'll get to some but not all in this course.]
+
+
+---
+
+## logical &amp; character
+
+**logical** - Boolean values `TRUE` and `FALSE`
+
+
+```r
+class(TRUE)
+```
+
+```
+## [1] "logical"
+```
+
+--
+
+**character** - character strings
+
+
+```r
+class("hello")
+```
+
+```
+## [1] "character"
+```
+
+```r
+class('students') # equivalent...but we'll use double quotes!
+```
+
+```
+## [1] "character"
+```
+
+---
+
+## numeric: double &amp; integer
+
+**double** - floating point numerical values (default numerical type)
+
+
+```r
+class(1.335)
+```
+
+```
+## [1] "numeric"
+```
+
+```r
+class(7)
+```
+
+```
+## [1] "numeric"
+```
+
+--
+
+**integer** - integer numerical values (indicated with an `L`)
+
+
+```r
+class(7L)
+```
+
+```
+## [1] "integer"
+```
+
+---
+
+## lists
+
+So far, every variable has been an .ocean[atomic vector], meaning it only stores a single piece of information.
+
+--
+
+**Lists** are 1d objects that can contain any combination of R objects
+
+.small[
+.pull-left[
+
+```r
+mylist &lt;- list("A", 7L, TRUE, 18.4)
+mylist
+```
+
+```
+## [[1]]
+## [1] "A"
+## 
+## [[2]]
+## [1] 7
+## 
+## [[3]]
+## [1] TRUE
+## 
+## [[4]]
+## [1] 18.4
+```
+]
+.pull-right[
+
+```r
+str(mylist)
+```
+
+```
+## List of 4
+##  $ : chr "A"
+##  $ : int 7
+##  $ : logi TRUE
+##  $ : num 18.4
+```
+]]
+
+
+---
+
+## Vectors vs. lists
+
+.pull-left[
+.small[
+
+```r
+x &lt;- c(8, 4, 7)
+```
+]
+.small[
+
+```r
+x[1]
+```
+
+```
+## [1] 8
+```
+]
+.small[
+
+```r
+x[[1]]
+```
+
+```
+## [1] 8
+```
+]
+]
+--
+.pull-right[
+.small[
+
+```r
+y &lt;- list(8, 4, 7)
+```
+]
+.small[
+
+```r
+y[2]
+```
+
+```
+## [[1]]
+## [1] 4
+```
+]
+.small[
+
+```r
+y[[2]]
+```
+
+```
+## [1] 4
+```
+]
+]
+
+--
+
+&lt;br&gt;
+
+**Note:** When using tidyverse code you'll rarely need to refer to elements using square brackets, but it's good to be aware of this syntax, especially since you might encounter it when searching for help online.
+
+---
+
+## Functions
+
+- `class()` was our first function...but we've just shown a few more.
+
+--
+
+- Functions are (most often) verbs, followed by what they will be applied to in parentheses.
+
+--
+
+Functions are:
+- available from base R
+- available from packages you import
+- defined by you
+
+--
+
+We'll start by getting comfortable with available functions, but in a few days, you'll learn how to write your own! 
+
+---
+
+## Helpful Functions
+
+.pull-left[
+- `class()` - determine high-level variable type
+
+
+```r
+class(mylist)
+```
+
+```
+## [1] "list"
+```
+
+- `length()`- determine how long an object is
+
+
+
+```r
+# contains 4 elements
+length(mylist)
+```
+
+```
+## [1] 4
+```
+]
+--
+.pull-right[
+- `str()` - display the structure of an R object
+
+
+```r
+str(mylist)
+```
+
+```
+## List of 4
+##  $ : chr "A"
+##  $ : int 7
+##  $ : logi TRUE
+##  $ : num 18.4
+```
+]
+
+---
+
+## Named lists
+
+Because of their more complex structure we often want to name the elements of a list (we can also do this with vectors). This can make reading and accessing the list more straight forward.
+
+.small[
+
+```r
+myotherlist &lt;- list(A = "hello", B = 1:4, "knock knock" = "who's there?")
+str(myotherlist)
+```
+
+```
+## List of 3
+##  $ A          : chr "hello"
+##  $ B          : int [1:4] 1 2 3 4
+##  $ knock knock: chr "who's there?"
+```
+
+```r
+names(myotherlist)
+```
+
+```
+## [1] "A"           "B"           "knock knock"
+```
+
+```r
+myotherlist$B
+```
+
+```
+## [1] 1 2 3 4
+```
+]
+
+
+---
+
+## Concatenation
+
+Vectors can be constructed using the `c()` function.
+
+
+```r
+c(1, 2, 3)
+```
+
+```
+## [1] 1 2 3
+```
+
+```r
+c("Hello", "World!")
+```
+
+```
+## [1] "Hello"  "World!"
+```
+
+```r
+c(1, c(2, c(3)))
+```
+
+```
+## [1] 1 2 3
+```
+
+---
+
+## Coercion
+
+R is a dynamically typed language -- it will happily convert between the various types without complaint.
+
+
+```r
+c(1, "Hello")
+```
+
+```
+## [1] "1"     "Hello"
+```
+
+```r
+c(FALSE, 3L)
+```
+
+```
+## [1] 0 3
+```
+
+```r
+c(1.2, 3L)
+```
+
+```
+## [1] 1.2 3.0
+```
+
+---
+
+## Missing Values
+
+R uses `NA` to represent missing values in its data structures.
+
+
+```r
+typeof(NA)
+```
+
+```
+## [1] "logical"
+```
+
+---
+
+## Other Special Values
+
+`NaN` | Not a number
+
+`Inf` | Positive infinity
+
+`-Inf` | Negative infinity
+
+.pull-left[
+
+```r
+pi / 0
+```
+
+```
+## [1] Inf
+```
+
+```r
+0 / 0
+```
+
+```
+## [1] NaN
+```
+
+```r
+1/0 + 1/0
+```
+
+```
+## [1] Inf
+```
+]
+.pull-right[
+
+```r
+1/0 - 1/0
+```
+
+```
+## [1] NaN
+```
+
+```r
+NaN / NA
+```
+
+```
+## [1] NaN
+```
+
+```r
+NaN * NA
+```
+
+```
+## [1] NaN
+```
+]
+
+---
+
+## Activity
+
+.question[
+What is the type of the following vectors? Explain why they have that type.
+]
+
+* `c(1, NA+1L, "C")`
+* `c(1L / 0, NA)`
+* `c(1:3, 5)`
+* `c(3L, NaN+1L)`
+* `c(NA, TRUE)`
+
+---
+
+## Operators
+
+At its simplest, R is a calculator. To carry out mathematical operations, R uses .ocean[operators].
+
+---
+
+## Arithmetic Operators
+
+|Operator | Description |
+|---------|-------------|
+| + | addition|
+| -	| subtraction|
+| * |	multiplication|
+| /	| division|
+| ^ or ** |	exponentiation|
+| x %% y |	modulus (x mod y) 9%%2 is 1|
+| x %/% y |	integer division 9%/%2 is 4|
+
+---
+### Arithmetic Operators: Examples
+
+
+```r
+7 + 6  
+```
+
+```
+## [1] 13
+```
+
+```r
+2 - 3
+```
+
+```
+## [1] -1
+```
+
+```r
+4 * 2
+```
+
+```
+## [1] 8
+```
+
+```r
+9 / 2
+```
+
+```
+## [1] 4.5
+```
+
+---
+
+### Reminder
+
+Output can be stored to a variable
+
+
+```r
+my_addition &lt;- 7 + 6
+```
+
+--
+
+
+```r
+my_addition
+```
+
+```
+## [1] 13
+```
+
+---
+
+## Comparison &amp; Logical Operators
+
+These operators return a Boolean.
+
+|Operator | Description |
+|---------|-------------|
+| &lt;	 | less than |
+| &lt;= | 	less than or equal to |
+| &gt;  | 	greater than |
+| &gt;= | 	greater than or equal to |
+| == | 	exactly equal to |
+| != | 	not equal to | 
+
+---
+
+### Logical Operators: Examples
+
+
+```r
+4 &lt; 12
+```
+
+```
+## [1] TRUE
+```
+
+```r
+4 &gt;= 3
+```
+
+```
+## [1] TRUE
+```
+
+```r
+6 == 6
+```
+
+```
+## [1] TRUE
+```
+
+```r
+7 != 6
+```
+
+```
+## [1] TRUE
+```
+
+---
+
+## Packages
+
+- Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
+
+
+```r
+install.packages("package_name")
+library(package_name)
+```
+
+---
+class: center, middle
+
+# Recap
+
+---
+
+## Recap
+
+Can you answer these questions?
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

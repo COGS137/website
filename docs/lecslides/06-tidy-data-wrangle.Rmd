@@ -1,0 +1,132 @@
+---
+title: "Data Import & Wrangling I"
+author: "Prof Ellis"
+date: "2021-10-08"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(magick)
+library(knitr)
+library(emo)
+library(mosaicData)
+library(openintro)
+library(DT)
+```
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+opts_chunk$set(fig.height = 2.65, dpi = 300) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+# For magick
+dev.off <- function(){
+  invisible(grDevices::dev.off())
+}
+```
+
+<!-- Add in information about coding variables -->
+
+## Announcements
+
+- Class recordings linked on course page -- I'll email the link as well
+- Look out for an email about your team tonight, start thinking about a team name asap
+- 
+
+---
+
+class: center, middle
+
+# Tidy data
+
+---
+
+## Tidy data
+
+>Happy families are all alike; every unhappy family is unhappy in its own way. 
+>
+>Leo Tolstoy
+
+--
+
+.pull-left[
+**Characteristics of tidy data:**
+
+1. Each variable forms a column.
+2. Each observation forms a row.
+3. Each type of observational unit forms a table.
+]
+--
+.pull-right[
+**Characteristics of untidy data:**
+
+!@#$%^&*()
+]
+
+---
+
+## Summary tables 
+
+.question[
+Is each of the following a dataset or a summary table?
+]
+
+.small[
+.pull-left[
+```{r echo=FALSE}
+starwars %>%
+  select(name, height, mass) %>%
+  datatable(options = list(dom = "pt", pageLength = 8))
+```
+]
+.pull-right[
+```{r echo=FALSE}
+starwars %>%
+  count(homeworld, gender) %>%
+  spread(gender, n) %>%
+  datatable(options = list(dom = "pt", pageLength = 8))
+```
+]
+]
+
+---
+
+
+
+## What about other arguments?
+
+To send results to a function argument other than first one or to use the previous result for multiple arguments, use `.`:
+
+```{r fig.height=1.8, fig.width = 3.75}
+starwars %>%
+  filter(species == "Human") %>%
+  lm(mass ~ height, data = .)
+```
+
+---
+
+

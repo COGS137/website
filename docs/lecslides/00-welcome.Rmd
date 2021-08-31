@@ -1,0 +1,307 @@
+---
+title: "Welcome to COGS 137"
+author: "Professor Shannon Ellis"
+date: "2021-09-24"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi = 300) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(emo)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+class: center, middle
+
+# Welcome to COGS 137!
+
+Practical Data Science in R
+
+---
+
+## What is R?
+
+<i class="fa fa-code fa"></i> : R is a statistical programming language. 
+
+
+While R has most/all of the functionality of **YFPL** (your favorite programming language), it was designed for the specific use of analyzing data.
+
+---
+
+## What is data science?
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-flask fa"></i> = data science?
+
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-code fa"></i> = data science?
+
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-user fa"></i> + <i class="fa fa-code fa"></i> = data science?
+
+--
+
+- <i class="fa fa-database fa"></i> + <i class="fa fa-users fa"></i> + <i class="fa fa-code fa"></i> = data science?
+
+--
+
+<br>
+
+Data science is the scientific process of using data to answer interesting questions and/or solve important problems.
+
+---
+
+## Who am I?
+
+Shannon Ellis
+
+<i class="fa fa-envelope"></i> &nbsp; [sellis@ucsd.edu](mailto:sellis@ucsd.edu) <br>
+<i class="fa fa-home"></i> &nbsp; [shanellis.com](http://www.shanellis.com/) <br>
+<i class="fa fa-university"></i> &nbsp; MANDE B-150 <br>
+<i class="fa fa-calendar"></i> &nbsp; MWF 9-9:50AM (Lab: Fri 10-10:50)
+
+
+---
+
+## Who else is involved?
+
+.pull-left[
+[TBD](TBD)
+
+<i class="fa fa-envelope"></i> &nbsp; [TBD](mailto:TBD) <br>
+<i class="fa fa-university"></i> &nbsp; [TBD]() <br>
+<i class="fa fa-calendar"></i> &nbsp; TBD
+<br><br>
+
+[TBD](TBD) 
+
+<i class="fa fa-envelope"></i> &nbsp; [TBD](mailto:TBD) <br>
+<i class="fa fa-university"></i> &nbsp; [TBD]() <br>
+<i class="fa fa-calendar"></i> &nbsp; TBD
+<br><br>
+]
+
+.pull-right[
+[TBD](TBD) 
+
+<i class="fa fa-envelope"></i> &nbsp; [TBD](mailto:TBD) <br>
+<i class="fa fa-university"></i> &nbsp; [TBD]() <br>
+<i class="fa fa-calendar"></i> &nbsp; TBD
+<br><br>
+
+[TBD](TBD) 
+
+<i class="fa fa-envelope"></i> &nbsp; [TBD](mailto:TBD) <br>
+<i class="fa fa-university"></i> &nbsp; [TBD]() <br>
+<i class="fa fa-calendar"></i> &nbsp; TBD
+<br><br>
+]
+
+---
+
+# What is this course?
+
+Everything you want to know about the course, and everything you will need for the course will be posted at: [https://cogs137.github.io/website/](https://cogs137.github.io/website/)
+
+--
+
+- Is this an intro CS course? No.
+
+--
+
+- Will we be doing computing? Yes.
+
+--
+
+- What computing language will we learn? R.
+
+--
+
+- Is this an intro stats course? No.
+
+--
+
+- Will we be doing stats? Yes.
+
+--
+
+- Are there any prerequisites? Yes, an intro statistics course!
+
+
+---
+
+## So...I don't have to know how to program already?
+
+.pull-left[
+
+![R First Then Illustration](img/00/r_first_then.png)
+
+.footnote[Artwork by [@allison_horst](https://github.com/allisonhorst/stats-illustrations/) <a href="https://twitter.com/allison_horst" title="allison_horst"><i class="fa fa-twitter"></i></a>]
+
+]
+
+.pull-right[
+
+Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**!
+{{content}}
+
+]
+
+--
+
+After that, we'll focus on delving into interesting statistical analyses through **case studies**.
+{{content}}
+
+
+
+---
+
+class: center, middle
+
+# Your turn!
+
+
+---
+
+## Login to datahub
+
+Go to [https://datahub.ucsd.edu/](https://datahub.ucsd.edu/), and log in with your SSO.
+
+<font color="#E34132">
+Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
+</font>
+---
+
+## Create your first data visualization
+
+- Once you log on to RStudio Cloud, click on this course's workspace "COGS 137 - FA21"
+- You should see a project called UN Votes, fork it by clicking on the <i class="fa fa-fork"></i> icon. This will create your copy of the project and launch it.
+- In the Files pane in the bottom right corner, spot the file called `unvotes.Rmd`. Open it, and then click on the "Knit" button.
+- Go back to the file and change your name on top (in the `yaml` -- we'll talk about what this means later) and knit again.
+- Then change the country names to those you're interested in. Your spelling and capitalization should match the data so take a peek at the Appendix to see how the country names are spelled. Knit again. And voila, your first data visualization!
+
+<font color="#E34132">
+Once done, place a green sticky on your laptop. If you have questions, place a pink sticky.
+</font>
+---
+
+class: center, middle
+
+# Course structure and policies
+
+---
+
+## Class meetings
+
+- Interactive
+
+- Lectures & lots of learn-by-doing
+
+- Bring your laptop to class every day
+
+---
+
+## Diversity & Inclusiveness:
+
+From Syllabus 
+
+
+---
+
+## How to get help
+
+From Syllabus 
+
+---
+
+## <img src="img/00/welcome_to_rstats_twitter.png" width="10%" align="left" /> The R Community
+
+
+![R Rollercoaster](img/00/r_rollercoaster.png)
+
+.footnote[Artwork by [@allison_horst](https://github.com/allisonhorst/stats-illustrations/) <a href="https://twitter.com/allison_horst" title="allison_horst"><i class="fa fa-twitter"></i></a>]
+
+---
+
+## Academic integrity
+
+From Syllabus 
+
+
+---
+
+## Sharing/reusing code
+
+From Syllabus 
+
+
+---
+
+## Course components:
+
+- Teams: 3-4 person teams, based on survey and pretest results, consistent throughout the semester
+- Application exercises: Usually start in class and finish in teams by the next class period, check/no check
+- Homework: Individual, lowest score dropped
+- Lab: Team, lowest score dropped
+- Exams: Individual, two take home midterms
+- Final project: Team, presentations during scheduled final exam time (last day of finals!), you must participate in the project and be in class to present to pass this class
+- Self paced tutorials: Individual, check/no check, extra credit
+
+---
+
+## Grading
+
+From Syllabus 
+
+---
+
+## Excused absences
+
+From Syllabus 
+
+
+---
+
+## Late/missed work policy
+
+From Syllabus 
+
+
+---
+
+## Other policies
+
+From Syllabus 
+
+

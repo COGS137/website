@@ -1,0 +1,19 @@
+---
+title: "Reading 01"
+output: 
+  html_document: 
+    theme: yeti
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## Due
+
+## Required:
+
+
+
+## Optional:
+

@@ -26,7 +26,7 @@ options(
 R is the name of the programming language itself and RStudio is a convenient interface.
 ```
 
-The main goal of this lab is to introduce you to R and RStudio, which we will be using throughout the course both to learn the statistical concepts discussed in the course and to analyze real data and come to informed conclusions. 
+The main goal of this lab is to introduce you to R and RStudio, which we will be using throughout the course to learn and practice programming and analyze data. 
 
 ```{marginfigure}
 git is a version control system (like "Track Changes" features from Microsoft Word on steroids) and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).
@@ -34,9 +34,24 @@ git is a version control system (like "Track Changes" features from Microsoft Wo
 
 An additional goal is to introduce you to git and GitHub, which is the collaboration and version control system that we will be using throughout the course.
 
-As the labs progress, you are encouraged to explore beyond what the labs dictate; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.
+As the labs progress, you are encouraged to explore beyond what the labs say directly; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.
 
-And to make versioning simpler, this is a solo lab. Additionally, we want to make sure everyone gets a significant amount of time at the steering wheel. Next week you'll learn about collaborating on GitHub and produce a single lab report for your team.
+You are encouraged to ask one another questions and work together, but each individual must turn in their own lab each week.
+
+# GitHub
+
+- If you have a GitHub account, be sure you know your username and password (you'll need it later in this lab), and go ahead and move on to the next section.
+
+- If you do not yet have a GitHub account, create one at https://github.com/. Tips for selecting a username:<sup>1</sup>
+    - Incorporate your actual name! People like to know who they’re dealing with. Also makes your username easier for people to guess or remember.
+    - Reuse your username from other contexts if you can, e.g., Twitter or Slack.
+    - Pick a username you will be comfortable revealing to your future boss.
+    - Shorter is better than longer.
+    - Be as unique as possible in as few characters as possible. In some settings GitHub auto-completes or suggests usernames.
+    - Make it timeless. Don’t highlight your current university, employer, or place of residence.
+    - Avoid words laden with special meaning in programming, like `NA`.
+
+.footnote[ [1] Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan.]
 
 # Getting started
 
@@ -46,40 +61,33 @@ The following screencast also walks you through these steps:
 
 <div style="position:relative;height:0;padding-bottom:40%"><iframe width="600" height="320" src="https://www.youtube.com/embed/8Ta_SJq3MrU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
-- Click on the assignment link that you should have received in your email to create your GitHub repository (which we'll refer to as "repo" going forward) for the assignment. This repo contains a template you can build on to complete your assignment.
-
 ```{r clone-repo-link, fig.margin = TRUE, echo = FALSE, fig.width=3}
-knitr::include_graphics("img/01-hello-r/clone-repo-link.png")
+knitr::include_graphics("img/01-hello-r/accept_assignment.png")
 ```
 
-- On GitHub, click on the green **Clone or download** button, select **Use HTTPS** (this might already be selected by default, and if it is, you'll see the text **Clone with HTTPS** as in the image below). Click on the clipboard icon to copy the repo URL.
+- Click on the assignment link for this week's lab on the Canvas homepage. You will have to   **Accept** before proceeding. **Refresh the page** and follow the link to the repo created for you. This repo contains a template you can build on to complete your lab.
 
 ```{r new-project-from-gh, fig.margin = TRUE, echo = FALSE, fig.width=3}
-knitr::include_graphics("img/01-hello-r/new-project-from-gh.png")
+knitr::include_graphics("img/01-hello-r/repo_url.png")
 ```
 
-- Go to RStudio Cloud and into the course workspace. Create a **New Project from Git Repo**. You will need to click on the down arrow next to the **New Project** button to see this option.
+- On this page on GitHub, copy the URL provided for you.
+
+- Go to datahub and open RStudio. Go to **File > New Project**... and select to create a **New Project from Version Control**. On the following menu, select **Git**. 
 
 ```{r paste-gh-repo-url, fig.margin = TRUE, echo = FALSE, fig.width=5}
-knitr::include_graphics("img/01-hello-r/paste-gh-repo-url.png")
+knitr::include_graphics("img/01-hello-r/repo_in_r.png")
 ```
 
-- Copy and paste the URL of your assignment repo into the dialog box:
+- Copy and paste the URL of your assignment repo into the "Repository URL" dialog box:
 
-- Hit OK, and you're good to go!
+- Hit **Create Project**. You'll be asked for your GitHub username and password here. After you enter these, you're good to go! Open up `hw-01.Rmd` and continue through this lab. Your work/answers for this lab will be submitted in that document.
 
 # Packages
 
 In this lab we will work with two packages: `datasauRus` which contains the dataset, and `tidyverse` which is a collection of packages for doing data analysis in a "tidy" way.
 
-Install these packages by running the following in the console.
-
-```{r eval = FALSE}
-install.packages("tidyverse")
-install.packages("datasauRus")
-```
-
-Now that the necessary packages are installed, you should be able to Knit your document and see the results.
+These packages have already been installed for you. However, if they had not, you would need to run `install.packages("tidyverse")` and `install.packages("datasauRus")` before proceeding. Note that package installation happens a single time. But, any time you want to *use* a package (after it's been installed), it has to be loaded, as we do below:
 
 If you'd like to run your code in the Console as well you'll also need to load the packages there. To do so, run the following in the console. 
 
@@ -87,6 +95,8 @@ If you'd like to run your code in the Console as well you'll also need to load t
 library(tidyverse) 
 library(datasauRus)
 ```
+
+You should be able to Knit your document and see the results.
 
 Note that the packages are also loaded with the same commands in your R Markdown document.
 
@@ -112,14 +122,14 @@ git config --global user.email "your email"
 git config --global user.name "your name"
 ```
 
-For example, for me these are
+For example, for me these are:
 
 ```{bash eval=FALSE}
-git config --global user.email "mine@stat.duke.edu"
-git config --global user.name "Mine Cetinkaya-Rundel"
+git config --global user.email "sellis@ucsd.edu"
+git config --global user.name "Shannon Ellis"
 ```
 
-To confirm that the changes have been implemented, run the following
+To confirm that the changes have been implemented, run the following:
 
 ```{bash eval=FALSE}
 git config --global user.email
@@ -133,21 +143,14 @@ Before we introduce the data, let's warm up with some simple exercises. The foll
 
 <div style="position:relative;height:0;padding-bottom:40%"><iframe width="600" height="320" src="https://www.youtube.com/embed/XE8h8jIyu04" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
-## Project name: 
-
-Currently your project is called *Untitled Project*. Update the name of your project to be "Lab 01 - Hello R".
-
-```{r untitled-project, fig.fullwidth=TRUE, echo = FALSE}
-knitr::include_graphics("img/01-hello-r/untitled-project.png")
-```
 
 ```{marginfigure}
-The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for "YAML Ain't Markup Language". It is a human friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.
+The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for "Yet Another Markup Language". It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.
 ```
 
 ## YAML: 
 
-Open the R Markdown (Rmd) file in your project, change the author name to your name, and knit the document.
+Open the R Markdown (Rmd) file in your project, change the author name to your name and the date to today's date, and knit the document.
 
 ```{r yaml-raw-to-rendered, fig.fullwidth=TRUE, echo = FALSE}
 knitr::include_graphics("img/01-hello-r/yaml-raw-to-rendered.png")
@@ -155,7 +158,7 @@ knitr::include_graphics("img/01-hello-r/yaml-raw-to-rendered.png")
 
 ## Commiting changes:
 
-Then Go to the Git pane in your RStudio.
+Then Go to the Git pane in your RStudio on Datahub.
 
 If you have made changes to your Rmd file, you should see it listed here. Click on it to select it in this list and then click on **Diff**. This shows you the *diff*erence between the last committed state of the document and its current state that includes your changes. If you're happy with these changes, write "Update author name" in the **Commit message** box and hit **Commit**.
 
@@ -163,13 +166,13 @@ If you have made changes to your Rmd file, you should see it listed here. Click 
 knitr::include_graphics("img/01-hello-r/update-author-name-commit.png")
 ```
 
-You don't have to commit after every change, this would get quite cumbersome. You should consider committing states that are *meaningful to you* for inspection, comparison, or restoration. In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use. As the semester progresses we will let you make these decisions.
+You don't have to commit after every change, this would get quite cumbersome. You should consider committing states that are *meaningful to you* for inspection, comparison, or restoration. In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use. As the quarter progresses, we will let you make these decisions.
 
 ## Pushing changes: 
 
 Now that you have made an update and committed this change, it's time to push these changes to the web! Or more specifically, to your repo on GitHub. Why? So that others can see your changes. And by others, we mean the course teaching team (your repos in this course are private to you and us, only). 
 
-In order to push your changes to GitHub, click on **Push**. This will prompt a dialogue box where you first need to enter your user name, and then your password. This might feel cumbersome. Bear with me... We *will* teach you how to save your password so you don't have to enter it every time. But for this one assignment you'll have to manually enter each time you push in order to gain some experience with it.
+In order to push your changes to GitHub, click on **Push**. This will prompt a dialogue box where you first need to enter your user name, and then your password. This might feel cumbersome. Bear with me... We *will* teach you how to save your password so you don't have to enter it every time. But for this one lab you'll have to manually enter each time you push in order to gain some experience with it.
 
 ## Thought exercise:
 
@@ -181,7 +184,7 @@ For which of the above steps (changing project name, making updates to the docum
 If it's confusing that the data frame is called `datasaurus_dozen` when it contains 13 datasets, you're not alone! Have you heard of a [baker's dozen](https://en.wikipedia.org/wiki/Dozen#Baker's_dozen)?
 ```
 
-The data frame we will be working with today is called `datasaurus_dozen` and it's in the `datasauRus` package. Actually, this single data frame contains 13 datasets, designed to show us  why data visualisation is important and how summary statistics alone can be misleading. The different datasets are maked by the `dataset` variable.
+The data frame we will be working with today is called `datasaurus_dozen` and it's in the `datasauRus` package. Actually, this single data frame contains 13 datasets, designed to show us  why data visualization is important and how summary statistics alone can be misleading. The different datasets are maked by the `dataset` variable.
 
 To find out more about the dataset, type the following in your Console: `?datasaurus_dozen`. A question mark before the name of an object will always bring up its help file. This command must be ran in the Console.
 
@@ -190,9 +193,8 @@ To find out more about the dataset, type the following in your Console: `?datasa
 Let's take a look at what these datasets are. To do so we can make a *frequency table* of the dataset variable:
 
 ```{r}
-datasaurus_dozen %>%
-  count(dataset) %>%
-  print(13)
+datasaurus_dozen |>
+  count(dataset)
 ```
 
 ```{marginfigure}
@@ -210,13 +212,13 @@ Below is the code you will need to complete this exercise. Basically, the answer
 Start with the `datasaurus_dozen` and pipe it into the `filter` function to filter for observations where `dataset == "dino"`. Store the resulting filtered data frame as a new data frame called `dino_data`.
 
 ```{r}
-dino_data <- datasaurus_dozen %>%
+dino_data <- datasaurus_dozen |>
   filter(dataset == "dino")
 ```
 
 There is a lot going on here, so let's slow down and unpack it a bit. 
 
-First, the pipe operator: `%>%`, takes what comes before it and sends it as the first argument to what comes after it. So here, we're saying `filter` the `datasaurus_dozen` data frame for observations where `dataset == "dino"`.
+First, the pipe operator: `|>`, takes what comes before it and sends it as the first argument to what comes after it. So here, we're saying `filter` the `datasaurus_dozen` data frame for observations where `dataset == "dino"`.
 
 Second, the assignment operator: `<-`, assigns the name `dino_data` to the filtered data frame.
 
@@ -238,7 +240,7 @@ Start with `dino_data` and calculate a summary statistic that we will call `r` a
 ```
 
 ```{r}
-dino_data %>%
+dino_data |>
   summarize(r = cor(x, y))
 ```
 
@@ -259,8 +261,8 @@ Facet by the dataset variable, placing the plots in a 3 column grid, and don't a
 5. Finally, let's plot all datasets at once. In order to do this we will make use of facetting.
 
 ```{r all-viz, eval=FALSE, fig.fullwidth=TRUE}
-ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
-  geom_point()+
+ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset)) +
+  geom_point() +
   facet_wrap(~ dataset, ncol = 3) +
   theme(legend.position = "none")
 ```
@@ -268,10 +270,9 @@ ggplot(datasaurus_dozen, aes(x = x, y = y, color = dataset))+
 And we can use the `group_by` function to generate all the summary correlation coefficients.
 
 ```{r all-r, eval=FALSE}
-datasaurus_dozen %>%
-  group_by(dataset) %>%
-  summarize(r = cor(x, y)) %>%
-  print(13)
+datasaurus_dozen |>
+  group_by(dataset) |>
+  summarize(r = cor(x, y))
 ```
 
 You're done with the data analysis exercises, but we'd like you to do two more things:
@@ -288,7 +289,7 @@ Click on the gear icon in on top of the R Markdown document, and select "Output 
 knitr::include_graphics("img/01-hello-r/fig-resize-local.png")
 ```
 
-You can also use different figure sizes for differen figures. To do so click on the gear icon within the chunk where you want to make a change. Changing the figure sizes added new options to these chunks: `fig.width` and `fig.height`. You can change them by defining different values directly in your R Markdown document as well.
+You can also use different figure sizes for different figures. To do so click on the gear icon within the chunk where you want to make a change. Changing the figure sizes added new options to these chunks: `fig.width` and `fig.height`. You can change them by defining different values directly in your R Markdown document as well.
 
 ```{r theme-highlight, fig.margin = TRUE, echo = FALSE, fig.width=3}
 knitr::include_graphics("img/01-hello-r/theme-highlight.png")

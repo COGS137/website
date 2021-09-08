@@ -8,14 +8,7 @@ output: pdf_document
 
 ### Course Info
 
-Practical Data Science in R focuses on teaching students how to think
-  rigorously throughout the data science process. To this end, through interaction
-  with unique data sets and  interesting questions, this course helps students 1) gain
-  fluency in the R programming language, 2)  effectively explore & visualize
-  data, 3) use statistical thinking to analyze data and rigorously evaluate their
-  conclusions, and 4) effectively communicate their results. Course objectives are
-  accomplished through hands-on practice, using real-world data to learn via case 
-  studies, and project-based learning.
+Practical Data Science in R focuses on teaching students how to think rigorously throughout the data science process. To this end, through interaction with unique data sets and  interesting questions, this course helps students 1) gain fluency in the R programming language, 2)  effectively explore & visualize data, 3) use statistical thinking to analyze data and rigorously evaluate their conclusions, and 4) effectively communicate their results. Course objectives are accomplished through hands-on practice, using real-world data to learn via case studies, and project-based learning.
   
 #### Lectures
 

@@ -1,4 +1,4 @@
-baseurl = "https://cogs137.github.io/website/"
+baseurl = "/"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "COGS 137"
@@ -7,6 +7,7 @@ theme = "material"
 # googleAnalytics = ""
 paginate = 7
 relativeurls = true
+canonifyurls = false
 publishDir = "docs"
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\\.md$"]
 
@@ -84,8 +85,8 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
 
 [params]
   dateFormat = "Septebmer 23, 2021"
-  background = "/img/background.jpg"
-  favicon = "/img/favicon.ico"
+  background = "https://github.com/COGS137/website/blob/master/docs/img/background.jpg"
+  favicon = "img/favicon.ico"
 
 
 [[redirects]]

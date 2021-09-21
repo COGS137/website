@@ -1,4 +1,4 @@
-baseurl = "/"
+baseurl = "https://cogs137.github.io/website"
 languageCode = "en-us"
 defaultContentLanguage = "en-us"
 title = "COGS 137"
@@ -26,7 +26,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
   location = "UC San Diego"
   gravatarEmail = "sellis@ucsd.edu"
   # Your profile picture
-#  picture = ""
+  #  picture = ""
   twitter = "Shannon_E_Ellis"
  
 # Menu Configuration
@@ -90,5 +90,5 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_cache$", "\\.knit\\.md$", "\\.utf8\
 
 [[redirects]]
 	from = "/*"
-	to = "/404/"
+	to = "/404/index.html"
 	status = 404

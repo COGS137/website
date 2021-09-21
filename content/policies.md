@@ -18,7 +18,7 @@ My goal is that every student, regardless of their background or perspective, wi
 
 Most students call me Professor/Prof Ellis, and that's great! This is how I typically sign emails to students. I'm also totally OK with you addressing me as Shannon or Dr. Ellis.
 
-#### What I should call you
+#### What I should call you?
 
 I should call you by your preferred name, with the correct pronunciation. Please correct me (in the moment or via email/Caampsuwire after the fact...however you're most comfortable) if I ever make a mistake.
 
@@ -54,9 +54,9 @@ If you have:
 
 Don't cheat.
 
-You are generally encouraged to work together and help one another in this course. However, you are personally responsible for the work you submit. A helpful heuristic can b to ask yourself "Can I explain each piece of code and each analysis carried out in what I'm submitting? Could I reproduce this code/analysis on my own?"; you should be able to answer "Yes"" to both questions for everything you submit in this course. For labs and assignments, you are allowed and encouraged to work together, but it is your responsibility to ensure you understand everything you've submitted. (For exams, all work has to be completed individually and communication with others about the exam is not allowed; this will be discussed more explicitly before exams.)
+You are generally encouraged to work together and help one another in this course. However, you are personally responsible for the work you submit. A helpful heuristic can b to ask yourself "Can I explain each piece of code and each analysis carried out in what I'm submitting? Could I reproduce this code/analysis on my own?"; you should be able to answer "Yes" to both questions for everything you submit in this course. For labs and assignments, you are allowed and encouraged to work together, but it is your responsibility to ensure you understand everything you've submitted. (For exams, all work has to be completed individually and communication with others about the exam is not allowed; this will be discussed more explicitly before exams.)
 
-**A note on sharing / reusing code:** The Internet is an excellent resource; there will be many times you find helpful information online. You *shoould* use available resources (e.g. StackOverflow), but you must explicitly cite any code you use directly or any code you use as inspiration. This can be done by including the URL/reference to the source directly in your code (as a code comment) or in accompanying text for a given assignment/exam/lab. You should never share code directly (e.g. copy + paste; share an send an answer to a classmate), but you can discuss code and work together on everything other than take-home exams.
+**A note on sharing / reusing code:** The Internet is an excellent resource; there will be many times you find helpful information online. You *should* use available resources (e.g. StackOverflow), but you must explicitly cite any code you use directly or any code you use as inspiration. This can be done by including the URL/reference to the source directly in your code (as a code comment) or in accompanying text for a given assignment/exam/lab. You should never share code directly (e.g. copy + paste; share an send an answer to a classmate), but you can discuss code and work together on everything other than take-home exams.
 
 Please review UCSD's academic integrity policies [here](http://academicintegrity.ucsd.edu).
 
@@ -68,7 +68,8 @@ Cheating and plagiarism have been and will be strongly penalized. If, for whatev
 
 Lectures will be your introduction to course topics and material. Lectures will be interactive, and you will be given time to practice with the lecture concepts during class. Attendance is not required, but is encouraged if you're feeling well. 
 
-Attendance will not be incentivized this quarter, given that we are mid-transition in our return to in-person learningm, and I do not want to encourage anyone to come to class if they're not feeling well.
+Attendance will not be incentivized this quarter, given that we are mid-transition in our return to in-person learning, and I do not want to encourage anyone to come to class if they're not feeling well. That said, there will be a daily participation survey (link on Canvas) to provide feedback and ask questions about each lecture. Each time you fill out the lecture survey, you get a small % of credit toward your final project/exam. Completion of all surveys can provide up to 3.5% extra credit on your final project/exam (*not* your final course grade). Each day's survey will be up for at least three days and can be completed regardless of whether you attend class in person.
+
 
 ##### Readings
 
@@ -121,14 +122,14 @@ Your final grade will be comprised of the following:
 Labs  (9)             | 18%
 Homework (5)          | 30%
 Midterm (1)           | 14%
-CS Projects* (3)      | 24%
+Case Study Projects* (3) | 24%
 Final project* (1)    | 14%
 
 \* indicates group submission
 
 #### Final Grades:
 
-To calculate final grades, I use the standard grading scale and do not round grades up:
+To calculate final grades, I use the standard grading scale and do not round grades up (given the numerous extra credit opportunities offered):
 
 {.table .table-condensed .table-striped .text-left}
  <span></span>        | <span></span>

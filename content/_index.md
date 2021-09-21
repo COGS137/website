@@ -55,7 +55,7 @@ Texts are freely available online:
 
 You should have access to a laptop and bring it to every class, fully charged.
 
-Note: If you do not have consistent access to the technology needed, please use [this form]((https://eforms.ucsd.edu/view.php?id=490887)) to request a loaner laptop. (For any issues that you may have, please email <a href="mailto:vcsa@ucsd.edu" title="email">vcsa@ucsd.edu</a>, and they will work to assist you.)
+Note: If you do not have consistent access to the technology needed, please use [this form](https://eforms.ucsd.edu/view.php?id=490887) to request a loaner laptop. (For any issues that you may have, please email <a href="mailto:vcsa@ucsd.edu" title="email">vcsa@ucsd.edu</a>, and they will work to assist you.)
 
 
 ### Acknowledgements

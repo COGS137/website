@@ -42,7 +42,7 @@ You are encouraged to ask one another questions and work together, but each indi
 
 - If you have a GitHub account, be sure you know your username and password (you'll need it later in this lab), and go ahead and move on to the next section.
 
-- If you do not yet have a GitHub account, create one at https://github.com/. Tips for selecting a username:<sup>1</sup>
+- If you do not yet have a GitHub account, create one at https://github.com/. Tips for selecting a username ^[1 Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan.]:
     - Incorporate your actual name! People like to know who they’re dealing with. Also makes your username easier for people to guess or remember.
     - Reuse your username from other contexts if you can, e.g., Twitter or Slack.
     - Pick a username you will be comfortable revealing to your future boss.
@@ -51,15 +51,11 @@ You are encouraged to ask one another questions and work together, but each indi
     - Make it timeless. Don’t highlight your current university, employer, or place of residence.
     - Avoid words laden with special meaning in programming, like `NA`.
 
-.footnote[ [1] Source: [Happy git with R](http://happygitwithr.com/github-acct.html#username-advice) by Jenny Bryan.]
+
 
 # Getting started
 
-Each of your assignments will begin with the following steps. You saw these once in class yesterday, they're outlined in detail here again. Going forward each lab will start with a "Getting started" section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.
-
-The following screencast also walks you through these steps:
-
-<div style="position:relative;height:0;padding-bottom:40%"><iframe width="600" height="320" src="https://www.youtube.com/embed/8Ta_SJq3MrU" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
+Each of your assignments will begin with the following steps. You saw these once in class and, they're outlined in detail here again. Going forward each lab will start with a "Getting started" section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.
 
 ```{r clone-repo-link, fig.margin = TRUE, echo = FALSE, fig.width=3}
 knitr::include_graphics("img/01-hello-r/accept_assignment.png")
@@ -108,9 +104,6 @@ Your email address is the address tied to your GitHub account and your name shou
 
 Before we can get started we need to take care of some required housekeeping. Specifically,  we need to configure your git so that RStudio can communicate with GitHub. This requires two pieces of information: your email address and your name.
 
-The following screencast is a demo of what you need to do to configure your git.
-
-<div style="position:relative;height:0;padding-bottom:40%"><iframe width="600" height="320"` src="https://www.youtube.com/embed/nD6_3C-OZyM" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
 
 To do so, follow these steps:
 
@@ -139,10 +132,7 @@ git config --global user.name
 
 # Warm up
 
-Before we introduce the data, let's warm up with some simple exercises. The following video is an overview of some of these warmup exercises.
-
-<div style="position:relative;height:0;padding-bottom:40%"><iframe width="600" height="320" src="https://www.youtube.com/embed/XE8h8jIyu04" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe></div>
-
+Before we introduce the data, let's warm up with some simple exercises.
 
 ```{marginfigure}
 The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for "Yet Another Markup Language". It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.

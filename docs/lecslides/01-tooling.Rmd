@@ -42,55 +42,32 @@ library(tidyverse)
 ```
 
 ## Agenda
-
-- Demo: A reproducible data analysis
+- datahub
 - R and RStudio
 - RStudio Projects
-- File types: .R and .Rmd
+- R Markdown files
 - Git and GitHub
 - Recap
 
 ---
 
-class: center, middle
+## Datahub
 
-# A reproducible data analysis
+Datahub is a platform hosted by UCSD that gives students access to computational resources.
 
----
+This means that while you'll be typing on your keyboard, you'll be *using* UCSD's computers in this class.
 
-## Let's talk about burritos!
+Website: https://datahub.ucsd.edu/
 
-<iframe src="https://giphy.com/embed/6587R2Pda6iFW" width="853" height="480" frameBorder="0" class="giphy-embed" allowFullScreen></iframe><p><a href="https://giphy.com/gifs/burrito-6587R2Pda6iFW">via GIPHY</a></p>
+--
 
----
+**Launch Environment**
 
-## Recap: What did we just do?
+When working on "stuff" for this course, select the COGS 137 environment.
 
-- Locate a repository on **GitHub**
+![datahub](img/01/datahub.png)
 
-- Clone and open the project in **RStudio**
 
-- Run the analysis using **R Markdown**
-
-- Edit the analysis to exclude reviews from "Other" reviewers using **R** syntax
-
-- Re-run the analysis using **R Markdown**
-
----
-
-## Reproducibility checklist
-
-Near-term goals:
-
-- Are the tables and figures reproducible from the code and data?
-- Does the code actually do what you think it does?
-- In addition to what was done, is it clear **why** it was done? 
-(e.g., how were parameter settings chosen?)
-
-Long-term goals:
-
-- Can the code be used for other data?
-- Can you extend the code to do other things?
 
 ---
 
@@ -147,7 +124,7 @@ Concepts introduced:
 
 - **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data<sup>1</sup>
 
-- As of September 2020, there are over 16,000 R packages available on **CRAN** (the Comprehensive R Archive Network)<sup>2</sup>
+- As of September 2021, there are over 16,000 R packages available on **CRAN** (the Comprehensive R Archive Network)<sup>2</sup>
 
 - We're going to work with a small (but important) subset of these!
 
@@ -156,6 +133,7 @@ Concepts introduced:
 
 <sup>2</sup> [CRAN contributed packages](https://cran.r-project.org/web/packages/).
 
+]
 ---
 
 ## What is the Tidyverse?
@@ -186,25 +164,7 @@ Concepts introduced:
 
 class: center, middle
 
-# File Types: R Scripts & R Markdown
-
----
-
-## R Scripts
-
-- File that contains code and comments, with the file extension .R (or .r)
-
-- Allows you to save the code you're writing
-
-- Can be executed (run) in RStudio
-
----
-
-## How will we use R Scripts?
-
-- Every homework will be submitted as an R Script
-
-- You'll always have a template .R document to start with and guide you
+# R Markdown
 
 ---
 
@@ -236,8 +196,6 @@ The Bechdel test asks whether a work of fiction features at least two women who 
 
 Concepts introduced:
 
-- Forking a project of mine: "Bechdel"
-
 - Knitting documents
 
 - R Markdown and (some) R syntax
@@ -259,7 +217,7 @@ Concepts introduced:
 
 ## How will we use R Markdown?
 
-- Every lab / project / notes / etc. is an R Markdown document
+- Every lab / project / homework / notes / etc. is an R Markdown document
 
 - You'll always have a template R Markdown document to start with
 
@@ -332,7 +290,7 @@ with human readable messages
 
 ## Let's take a tour -- Git / GitHub
 
-**We'll cover this time permitting, you'll see it again in lab tomorrow**
+**We'll cover this time permitting, you'll see it again in lab this week**
 
 Concepts introduced:
 
@@ -362,19 +320,9 @@ class: center, middle
 
 Can you answer these questions?
 
-- What is reproducible data analysis, and why do we care?
-- What is version control, and why do we care?
 - What is R vs RStudio?
 - What are RStudio Projects
-- How does an R script differ from an R Markdown file?
+- What are the components of an R Markdown file?
+- What is version control, and why do we care?
 - What is git vs GitHub (and do I need to care)?
 
----
-
-## Before next class
-
-- Readings for next Monday posted
-
-- Tomorrow in lab you'll get to really sink your teeth into everything we demoed today
-
-- Having difficulty? Ask on GitHub or come to office hours!

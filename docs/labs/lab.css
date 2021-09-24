@@ -75,6 +75,13 @@ strong {
 	font-family: "Source Sans Pro";
 }
 
+.footnote {
+  position: absolute;
+  bottom: 1.5em;
+  padding-right: 4em;
+  font-size: 80%;
+}
+
 /* Code formatting */
 
 @media screen and (max-width: 760px) {
@@ -138,3 +145,5 @@ ol>li:before {
 ol ol {
 	counter-reset: subitem;
 }
+
+

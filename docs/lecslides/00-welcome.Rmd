@@ -257,6 +257,7 @@ class: center, middle
   - datahub : completing assignments, labs, exams etc.
   - Gradescope : submitting assignments
   - Canvas : grades, course-specific links
+  - Campuswire : Q&A
 
 ---
 

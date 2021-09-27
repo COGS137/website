@@ -7,5 +7,4 @@ Thumbs.db
 *.Rproj
 
 # temporarily (while I edit course content)
-static/
 Makefile

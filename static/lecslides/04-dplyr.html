@@ -1,0 +1,1064 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>dplyr</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-10-04" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# <code>dplyr</code>
+### Prof Ellis
+### 2021-10-04
+
+---
+
+
+
+
+
+
+class: center, middle
+
+# `dplyr`
+
+---
+
+## Agenda
+
+- `dplyr`
+  + philosophy
+  + pipes
+  + common operations
+
+---
+
+## Philosophy
+
+&gt; `dplyr` is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges 
+
+.footnote[Source: [dplyr.tidyverse.org](https://dplyr.tidyverse.org/)]
+
+---
+
+class: center, middle
+
+# Pipes
+
+---
+
+## The pipe in baseR
+
+![baseR pipe](img/04/baseR_hex.jpeg)
+
+- `|&gt;` should be read as "and then" 
+- for example "Wake up |&gt; brush teeth" would be read as wake up *and then* brush teeth
+---
+
+## Where does the name come from?
+
+The pipe operator was *first* implemented in the package **magrittr**.
+
+.pull-left[
+![pipe](img/04/magritte.jpg)
+]
+.pull-right[
+![magrittr](img/04/magrittr.jpg)
+]
+
+You will see this frequently in code online. It's equivalent to `|&gt;`.
+
+
+---
+
+## Review: How does a pipe work?
+
+- You can think about the following sequence of actions - find key, 
+unlock car, start car, drive to school, park.
+
+--
+
+- Expressed as a set of nested functions in R pseudocode this would look like:
+
+
+```r
+park(drive(start_car(find("keys")), to = "campus"))
+```
+
+--
+
+- Writing it out using pipes give it a more natural (and easier to read) 
+structure:
+
+
+```r
+find("keys") |&gt;
+  start_car() |&gt;
+  drive(to = "campus") |&gt;
+  park()
+```
+
+---
+
+class: center, middle
+
+# Data
+
+---
+
+## NC DOT Fatal Crashes in North Carolina
+
+From https://opendurham.nc.gov
+
+
+
+
+```r
+bike &lt;- read_csv2("https://stat.duke.edu/~mc301/data/nc_bike_crash.csv", 
+                  na = c("NA", "", "."))
+```
+
+---
+
+## Variables
+
+View the names of variables via
+
+```r
+names(bike)
+```
+
+```
+##  [1] "FID"        "OBJECTID"   "AmbulanceR" "BikeAge_Gr" "Bike_Age"  
+##  [6] "Bike_Alc_D" "Bike_Dir"   "Bike_Injur" "Bike_Pos"   "Bike_Race" 
+## [11] "Bike_Sex"   "City"       "County"     "CrashAlcoh" "CrashDay"  
+## [16] "Crash_Date" "Crash_Grp"  "Crash_Hour" "Crash_Loc"  "Crash_Mont"
+## [21] "Crash_Time" "Crash_Type" "Crash_Ty_1" "Crash_Year" "Crsh_Sevri"
+## [26] "Developmen" "DrvrAge_Gr" "Drvr_Age"   "Drvr_Alc_D" "Drvr_EstSp"
+## [31] "Drvr_Injur" "Drvr_Race"  "Drvr_Sex"   "Drvr_VehTy" "ExcsSpdInd"
+## [36] "Hit_Run"    "Light_Cond" "Locality"   "Num_Lanes"  "Num_Units" 
+## [41] "Rd_Charact" "Rd_Class"   "Rd_Conditi" "Rd_Config"  "Rd_Defects"
+## [46] "Rd_Feature" "Rd_Surface" "Region"     "Rural_Urba" "Speed_Limi"
+## [51] "Traff_Cntr" "Weather"    "Workzone_I" "Location"
+```
+
+and see detailed descriptions at https://stat.duke.edu/~mc301/data/nc_bike_crash.html.
+
+---
+
+## Want to follow along?
+
+Go to RStudio Cloud and make a copy of "NC Bike Crashes - Wrangling".
+
+---
+
+## Viewing your data
+
+- In the Environment, click on the name of the data frame to view
+it in the data viewer
+
+- Use the `glimpse` function to take a peek
+
+
+```r
+glimpse(bike)
+```
+
+```
+## Rows: 5,716
+## Columns: 54
+## $ FID        &lt;dbl&gt; 18, 29, 33, 35, 49, 53, 56, 60, 63, 66, 72, 75, 82, 84, 85,…
+## $ OBJECTID   &lt;dbl&gt; 19, 30, 34, 36, 50, 54, 57, 61, 64, 67, 73, 76, 83, 85, 86,…
+## $ AmbulanceR &lt;chr&gt; "No", "Yes", "No", "Yes", "No", "Yes", "Yes", "No", "Yes", …
+## $ BikeAge_Gr &lt;chr&gt; NA, "50-59", NA, "16-19", NA, "50-59", "16-19", "40-49", "1…
+## $ Bike_Age   &lt;dbl&gt; 6, 51, 10, 17, 6, 52, 18, 40, 6, 7, 45, 30, 17, 20, 14, 15,…
+## $ Bike_Alc_D &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No", "No",…
+## $ Bike_Dir   &lt;chr&gt; "Not Applicable", "With Traffic", "With Traffic", NA, "Faci…
+## $ Bike_Injur &lt;chr&gt; "C: Possible Injury", "C: Possible Injury", "Injury", "B: E…
+## $ Bike_Pos   &lt;chr&gt; "Driveway / Alley", "Travel Lane", "Travel Lane", "Travel L…
+## $ Bike_Race  &lt;chr&gt; "Black", "Black", "Black", "White", "Black", "White", "Blac…
+## $ Bike_Sex   &lt;chr&gt; "Female", "Male", "Male", "Male", "Male", "Male", "Female",…
+## $ City       &lt;chr&gt; "Durham", "Greenville", "Farmville", "Charlotte", "Charlott…
+## $ County     &lt;chr&gt; "Durham", "Pitt", "Pitt", "Mecklenburg", "Mecklenburg", "Du…
+## $ CrashAlcoh &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No", "No",…
+## $ CrashDay   &lt;chr&gt; "01-01-06", "01-01-02", "01-01-07", "01-01-05", NA, NA, NA,…
+## $ Crash_Date &lt;date&gt; 2007-01-06, 2007-01-09, 2007-01-14, 2007-01-12, 2007-01-15…
+## $ Crash_Grp  &lt;chr&gt; "Bicyclist Failed to Yield - Midblock", "Crossing Paths - O…
+## $ Crash_Hour &lt;dbl&gt; 13, 23, 16, 19, 12, 20, 19, 14, 16, 0, 17, 18, 14, 17, 19, …
+## $ Crash_Loc  &lt;chr&gt; "Non-Intersection", "Intersection-Related", "Intersection",…
+## $ Crash_Mont &lt;chr&gt; NA, NA, NA, NA, NA, "01-04-01", "01-04-01", NA, "01-02-01",…
+## $ Crash_Time &lt;dttm&gt; 0001-01-01 13:17:58, 0001-01-01 23:08:58, 0001-01-01 16:44…
+## $ Crash_Type &lt;chr&gt; "Bicyclist Ride Out - Residential Driveway", "Crossing Path…
+## $ Crash_Ty_1 &lt;dbl&gt; 353311, 211180, 111144, 119139, 112114, 311231, 119144, 132…
+## $ Crash_Year &lt;dbl&gt; 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007,…
+## $ Crsh_Sevri &lt;chr&gt; "C: Possible Injury", "C: Possible Injury", "O: No Injury",…
+## $ Developmen &lt;chr&gt; "Residential", "Commercial", "Residential", "Residential", …
+## $ DrvrAge_Gr &lt;chr&gt; "60-69", "30-39", "50-59", "30-39", NA, "20-24", "40-49", N…
+## $ Drvr_Age   &lt;dbl&gt; 66, 34, 52, 33, NA, 20, 40, NA, 17, 51, NA, 64, 50, 66, 30,…
+## $ Drvr_Alc_D &lt;chr&gt; "No", "No", "No", "No", "Missing", "No", "No", "Missing", "…
+## $ Drvr_EstSp &lt;chr&gt; "11-15 mph", "0-5 mph", "21-25 mph", "46-50 mph", "16-20 mp…
+## $ Drvr_Injur &lt;chr&gt; "O: No Injury", "O: No Injury", "O: No Injury", "O: No Inju…
+## $ Drvr_Race  &lt;chr&gt; "Black", "Black", "White", "White", "/Missing", "White", "B…
+## $ Drvr_Sex   &lt;chr&gt; "Male", "Male", "Female", "Female", NA, "Female", "Male", N…
+## $ Drvr_VehTy &lt;chr&gt; "Pickup", "Passenger Car", "Passenger Car", "Sport Utility"…
+## $ ExcsSpdInd &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No", "No",…
+## $ Hit_Run    &lt;chr&gt; "No", "No", "No", "No", "Yes", "No", "No", "Yes", "No", "No…
+## $ Light_Cond &lt;chr&gt; "Daylight", "Dark - Lighted Roadway", "Daylight", "Dark - R…
+## $ Locality   &lt;chr&gt; "Mixed (30% To 70% Developed)", "Urban (&gt;70% Developed)", "…
+## $ Num_Lanes  &lt;chr&gt; "2 lanes", "5 lanes", "2 lanes", "4 lanes", "2 lanes", "4 l…
+## $ Num_Units  &lt;dbl&gt; 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…
+## $ Rd_Charact &lt;chr&gt; "Straight - Level", "Straight - Level", "Straight - Level",…
+## $ Rd_Class   &lt;chr&gt; "Local Street", "Local Street", "Local Street", "NC Route",…
+## $ Rd_Conditi &lt;chr&gt; "Dry", "Dry", "Dry", "Dry", "Dry", "Dry", "Dry", "Dry", "Dr…
+## $ Rd_Config  &lt;chr&gt; "Two-Way, Not Divided", "Two-Way, Divided, Unprotected Medi…
+## $ Rd_Defects &lt;chr&gt; "None", "None", "None", "None", "None", "None", "None", "No…
+## $ Rd_Feature &lt;chr&gt; "No Special Feature", "Four-Way Intersection", "Four-Way In…
+## $ Rd_Surface &lt;chr&gt; "Smooth Asphalt", "Smooth Asphalt", "Smooth Asphalt", "Smoo…
+## $ Region     &lt;chr&gt; "Piedmont", "Coastal", "Coastal", "Piedmont", "Piedmont", "…
+## $ Rural_Urba &lt;chr&gt; "Urban", "Urban", "Rural", "Urban", "Urban", "Urban", "Urba…
+## $ Speed_Limi &lt;chr&gt; "20 - 25  MPH", "40 - 45  MPH", "30 - 35  MPH", "40 - 45  M…
+## $ Traff_Cntr &lt;chr&gt; "No Control Present", "Stop And Go Signal", "Stop Sign", "S…
+## $ Weather    &lt;chr&gt; "Clear", "Clear", "Clear", "Cloudy", "Clear", "Clear", "Cle…
+## $ Workzone_I &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No", "No",…
+## $ Location   &lt;chr&gt; "36.002743, -78.8785", "35.612984, -77.39265", "35.595676, …
+```
+
+---
+
+## A Grammar of Data Manipulation
+
+**dplyr** is based on the concepts of functions as verbs that manipulate data frames.
+
+Single data frame functions / verbs:
+
+* `filter`: pick rows matching criteria
+* `slice`: pick rows using index(es)
+* `select`: pick columns by name
+* `pull`: grab a column as a vector
+* `rename`: rename specific columns
+* `arrange`: reorder rows
+* `mutate`: add new variables
+* `transmute`: create new data frame with variables
+* `distinct`: filter for unique rows
+* `sample_n` / `sample_frac`: randomly sample rows
+* `summarise`: reduce variables to values
+* ... (many more)
+
+---
+
+## **dplyr** rules for functions
+
+1. First argument is *always* a data frame
+
+2. Subsequent arguments say what to do with that data frame
+
+3. Always return a data frame
+
+4. Don't modify in place
+
+5. Performance via lazy evaluation
+
+---
+
+## Filter rows with `filter`
+
+- Select a subset of rows in a data frame.
+- Easily filter for many conditions at once.
+
+---
+
+## `filter`
+
+for crashes in Durham County
+
+
+```r
+bike |&gt;
+  filter(County == "Durham")
+```
+
+```
+## # A tibble: 253 × 54
+##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     
+##  1    18       19 No         &lt;NA&gt;              6 No         Not Appl… C: Possib…
+##  2    53       54 Yes        50-59            52 No         With Tra… A: Disabl…
+##  3    56       57 Yes        16-19            18 No         &lt;NA&gt;      C: Possib…
+##  4   209      210 No         16-19            16 No         Facing T… C: Possib…
+##  5   228      229 Yes        40-49            40 No         With Tra… B: Eviden…
+##  6   620      621 Yes        50-59            55 No         With Tra… B: Eviden…
+##  7   667      668 Yes        60-69            61 No         Not Appl… B: Eviden…
+##  8   458      459 Yes        60-69            62 No         With Tra… B: Eviden…
+##  9   576      577 No         40-49            49 No         With Tra… C: Possib…
+## 10   618      619 No         20-24            23 No         With Tra… C: Possib…
+## # … with 243 more rows, and 46 more variables: Bike_Pos &lt;chr&gt;, Bike_Race &lt;chr&gt;,
+## #   Bike_Sex &lt;chr&gt;, City &lt;chr&gt;, County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;,
+## #   Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;, Crash_Hour &lt;dbl&gt;, Crash_Loc &lt;chr&gt;,
+## #   Crash_Mont &lt;chr&gt;, Crash_Time &lt;dttm&gt;, Crash_Type &lt;chr&gt;, Crash_Ty_1 &lt;dbl&gt;,
+## #   Crash_Year &lt;dbl&gt;, Crsh_Sevri &lt;chr&gt;, Developmen &lt;chr&gt;, DrvrAge_Gr &lt;chr&gt;,
+## #   Drvr_Age &lt;dbl&gt;, Drvr_Alc_D &lt;chr&gt;, Drvr_EstSp &lt;chr&gt;, Drvr_Injur &lt;chr&gt;,
+## #   Drvr_Race &lt;chr&gt;, Drvr_Sex &lt;chr&gt;, Drvr_VehTy &lt;chr&gt;, ExcsSpdInd &lt;chr&gt;, …
+```
+
+---
+
+## `filter`
+
+for crashes in Durham County where biker was &lt; 10 yrs old
+
+
+```r
+bike |&gt;
+  filter(County == "Durham", Bike_Age &lt; 10)
+```
+
+```
+## # A tibble: 20 × 54
+##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     
+##  1    18       19 No         &lt;NA&gt;              6 No         Not Appl… C: Possib…
+##  2    47       48 No         10-Jun            9 No         Not Appl… O: No Inj…
+##  3   124      125 Yes        10-Jun            8 No         With Tra… C: Possib…
+##  4   531      532 Yes        10-Jun            7 No         With Tra… C: Possib…
+##  5   704      705 Yes        10-Jun            9 No         Not Appl… C: Possib…
+##  6    42       43 No         10-Jun            8 No         With Tra… O: No Inj…
+##  7   392      393 Yes        0-5               2 No         Not Appl… B: Eviden…
+##  8   941      942 No         10-Jun            9 No         With Tra… C: Possib…
+##  9   436      437 Yes        10-Jun            6 No         Not Appl… O: No Inj…
+## 10   160      161 Yes        10-Jun            7 No         With Tra… C: Possib…
+## 11   273      274 Yes        10-Jun            7 No         Facing T… C: Possib…
+## 12    78       79 Yes        10-Jun            7 No         With Tra… C: Possib…
+## 13   422      423 No         10-Jun            9 No         Not Appl… O: No Inj…
+## 14   570      571 No         &lt;NA&gt;              0 Missing    Not Appl… Injury    
+## 15   683      684 Yes        10-Jun            8 No         Not Appl… C: Possib…
+## 16    62       63 Yes        10-Jun            7 No         With Tra… C: Possib…
+## 17   248      249 No         0-5               4 No         Not Appl… O: No Inj…
+## 18   306      307 Yes        10-Jun            8 No         With Tra… C: Possib…
+## 19   231      232 Yes        10-Jun            8 No         With Tra… C: Possib…
+## 20   361      362 Yes        10-Jun            9 No         With Tra… B: Eviden…
+## # … with 46 more variables: Bike_Pos &lt;chr&gt;, Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;,
+## #   City &lt;chr&gt;, County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;,
+## #   Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;, Crash_Hour &lt;dbl&gt;, Crash_Loc &lt;chr&gt;,
+## #   Crash_Mont &lt;chr&gt;, Crash_Time &lt;dttm&gt;, Crash_Type &lt;chr&gt;, Crash_Ty_1 &lt;dbl&gt;,
+## #   Crash_Year &lt;dbl&gt;, Crsh_Sevri &lt;chr&gt;, Developmen &lt;chr&gt;, DrvrAge_Gr &lt;chr&gt;,
+## #   Drvr_Age &lt;dbl&gt;, Drvr_Alc_D &lt;chr&gt;, Drvr_EstSp &lt;chr&gt;, Drvr_Injur &lt;chr&gt;,
+## #   Drvr_Race &lt;chr&gt;, Drvr_Sex &lt;chr&gt;, Drvr_VehTy &lt;chr&gt;, ExcsSpdInd &lt;chr&gt;, …
+```
+
+---
+
+## Commonly used logical operators in R
+
+operator    | definition                   || operator     | definition
+------------|------------------------------||--------------|----------------
+`&lt;`         | less than                    ||`x`&amp;nbsp;&amp;#124;&amp;nbsp;`y`     | `x` OR `y` 
+`&lt;=`        |	less than or equal to        ||`is.na(x)`    | test if `x` is `NA`
+`&gt;`         | greater than                 ||`!is.na(x)`   | test if `x` is not `NA`
+`&gt;=`        |	greater than or equal to     ||`x %in% y`    | test if `x` is in `y`
+`==`        |	exactly equal to             ||`!(x %in% y)` | test if `x` is not in `y`
+`!=`        |	not equal to                 ||`!x`          | not `x`
+`x &amp; y`     | `x` AND `y`                  ||              |
+
+---
+
+## Aside: real data is messy!
+
+.question[
+What in the world does a `BikeAge_gr` of `10-Jun` or `15-Nov` mean?
+]
+
+.small[
+
+```r
+bike |&gt;
+  group_by(BikeAge_Gr) |&gt;
+  summarise(crash_count = n())
+```
+
+```
+## # A tibble: 13 × 2
+##    BikeAge_Gr crash_count
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 0-5                 60
+##  2 10-Jun             421
+##  3 15-Nov             747
+##  4 16-19              605
+##  5 20-24              680
+##  6 25-29              430
+##  7 30-39              658
+##  8 40-49              920
+##  9 50-59              739
+## 10 60-69              274
+## 11 70                  12
+## 12 70+                 58
+## 13 &lt;NA&gt;               112
+```
+]
+
+---
+
+## Careful data scientists clean up their data first!
+
+- We're going to need to do some text parsing to clean up
+these data
+    + `10-Jun` should be `6-10`
+    + `15-Nov` should be `11-15`
+
+---
+
+## Correct and overwrite `mutate`
+
+- Remember we want to do the following in the `BikeAge_Gr` variable
+    + `10-Jun` should be `6-10`
+    + `15-Nov` should be `11-15`
+ 
+
+```r
+bike &lt;- bike |&gt;
+  mutate(BikeAge_Gr = case_when(
+    BikeAge_Gr == "10-Jun" ~ "6-10",
+    BikeAge_Gr == "15-Nov" ~ "11-15",
+    TRUE                   ~ BikeAge_Gr     # everything else
+  ))
+```
+
+- Note that we're overwriting existing data and columns, so be careful!
+    + But remember, it's easy to revert if you make a mistake since we didn't
+    touch the raw data, we can always reload it and start over
+
+---
+
+## Check before you move on
+
+Always check your changes and confirm code did what you wanted it to do
+
+
+```r
+bike |&gt;
+  group_by(BikeAge_Gr) |&gt;
+  summarise(count = n())
+```
+
+```
+## # A tibble: 13 × 2
+##    BikeAge_Gr count
+##    &lt;chr&gt;      &lt;int&gt;
+##  1 0-5           60
+##  2 11-15        747
+##  3 16-19        605
+##  4 20-24        680
+##  5 25-29        430
+##  6 30-39        658
+##  7 40-49        920
+##  8 50-59        739
+##  9 6-10         421
+## 10 60-69        274
+## 11 70            12
+## 12 70+           58
+## 13 &lt;NA&gt;         112
+```
+
+---
+
+## `mutate` to add new variables
+
+.question[
+How is the new `alcohol` variable determined?
+]
+
+
+```r
+bike |&gt;
+  mutate(alcohol = case_when(
+    Bike_Alc_D == "No" &amp; Drvr_Alc_D == "No"      ~ "No",
+    Bike_Alc_D == "Yes" | Drvr_Alc_D == "Yes"    ~ "Yes",
+    Bike_Alc_D == "Missing" &amp; Drvr_Alc_D == "No" ~ "Missing",
+    Bike_Alc_D == "No" &amp; Drvr_Alc_D == "Missing" ~ "Missing"
+  ))
+```
+
+---
+
+## "Save" when you `mutate`
+
+Most often when you define a new variable with `mutate` you'll also want to save the resulting data frame, often by writing over the original data frame.
+
+
+```r
+bike &lt;- bike |&gt;
+  mutate(alcohol = case_when(
+    Bike_Alc_D == "No" &amp; Drvr_Alc_D == "No"      ~ "No",
+    Bike_Alc_D == "Yes" | Drvr_Alc_D == "Yes"    ~ "Yes",
+    Bike_Alc_D == "Missing" &amp; Drvr_Alc_D == "No" ~ "Missing",
+    Bike_Alc_D == "No" &amp; Drvr_Alc_D == "Missing" ~ "Missing"
+  ))
+```
+
+---
+
+## `transmute` to create a new dataset
+
+You'll use this much less often than `mutate` but when you need it, you need it.
+
+
+```r
+bike |&gt; 
+  transmute(ID = paste(FID, OBJECTID, sep = "-"))
+```
+
+```
+## # A tibble: 5,716 × 1
+##    ID   
+##    &lt;chr&gt;
+##  1 18-19
+##  2 29-30
+##  3 33-34
+##  4 35-36
+##  5 49-50
+##  6 53-54
+##  7 56-57
+##  8 60-61
+##  9 63-64
+## 10 66-67
+## # … with 5,706 more rows
+```
+
+---
+
+## `slice` for certain row numbers
+
+First five
+
+```r
+bike |&gt;
+  slice(1:5)
+```
+
+```
+## # A tibble: 5 × 54
+##     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur 
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      
+## 1    18       19 No         &lt;NA&gt;              6 No         Not Appl… C: Possibl…
+## 2    29       30 Yes        50-59            51 No         With Tra… C: Possibl…
+## 3    33       34 No         &lt;NA&gt;             10 No         With Tra… Injury     
+## 4    35       36 Yes        16-19            17 No         &lt;NA&gt;      B: Evident…
+## 5    49       50 No         &lt;NA&gt;              6 No         Facing T… O: No Inju…
+## # … with 46 more variables: Bike_Pos &lt;chr&gt;, Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;,
+## #   City &lt;chr&gt;, County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;,
+## #   Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;, Crash_Hour &lt;dbl&gt;, Crash_Loc &lt;chr&gt;,
+## #   Crash_Mont &lt;chr&gt;, Crash_Time &lt;dttm&gt;, Crash_Type &lt;chr&gt;, Crash_Ty_1 &lt;dbl&gt;,
+## #   Crash_Year &lt;dbl&gt;, Crsh_Sevri &lt;chr&gt;, Developmen &lt;chr&gt;, DrvrAge_Gr &lt;chr&gt;,
+## #   Drvr_Age &lt;dbl&gt;, Drvr_Alc_D &lt;chr&gt;, Drvr_EstSp &lt;chr&gt;, Drvr_Injur &lt;chr&gt;,
+## #   Drvr_Race &lt;chr&gt;, Drvr_Sex &lt;chr&gt;, Drvr_VehTy &lt;chr&gt;, ExcsSpdInd &lt;chr&gt;, …
+```
+
+---
+
+## `slice` for certain row numbers
+
+Last five
+
+```r
+last_row &lt;- nrow(bike)
+bike |&gt;
+  slice((last_row - 4):last_row)
+```
+
+```
+## # A tibble: 5 × 54
+##     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur 
+##   &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      
+## 1   460      461 Yes        6-10              7 No         Not Appl… C: Possibl…
+## 2   474      475 Yes        50-59            50 No         With Tra… B: Evident…
+## 3   479      480 Yes        16-19            16 No         Not Appl… C: Possibl…
+## 4   487      488 No         40-49            47 Yes        With Tra… C: Possibl…
+## 5   488      489 Yes        30-39            35 No         Facing T… C: Possibl…
+## # … with 46 more variables: Bike_Pos &lt;chr&gt;, Bike_Race &lt;chr&gt;, Bike_Sex &lt;chr&gt;,
+## #   City &lt;chr&gt;, County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;,
+## #   Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;, Crash_Hour &lt;dbl&gt;, Crash_Loc &lt;chr&gt;,
+## #   Crash_Mont &lt;chr&gt;, Crash_Time &lt;dttm&gt;, Crash_Type &lt;chr&gt;, Crash_Ty_1 &lt;dbl&gt;,
+## #   Crash_Year &lt;dbl&gt;, Crsh_Sevri &lt;chr&gt;, Developmen &lt;chr&gt;, DrvrAge_Gr &lt;chr&gt;,
+## #   Drvr_Age &lt;dbl&gt;, Drvr_Alc_D &lt;chr&gt;, Drvr_EstSp &lt;chr&gt;, Drvr_Injur &lt;chr&gt;,
+## #   Drvr_Race &lt;chr&gt;, Drvr_Sex &lt;chr&gt;, Drvr_VehTy &lt;chr&gt;, ExcsSpdInd &lt;chr&gt;, …
+```
+
+---
+
+## `select` to keep only the variables you mention
+
+
+```r
+bike |&gt;
+  select(Crash_Loc, Hit_Run) |&gt;
+  table()
+```
+
+```
+##                       Hit_Run
+## Crash_Loc                No  Yes
+##   Intersection         2223  275
+##   Intersection-Related  252   42
+##   Location                3    7
+##   Non-Intersection     2213  462
+##   Non-Roadway           205   30
+```
+
+---
+
+## or `select` to exclude variables
+
+
+```r
+bike |&gt;
+  select(-OBJECTID)
+```
+
+```
+## # A tibble: 5,716 × 53
+##      FID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur Bike_Pos
+##    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;      &lt;chr&gt;   
+##  1    18 No         &lt;NA&gt;              6 No         Not Appl… C: Possib… Drivewa…
+##  2    29 Yes        50-59            51 No         With Tra… C: Possib… Travel …
+##  3    33 No         &lt;NA&gt;             10 No         With Tra… Injury     Travel …
+##  4    35 Yes        16-19            17 No         &lt;NA&gt;      B: Eviden… Travel …
+##  5    49 No         &lt;NA&gt;              6 No         Facing T… O: No Inj… Travel …
+##  6    53 Yes        50-59            52 No         With Tra… A: Disabl… Travel …
+##  7    56 Yes        16-19            18 No         &lt;NA&gt;      C: Possib… Travel …
+##  8    60 No         40-49            40 No         Facing T… B: Eviden… Sidewal…
+##  9    63 Yes        6-10              6 No         Facing T… B: Eviden… Travel …
+## 10    66 Yes        6-10              7 No         &lt;NA&gt;      B: Eviden… Non-Roa…
+## # … with 5,706 more rows, and 45 more variables: Bike_Race &lt;chr&gt;,
+## #   Bike_Sex &lt;chr&gt;, City &lt;chr&gt;, County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;,
+## #   Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;, Crash_Hour &lt;dbl&gt;, Crash_Loc &lt;chr&gt;,
+## #   Crash_Mont &lt;chr&gt;, Crash_Time &lt;dttm&gt;, Crash_Type &lt;chr&gt;, Crash_Ty_1 &lt;dbl&gt;,
+## #   Crash_Year &lt;dbl&gt;, Crsh_Sevri &lt;chr&gt;, Developmen &lt;chr&gt;, DrvrAge_Gr &lt;chr&gt;,
+## #   Drvr_Age &lt;dbl&gt;, Drvr_Alc_D &lt;chr&gt;, Drvr_EstSp &lt;chr&gt;, Drvr_Injur &lt;chr&gt;,
+## #   Drvr_Race &lt;chr&gt;, Drvr_Sex &lt;chr&gt;, Drvr_VehTy &lt;chr&gt;, ExcsSpdInd &lt;chr&gt;, …
+```
+
+---
+
+## or `select` a range of variables
+
+
+```r
+bike |&gt;
+  select(OBJECTID:Bike_Injur)
+```
+
+```
+## # A tibble: 5,716 × 7
+##    OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir       Bike_Injur 
+##       &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;          &lt;chr&gt;      
+##  1       19 No         &lt;NA&gt;              6 No         Not Applicable C: Possibl…
+##  2       30 Yes        50-59            51 No         With Traffic   C: Possibl…
+##  3       34 No         &lt;NA&gt;             10 No         With Traffic   Injury     
+##  4       36 Yes        16-19            17 No         &lt;NA&gt;           B: Evident…
+##  5       50 No         &lt;NA&gt;              6 No         Facing Traffic O: No Inju…
+##  6       54 Yes        50-59            52 No         With Traffic   A: Disabli…
+##  7       57 Yes        16-19            18 No         &lt;NA&gt;           C: Possibl…
+##  8       61 No         40-49            40 No         Facing Traffic B: Evident…
+##  9       64 Yes        6-10              6 No         Facing Traffic B: Evident…
+## 10       67 Yes        6-10              7 No         &lt;NA&gt;           B: Evident…
+## # … with 5,706 more rows
+```
+
+---
+
+## `pull` to extract a column as a vector
+
+
+```r
+bike |&gt;
+  slice(1:6) |&gt;
+  pull(Location)
+```
+
+```
+## [1] "36.002743, -78.8785"  "35.612984, -77.39265" "35.595676, -77.59074"
+## [4] "35.076767, -80.7728"  "35.19999, -80.75713"  "35.966644, -78.96749"
+```
+
+
+```r
+bike |&gt;
+  slice(1:6) |&gt;
+  select(Location)
+```
+
+```
+## # A tibble: 6 × 1
+##   Location            
+##   &lt;chr&gt;               
+## 1 36.002743, -78.8785 
+## 2 35.612984, -77.39265
+## 3 35.595676, -77.59074
+## 4 35.076767, -80.7728 
+## 5 35.19999, -80.75713 
+## 6 35.966644, -78.96749
+```
+
+---
+
+## The two `pull`s in your lives
+
+.pull-left[
+![pipe](img/04/hex-dplyr.png)
+]
+.pull-right[
+![magrittr](img/04/Octocat.png)
+]
+
+- Don't get `pull` happy when wrangling data! Only extract out variables if you truly need to, otherwise keep in data frame.
+
+- But always ⬇️ `Pull` before starting your work when collaborating on GitHub.
+
+---
+
+## `rename` specific columns
+
+Useful for correcting typos, and renaming to make variable names shorter 
+and/or more informative
+
+- Original names:
+.small[
+
+```r
+names(bike)
+```
+
+```
+##  [1] "FID"        "OBJECTID"   "AmbulanceR" "BikeAge_Gr" "Bike_Age"  
+##  [6] "Bike_Alc_D" "Bike_Dir"   "Bike_Injur" "Bike_Pos"   "Bike_Race" 
+## [11] "Bike_Sex"   "City"       "County"     "CrashAlcoh" "CrashDay"  
+## [16] "Crash_Date" "Crash_Grp"  "Crash_Hour" "Crash_Loc"  "Crash_Mont"
+## [21] "Crash_Time" "Crash_Type" "Crash_Ty_1" "Crash_Year" "Crsh_Sevri"
+## [26] "Developmen" "DrvrAge_Gr" "Drvr_Age"   "Drvr_Alc_D" "Drvr_EstSp"
+## [31] "Drvr_Injur" "Drvr_Race"  "Drvr_Sex"   "Drvr_VehTy" "ExcsSpdInd"
+## [36] "Hit_Run"    "Light_Cond" "Locality"   "Num_Lanes"  "Num_Units" 
+## [41] "Rd_Charact" "Rd_Class"   "Rd_Conditi" "Rd_Config"  "Rd_Defects"
+## [46] "Rd_Feature" "Rd_Surface" "Region"     "Rural_Urba" "Speed_Limi"
+## [51] "Traff_Cntr" "Weather"    "Workzone_I" "Location"
+```
+]
+
+- Rename `Speed_Limi` to `Speed_Limit`:
+
+```r
+bike &lt;- bike |&gt;
+  rename(Speed_Limit = Speed_Limi)
+```
+
+---
+
+## Check before you move on
+
+Always check your changes and confirm code did what you wanted it to do
+
+.small[
+
+```r
+names(bike)
+```
+
+```
+##  [1] "FID"         "OBJECTID"    "AmbulanceR"  "BikeAge_Gr"  "Bike_Age"   
+##  [6] "Bike_Alc_D"  "Bike_Dir"    "Bike_Injur"  "Bike_Pos"    "Bike_Race"  
+## [11] "Bike_Sex"    "City"        "County"      "CrashAlcoh"  "CrashDay"   
+## [16] "Crash_Date"  "Crash_Grp"   "Crash_Hour"  "Crash_Loc"   "Crash_Mont" 
+## [21] "Crash_Time"  "Crash_Type"  "Crash_Ty_1"  "Crash_Year"  "Crsh_Sevri" 
+## [26] "Developmen"  "DrvrAge_Gr"  "Drvr_Age"    "Drvr_Alc_D"  "Drvr_EstSp" 
+## [31] "Drvr_Injur"  "Drvr_Race"   "Drvr_Sex"    "Drvr_VehTy"  "ExcsSpdInd" 
+## [36] "Hit_Run"     "Light_Cond"  "Locality"    "Num_Lanes"   "Num_Units"  
+## [41] "Rd_Charact"  "Rd_Class"    "Rd_Conditi"  "Rd_Config"   "Rd_Defects" 
+## [46] "Rd_Feature"  "Rd_Surface"  "Region"      "Rural_Urba"  "Speed_Limit"
+## [51] "Traff_Cntr"  "Weather"     "Workzone_I"  "Location"
+```
+]
+
+---
+
+## `summarise` to reduce variables to values
+
+The values are summarised in a data frame
+
+
+```r
+bike |&gt;
+  group_by(BikeAge_Gr) |&gt;
+  summarise(crash_count = n())
+```
+
+```
+## # A tibble: 13 × 2
+##    BikeAge_Gr crash_count
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 0-5                 60
+##  2 11-15              747
+##  3 16-19              605
+##  4 20-24              680
+##  5 25-29              430
+##  6 30-39              658
+##  7 40-49              920
+##  8 50-59              739
+##  9 6-10               421
+## 10 60-69              274
+## 11 70                  12
+## 12 70+                 58
+## 13 &lt;NA&gt;               112
+```
+
+---
+
+## and `arrange` to order rows
+
+
+```r
+bike |&gt;
+  group_by(BikeAge_Gr) |&gt;
+  summarise(crash_count = n()) |&gt;
+  arrange(desc(crash_count))
+```
+
+```
+## # A tibble: 13 × 2
+##    BikeAge_Gr crash_count
+##    &lt;chr&gt;            &lt;int&gt;
+##  1 40-49              920
+##  2 11-15              747
+##  3 50-59              739
+##  4 20-24              680
+##  5 30-39              658
+##  6 16-19              605
+##  7 25-29              430
+##  8 6-10               421
+##  9 60-69              274
+## 10 &lt;NA&gt;               112
+## 11 0-5                 60
+## 12 70+                 58
+## 13 70                  12
+```
+
+---
+
+## `count` to group by then count
+
+.small[
+
+```r
+bike |&gt;
+  count(BikeAge_Gr)
+```
+
+```
+## # A tibble: 13 × 2
+##    BikeAge_Gr     n
+##    &lt;chr&gt;      &lt;int&gt;
+##  1 0-5           60
+##  2 11-15        747
+##  3 16-19        605
+##  4 20-24        680
+##  5 25-29        430
+##  6 30-39        658
+##  7 40-49        920
+##  8 50-59        739
+##  9 6-10         421
+## 10 60-69        274
+## 11 70            12
+## 12 70+           58
+## 13 &lt;NA&gt;         112
+```
+]
+
+.question[
+If you wanted to arrange these in ascending order what would you add to the pipe?
+]
+
+---
+
+## Select rows with `sample_n` or `sample_frac`
+
+- `sample_n`: randomly sample 5 observations
+
+
+```r
+bike_n5 &lt;- bike |&gt;
+  sample_n(5, replace = FALSE)
+dim(bike_n5)
+```
+
+```
+## [1]  5 54
+```
+
+- `sample_frac`: randomly sample 20% of observations
+
+
+```r
+bike_perc20 &lt;-bike |&gt;
+  sample_frac(0.2, replace = FALSE)
+dim(bike_perc20)
+```
+
+```
+## [1] 1143   54
+```
+
+---
+
+## `distinct` to filter for unique rows
+
+
+```r
+bike |&gt; 
+  select(County, City) |&gt; 
+  distinct() |&gt; 
+  arrange(County, City)
+```
+
+```
+## # A tibble: 360 × 2
+##    County    City              
+##    &lt;chr&gt;     &lt;chr&gt;             
+##  1 Alamance  Alamance          
+##  2 Alamance  Burlington        
+##  3 Alamance  Elon College      
+##  4 Alamance  Gibsonville       
+##  5 Alamance  Graham            
+##  6 Alamance  Green Level       
+##  7 Alamance  Mebane            
+##  8 Alamance  None - Rural Crash
+##  9 Alexander None - Rural Crash
+## 10 Alleghany None - Rural Crash
+## # … with 350 more rows
+```
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

@@ -1,0 +1,12 @@
+---
+title: "HW 02 - Data Wrangling"
+date: "Due: Mon Oct 11, 11:59 PM"
+output: 
+  html_document: 
+    css: hw.css
+    theme: yeti
+    toc: true
+    toc_float: true
+    fig_caption: true
+---
+

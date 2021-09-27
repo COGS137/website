@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Tooling</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-09-27" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Tooling
+### Prof Ellis
+### 2021-09-27
+
+---
+
+
+
+
+
+## Q&amp;A
+
+.small[Q: What will the lab classes on Friday’s entail?  
+A: There will be an introduction and short review each week and then an RMarkdown notebook for you to complete. This will give you more hands-on practice with course concepts.
+
+Q: Is R limited relative to other programming languages?...I was wondering if one could develop software or data structures using R.
+A: A generally true statement is that anything you can do in another programming language, you can also do in R. Now, it may be different or less straightforward, but there's lots of software development in R!
+
+Q: How much coding experience do I need to have coming into this class?  
+A: None! Of course if you have some, you may pick concepts up more quickly...but there is no programming prerequisite.
+
+Q: I'm curious if we need other packages to complete our assignments? I know we require tidyverse but if there's any other package that we may need?  
+A: We'll primarily use the tidyverse, but there will be other packages. On assignments, you'll always be informed which to use. Most that we'll use have already been installed on datahub for you.
+
+Q: Ah! Project groups!  
+A: Don't worry about these yet! There will be time to form these later. I'll let y'all know when.]
+---
+
+## Course Announcements
+
+**Due Dates**:
+- Complete **pre-course survey** by tonight (11:59 PM)
+- **Lab 01** now available (due Friday 11:59 PM)
+- **HW 01** now available (due Monday 10/4 11:59 PM)
+
+**Notes**:
+- The first lab has *a lot* more text than subsequent labs. And the first hw is shorter and simpler than subsequent homework assignments. We want you to gain comfort with the course platforms and how things work before adding more content.
+- Prof Ellis' OH today 10-noon; location: courtyard right outside of the classroom
+---
+
+class: center, middle
+
+# Tooling
+
+---
+
+## Agenda
+- datahub
+- R and RStudio
+- RStudio Projects
+- R Markdown files
+- Git and GitHub
+- Recap
+
+---
+
+## Datahub
+
+Datahub is a platform hosted by UCSD that gives students access to computational resources.
+
+This means that while you'll be typing on your keyboard, you'll be *using* UCSD's computers in this class.
+
+Website: https://datahub.ucsd.edu/
+
+--
+
+**Launch Environment**
+
+When working on "stuff" for this course, select the COGS 137 environment.
+
+![datahub](img/01/datahub.png)
+
+
+
+---
+
+## Toolkit
+
+![toolkit](img/01/toolkit.png)
+
+- Scriptability `\(\rightarrow\)` R
+
+- Literate programming (code, narrative, output in one place) `\(\rightarrow\)` R Markdown
+
+- Version control `\(\rightarrow\)` Git / GitHub
+
+---
+
+class: center, middle
+
+# R and RStudio
+
+---
+
+## What is R/RStudio?
+
+- R is a statistical programming language
+
+- RStudio is a convenient interface for R (an integreated development environment, IDE)
+
+---
+
+## Let's take a tour - R / RStudio
+
+&lt;center&gt;
+[DEMO]
+&lt;/center&gt;
+
+--
+
+Concepts introduced:
+
+- Console
+
+- Using R as a calculator
+
+- Environment
+
+- Loading and viewing a data frame
+
+- Accessing a variable in a data frame
+
+- R functions
+
+---
+
+## Your Turn
+
+1. Login to datahub
+2. Carry out a mathematical operation in the console
+3. View the `diamonds` dataframe
+4. Access a column from the `diamonds` dataframe
+5. Calculate the median for one of the numeric columns
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+---
+## R packages
+
+- **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data&lt;sup&gt;1&lt;/sup&gt;
+
+- As of September 2021, there are over 16,000 R packages available on **CRAN** (the Comprehensive R Archive Network)&lt;sup&gt;2&lt;/sup&gt;
+
+- We're going to work with a small (but important) subset of these!
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt; Wickham and Bryan, [R Packages](https://r-pkgs.org/).
+
+&lt;sup&gt;2&lt;/sup&gt; [CRAN contributed packages](https://cran.r-project.org/web/packages/).
+
+]
+---
+
+## What is the Tidyverse?
+
+.pull-left[
+![](img/01/tidyverse.png)
+]
+
+.pull-right[
+&lt;center&gt;
+&lt;a href="https://www.tidyverse.org/"&gt;tidyverse.org&lt;/a&gt;
+&lt;/center&gt;
+
+- The tidyverse is an opinionated collection of R packages designed for data science. 
+- All packages share an underlying philosophy and a common syntax. 
+]
+
+---
+
+## RStudio Projects&lt;sup&gt;1&lt;/sup&gt; 
+
+- Built-in functionality to keep all files for a single project organized
+
+.footnote[
+  &lt;sup&gt;1&lt;/sup&gt; [RStudio Projects Documentation]( https://support.rstudio.com/hc/en-us/articles/200526207-Using-Projects)
+]
+
+
+---
+
+class: center, middle
+
+# R Markdown
+
+---
+
+## R Markdown
+
+- Fully reproducible reports -- each time you knit the analysis is ran from the beginning
+
+- Simple markdown syntax for text
+
+- Code goes in chunks, defined by three backticks, narrative goes outside of chunks
+
+---
+
+## Let's take a tour -- R Markdown
+
+&lt;center&gt;
+[DEMO]
+&lt;/center&gt;
+
+Before we move on...
+
+.question[&lt;i class="fa fa-user" aria-hidden="true"&gt;&lt;/i&gt; &amp;nbsp; What is the Bechdel test?]
+
+--
+
+The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
+
+--
+
+Concepts introduced:
+
+- Knitting documents
+
+- R Markdown and (some) R syntax
+
+---
+
+## R Markdown tips
+
+- Keep the [R Markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) and Markdown Quick Reference (Help -&gt; Markdown Quick Reference) handy, we'll refer to it often as the course progresses
+
+- The workspace of your R Markdown document is separate from the Console
+
+&lt;br&gt;&lt;br&gt;
+&lt;center&gt;
+[DEMO]
+&lt;/center&gt;
+
+---
+
+## How will we use R Markdown?
+
+- Every lab / project / homework / notes / etc. is an R Markdown document
+
+- You'll always have a template R Markdown document to start with
+
+- The amount of scaffolding in the template will decrease over the semester
+
+---
+
+class: center, middle
+
+# Git and GitHub
+
+---
+
+## How do we collaborate?
+
+- The statistical programming language we'll use is R
+
+- The software we use to interface with R is RStudio
+
+- But how do I get you the course materials that you can build on for your assignments?
+    + Hint: I'm not going to email you documents, that would be a mess!
+  
+---
+
+## Version control
+
+- We introduced GitHub as a platform for collaboration
+
+- But it's much more than that...
+
+- It's actually desiged for version control
+
+---
+
+## Versioning
+
+![Lego versions](img/01/lego-steps.png)
+
+---
+
+## Versioning
+
+with human readable messages
+
+![Lego versions with commit messages](img/01/lego-steps-commit-messages.png)
+
+---
+
+## Why do we need version control?
+
+![PhD Comics](img/01/phd_comics_vc.gif)
+
+---
+
+# Git and GitHub tips
+
+- Git is a version control system -- like “Track Changes” features from Microsoft Word on steroids. GitHub is the home for your Git-based projects on the internet -- like DropBox but much, much better).
+
+--
+
+- There are millions of git commands -- ok, that's an exaggeration, but there are a lot of them -- and very few people know them all. 99% of the time you will use git to add, commit, push, and pull.
+
+--
+
+- We will be doing Git things and interfacing with GitHub through RStudio, but if you google for help you might come across methods for doing these things in the command line -- skip that and move on to the next resource unless you feel comfortable trying it out.
+
+.footnote[[happygitwithr.com](http://happygitwithr.com/): book for working with git in R; Some content is beyond the scope of this course, but it's a good resource]
+
+---
+
+## Let's take a tour -- Git / GitHub
+
+**We'll cover this time permitting, you'll see it again in lab this week**
+
+Concepts introduced:
+
+- Connect an R project to Github repository
+
+- Working with a local and remote repository
+
+- Committing, Pushing and Pulling
+
+There is just a bit more of GitHub that we'll use in this class, but for today this is enough.
+
+---
+## Git: Review
+
+.right-column[&lt;img src="img/01/git.png" style="width: 70%" class="center"/&gt;]
+
+.footnote[Source: [Maggie Appleton](https://maggieappleton.com/git-mistakes)]
+
+
+## Your Turn
+
+1. Navigate to the demo01 URL (on Canvas)
+2. Accept the "assignment" (this is NOT graded)
+3. Clone the repo 
+4. Edit the document 
+5. Knit the document
+6. Push your changes
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+
+---
+class: center, middle
+
+# Recap
+
+---
+
+## Recap
+
+Can you answer these questions?
+
+- What is R vs RStudio?
+- What are RStudio Projects
+- What are the components of an R Markdown file?
+- What is version control, and why do we care?
+- What is git vs GitHub (and do I need to care)?
+
+---
+
+## Additional `git` Resources
+
+#### Version Control (git and GitHub):
+- [Getting Started with git](https://docs.github.com/en/free-pro-team@latest/github/getting-started-with-github)
+- [GitHub Guide](https://guides.github.com/activities/hello-world/)
+- [GitHub Desktop App Tutorial](https://github.com/jlord/git-it-electron)
+- [Git Command Line Resource](https://rogerdudler.github.io/git-guide/)
+-  Using `git` from the command line
+	- [Installing and using `git` (Part 1)](https://www.youtube.com/watch?v=ng4X6qF8XVY), by COGS 108 TA Ganesh (youtube, 22min tutorial)
+	- [merge conflicts and branching (Part 2)](https://youtu.be/Nk1gtrbTZ2Y), by IA Shubham Kulkarni (youtube, 8min tutorial)
+- [Using `git` with GitHub Desktop](https://youtu.be/zQc5vQEBips), by COGS 108 TA Sidharth Suresh (youtube, 13min tutorial)
+- [GIT &amp; GITHUB TUTORIAL](https://www.youtube.com/watch?v=xuB1Id2Wxak), from edureka!
+	- with [notes](https://docs.google.com/document/d/1GAdkvn7lWzeLekvC343WNZC2rZGhQOfPOU2dMha9aws/edit) from COGS 18/108 TA Holly(Yueying) Dong
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

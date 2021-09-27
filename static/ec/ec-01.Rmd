@@ -1,0 +1,20 @@
+---
+title: "EC 01 - Pre-course survey"
+date: "Due: Mon Sept 27 11:59PM"
+output: 
+  html_document: 
+    css: ec.css
+    theme: yeti
+    toc: true
+    toc_float: true
+    fig_caption: false
+---
+
+## Link to Survey 
+
+[Link to Pre-course Survey](https://docs.google.com/forms/d/e/1FAIpQLSe9GjElWRxmhiIhpm1DkI--J6YE0ftFpxTj17kckp_EY9I7Bw/viewform?usp=sf_link)
+
+Note: Link is also posted on Canvas
+
+Complete this short survey before midnight on Monday Sept. 27th for a small amount of extra credit. This survey is optional. Your responses help Prof Ellis get to know you a bit better!
+

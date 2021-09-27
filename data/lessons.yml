@@ -6,6 +6,7 @@ lessons:
   - week: "01"
     date: "Mon, Sep 27"
     title: "Tooling"
+    reading: "reading-01.html"
     lecslides: "01-tooling.html"
     ec: "ec-01.html"
   - date: "Wed Sep 29"

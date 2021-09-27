@@ -22,7 +22,7 @@ This assignment is meant to get you comfortable with 1) the format of homework a
 
 Here are the steps for getting started:
 
-- Start with an assignment link that creates a repo on GitHub with starter documents: TBD
+- Start by navigating to the hw01 GitHub URL (found on Canvas)
 - Clone this repo into RStudio on datahub
 - Make any changes needed as outlined by the tasks you need to complete for the assignment
 - Periodically commit changes (for example, once per each new part)
@@ -33,7 +33,7 @@ You can of course push multiple to GitHub times throughout the assignment and/or
 
 ## Questions
 
-The `tidyverse` package will be used in this homework. Be sure to import it at the top of your script.
+The `tidyverse` package will be used in this homework. Be sure to import it at the top of your RMarkdown document.
 
 ### Part 1: Variables
 

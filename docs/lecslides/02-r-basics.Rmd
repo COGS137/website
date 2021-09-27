@@ -48,6 +48,7 @@ library(tidyverse)
 - Functions
 - Operators
 
+<!-- Add in submission of hws on gradescope -->
 ---
 
 ## Variables & Assignment

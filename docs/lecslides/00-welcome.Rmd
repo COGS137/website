@@ -101,7 +101,7 @@ Shannon Ellis
 
 [Prof Ellis](http://www.shanellis.com/) 
  
-<i class="fa fa-university"></i> &nbsp; CSB 243 <br>
+<i class="fa fa-university"></i> &nbsp; Mandeville Courtyard <br>
 <i class="fa fa-calendar"></i> &nbsp; OH Mon 10AM-12PM
 <br><br>
 
@@ -124,8 +124,8 @@ Shubham Kulkarni (IA)
 
 Colin Wang (IA)
 
-<i class="fa fa-university"></i> &nbsp; [TBD]() <br>
-<i class="fa fa-calendar"></i> &nbsp; TBD
+<i class="fa fa-university"></i> &nbsp; CSE Basement <br>
+<i class="fa fa-calendar"></i> &nbsp; OH Mon 4-5 PM
 <br><br>
 ]
 

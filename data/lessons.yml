@@ -15,6 +15,7 @@ lessons:
   - date: "Fri Oct 1"
     title: "Data Types"
     lab: "01-lab-intro-r.html"
+    labslides: "01-lab-deck.html"
     # lecslides: "03-data-types.html"
   - week: "02"
     date: "Mon Oct 4"

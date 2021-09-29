@@ -1,9 +1,8 @@
 ---
 title: "Policies"
-markup: "mmark"
+markup: mmark
+output: pdf_document
 ---
-
-DRAFT: This will be updated and finalized by week 1 of the Fall 2021 quarter.
 
 ### Class:
 

@@ -42,6 +42,7 @@ library(tidyverse)
 library(DT)
 ```
 
+<!-- Add in submission of hws on gradescope; use images from Sean -->
 
 ## Agenda
 

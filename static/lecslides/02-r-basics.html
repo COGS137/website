@@ -24,6 +24,42 @@ class: center, middle, inverse, title-slide
 
 
 
+## Q&amp;A
+
+.small[
+Q: I was wondering if we would be using the version control with RStudio on Datahub or Git/Github for our work?  
+A: We'll discuss this A LOT today. But, we'll be interacting with git through RStudio.
+
+Q: What is meant by it being a directory.  
+A: Directory and folder are the same here. So it's a place where you can store other folders and files (such as .Rmd files).
+
+Q: Ah! There's a lot that's being learned - RMarkdown, R Projects, the tidyverse!  
+A: There is a lot. The tooling can feel overwhelming. In a week, it will feel more under control!
+]
+
+---
+
+## Course Announcements
+
+**Due Dates**:
+- **Lab 01** due Friday 11:59 PM
+- **HW 01** due Monday 10/4 11:59 PM
+
+--
+
+.small[
+**Notes**:
+- Office Hours posted
+- Thanks to all who completed the survey! (N=55)
+- Most common boring facts: napping, handedness
+- Favorite boring facts:
+    + I can almost do some card tricks
+    + I am currently struggling to keep my mint plant alive.
+    + My toothbrush is blue.
+    + I drink up to 15 cups of water a day, my average is around 10 cups.
+    + 90% of my brainpower past 7PM goes to looking at cats online. 
+]
+---
 
 ## Agenda
 
@@ -32,7 +68,6 @@ class: center, middle, inverse, title-slide
 - Functions
 - Operators
 
-&lt;!-- Add in submission of hws on gradescope --&gt;
 ---
 
 ## Variables &amp; Assignment
@@ -96,7 +131,7 @@ class(first_variable)
 |---------------|-------------|--------|
 |character | stores a string | `"cogs137"`, `"hi!"`|
 |numeric | stores whole numbers and decimals | `9`, `9.29`|
-|integer | specifies integer | `9L` (the `L` specifis this is an integer)|
+|integer | specifies integer | `9L` (the `L` specifies this is an integer)|
 |logical | Booleans | `TRUE`, `FALSE`|
 |list    | store multiple elements | `list(7, "a", TRUE)`
 
@@ -294,9 +329,26 @@ y[[2]]
 
 ---
 
+## Your Turn
+
+Define variables of each of the following types:
+
+| Variable Type | Explanation | Example|
+|---------------|-------------|--------|
+|character | stores a string | `"cogs137"`, `"hi!"`|
+|numeric | stores whole numbers and decimals | `9`, `9.29`|
+|integer | specifies integer | `9L` (the `L` specifies this is an integer)|
+|logical | Booleans | `TRUE`, `FALSE`|
+|list    | store multiple elements | `list(7, "a", TRUE)`
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+
+---
+
 ## Functions
 
-- `class()` was our first function...but we've just shown a few more.
+- `class()` was our first function...but we'll show a few more.
 
 --
 
@@ -468,7 +520,7 @@ R uses `NA` to represent missing values in its data structures.
 
 
 ```r
-typeof(NA)
+class(NA)
 ```
 
 ```
@@ -632,7 +684,7 @@ my_addition
 
 ---
 
-## Comparison &amp; Logical Operators
+## Comparison Operators
 
 These operators return a Boolean.
 
@@ -647,7 +699,7 @@ These operators return a Boolean.
 
 ---
 
-### Logical Operators: Examples
+### Comparison Operators: Examples
 
 
 ```r
@@ -684,6 +736,18 @@ These operators return a Boolean.
 
 ---
 
+## Your Turn
+
+Use arithmetic and comparison operators to store the value 30 in the variable `var_30`
+and `TRUE` in the variable `true_var`.
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+
+---
+
+
+
 ## Packages
 
 - Packages are installed with the `install.packages` function and loaded with the `library` function, once per session:
@@ -694,6 +758,10 @@ install.packages("package_name")
 library(package_name)
 ```
 
+--
+
+In this course, most packages we'll use have been installed for you already on datahub, so you will only have to load the pakage in (using `library`).
+
 ---
 class: center, middle
 
@@ -703,7 +771,15 @@ class: center, middle
 
 ## Recap
 
-Can you answer these questions?
+- What are atomic vectors?
+- Do I know how to determine the class/type of a variable?
+- Can I define atomic vectors, vectors, and lists?
+- Can I explain dynamic typing?
+- Can I operate on variables and values using... 
+  - arithmetic operators? 
+  - comparison operators?
+- What is the difference between installing and loading a package?
+
 
 
     </textarea>

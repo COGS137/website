@@ -42,7 +42,6 @@ library(tidyverse)
 library(DT)
 ```
 
-<!-- Add in submission of hws on gradescope; use images from Sean -->
 
 ## Q&A
 
@@ -50,31 +49,55 @@ library(DT)
 Q: Am I supposed to understand what we did in class today for installing SSH keys? I was honestly just following directions but not understanding anything.  
 A: While at most points in this course I would say "understanding is really important," this is the one case where really just following instructions was what we were going for. You will NOT be tested/evaluated on the process of generating SSH keys in this course nor will you be tested on what they are. However, for knowledge's sake: the process we used in class is largely spelled out [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) (for future reference). And, a brief description of what SSH keys are can be found [here](https://happygitwithr.com/ssh-keys.html).
 
-Q: How to submit the lab and HW? 
+Q: How to submit the lab and HW?  
 A: Labs, you'll just push your changes to github from RStudio. And, you'll be done. Homeworks, there will be one more step, but we'll discuss that next week.
 
 Q: Is lab going to be done together in person on Friday?!  
 A: Yup! There will be a description of the lab and a demo, along with time to work on the lab today in lab. You're always free to look at it ahead of time, but it's not required.
 
 Q: What's the difference between the SSH and HTTPS?  
-A: This is not something you will be tested on, but there is a bit of an explanation [here](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories). Briefly, each process is a way to "communicate" with a "remote" repository on GitHub with both processes accomplshing this goal. This is a way for your computer (or datahub) to "talk to" your files on GitHub. If you're using the HTTPS process, you have to type in your username and personal access token (which is longer and more complex than your password) everytime you want to "talk" to GitHub. To avoid this, we're using SSH this quarter. This is what we did in class, where you generated an SSH key-pair and told GitHub about that key-pair.
+A: This is not something you will be tested on, but there is a bit of an explanation [here](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories). Briefly, each process is a way to "communicate" with a "remote" repository on GitHub with both processes accomplishing this goal. This is a way for your computer (or datahub) to "talk to" your files on GitHub. If you're using the HTTPS process, you have to type in your username and personal access token (which is longer and more complex than your password) everytime you want to "talk" to GitHub. To avoid this, we're using SSH this quarter. This is what we did in class, where you generated an SSH key-pair and told GitHub about that key-pair.
 ]
 
+---
+## Q&A
+
+.small[
+Q: When would you use an integer type over a numeric type?  
+A: In this class, very infrequently. However, in general programming, you would specify an integer type value when you knew that the only possible values were integers.
+
+Q: For a given list y <- list(8, 4, 7), why does y[2] give a slightly different output than y[[2]]?  
+A: Ah, great question! The specifics don't matter in this class, but this is the difference between slicing and referencing a member (element) of a list. See [here](http://www.r-tutor.com/r-introduction/list) for more details.
+
+Q: As someone who knows both Python and R, under what circumstances do you choose one language over another? If I'd like to pursue a career in data science, would you recommend acquiring proficiency in both languages, or simply being proficient in one with a basic understanding of the other?  
+A: Personally, I typically choose the one I'll be faster in. For me, this is often R. However, I will note that my main piece of advice is to learn one language extraordinarily well. If I were going to pick a single one for someone interested in data science, I'd recommend Python just b/c of sheer numbers. More jobs are looking for Python. However, if you're more interested in statistics, biology, or psychology, I'd encourage R as your primary language. Having both is nice; makes you more employable, but having one is essential.
+]
 ---
 
 ## Course Announcements
 
 **Due Dates**:
-- **Lab 01** due Friday 11:59 PM
+- **Lab 02** due Friday 11:59 PM (will be posted this afternoon)
 - **HW 01** due Mon 10/11 11:59 PM (this is a change!)
+  
+---
+
+## Homework Submission
+
+Homework will be submitted on Gradescope.
 
 --
 
-  - NO LONGER due Monday 10/4 11:59 PM
-  - This has been updated on website and Canvas
-  - We'll figure out what to do with hw-02 later
-  - We'll discuss submission on Gradescope next week
-  
+
+.pull-left[
+You'll have to authorize your GitHub on Gradescope (once)
+![](img/03/gradescope_auth.png)
+]
+.pull-right[
+Homework can be submitted directly from GitHub link.
+![](img/03/github_submit.png)
+
+]
 ---
 
 ## Agenda

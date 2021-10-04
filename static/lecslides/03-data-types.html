@@ -34,7 +34,6 @@ class: center, middle, inverse, title-slide
 
 
 
-&lt;!-- Add in submission of hws on gradescope; use images from Sean --&gt;
 
 ## Q&amp;A
 
@@ -42,31 +41,55 @@ class: center, middle, inverse, title-slide
 Q: Am I supposed to understand what we did in class today for installing SSH keys? I was honestly just following directions but not understanding anything.  
 A: While at most points in this course I would say "understanding is really important," this is the one case where really just following instructions was what we were going for. You will NOT be tested/evaluated on the process of generating SSH keys in this course nor will you be tested on what they are. However, for knowledge's sake: the process we used in class is largely spelled out [here](https://docs.github.com/en/authentication/connecting-to-github-with-ssh/generating-a-new-ssh-key-and-adding-it-to-the-ssh-agent) (for future reference). And, a brief description of what SSH keys are can be found [here](https://happygitwithr.com/ssh-keys.html).
 
-Q: How to submit the lab and HW? 
+Q: How to submit the lab and HW?  
 A: Labs, you'll just push your changes to github from RStudio. And, you'll be done. Homeworks, there will be one more step, but we'll discuss that next week.
 
 Q: Is lab going to be done together in person on Friday?!  
 A: Yup! There will be a description of the lab and a demo, along with time to work on the lab today in lab. You're always free to look at it ahead of time, but it's not required.
 
 Q: What's the difference between the SSH and HTTPS?  
-A: This is not something you will be tested on, but there is a bit of an explanation [here](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories). Briefly, each process is a way to "communicate" with a "remote" repository on GitHub with both processes accomplshing this goal. This is a way for your computer (or datahub) to "talk to" your files on GitHub. If you're using the HTTPS process, you have to type in your username and personal access token (which is longer and more complex than your password) everytime you want to "talk" to GitHub. To avoid this, we're using SSH this quarter. This is what we did in class, where you generated an SSH key-pair and told GitHub about that key-pair.
+A: This is not something you will be tested on, but there is a bit of an explanation [here](https://docs.github.com/en/get-started/getting-started-with-git/about-remote-repositories). Briefly, each process is a way to "communicate" with a "remote" repository on GitHub with both processes accomplishing this goal. This is a way for your computer (or datahub) to "talk to" your files on GitHub. If you're using the HTTPS process, you have to type in your username and personal access token (which is longer and more complex than your password) everytime you want to "talk" to GitHub. To avoid this, we're using SSH this quarter. This is what we did in class, where you generated an SSH key-pair and told GitHub about that key-pair.
 ]
 
+---
+## Q&amp;A
+
+.small[
+Q: When would you use an integer type over a numeric type?  
+A: In this class, very infrequently. However, in general programming, you would specify an integer type value when you knew that the only possible values were integers.
+
+Q: For a given list y &lt;- list(8, 4, 7), why does y[2] give a slightly different output than y[[2]]?  
+A: Ah, great question! The specifics don't matter in this class, but this is the difference between slicing and referencing a member (element) of a list. See [here](http://www.r-tutor.com/r-introduction/list) for more details.
+
+Q: As someone who knows both Python and R, under what circumstances do you choose one language over another? If I'd like to pursue a career in data science, would you recommend acquiring proficiency in both languages, or simply being proficient in one with a basic understanding of the other?  
+A: Personally, I typically choose the one I'll be faster in. For me, this is often R. However, I will note that my main piece of advice is to learn one language extraordinarily well. If I were going to pick a single one for someone interested in data science, I'd recommend Python just b/c of sheer numbers. More jobs are looking for Python. However, if you're more interested in statistics, biology, or psychology, I'd encourage R as your primary language. Having both is nice; makes you more employable, but having one is essential.
+]
 ---
 
 ## Course Announcements
 
 **Due Dates**:
-- **Lab 01** due Friday 11:59 PM
+- **Lab 02** due Friday 11:59 PM (will be posted this afternoon)
 - **HW 01** due Mon 10/11 11:59 PM (this is a change!)
+  
+---
+
+## Homework Submission
+
+Homework will be submitted on Gradescope.
 
 --
 
-  - NO LONGER due Monday 10/4 11:59 PM
-  - This has been updated on website and Canvas
-  - We'll figure out what to do with hw-02 later
-  - We'll discuss submission on Gradescope next week
-  
+
+.pull-left[
+You'll have to authorize your GitHub on Gradescope (once)
+![](img/03/gradescope_auth.png)
+]
+.pull-right[
+Homework can be submitted directly from GitHub link.
+![](img/03/github_submit.png)
+
+]
 ---
 
 ## Agenda
@@ -245,8 +268,8 @@ cat_lovers |&gt;
   datatable()
 ```
 
-<div id="htmlwidget-ae1139d07e0ff7f450b8" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-ae1139d07e0ff7f450b8">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-614be87b80b86408418d" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-614be87b80b86408418d">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---
@@ -336,8 +359,8 @@ glimpse(cat_lovers)
 ## Let's take another look
 
 .small[
-<div id="htmlwidget-51a80afa78b1f7bf0298" style="width:100%;height:auto;" class="datatables html-widget"></div>
-<script type="application/json" data-for="htmlwidget-51a80afa78b1f7bf0298">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
+<div id="htmlwidget-67cd873ed86b6f651d80" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-67cd873ed86b6f651d80">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"order":[],"autoWidth":false,"orderClasses":false,"columnDefs":[{"orderable":false,"targets":0}]}},"evals":[],"jsHooks":[]}</script>
 ]
 
 ---

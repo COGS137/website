@@ -9,9 +9,10 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Due
+## DataTypes
 
-
-## Required:
+- [R4DS](https://r4ds.had.co.nz/)
+  + Section 1.4.3: The tidyverse
+  + Chapter 10: tibbles
 
 

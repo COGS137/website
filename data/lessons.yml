@@ -14,6 +14,7 @@ lessons:
     lecslides: "02-r-basics.html"
   - date: "Fri Oct 1"
     title: "Data Types"
+    reading: "reading-03.html"
     lab: "01-lab-intro-r.html"
     labslides: "01-lab-deck.html"
     lecslides: "03-data-types.html"

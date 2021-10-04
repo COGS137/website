@@ -29,7 +29,7 @@ To get started, accept the lab02 assignment (link on Canvas), clone the repo (us
 
 # Packages
 
-The only package required for completion of this lab is `tidyverse` as `dplyr` (which you'll be using a lot in this lab) is one of the packages in the `tidyverse`. Be sure to import the `tidyverse` prior to completing the lab.
+The only package required for completion of this lab is `tidyverse`, as `dplyr` (which you'll be using a lot in this lab) is one of the packages in the `tidyverse`. Be sure to import the `tidyverse` prior to completing the lab.
 
 # Data
 
@@ -41,19 +41,23 @@ Remember that you can use `?storms` to look up the documentation for the dataset
 
 For each of the following, write code using `dplyr` functions to determine the answers to each of the questions. Your responses should include the code, its output, and a few words that answer the question.
 
+Note that the final two questions are optional. Definitely give them a try, but it's OK if you don't have time to figure them out!
+
 1. How many *unique* *hurricanes* are included in this dataset? 
 
 2. Which tropical storm affected the largest area experiencing tropical storm strength winds? And, what was the maximum sustained wind speed for that storm?
 
 3. Among all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?) 
 
-4. Filter these data to only include storms that occurred during *your* lifetime (your code and results may differ from your classmates!). Within this subset, which storm lasted the longest? Include your code and explain your answer.
+4. Your boss asks for the name, year, and status of all category 5 storms that have happened in the past 10 years. Carry out the operations that would deliver what they're looking for. 
 
-5. Among storms that have occurred during your lifetime, what's the mean and median air pressure across all measurements taken? 
+5. Filter these data to only include storms that occurred during *your* lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what's the mean and median air pressure across all measurements taken? 
 
-6. (optional)
 
-7. (optional) 
+6. (*optional*) Which decade (of the storms included in the dataset) had the largest number of unique reported storms?
 
-*Yay, you're done! Commit all remaining changes, use the commit message "Done with Lab 2! `r emo::ji("muscle")`", and push. Before you wrap up the assignment, make sure all documents are updated on your GitHub repo.*
+
+7. (*optional*) - Among the subset of storms occurring in your lifetime, which storm lasted the longest? Include your code and explain your answer.
+
+*Yay, you're done! Knit your file, commit all remaining changes, use the commit message "Done with Lab 2! `r emo::ji("muscle")`", and push. Before you wrap up the assignment, make sure all documents are updated on your GitHub repo.*
 

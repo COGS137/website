@@ -72,7 +72,8 @@ li{
     padding: 10px;
 }
 .large { font-size: 130% }
-.small { font-size: 70% }
+.midi { font-size: 85% }
+.small { font-size: 60% }
 img, video, iframe {
   max-width: 100%;
 }

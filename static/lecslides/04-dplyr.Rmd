@@ -593,3 +593,5 @@ bike |>
 - Describe and utilize the pipe in workflows
 - Describe and use common `verbs` (functions)
 - Understand the documentation for `dplyr` functions
+
+---

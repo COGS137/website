@@ -25,6 +25,41 @@ class: center, middle, inverse, title-slide
 
 
 
+## Q&amp;A
+
+.small[
+Q: Is using |&gt; to perform everything in one step the standard way of doing analysis as opposed to making intermediate variables?    
+A: Yup! Now, if you ever *want* access to an intermediate variable, that is encouraged. But, it's not used for every single step in the pipeline.
+
+Q: Is there a difference in the piping process between the tidyverse "|&gt;" and dplyr "%&gt;%" packages? Also, is there a command that can be used the tidyverse's pipe "|&gt;"? I know dpylr's command is Ctrl or Cmd + "M".  
+A: We'll touch on this today! While cmd + shift + M works for the dplyr pipe, I don't think there is a baseR pipe shortcut (yet!). But, if you're used to using `%&gt;%` feel free to continue to do so.
+
+Q: Why is R markdown document called a markdown document?  
+A: Because the text (outside of the code chunks) uses markdown syntax.
+]
+---
+
+## Course Announcements
+
+**Due Dates**:
+- **Lab 02** due Friday 11:59 PM (now available)
+- **HW 01** due Mon 10/11 11:59 PM
+
+--
+
+- **Lab 01** has been graded
+  + Grades will be posted on Canvas after class
+  + If you did not get full credit, you can request a regrade (this lab only) by Friday 11:59 PM
+  + Regrades on thread in Campuswire
+  .small[
+  + Common Issues:
+    + Submitted repo with no changes from template (did not push changes)
+    + Did not update YAML to include your name
+    + Did not change the descriptive text
+  + Please knit your Rmd file to HTML (makes it easier to grade) and push both files to GitHub 
+  ]
+---
+
 class: center, middle
 
 # `dplyr`
@@ -56,7 +91,9 @@ class: center, middle
 
 ## The pipe in baseR
 
+.small[
 ![baseR pipe](img/04/baseR_hex.jpeg)
+]
 
 - `|&gt;` should be read as "and then" 
 - for example "Wake up |&gt; brush teeth" would be read as wake up *and then* brush teeth
@@ -115,13 +152,13 @@ class: center, middle
 
 ## NC DOT Fatal Crashes in North Carolina
 
-From https://opendurham.nc.gov
+From OpenDurham's Data Portal
 
 
 
 
 ```r
-bike &lt;- read_csv2("https://stat.duke.edu/~mc301/data/nc_bike_crash.csv", 
+bike &lt;- read_csv2("https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv", 
                   na = c("NA", "", "."))
 ```
 
@@ -149,14 +186,6 @@ names(bike)
 ## [51] "Traff_Cntr" "Weather"    "Workzone_I" "Location"
 ```
 
-and see detailed descriptions at https://stat.duke.edu/~mc301/data/nc_bike_crash.html.
-
----
-
-## Want to follow along?
-
-Go to RStudio Cloud and make a copy of "NC Bike Crashes - Wrangling".
-
 ---
 
 ## Viewing your data
@@ -166,6 +195,7 @@ it in the data viewer
 
 - Use the `glimpse` function to take a peek
 
+.small[
 
 ```r
 glimpse(bike)
@@ -229,7 +259,7 @@ glimpse(bike)
 ## $ Workzone_I &lt;chr&gt; "No", "No", "No", "No", "No", "No", "No", "No", "No", "No",…
 ## $ Location   &lt;chr&gt; "36.002743, -78.8785", "35.612984, -77.39265", "35.595676, …
 ```
-
+]
 ---
 
 ## A Grammar of Data Manipulation
@@ -238,6 +268,7 @@ glimpse(bike)
 
 Single data frame functions / verbs:
 
+.small[
 * `filter`: pick rows matching criteria
 * `slice`: pick rows using index(es)
 * `select`: pick columns by name
@@ -250,6 +281,7 @@ Single data frame functions / verbs:
 * `sample_n` / `sample_frac`: randomly sample rows
 * `summarise`: reduce variables to values
 * ... (many more)
+]
 
 ---
 
@@ -261,7 +293,7 @@ Single data frame functions / verbs:
 
 3. Always return a data frame
 
-4. Don't modify in place
+4. Do not modify in place
 
 5. Performance via lazy evaluation
 
@@ -354,20 +386,6 @@ bike |&gt;
 
 ---
 
-## Commonly used logical operators in R
-
-operator    | definition                   || operator     | definition
-------------|------------------------------||--------------|----------------
-`&lt;`         | less than                    ||`x`&amp;nbsp;&amp;#124;&amp;nbsp;`y`     | `x` OR `y` 
-`&lt;=`        |	less than or equal to        ||`is.na(x)`    | test if `x` is `NA`
-`&gt;`         | greater than                 ||`!is.na(x)`   | test if `x` is not `NA`
-`&gt;=`        |	greater than or equal to     ||`x %in% y`    | test if `x` is in `y`
-`==`        |	exactly equal to             ||`!(x %in% y)` | test if `x` is not in `y`
-`!=`        |	not equal to                 ||`!x`          | not `x`
-`x &amp; y`     | `x` AND `y`                  ||              |
-
----
-
 ## Aside: real data is messy!
 
 .question[
@@ -406,8 +424,7 @@ bike |&gt;
 
 ## Careful data scientists clean up their data first!
 
-- We're going to need to do some text parsing to clean up
-these data
+- We're going to need to do some text parsing to clean up these data
     + `10-Jun` should be `6-10`
     + `15-Nov` should be `11-15`
 
@@ -422,11 +439,13 @@ these data
 
 ```r
 bike &lt;- bike |&gt;
-  mutate(BikeAge_Gr = case_when(
-    BikeAge_Gr == "10-Jun" ~ "6-10",
-    BikeAge_Gr == "15-Nov" ~ "11-15",
-    TRUE                   ~ BikeAge_Gr     # everything else
-  ))
+  mutate(
+    BikeAge_Gr = case_when(
+      BikeAge_Gr == "10-Jun" ~ "6-10",
+      BikeAge_Gr == "15-Nov" ~ "11-15",
+      TRUE                   ~ BikeAge_Gr     # everything else
+    )
+  )
 ```
 
 - Note that we're overwriting existing data and columns, so be careful!
@@ -529,6 +548,13 @@ bike |&gt;
 ## 10 66-67
 ## # … with 5,706 more rows
 ```
+
+---
+
+# `mutate` vs. `transmute`
+
+- `mutate` adds new and keeps original
+- `transmute` adds new; drops existing
 
 ---
 
@@ -749,13 +775,18 @@ names(bike)
 ```
 ]
 
+---
+
+## `rename` specific columns
+
 - Rename `Speed_Limi` to `Speed_Limit`:
+.small[
 
 ```r
 bike &lt;- bike |&gt;
   rename(Speed_Limit = Speed_Limi)
 ```
-
+]
 ---
 
 ## Check before you move on
@@ -902,7 +933,7 @@ dim(bike_n5)
 
 
 ```r
-bike_perc20 &lt;-bike |&gt;
+bike_perc20 &lt;- bike |&gt;
   sample_frac(0.2, replace = FALSE)
 dim(bike_perc20)
 ```
@@ -939,6 +970,46 @@ bike |&gt;
 ## 10 Alleghany None - Rural Crash
 ## # … with 350 more rows
 ```
+
+---
+
+## `distinct` has a .keep_all parameter
+
+
+```r
+bike |&gt; 
+  distinct(County, City, .keep_all = TRUE) |&gt; 
+  arrange(County, City)
+```
+
+```
+## # A tibble: 360 × 54
+##      FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur
+##    &lt;dbl&gt;    &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;         &lt;dbl&gt; &lt;chr&gt;      &lt;chr&gt;     &lt;chr&gt;     
+##  1   524      525 Yes        11-15            12 No         &lt;NA&gt;      B: Eviden…
+##  2    84       85 Yes        20-24            20 No         With Tra… B: Eviden…
+##  3   571      572 Yes        16-19            16 No         Not Appl… B: Eviden…
+##  4   509      510 Yes        40-49            43 Yes        With Tra… K: Killed 
+##  5   855      856 Yes        30-39            30 No         With Tra… A: Disabl…
+##  6     5        6 Yes        40-49            44 Yes        With Tra… C: Possib…
+##  7   163      164 Yes        30-39            35 No         Not Appl… C: Possib…
+##  8    96       97 Yes        30-39            36 No         With Tra… C: Possib…
+##  9    46       47 Yes        50-59            53 No         With Tra… B: Eviden…
+## 10   485      486 Yes        60-69            62 No         With Tra… C: Possib…
+## # … with 350 more rows, and 46 more variables: Bike_Pos &lt;chr&gt;, Bike_Race &lt;chr&gt;,
+## #   Bike_Sex &lt;chr&gt;, City &lt;chr&gt;, County &lt;chr&gt;, CrashAlcoh &lt;chr&gt;, CrashDay &lt;chr&gt;,
+## #   Crash_Date &lt;date&gt;, Crash_Grp &lt;chr&gt;, Crash_Hour &lt;dbl&gt;, Crash_Loc &lt;chr&gt;,
+## #   Crash_Mont &lt;chr&gt;, Crash_Time &lt;dttm&gt;, Crash_Type &lt;chr&gt;, Crash_Ty_1 &lt;dbl&gt;,
+## #   Crash_Year &lt;dbl&gt;, Crsh_Sevri &lt;chr&gt;, Developmen &lt;chr&gt;, DrvrAge_Gr &lt;chr&gt;,
+## #   Drvr_Age &lt;dbl&gt;, Drvr_Alc_D &lt;chr&gt;, Drvr_EstSp &lt;chr&gt;, Drvr_Injur &lt;chr&gt;,
+## #   Drvr_Race &lt;chr&gt;, Drvr_Sex &lt;chr&gt;, Drvr_VehTy &lt;chr&gt;, ExcsSpdInd &lt;chr&gt;, …
+```
+
+## Recap
+- Understand the basic tenants of `dplyr`
+- Describe and utilize the pipe in workflows
+- Describe and use common `verbs` (functions)
+- Understand the documentation for `dplyr` functions
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

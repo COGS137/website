@@ -39,8 +39,42 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
-library(rvest)
 ```
+
+## Q&A
+
+.small[
+Q: Is using |> to perform everything in one step the standard way of doing analysis as opposed to making intermediate variables?    
+A: Yup! Now, if you ever *want* access to an intermediate variable, that is encouraged. But, it's not used for every single step in the pipeline.
+
+Q: Is there a difference in the piping process between the tidyverse "|>" and dplyr "%>%" packages? Also, is there a command that can be used the tidyverse's pipe "|>"? I know dpylr's command is Ctrl or Cmd + "M".  
+A: We'll touch on this today! While cmd + shift + M works for the dplyr pipe, I don't think there is a baseR pipe shortcut (yet!). But, if you're used to using `%>%` feel free to continue to do so.
+
+Q: Why is R markdown document called a markdown document?  
+A: Because the text (outside of the code chunks) uses markdown syntax.
+]
+---
+
+## Course Announcements
+
+**Due Dates**:
+- **Lab 02** due Friday 11:59 PM (now available)
+- **HW 01** due Mon 10/11 11:59 PM
+
+--
+
+- **Lab 01** has been graded
+  + Grades will be posted on Canvas after class
+  + If you did not get full credit, you can request a regrade (this lab only) by Friday 11:59 PM
+  + Regrades on thread in Campuswire
+  .small[
+  + Common Issues:
+    + Submitted repo with no changes from template (did not push changes)
+    + Did not update YAML to include your name
+    + Did not change the descriptive text
+  + Please knit your Rmd file to HTML (makes it easier to grade) and push both files to GitHub 
+  ]
+---
 
 class: center, middle
 
@@ -73,7 +107,9 @@ class: center, middle
 
 ## The pipe in baseR
 
+.small[
 ![baseR pipe](img/04/baseR_hex.jpeg)
+]
 
 - `|>` should be read as "and then" 
 - for example "Wake up |> brush teeth" would be read as wake up *and then* brush teeth
@@ -130,14 +166,14 @@ class: center, middle
 
 ## NC DOT Fatal Crashes in North Carolina
 
-From https://opendurham.nc.gov
+From OpenDurham's Data Portal
 
 ```{r load-data-real,include=FALSE}
 bike <- read_csv2("data/nc_bike_crash.csv", na = c("NA", "", "."))
 ```
 
 ```{r load-data-fake, eval=FALSE}
-bike <- read_csv2("https://stat.duke.edu/~mc301/data/nc_bike_crash.csv", 
+bike <- read_csv2("https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv", 
                   na = c("NA", "", "."))
 ```
 
@@ -150,14 +186,6 @@ View the names of variables via
 names(bike)
 ```
 
-and see detailed descriptions at https://stat.duke.edu/~mc301/data/nc_bike_crash.html.
-
----
-
-## Want to follow along?
-
-Go to RStudio Cloud and make a copy of "NC Bike Crashes - Wrangling".
-
 ---
 
 ## Viewing your data
@@ -167,10 +195,11 @@ it in the data viewer
 
 - Use the `glimpse` function to take a peek
 
+.small[
 ```{r}
 glimpse(bike)
 ```
-
+]
 ---
 
 ## A Grammar of Data Manipulation
@@ -179,6 +208,7 @@ glimpse(bike)
 
 Single data frame functions / verbs:
 
+.small[
 * `filter`: pick rows matching criteria
 * `slice`: pick rows using index(es)
 * `select`: pick columns by name
@@ -191,6 +221,7 @@ Single data frame functions / verbs:
 * `sample_n` / `sample_frac`: randomly sample rows
 * `summarise`: reduce variables to values
 * ... (many more)
+]
 
 ---
 
@@ -202,7 +233,7 @@ Single data frame functions / verbs:
 
 3. Always return a data frame
 
-4. Don't modify in place
+4. Do not modify in place
 
 5. Performance via lazy evaluation
 
@@ -237,20 +268,6 @@ bike |>
 
 ---
 
-## Commonly used logical operators in R
-
-operator    | definition                   || operator     | definition
-------------|------------------------------||--------------|----------------
-`<`         | less than                    ||`x`&nbsp;&#124;&nbsp;`y`     | `x` OR `y` 
-`<=`        |	less than or equal to        ||`is.na(x)`    | test if `x` is `NA`
-`>`         | greater than                 ||`!is.na(x)`   | test if `x` is not `NA`
-`>=`        |	greater than or equal to     ||`x %in% y`    | test if `x` is in `y`
-`==`        |	exactly equal to             ||`!(x %in% y)` | test if `x` is not in `y`
-`!=`        |	not equal to                 ||`!x`          | not `x`
-`x & y`     | `x` AND `y`                  ||              |
-
----
-
 ## Aside: real data is messy!
 
 .question[
@@ -269,8 +286,7 @@ bike |>
 
 ## Careful data scientists clean up their data first!
 
-- We're going to need to do some text parsing to clean up
-these data
+- We're going to need to do some text parsing to clean up these data
     + `10-Jun` should be `6-10`
     + `15-Nov` should be `11-15`
 
@@ -284,11 +300,13 @@ these data
  
 ```{r}
 bike <- bike |>
-  mutate(BikeAge_Gr = case_when(
-    BikeAge_Gr == "10-Jun" ~ "6-10",
-    BikeAge_Gr == "15-Nov" ~ "11-15",
-    TRUE                   ~ BikeAge_Gr     # everything else
-  ))
+  mutate(
+    BikeAge_Gr = case_when(
+      BikeAge_Gr == "10-Jun" ~ "6-10",
+      BikeAge_Gr == "15-Nov" ~ "11-15",
+      TRUE                   ~ BikeAge_Gr     # everything else
+    )
+  )
 ```
 
 - Note that we're overwriting existing data and columns, so be careful!
@@ -351,6 +369,13 @@ You'll use this much less often than `mutate` but when you need it, you need it.
 bike |> 
   transmute(ID = paste(FID, OBJECTID, sep = "-"))
 ```
+
+---
+
+# `mutate` vs. `transmute`
+
+- `mutate` adds new and keeps original
+- `transmute` adds new; drops existing
 
 ---
 
@@ -446,12 +471,17 @@ names(bike)
 ```
 ]
 
+---
+
+## `rename` specific columns
+
 - Rename `Speed_Limi` to `Speed_Limit`:
+.small[
 ```{r}
 bike <- bike |>
   rename(Speed_Limit = Speed_Limi)
 ```
-
+]
 ---
 
 ## Check before you move on
@@ -517,7 +547,7 @@ dim(bike_n5)
 - `sample_frac`: randomly sample 20% of observations
 
 ```{r}
-bike_perc20 <-bike |>
+bike_perc20 <- bike |>
   sample_frac(0.2, replace = FALSE)
 dim(bike_perc20)
 ```
@@ -532,3 +562,19 @@ bike |>
   distinct() |> 
   arrange(County, City)
 ```
+
+---
+
+## `distinct` has a .keep_all parameter
+
+```{r}
+bike |> 
+  distinct(County, City, .keep_all = TRUE) |> 
+  arrange(County, City)
+```
+
+## Recap
+- Understand the basic tenants of `dplyr`
+- Describe and utilize the pipe in workflows
+- Describe and use common `verbs` (functions)
+- Understand the documentation for `dplyr` functions

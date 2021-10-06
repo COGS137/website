@@ -49,7 +49,7 @@ Note that the final two questions are optional. Definitely give them a try, but 
 
 3. Among all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?) 
 
-4. Your boss asks for the name, year, and status of all category 5 storms that have happened in the past 10 years. Carry out the operations that would deliver what they're looking for. 
+4. Your boss asks for the name, year, and status of all category 5 storms that have happened in the 2000s. Carry out the operations that would deliver what they're looking for. 
 
 5. Filter these data to only include storms that occurred during *your* lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what's the mean and median air pressure across all measurements taken? 
 

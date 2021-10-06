@@ -55,6 +55,21 @@ A: Because the text (outside of the code chunks) uses markdown syntax.
 ]
 ---
 
+## [Ad] EDGE Outreach Program
+.small[
+EDGE, a free, year-long mentorship program offered to help introduce STEM-related fields to high school girls hosted by UCSD’s Society of Women Engineers and Women In Computing
+ 
+As a mentor, you will be a resource to your mentee(s) for the duration of one school year and be expected to attend one virtual mentor-mentee meet-up event per quarter.
+
+Sign up to be a mentor now at https://tinyurl.com/edgement2021! The deadline for mentor sign-ups is October 16, 2021 at 11:59 pm.
+]
+.pull-left[
+![EDGE](img/04/mentor-1.png)
+]
+.pull-right[
+![EDGE details](img/04/mentor-2.png)
+]
+---
 ## Course Announcements
 
 **Due Dates**:

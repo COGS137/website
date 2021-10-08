@@ -89,6 +89,32 @@ Sign up to be a mentor now at https://tinyurl.com/edgement2021! The deadline for
     + Did not change the descriptive text
   + Please knit your Rmd file to HTML (makes it easier to grade) and push both files to GitHub 
   ]
+  
+---
+
+## Q&A (day 2)
+
+.small[
+Q: Pipes are confusing! Ah!  
+A: You know...y'all are right. More demo and more practice today!
+]
+
+---
+
+## Course Announcements
+
+- **Lab 02** due tonight 11:59 PM
+- **Lab 01** *regrade requests* due tonight (11:59 PM; post on thread on Campuswire)
+- **HW 01** due Mon 10/11 11:59 PM
+
+--
+
+- Campuswire posts: 
+  + A1 Q9
+  + Lab01 - regrade request
+  + reprex/`case_when`
+- Switching between projects
+
 ---
 
 class: center, middle
@@ -394,6 +420,14 @@ bike |>
 
 ---
 
+## Your Turn
+
+How many accidents in our dataset required an ambulance ride (`AmbulanceR`) *and* had the `Crash_Type` "Bicyclist Lost Control - Mechanical Problems"?
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+---
+
 ## `slice` for certain row numbers
 
 First five
@@ -510,6 +544,15 @@ names(bike)
 ]
 
 ---
+
+## Your Turn
+
+Your boss in Cumberland County gets overwhelmed by data easily, but he wants some data from you. He wants all bike accidents from his County, but he only wants to know the road's speed limit, the age of the biker, and to know if alcohol was involved. If you have time, mine as well make the column names very clear to your boss while you're at it...
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+---
+
 
 ## `summarise` to reduce variables to values
 

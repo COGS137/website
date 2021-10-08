@@ -22,98 +22,35 @@ knitr::opts_chunk$set(eval = FALSE)
 # Introduction
 
 ```{marginfigure}
-**A note on expectations: ** For each exercise and on your own question you 
-answer include any relevant output (tables, summary statistics, plots) in your 
-answer. Doing this is easy! Just place any relevant R code in a code chunk, 
-and hit Knit HTML.
+**A note on expectations: ** For each exercise, include any relevant output (tables, summary statistics, plots) in your answer along with text to guide the reader. Doing this is easy! Just place any relevant R code in a code chunk, any relevant text outside of code chunks, and hit Knit HTML.
 ```
 
 Some define statistics as the field that focuses on turning information into
-knowledge. The first step in that process is to summarize and describe the raw
+knowledge. The first step in that process is to summarize and describe raw
 information - the data. In this lab we explore data on college majors and earnings,
-specifically the data begind the FiveThirtyEight story ["The Economic Guide To Picking A College Major"](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
+specifically the data behind the FiveThirtyEight story ["The Economic Guide To Picking A College Major"](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/).
 
 These data originally come from the American Community Survey (ACS) 2010-2012 Public Use 
-Microdata Series. While this is outside the scope of this lab, if you are curious about how
+Microdata Series. While outside the scope of this lab, if you are curious about how
 raw data from the ACS were cleaned and prepared, see [the code](https://github.com/fivethirtyeight/data/blob/master/college-majors/college-majors-rscript.R) FiveThirtyEight authors used.
 
 We should also note that there are many considerations that go into picking a major.
 Earnings potential and employment prospects are two of them, and they are important,
-but they don't tell the whole story. Keep this in mind as you analyze the data.
+but they *don't* tell the whole story. Keep this in mind as you analyze the data.
 
 # Getting started
 
-- Go to the course organization on GitHub: https://github.com/Sta199-S18.
-
-- Find the repo starting with `lab-02` and that has your team name at the end (this should be the only `lab-02` repo available to you).
-
-- In the repo, click on the green **Clone or download** button, select **Use HTTPS** (this might already be selected by default, and if it is, you'll see the text **Clone with HTTPS** as in the image below). Click on the clipboard icon to copy the repo URL.
-
-- Go to RStudio Cloud and into the course workspace. Create a **New Project from Git Repo**. You will need to click on the down arrow next to the **New Project** button to see this option.
-
-- Copy and paste the URL of your assignment repo into the dialog box:
-
-- Hit OK, and you're good to go!
+To get started, accept the lab03 assignment (link on Canvas), clone the repo (using SSH) into RStudio on datahub. Update the author name at the top of the .Rmd file in the YAML to be your name. And, then you're ready to go!
 
 # Packages
 
-In this lab we will work with the `tidyverse` package. So we need to 
-install and load it:
+In this lab we will work with the `tidyverse` package. So we need to load it:
 
 ```{r eval = FALSE}
-install.packages("tidyverse")
 library(tidyverse) 
 ```
 
 Note that this package is also loaded in your R Markdown document.
-
-# Housekeeping
-
-## Git configuration
-
-```{marginfigure}
-Your email address is the address tied to your GitHub account and your name should be first and last name.
-```
-
-- Go to the *Terminal* pane
-- Type the following two lines of code, replacing the information in the quotation marks with your info.
-
-```{bash eval=FALSE}
-git config --global user.email "your email"
-git config --global user.name "your name"
-```
-
-To confirm that the changes have been implemented, run the following:
-
-```{bash eval=FALSE}
-git config --global user.email
-git config --global user.name
-```
-
-## Project name: 
-
-Currently your project is called *Untitled Project*. Update the name of your project to be "Lab 02 - Data wrangling and visualization".
-
-# Warm up
-
-**Pick one team member to complete the steps in this section while the others contribute to the discussion but do not actually touch the files on their computer.**
-
-Before we introduce the data, let's warm up with some simple exercises.
-
-## YAML: 
-
-Open the R Markdown (Rmd) file in your project, change the author name to your **team** name, and knit the document.
-
-## Commiting and pushing changes:
-
-- Go to the **Git** pane in your RStudio. 
-- View the **Diff** and confirm that you are happy with the changes.
-- Add a commit message like "Update team name" in the **Commit message** box and hit **Commit**.
-- Click on **Push**. This will prompt a dialogue box where you first need to enter your user name, and then your password.
-
-## Pulling changes:
-
-Now, the remaining team members who have not been concurrently making these changes on their projects should click on the **Pull** button in their Git pane and observe that the changes are now reflected on their projects as well.
 
 # Load the data
 
@@ -195,7 +132,7 @@ By default `arrange` sorts in ascending order, which is what we want here --
 we're interested in the major with the *lowest* unemployment rate.
 
 ```{r lowest-unemp}
-college_recent_grads %>%
+college_recent_grads |>
   arrange(unemployment_rate)
 ```
 
@@ -209,12 +146,12 @@ in which order:
 
 ```{marginfigure}
 Note how easily we expanded our code with adding another step to our pipeline,
-with the pipe operator: `%>%`.
+with the pipe operator: `|>`.
 ```
 
 ```{r lowest-unemp-select}
-college_recent_grads %>%
-  arrange(unemployment_rate) %>%
+college_recent_grads |>
+  arrange(unemployment_rate) |>
   select(rank, major, unemployment_rate)
 ```
 
@@ -232,9 +169,9 @@ In this case, we're overwriting the existing `unemployment_rate` variable, by
 `round`ing it to `4` decimal places.
 
 ```{r}
-college_recent_grads %>%
-  arrange(unemployment_rate) %>%
-  select(rank, major, unemployment_rate) %>%
+college_recent_grads |>
+  arrange(unemployment_rate) |>
+  select(rank, major, unemployment_rate) |>
   mutate(unemployment_rate = round(unemployment_rate, digits = 4))
 ```
 
@@ -250,7 +187,7 @@ Note that the `digits` in `options` is scientific digits, and in `round` they ar
 decimal places. If you're thinking "Wouldn't it be nice if they were 
 consistent?", you're right...
 
-You don't need to do both of these, that would be redundant. The next exercise 
+You don't need to do both of these; that would be redundant. The next exercise 
 asks you to choose one.
 
 1. Which of these options, changing the input data or altering the 
@@ -268,14 +205,12 @@ The `desc` function specifies that we want `unemployment_rate` in descending ord
 ```
 
 ```{r}
-college_recent_grads %>%
-  arrange(desc(unemployment_rate)) %>%
+college_recent_grads |>
+  arrange(desc(unemployment_rate)) |>
   select(rank, major, unemployment_rate)
 ```
 
-2. Using what you've learned so far, arrange the data in descending order with respect to proportion of women in a major, and display only the major,
-the total number of people with major, and proportion of women. Show only the 
-top 3 majors by adding `head(3)` at the end of the pipeline.
+2. Using what you've learned so far, arrange the data in descending order with respect to proportion of women in a major, and display only the major, the total number of people with major, and proportion of women. Show only the top 3 majors by adding `head(3)` at the end of the pipeline.
 
 ## How do the distributions of median income compare across major categories?
 
@@ -325,7 +260,7 @@ We can also calculate summary statistics for this distribution using the
 `summarise` function:
 
 ```{r}
-college_recent_grads %>%
+college_recent_grads |>
   summarise(min = min(median), max = max(median),
             mean = mean(median), med = median(median),
             sd = sd(median), 
@@ -362,9 +297,9 @@ are looking for the highest statistic, so make sure to arrange in the correct
 direction. 
 
 ```{r eval=FALSE}
-college_recent_grads %>%
-  group_by(major_category) %>%
-  summarise(___ = ___(median)) %>%
+college_recent_grads |>
+  group_by(major_category) |>
+  summarise(___ = ___(median)) |>
   arrange(___)
 ```
 
@@ -374,7 +309,7 @@ groups the data and then counts the number of observations in each category (see
 that the major with the lowest observations is on top.
 
 ```{r}
-college_recent_grads %>%
+college_recent_grads |>
   count(major_category)
 ```
 
@@ -397,7 +332,7 @@ Then, we can use this to create a new variable in our data frame indicating
 whether a major is STEM or not.
 
 ```{r}
-college_recent_grads <- college_recent_grads %>%
+college_recent_grads <- college_recent_grads |>
   mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
 ```
 
@@ -427,7 +362,7 @@ whose median earnings is less than median for all majors's median earnings,
 which we found to be $36,000 earlier.
 
 ```{r}
-college_recent_grads %>%
+college_recent_grads |>
   filter(
     major_type == "stem",
     median < 36000

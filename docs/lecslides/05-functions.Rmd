@@ -1,7 +1,7 @@
 ---
 title: "Functions"
 author: "Prof Ellis"
-date: "2021-10-06"
+date: "2021-10-08"
 output:
   xaringan::moon_reader:
     css: "slides.css"
@@ -41,6 +41,9 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 library(tidyverse)
 library(rvest)
 ```
+
+
+
 
 
 class: center, middle

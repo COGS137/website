@@ -1,0 +1,108 @@
+---
+title: "Lab 03:EDA & Visualization"
+author: ""
+date: "2021-10-15"
+output:
+  xaringan::moon_reader:
+    css: "lab-slides.css"
+    logo: img/sta199-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.65, dpi = 300) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(emo)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(rvest)
+```
+
+class: center, middle
+
+# Welcome to lab
+
+---
+
+## Agenda
+
+1. **Lab introduction:** Review FiveThirtyEight article on college majors.
+2. **Tips:** Review a few common RMarkdown mistakes.
+
+---
+
+class: center, middle
+
+# Lab introduction
+
+---
+
+## Lab introduction
+
+- Lab instructions posted on the course website.
+
+- [The Economic Guide To Picking A College Major](https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/) by Ben Casselman
+    
+---
+
+class: center, middle
+
+# Starting a new project
+
+---
+
+## Starting a new project
+
+- Go to Canvas to find the link for today's lab 03-lab-eda-viz.
+
+- On GitHub, click on the green Clone or download button, select use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.
+
+- Go to RStudio on datahub. Create a New Project from Git Repo. You will need to click on the down arrow next to the New Project button to see this option.
+
+- Copy and paste the URL of your assignment repo into the dialog box and hit OK.
+
+- Open the .Rmd file with your template in it. Be sure to update the author to your name. 
+---
+
+
+class: center, middle
+
+# Tips
+
+---
+
+## Tips
+
+- Be ready to troubleshoot your document, since it will likely fail to knit on multiple occasions throughout the process. Read the error message carefully and take note of which line is preventing a successful knit.
+
+- Make sure to keep track of your various chunks and to keep text and code in the right place.
+
+- Remember that your R Markdown file is not aware of your project's global environment and can only make use of variables, functions, etc. that you have loaded or defined in the document.
+
+- Remind yourself how the pipe operator (`|>`) works.
+
+- If you're unsure how a function works or what its arguments are, type `?` in front of it and hit enter (`?read_csv` for instance). The "Help" tab will open and provide a summary of the function as well as some examples.

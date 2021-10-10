@@ -144,19 +144,8 @@ front and center are not easily viewed (e.g. `unemployment_rate`).
 We can use the `select` function to choose which variables to display, and 
 in which order:
 
-```{marginfigure}
-Note how easily we expanded our code with adding another step to our pipeline,
-with the pipe operator: `|>`.
-```
-
-```{r lowest-unemp-select}
-college_recent_grads |>
-  arrange(unemployment_rate) |>
-  select(rank, major, unemployment_rate)
-```
-
-Ok, this is looking better, but do we really need all those decimal places in the 
-unemployment variable? Not really!
+Note that your output here likely has a whole bunch of decimal places in the 
+unemployment variable? You likely don't want all those values to be displayed.
 
 There are two ways we can address this problem. One would be to round the 
 `unemployment_rate` variable in the dataset or we can change the number of digits 
@@ -166,14 +155,7 @@ Below are instructions for how you would do both of these:
 
 - Round `unemployment_rate`: We create a new variable with the `mutate` function. 
 In this case, we're overwriting the existing `unemployment_rate` variable, by 
-`round`ing it to `4` decimal places.
-
-```{r}
-college_recent_grads |>
-  arrange(unemployment_rate) |>
-  select(rank, major, unemployment_rate) |>
-  mutate(unemployment_rate = round(unemployment_rate, digits = 4))
-```
+`round`ing it to `4` decimal places.For example, the call to `mutate` would be: `mutate(unemployment_rate = round(unemployment_rate, digits = 4))`
 
 - Change displayed number of digits without touching data: We can add an option to 
 our R Markdown document to change the displayed number of digits in the output. 
@@ -257,7 +239,7 @@ difference in median incomes?" $1 is obviously too little, $10000 might be too h
 `geom_histogram(binwidth = 1000)`.
 
 We can also calculate summary statistics for this distribution using the 
-`summarise` function:
+`summarise` function. Note here that you can calculate multiple summary statistics within a single `summarise` call:
 
 ```{r}
 college_recent_grads |>
@@ -291,27 +273,13 @@ median incomes for each major category, we should have a better idea for
 which summary statistic to use to quantify the typical median income.
 
 7. Which major category has the highest typical (you'll need 
-to decide what this means) median income? Use the partial code below, 
-filling it in with the appropriate statistic and function. Also note that we 
-are looking for the highest statistic, so make sure to arrange in the correct 
+to decide what this means) median income? Also note that we 
+are looking for the highest statistic, so make sure if you `arrange` to do so in the correct 
 direction. 
 
-```{r eval=FALSE}
-college_recent_grads |>
-  group_by(major_category) |>
-  summarise(___ = ___(median)) |>
-  arrange(___)
-```
 
 8. Which major category is the least popular in this sample? 
-To answer this question we use a new function called `count`, which first 
-groups the data and then counts the number of observations in each category (see below). Add to the pipeline appropriately to arrange the results so 
-that the major with the lowest observations is on top.
-
-```{r}
-college_recent_grads |>
-  count(major_category)
-```
+  
 
 ## All STEM fields aren't the same
 
@@ -333,12 +301,13 @@ whether a major is STEM or not.
 
 ```{r}
 college_recent_grads <- college_recent_grads |>
-  mutate(major_type = ifelse(major_category %in% stem_categories, "stem", "not stem"))
+  mutate(major_type = case_when(major_category %in% stem_categories ~ "stem",
+                                TRUE ~ "not stem"))
 ```
 
 Let's unpack this: with `mutate` we create a new variable called 
 `major_type`, which is defined as `"stem"` if the `major_category` is in 
-the nector called `stem_categories` we created earlier, and as `"not stem"` 
+the vector called `stem_categories` we created earlier, and as `"not stem"` 
 otherwise.
 
 `%in%` is a **logical operator**. Other logical operators that are commonly 
@@ -369,12 +338,8 @@ college_recent_grads |>
   )
 ```
 
-9. Which STEM majors have median salaries equal to or less than the median for all majors's median earnings? Your output should only show 
-the major name and median, 25th percentile, and 75th percentile earning for 
-that major as and should be sorted such that the major with the highest 
-median earning is on top.
+9. Which STEM majors have median salaries equal to or less than the median for all majors's median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major as and should be sorted such that the major with the highest median earning is on top.
 
 ## What types of majors do women tend to major in?
 
-10. Create a scatterplot of median income vs. proportion of 
-women in that major, colored by whether the major is in a STEM field or not. Describe the association between these three variables.
+10. Create a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. Describe the association between these three variables.

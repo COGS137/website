@@ -11,10 +11,10 @@
     <th style="width:5%;text-align:center">Lecture Slides</th>
     <th style="width:5%;text-align:center">Lab Slides</th>
     <th style="width:5%;text-align:center">Lab</th>
+    <th style="width:5%;text-align:center">Lab Answers</th>
     <th style="width:5%;text-align:center">HW</th>
     <th style="width:5%;text-align:center">Exam</th>
     <th style="width:5%;text-align:center">Project</th>
-    <th style="width:5%;text-align:center">EC</th>
 
   </tr>
 
@@ -59,6 +59,14 @@
           <i class="fa fa-code fa-lg"></i></font></td>
       {{ end }}
       
+      {{ if .labanswers }}
+      <td align="center"><a href="{{ .Site.baseurl }}/labanswers/{{ .labanswers }}">
+          <i class="fa fa-caret-up fa-lg"></i></a></td>
+      {{ else }}
+        <td align="center"><font color="f1f1f1">
+          <i class="fa fa-caret-up fa-lg"></i></font></td>
+      {{ end }}
+      
       {{ if .hw }}
       <td align="center"><a href="{{ .Site.baseurl }}/hw/{{ .hw }}">
           <i class="fa fa-pencil-square-o fa-lg"></i></a></td>
@@ -83,13 +91,6 @@
           <i class="fa fa-file-powerpoint fa-lg"></i></font></td>
       {{ end }}
       
-            {{ if .ec }}
-      <td align="center"><a href="{{ .Site.baseurl }}/ec/{{ .ec }}">
-          <i class="fa fa-caret-up fa-lg"></i></a></td>
-      {{ else }}
-        <td align="center"><font color="f1f1f1">
-          <i class="fa fa-caret-up fa-lg"></i></font></td>
-      {{ end }}
       
     </tr>
     {{ end }}

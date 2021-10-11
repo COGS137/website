@@ -1,0 +1,147 @@
+---
+title: "Lab 02 - Wrangling"
+author: "Answer Key"
+date: "10/08/2021"
+output: html_document
+---
+
+### Load packages
+
+```{r load-packages, message=FALSE}
+library(tidyverse) 
+```
+
+
+### Exercise 1
+
+How many *unique* *hurricanes* are included in this dataset? 
+
+```{r hurricanes}
+storms |> 
+  filter(status == "hurricane") |> 
+  distinct(name, year, .keep_all=TRUE) |> 
+  count()
+
+# OR
+
+storms |> 
+  filter(status == "hurricane") |>
+  group_by(year, name) |> 
+  count() |>
+  nrow()
+```
+
+There are 208 unique hurricanes.
+
+(Note that we need to group by name *and* year, as certain storms have the same name...in different years.)
+
+### Exercise 2
+
+Which tropical storm affected the largest area experiencing tropical storm strength winds? And, what was the maximum sustained wind speed for that storm?
+
+
+```{r trop-storm-area}
+storms |> 
+  filter(status == "tropical storm", 
+         !is.na(ts_diameter)) |> 
+  slice_max(ts_diameter)
+```
+
+OR
+
+```{r trop-storm-area2}
+storms |>
+  filter(status == "tropical storm",
+         !is.na(ts_diameter)) |> 
+  filter(ts_diameter == max(ts_diameter, na.rm=TRUE))
+```
+
+Sandy (2012) had the largest area affected.
+
+### Exercise 3
+
+Among all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?) 
+
+
+```{r common-month}
+# most common month
+storms |> 
+  distinct(name, year, .keep_all=TRUE) |>
+  group_by(month) |>
+  summarise(n = n()) |> # could alternatively use count() here
+  arrange(desc(n))
+```
+
+September is the most common month.
+
+```{r common-month-status}
+# depend on status?
+storms |> 
+  group_by(status, month) |>
+  summarise(n = n()) |> # could alternatively use count() here
+  slice_max(n)
+```
+
+It does not depend on status. September is the most common for all three storm types
+
+### Exercise 4
+
+Your boss asks for the name, year, and status of all category 5 storms that have happened in the 2000s. Carry out the operations that would deliver what they're looking for. 
+
+```{r}
+storms |>
+  filter(category == 5,
+         between(year, 2000, 2009)) |>
+  select(name, year, status) |>
+  distinct(name, year, .keep_all=TRUE)
+```
+
+
+### Exercise 5
+
+Filter these data to only include storms that occurred during *your* lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what's the mean and median air pressure across all measurements taken? 
+
+```{r air-pressure}
+my_storms <- storms |>
+  filter(between(year, 1988, 2021)) # alternatively filter(year >= 1988)
+
+my_storms |>
+  summarise(median_pressure = median(pressure),
+            mean_pressure = mean(pressure))
+```
+
+- Median: 999 millibars
+- Mean: 991 millibars
+
+### Exercise 6
+
+Which decade (of the storms included in the dataset) had the largest number of unique reported storms?
+ 
+```{r decade}
+storms |> 
+  distinct(name, year) |>
+  mutate(decade = year - year %% 10) |> # there are MANY different ways to approach this!
+  group_by(decade) |>
+  count()
+```
+ 
+The 2000s.
+
+(Note: we want to be sure to only count each storm once)
+
+### Exercise 7
+
+Among the subset of storms occurring in your lifetime, which storm lasted the longest? Include your code and explain your answer.
+
+```{r lifetime}
+my_storms |>  
+  group_by(name, year) |> 
+  count() |> 
+  arrange(desc(n))
+```
+
+Nadine lasted the longest (unless you were born after 2012).
+
+(Note: The logic here is that storms are reported every six hours, per the description of the dataset, so the storm that has the most rows/entries would have lasted the longest)
+
+

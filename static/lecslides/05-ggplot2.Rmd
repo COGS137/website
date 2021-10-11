@@ -483,12 +483,20 @@ ggplot(data = penguins, #<<
 ```{r not-named-args, eval = FALSE}
 ggplot(penguins, #<<
        aes(x = bill_depth_mm, #<<
-           y = bill_length_mm,
+           y = bill_depth_mm,
            color = species)) +
   geom_point() +
   scale_color_viridis_d()
 ```
 ]
+
+---
+
+## Your Turn
+
+Generate a basic plot in `ggplot2` using different variables than those in the last example (last example: `bill_depth_mm` & `bill_depth_mm`).
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
 
 ---
 
@@ -648,6 +656,14 @@ ggplot(penguins,
 - **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
   - goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
   
+---
+
+## Your Turn
+
+Edit the basic plot you created earlier to change something about its aesthetics.
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
 ---
 
 class: middle

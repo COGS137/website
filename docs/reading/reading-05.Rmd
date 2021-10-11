@@ -9,9 +9,7 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Due
-
-
-## Required:
-
-
+## `ggplot2 
+`
+- [R4DS](https://r4ds.had.co.nz/)
+  + Chapter 3: Data Visualisation

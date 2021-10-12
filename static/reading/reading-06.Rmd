@@ -9,8 +9,6 @@ output:
 knitr::opts_chunk$set(echo = TRUE)
 ```
 
-## Due
+## `ggplot2 
 
-
-## Required:
-    
+While no specific chapter is assigned for today's lecture, this entire book can be an *excellent* resource as you learn more about `ggplot2`: [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html)

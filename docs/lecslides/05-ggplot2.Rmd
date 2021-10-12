@@ -793,3 +793,29 @@ ggplot(
 ```{r ref.label = "facet-color-no-legend", echo = FALSE, warning = FALSE, out.width = "100%"}
 ```
 ]
+
+---
+
+class: middle
+
+# `geom`s
+
+---
+
+# Common `geom`s
+
+
+|`geom`  <sup>1</sup> | Description <sup>2</sup>|
+|---------|-------------|
+| `geom_point` | scatterplot|
+| `geom_bar`	| barplot |
+| `geom_line` |	line plot |
+| `geom_density`	| densityplot |
+| `geom_histogram` | histogram |
+| `geom_boxplot` |	boxplot |
+
+.footnote[ <sup>1</sup> `ggplot2` geoms listed [here](https://ggplot2.tidyverse.org/reference/)]
+
+.footnote[ <sup>2</sup> When each visualization is appropriate [here](https://www.data-to-viz.com/)]
+
+

@@ -17,7 +17,6 @@
 class: center, middle, inverse, title-slide
 
 # Effective data visualization
-## Slides modified from <a href="https://datasciencebox.org/">datascienceinabox.org</a>
 ### Prof Ellis
 ### 2021-10-11
 
@@ -32,7 +31,7 @@ Q: How would you specify the increments of the axes?
 A: The layer that controls this would be ` scale_*_discrete()` or ` scale_*_continuous()`, where `*` is either `x` or `y`, depending on which axis you want to ontrol. More details [here](http://www.sthda.com/english/wiki/ggplot2-axis-ticks-a-guide-to-customize-tick-marks-and-labels).
 
 Q: Is calling ggplot separate from the geom_line call from lecture, since there was also the idea of layering by using the '+' operator to chain multiple commands together.  
-A: So, it depends what you mean by separate. If you mean do you *need* the `geom_*` call....technically no, but no points/lines/shapes will show up on your plot. So, any time we make a plot there will be a `ggplot` + `geom_*` call.
+A: So, it depends what you mean by separate. If you mean do you *need* the `geom_` call....technically no, but no points/lines/shapes will show up on your plot. So, any time we make a plot there will be a `ggplot` + `geom_` call.
 
 Q: Just wanted to say that on the course website, the section for lab answers currently says "Kab Answers"  
 A: Thanks! In a shocking turn of events I *actually* noticed that and updated it on my computer...and forgot to push those changes. I really appreciate these types of comments; I always want these things fixed!
@@ -51,8 +50,6 @@ A: Thanks! In a shocking turn of events I *actually* noticed that and updated it
 
 
 
-layout: true
-
 ---
 
 
@@ -61,6 +58,7 @@ class: middle
 
 # Designing effective visualizations
 
+.footnote[Slides modified from [datascienceinabox.org](https://datasciencebox.org/)]
 ---
 
 ## Keep it simple
@@ -762,7 +760,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 
 ## Your Turn
 
-- Read in the data (slide #9)
+- Read in the data (slide #11)
 - Think of at least three different ways to tell slightly different stories with these data
 - Try to implement at least one of these ideas!
     </textarea>

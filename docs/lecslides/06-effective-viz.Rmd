@@ -86,8 +86,8 @@ ggplot(d, aes(x = fct_reorder(category, value), y = value)) +
 
 .pull-left[
 ```{r echo = FALSE, out.width="100%"}
-d %>%
-  mutate(category = str_replace(category, " ", "\n")) %>%
+d |>
+  mutate(category = str_replace(category, " ", "\n")) |>
   ggplot(aes(x = category, y = value, fill = category)) +
   geom_col() +
   theme_minimal() +
@@ -297,7 +297,7 @@ ggplot(brexit, aes(x = region)) +
 `fct_relevel`: Reorder factor levels using a custom order
 
 ```{r relevel, fig.show = "hide"}
-brexit <- brexit %>%
+brexit <- brexit |>
   mutate(
     region = fct_relevel( #<<
       region,
@@ -327,7 +327,7 @@ ggplot(brexit, aes(x = region)) +
 `fct_recode`: Change factor levels by hand
 
 ```{r recode, fig.show = "hide"}
-brexit <- brexit %>%
+brexit <- brexit |>
   mutate(
     region = fct_recode( #<<
       region,

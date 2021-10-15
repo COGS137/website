@@ -259,7 +259,7 @@ ggplot(brexit, aes(x = region)) +
 
 
 ```r
-brexit &lt;- brexit %&gt;%
+brexit &lt;- brexit |&gt;
   mutate(
 *   region = fct_relevel(
       region,
@@ -287,7 +287,7 @@ brexit &lt;- brexit %&gt;%
 
 
 ```r
-brexit &lt;- brexit %&gt;%
+brexit &lt;- brexit |&gt;
   mutate(
 *   region = fct_recode(
       region,

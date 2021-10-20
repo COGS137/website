@@ -53,7 +53,7 @@ lessons:
     exam: "01-exam.html"
   - date: "Wed Oct 20"
     title: "Modelling"
-    # lecslides: "11-modelling.html"
+    lecslides: "08-modelling.html"
   - date: "Fri Oct 22"
     title: "Linear Models (Review)"
     lab: "04-lab-modelling.html"

@@ -26,140 +26,33 @@ class: center, middle, inverse, title-slide
 
 
 
-## Announcements
+## Q&amp;A
 
-- Reading assigned for Wed and next Mon
-- Lab 05 due on Thursday at noon
-- OH this week (last change for a while!): 
-    + Tue 11-12:30 (as usual)
-    + Wed 9-10:30 (instead of Thur)
-- Any questions from last time?
+Q: Professor talked about how we need to knit all our answers for each assignment/lab. Are we supposed to just press the knit before we commit changes and push that to git hub? is that all we need to do? Or do we need to download the html file and then add that to the github repository?  
+A: Yup! You just click "Knit" at the top to knit to HTML. An HTML file will then show up in the same directory as your .Rmd file. When you push to GitHub be sure to select both the .Rmd and the HTML file and you'll be good to go!
+---
+
+## Course Announcements
+
+- **lab04** due Friday (11:59 PM)
+- **midterm** grading is underway (goal is to have grades posted by Monday)
+- **lab02** and **hw01** have been posted
+- **lab03** answer key has been posted
+
+--
+  - Q1: filter `on distinct(name)` loses a few values - should be `distinct` across `name` + `year`
+  - knit the Rmd file so it's more readable
+  - Q4:needs to specify an upper bound for the 2000s
 
 ---
 
-class: center, middle
+## COGS 137: Group Formation
 
-# From last time: Factors
+- By end of next week (10/29) you need to be in a **group of 3 (ideally); 4 (max)**
+- You will (3) complete case studies *and* your final project in these groups
+- If you are learning remotely or nervous about approaching people in class, there will be a thread on Campuswire to facilitate group formation
+- This is something you can discuss with classmates during lab Friday
 
----
-
-## Factors
-
-Factor objects are how R stores data for categorical variables (fixed numbers of discrete values).
-
-
-```r
-(x = factor(c("BS", "MS", "PhD", "MS")))
-```
-
-```
-## [1] BS  MS  PhD MS 
-## Levels: BS MS PhD
-```
-
-
-```r
-glimpse(x)
-```
-
-```
-##  Factor w/ 3 levels "BS","MS","PhD": 1 2 3 2
-```
-
-
-```r
-typeof(x)
-```
-
-```
-## [1] "integer"
-```
-
----
-
-## Read data in as character strings
-
-
-```r
-cat_lovers &lt;- read_csv("data/cat-lovers.csv")
-glimpse(cat_lovers)
-```
-
-```
-## Rows: 60
-## Columns: 3
-## $ name           &lt;chr&gt; "Bernice Warren", "Woodrow Stone", "Willie Bass", "Tyro…
-## $ number_of_cats &lt;chr&gt; "0", "0", "1", "3", "3", "2", "1", "1", "0", "0", "0", …
-## $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "left",…
-```
-
----
-
-## But coerce when plotting
-
-
-```r
-ggplot(cat_lovers, mapping = aes(x = handedness)) +
-  geom_bar()
-```
-
-![](11-modelling_files/figure-html/unnamed-chunk-5-1.png)&lt;!-- --&gt;
-
----
-
-## Use forcats to manipulate factors
-
-.midi[
-
-```r
-cat_lovers &lt;- cat_lovers %&gt;%
-  mutate(handedness = fct_relevel(handedness, "right", "left", "ambidextrous"))
-ggplot(cat_lovers, mapping = aes(x = handedness)) +
-  geom_bar()
-```
-
-![](11-modelling_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
-]
-
----
-
-## Come for the functionality
-
-.pull-left[
-... stay for the logo
-]
-.pull-right[
-![](img/11/hex-forcats.png)
-]
-
-.midi[
-- R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. 
-- Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors. But they can be a pain to work with.
-- However, factors are useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The forcats package provides a suite of useful tools that solve common problems with factors.&lt;sup&gt;1&lt;/sup&gt;
-]
-
-.footnote[
-[1] Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
-]
-
----
-
-## Recap
-
-- Always best to think of data as part of a tibble
-    + This plays nicely with the `tidyverse` as well
-    + Rows are observations, columns are variables
-    
-- Be careful about data types / classes
-    + Sometimes `R` makes silly assumptions about your data class 
-        + Using `tibble`s help, but it might not solve all issues
-        + Think about your data in context, e.g. 0/1 variable is most likely a `factor`
-    + If a plot/output is not behaving the way you expect, first
-    investigate the data class
-    + If you are absolutely sure of a data class, over-write it in your
-    tibble so that you don't need to keep having to keep track of it
-        + `mutate` the variable with the correct class
-        
 ---
 
 class: center, middle
@@ -201,10 +94,6 @@ library(tidyverse)
 ```r
 library(broom)
 ```
-
-```
-## Warning: package 'broom' was built under R version 3.6.2
-```
 ]
 
 ---
@@ -221,11 +110,10 @@ class: center, middle
 ```r
 pp &lt;- read_csv("data/paris_paintings.csv", na = c("n/a", "", "NA"))
 ```
-
-.question[
-What does the `data/` mean in the code above? Hint: Where is the data file located?
+.small[
+File also available at URL: 
+- "https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv"
 ]
-
 ---
 
 ## Meet the data curators
@@ -284,11 +172,13 @@ Two paintings very rich in composition, of a beautiful execution, and whose meri
 ]
 
 ---
-
+.small[
 
 ```r
-pp %&gt;% filter(name == "R1777-89a") %&gt;% 
-  select(name:endbuyer) %&gt;% t()
+  pp |&gt; 
+  filter(name == "R1777-89a") |&gt; 
+  select(name:endbuyer) |&gt; 
+  t() # transposes the dataframe
 ```
 
 ```
@@ -315,13 +205,17 @@ pp %&gt;% filter(name == "R1777-89a") %&gt;%
 ## winningbiddertype "DC"                                     
 ## endbuyer          "C"
 ```
+]
 
 ---
 
+.small[
 
 ```r
-pp %&gt;% filter(name == "R1777-89a") %&gt;% 
-  select(Interm:finished) %&gt;% t()
+  pp |&gt; 
+  filter(name == "R1777-89a") |&gt; 
+  select(Interm:finished) |&gt; 
+  t()
 ```
 
 ```
@@ -348,13 +242,16 @@ pp %&gt;% filter(name == "R1777-89a") %&gt;%
 ## figures       "0"       
 ## finished      "0"
 ```
-
+]
 ---
 
+.small[
 
 ```r
-pp %&gt;% filter(name == "R1777-89a") %&gt;% 
-  select(lrgfont:other) %&gt;% t()
+  pp |&gt; 
+    filter(name == "R1777-89a") |&gt; 
+    select(lrgfont:other) |&gt; 
+    t()
 ```
 
 ```
@@ -379,7 +276,7 @@ pp %&gt;% filter(name == "R1777-89a") %&gt;%
 ## pastorale     0
 ## other         0
 ```
-
+]
 ---
 
 class: center, middle
@@ -400,7 +297,7 @@ ggplot(data = pp, aes(x = price)) +
   geom_histogram(binwidth = 1000)
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-7-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -430,7 +327,7 @@ Describe the relationship between height and width of paintings.
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-8-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -447,7 +344,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-15-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -466,7 +363,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-16-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-10-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -488,7 +385,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-17-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-11-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -518,7 +415,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 
 .question[
 What does a negative residual mean? Which paintings on the plot have have negative 
-residuals, those below or above the line?
+residuals?
 ]
 
 
@@ -526,7 +423,7 @@ residuals, those below or above the line?
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-18-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-12-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -534,7 +431,7 @@ residuals, those below or above the line?
 The plot below displays the relationship between height and width of paintings. It  uses a lower alpha level for the points than the previous plots we looked at. What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?
 ]
 
-![](11-modelling_files/figure-html/unnamed-chunk-19-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-13-1.png)&lt;!-- --&gt;
 
 ---
 
@@ -557,7 +454,7 @@ The plot below displays the relationship between height and width of paintings. 
 ## Multiple explanatory variables
 
 .question[
-How, if at all, the relatonship between width and height of paintings vary by whether
+How, if at all, the relationship between width and height of paintings vary by whether
 or not they have any landscape elements?
 ]
 .small[
@@ -574,7 +471,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in,
 ## `geom_smooth()` using formula 'y ~ x'
 ```
 
-![](11-modelling_files/figure-html/unnamed-chunk-20-1.png)&lt;!-- --&gt;
+![](08-modelling_files/figure-html/unnamed-chunk-14-1.png)&lt;!-- --&gt;
 ]
 ---
 
@@ -609,9 +506,9 @@ the size of the scatter around the model. (We'll talk more about this later.)
 
 1. Explanation: Characterize the relationship between `\(y\)` and `\(x\)` via *slopes* for
 numerical explanatory variables or *differences* for categorical explanatory
-variables
+variables (Inference)
 
-2. Prediction: Plug in `\(x\)`, get the predicted `\(y\)`
+2. Prediction: Plug in `\(x\)`, get the predicted `\(y\)` (Machine Learning)
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

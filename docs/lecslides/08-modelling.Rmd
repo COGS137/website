@@ -47,109 +47,33 @@ dev.off <- function(){
 ```
 
 
-## Announcements
+## Q&A
 
-- Reading assigned for Wed and next Mon
-- Lab 05 due on Thursday at noon
-- OH this week (last change for a while!): 
-    + Tue 11-12:30 (as usual)
-    + Wed 9-10:30 (instead of Thur)
-- Any questions from last time?
+Q: Professor talked about how we need to knit all our answers for each assignment/lab. Are we supposed to just press the knit before we commit changes and push that to git hub? is that all we need to do? Or do we need to download the html file and then add that to the github repository?  
+A: Yup! You just click "Knit" at the top to knit to HTML. An HTML file will then show up in the same directory as your .Rmd file. When you push to GitHub be sure to select both the .Rmd and the HTML file and you'll be good to go!
+---
+
+## Course Announcements
+
+- **lab04** due Friday (11:59 PM)
+- **midterm** grading is underway (goal is to have grades posted by Monday)
+- **lab02** and **hw01** have been posted
+- **lab03** answer key has been posted
+
+--
+  - Q1: filter `on distinct(name)` loses a few values - should be `distinct` across `name` + `year`
+  - knit the Rmd file so it's more readable
+  - Q4:needs to specify an upper bound for the 2000s
 
 ---
 
-class: center, middle
+## COGS 137: Group Formation
 
-# From last time: Factors
+- By end of next week (10/29) you need to be in a **group of 3 (ideally); 4 (max)**
+- You will (3) complete case studies *and* your final project in these groups
+- If you are learning remotely or nervous about approaching people in class, there will be a thread on Campuswire to facilitate group formation
+- This is something you can discuss with classmates during lab Friday
 
----
-
-## Factors
-
-Factor objects are how R stores data for categorical variables (fixed numbers of discrete values).
-
-```{r}
-(x = factor(c("BS", "MS", "PhD", "MS")))
-```
-
-```{r}
-glimpse(x)
-```
-
-```{r}
-typeof(x)
-```
-
----
-
-## Read data in as character strings
-
-```{r message=FALSE}
-cat_lovers <- read_csv("data/cat-lovers.csv")
-glimpse(cat_lovers)
-```
-
----
-
-## But coerce when plotting
-
-```{r}
-ggplot(cat_lovers, mapping = aes(x = handedness)) +
-  geom_bar()
-```
-
----
-
-## Use forcats to manipulate factors
-
-.midi[
-```{r}
-cat_lovers <- cat_lovers %>%
-  mutate(handedness = fct_relevel(handedness, "right", "left", "ambidextrous"))
-ggplot(cat_lovers, mapping = aes(x = handedness)) +
-  geom_bar()
-```
-]
-
----
-
-## Come for the functionality
-
-.pull-left[
-... stay for the logo
-]
-.pull-right[
-![](img/11/hex-forcats.png)
-]
-
-.midi[
-- R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. 
-- Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors. But they can be a pain to work with.
-- However, factors are useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The forcats package provides a suite of useful tools that solve common problems with factors.<sup>1</sup>
-]
-
-.footnote[
-[1] Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
-]
-
----
-
-## Recap
-
-- Always best to think of data as part of a tibble
-    + This plays nicely with the `tidyverse` as well
-    + Rows are observations, columns are variables
-    
-- Be careful about data types / classes
-    + Sometimes `R` makes silly assumptions about your data class 
-        + Using `tibble`s help, but it might not solve all issues
-        + Think about your data in context, e.g. 0/1 variable is most likely a `factor`
-    + If a plot/output is not behaving the way you expect, first
-    investigate the data class
-    + If you are absolutely sure of a data class, over-write it in your
-    tibble so that you don't need to keep having to keep track of it
-        + `mutate` the variable with the correct class
-        
 ---
 
 class: center, middle
@@ -204,11 +128,10 @@ class: center, middle
 ```{r message=FALSE}
 pp <- read_csv("data/paris_paintings.csv", na = c("n/a", "", "NA"))
 ```
-
-.question[
-What does the `data/` mean in the code above? Hint: Where is the data file located?
+.small[
+File also available at URL: 
+- "https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv"
 ]
-
 ---
 
 ## Meet the data curators
@@ -267,26 +190,35 @@ Two paintings very rich in composition, of a beautiful execution, and whose meri
 ]
 
 ---
-
+.small[
 ```{r}
-pp %>% filter(name == "R1777-89a") %>% 
-  select(name:endbuyer) %>% t()
+  pp |> 
+  filter(name == "R1777-89a") |> 
+  select(name:endbuyer) |> 
+  t() # transposes the dataframe
 ```
+]
 
 ---
 
+.small[
 ```{r}
-pp %>% filter(name == "R1777-89a") %>% 
-  select(Interm:finished) %>% t()
+  pp |> 
+  filter(name == "R1777-89a") |> 
+  select(Interm:finished) |> 
+  t()
 ```
-
+]
 ---
 
+.small[
 ```{r}
-pp %>% filter(name == "R1777-89a") %>% 
-  select(lrgfont:other) %>% t()
+  pp |> 
+    filter(name == "R1777-89a") |> 
+    select(lrgfont:other) |> 
+    t()
 ```
-
+]
 ---
 
 class: center, middle
@@ -400,7 +332,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 
 .question[
 What does a negative residual mean? Which paintings on the plot have have negative 
-residuals, those below or above the line?
+residuals?
 ]
 
 ```{r warning = FALSE, echo=FALSE}
@@ -441,7 +373,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 ## Multiple explanatory variables
 
 .question[
-How, if at all, the relatonship between width and height of paintings vary by whether
+How, if at all, the relationship between width and height of paintings vary by whether
 or not they have any landscape elements?
 ]
 .small[
@@ -486,6 +418,6 @@ the size of the scatter around the model. (We'll talk more about this later.)
 
 1. Explanation: Characterize the relationship between $y$ and $x$ via *slopes* for
 numerical explanatory variables or *differences* for categorical explanatory
-variables
+variables (Inference)
 
-2. Prediction: Plug in $x$, get the predicted $y$
+2. Prediction: Plug in $x$, get the predicted $y$ (Machine Learning)

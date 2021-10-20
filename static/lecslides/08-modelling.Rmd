@@ -56,6 +56,10 @@ A: Yup! You just click "Knit" at the top to knit to HTML. An HTML file will then
 ## Course Announcements
 
 - **lab04** due Friday (11:59 PM)
+- **hw02** due Monday (11:59 PM)
+
+--
+
 - **midterm** grading is underway (goal is to have grades posted by Monday)
 - **lab02** and **hw01** have been posted
 - **lab03** answer key has been posted

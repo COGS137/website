@@ -56,6 +56,7 @@ lessons:
     lecslides: "08-modelling.html"
   - date: "Fri Oct 22"
     title: "Linear Models (Review)"
+    lecslides: "09-linear-models.html"
     lab: "04-lab-modelling.html"
     labslides: "04-lab-deck.html"
     # lecslides: "12-linear-models.html"

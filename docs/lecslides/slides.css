@@ -71,11 +71,11 @@ a, a > code {
 
   /*Left 70% - Right 30% */
 .pull-left-wide {
-  width: 70%;
+  width: 60%;
   float: left;
 }
 .pull-right-narrow {
-  width: 27%;
+  width: 30%;
   float: right;
 }
 .pull-right-narrow ~ * {
@@ -88,7 +88,7 @@ a, a > code {
   float: left;
 }
 .pull-right-wide {
-  width: 67%;
+  width: 60%;
   float: right;
 }
 .pull-right-wide ~ * {

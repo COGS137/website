@@ -1,0 +1,1449 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>CS1: Youth Connection (Data)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-10-25" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <script src="libs/htmlwidgets-1.5.3/htmlwidgets.js"></script>
+    <script src="libs/jquery-3.5.1/jquery.min.js"></script>
+    <link href="libs/datatables-css-0.0.0/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding-0.18/datatables.js"></script>
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core-1.10.20/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core-1.10.20/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk-1.1.1/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk-1.1.1/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# CS1: Youth Connection (Data)
+### Prof Ellis
+### 2021-10-25
+
+---
+
+
+
+
+
+## Q&amp;A
+
+---
+## Course Announcements
+
+---
+
+class: center, middle
+
+# Background
+
+---
+
+## Disparities in Youth Disconnection&lt;sup&gt;1&lt;/sup&gt;
+
+.ocean[disconnected youth] - young people between the ages of 16 and 24 who are neither working nor in school&lt;sup&gt;2&lt;/sup&gt;
+
+--
+
+.ocean[claim] - "people who experience a period of disconnection as young adults go on to earn less and are less likely to be employed, own a home, or report good health by the time they reach their thirties”
+
+--
+
+.footnote[
+&lt;sup&gt;1&lt;/sup&gt;Case Study Reference: Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie C. (2020). https://github.com/opencasestudies/ocs-youth-disconnection-case-study. Disparities in Youth Disconnection.
+]
+.footnote[
+&lt;sup&gt;2&lt;/sup&gt; https://measureofamerica.org/
+]
+---
+
+### Known Risk Factors
+
+There are many known risk factors, which have been identified in a variety of contexts (from family, friends, school, community, society) including:
+
+.small[
+- poverty (disconnected youth are nearly twice as likely to live in poverty and receive Medicaid)
+- racial/ethnic disparities (findings suggest that these persist even when controlling for income)
+- residential environment (in 2016 while 11.7% was the national average, 24% of people age 16-24 in the rural South were disconnected)
+- poor academic performance
+- poor mental health
+- substance use disorders
+- parental unemployment
+- trauma exposure
+- association with socially deviant peers
+- school policies such as “one strike and you’re out” - which is a zero tolerance school expulsion policy and shown to increase dropouts and incarceration rates
+]
+
+---
+
+### Known Risk Factors (cont'd)
+
+These risk factors make it more likely for young people to miss out on education, training, and networking that can act as a foundation for a successful career.
+
+---
+
+### Known Consequences
+
+- chronic unemployment
+- poverty
+- poor mental health and poor general health (in a 2002 study - youths disconnected for 6 or more months were 3 times more likely to develop depression or other mental health disorder)
+- criminal behavior (in a 2002 study - youths disconnected for 6 or more months were 5 times more likely to have a criminal record)
+- incarceration
+- early mortality
+
+---
+
+class: center, middle
+
+# Questions
+
+---
+
+## Questions
+
+1. How have youth disconnection rates in American youth changed since 2008?
+2. In particular, how has this changed for different gender and ethnic groups? Are any groups particularly disconnected?
+
+---
+
+class: center, middle
+
+# The Data
+
+---
+
+## The Data: Source&lt;sup&gt;1&lt;/sup&gt;
+
+.small[
+1. Lewis, Kristen. [Making the Connection: Transportation and Youth Disconnection](https://ssrc-static.s3.amazonaws.com/moa/Making%20the%20Connection.pdf). New York: Measure of America, Social Science Research Council, 2019. (Data up to 2017)
+
+2. Lewis, Kristen. [A Decade Undone: Youth Disconnection in the Age of Coronavirus.](https://ssrc-static.s3.amazonaws.com/moa/ADecadeUndone.pdf) New York: Measure of America, Social Science Research Council, 2020. (Data up to 2018)
+]
+
+--
+
+.ocean[American Community Survey (ASC)] - largest survey conducted by the US Census Bureau; started in 2005; collects data for 3.5 million households annually. Data collected: ancestry, citizenship, income, employment, disability, etc.
+
+.footnote[&lt;sup&gt;1&lt;/sup&gt;Mendelson, T., Mmari, K., Blum, R. W., Catalano, R. F. &amp; Brindis, C. D. Opportunity Youth: Insights and Opportunities for a Public Health Approach to Reengage Disconnected Teenagers and Young Adults. Public Health Rep 133, 54S-64S (2018). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6243446/.]
+
+
+---
+
+## The Data: 
+
+Tables from [Measure of America 2019](https://ssrc-static.s3.amazonaws.com/moa/Making%20the%20Connection.pdf) report
+
+.small[
+![youth disconnection by gender and by race and ethnicity](img/10/data.png)
+]
+
+---
+
+## Limitations
+
+1. Survey Data ([ACS](https://www.census.gov/programs-surveys/acs)) - certain groups underrepresented (i.e. juvenile justice system, foster care, homeless, etc.); likely underestimates disconnection
+2. Data about certain group intersections missing (i.e. LGBTQIA+)
+
+---
+
+# Packages 
+
+Case Study Data will come from `opencasestudies/OCSdata`, but additional packages will be needed for working with these data: 
+
+
+```r
+# install these once
+devtools::install_github("opencasestudies/OCSdata")
+install.packages("pdftools")
+install.packages("magick")
+install.packages("tesseract")
+```
+
+--
+
+.question[👉 **Your Turn**: Install these packages in RStudio]
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+---
+
+## Raw Data
+
+These data are in PNG/PDF form: 
+
+
+```r
+# only get the data once
+load_raw_data("ocs-bp-youth-disconnection", outpath = '.')
+```
+
+- creates a "data" sub-directory in your current working directory
+- creates a "raw" sub-directory within "data"; contains the .pdf file
+
+.question[👉 **Your Turn**: Load the data into RStudio]
+
+---
+
+## Packages used:
+
+
+```r
+library(OCSdata)
+library(tidyverse)
+library(here)
+```
+
+```
+## here() starts at /Users/shannonellis/Desktop/Teaching/COGS137/website
+```
+
+```r
+library(pdftools)
+```
+
+```
+## Using poppler version 20.12.1
+```
+
+```r
+library(tesseract)
+library(magick)
+```
+
+```
+## Linking to ImageMagick 6.9.12.3
+## Enabled features: cairo, fontconfig, freetype, heic, lcms, pango, raw, rsvg, webp
+## Disabled features: fftw, ghostscript, x11
+```
+
+```r
+library(knitr)
+# library(directlabels)
+# library(cowplot)
+# library(Kendall)
+# library(patchwork)
+```
+
+---
+
+## Getting Data from PDF
+
+
+```r
+pdf_tools_example &lt;-
+  pdftools::pdf_text("data/raw/Making_the_Connection.pdf")
+```
+
+--
+
+## Looking at Raw Data
+
+
+```r
+pdf_tools_example[44]
+```
+
+```
+## [1] "Youth Disconnection by Gender and by Race and Ethnicity\n\n\n\n\n                                                                                                                                               I NDI CATOR TA BLE S\n                                DISCONNECTED YOUTH\nMAJOR RACIAL AND                 RATE (% ages 16–24)                                  2017          CHANGE IN RATE\nETHNIC GROUPS            2008   2010       2012           2014     2016        (%)           (#)     2010–2017 (%)\nUnited States            12.6   14.7       14.1           13.2     11.7        11.5     4,501,800       -22.1\nMale                     12.3   15.2       14.5           13.3     12.1        11.8     2,382,500       -22.5\nFemale                   12.9   14.1       13.7           13.0     11.2        11.1     2,119,400       -21.7\nASIAN                    7.1     8.5       7.8            7.9       6.6        6.6      145,600         -21.7\nAsian Male               6.3     8.3          7.4         7.2       6.7        6.5       73,000         -21.4\nAsian Female             7.9     8.6          8.1         8.6       6.6        6.7       72,600         -22.0\nWHITE                    9.7    11.7       11.2           10.8      9.7        9.4      1,961,700       -20.1\nWhite Male               9.5    12.3       11.5           10.8    10.0         9.6      1,031,200       -22.4\nWhite Female             10.0   11.1       10.8           10.7      9.4        9.1       930,600        -17.4\nLATINO                   16.7   18.5       17.3           15.2     13.7        13.2     1,157,300       -28.7\nLatino Male              13.6   16.8       16.0           14.0     12.6        12.4      562,600        -26.0\nLatina Female            20.2   20.3       18.8           16.5     14.8        13.9      594,700        -31.5\nBLACK                    20.4   22.5       22.4           20.6     17.2        17.9     999,700         -20.6\nBlack Male               23.7   26.0       25.6           23.5     20.1        20.8      591,600        -19.8\nBlack Female             17.0   19.0       19.3           17.6     14.2        14.8      408,000        -22.1\nNATIVE AMERICAN          24.4   28.8       27.0           26.3     25.8        23.9      67,700         -17.1\nNative American Male     25.0   30.9       28.0           26.9     28.1        23.3      33,200         -24.5\nNative American Female   23.9   26.7       25.9           25.6     23.4        24.5      34,500         -8.4\n\n\n\n\n                                       2017                                                                            2017\n ASIAN SUBGROUPS                (%)                 (#)          LATINO SUBGROUPS                               (%)             (#)\n\n United States                  11.5       4,501,800\n Male                           11.8          2,382,500          LATINO                                         13.2          1,157,300\n Female                         11.1          2,119,400          Latino Male                                    12.4           562,600\n ASIAN                          6.6           145,600            Latina Female                                  13.9           594,700\n Asian Male                     6.5            73,000            SOUTH AMERICAN                                 8.4            37,600\n Asian Female                   6.7            72,600            South American Male                            9.1            20,400\n CHINESE                        4.3            23,800            South American Female                          7.7            17,200\n Chinese Male                   4.7            12,700            CENTRAL AMERICAN                               12.0           93,100\n Chinese Female                 3.9            11,100            Central American Male                          9.3            37,900\n VIETNAMESE                     5.5            13,500            Central American Female                        15.0           55,200\n Vietnamese Male                7.5             9,300\n                                                                 MEXICAN                                        13.3          762,400\n Vietnamese Female              3.4             4,200\n                                                                 Mexican Male                                   12.2           358,200\nINDIAN                          5.9            22,300\n                                                                 Mexican Female                                 14.4           404,200\nIndian Male                     4.1             8,000            OTHER LATINO                                   13.6           44,800\nIndian Female                   7.8            14,300\n                                                                 Other Latino Male                              15.3           27,600\n PAKISTANI                      6.4             4,900\n                                                                 Other Latina Female                            11.5           17,300\n Pakistani Male\n                                                                 PUERTO RICAN, DOMINICAN, CUBAN                 15.1          211,200\n Pakistani Female\n                                                                 PR, DR, Cuban Female                           15.7           114,500\n KOREAN                         6.5            11,200\n                                                                 PR, DR, Cuban Female                           14.4           96,600\n Korean Male                    8.0             6,900\n Korean Female                  5.0             4,200\n                                                                 NOTE: Blank cells indicate the estimate is unreliable\n TWO OR MORE                    6.6             4,000\n Two or More Male\n Two or More Female\n\nFILIPINO                        7.3            23,400\nFilipino Male                   6.5            10,800\nFilipino Female                 8.1            12,700\nHMONG                           14.0            8,300\nHmong Male                      18.6            5,700\nHmong Female\n\n\n\n\nMAKING THE CONNECTION | Transportation and Youth Disconnection                                                                            39\n"
+```
+
+
+---
+## Getting Data from PNG
+
+
+```r
+# read image in
+major_racial_ethnic_groups &lt;- 
+  magick::image_read("data/raw/Major_ethnic_groups_screenshot.png")
+
+magick::image_info(major_racial_ethnic_groups)
+```
+
+```
+## # A tibble: 1 × 7
+##   format width height colorspace matte filesize density
+##   &lt;chr&gt;  &lt;int&gt;  &lt;int&gt; &lt;chr&gt;      &lt;lgl&gt;    &lt;int&gt; &lt;chr&gt;  
+## 1 PNG     1086    867 sRGB       TRUE    368488 72x72
+```
+
+---
+
+
+```r
+major_racial_ethnic_groups
+```
+
+&lt;img src="10-cs1-data_files/figure-html/unnamed-chunk-6-1.png" width="1448" /&gt;
+
+---
+
+## Extract text from an image
+
+
+```r
+# extract text from image
+major_groups &lt;- magick::image_ocr(major_racial_ethnic_groups)
+major_groups
+```
+
+```
+## [1] "United States 12.6 14.7 14.1 13.2 11.7 11.5\nMale 12.3 15.2 14.5 13.3 12.1 11.8\nFemale 12.9 14.1 13.7 13.0 11.2 11.1\nASIAN 7.1 8.5 78 79 6.6 6.6\nAsian Male 6.3 8.3 74 7.2 6.7 6.5\nAsian Female 7.9 8.6 8.1 8.6 6.6 6.7\nWHITE 9.7 11.7 11.2 10.8 9.7 9.4\nWhite Male 9.5 12.3 11.5 10.8 10.0 9.6\nWhite Female 10.0 11.1 10.8 10.7 9.4 9.1\nLATINO 16.7 18.5 17.3 15.2 13.7 13.2\nLatino Male 13.6 16.8 16.0 14.0 12.6 12.4\nLatina Female 20.2 20.3 18.8 16.5 14.8 13.9\nBLACK 20.4 22.5 22.4 20.6 17.2 17.9\nBlack Male 23.7 26.0 25.6 23.5 20.1 20.8\nBlack Female 17.0 19.0 19.3 17.6 14.2 14.8\nNATIVE AMERICAN 24.4 28.8 27.0 26.3 25.8 23.9\nNative American Male 25.0 30.9 28.0 26.9 28.1 23.3\nNative American Female 23.9 26.7 25.9 25.6 23.4 24.5\n"
+```
+
+---
+
+## Your Turn
+.question[👉 **Your Turn**: Read in the data from the following images, storing with the associated variable names:
+]
+
+- `asian_sub_2017` | asian_subgroups_2017.png
+- `asian_sub_2017_A` | asian_sub_2017_A.png
+- `asian_sub_2017_B` | asian_sub_2017_B.png
+- `asian_sub_2017_C` | asian_sub_2017_C.png
+
+.whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+---
+
+### Reading In: Raw Asian Data
+
+
+```r
+asian_sub_2017 &lt;- image_read("data/raw/asian_subgroups_2017.png")
+asian_sub_2017_A &lt;- image_read("data/raw/asian_sub_2017_A.png")
+asian_sub_2017_B &lt;- image_read("data/raw/asian_sub_2017_B.png")
+asian_sub_2017_C &lt;- image_read("data/raw/asian_sub_2017_C.png")
+
+asian_sub_2017 &lt;- image_ocr(asian_sub_2017)
+asian_sub_2017_A &lt;- image_ocr(asian_sub_2017_A)
+asian_sub_2017_B &lt;- image_ocr(asian_sub_2017_B)
+asian_sub_2017_C &lt;- image_ocr(asian_sub_2017_C)
+```
+
+---
+
+## Reading In: Raw LatinX Data
+
+
+```r
+latinx_imageA &lt;- image_read("data/raw/latinx_sub_2017_A.png")
+latinx_imageB &lt;- image_read("data/raw/latinx_sub_2017_B.png")
+latinx_imageC &lt;- image_read("data/raw/latinx_sub_2017_C.png")
+
+latinx_sub_2017_A &lt;- image_ocr(latinx_imageA)
+latinx_sub_2017_B &lt;- image_ocr(latinx_imageB)
+latinx_sub_2017_C &lt;- image_ocr(latinx_imageC)
+```
+
+---
+## 2018 Data
+
+**Asian Data**
+
+```r
+asian_sub_2018_A &lt;- image_read("data/raw/asian_sub_2018_A.png")
+asian_sub_2018_A &lt;- image_ocr(asian_sub_2018_A)
+asian_sub_2018_B &lt;- image_read("data/raw/asian_sub_2018_B.png")
+asian_sub_2018_B &lt;- image_ocr(asian_sub_2018_B)
+```
+
+--
+**LatinX Data**
+
+```r
+latinx_sub_2018 &lt;- image_read("data/raw/latinx_subgroups_2018.png")
+latinx_sub_2018 &lt;- image_ocr(latinx_sub_2018)
+latinx_sub_2018
+```
+
+```
+## [1] "SOUTH :\n\nAMERICAN : 8.0\nMen 7.5\nMEXICAN 12.9\nMen 12.0\nWomen 13.8\nPR, DR, CUBAN 13.7\nMen 14.9\nWomen 12.4\nCENTRAL\n\nAMERICAN : 13.7\nMen 11.8\nWomen : 15.9\n"
+```
+
+---
+## Saving Data
+
+**RData** (.rda file extension) objects allow us to store objects together in a single file:
+
+
+```r
+save(
+  major_groups,
+  asian_sub_2017,
+  asian_sub_2017_A, 
+  asian_sub_2017_B,
+  asian_sub_2017_C, 
+  latinx_sub_2017_A,
+  latinx_sub_2017_B,
+  latinx_sub_2017_C,
+  asian_sub_2018_A,
+  asian_sub_2018_B,
+  latinx_sub_2018,
+  file = "data/raw/imported_data.rda")
+```
+
+---
+
+class: center, middle
+
+# Data Wrangling
+
+---
+
+## Data Wrangling
+
+We read the data in...but it's not in a usable format...(column names?? "\n")
+
+
+```r
+major_groups
+```
+
+```
+## [1] "United States 12.6 14.7 14.1 13.2 11.7 11.5\nMale 12.3 15.2 14.5 13.3 12.1 11.8\nFemale 12.9 14.1 13.7 13.0 11.2 11.1\nASIAN 7.1 8.5 78 79 6.6 6.6\nAsian Male 6.3 8.3 74 7.2 6.7 6.5\nAsian Female 7.9 8.6 8.1 8.6 6.6 6.7\nWHITE 9.7 11.7 11.2 10.8 9.7 9.4\nWhite Male 9.5 12.3 11.5 10.8 10.0 9.6\nWhite Female 10.0 11.1 10.8 10.7 9.4 9.1\nLATINO 16.7 18.5 17.3 15.2 13.7 13.2\nLatino Male 13.6 16.8 16.0 14.0 12.6 12.4\nLatina Female 20.2 20.3 18.8 16.5 14.8 13.9\nBLACK 20.4 22.5 22.4 20.6 17.2 17.9\nBlack Male 23.7 26.0 25.6 23.5 20.1 20.8\nBlack Female 17.0 19.0 19.3 17.6 14.2 14.8\nNATIVE AMERICAN 24.4 28.8 27.0 26.3 25.8 23.9\nNative American Male 25.0 30.9 28.0 26.9 28.1 23.3\nNative American Female 23.9 26.7 25.9 25.6 23.4 24.5\n"
+```
+
+---
+
+## Cleaning up `major_groups`
+
+
+```r
+ major_groups &lt;- major_groups %&gt;%
+  stringr::str_split(pattern = "\n") %&gt;%
+  unlist() %&gt;%
+  tibble::as_tibble()
+
+major_groups
+```
+
+```
+## # A tibble: 19 × 1
+##    value                                                 
+##    &lt;chr&gt;                                                 
+##  1 "United States 12.6 14.7 14.1 13.2 11.7 11.5"         
+##  2 "Male 12.3 15.2 14.5 13.3 12.1 11.8"                  
+##  3 "Female 12.9 14.1 13.7 13.0 11.2 11.1"                
+##  4 "ASIAN 7.1 8.5 78 79 6.6 6.6"                         
+##  5 "Asian Male 6.3 8.3 74 7.2 6.7 6.5"                   
+##  6 "Asian Female 7.9 8.6 8.1 8.6 6.6 6.7"                
+##  7 "WHITE 9.7 11.7 11.2 10.8 9.7 9.4"                    
+##  8 "White Male 9.5 12.3 11.5 10.8 10.0 9.6"              
+##  9 "White Female 10.0 11.1 10.8 10.7 9.4 9.1"            
+## 10 "LATINO 16.7 18.5 17.3 15.2 13.7 13.2"                
+## 11 "Latino Male 13.6 16.8 16.0 14.0 12.6 12.4"           
+## 12 "Latina Female 20.2 20.3 18.8 16.5 14.8 13.9"         
+## 13 "BLACK 20.4 22.5 22.4 20.6 17.2 17.9"                 
+## 14 "Black Male 23.7 26.0 25.6 23.5 20.1 20.8"            
+## 15 "Black Female 17.0 19.0 19.3 17.6 14.2 14.8"          
+## 16 "NATIVE AMERICAN 24.4 28.8 27.0 26.3 25.8 23.9"       
+## 17 "Native American Male 25.0 30.9 28.0 26.9 28.1 23.3"  
+## 18 "Native American Female 23.9 26.7 25.9 25.6 23.4 24.5"
+## 19 ""
+```
+
+---
+
+### Creating Columns
+
+.small[
+- `separate` function from `tidyr`
+- `sep` uses a regular expression: 
+  - `?&lt;=` "preceded by"
+  - `[:alpha:]` indicates [A-Za-z]
+  - `\\s` indicates a space
+  - `?=` "followed by
+  - altogether: any letter preceded by a space followed by a number
+]
+
+```r
+major_groups &lt;- 
+  major_groups %&gt;%
+  tidyr::separate(col = value, 
+                  into = c("Group", "Years"), 
+                  sep = "(?&lt;=[[:alpha:]])\\s(?=[0-9])")
+```
+
+```
+## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [19].
+```
+
+---
+
+### Results after regex
+
+
+```r
+major_groups
+```
+
+```
+## # A tibble: 19 × 2
+##    Group                    Years                        
+##    &lt;chr&gt;                    &lt;chr&gt;                        
+##  1 "United States"          12.6 14.7 14.1 13.2 11.7 11.5
+##  2 "Male"                   12.3 15.2 14.5 13.3 12.1 11.8
+##  3 "Female"                 12.9 14.1 13.7 13.0 11.2 11.1
+##  4 "ASIAN"                  7.1 8.5 78 79 6.6 6.6        
+##  5 "Asian Male"             6.3 8.3 74 7.2 6.7 6.5       
+##  6 "Asian Female"           7.9 8.6 8.1 8.6 6.6 6.7      
+##  7 "WHITE"                  9.7 11.7 11.2 10.8 9.7 9.4   
+##  8 "White Male"             9.5 12.3 11.5 10.8 10.0 9.6  
+##  9 "White Female"           10.0 11.1 10.8 10.7 9.4 9.1  
+## 10 "LATINO"                 16.7 18.5 17.3 15.2 13.7 13.2
+## 11 "Latino Male"            13.6 16.8 16.0 14.0 12.6 12.4
+## 12 "Latina Female"          20.2 20.3 18.8 16.5 14.8 13.9
+## 13 "BLACK"                  20.4 22.5 22.4 20.6 17.2 17.9
+## 14 "Black Male"             23.7 26.0 25.6 23.5 20.1 20.8
+## 15 "Black Female"           17.0 19.0 19.3 17.6 14.2 14.8
+## 16 "NATIVE AMERICAN"        24.4 28.8 27.0 26.3 25.8 23.9
+## 17 "Native American Male"   25.0 30.9 28.0 26.9 28.1 23.3
+## 18 "Native American Female" 23.9 26.7 25.9 25.6 23.4 24.5
+## 19 ""                       &lt;NA&gt;
+```
+
+.footnote[
+RStudio Regex Cheatsheet]()https://github.com/rstudio/cheatsheets/raw/master/strings.pdf
+]
+
+---
+
+### Cleaning up capitalization
+
+
+```r
+major_groups &lt;- major_groups |&gt; 
+  mutate(Group = stringr::str_to_title(Group))
+
+major_groups
+```
+
+```
+## # A tibble: 19 × 2
+##    Group                    Years                        
+##    &lt;chr&gt;                    &lt;chr&gt;                        
+##  1 "United States"          12.6 14.7 14.1 13.2 11.7 11.5
+##  2 "Male"                   12.3 15.2 14.5 13.3 12.1 11.8
+##  3 "Female"                 12.9 14.1 13.7 13.0 11.2 11.1
+##  4 "Asian"                  7.1 8.5 78 79 6.6 6.6        
+##  5 "Asian Male"             6.3 8.3 74 7.2 6.7 6.5       
+##  6 "Asian Female"           7.9 8.6 8.1 8.6 6.6 6.7      
+##  7 "White"                  9.7 11.7 11.2 10.8 9.7 9.4   
+##  8 "White Male"             9.5 12.3 11.5 10.8 10.0 9.6  
+##  9 "White Female"           10.0 11.1 10.8 10.7 9.4 9.1  
+## 10 "Latino"                 16.7 18.5 17.3 15.2 13.7 13.2
+## 11 "Latino Male"            13.6 16.8 16.0 14.0 12.6 12.4
+## 12 "Latina Female"          20.2 20.3 18.8 16.5 14.8 13.9
+## 13 "Black"                  20.4 22.5 22.4 20.6 17.2 17.9
+## 14 "Black Male"             23.7 26.0 25.6 23.5 20.1 20.8
+## 15 "Black Female"           17.0 19.0 19.3 17.6 14.2 14.8
+## 16 "Native American"        24.4 28.8 27.0 26.3 25.8 23.9
+## 17 "Native American Male"   25.0 30.9 28.0 26.9 28.1 23.3
+## 18 "Native American Female" 23.9 26.7 25.9 25.6 23.4 24.5
+## 19 ""                       &lt;NA&gt;
+```
+
+
+---
+
+### Separate Columns
+
+
+```r
+major_groups &lt;- major_groups |&gt; 
+  tidyr::separate(col = Years, 
+                  into = c("2008", "2010", "2012", "2014", "2016", "2017"), 
+                  sep = " ")
+
+major_groups
+```
+
+```
+## # A tibble: 19 × 7
+##    Group                    `2008` `2010` `2012` `2014` `2016` `2017`
+##    &lt;chr&gt;                    &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+##  1 "United States"          12.6   14.7   14.1   13.2   11.7   11.5  
+##  2 "Male"                   12.3   15.2   14.5   13.3   12.1   11.8  
+##  3 "Female"                 12.9   14.1   13.7   13.0   11.2   11.1  
+##  4 "Asian"                  7.1    8.5    78     79     6.6    6.6   
+##  5 "Asian Male"             6.3    8.3    74     7.2    6.7    6.5   
+##  6 "Asian Female"           7.9    8.6    8.1    8.6    6.6    6.7   
+##  7 "White"                  9.7    11.7   11.2   10.8   9.7    9.4   
+##  8 "White Male"             9.5    12.3   11.5   10.8   10.0   9.6   
+##  9 "White Female"           10.0   11.1   10.8   10.7   9.4    9.1   
+## 10 "Latino"                 16.7   18.5   17.3   15.2   13.7   13.2  
+## 11 "Latino Male"            13.6   16.8   16.0   14.0   12.6   12.4  
+## 12 "Latina Female"          20.2   20.3   18.8   16.5   14.8   13.9  
+## 13 "Black"                  20.4   22.5   22.4   20.6   17.2   17.9  
+## 14 "Black Male"             23.7   26.0   25.6   23.5   20.1   20.8  
+## 15 "Black Female"           17.0   19.0   19.3   17.6   14.2   14.8  
+## 16 "Native American"        24.4   28.8   27.0   26.3   25.8   23.9  
+## 17 "Native American Male"   25.0   30.9   28.0   26.9   28.1   23.3  
+## 18 "Native American Female" 23.9   26.7   25.9   25.6   23.4   24.5  
+## 19 ""                       &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;   &lt;NA&gt;
+```
+
+---
+
+### Removing Empty Row
+
+
+```r
+ major_groups &lt;- major_groups |&gt; 
+  tidyr::drop_na()
+
+major_groups
+```
+
+```
+## # A tibble: 18 × 7
+##    Group                  `2008` `2010` `2012` `2014` `2016` `2017`
+##    &lt;chr&gt;                  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt;  &lt;chr&gt; 
+##  1 United States          12.6   14.7   14.1   13.2   11.7   11.5  
+##  2 Male                   12.3   15.2   14.5   13.3   12.1   11.8  
+##  3 Female                 12.9   14.1   13.7   13.0   11.2   11.1  
+##  4 Asian                  7.1    8.5    78     79     6.6    6.6   
+##  5 Asian Male             6.3    8.3    74     7.2    6.7    6.5   
+##  6 Asian Female           7.9    8.6    8.1    8.6    6.6    6.7   
+##  7 White                  9.7    11.7   11.2   10.8   9.7    9.4   
+##  8 White Male             9.5    12.3   11.5   10.8   10.0   9.6   
+##  9 White Female           10.0   11.1   10.8   10.7   9.4    9.1   
+## 10 Latino                 16.7   18.5   17.3   15.2   13.7   13.2  
+## 11 Latino Male            13.6   16.8   16.0   14.0   12.6   12.4  
+## 12 Latina Female          20.2   20.3   18.8   16.5   14.8   13.9  
+## 13 Black                  20.4   22.5   22.4   20.6   17.2   17.9  
+## 14 Black Male             23.7   26.0   25.6   23.5   20.1   20.8  
+## 15 Black Female           17.0   19.0   19.3   17.6   14.2   14.8  
+## 16 Native American        24.4   28.8   27.0   26.3   25.8   23.9  
+## 17 Native American Male   25.0   30.9   28.0   26.9   28.1   23.3  
+## 18 Native American Female 23.9   26.7   25.9   25.6   23.4   24.5
+```
+
+---
+
+### Cleaning Up Values
+
+- decimal places missing
+- data are not numeric
+
+```r
+major_groups &lt;- major_groups |&gt;
+  mutate(
+    across(.cols = -Group,
+           ~ str_remove(string = ., pattern = "\\.")),  # remove decimal points
+    across(.cols = -Group, as.numeric),  # convert to numeric
+    across(.cols = -Group, ~ . * 0.1)   # get our decimal point back
+  )
+
+major_groups
+```
+
+```
+## # A tibble: 18 × 7
+##    Group                  `2008` `2010` `2012` `2014` `2016` `2017`
+##    &lt;chr&gt;                   &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;  &lt;dbl&gt;
+##  1 United States            12.6   14.7   14.1   13.2   11.7   11.5
+##  2 Male                     12.3   15.2   14.5   13.3   12.1   11.8
+##  3 Female                   12.9   14.1   13.7   13     11.2   11.1
+##  4 Asian                     7.1    8.5    7.8    7.9    6.6    6.6
+##  5 Asian Male                6.3    8.3    7.4    7.2    6.7    6.5
+##  6 Asian Female              7.9    8.6    8.1    8.6    6.6    6.7
+##  7 White                     9.7   11.7   11.2   10.8    9.7    9.4
+##  8 White Male                9.5   12.3   11.5   10.8   10      9.6
+##  9 White Female             10     11.1   10.8   10.7    9.4    9.1
+## 10 Latino                   16.7   18.5   17.3   15.2   13.7   13.2
+## 11 Latino Male              13.6   16.8   16     14     12.6   12.4
+## 12 Latina Female            20.2   20.3   18.8   16.5   14.8   13.9
+## 13 Black                    20.4   22.5   22.4   20.6   17.2   17.9
+## 14 Black Male               23.7   26     25.6   23.5   20.1   20.8
+## 15 Black Female             17     19     19.3   17.6   14.2   14.8
+## 16 Native American          24.4   28.8   27     26.3   25.8   23.9
+## 17 Native American Male     25     30.9   28     26.9   28.1   23.3
+## 18 Native American Female   23.9   26.7   25.9   25.6   23.4   24.5
+```
+
+---
+
+### Adding variables for later
+
+- add `Race_Ethnicity` column
+- remove gender from `Race_Ethnicity` column
+.small[
+
+```r
+major_groups  &lt;- major_groups |&gt;
+mutate(Race_Ethnicity = 
+         dplyr::recode(Group, "United States" = "All_races",
+                              "Female" = "All_races",
+                              "Male" = "All_races"),
+       Race_Ethnicity = str_remove(string = Race_Ethnicity,
+                                   pattern = "Female | Male"))
+```
+]
+---
+### With New column
+
+.small[
+<div id="htmlwidget-217d940fa2612e71a35a" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-217d940fa2612e71a35a">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18"],["United States","Male","Female","Asian","Asian Male","Asian Female","White","White Male","White Female","Latino","Latino Male","Latina Female","Black","Black Male","Black Female","Native American","Native American Male","Native American Female"],[12.6,12.3,12.9,7.1,6.3,7.9,9.7,9.5,10,16.7,13.6,20.2,20.4,23.7,17,24.4,25,23.9],[14.7,15.2,14.1,8.5,8.3,8.6,11.7,12.3,11.1,18.5,16.8,20.3,22.5,26,19,28.8,30.9,26.7],[14.1,14.5,13.7,7.8,7.4,8.1,11.2,11.5,10.8,17.3,16,18.8,22.4,25.6,19.3,27,28,25.9],[13.2,13.3,13,7.9,7.2,8.6,10.8,10.8,10.7,15.2,14,16.5,20.6,23.5,17.6,26.3,26.9,25.6],[11.7,12.1,11.2,6.6,6.7,6.6,9.7,10,9.4,13.7,12.6,14.8,17.2,20.1,14.2,25.8,28.1,23.4],[11.5,11.8,11.1,6.6,6.5,6.7,9.4,9.6,9.1,13.2,12.4,13.9,17.9,20.8,14.8,23.9,23.3,24.5],["All_races","All_races","All_races","Asian","Asian","Asian Female","White","White","White Female","Latino","Latino","Latina Female","Black","Black","Black Female","Native American","Native American","Native American Female"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Group<\/th>\n      <th>2008<\/th>\n      <th>2010<\/th>\n      <th>2012<\/th>\n      <th>2014<\/th>\n      <th>2016<\/th>\n      <th>2017<\/th>\n      <th>Race_Ethnicity<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[2,3,4,5,6,7]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+]
+---
+
+## Your Turn
+
+How would you create a `Gender` column given the data we have? (Think about the logic, not necessarily the code you would write.)
+
+.whisper[Put a green sticky on the front of your computer when you've got an idea done. Put a pink if you want help/have a question.]
+
+--
+
+
+```r
+major_groups  &lt;- major_groups |&gt;
+  mutate(Gender = str_extract(string = Group, 
+                              pattern = "Female|Male")) %&gt;%
+  mutate(Gender = replace_na(Gender, replace = "All"))
+```
+
+---
+
+## Reshaping Your Data
+
+.small[
+`pivot_longer`:
+1. `cols` - specifies what columns to collapse
+2. `names_to` - specifies the name of the new column that will be created that will contain the column names of the columns you are collapsing
+3 `values_to` - specifies the name of the new column that will be created that will contain the values from the columns you are collapsing
+
+
+```r
+major_groups_long &lt;- major_groups %&gt;%
+  tidyr::pivot_longer(cols = contains("20"), # any column containing 20
+                      names_to = "Year",
+                      values_to = "Percent",
+                      names_prefix = "Perc_") %&gt;%
+  dplyr::mutate(Year = as.numeric(Year))
+```
+]
+
+---
+
+## The (Major Groups) Data!
+
+.small[
+<div id="htmlwidget-82f9cfc45149c688e3be" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-82f9cfc45149c688e3be">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108"],["United States","United States","United States","United States","United States","United States","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Asian","Asian","Asian","Asian","Asian","Asian","Asian Male","Asian Male","Asian Male","Asian Male","Asian Male","Asian Male","Asian Female","Asian Female","Asian Female","Asian Female","Asian Female","Asian Female","White","White","White","White","White","White","White Male","White Male","White Male","White Male","White Male","White Male","White Female","White Female","White Female","White Female","White Female","White Female","Latino","Latino","Latino","Latino","Latino","Latino","Latino Male","Latino Male","Latino Male","Latino Male","Latino Male","Latino Male","Latina Female","Latina Female","Latina Female","Latina Female","Latina Female","Latina Female","Black","Black","Black","Black","Black","Black","Black Male","Black Male","Black Male","Black Male","Black Male","Black Male","Black Female","Black Female","Black Female","Black Female","Black Female","Black Female","Native American","Native American","Native American","Native American","Native American","Native American","Native American Male","Native American Male","Native American Male","Native American Male","Native American Male","Native American Male","Native American Female","Native American Female","Native American Female","Native American Female","Native American Female","Native American Female"],["All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian Female","Asian Female","Asian Female","Asian Female","Asian Female","Asian Female","White","White","White","White","White","White","White","White","White","White","White","White","White Female","White Female","White Female","White Female","White Female","White Female","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latina Female","Latina Female","Latina Female","Latina Female","Latina Female","Latina Female","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black Female","Black Female","Black Female","Black Female","Black Female","Black Female","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American Female","Native American Female","Native American Female","Native American Female","Native American Female","Native American Female"],["All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female"],[2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017],[12.6,14.7,14.1,13.2,11.7,11.5,12.3,15.2,14.5,13.3,12.1,11.8,12.9,14.1,13.7,13,11.2,11.1,7.1,8.5,7.8,7.9,6.6,6.6,6.3,8.3,7.4,7.2,6.7,6.5,7.9,8.6,8.1,8.6,6.6,6.7,9.7,11.7,11.2,10.8,9.7,9.4,9.5,12.3,11.5,10.8,10,9.6,10,11.1,10.8,10.7,9.4,9.1,16.7,18.5,17.3,15.2,13.7,13.2,13.6,16.8,16,14,12.6,12.4,20.2,20.3,18.8,16.5,14.8,13.9,20.4,22.5,22.4,20.6,17.2,17.9,23.7,26,25.6,23.5,20.1,20.8,17,19,19.3,17.6,14.2,14.8,24.4,28.8,27,26.3,25.8,23.9,25,30.9,28,26.9,28.1,23.3,23.9,26.7,25.9,25.6,23.4,24.5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Group<\/th>\n      <th>Race_Ethnicity<\/th>\n      <th>Gender<\/th>\n      <th>Year<\/th>\n      <th>Percent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+## Warning!!
+
+.warning[We're missing the Asian and Latinx subgroups data!]
+
+---
+
+### Reminder: Asian subgroups data
+
+![asian subgroup data](img/10/asian_subgroups.png)
+
+---
+
+### User Defined Functions
+
+- function name: `make_rows`
+- input to function (argument): `text`
+
+
+```r
+make_rows &lt;- function(text){
+  text %&gt;%
+  str_split("\n") %&gt;%
+  unlist() %&gt;%
+  as_tibble()
+}
+```
+
+--
+
+
+```r
+asian_sub_2017 &lt;- make_rows(asian_sub_2017) 
+asian_sub_2017
+```
+
+```
+## # A tibble: 33 × 1
+##    value             
+##    &lt;chr&gt;             
+##  1 United States 11.5
+##  2 Male 11.8         
+##  3 Female 11.1       
+##  4 ASIAN 6.8         
+##  5 Asian Male 65     
+##  6 Asian Female 67   
+##  7 CHINESE 43        
+##  8 Chinese Male AT   
+##  9 Chinese Female 3.9
+## 10 VIETNAMESE 5.5    
+## # … with 23 more rows
+```
+
+---
+
+## Applying to Asian subroups Data
+
+
+```r
+asian_sub_2017_A &lt;- make_rows(asian_sub_2017_A)
+asian_sub_2017_B &lt;- make_rows(asian_sub_2017_B)
+asian_sub_2017_C &lt;- make_rows(asian_sub_2017_C)
+
+asian_sub_2017_C
+```
+
+```
+## # A tibble: 6 × 1
+##   value                
+##   &lt;chr&gt;                
+## 1 "FILIPINO 7.3"       
+## 2 "Filipino Male 6.5"  
+## 3 "Filipino Female 8.1"
+## 4 "HMONG 14.0"         
+## 5 "Hmong Male 18.6"    
+## 6 ""
+```
+
+---
+
+
+## Combine Asian subgroups data
+
+
+```r
+asian_sub_2017 &lt;- bind_rows(asian_sub_2017_A, 
+                            asian_sub_2017_B,
+                            asian_sub_2017_C)
+asian_sub_2017
+```
+
+```
+## # A tibble: 28 × 1
+##    value             
+##    &lt;chr&gt;             
+##  1 United States 11.5
+##  2 Male 11.8         
+##  3 Female 11.1       
+##  4 ASIAN 6.6         
+##  5 Asian Male 6.5    
+##  6 Asian Female 6.7  
+##  7 CHINESE 4.3       
+##  8 Chinese Male 4.7  
+##  9 Chinese Female 3.9
+## 10 VIETNAMESE 5.5    
+## # … with 18 more rows
+```
+
+---
+
+## UDF: `clean_table`
+
+.small[
+
+```r
+clean_table &lt;- function(table){
+  table %&gt;%
+    separate(., col = value,
+               into = c("Group", "Percentage"),
+                sep =  "(?&lt;=[[:alpha:]])\\s(?=[0-9])") %&gt;% 
+    drop_na() %&gt;%
+    mutate(Group = str_to_title(Group)) %&gt;%
+    mutate(Percentage = str_remove(string = Percentage,
+                                   pattern = "\\.")) %&gt;%
+    separate(Percentage, c("Percent"), sep = " ") %&gt;%
+    mutate(Percent = as.numeric(Percent)) %&gt;%
+    mutate(Percent = Percent * 0.1) %&gt;%
+    mutate(Race_Ethnicity = recode(Group, 
+                                   "United States" = "All_races",
+                                   "Female" = "All_races",
+                                   "Male" = "All_races")) %&gt;%
+    mutate(Race_Ethnicity = str_remove(string = Race_Ethnicity,  
+                                       pattern = " Female| Male")) %&gt;%
+    mutate(Gender = str_extract(string = Group,
+                                pattern ="Female|Male")) %&gt;%
+    mutate(Gender = replace_na(Gender, replace = "All"))
+ 
+}
+```
+]
+---
+
+### Using `clean_table()`
+
+
+```r
+asian_sub_2017 &lt;- clean_table(table = asian_sub_2017)
+```
+
+```
+## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 3 rows [17, 22,
+## 28].
+```
+
+```r
+asian_sub_2017
+```
+
+```
+## # A tibble: 25 × 4
+##    Group          Percent Race_Ethnicity Gender
+##    &lt;chr&gt;            &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt; 
+##  1 United States     11.5 All_races      All   
+##  2 Male              11.8 All_races      Male  
+##  3 Female            11.1 All_races      Female
+##  4 Asian              6.6 Asian          All   
+##  5 Asian Male         6.5 Asian          Male  
+##  6 Asian Female       6.7 Asian          Female
+##  7 Chinese            4.3 Chinese        All   
+##  8 Chinese Male       4.7 Chinese        Male  
+##  9 Chinese Female     3.9 Chinese        Female
+## 10 Vietnamese         5.5 Vietnamese     All   
+## # … with 15 more rows
+```
+
+---
+
+## Applying to LatinX data
+.pull-left[
+![latinx subgroup data](img/10/latino_subgroups.png)
+]
+.pull-right[
+.question[💡 Looking at the LatinX data...anything of concern?]
+]
+---
+
+## Data Have Errors
+
+- The last two rows both say “Female”
+- Likely a typo
+- Following pattern from other rows, first should be "Female"
+- We'll fix this typo
+
+---
+
+## Combining LatinX data
+
+
+```r
+latinx_sub_2017 &lt;- stringr::str_c(latinx_sub_2017_A,
+                                  latinx_sub_2017_B, 
+                                  latinx_sub_2017_C)
+
+latinx_sub_2017
+```
+
+```
+## [1] "LATINO 13.2\nLatino Male 12.4\nLatina Female 13.9\nSOUTH AMERICAN 8.4\nSouth American Male 9.1\nSouth American Female 7.7\nCENTRAL AMERICAN 12.0\nCentral American Male 9.3\nCentral American Female 15.0\nMEXICAN 13.3\nMexican Male 12.2\nMexican Female 14.4\nOTHER LATINO 13.6\nOther Latino Male 15.3\nOther Latina Female 11.5\nPUERTO RICAN, DOMINICAN, CUBAN 15.1\nPR, DR, Cuban Female 15.7\nPR, DR, Cuban Female 14.4\n"
+```
+
+---
+
+## Fixing that Typo
+
+.question[💡 How would you fix that typo? (Idea is fine; code not neessary)]
+
+
+```r
+latinx_sub_2017
+```
+
+```
+## [1] "LATINO 13.2\nLatino Male 12.4\nLatina Female 13.9\nSOUTH AMERICAN 8.4\nSouth American Male 9.1\nSouth American Female 7.7\nCENTRAL AMERICAN 12.0\nCentral American Male 9.3\nCentral American Female 15.0\nMEXICAN 13.3\nMexican Male 12.2\nMexican Female 14.4\nOTHER LATINO 13.6\nOther Latino Male 15.3\nOther Latina Female 11.5\nPUERTO RICAN, DOMINICAN, CUBAN 15.1\nPR, DR, Cuban Female 15.7\nPR, DR, Cuban Female 14.4\n"
+```
+
+--
+
+
+```r
+latinx_sub_2017 &lt;- latinx_sub_2017 |&gt;
+  str_replace(pattern = "DR, Cuban Female 15.7\nPR",
+              replacement = "DR, Cuban Male 15.7\nPR")
+```
+
+---
+
+## Using our functions:
+
+
+```r
+latinx_sub_2017 &lt;- make_rows(latinx_sub_2017)
+latinx_sub_2017 &lt;- clean_table(table = latinx_sub_2017)
+```
+
+```
+## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [19].
+```
+
+```r
+latinx_sub_2017
+```
+
+```
+## # A tibble: 18 × 4
+##    Group                          Percent Race_Ethnicity                 Gender
+##    &lt;chr&gt;                            &lt;dbl&gt; &lt;chr&gt;                          &lt;chr&gt; 
+##  1 Latino                            13.2 Latino                         All   
+##  2 Latino Male                       12.4 Latino                         Male  
+##  3 Latina Female                     13.9 Latina                         Female
+##  4 South American                     8.4 South American                 All   
+##  5 South American Male                9.1 South American                 Male  
+##  6 South American Female              7.7 South American                 Female
+##  7 Central American                  12   Central American               All   
+##  8 Central American Male              9.3 Central American               Male  
+##  9 Central American Female           15   Central American               Female
+## 10 Mexican                           13.3 Mexican                        All   
+## 11 Mexican Male                      12.2 Mexican                        Male  
+## 12 Mexican Female                    14.4 Mexican                        Female
+## 13 Other Latino                      13.6 Other Latino                   All   
+## 14 Other Latino Male                 15.3 Other Latino                   Male  
+## 15 Other Latina Female               11.5 Other Latina                   Female
+## 16 Puerto Rican, Dominican, Cuban    15.1 Puerto Rican, Dominican, Cuban All   
+## 17 Pr, Dr, Cuban Male                15.7 Pr, Dr, Cuban                  Male  
+## 18 Pr, Dr, Cuban Female              14.4 Pr, Dr, Cuban                  Female
+```
+
+---
+
+## Asian 2018 Data
+.small[
+![asian_2018_data](img/10/asian_2018.png)
+]
+---
+## Asian 2018 Data
+
+
+```r
+asian_sub_2018 &lt;- str_c(asian_sub_2018_A, asian_sub_2018_B)
+asian_sub_2018 &lt;- make_rows(asian_sub_2018)
+asian_sub_2018
+```
+
+```
+## # A tibble: 23 × 1
+##    value         
+##    &lt;chr&gt;         
+##  1 "CHINESE : 41"
+##  2 "Men 4.5"     
+##  3 "Women : 3.7" 
+##  4 ""            
+##  5 "INDIAN 5.4"  
+##  6 "Men 4.7"     
+##  7 "Women : 6.1" 
+##  8 ""            
+##  9 "KOREAN : 5.5"
+## 10 "Men 5.6"     
+## # … with 13 more rows
+```
+
+---
+## Function from earlier...but modified
+
+.small[
+
+```r
+clean_table_2018 &lt;- function(table){
+  table %&gt;%
+    separate(., col = value, 
+               into = c("Group", "Percent"), 
+                sep =  "(?&lt;=[[:alpha:]])\\s:\\s|\\s(?=[0-9])") %&gt;% 
+    mutate(Group= str_remove(string = Group, 
+                            pattern = ":")) %&gt;%
+    drop_na() %&gt;%
+    mutate(Group = str_to_title(string = Group)) %&gt;%
+    mutate(Percent = str_remove(string = Percent, 
+                               pattern = "\\.")) %&gt;%
+    mutate(Percent = as.numeric(Percent)) %&gt;%
+    mutate(Percent = Percent * 0.1) %&gt;%
+    mutate(Race_Ethnicity = str_replace(string = Group,
+                                       pattern = "Men|Women", 
+                                   replacement = "missing")) %&gt;%
+    mutate(Race_Ethnicity = na_if(Race_Ethnicity, "missing")) %&gt;%
+    fill(Race_Ethnicity, .direction = "down") %&gt;%
+    mutate(Gender = str_extract(string = Group, 
+                               pattern = "Men|Women")) %&gt;%
+    mutate(Gender = replace_na(Gender, replace = "All"))
+}
+```
+]
+
+---
+
+### Applying modified function
+
+
+```r
+asian_sub_2018 &lt;- clean_table_2018(asian_sub_2018)
+```
+
+```
+## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 6 rows [4, 8, 15,
+## 19, 21, 23].
+```
+
+---
+
+### Adding all Asians data (from the text)
+
+
+```r
+asian_sub_2018 &lt;- asian_sub_2018 |&gt;
+  add_row(Group = "Asian", Percent = 6.2,
+          Race_Ethnicity = "Asian", Gender = "All") %&gt;%
+  add_row(Group = "Asian", Percent = 6.4,
+          Race_Ethnicity = "Asian", Gender = "Men") %&gt;%
+  add_row(Group = "Asian", Percent = 6.1,
+          Race_Ethnicity = "Asian", Gender = "Women")
+
+asian_sub_2018
+```
+
+```
+## # A tibble: 20 × 4
+##    Group      Percent Race_Ethnicity Gender
+##    &lt;chr&gt;        &lt;dbl&gt; &lt;chr&gt;          &lt;chr&gt; 
+##  1 Chinese        4.1 Chinese        All   
+##  2 Men            4.5 Chinese        Men   
+##  3 Women          3.7 Chinese        Women 
+##  4 Indian         5.4 Indian         All   
+##  5 Men            4.7 Indian         Men   
+##  6 Women          6.1 Indian         Women 
+##  7 Korean         5.5 Korean         All   
+##  8 Men            5.6 Korean         Men   
+##  9 Women          5.4 Korean         Women 
+## 10 Vietnamese     6.3 Vietnamese     All   
+## 11 Men            7.6 Vietnamese     Men   
+## 12 Women          5   Vietnamese     Women 
+## 13 Filipino       6.8 Filipino       All   
+## 14 Men            6.3 Filipino       Men   
+## 15 Women          7.4 Filipino       Women 
+## 16 Hmong         10.2 Hmong          All   
+## 17 Cambodian     13.8 Cambodian      All   
+## 18 Asian          6.2 Asian          All   
+## 19 Asian          6.4 Asian          Men   
+## 20 Asian          6.1 Asian          Women
+```
+
+---
+
+## Combining 2017 and 2018 Data!
+
+Let's keep track of year...
+
+
+```r
+asian_sub_2017 &lt;- asian_sub_2017 |&gt;
+  mutate(Year = 2017)
+asian_sub_2018 &lt;- asian_sub_2018 |&gt;
+  mutate(Year = 2018)
+```
+
+---
+
+## Coding Gender Consistently
+
+
+```r
+asian_sub_2018 &lt;- asian_sub_2018 |&gt; 
+  mutate(across(.cols = c(Gender, Group),
+               ~ str_replace(string = ., 
+                             pattern = "Men", 
+                             replacement = "Male")),
+         across(.cols = c(Gender, Group),
+               ~ str_replace(string = ., 
+                             pattern = "Women", 
+                             replacement = "Female")))
+```
+
+---
+
+## The Combine!
+
+
+```r
+asian_subgroups &lt;- bind_rows(asian_sub_2017, asian_sub_2018)
+```
+
+---
+
+## Cleaning up missing information
+
+Some cases only have one value for a group (i.e. no male or female for Pakistani data)
+
+Adding in NAs...
+
+.small[
+
+```r
+asian_subgroups &lt;- asian_subgroups |&gt; 
+  select(-Group) %&gt;%
+  pivot_wider(names_from = Year, 
+              values_from = Percent) %&gt;%
+  pivot_longer(cols = -c(Race_Ethnicity, Gender),
+               names_to = "Year",
+               values_to= "Percent")
+```
+]
+
+---
+
+## The (Asian) Data!
+.small[
+<div id="htmlwidget-926c93ded1f1aa262b7f" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-926c93ded1f1aa262b7f">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52"],["All_races","All_races","All_races","All_races","All_races","All_races","Asian","Asian","Asian","Asian","Asian","Asian","Chinese","Chinese","Chinese","Chinese","Chinese","Chinese","Vietnamese","Vietnamese","Vietnamese","Vietnamese","Vietnamese","Vietnamese","Indian","Indian","Indian","Indian","Indian","Indian","Pakistani","Pakistani","Korean","Korean","Korean","Korean","Korean","Korean","Two Or More","Two Or More","Filipino","Filipino","Filipino","Filipino","Filipino","Filipino","Hmong","Hmong","Hmong","Hmong","Cambodian","Cambodian"],["All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","All","All","Male","Male","Female","Female","All","All","All","All","Male","Male","Female","Female","All","All","Male","Male","All","All"],["2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018"],[11.5,null,11.8,null,11.1,null,6.6,6.2,6.5,6.4,6.7,6.1,4.3,4.1,4.7,4.5,3.9,3.7,5.5,6.3,7.5,7.6,3.4,5,5.9,5.4,4.1,4.7,7.8,6.1,6.4,null,6.5,5.5,8,5.6,5,5.4,6.6,null,7.3,6.8,6.5,6.3,8.1,7.4,14,10.2,18.6,null,null,13.8]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Race_Ethnicity<\/th>\n      <th>Gender<\/th>\n      <th>Year<\/th>\n      <th>Percent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+]
+---
+
+## The LatinX (2018) Data
+
+The same steps...
+
+
+```r
+# cleaning - wash, rinse, repeat
+latinx_sub_2018 &lt;- str_replace_all(string = latinx_sub_2018, 
+                                  pattern = "\\s:\n{2}|\n{2}", #remove two newline characters
+                                  replacement = " ")
+latinx_sub_2018 &lt;- make_rows(latinx_sub_2018 )
+latinx_sub_2018 &lt;- clean_table_2018(latinx_sub_2018)
+```
+
+```
+## Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [12].
+```
+---
+
+## The LatinX (2018) Data
+
+Fix Naming Issues
+
+
+```r
+latinx_sub_2018 &lt;- latinx_sub_2018 |&gt;
+  mutate(Group = str_replace(string = Group,
+                             pattern = "Pr, Dr, Cuban",
+                             replacement = "Puerto Rican, Dominican, Cuban"), 
+          Race_Ethnicity = str_replace(string = Race_Ethnicity,
+                                       pattern = "Pr, Dr, Cuban",
+                                       replacement = "Puerto Rican, Dominican, Cuban"))
+```
+---
+
+## The LatinX (2018) Data
+
+Add In Data From Text...
+
+
+```r
+latinx_sub_2018 &lt;- latinx_sub_2018 |&gt;
+  add_row(Group = "Latinx", Percent = 12.8,
+          Race_Ethnicity = "Latinx", Gender = "All") %&gt;%
+  add_row(Group = "Latinx", Percent = 12.3,
+          Race_Ethnicity = "Latinx", Gender = "Men") %&gt;%
+  add_row(Group = "Latinx", Percent = 13.3,
+          Race_Ethnicity = "Latinx", Gender = "Women")
+```
+---
+
+## The LatinX (2018) Data
+
+Recode Gender
+
+
+```r
+latinx_sub_2018 &lt;- latinx_sub_2018 |&gt;
+  mutate(across(.cols = c(Gender, Group),
+                ~ str_replace(string = ., pattern = "Men", replacement = "Male")),
+         across(.cols = c(Gender, Group),
+                ~ str_replace(string = ., pattern = "Women", replacement = "Female")))
+```
+
+---
+
+## Combining Years
+
+
+```r
+latinx_sub_2017 &lt;- latinx_sub_2017 |&gt;
+  mutate(Year = 2017)
+
+latinx_sub_2018 &lt;- latinx_sub_2018 |&gt;
+  mutate(Year = 2018)
+
+latinx_subgroups &lt;- bind_rows(latinx_sub_2017, latinx_sub_2018)
+```
+
+---
+
+## Adding missing categories
+
+
+```r
+latinx_subgroups &lt;- latinx_subgroups |&gt;
+  select(-Group) %&gt;%
+  pivot_wider(names_from = Year, values_from = Percent) %&gt;%
+  pivot_longer(cols = -c(Race_Ethnicity, Gender), 
+               names_to ="Year" , 
+               values_to="Percent")
+```
+
+---
+
+## The (LatinX) Data!
+.small[
+<div id="htmlwidget-69176a7a9b22208da90e" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-69176a7a9b22208da90e">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46"],["Latino","Latino","Latino","Latino","Latina","Latina","South American","South American","South American","South American","South American","South American","Central American","Central American","Central American","Central American","Central American","Central American","Mexican","Mexican","Mexican","Mexican","Mexican","Mexican","Other Latino","Other Latino","Other Latino","Other Latino","Other Latina","Other Latina","Puerto Rican, Dominican, Cuban","Puerto Rican, Dominican, Cuban","Pr, Dr, Cuban","Pr, Dr, Cuban","Pr, Dr, Cuban","Pr, Dr, Cuban","Puerto Rican, Dominican, Cuban","Puerto Rican, Dominican, Cuban","Puerto Rican, Dominican, Cuban","Puerto Rican, Dominican, Cuban","Latinx","Latinx","Latinx","Latinx","Latinx","Latinx"],["All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","All","All","Male","Male","Female","Female","Male","Male","Female","Female","All","All","Male","Male","Female","Female"],["2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018","2017","2018"],[13.2,null,12.4,null,13.9,null,8.4,8,9.1,7.5,7.7,null,12,13.7,9.3,11.8,15,15.9,13.3,12.9,12.2,12,14.4,13.8,13.6,null,15.3,null,11.5,null,15.1,13.7,15.7,null,14.4,null,null,14.9,null,12.4,null,12.8,null,12.3,null,13.3]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Race_Ethnicity<\/th>\n      <th>Gender<\/th>\n      <th>Year<\/th>\n      <th>Percent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":4},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+
+## Saving Your Data
+
+If you save your wrangled data, you won't have to rerun all this cleaning code every time you want to work with the data...
+
+
+```r
+save(major_groups_long, asian_subgroups, latinx_subgroups, file = "data/wrangled_data.rda")
+
+readr::write_csv(major_groups_long, file = "data/wrangled_major_groups_data.csv")
+readr::write_csv(asian_subgroups, file = "data/wrangled_asian_subgroups_data.csv")
+readr::write_csv(latinx_subgroups, file = "data/ wrangled_latinx_subgroups_data.csv")
+```
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

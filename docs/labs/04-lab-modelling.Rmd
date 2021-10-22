@@ -41,7 +41,7 @@ To get started, accept the lab04 assignment (link on Canvas), clone the repo (us
 When you install the tidyverse package, a long list of packages get installed with it. However when you load it (with the `library` function) only a few of them get loaded, e.g. `dplyr`, `ggplot2`, and `forcats`. The broom package is installed with the tidyverse, but we need to load it separately in order to make use of it.
 ```
 
-In this lab we will work with the `tidyverse` and `broom` packages. Be sure to load them in before continuing with the lab.
+In this lab we will work with the `tidyverse` and `tidymodels` packages. Be sure to load them in before continuing with the lab.
 
 
 

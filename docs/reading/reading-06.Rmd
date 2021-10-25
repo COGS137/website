@@ -12,3 +12,11 @@ knitr::opts_chunk$set(echo = TRUE)
 ## `ggplot2 
 
 While no specific chapter is assigned for today's lecture, this entire book can be an *excellent* resource as you learn more about `ggplot2`: [ggplot2: Elegant Graphics for Data Analysis](https://ggplot2-book.org/index.html)
+
+- [R4DS](https://r4ds.had.co.nz/)
+  + Chapter 3: Data Visualisation
+  + Chapter 7: Exploratory Data Analysis
+- [Intro to Modern Statistics](https://openintro-ims.netlify.app/index.html):
+  + Chapter 4: Exploring categorical data
+  + Chapter 5 Exploring numerical data
+- [What's so hard about histograms?](http://tinlizzie.org/histograms/)

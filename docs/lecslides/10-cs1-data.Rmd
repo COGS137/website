@@ -24,8 +24,19 @@ library(DT)
 
 ## Q&A
 
+Q: I think learning about new functions/ways to find the data we want. For example, residuals, log(price), regression line, I might have missed this but  what is "set_engine". Basically what ways can we approach the data.  I'm assuming we will eventually get there  
+A: Yes! We will be working on this a lot in coming weeks! But, to specifically answer what `set_engine()` is. This is a function from the `parsnip` package that allows you to 1) specify the computational approach you want to use for modelling (so far, we've only used "lm") and 2) allows you to specify the arguments you want that model to use during modelling (we'll get there).
+
 ---
 ## Course Announcements
+
+- hw02 due tonight (11:59 PM) - submission by pushing to GitHub
+- exam01 scores have been posted
+- exam01 and lab04 answer keys have been posted
+--
+**Case Study**
+- details for case study report to be posted/discussed Wednesday
+- must be in a group by Friday
 
 ---
 
@@ -188,10 +199,6 @@ library(pdftools)
 library(tesseract)
 library(magick)
 library(knitr)
-# library(directlabels)
-# library(cowplot)
-# library(Kendall)
-# library(patchwork)
 ```
 
 ---
@@ -343,9 +350,9 @@ major_groups
 ## Cleaning up `major_groups`
 
 ```{r}
- major_groups <- major_groups %>%
-  stringr::str_split(pattern = "\n") %>%
-  unlist() %>%
+ major_groups <- major_groups |>
+  stringr::str_split(pattern = "\n") |>
+  unlist() |>
   tibble::as_tibble()
 
 major_groups
@@ -366,7 +373,7 @@ major_groups
 ]
 ```{r}
 major_groups <- 
-  major_groups %>%
+  major_groups |>
   tidyr::separate(col = value, 
                   into = c("Group", "Years"), 
                   sep = "(?<=[[:alpha:]])\\s(?=[0-9])")
@@ -447,13 +454,11 @@ major_groups
 .small[
 ```{r}
 major_groups  <- major_groups |>
-mutate(Race_Ethnicity = 
-         dplyr::recode(Group, "United States" = "All_races",
-                              "Female" = "All_races",
-                              "Male" = "All_races"),
+mutate(Race_Ethnicity = dplyr::recode(Group, "United States" = "All_races",
+                                      "Female" = "All_races",
+                                      "Male" = "All_races"),
        Race_Ethnicity = str_remove(string = Race_Ethnicity,
-                                   pattern = "Female | Male"))
-
+                                   pattern = "Female|Male"))
 ```
 ]
 ---
@@ -477,7 +482,7 @@ How would you create a `Gender` column given the data we have? (Think about the 
 ```{r}
 major_groups  <- major_groups |>
   mutate(Gender = str_extract(string = Group, 
-                              pattern = "Female|Male")) %>%
+                              pattern = "Female|Male")) |>
   mutate(Gender = replace_na(Gender, replace = "All"))
 ```
 
@@ -492,11 +497,11 @@ major_groups  <- major_groups |>
 3 `values_to` - specifies the name of the new column that will be created that will contain the values from the columns you are collapsing
 
 ```{r}
-major_groups_long <- major_groups %>%
+major_groups_long <- major_groups |>
   tidyr::pivot_longer(cols = contains("20"), # any column containing 20
                       names_to = "Year",
                       values_to = "Percent",
-                      names_prefix = "Perc_") %>%
+                      names_prefix = "Perc_") |>
   dplyr::mutate(Year = as.numeric(Year))
 ```
 ]
@@ -531,9 +536,9 @@ DT::datatable(major_groups_long)
 
 ```{r}
 make_rows <- function(text){
-  text %>%
-  str_split("\n") %>%
-  unlist() %>%
+  text |>
+  str_split("\n") |>
+  unlist() |>
   as_tibble()
 }
 ```
@@ -576,25 +581,25 @@ asian_sub_2017
 .small[
 ```{r}
 clean_table <- function(table){
-  table %>%
-    separate(., col = value,
-               into = c("Group", "Percentage"),
-                sep =  "(?<=[[:alpha:]])\\s(?=[0-9])") %>% 
-    drop_na() %>%
-    mutate(Group = str_to_title(Group)) %>%
+  table |>
+    separate(col = value,
+             into = c("Group", "Percentage"),
+             sep =  "(?<=[[:alpha:]])\\s(?=[0-9])") |> 
+    drop_na() |>
+    mutate(Group = str_to_title(Group)) |>
     mutate(Percentage = str_remove(string = Percentage,
-                                   pattern = "\\.")) %>%
-    separate(Percentage, c("Percent"), sep = " ") %>%
-    mutate(Percent = as.numeric(Percent)) %>%
-    mutate(Percent = Percent * 0.1) %>%
+                                   pattern = "\\.")) |>
+    separate(Percentage, c("Percent"), sep = " ") |>
+    mutate(Percent = as.numeric(Percent)) |>
+    mutate(Percent = Percent * 0.1) |>
     mutate(Race_Ethnicity = recode(Group, 
                                    "United States" = "All_races",
                                    "Female" = "All_races",
-                                   "Male" = "All_races")) %>%
+                                   "Male" = "All_races")) |>
     mutate(Race_Ethnicity = str_remove(string = Race_Ethnicity,  
-                                       pattern = " Female| Male")) %>%
+                                       pattern = " Female| Male")) |>
     mutate(Gender = str_extract(string = Group,
-                                pattern ="Female|Male")) %>%
+                                pattern ="Female|Male")) |>
     mutate(Gender = replace_na(Gender, replace = "All"))
  
 }
@@ -643,7 +648,7 @@ latinx_sub_2017
 
 ## Fixing that Typo
 
-.question[`r emo::ji("idea")` How would you fix that typo? (Idea is fine; code not neessary)]
+.question[`r emo::ji("idea")` How would you fix that typo? (Idea is fine; code not necessary)]
 
 ```{r}
 latinx_sub_2017
@@ -688,25 +693,25 @@ asian_sub_2018
 .small[
 ```{r}
 clean_table_2018 <- function(table){
-  table %>%
-    separate(., col = value, 
-               into = c("Group", "Percent"), 
-                sep =  "(?<=[[:alpha:]])\\s:\\s|\\s(?=[0-9])") %>% 
+  table |>
+    separate(col = value, 
+             into = c("Group", "Percent"), 
+             sep =  "(?<=[[:alpha:]])\\s:\\s|\\s(?=[0-9])") |> 
     mutate(Group= str_remove(string = Group, 
-                            pattern = ":")) %>%
-    drop_na() %>%
-    mutate(Group = str_to_title(string = Group)) %>%
+                            pattern = ":")) |>
+    drop_na() |>
+    mutate(Group = str_to_title(string = Group)) |>
     mutate(Percent = str_remove(string = Percent, 
-                               pattern = "\\.")) %>%
-    mutate(Percent = as.numeric(Percent)) %>%
-    mutate(Percent = Percent * 0.1) %>%
+                               pattern = "\\.")) |>
+    mutate(Percent = as.numeric(Percent)) |>
+    mutate(Percent = Percent * 0.1) |>
     mutate(Race_Ethnicity = str_replace(string = Group,
                                        pattern = "Men|Women", 
-                                   replacement = "missing")) %>%
-    mutate(Race_Ethnicity = na_if(Race_Ethnicity, "missing")) %>%
-    fill(Race_Ethnicity, .direction = "down") %>%
+                                   replacement = "missing")) |>
+    mutate(Race_Ethnicity = na_if(Race_Ethnicity, "missing")) |>
+    fill(Race_Ethnicity, .direction = "down") |>
     mutate(Gender = str_extract(string = Group, 
-                               pattern = "Men|Women")) %>%
+                               pattern = "Men|Women")) |>
     mutate(Gender = replace_na(Gender, replace = "All"))
 }
 ```
@@ -728,9 +733,9 @@ asian_sub_2018 <- clean_table_2018(asian_sub_2018)
 ```{r}
 asian_sub_2018 <- asian_sub_2018 |>
   add_row(Group = "Asian", Percent = 6.2,
-          Race_Ethnicity = "Asian", Gender = "All") %>%
+          Race_Ethnicity = "Asian", Gender = "All") |>
   add_row(Group = "Asian", Percent = 6.4,
-          Race_Ethnicity = "Asian", Gender = "Men") %>%
+          Race_Ethnicity = "Asian", Gender = "Men") |>
   add_row(Group = "Asian", Percent = 6.1,
           Race_Ethnicity = "Asian", Gender = "Women")
 
@@ -785,9 +790,9 @@ Adding in NAs...
 .small[
 ```{r}
 asian_subgroups <- asian_subgroups |> 
-  select(-Group) %>%
+  select(-Group) |>
   pivot_wider(names_from = Year, 
-              values_from = Percent) %>%
+              values_from = Percent) |>
   pivot_longer(cols = -c(Race_Ethnicity, Gender),
                names_to = "Year",
                values_to= "Percent")
@@ -840,9 +845,9 @@ Add In Data From Text...
 ```{r}
 latinx_sub_2018 <- latinx_sub_2018 |>
   add_row(Group = "Latinx", Percent = 12.8,
-          Race_Ethnicity = "Latinx", Gender = "All") %>%
+          Race_Ethnicity = "Latinx", Gender = "All") |>
   add_row(Group = "Latinx", Percent = 12.3,
-          Race_Ethnicity = "Latinx", Gender = "Men") %>%
+          Race_Ethnicity = "Latinx", Gender = "Men") |>
   add_row(Group = "Latinx", Percent = 13.3,
           Race_Ethnicity = "Latinx", Gender = "Women")
 ```
@@ -881,8 +886,8 @@ latinx_subgroups <- bind_rows(latinx_sub_2017, latinx_sub_2018)
 
 ```{r}
 latinx_subgroups <- latinx_subgroups |>
-  select(-Group) %>%
-  pivot_wider(names_from = Year, values_from = Percent) %>%
+  select(-Group) |>
+  pivot_wider(names_from = Year, values_from = Percent) |>
   pivot_longer(cols = -c(Race_Ethnicity, Gender), 
                names_to ="Year" , 
                values_to="Percent")

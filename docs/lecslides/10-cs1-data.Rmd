@@ -30,13 +30,17 @@ A: Yes! We will be working on this a lot in coming weeks! But, to specifically a
 ---
 ## Course Announcements
 
-- hw02 due tonight (11:59 PM) - submission by pushing to GitHub
+- hw02 due tonight (11:59 PM) 
+  - submission by pushing to GitHub (NO gradescope submission)
 - exam01 scores have been posted
 - exam01 and lab04 answer keys have been posted
+
 --
+
 **Case Study**
 - details for case study report to be posted/discussed Wednesday
 - must be in a group by Friday
+- should be following along with code in lecture/trying it out/understanding it
 
 ---
 

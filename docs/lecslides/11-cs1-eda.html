@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>CS1: Youth Connection (EDA)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-10-27" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <script src="libs/htmlwidgets/htmlwidgets.js"></script>
+    <script src="libs/jquery/jquery.min.js"></script>
+    <link href="libs/datatables-css/datatables-crosstalk.css" rel="stylesheet" />
+    <script src="libs/datatables-binding/datatables.js"></script>
+    <link href="libs/dt-core/css/jquery.dataTables.min.css" rel="stylesheet" />
+    <link href="libs/dt-core/css/jquery.dataTables.extra.css" rel="stylesheet" />
+    <script src="libs/dt-core/js/jquery.dataTables.min.js"></script>
+    <link href="libs/crosstalk/css/crosstalk.css" rel="stylesheet" />
+    <script src="libs/crosstalk/js/crosstalk.min.js"></script>
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# CS1: Youth Connection (EDA)
+### Prof Ellis
+### 2021-10-27
+
+---
+
+
+
+
+
+
+
+---
+
+## Q&amp;A
+
+.small[
+Q: When running the command, install.packages("pdftools"), I am getting an error.  
+A: This should now be fixed! `pdftools`, `magick`, and `tesseract` have now been installed for you on datahub. You can just load them in with `library()` and get started. Apologies!
+]
+
+---
+## Course Announcements
+
+**Case Study Details**
+- This Friday (10/29): lab05 - exploring CS1
+- This Coming Monday (11/1): hw03 - CS1 Rough Draft Due
+- The following Monday (11/8: CS1 Full Report Due)
+
+
+---
+
+## The Data
+
+This is where we left off in the last set of notes...
+
+
+```r
+major_groups_long &lt;- read_csv("data/wrangled_major_groups_data.csv")
+asian_subgroups &lt;- read_csv("data/wrangled_asian_subgroups_data.csv")
+latinx_subgroups &lt;- read_csv("data/wrangled_latinx_subgroups_data.csv")
+```
+
+---
+## The Data 
+.small[
+
+<div id="htmlwidget-1b4ff99564eb6e8884a5" style="width:100%;height:auto;" class="datatables html-widget"></div>
+<script type="application/json" data-for="htmlwidget-1b4ff99564eb6e8884a5">{"x":{"filter":"none","data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60","61","62","63","64","65","66","67","68","69","70","71","72","73","74","75","76","77","78","79","80","81","82","83","84","85","86","87","88","89","90","91","92","93","94","95","96","97","98","99","100","101","102","103","104","105","106","107","108"],["United States","United States","United States","United States","United States","United States","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","Asian","Asian","Asian","Asian","Asian","Asian","Asian Male","Asian Male","Asian Male","Asian Male","Asian Male","Asian Male","Asian Female","Asian Female","Asian Female","Asian Female","Asian Female","Asian Female","White","White","White","White","White","White","White Male","White Male","White Male","White Male","White Male","White Male","White Female","White Female","White Female","White Female","White Female","White Female","Latino","Latino","Latino","Latino","Latino","Latino","Latino Male","Latino Male","Latino Male","Latino Male","Latino Male","Latino Male","Latina Female","Latina Female","Latina Female","Latina Female","Latina Female","Latina Female","Black","Black","Black","Black","Black","Black","Black Male","Black Male","Black Male","Black Male","Black Male","Black Male","Black Female","Black Female","Black Female","Black Female","Black Female","Black Female","Native American","Native American","Native American","Native American","Native American","Native American","Native American Male","Native American Male","Native American Male","Native American Male","Native American Male","Native American Male","Native American Female","Native American Female","Native American Female","Native American Female","Native American Female","Native American Female"],["All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","All_races","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","Asian","White","White","White","White","White","White","White","White","White","White","White","White","White","White","White","White","White","White","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latino","Latina","Latina","Latina","Latina","Latina","Latina","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Black","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American","Native American"],["All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female","All","All","All","All","All","All","Male","Male","Male","Male","Male","Male","Female","Female","Female","Female","Female","Female"],[2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017,2008,2010,2012,2014,2016,2017],[12.6,14.7,14.1,13.2,11.7,11.5,12.3,15.2,14.5,13.3,12.1,11.8,12.9,14.1,13.7,13,11.2,11.1,7.1,8.5,7.8,7.9,6.6,6.6,6.3,8.3,7.4,7.2,6.7,6.5,7.9,8.6,8.1,8.6,6.6,6.7,9.7,11.7,11.2,10.8,9.7,9.4,9.5,12.3,11.5,10.8,10,9.6,10,11.1,10.8,10.7,9.4,9.1,16.7,18.5,17.3,15.2,13.7,13.2,13.6,16.8,16,14,12.6,12.4,20.2,20.3,18.8,16.5,14.8,13.9,20.4,22.5,22.4,20.6,17.2,17.9,23.7,26,25.6,23.5,20.1,20.8,17,19,19.3,17.6,14.2,14.8,24.4,28.8,27,26.3,25.8,23.9,25,30.9,28,26.9,28.1,23.3,23.9,26.7,25.9,25.6,23.4,24.5]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Group<\/th>\n      <th>Race_Ethnicity<\/th>\n      <th>Gender<\/th>\n      <th>Year<\/th>\n      <th>Percent<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"className":"dt-right","targets":[4,5]},{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+]
+
+---
+## EDA: Disonnection over time
+
+.panelset[
+
+.panel[.panel-name[Code]
+
+```r
+major_groups_long |&gt;
+  filter(Gender == "All", Race_Ethnicity == "All_races") |&gt;
+  ggplot(aes(x = Year, y = Percent)) +
+    geom_line(size = 0.5) +
+    geom_point(size = 3) 
+```
+]
+
+.panel[.panel-name[Plot]
+&lt;img src="11-cs1-eda_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Notes]
+Notes to self:
+- increases initially in 2010; decreases since then
+- x-axis handled as an integer 
+- no informative title
+- stylistic improvements can be made
+]
+]
+
+---
+
+## EDA: Disconnection by Gender
+
+.panelset[
+
+.panel[.panel-name[Code]
+
+```r
+major_groups_long |&gt;
+  filter(Gender != "All", Race_Ethnicity == "All_races") |&gt;
+  ggplot(aes(x = Year, y = Percent, color = Gender)) +
+    geom_line(size = 0.5) +
+    geom_point(size = 3) 
+```
+]
+
+.panel[.panel-name[Plot]
+&lt;img src="11-cs1-eda_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Notes]
+Notes to self:
+- similar overall patterns; most years Male is higher than Female
+- colors likely not final colors we would want to use
+- title/style issues remain
+]
+]
+
+---
+
+## EDA: Disconnection by Race
+
+
+
+.panelset[
+
+.panel[.panel-name[Code]
+
+```r
+major_groups_long |&gt;
+  filter(Gender == "All", Group != "United States") |&gt;
+  ggplot(aes(x = Year, y = Percent, color = Race_Ethnicity)) +
+    geom_line(size = 0.5) +
+    geom_point(size = 3) 
+```
+]
+
+.panel[.panel-name[Plot]
+&lt;img src="11-cs1-eda_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Notes]
+Notes to self:
+- definite differences by race/ethnicity
+- colors likely not final colors we would want to use
+- title/style issues remain
+]
+]
+
+
+---
+
+## Other Data
+
+We haven't even begun to explore the subgroups data (`latinx_subgroups`, `asian_subgroups`) nor the intersection of gender and ethnicity yet...might be something worth exploring during lab!
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

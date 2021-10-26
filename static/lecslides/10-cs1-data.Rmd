@@ -159,21 +159,30 @@ Tables from [Measure of America 2019](https://ssrc-static.s3.amazonaws.com/moa/M
 
 # Packages 
 
-Case Study Data will come from `opencasestudies/OCSdata`, but additional packages will be needed for working with these data: 
+Case Study Data will come from `opencasestudies/OCSdata`; you'll need to install this prior to working with the data: 
 
 ```{r, eval=FALSE}
 # install these once
 devtools::install_github("opencasestudies/OCSdata")
-install.packages("pdftools")
-install.packages("magick")
-install.packages("tesseract")
 ```
 
 --
 
-.question[`r emo::ji("backhand index pointing right")` **Your Turn**: Install these packages in RStudio]
+.question[`r emo::ji("backhand index pointing right")` **Your Turn**: Install this package in RStudio]
 
 .whisper[Put a green sticky on the front of your computer when you're done. Put a pink if you want help/have a question.]
+
+---
+
+## Packages used:
+
+```{r packages-load}
+library(OCSdata)
+library(tidyverse)
+library(pdftools)
+library(tesseract)
+library(magick)
+```
 
 ---
 
@@ -193,19 +202,6 @@ load_raw_data("ocs-bp-youth-disconnection", outpath = '.')
 
 ---
 
-## Packages used:
-
-```{r packages-load}
-library(OCSdata)
-library(tidyverse)
-library(here)
-library(pdftools)
-library(tesseract)
-library(magick)
-library(knitr)
-```
-
----
 
 ## Getting Data from PDF
 
@@ -701,7 +697,7 @@ clean_table_2018 <- function(table){
     separate(col = value, 
              into = c("Group", "Percent"), 
              sep =  "(?<=[[:alpha:]])\\s:\\s|\\s(?=[0-9])") |> 
-    mutate(Group= str_remove(string = Group, 
+    mutate(Group = str_remove(string = Group, 
                             pattern = ":")) |>
     drop_na() |>
     mutate(Group = str_to_title(string = Group)) |>
@@ -710,12 +706,12 @@ clean_table_2018 <- function(table){
     mutate(Percent = as.numeric(Percent)) |>
     mutate(Percent = Percent * 0.1) |>
     mutate(Race_Ethnicity = str_replace(string = Group,
-                                       pattern = "Men|Women", 
-                                   replacement = "missing")) |>
+                                        pattern = "Men|Women",
+                                        replacement = "missing")) |>
     mutate(Race_Ethnicity = na_if(Race_Ethnicity, "missing")) |>
     fill(Race_Ethnicity, .direction = "down") |>
     mutate(Gender = str_extract(string = Group, 
-                               pattern = "Men|Women")) |>
+                                pattern = "Men|Women")) |>
     mutate(Gender = replace_na(Gender, replace = "All"))
 }
 ```
@@ -917,6 +913,6 @@ save(major_groups_long, asian_subgroups, latinx_subgroups, file = "data/wrangled
 
 readr::write_csv(major_groups_long, file = "data/wrangled_major_groups_data.csv")
 readr::write_csv(asian_subgroups, file = "data/wrangled_asian_subgroups_data.csv")
-readr::write_csv(latinx_subgroups, file = "data/ wrangled_latinx_subgroups_data.csv")
+readr::write_csv(latinx_subgroups, file = "data/wrangled_latinx_subgroups_data.csv")
 ```
 

@@ -1,6 +1,6 @@
 ---
-title: "HW 01 - Ugly charts"
-date: "Due: Jan 31 in class"
+title: "HW 03 - CS1 Rough Draft"
+date: "Due: Nov 1 (11:59 PM)"
 output: 
   html_document: 
     css: hw.css
@@ -10,23 +10,51 @@ output:
     fig_caption: true
 ---
 
-## Assignment
+This assignment is meant to get you on the right track with your first case study. Unlike prior assignments, this will be **completed as a group**. Each group will only submit a single copy in your group's case study 1 GitHub repository.
 
-<div style= "float:right;position: relative; margin-left: 20px">
-```{r setup, echo=FALSE, fig.align="right"}
-knitr::include_graphics("img/hw-01-ugly-chart.png")
-```
-</div>
+The idea here is that you will complete the first few sections (data import, wrangling, and EDA) of your case study report. However, it doesn't yet have to be *polished*. So, explanations and interpretations may be missing. Visualizations may not yet be polished the way they will be in your final report...but you're off to a good start. 
 
-Use any software you like to improve the data visualization assigned to you in class.
+We'll be checking to see that you:
+1. have code that extracts the data from the images in the case study.
+2. wrangle that data into tidy dataframes/tibbles.
+3. have generated at least two visualizations that start to explore your data.
 
-Assignments and final product collection via [this Google doc](https://docs.google.com/spreadsheets/d/19lrD-FuXzu6Jp4kvUtH2G_DrHzQ-mdV3SWzF6U-kn5A/edit#gid=0).
+You do NOT need perfect explanations nor perfectly polished visualizations...yet. For your final report, you will. So, if you do that now, that's less work for you to have to do later!
 
-## Want to see more ugly charts?
+## Getting started
 
-- [Flowing Data - Ugly Charts](https://flowingdata.com/category/visualization/ugly-visualization/)
-- [Reddit - Data is ugly](https://www.reddit.com/r/dataisugly/)
+Here are the steps for getting started:
 
-## Grading
+- A group repo will be created for you. Details coming soon.
+- Clone this repo into RStudio on datahub
+- Make any changes needed as outlined by the tasks you need to complete for the assignment
+- Periodically commit changes (for example, once per each new part)
+- Push all your changes back to your GitHub repo
+- This assignment will be graded from GitHub. **You should NOT submit to Gradescope.**
 
-Check / no check
+Your final GitHub push prior to the deadline will be used for grading.
+
+### Imports
+
+Use the notes from class to determine what packages you need to import to accomplish the tasks below. You are allowed to import whichever packages you like for this case study report.
+
+### The Data 
+
+The data you'll be using are the data we've been using in class when discussing the first case study: Disparities in Youth Connection. 
+
+## Part I: Data Import
+
+In this section, you'll need to import the case study data into your GitHub repository and extract the relevant text from the images.
+
+## Part II: Data Wrangling
+
+In this section, you'll need to wrangle the data into tidy tibbles/dataframes. 
+
+## Part III: EDA
+
+In this section, you'll need to generate at least two visualizations that begin to explore the dataset.
+
+
+
+
+

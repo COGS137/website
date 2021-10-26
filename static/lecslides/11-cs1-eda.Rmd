@@ -1,0 +1,159 @@
+---
+title: "CS1: Youth Connection (EDA)"
+author: "Prof Ellis"
+date: "2021-10-27"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    anchor_sections: FALSE
+    nature:
+      highlightLines: true
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+# For nonsese...
+library(emo)
+library(DT)
+```
+
+```{r child = "setup.Rmd"}
+```
+
+## Q&A
+
+.small[
+Q: When running the command, install.packages("pdftools"), I am getting an error.  
+A: This should now be fixed! `pdftools`, `magick`, and `tesseract` have now been installed for you on datahub. You can just load them in with `library()` and get started. Apologies!
+]
+
+---
+## Course Announcements
+
+**Case Study Details**
+- This Friday (10/29): lab05 - exploring CS1
+- This Coming Monday (11/1): hw03 - CS1 Rough Draft Due
+- The following Monday (11/8: CS1 Full Report Due)
+
+
+---
+
+## The Data
+
+This is where we left off in the last set of notes...
+
+```{r, message = FALSE}
+major_groups_long <- read_csv("data/wrangled_major_groups_data.csv")
+asian_subgroups <- read_csv("data/wrangled_asian_subgroups_data.csv")
+latinx_subgroups <- read_csv("data/wrangled_latinx_subgroups_data.csv")
+```
+
+---
+## The Data 
+.small[
+
+```{r, echo=FALSE}
+DT::datatable(major_groups_long)
+```
+]
+
+---
+## EDA: Disonnection over time
+
+.panelset[
+
+.panel[.panel-name[Code]
+```{r eda-overall, fig.show = "hide"}
+major_groups_long |>
+  filter(Gender == "All", Race_Ethnicity == "All_races") |>
+  ggplot(aes(x = Year, y = Percent)) +
+    geom_line(size = 0.5) +
+    geom_point(size = 3) 
+```
+]
+
+.panel[.panel-name[Plot]
+```{r ref.label="eda-overall", echo = FALSE, out.width="100%"}
+```
+]
+
+.panel[.panel-name[Notes]
+Notes to self:
+- increases initially in 2010; decreases since then
+- x-axis handled as an integer 
+- no informative title
+- stylistic improvements can be made
+]
+]
+
+---
+
+## EDA: Disconnection by Gender
+
+.panelset[
+
+.panel[.panel-name[Code]
+```{r eda-gender, fig.show = "hide"}
+major_groups_long |>
+  filter(Gender != "All", Race_Ethnicity == "All_races") |>
+  ggplot(aes(x = Year, y = Percent, color = Gender)) +
+    geom_line(size = 0.5) +
+    geom_point(size = 3) 
+```
+]
+
+.panel[.panel-name[Plot]
+```{r ref.label="eda-gender", echo = FALSE, out.width="100%"}
+```
+]
+
+.panel[.panel-name[Notes]
+Notes to self:
+- similar overall patterns; most years Male is higher than Female
+- colors likely not final colors we would want to use
+- title/style issues remain
+]
+]
+
+---
+
+## EDA: Disconnection by Race
+
+
+
+.panelset[
+
+.panel[.panel-name[Code]
+```{r eda-race, fig.show = "hide"}
+major_groups_long |>
+  filter(Gender == "All", Group != "United States") |>
+  ggplot(aes(x = Year, y = Percent, color = Race_Ethnicity)) +
+    geom_line(size = 0.5) +
+    geom_point(size = 3) 
+```
+]
+
+.panel[.panel-name[Plot]
+```{r ref.label="eda-race", echo = FALSE, out.width="100%"}
+```
+]
+
+.panel[.panel-name[Notes]
+Notes to self:
+- definite differences by race/ethnicity
+- colors likely not final colors we would want to use
+- title/style issues remain
+]
+]
+
+
+---
+
+## Other Data
+
+We haven't even begun to explore the subgroups data (`latinx_subgroups`, `asian_subgroups`) nor the intersection of gender and ethnicity yet...might be something worth exploring during lab!

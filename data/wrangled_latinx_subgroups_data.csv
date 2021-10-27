@@ -6,23 +6,23 @@ Latino,Male,2018,NA
 Latina,Female,2017,13.9
 Latina,Female,2018,NA
 South American,All,2017,8.4
-South American,All,2018,8
+South American,All,2018,NA
 South American,Male,2017,9.1
-South American,Male,2018,7.5
+South American,Male,2018,NA
 South American,Female,2017,7.7
 South American,Female,2018,NA
 Central American,All,2017,12
-Central American,All,2018,13.700000000000001
+Central American,All,2018,NA
 Central American,Male,2017,9.3
-Central American,Male,2018,11.8
+Central American,Male,2018,NA
 Central American,Female,2017,15
-Central American,Female,2018,15.9
+Central American,Female,2018,NA
 Mexican,All,2017,13.3
-Mexican,All,2018,12.9
+Mexican,All,2018,NA
 Mexican,Male,2017,12.200000000000001
-Mexican,Male,2018,12
+Mexican,Male,2018,NA
 Mexican,Female,2017,14.4
-Mexican,Female,2018,13.8
+Mexican,Female,2018,NA
 Other Latino,All,2017,13.600000000000001
 Other Latino,All,2018,NA
 Other Latino,Male,2017,15.3
@@ -30,11 +30,15 @@ Other Latino,Male,2018,NA
 Other Latina,Female,2017,11.5
 Other Latina,Female,2018,NA
 "Puerto Rican, Dominican, Cuban",All,2017,15.100000000000001
-"Puerto Rican, Dominican, Cuban",All,2018,13.700000000000001
-"Puerto Rican, Dominican, Cuban",Male,2017,15.700000000000001
-"Puerto Rican, Dominican, Cuban",Male,2018,14.9
-"Puerto Rican, Dominican, Cuban",Female,2017,14.4
-"Puerto Rican, Dominican, Cuban",Female,2018,12.4
+"Puerto Rican, Dominican, Cuban",All,2018,NA
+"Pr, Dr, Cuban",Male,2017,15.700000000000001
+"Pr, Dr, Cuban",Male,2018,NA
+"Pr, Dr, Cuban",Female,2017,14.4
+"Pr, Dr, Cuban",Female,2018,NA
+"C(Na, Na,",All,2017,NA
+"C(Na, Na,",All,2018,NA
+"C(2018,",All,2017,NA
+"C(2018,",All,2018,NA
 Latinx,All,2017,NA
 Latinx,All,2018,12.8
 Latinx,Male,2017,NA

@@ -828,13 +828,19 @@ latinx_sub_2018 <- clean_table_2018(latinx_sub_2018)
 Fix Naming Issues
 
 ```{r}
-latinx_sub_2018 <- latinx_sub_2018 |>
+fix_latinx_naming <- function(table){ 
+  table |>
   mutate(Group = str_replace(string = Group,
                              pattern = "Pr, Dr, Cuban",
                              replacement = "Puerto Rican, Dominican, Cuban"), 
           Race_Ethnicity = str_replace(string = Race_Ethnicity,
                                        pattern = "Pr, Dr, Cuban",
                                        replacement = "Puerto Rican, Dominican, Cuban"))
+
+}
+
+latinx_sub_2017 <- fix_latinx_naming(latinx_sub_2017)
+latinx_sub_2018 <- fix_latinx_naming(latinx_sub_2018)
 ```
 ---
 

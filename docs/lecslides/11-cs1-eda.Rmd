@@ -66,6 +66,7 @@ DT::datatable(major_groups_long)
 ]
 
 ---
+
 ## EDA: Disonnection over time
 
 .panelset[

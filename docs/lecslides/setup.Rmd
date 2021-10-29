@@ -54,4 +54,3 @@ knitr::knit_hooks$set(output = function(x, options) {
 })
 ```
 
----

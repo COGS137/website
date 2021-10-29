@@ -76,6 +76,7 @@ lessons:
     title: "CS1: Youth Conection"
     lab: "05-lab-cs01.html"
     labslides: "05-lab-deck.html"
+    lecslides: "12-cs1-analysis.html"
   - week: "06"
     date: "Mon Nov 1"
     title: "Multiple Linear Regression"

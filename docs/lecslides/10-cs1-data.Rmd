@@ -133,7 +133,7 @@ class: center, middle
 
 --
 
-.ocean[American Community Survey (ASC)] - largest survey conducted by the US Census Bureau; started in 2005; collects data for 3.5 million households annually. Data collected: ancestry, citizenship, income, employment, disability, etc.
+.ocean[American Community Survey (ACS)] - largest survey conducted by the US Census Bureau; started in 2005; collects data for 3.5 million households annually. Data collected: ancestry, citizenship, income, employment, disability, etc.
 
 .footnote[<sup>1</sup>Mendelson, T., Mmari, K., Blum, R. W., Catalano, R. F. & Brindis, C. D. Opportunity Youth: Insights and Opportunities for a Public Health Approach to Reengage Disconnected Teenagers and Young Adults. Public Health Rep 133, 54S-64S (2018). https://www.ncbi.nlm.nih.gov/pmc/articles/PMC6243446/.]
 

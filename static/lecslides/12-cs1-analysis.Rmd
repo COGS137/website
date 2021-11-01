@@ -41,6 +41,7 @@ A: Great question! And not quite. There is the ability to transpose in R/dplyr; 
 **Case Study Details**:
 - lab05 due tonight
 - hw03 due Monday (11/1)
+- midterm regrades have been handled
 - [**Mid-course Survey**](https://docs.google.com/forms/d/e/1FAIpQLScyO_RW1yfvVtDX160kbzh2dwDaD_4EI4HaQWaYN0uueWve2A/viewform?usp=sf_link) (*optional*; due Mon 11/1 for extra credit)
 - Podcast/lecture videos now available in "Media Gallery" on canvas (subtitles possible there)
 

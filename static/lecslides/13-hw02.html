@@ -1,0 +1,453 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>HW02: Revisited</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-11-01" />
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# HW02: Revisited
+### Prof Ellis
+### 2021-11-01
+
+---
+
+
+
+
+
+
+
+
+## Course Announcements
+
+- hw03 due tonight
+- lab04 grades posted
+- [**Mid-course Survey**](https://docs.google.com/forms/d/e/1FAIpQLScyO_RW1yfvVtDX160kbzh2dwDaD_4EI4HaQWaYN0uueWve2A/viewform?usp=sf_link) (*optional*; due tonight for extra credit)
+
+--
+
+Group repos were created:
+- If you were not in a group, you should have received an email
+- I'll work to finalize groups today
+- hw03 and cs01 submitted in the same document (we'll just grade them at different points)
+
+---
+
+## HW02 : Q1
+
+Generate a visualization that will allow readers to determine whether male or female penguins are larger (by mass).
+
+
+---
+
+### Boxplot
+
+.panelset[
+
+.panel[.panel-name[Plot]
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-2-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+```r
+penguins |&gt;
+  drop_na() |&gt; 
+  ggplot(aes(x = sex, y = body_mass_g)) +
+  geom_boxplot() +
+  labs(title = "Penguin body mass by sex", 
+       y = "body mass (g)") +
+  theme(plot.title.position = "plot")
+```
+]
+
+
+
+]
+
+---
+
+### Histogram
+
+.panelset[
+
+.panel[.panel-name[Plot]
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+
+.panel[.panel-name[Code]
+
+```r
+penguins |&gt;
+  filter(!is.na(sex)) |&gt;
+  ggplot(mapping = aes(x = body_mass_g, fill = sex)) +
+  geom_histogram() +
+  labs(
+    title = 'Body Mass Distribution by Sex',
+    x = 'Body Mass (g)',
+    y = 'Count',
+    color = 'Sex'
+  )
+```
+]
+
+
+]
+
+---
+
+### Faceted Histograms
+
+
+.panelset[
+
+.panel[.panel-name[Plot]
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-4-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+```r
+penguins |&gt;
+  filter(!is.na(body_mass_g)) |&gt;
+  ggplot(., mapping=aes(y=body_mass_g)) + 
+  geom_histogram(binwidth=100) +
+  facet_grid(. ~ sex) + 
+  labs(
+    title='Frequency of Penguins based on their Body mass and Female/Male Penguins',
+    x='Frequency / Count',
+    y='Body Mass (of penguins, in g (grams))')
+```
+]
+
+]
+
+
+    
+    
+---
+
+## HW02 : Q2
+
+Generate a barplot that visualizes how many penguins there are from each species on each island. Each island should be a different panel (in a 1 row x 3 columns visualization), and each chart should visualize the species count.
+
+
+---
+
+### Barplot 
+
+.panelset[
+
+.panel[.panel-name[Plot]
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-5-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+```r
+ggplot(penguins, aes(x = species)) +
+  geom_bar() +
+  facet_wrap(~ island) +
+  labs(title = "Count of species per island") +
+  theme(plot.title.position = "plot")
+```
+]
+
+
+
+]
+
+---
+
+### Barplot with color
+
+.panelset[
+
+.panel[.panel-name[Plot]
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+```r
+  ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +
+  geom_bar() +
+  facet_wrap(~island, nrow = 1) +
+  guides(fill = "none") + 
+  labs(
+    title = "Count of Penguin Species Across the Palmer Archipelago Islands",
+    x = "Species",
+    y = "Number of Penguins"
+  )
+```
+]
+
+
+
+]
+
+---
+
+## HW02 : Q3
+
+Generate a scatterplot that will allow the viewer to determine whether flipper length has differed over time. Be sure to color the points on this plot by species.
+
+
+---
+
+### Scatterplot (no jitter)
+
+.panelset[
+
+.panel[.panel-name[Plot]
+
+```
+## Warning: Removed 2 rows containing missing values (geom_point).
+```
+
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-7-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+```r
+ggplot(penguins, aes(x = year, 
+           y = flipper_length_mm,
+           color = species)) +
+geom_point() + 
+scale_color_viridis_d() +
+scale_x_continuous(n.breaks = 3) +
+labs(
+  title = "Flipper Lengths of Penguin Species Over Time",
+  color = "Species",
+  x = "Year",
+  y = "Flipper Length (mm)"
+)
+```
+
+```
+## Warning: Removed 2 rows containing missing values (geom_point).
+```
+]
+
+
+
+]
+
+---
+
+### Scatterplot (w/ jitter)
+
+.panelset[
+
+.panel[.panel-name[Plot]
+&lt;img src="13-hw02_files/figure-html/unnamed-chunk-8-1.png" width="100%" style="display: block; margin: auto;" /&gt;
+]
+.panel[.panel-name[Code]
+
+```r
+ggplot(penguins,
+       mapping = aes(x = year,
+                     y = flipper_length_mm,
+                     color = species)) +
+  scale_color_viridis_d() +
+  geom_jitter(na.rm = TRUE) +
+  labs(title = "Flipper length of different penguin species by year",
+       y = "Flipper length (mm)",
+       x = "Year") +
+  theme(plot.title.position = "plot")
+```
+]
+
+
+
+]
+
+---
+
+## HW02 : Part II 
+
+Imitation is the highest form of flattery
+
+
+---
+
+###  Biden Approval Rating
+
+.panelset[
+
+.panel[.panel-name[Pre]
+![happiness-pre](img/13/biden_pre.png)
+]
+.panel[.panel-name[Post]
+![happiness-post](img/13/biden_post.png)
+]
+
+]
+
+---
+
+
+## HW03 : Part III 
+
+Take a Sad Plot &amp; Make It Better
+
+---
+
+### Happiness 
+
+.panelset[
+
+.panel[.panel-name[Pre]
+![happiness-pre](img/13/happiness_pre.png)
+]
+.panel[.panel-name[Post]
+![happiness-post](img/13/happiness_post.png)
+]
+
+]
+---
+
+.panelset[
+
+.panel[.panel-name[Pre]
+![gender-gnh-pre](img/13/gnh_gender_pre.png)
+]
+.panel[.panel-name[Post_v1]
+![gender-gnh-post-1](img/13/gnh_gender_post_1.png)
+]
+.panel[.panel-name[Post_v2]
+![gender-gnh-post-2](img/13/gnh_gender_post_2.png)
+]
+
+]
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightLines": true,
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

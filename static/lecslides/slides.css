@@ -84,7 +84,7 @@ a, a > code {
 
   /*Left 30% - Right 70% */
 .pull-left-narrow {
-  width: 30%;
+  width: 35%;
   float: left;
 }
 .pull-right-wide {
@@ -112,6 +112,8 @@ li{
 .large { font-size: 130% }
 .midi { font-size: 90% }
 .small { font-size: 70% }
+.very-small { font-size: 50% }
+
 img, video, iframe {
   max-width: 100%;
 }

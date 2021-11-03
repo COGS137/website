@@ -51,9 +51,9 @@ A: This should now be fixed! `pdftools`, `magick`, and `tesseract` have now been
 This is where we left off in the last set of notes...
 
 ```{r, message = FALSE}
-major_groups_long <- read_csv("data/wrangled_major_groups_data.csv")
-asian_subgroups <- read_csv("data/wrangled_asian_subgroups_data.csv")
-latinx_subgroups <- read_csv("data/wrangled_latinx_subgroups_data.csv")
+major_groups_long <- readr::read_csv("data/wrangled_major_groups_data.csv")
+asian_subgroups <- readr::read_csv("data/wrangled_asian_subgroups_data.csv")
+latinx_subgroups <- readr::read_csv("data/wrangled_latinx_subgroups_data.csv")
 ```
 
 ---

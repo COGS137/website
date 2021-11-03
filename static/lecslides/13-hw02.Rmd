@@ -266,8 +266,6 @@ Imitation is the highest form of flattery
 
 ---
 
-###  Biden Approval Rating
-
 .panelset[
 
 .panel[.panel-name[Pre]
@@ -277,6 +275,58 @@ Imitation is the highest form of flattery
 ![happiness-post](img/13/biden_post.png)
 ]
 
+
+.panel[.panel-name[Code-data]
+.small[
+Code by: Cheng Chang
+
+```{r, part2-code-data, fig.show = "hide"}
+# get data
+poll <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls_adjusted.csv")
+poll_mean <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_toplines.csv")
+
+poll <- poll |>
+  filter(subject == "Biden", party != "all") |>
+  mutate(Party=case_when(party == "D" ~ "Democrats",
+                         party == "I" ~ "Independents",
+                         party == "R" ~ "Republicans")) |>
+  mutate(enddate=as.Date(enddate, format="%m/%d/%Y"))
+
+poll_mean <- poll_mean |>
+  filter(subject == "Biden", party != "all") |>
+  mutate(Party=case_when(party == "D" ~ "Democrats",
+                         party == "I" ~ "Independents",
+                         party == "R" ~ "Republicans")) |>
+  mutate(modeldate=as.Date(modeldate, format="%m/%d/%Y"))
+```
+]
+]
+.panel[.panel-name[Code-plot]
+.small[
+Code by: Cheng Chang
+
+```{r, part2-codeplot, fig.show = "hide"}
+ggplot() +
+  geom_point(data=poll,
+             aes(x=enddate, y=approve_adjusted, color=Party),
+             size=1,
+             alpha = 0.5) +
+  geom_path(data=poll_mean, aes(x=modeldate, y=approve_estimate, color=Party)) +
+  labs(title="Approval of Biden’s response varies widely by party",
+       subtitle=
+         "A calculation of the share of Democrats, Republicans and independents who approve of the president’s\nhandling of the coronavirus outbreak",
+       x=NULL,
+       y=NULL) +
+  scale_color_manual(values = c("Democrats" = "#2acaea",
+                                "Independents" = "#ce7e00",
+                                "Republicans" = "#f44336")) +
+  theme(plot.title.position = "plot",
+        panel.grid.major = element_line(color="grey"),
+        panel.border = element_rect(fill=NA, color="grey"),
+        panel.background = element_rect(fill="white"))
+```
+]
+]
 ]
 
 ---
@@ -313,6 +363,37 @@ Take a Sad Plot & Make It Better
 .panel[.panel-name[Post_v2]
 ![gender-gnh-post-2](img/13/gnh_gender_post_2.png)
 ]
+.panel[.panel-name[Code_v2]
+
+Code by: Brandon Vazquez-tellez
+.small[
+```{r, part3-code, fig.show = "hide"}
+# create tibble
+hap_rep <- tibble(
+  hap_rating = c(
+    rep("Female", 70), rep("Other", 73), rep("Male", 78)
+  )
+)
+
+# generate plot
+ggplot(hap_rep, aes(y = hap_rating, fill = hap_rating)) +
+  geom_bar() +
+  labs(x = "Happiness Percentage",
+       y = "Happiness per Gender",
+       title = "World Happiness Across Male, Female, and Other",
+       subtitle = "Based only on these 'genders' will implement other self identificatios",
+       caption = "Source: flowingdata.com") +
+  guides(fill = "none") +
+  scale_fill_manual(values = c("Other" = "gray",
+                               "Male" = "#67a9cf",
+                               "Female" ="#ef8a62"))
+
+```
+]
+
+]
+
+
 
 ]
 ---

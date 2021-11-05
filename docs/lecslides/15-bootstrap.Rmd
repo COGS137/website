@@ -1,0 +1,562 @@
+---
+title: "Estimation via bootstrapping"
+author: "Prof Ellis"
+date: "2021-11-03"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(knitr)
+library(openintro)
+library(scales)
+set.seed(1234)
+
+elmhurst_boot <- bootstraps(elmhurst, times = 1000)
+```
+
+## Q&A
+.small[
+Q: Still confused about what interaction effects means...  
+A: So, a more intuitive (and common) example than what we used in class may help explain this a bit better. Imagine you're outcome variable is weight lost. Your predictors are gender (in this case, male and female) and diet (diet A, diet B). The *main effects* model would measure the effects of diet on weight lost and gender on weight lost. Here, the slopes would be the same for each gender...but the y-intercept could shift between groups, allowing the "baseline" of weight lost to differ between genders but the effect size of each diet would be the same between genders (i.e. both genders would lose 2 lbs more on diet B than diet A). *But* a model that allowed for *interaction* effects would allow for an interaction between the predictors. In this case, an *interaction between diet an gender*. This would mean, for example, that men using diet A could lose more weight than women using diet A (allowing for a different slope for the line...in addition to a different y-intercept). 
+]
+---
+
+## Course Announcements
+
+- hw03 and lab05 grades posted; (grades on Canvas; comments in issue on GitHub - look even if you got full credit on hw03)
+- no lab to turn in this week (everyone will get full credit)
+- cs01 due Monday (11:59 PM)
+
+---
+
+class: middle
+
+# Rent in Edinburgh
+
+---
+
+## Rent in Edinburgh
+
+.question[
+Take a guess! How much does a typical 3 BR flat in Edinburgh rent for?
+]
+
+---
+
+## Sample
+
+Fifteen 3 BR flats in Edinburgh were randomly selected on rightmove.co.uk.
+
+```{r message=FALSE}
+library(tidyverse)
+edi_3br <- read_csv2("data/edi-3br.csv") # ; separated
+```
+
+.small[
+```{r, echo=FALSE}
+edi_3br
+```
+]
+
+.small[
+File also available at URL: 
+- "https://raw.githubusercontent.com/COGS137/datasets/main/edi-3br.csv"
+]
+
+---
+
+## Observed sample
+
+```{r message=FALSE, echo=FALSE, out.width="80%"}
+ggplot(data = edi_3br, mapping = aes(x = rent)) +
+  geom_histogram(binwidth = 200) +
+  labs(title = "Rent of 3 BR flats in Edinburgh")
+```
+
+---
+
+## Observed sample
+
+Sample mean ≈ £`r edi_3br |> summarise(med_rent = mean(rent)) |> pull() |> round()` `r emo::ji("money_mouth_face")`
+
+<br>
+
+```{r echo=FALSE, out.width="90%"}
+knitr::include_graphics("img/15/rent-bootsamp.png")
+```
+
+---
+
+## Bootstrap population
+
+Generated assuming there are more flats like the ones in the observed sample... Population mean = `r emo::ji("question")`
+
+```{r echo=FALSE, out.width="65%"}
+knitr::include_graphics("img/15/rent-bootpop.png")
+```
+
+---
+
+## Bootstrapping scheme
+
+1. Take a bootstrap sample - a random sample taken **with replacement** from the 
+original sample, of the same size as the original sample
+2. Calculate the bootstrap statistic - a statistic such as mean, median, 
+proportion, slope, etc. computed on the bootstrap samples
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution - 
+a distribution of bootstrap statistics
+4. Calculate the bounds of the XX% confidence interval as the middle XX% 
+of the bootstrap distribution
+
+---
+
+class: middle
+
+# Bootstrapping with tidymodels
+
+---
+
+## Generate bootstrap means
+
+```{r eval=FALSE}
+edi_3br |>
+  # specify the variable of interest
+  specify(response = rent)
+```
+
+---
+
+## Generate bootstrap means
+
+```{r eval=FALSE}
+edi_3br |>
+  # specify the variable of interest
+  specify(response = rent)
+  # generate 15000 bootstrap samples
+  generate(reps = 15000, type = "bootstrap")
+```
+
+---
+
+## Generate bootstrap means
+
+```{r eval=FALSE}
+edi_3br |>
+  # specify the variable of interest
+  specify(response = rent)
+  # generate 15000 bootstrap samples
+  generate(reps = 15000, type = "bootstrap")
+  # calculate the mean of each bootstrap sample
+  calculate(stat = "mean")
+```
+
+---
+
+## Generate bootstrap means
+
+```{r include=FALSE}
+set.seed(834782)
+```
+
+
+```{r}
+# save resulting bootstrap distribution
+boot_df <- edi_3br |>
+  # specify the variable of interest
+  specify(response = rent) |> 
+  # generate 15000 bootstrap samples
+  generate(reps = 15000, type = "bootstrap") |> 
+  # calculate the mean of each bootstrap sample
+  calculate(stat = "mean")
+```
+
+---
+
+## The bootstrap sample
+
+.question[
+How many observations are there in `boot_df`? What does each observation represent?
+]
+
+```{r}
+boot_df
+```
+
+---
+
+## Visualize the bootstrap distribution
+
+```{r}
+ggplot(data = boot_df, mapping = aes(x = stat)) +
+  geom_histogram(binwidth = 100) +
+  labs(title = "Bootstrap distribution of means")
+```
+
+---
+
+## Calculate the confidence interval
+
+A 95% confidence interval is bounded by the middle 95% of the bootstrap distribution.
+
+```{r}
+boot_df |>
+  summarize(lower = quantile(stat, 0.025),
+            upper = quantile(stat, 0.975))
+```
+
+---
+
+## Visualize the confidence interval
+
+```{r include=FALSE}
+# for using these values later
+lower_bound <- boot_df |> summarize(lower_bound = quantile(stat, 0.025)) |> pull() |> round()
+upper_bound <- boot_df |> summarize(upper_bound = quantile(stat, 0.975)) |> pull() |> round()
+```
+
+```{r echo=FALSE, out.width="70%"}
+ggplot(data = boot_df, mapping = aes(x = stat)) +
+  geom_histogram(binwidth = 100) +
+  geom_vline(xintercept = c(lower_bound, upper_bound), color = "#A7D5E8", size = 2) +
+  labs(title = "Bootstrap distribution of means",
+       subtitle = "and 95% confidence interval")
+```
+
+---
+
+## Interpret the confidence interval
+
+.question[
+The 95% confidence interval for the mean rent of three bedroom flats in Edinburgh was calculated as (`r lower_bound`, `r upper_bound`). Which of the following is the correct interpretation of this interval?
+
+**(a)** 95% of the time the mean rent of three bedroom flats in this sample is between £`r lower_bound` and £`r upper_bound`.
+
+**(b)** 95% of all three bedroom flats in Edinburgh have rents between £`r lower_bound` and £`r upper_bound`.
+
+**(c)** We are 95% confident that the mean rent of all three bedroom flats is between £`r lower_bound` and £`r upper_bound`.
+
+**(d)** We are 95% confident that the mean rent of three bedroom flats in this sample is between £`r lower_bound` and £`r upper_bound`.
+]
+
+---
+
+class: middle
+
+# Accuracy vs. precision
+
+---
+
+## Confidence level
+
+**We are 95% confident that ...**
+
+- Suppose we took many samples from the original population and built a 95% confidence interval based on each sample.
+- Then about 95% of those intervals would contain the true population parameter.
+
+---
+
+## Commonly used confidence levels
+
+.question[
+Which line (orange dash/dot, blue dash, green dot) represents which confidence level? (90%, 95%, 99%)
+]
+
+```{r echo=FALSE}
+l90 <- boot_df |> summarize(lower_bound = quantile(stat, 0.05)) |> round(2) |> pull()
+u90 <- boot_df |> summarize(lower_bound = quantile(stat, 0.95)) |> round(2) |> pull()
+
+l99 <- boot_df |> summarize(lower_bound = quantile(stat, 0.005)) |> round(2) |> pull()
+u99 <- boot_df |> summarize(lower_bound = quantile(stat, 0.995)) |> round(2) |> pull()
+
+ggplot(data = boot_df, mapping = aes(x = stat)) +
+  geom_histogram(binwidth = 100) +
+  geom_vline(xintercept = c(lower_bound, upper_bound), color = "#A7D5E8", lty = 2, size = 2) +
+  geom_vline(xintercept = c(l90, u90), color = "chartreuse4", lty = 3, size = 2) +
+  geom_vline(xintercept = c(l99, u99), color = "orange", lty = 6, size = 2) +
+  labs(title = "Bootstrap distribution of means",
+       subtitle = "and various confidence intervals")
+```
+
+---
+
+## Precision vs. accuracy
+
+.question[
+If we want to be very certain that we capture the population parameter, should we use a wider or a narrower interval? What drawbacks are associated with using a wider interval?
+]
+
+--
+
+```{r echo=FALSE, out.width="60%"}
+knitr::include_graphics("img/15/garfield.png")
+```
+
+--
+
+.question[
+How can we get best of both worlds -- high precision and high accuracy?
+]
+
+---
+
+## Changing confidence level
+
+.question[
+How would you modify the following code to calculate a 90% confidence interval? 
+How would you modify it for a 99% confidence interval?
+]
+
+```{r eval=FALSE}
+edi_3br |>
+  specify(response = rent) |> 
+  generate(reps = 15000, type = "bootstrap") |> 
+  calculate(stat = "mean") |>
+  summarize(lower = quantile(stat, 0.025),
+            upper = quantile(stat, 0.975))
+```
+
+---
+
+## Recap
+
+- Sample statistic $\ne$ population parameter, but if the sample is good, it can be a good estimate
+- We report the estimate with a confidence interval, and the width of this interval depends on the variability of sample statistics from different samples from the population
+- Since we can't continue sampling from the population, we bootstrap from the one sample we have to estimate sampling variability
+- We can do this for any sample statistic:
+  - For a mean: `calculate(stat = "mean")`
+  - For a median: `calculate(stat = "median")`
+
+---
+
+class: center, middle
+
+# Simulation based inference review
+
+---
+
+## What do you want to do?
+
+- Estimation -> Confidence interval
+
+- Decision -> Hypothesis test
+
+- First step: Ask the following questions
+
+  1. How many variables?
+  2. What type(s) of variable(s)?
+  3. What is the research question?
+
+---
+
+## Data: NC births
+
+The dataset is in the `openintro` package.
+
+```{r}
+glimpse(ncbirths)
+```
+
+---
+
+## Length of gestation
+
+```{r echo=FALSE, warning=FALSE}
+ggplot(data = ncbirths, aes(x = weeks)) +
+  geom_histogram(binwidth = 1)
+```
+
+```{r echo=FALSE}
+ncbirths |>
+  filter(!is.na(weeks)) |>
+  summarise(
+    min = min(weeks),
+    xbar = round(mean(weeks), 2),
+    med = median(weeks),
+    s = round(sd(weeks), 2),
+    q1 = quantile(weeks, 0.25),
+    q3 = quantile(weeks, 0.75),
+    max = max(weeks)
+  )
+```
+
+
+---
+
+## Length of gestation
+
+.question[
+Assuming that this sample is representative of all births in NC, we are 95% confident that the average length of gestation for babies in NC is between ---- and ---- weeks.
+]
+
+--
+
+**(1) How many variables?**
+
+--
+
+1 variable: length of gestation, `weeks`
+
+--
+
+**(2) What type(s) of variable(s)?**
+
+--
+
+Numerical
+
+--
+
+**(3) What is the research question?**
+
+--
+
+Estimate the average length of gestation $\rightarrow$ confidence interval
+
+---
+
+## Simulation for CI for a mean
+
+**Goal:** Use bootstrapping to estimate the sampling variability of the mean, i.e. the variability of means taken from the same population with the same sample size.
+
+--
+
+1. Take a bootstrap sample - a random sample taken with replacement from the 
+original sample, of the same size as the original sample.
+
+2. Calculate the mean of the bootstrap sample.
+
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution - 
+a distribution of bootstrap means.
+
+4. Calculate the bounds of the 95% confidence interval as the middle 95% 
+of the bootstrap distribution.
+
+---
+
+## Set a seed first
+
+From the documentation of `set.seed`:
+
+- `set.seed` uses a single integer argument to set as many seeds as are required. There is no guarantee that different values of seed will seed the RNG differently, although any exceptions would be extremely rare.
+
+- Initially, there is no seed; a new one is created from the current time and the process ID when one is required. Hence different sessions will give different simulation results, by default.
+
+```{r}
+set.seed(20180326)
+```
+
+---
+
+## Computation for CI for a mean
+
+```{r}
+boot_means <- ncbirths |>
+  filter(!is.na(weeks)) |> # remove NAs
+  specify(response = weeks) |>
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean")
+ggplot(data = boot_means, aes(x = stat)) +
+  geom_histogram(binwidth = 0.03)
+```
+
+---
+
+## Length of gestation
+
+```{r}
+boot_means |>
+  summarise(
+    lower = quantile(stat, 0.025),
+    upper = quantile(stat, 0.975)
+  )
+```
+
+--
+
+Assuming that this sample is representative of all births in NC, we are 95% confident that the average length of gestation for babies in NC is between 38.2 and 38.5 weeks.
+
+---
+
+## Length of gestation, revisited
+
+.question[
+The average length of human gestation is 280 days, or 40 weeks, from the first day of the woman's last menstrual period. Do these data provide convincing evidence that average length of gestation for women in NC is different than 40 weeks? Use a significance level of 5%.
+]
+
+--
+
+$H_0: \mu = 40$  
+$H_A: \mu \ne 40$
+
+--
+
+- We just said, "we are 95% confident that the average length of gestation for babies in NC is between 38.1 and 38.5 weeks".
+
+- Since the null value is outside the CI, we would reject the null hypothesis in favor of the alternative.
+
+- But an alternative, more direct, way of answering this question is using a hypothesis test.
+
+---
+
+## Simulation for HT for a mean
+
+**Goal:** Use bootstrapping to generate a sampling distribution under the assumption of the null hypothesis being true. Then, calculate the p-value to make a decision on the hypotheses.
+
+--
+
+1. Take a bootstrap sample - a random sample taken with replacement from the 
+original sample, of the same size as the original sample.
+
+2. Calculate the mean of the bootstrap sample.
+
+3. Repeat steps (1) and (2) many times to create a bootstrap distribution - 
+a distribution of bootstrap means.
+
+4. Shift the bootstrap distribution to be centered at the null value by subtracting/adding the difference between the center of the bootstrap distribution and the null value to each bootstrap mean.
+
+5. Calculate the p-value as the proportion of simulations that yield a sample mean at least as extreme as the observed sample mean.
+
+---
+
+## Computation for HT for a mean
+
+```{r fig.height=2}
+boot_means_shifted <- ncbirths |>
+  filter(!is.na(weeks)) |> # remove NAs
+  specify(response = weeks) |>
+  hypothesize(null = "point", mu = 40) |> # hypothesize step
+  generate(reps = 1000, type = "bootstrap") |>
+  calculate(stat = "mean")
+ggplot(data = boot_means_shifted, aes(x = stat)) +
+  geom_histogram(binwidth = 0.03) +
+  geom_vline(xintercept = 38.33, color = "red") +
+  geom_vline(xintercept = 40 + (40 - 38.33), color = "red")
+```
+
+---
+
+## Length of gestation
+
+```{r}
+boot_means_shifted |>
+  filter(stat <= 38.33) |>
+  summarise(p_value = 2 * (n() / 1000))
+```
+
+--
+
+Since p-value less than the significance level, we reject the null hypothesis. The data provide convincing evidence that the average length of gestation of births in NC is different than 40.
+

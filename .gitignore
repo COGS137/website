@@ -6,5 +6,9 @@ Thumbs.db
 .Rproj.user
 *.Rproj
 
+# do not include large datasets
+static/lecslides/data
+docs/lecslides/data
+
 # temporarily (while I edit course content)
 Makefile

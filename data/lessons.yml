@@ -96,6 +96,7 @@ lessons:
     project: "cs01.html"
   - date: "Wed Nov 10"
     title: "CS2: Right to Carry"
+    lecslides: "17-cs2-eda.html"
   - date: "Fri Nov 12"
     title: "CS2: Right to Carry"
     lab: "07-mlr.html"

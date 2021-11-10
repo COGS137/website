@@ -61,7 +61,22 @@ Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritud
 ## Some notes on this lab
 - This is an extension of lab04. It may be worth briefly looking over that lab and/or the answer key to get that fresh in your mind prior to beginning this lab.
 - There are three parts. We'll be grading to see that *at least one model with more than one predictor* has been *fit and interpreted*.
+- "Backwards elimination" not directly discussed in lecture notes...
 
+---
+
+## Backwards elimination
+
+- Start with **full** model (including all candidate explanatory variables and all
+candidate interactions)
+
+- Remove one variable at a time, and select the model with the highest adjusted $R^2$
+
+- Continue until adjusted $R^2$ does not increase
+
+--
+
+- You do NOT have to include every model in your lab...just the final one you settle on.
 
 
 

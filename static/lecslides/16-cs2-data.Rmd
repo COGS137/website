@@ -35,6 +35,7 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
   - Submitted by pushing to GitHub
 - **cs02**: CS02 Final Case Study (due Mon 11/22) - submitted *as a group*
   - Group repos will be created later today
+
 ---
 
 class: center, middle
@@ -584,7 +585,9 @@ pop_00_10 <- dem_00_10 |>
 dem_77_79 <- dem_77_79 |>
   left_join(pop_77_79, by = c("YEAR", "STATE")) |> 
   mutate(PERC_SUB_POP = (SUB_POP/TOT_POP)*100) |>
-  select(-SUB_POP, -TOT_POP)
+  select(-SUB_POP, -TOT_POP) |>
+    mutate(SEX = str_to_title(SEX))
+
 
 dem_77_79
 ```
@@ -762,6 +765,7 @@ ps_data
 ```
 
 ---
+
 ## Police staffing - remove territories
 
 ```{r}
@@ -810,5 +814,329 @@ ps_data <- ps_data |>
 
 head(ps_data)
 
+```
+
+---
+
+## Wrangling: Poverty Rate
+
+```{r, echo=FALSE}
+poverty_rate_data
+```
+
+---
+
+## Wrangling: Poverty Rate
+
+.panelset[
+.panel[.panel-name[Wrangle-1]
+```{r}
+colnames(poverty_rate_data) <- c("STATE", "Total", "Number", "Number_se",
+                                 "Percent", "Percent_se")
+
+poverty_rate_data <- poverty_rate_data |>
+  filter(STATE != "STATE") |> 
+  mutate(length_state = map_dbl(STATE, str_length)) |> # determine how long string in "STATE" column is
+  filter(length_state < 100) |> # filter to only include possible state lengths
+  mutate(STATE = str_replace(STATE, pattern = "D.C.", 
+                              replacement = "District of Columbia" )) 
+```
+]
+.panel[.panel-name[Wrangle-2]
+```{r}
+year_values <- poverty_rate_data |>
+  filter(str_detect(STATE, "[:digit:]")) |>
+  distinct(STATE)
+year_values <- rep(pull(year_values, STATE), each = 52) # repeat values from STATE column 52 times each
+
+poverty_rate_data <- poverty_rate_data |>
+  mutate(year_value = year_values) |>
+  select(-length_state) |>
+  filter(str_detect(STATE, "[:alpha:]"))
+
+```
+]
+.panel[.panel-name[Wrangle-3]
+```{r}
+poverty_rate_data <- poverty_rate_data |>
+  filter(year_value != "2017") |> 
+  filter(year_value != "2013 (18)") |>
+  mutate(YEAR = str_sub(year_value, start = 1, end=4)) |>
+  select(-c(Number, Number_se, Percent_se, Total, year_value)) |>
+  rename("VALUE" = Percent) |>
+  mutate(VARIABLE = "Poverty_rate",
+         YEAR = as.numeric(YEAR),
+         VALUE = as.numeric(VALUE))
+
+poverty_rate_data
+```
+]
+]
+
+---
+
+## Wrangling: Crime Data
+
+.panelset[
+.panel[.panel-name[crime-1]
+.small[
+```{r}
+crime_data <- crime_data[-((str_which(crime_data, "The figures shown in this column for the offense of rape were estimated using the legacy UCR definition of rape")-1): length(crime_data)+1)]
+
+n_rows <- 2014-1977+1 # determine how many rows there are for each state
+rep_cycle <- 4 + n_rows
+rep_cycle_cut <- 2 + n_rows
+colnames_crime <- (crime_data[4])
+
+# specify which rows are to be deleted based on the file format
+delete_rows <- c(seq(from = 2, 
+                       to = length(crime_data),  
+                       by = rep_cycle),
+                 seq(from = 3, 
+                       to = length(crime_data),
+                       by = rep_cycle), 
+                 seq(from = 4,
+                       to = length(crime_data),
+                       by = rep_cycle))
+sort(delete_rows) # which rows are to be deleted
+```
+]]
+.panel[.panel-name[-2]
+```{r}
+# convince yourself you did it right
+# should these rows be deleted?
+crime_data[44:46]
+```
+]
+.panel[.panel-name[-3]
+```{r}
+crime_data <- crime_data[-delete_rows]
+
+# extract state labels from data
+state_labels <- crime_data[str_which(crime_data, "Estimated crime in ")]
+state_labels <- str_remove(state_labels, pattern = "Estimated crime in ")
+state_label_order <- rep(state_labels, each = n_rows) # repeat n_rows times
+
+crime_data <- crime_data[-str_which(crime_data, "Estimated crime")]
+head(crime_data)
+```
+]
+.panel[.panel-name[-4]
+```{r}
+crime_data_sep <- read_csv(I(crime_data), col_names = FALSE) |> 
+  select(-X6) # remove random extra-comma column
+
+# get column names for later
+colnames(crime_data_sep) <- c("Year", 
+                              "Population", 
+                              "Violent_crime_total",
+                              "Murder_and_nonnegligent_Manslaughter",
+                              "Legacy_rape",
+                              "Revised_rape", 
+                              "Robbery",
+                              "Aggravated_assault")
+# add column names in
+crime_data_sep <- bind_cols(STATE = state_label_order, crime_data_sep)
+```
+]
+.panel[.panel-name[-5]
+```{r}
+crime_data <- crime_data_sep |>
+  mutate(VARIABLE = "Viol_crime_count") |>
+  rename("VALUE" = Violent_crime_total) |>
+  rename("YEAR" = Year) |>
+  select(YEAR,STATE, VARIABLE, VALUE)
+
+crime_data
+```
+]]
+
+---
+
+## Wrangling: RTC Laws
+
+.panelset[
+.panel[.panel-name[RTC-1]
+```{r}
+DAWpaper_p_62 <- DAWpaper[[62]]
+str(DAWpaper_p_62, nchar.max = 1000) # see data
+```
+]
+.panel[.panel-name[-2]
+```{r}
+p_62 <- DAWpaper_p_62 |>
+  str_split("\n") |>
+  unlist() |>
+  as_tibble() |>
+  slice(-(1:2)) |> 
+  rename(RTC = value) |>
+  slice(-c(53:54)) |>  # physical page 60 marking; empty line removal
+  mutate(RTC = str_replace_all(RTC, "\\s{40,}", "|N/A|"),
+         RTC = str_trim(RTC, side = "left"),
+         RTC = str_replace_all(RTC, "\\s{2,15}", "|"))
+
+head(p_62)
+```
+]
+.panel[.panel-name[-3]
+```{r}
+p_62 <- pull(p_62, RTC) |>
+  str_split( "\\|{1,}")  # split data on "|" symbol
+
+# get the tibble!
+p_62 <- as_tibble(do.call(rbind, p_62)) # rbind and not bind_cols here b/c we have no column names yet
+
+colnames(p_62) <- c("STATE",
+                    "E_Date_RTC",
+                    "Frac_Yr_Eff_Yr_Pass",
+                    "RTC_Date_SA")
+
+p_62 <- p_62 |>
+  slice(-c(1, 53:nrow(p_62))) # remove unecessary rows
+```
+]
+.panel[.panel-name[-4]
+```{r}
+RTC <- p_62 |> 
+  select(STATE, RTC_Date_SA) |>
+  rename(RTC_LAW_YEAR = RTC_Date_SA) |>
+  mutate(RTC_LAW_YEAR = as.numeric(RTC_LAW_YEAR)) |>
+  mutate(RTC_LAW_YEAR = case_when(RTC_LAW_YEAR == 0 ~ Inf,
+                              TRUE ~ RTC_LAW_YEAR))
+
+```
+]]
+---
+
+## Wrangling: Combining! (Donohue)
+
+.panelset[
+.panel[.panel-name[1]
+```{r}
+# combine after all that wrangling!
+DONOHUE_DF <- bind_rows(dem_DONOHUE,
+                        ue_rate_data,
+                        poverty_rate_data,
+                        crime_data,
+                        population_data,
+                        ps_data)
+DONOHUE_DF
+```
+]
+.panel[.panel-name[2]
+```{r}
+# to wide format!
+DONOHUE_DF <- DONOHUE_DF |>
+  pivot_wider(names_from = "VARIABLE",
+              values_from = "VALUE")
+
+DONOHUE_DF |>
+  slice_sample(n = 10) |>
+  glimpse()
+```
+]
+.panel[.panel-name[3]
+```{r}
+# add in RTC data!
+DONOHUE_DF <- DONOHUE_DF |>
+  left_join(RTC , by = c("STATE")) |>
+  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,
+                              TRUE ~ FALSE)) |>
+ drop_na() # drop rows with missing information
+
+DONOHUE_DF |>
+  slice_sample(n = 10) |>
+  glimpse()
+```
+]
+.panel[.panel-name[4]
+```{r}
+# filter to only data where RTC laws were adopted between 1980-2010
+# have crime data pre- and post-adotion this way
+baseline_year <- min(DONOHUE_DF$YEAR)
+censoring_year <- max(DONOHUE_DF$YEAR)
+
+DONOHUE_DF <- DONOHUE_DF |>
+  mutate(TIME_0 = baseline_year,
+         TIME_INF = censoring_year) |>
+  filter(RTC_LAW_YEAR > TIME_0)
+```
+]
+.panel[.panel-name[5]
+```{r}
+# calculate violent crime rate; put population/crime on log scale
+DONOHUE_DF <- DONOHUE_DF |>
+  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,
+         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),
+         Population_log = log(Population))
+```
+]]
+
+---
+
+## Wrangling: Combining! (Lott)
+
+.panelset[
+.panel[.panel-name[1]
+.small[
+```{r}
+LOTT_DF <- bind_rows(dem_LOTT,
+                     ue_rate_data,
+                     poverty_rate_data,
+                     crime_data,
+                     population_data,
+                     ps_data) |>
+  pivot_wider(names_from = "VARIABLE",
+              values_from = "VALUE") |>
+  left_join(RTC , by = c("STATE")) |>
+  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,
+                              TRUE ~ FALSE)) |>
+   drop_na()
+
+```
+]]
+.panel[.panel-name[2]
+```{r}
+baseline_year <- min(LOTT_DF$YEAR)
+censoring_year <- max(LOTT_DF$YEAR)
+
+LOTT_DF <- LOTT_DF |>
+  mutate(TIME_0 = baseline_year,
+         TIME_INF = censoring_year) |>
+  filter(RTC_LAW_YEAR > TIME_0)
+```
+]
+.panel[.panel-name[3]
+```{r}
+LOTT_DF <- LOTT_DF |>
+  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,
+         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),
+         Population_log = log(Population))
+
+LOTT_DF
+```
+]
+]
+
+---
+
+### Why?
+
+.question[`r emo::ji("light")` Why are there different dimensions for LOTT vs DONOHUE?]
+
+```{r}
+dim(LOTT_DF)
+```
+
+```{r}
+dim(DONOHUE_DF)
+```
+
+---
+
+## Save 
+
+```{r}
+save(LOTT_DF, DONOHUE_DF, file = "data/wrangled/wrangled_data_rtc.rda")
 ```
 

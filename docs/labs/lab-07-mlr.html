@@ -83,11 +83,10 @@
 <h2>Part 2: Multiple linear regression</h2>
 <ol start="2" style="list-style-type: decimal">
 <li><p>Fit a linear model (one you have fit before): <code>m_bty_gen</code>, predicting average professor evaluation <code>score</code> based on average beauty rating (<code>bty_avg</code>) and <code>gender</code>. Write the linear model, and note the <span class="math inline">\(R^2\)</span> and the adjusted <span class="math inline">\(R^2\)</span>.</p></li>
-<li><p>Interpret the slope and intercept of <code>m_bty_gen</code> in context of the data.</p></li>
+<li><p>Interpret the slopes and intercept of <code>m_bty_gen</code> in context of the data.</p></li>
 <li><p>What percent of the variability in <code>score</code> is explained by the model <code>m_bty_gen</code>.</p></li>
 <li><p>What is the equation of the line corresponding to <em>just</em> male professors?</p></li>
 <li><p>For two professors who received the same beauty rating, which gender tends to have the higher course evaluation score?</p></li>
-<li><p>How does the relationship between beauty and evaluation score vary between male and female professors?</p></li>
 <li><p>How do the adjusted <span class="math inline">\(R^2\)</span> values of <code>m_bty_gen</code> and <code>m_bty</code> compare? What does this tell us about how useful <code>gender</code> is in explaining the variability in evaluation scores when we already have information on the beauty score of the professor.</p></li>
 <li><p>Compare the slopes of <code>bty_avg</code> under the two models (<code>m_bty</code> and <code>m_bty_gen</code>). Has the addition of <code>gender</code> to the model changed the parameter estimate (slope) for <code>bty_avg</code>?</p></li>
 <li><p>Create a new model called <code>m_bty_rank</code> with <code>gender</code> removed and <code>rank</code> added in. Write the equation of the linear model and interpret the slopes and intercept in context of the data.</p></li>

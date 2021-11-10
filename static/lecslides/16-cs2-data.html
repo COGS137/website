@@ -40,6 +40,7 @@ class: center, middle, inverse, title-slide
   - Submitted by pushing to GitHub
 - **cs02**: CS02 Final Case Study (due Mon 11/22) - submitted *as a group*
   - Group repos will be created later today
+
 ---
 
 class: center, middle
@@ -807,7 +808,9 @@ pop_00_10 &lt;- dem_00_10 |&gt;
 dem_77_79 &lt;- dem_77_79 |&gt;
   left_join(pop_77_79, by = c("YEAR", "STATE")) |&gt; 
   mutate(PERC_SUB_POP = (SUB_POP/TOT_POP)*100) |&gt;
-  select(-SUB_POP, -TOT_POP)
+  select(-SUB_POP, -TOT_POP) |&gt;
+    mutate(SEX = str_to_title(SEX))
+
 
 dem_77_79
 ```
@@ -816,12 +819,12 @@ dem_77_79
 ## # A tibble: 16,524 × 6
 ##    YEAR STATE   SEX   RACE  AGE_GROUP      PERC_SUB_POP
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
-## 1  1977 Alabama male  White Under 5 years          2.61
-## 2  1977 Alabama male  White 5 to 9 years           3.00
-## 3  1977 Alabama male  White 10 to 14 years         3.25
-## 4  1977 Alabama male  White 15 to 19 years         3.58
-## 5  1977 Alabama male  White 20 to 24 years         3.33
-## 6  1977 Alabama male  White 25 to 29 years         2.95
+## 1  1977 Alabama Male  White Under 5 years          2.61
+## 2  1977 Alabama Male  White 5 to 9 years           3.00
+## 3  1977 Alabama Male  White 10 to 14 years         3.25
+## 4  1977 Alabama Male  White 15 to 19 years         3.58
+## 5  1977 Alabama Male  White 20 to 24 years         3.33
+## 6  1977 Alabama Male  White 25 to 29 years         2.95
 ## # … with 16,518 more rows
 ```
 ]
@@ -907,7 +910,7 @@ glimpse(dem)
 ## Columns: 6
 ## $ YEAR         &lt;dbl&gt; 1977, 1977, 1977, 1977, 1977, 1977, 1977, …
 ## $ STATE        &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alabama"…
-## $ SEX          &lt;chr&gt; "male", "male", "male", "male", "male", "m…
+## $ SEX          &lt;chr&gt; "Male", "Male", "Male", "Male", "Male", "M…
 ## $ RACE         &lt;chr&gt; "White", "White", "White", "White", "White…
 ## $ AGE_GROUP    &lt;chr&gt; "Under 5 years", "5 to 9 years", "10 to 14…
 ## $ PERC_SUB_POP &lt;dbl&gt; 2.6123502, 2.9970356, 3.2545853, 3.5780690…
@@ -953,16 +956,16 @@ dem_DONOHUE
 ```
 
 ```
-## # A tibble: 9,486 × 6
+## # A tibble: 10,404 × 6
 ##    YEAR STATE   RACE  SEX   AGE_GROUP      PERC_SUB_POP
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt; &lt;chr&gt; &lt;chr&gt;                 &lt;dbl&gt;
-## 1  1980 Alabama Black Male  15_to_19_years       1.46  
-## 2  1980 Alabama Black Male  20_to_39_years       3.36  
-## 3  1980 Alabama Other Male  15_to_19_years       0.0213
-## 4  1980 Alabama Other Male  20_to_39_years       0.0861
-## 5  1980 Alabama White Male  15_to_19_years       3.40  
-## 6  1980 Alabama White Male  20_to_39_years      11.6   
-## # … with 9,480 more rows
+## 1  1977 Alabama Black Male  15_to_19_years       1.55  
+## 2  1977 Alabama Black Male  20_to_39_years       3.04  
+## 3  1977 Alabama Other Male  15_to_19_years       0.0178
+## 4  1977 Alabama Other Male  20_to_39_years       0.0642
+## 5  1977 Alabama White Male  15_to_19_years       3.58  
+## 6  1977 Alabama White Male  20_to_39_years      11.1   
+## # … with 10,398 more rows
 ```
 ]
 .panel[.panel-name[3]
@@ -976,16 +979,16 @@ dem_DONOHUE
 ```
 
 ```
-## # A tibble: 9,486 × 4
+## # A tibble: 10,404 × 4
 ##    YEAR STATE   VARIABLE                    VALUE
 ##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;                       &lt;dbl&gt;
-## 1  1980 Alabama Black_Male_15_to_19_years  1.46  
-## 2  1980 Alabama Black_Male_20_to_39_years  3.36  
-## 3  1980 Alabama Other_Male_15_to_19_years  0.0213
-## 4  1980 Alabama Other_Male_20_to_39_years  0.0861
-## 5  1980 Alabama White_Male_15_to_19_years  3.40  
-## 6  1980 Alabama White_Male_20_to_39_years 11.6   
-## # … with 9,480 more rows
+## 1  1977 Alabama Black_Male_15_to_19_years  1.55  
+## 2  1977 Alabama Black_Male_20_to_39_years  3.04  
+## 3  1977 Alabama Other_Male_15_to_19_years  0.0178
+## 4  1977 Alabama Other_Male_20_to_39_years  0.0642
+## 5  1977 Alabama White_Male_15_to_19_years  3.58  
+## 6  1977 Alabama White_Male_20_to_39_years 11.1   
+## # … with 10,398 more rows
 ```
 ]]
 
@@ -1033,7 +1036,7 @@ glimpse(dem_LOTT)
 ## Columns: 4
 ## $ YEAR     &lt;dbl&gt; 1977, 1977, 1977, 1977, 1977, 1977, 1977, 1977…
 ## $ STATE    &lt;chr&gt; "Alabama", "Alabama", "Alabama", "Alabama", "A…
-## $ VARIABLE &lt;chr&gt; "Black_female_10_to_19_years", "Black_female_2…
+## $ VARIABLE &lt;chr&gt; "Black_Female_10_to_19_years", "Black_Female_2…
 ## $ VALUE    &lt;dbl&gt; 3.01067713, 2.32860137, 1.29295656, 1.18231753…
 ```
 
@@ -1090,6 +1093,7 @@ ps_data
 ```
 
 ---
+
 ## Police staffing - remove territories
 
 
@@ -1165,6 +1169,511 @@ head(ps_data)
 ## 4  1977  264. Arizona    police_per_100k_lag
 ## 5  1977  293. California police_per_100k_lag
 ## 6  1977  272. Colorado   police_per_100k_lag
+```
+
+---
+
+## Wrangling: Poverty Rate
+
+
+```
+## # A tibble: 2,177 × 6
+##   `NOTE: Number in thousands.` ...2  ...3   ...4    ...5   ...6  
+##   &lt;chr&gt;                        &lt;chr&gt; &lt;chr&gt;  &lt;chr&gt;   &lt;chr&gt;  &lt;chr&gt; 
+## 1 2018                         &lt;NA&gt;  &lt;NA&gt;    &lt;NA&gt;   &lt;NA&gt;    &lt;NA&gt; 
+## 2 STATE                        Total Number "Stand… Perce… "Stan…
+## 3 Alabama                      4877  779    "65"    16     "1.3" 
+## 4 Alaska                       720   94     "9"     13.1   "1.2" 
+## 5 Arizona                      7241  929    "80"    12.80… "1.10…
+## 6 Arkansas                     2912  462    "38"    15.9   "1.3" 
+## # … with 2,171 more rows
+```
+
+---
+
+## Wrangling: Poverty Rate
+
+.panelset[
+.panel[.panel-name[Wrangle-1]
+
+```r
+colnames(poverty_rate_data) &lt;- c("STATE", "Total", "Number", "Number_se",
+                                 "Percent", "Percent_se")
+
+poverty_rate_data &lt;- poverty_rate_data |&gt;
+  filter(STATE != "STATE") |&gt; 
+  mutate(length_state = map_dbl(STATE, str_length)) |&gt; # determine how long string in "STATE" column is
+  filter(length_state &lt; 100) |&gt; # filter to only include possible state lengths
+  mutate(STATE = str_replace(STATE, pattern = "D.C.", 
+                              replacement = "District of Columbia" )) 
+```
+]
+.panel[.panel-name[Wrangle-2]
+
+```r
+year_values &lt;- poverty_rate_data |&gt;
+  filter(str_detect(STATE, "[:digit:]")) |&gt;
+  distinct(STATE)
+year_values &lt;- rep(pull(year_values, STATE), each = 52) # repeat values from STATE column 52 times each
+
+poverty_rate_data &lt;- poverty_rate_data |&gt;
+  mutate(year_value = year_values) |&gt;
+  select(-length_state) |&gt;
+  filter(str_detect(STATE, "[:alpha:]"))
+```
+]
+.panel[.panel-name[Wrangle-3]
+
+```r
+poverty_rate_data &lt;- poverty_rate_data |&gt;
+  filter(year_value != "2017") |&gt; 
+  filter(year_value != "2013 (18)") |&gt;
+  mutate(YEAR = str_sub(year_value, start = 1, end=4)) |&gt;
+  select(-c(Number, Number_se, Percent_se, Total, year_value)) |&gt;
+  rename("VALUE" = Percent) |&gt;
+  mutate(VARIABLE = "Poverty_rate",
+         YEAR = as.numeric(YEAR),
+         VALUE = as.numeric(VALUE))
+
+poverty_rate_data
+```
+
+```
+## # A tibble: 1,989 × 4
+##   STATE      VALUE  YEAR VARIABLE    
+##   &lt;chr&gt;      &lt;dbl&gt; &lt;dbl&gt; &lt;chr&gt;       
+## 1 Alabama     16    2018 Poverty_rate
+## 2 Alaska      13.1  2018 Poverty_rate
+## 3 Arizona     12.8  2018 Poverty_rate
+## 4 Arkansas    15.9  2018 Poverty_rate
+## 5 California  11.9  2018 Poverty_rate
+## 6 Colorado     9.1  2018 Poverty_rate
+## # … with 1,983 more rows
+```
+]
+]
+
+---
+
+## Wrangling: Crime Data
+
+.panelset[
+.panel[.panel-name[crime-1]
+.small[
+
+```r
+crime_data &lt;- crime_data[-((str_which(crime_data, "The figures shown in this column for the offense of rape were estimated using the legacy UCR definition of rape")-1): length(crime_data)+1)]
+
+n_rows &lt;- 2014-1977+1 # determine how many rows there are for each state
+rep_cycle &lt;- 4 + n_rows
+rep_cycle_cut &lt;- 2 + n_rows
+colnames_crime &lt;- (crime_data[4])
+
+# specify which rows are to be deleted based on the file format
+delete_rows &lt;- c(seq(from = 2, 
+                       to = length(crime_data),  
+                       by = rep_cycle),
+                 seq(from = 3, 
+                       to = length(crime_data),
+                       by = rep_cycle), 
+                 seq(from = 4,
+                       to = length(crime_data),
+                       by = rep_cycle))
+sort(delete_rows) # which rows are to be deleted
+```
+
+```
+##   [1]    2    3    4   44   45   46   86   87   88  128  129  130
+##  [13]  170  171  172  212  213  214  254  255  256  296  297  298
+##  [25]  338  339  340  380  381  382  422  423  424  464  465  466
+##  [37]  506  507  508  548  549  550  590  591  592  632  633  634
+##  [49]  674  675  676  716  717  718  758  759  760  800  801  802
+##  [61]  842  843  844  884  885  886  926  927  928  968  969  970
+##  [73] 1010 1011 1012 1052 1053 1054 1094 1095 1096 1136 1137 1138
+##  [85] 1178 1179 1180 1220 1221 1222 1262 1263 1264 1304 1305 1306
+##  [97] 1346 1347 1348 1388 1389 1390 1430 1431 1432 1472 1473 1474
+## [109] 1514 1515 1516 1556 1557 1558 1598 1599 1600 1640 1641 1642
+## [121] 1682 1683 1684 1724 1725 1726 1766 1767 1768 1808 1809 1810
+## [133] 1850 1851 1852 1892 1893 1894 1934 1935 1936 1976 1977 1978
+## [145] 2018 2019 2020 2060 2061 2062 2102 2103 2104
+```
+]]
+.panel[.panel-name[-2]
+
+```r
+# convince yourself you did it right
+# should these rows be deleted?
+crime_data[44:46]
+```
+
+```
+## [1] ",,National or state crime,,,,,,,"                                                                                                   
+## [2] ",,Violent crime,,,,,,,"                                                                                                             
+## [3] "Year,Population,Violent crime total,Murder and nonnegligent Manslaughter,Legacy rape /1,Revised rape /2,Robbery,Aggravated assault,"
+```
+]
+.panel[.panel-name[-3]
+
+```r
+crime_data &lt;- crime_data[-delete_rows]
+
+# extract state labels from data
+state_labels &lt;- crime_data[str_which(crime_data, "Estimated crime in ")]
+state_labels &lt;- str_remove(state_labels, pattern = "Estimated crime in ")
+state_label_order &lt;- rep(state_labels, each = n_rows) # repeat n_rows times
+
+crime_data &lt;- crime_data[-str_which(crime_data, "Estimated crime")]
+head(crime_data)
+```
+
+```
+## [1] "1977,   3690000,      15293,         524,         929,,       3572,      10268 "
+## [2] "1978,   3742000,      15682,         499,         954,,       3708,      10521 "
+## [3] "1979,   3769000,      15578,         496,       1037,,       4127,       9918 " 
+## [4] "1980,   3861466,      17320,         509,       1158,,       5102,      10551 " 
+## [5] "1981,   3916000,      18423,         465,       1021,,       4952,      11985 " 
+## [6] "1982,   3943000,      17653,         417,       1026,,       4417,      11793 "
+```
+]
+.panel[.panel-name[-4]
+
+```r
+crime_data_sep &lt;- read_csv(I(crime_data), col_names = FALSE) |&gt; 
+  select(-X6) # remove random extra-comma column
+
+# get column names for later
+colnames(crime_data_sep) &lt;- c("Year", 
+                              "Population", 
+                              "Violent_crime_total",
+                              "Murder_and_nonnegligent_Manslaughter",
+                              "Legacy_rape",
+                              "Revised_rape", 
+                              "Robbery",
+                              "Aggravated_assault")
+# add column names in
+crime_data_sep &lt;- bind_cols(STATE = state_label_order, crime_data_sep)
+```
+]
+.panel[.panel-name[-5]
+
+```r
+crime_data &lt;- crime_data_sep |&gt;
+  mutate(VARIABLE = "Viol_crime_count") |&gt;
+  rename("VALUE" = Violent_crime_total) |&gt;
+  rename("YEAR" = Year) |&gt;
+  select(YEAR,STATE, VARIABLE, VALUE)
+
+crime_data
+```
+
+```
+## # A tibble: 1,938 × 4
+##    YEAR STATE   VARIABLE         VALUE
+##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;            &lt;dbl&gt;
+## 1  1977 Alabama Viol_crime_count 15293
+## 2  1978 Alabama Viol_crime_count 15682
+## 3  1979 Alabama Viol_crime_count 15578
+## 4  1980 Alabama Viol_crime_count 17320
+## 5  1981 Alabama Viol_crime_count 18423
+## 6  1982 Alabama Viol_crime_count 17653
+## # … with 1,932 more rows
+```
+]]
+
+---
+
+## Wrangling: RTC Laws
+
+.panelset[
+.panel[.panel-name[RTC-1]
+
+```r
+DAWpaper_p_62 &lt;- DAWpaper[[62]]
+str(DAWpaper_p_62, nchar.max = 1000) # see data
+```
+
+```
+##  chr "                                          Table A1: RTC Adoption Dates\n\n         State         Effective Date of RTC Law   Fraction of Year In Effect Year of Passage   RTC Date (Synthetic Controls Analysis)\n      Alabama                      1975                                                                        1975\n       Alaska                   10/1/1994                            0.252                                     1995\n       Arizona                  7/17/1994                            0.460                                     1995\n      Arkansas                  7/27/1995                            0.433                                     1996\n     California                    N/A                                                                            0\n      Colorado                  5/17/2003                            0.627                                     2003\n    Connecticut                    1970                                "| __truncated__
+```
+]
+.panel[.panel-name[-2]
+
+```r
+p_62 &lt;- DAWpaper_p_62 |&gt;
+  str_split("\n") |&gt;
+  unlist() |&gt;
+  as_tibble() |&gt;
+  slice(-(1:2)) |&gt; 
+  rename(RTC = value) |&gt;
+  slice(-c(53:54)) |&gt;  # physical page 60 marking; empty line removal
+  mutate(RTC = str_replace_all(RTC, "\\s{40,}", "|N/A|"),
+         RTC = str_trim(RTC, side = "left"),
+         RTC = str_replace_all(RTC, "\\s{2,15}", "|"))
+
+head(p_62)
+```
+
+```
+## # A tibble: 6 × 1
+##   RTC                                                            
+##   &lt;chr&gt;                                                          
+## 1 State|Effective Date of RTC Law|Fraction of Year In Effect Yea…
+## 2 Alabama||1975|N/A|1975                                         
+## 3 Alaska||10/1/1994||0.252|||1995                                
+## 4 Arizona||7/17/1994||0.460|||1995                               
+## 5 Arkansas||7/27/1995||0.433|||1996                              
+## 6 California||N/A|N/A|0
+```
+]
+.panel[.panel-name[-3]
+
+```r
+p_62 &lt;- pull(p_62, RTC) |&gt;
+  str_split( "\\|{1,}")  # split data on "|" symbol
+
+# get the tibble!
+p_62 &lt;- as_tibble(do.call(rbind, p_62)) # rbind and not bind_cols here b/c we have no column names yet
+
+colnames(p_62) &lt;- c("STATE",
+                    "E_Date_RTC",
+                    "Frac_Yr_Eff_Yr_Pass",
+                    "RTC_Date_SA")
+
+p_62 &lt;- p_62 |&gt;
+  slice(-c(1, 53:nrow(p_62))) # remove unecessary rows
+```
+]
+.panel[.panel-name[-4]
+
+```r
+RTC &lt;- p_62 |&gt; 
+  select(STATE, RTC_Date_SA) |&gt;
+  rename(RTC_LAW_YEAR = RTC_Date_SA) |&gt;
+  mutate(RTC_LAW_YEAR = as.numeric(RTC_LAW_YEAR)) |&gt;
+  mutate(RTC_LAW_YEAR = case_when(RTC_LAW_YEAR == 0 ~ Inf,
+                              TRUE ~ RTC_LAW_YEAR))
+```
+]]
+---
+
+## Wrangling: Combining! (Donohue)
+
+.panelset[
+.panel[.panel-name[1]
+
+```r
+# combine after all that wrangling!
+DONOHUE_DF &lt;- bind_rows(dem_DONOHUE,
+                        ue_rate_data,
+                        poverty_rate_data,
+                        crime_data,
+                        population_data,
+                        ps_data)
+DONOHUE_DF
+```
+
+```
+## # A tibble: 20,247 × 4
+##    YEAR STATE   VARIABLE                    VALUE
+##   &lt;dbl&gt; &lt;chr&gt;   &lt;chr&gt;                       &lt;dbl&gt;
+## 1  1977 Alabama Black_Male_15_to_19_years  1.55  
+## 2  1977 Alabama Black_Male_20_to_39_years  3.04  
+## 3  1977 Alabama Other_Male_15_to_19_years  0.0178
+## 4  1977 Alabama Other_Male_20_to_39_years  0.0642
+## 5  1977 Alabama White_Male_15_to_19_years  3.58  
+## 6  1977 Alabama White_Male_20_to_39_years 11.1   
+## # … with 20,241 more rows
+```
+]
+.panel[.panel-name[2]
+
+```r
+# to wide format!
+DONOHUE_DF &lt;- DONOHUE_DF |&gt;
+  pivot_wider(names_from = "VARIABLE",
+              values_from = "VALUE")
+
+DONOHUE_DF |&gt;
+  slice_sample(n = 10) |&gt;
+  glimpse()
+```
+
+```
+## Rows: 10
+## Columns: 13
+## $ YEAR                      &lt;dbl&gt; 1996, 1989, 1995, 1984, 2012,…
+## $ STATE                     &lt;chr&gt; "North Dakota", "Georgia", "I…
+## $ Black_Male_15_to_19_years &lt;dbl&gt; 0.03624440, 1.25238628, 0.104…
+## $ Black_Male_20_to_39_years &lt;dbl&gt; 0.1619331, 4.4498614, 0.33757…
+## $ Other_Male_15_to_19_years &lt;dbl&gt; 0.26848853, 0.06304670, 0.069…
+## $ Other_Male_20_to_39_years &lt;dbl&gt; 0.8216433, 0.2722613, 0.29920…
+## $ White_Male_15_to_19_years &lt;dbl&gt; 3.889039, 2.728025, 3.681280,…
+## $ White_Male_20_to_39_years &lt;dbl&gt; 13.81285, 12.34216, 13.55551,…
+## $ Unemployment_rate         &lt;dbl&gt; 2.9, 5.5, 3.4, 8.5, 4.3, 3.6,…
+## $ Poverty_rate              &lt;dbl&gt; 11.0, 15.0, 12.2, 17.4, 12.8,…
+## $ Viol_crime_count          &lt;dbl&gt; 541, 47357, 10071, 21010, 270…
+## $ Population                &lt;dbl&gt; 642858, 6411121, 2840860, 468…
+## $ police_per_100k_lag       &lt;dbl&gt; 249.0441, 317.2144, 241.4410,…
+```
+]
+.panel[.panel-name[3]
+
+```r
+# add in RTC data!
+DONOHUE_DF &lt;- DONOHUE_DF |&gt;
+  left_join(RTC , by = c("STATE")) |&gt;
+  mutate(RTC_LAW = case_when(YEAR &gt;= RTC_LAW_YEAR ~ TRUE,
+                              TRUE ~ FALSE)) |&gt;
+ drop_na() # drop rows with missing information
+
+DONOHUE_DF |&gt;
+  slice_sample(n = 10) |&gt;
+  glimpse()
+```
+
+```
+## Rows: 10
+## Columns: 15
+## $ YEAR                      &lt;dbl&gt; 1991, 2004, 1999, 2004, 1999,…
+## $ STATE                     &lt;chr&gt; "Alaska", "Ohio", "Alaska", "…
+## $ Black_Male_15_to_19_years &lt;dbl&gt; 0.17390602, 0.52337309, 0.197…
+## $ Black_Male_20_to_39_years &lt;dbl&gt; 1.0061956, 1.5843086, 0.74318…
+## $ Other_Male_15_to_19_years &lt;dbl&gt; 0.80506189, 0.12077975, 1.127…
+## $ Other_Male_20_to_39_years &lt;dbl&gt; 3.1624546, 0.4785173, 2.65036…
+## $ White_Male_15_to_19_years &lt;dbl&gt; 2.721190, 3.032172, 3.404681,…
+## $ White_Male_20_to_39_years &lt;dbl&gt; 15.289325, 11.008735, 11.1104…
+## $ Unemployment_rate         &lt;dbl&gt; 8.5, 6.3, 6.5, 5.9, 3.0, 3.8,…
+## $ Poverty_rate              &lt;dbl&gt; 11.8, 11.6, 7.6, 16.8, 9.6, 1…
+## $ Viol_crime_count          &lt;dbl&gt; 3499, 38787, 3908, 28844, 676…
+## $ Population                &lt;dbl&gt; 569273, 11452251, 619500, 455…
+## $ police_per_100k_lag       &lt;dbl&gt; 289.4920, 324.8968, 299.7579,…
+## $ RTC_LAW_YEAR              &lt;dbl&gt; 1995, 2004, 1995, 1996, 1970,…
+## $ RTC_LAW                   &lt;lgl&gt; FALSE, TRUE, TRUE, TRUE, TRUE…
+```
+]
+.panel[.panel-name[4]
+
+```r
+# filter to only data where RTC laws were adopted between 1980-2010
+# have crime data pre- and post-adotion this way
+baseline_year &lt;- min(DONOHUE_DF$YEAR)
+censoring_year &lt;- max(DONOHUE_DF$YEAR)
+
+DONOHUE_DF &lt;- DONOHUE_DF |&gt;
+  mutate(TIME_0 = baseline_year,
+         TIME_INF = censoring_year) |&gt;
+  filter(RTC_LAW_YEAR &gt; TIME_0)
+```
+]
+.panel[.panel-name[5]
+
+```r
+# calculate violent crime rate; put population/crime on log scale
+DONOHUE_DF &lt;- DONOHUE_DF |&gt;
+  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,
+         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),
+         Population_log = log(Population))
+```
+]]
+
+---
+
+## Wrangling: Combining! (Lott)
+
+.panelset[
+.panel[.panel-name[1]
+.small[
+
+```r
+LOTT_DF &lt;- bind_rows(dem_LOTT,
+                     ue_rate_data,
+                     poverty_rate_data,
+                     crime_data,
+                     population_data,
+                     ps_data) |&gt;
+  pivot_wider(names_from = "VARIABLE",
+              values_from = "VALUE") |&gt;
+  left_join(RTC , by = c("STATE")) |&gt;
+  mutate(RTC_LAW = case_when(YEAR &gt;= RTC_LAW_YEAR ~ TRUE,
+                              TRUE ~ FALSE)) |&gt;
+   drop_na()
+```
+]]
+.panel[.panel-name[2]
+
+```r
+baseline_year &lt;- min(LOTT_DF$YEAR)
+censoring_year &lt;- max(LOTT_DF$YEAR)
+
+LOTT_DF &lt;- LOTT_DF |&gt;
+  mutate(TIME_0 = baseline_year,
+         TIME_INF = censoring_year) |&gt;
+  filter(RTC_LAW_YEAR &gt; TIME_0)
+```
+]
+.panel[.panel-name[3]
+
+```r
+LOTT_DF &lt;- LOTT_DF |&gt;
+  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,
+         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),
+         Population_log = log(Population))
+
+LOTT_DF
+```
+
+```
+## # A tibble: 1,364 × 50
+##    YEAR STATE      Black_Female_10… Black_Female_20… Black_Female_30…
+##   &lt;dbl&gt; &lt;chr&gt;                 &lt;dbl&gt;            &lt;dbl&gt;            &lt;dbl&gt;
+## 1  1980 Alaska                0.264            0.443            0.201
+## 2  1980 Arizona               0.287            0.278            0.165
+## 3  1980 Arkansas              1.82             1.50             0.842
+## 4  1980 California            0.780            0.815            0.581
+## 5  1980 Colorado              0.352            0.388            0.245
+## 6  1980 Delaware              1.87             1.68             1.14 
+## # … with 1,358 more rows, and 45 more variables:
+## #   Black_Female_40_to_49_years &lt;dbl&gt;,
+## #   Black_Female_50_to_64_years &lt;dbl&gt;,
+## #   Black_Female_65_years_and_over &lt;dbl&gt;,
+## #   Black_Male_10_to_19_years &lt;dbl&gt;,
+## #   Black_Male_20_to_29_years &lt;dbl&gt;,
+## #   Black_Male_30_to_39_years &lt;dbl&gt;, …
+```
+]
+]
+
+---
+
+### Why?
+
+.question[💡 Why are there different dimensions for LOTT vs DONOHUE?]
+
+
+```r
+dim(LOTT_DF)
+```
+
+```
+## [1] 1364   50
+```
+
+
+```r
+dim(DONOHUE_DF)
+```
+
+```
+## [1] 1364   20
+```
+
+---
+
+## Save 
+
+
+```r
+save(LOTT_DF, DONOHUE_DF, file = "data/wrangled/wrangled_data_rtc.rda")
 ```
 
     </textarea>

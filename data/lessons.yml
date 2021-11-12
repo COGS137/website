@@ -99,6 +99,7 @@ lessons:
     lecslides: "17-cs2-eda.html"
   - date: "Fri Nov 12"
     title: "CS2: Right to Carry"
+    lecslides: "18-cs2-analysis.html"
     lab: "lab-07-mlr.html"
     labslides: "07-lab-deck.html"
   - week: "08"

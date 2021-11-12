@@ -24,10 +24,6 @@ library(DT)
 knitr::opts_chunk$set(warning=FALSE, message=FALSE) 
 ```
 
-## Q&A
-
-
----
 
 ## Course Announcements
 
@@ -56,8 +52,8 @@ Lingo:
 
 --
 
-- **Balanced Panels**: At each time point ($T$), there are data points for each individual($N$). ($n = N∗T$)
-- **Unbalanced Panels**: May be data points missing for some individuals ($N$) at some time points ($T$) ($n$ observations $N∗T$)
+- **Balanced Panels**: At each time point ( $T$ ), there are data points for each individual( $N$ ). ( $n = N∗T$ )
+- **Unbalanced Panels**: May be data points missing for some individuals ( $N$ ) at some time points ( $T$ ) ( $n$ observations $N∗T$)
 
 ---
 
@@ -131,11 +127,11 @@ $$Y_{it}=\beta_{0i}+\beta_{1}X_{1it}+...\beta_{k}X_{kit} +e_{it}$$
 ```{r packages-load}
 library(tidyverse)
 library(broom)
-library(plm)
-library(car)
-library(rsample)
-library(GGally)
-library(ggcorrplot)
+library(plm) # I'll ask ITS to install these for you tonight
+library(car) #
+library(rsample) #
+library(GGally) #
+library(ggcorrplot) #
 ```
 
 --
@@ -161,9 +157,9 @@ slice_head(d_panel_DONOHUE, n = 3)
 ## Model Considerations: `effect`
 
 There are three main options for the `effect` argument:
-1) individual  - model for the effect of individual identity
-2) time - model for the effect of time
-3) twoways - meaning modeling for the effect of both individual identity and time  
+1. .ocean[individual]  - model for the effect of individual identity
+2. .ocean[time] - model for the effect of time
+3. .ocean[twoways] - meaning modeling for the effect of both individual identity and time  
 
 --
 
@@ -175,10 +171,10 @@ There are three main options for the `effect` argument:
 
 ## Model Considerations: `model`
 
-1) pooling - standard pooled ordinary least squares regression model  
-2) within - fixed effects model (variation between individuals is ignored, model compares individuals to themselves at different periods of time)  
-3) between - fixed effects model (variation within individuals from one time point to another is ignored, model compares different individuals at each point of time)  
-4) random - random effects (each state has a different intercept but force it to follow a normal distribution - requires more assumptions)
+1. .ocean[pooling] - standard pooled ordinary least squares regression model  
+2. .ocean[within] - fixed effects model (variation between individuals is ignored, model compares individuals to themselves at different periods of time)  
+3. .ocean[between] - fixed effects model (variation within individuals from one time point to another is ignored, model compares different individuals at each point of time)  
+4. .ocean[random] - random effects (each state has a different intercept but force it to follow a normal distribution - requires more assumptions)
 
 
 --
@@ -204,8 +200,7 @@ DONOHUE_OUTPUT <- plm(Viol_crime_rate_1k_log ~
                       police_per_100k_lag,
                       effect = "twoways",
                       model = "within",
-                      data = d_panel_DONOHUE
-                      )
+                      data = d_panel_DONOHUE)
 ```
 
 ---
@@ -225,19 +220,15 @@ DONOHUE_OUTPUT_TIDY$Analysis <- "Analysis Donohue"
 ## Formula: `as.formula()` (LOTT)
 
 ```{r}
-LOTT_variables <- LOTT_DF %>%
-  dplyr::select(
-    RTC_LAW,
-    contains(c("White", "Black", "Other")),
-    Unemployment_rate,
-    Poverty_rate,
-    Population_log,
-    police_per_100k_lag
-  ) %>%
+LOTT_variables <- LOTT_DF |>
+  select(RTC_LAW,
+         contains(c("White", "Black", "Other")),
+         Unemployment_rate,
+         Poverty_rate,
+         Population_log,
+         police_per_100k_lag) |>
   colnames()
-LOTT_fmla <- as.formula(paste(
-  "Viol_crime_rate_1k_log ~",
-  paste(LOTT_variables, collapse = " + ")
+LOTT_fmla <- as.formula(paste("Viol_crime_rate_1k_log ~", paste(LOTT_variables, collapse = " + ")
 ))
 LOTT_fmla
 ```
@@ -271,8 +262,8 @@ LOTT_OUTPUT_TIDY$Analysis <- "Analysis Lott"
 
 
 ```{r}
-comparing_analyses <- DONOHUE_OUTPUT_TIDY %>%
-  bind_rows(LOTT_OUTPUT_TIDY) %>%
+comparing_analyses <- DONOHUE_OUTPUT_TIDY |>
+  bind_rows(LOTT_OUTPUT_TIDY) |>
   filter(term == "RTC_LAWTRUE")
 comparing_analyses
 ```
@@ -281,8 +272,10 @@ comparing_analyses
 
 ## RTC
 
-```{r}
-comparing_analyses_plot <- ggplot(comparing_analyses) +
+.panelset[
+.panel[.panel-name[Code]
+```{r, comparing, fig.show = "hide"}
+ggplot(comparing_analyses) +
   geom_point(aes(x = Analysis, y = estimate)) +
   geom_errorbar(aes(x = Analysis, ymin = conf.low, ymax = conf.high), width = 0.25) +
   geom_hline(yintercept = 0, color = "red") +
@@ -293,17 +286,11 @@ comparing_analyses_plot <- ggplot(comparing_analyses) +
   ) +
   geom_segment(aes(x = 1, y = 0.125, xend = 1, yend = 0.175),
     arrow = arrow(angle = 45, ends = "last", type = "open"),
-    size = 2,
-    color = "green",
-    lineend = "butt",
-    linejoin = "mitre"
+    size = 2, color = "green", lineend = "butt", linejoin = "mitre"
   ) +
   geom_segment(aes(x = 2, y = -0.125, xend = 2, yend = -0.175),
     arrow = arrow(angle = 45, ends = "last", type = "open"),
-    size = 2,
-    color = "red",
-    lineend = "butt",
-    linejoin = "mitre"
+    size = 2, color = "red", lineend = "butt", linejoin = "mitre"
   ) +
   theme_minimal() +
   theme(
@@ -314,8 +301,13 @@ comparing_analyses_plot <- ggplot(comparing_analyses) +
     title = "Effect estimate on ln(violent crimes per 100,000 people)",
     y = "  Effect estimate (95% CI)"
   )
-comparing_analyses_plot
 ```
+]
+.panel[.panel-name[Plot]
+
+```{r ref.label="comparing", echo = FALSE, out.width="100%"}
+```
+]]
 
 ---
 
@@ -347,7 +339,7 @@ comparing_analyses_plot
 .panelset[
 .panel[.panel-name[Code-1]
 ```{r correlation, fig.show = "hide"}
-DONOHUE_DF %>%
+DONOHUE_DF |>
   select(RTC_LAW,
          Viol_crime_rate_1k_log,
          Unemployment_rate,
@@ -357,9 +349,7 @@ DONOHUE_DF %>%
           lower = list(continuous = wrap("smooth_loess",
                                          color = "red",
                                          alpha = 0.5,
-                                         size = 0.1
-          ))
-  )
+                                         size = 0.1)))
 ```
 ]
 .panel[.panel-name[Plot]
@@ -381,9 +371,9 @@ DONOHUE_DF %>%
 .panelset[
 .panel[.panel-name[Code]
 ```{r heatmap, fig.show = "hide"}
-cor_DONOHUE_dem <- cor(DONOHUE_DF %>% select(contains("_years")))
+cor_DONOHUE_dem <- cor(DONOHUE_DF |> select(contains("_years")))
 
-corr_mat_DONOHUE <- ggcorrplot(cor_DONOHUE_dem,
+ggcorrplot(cor_DONOHUE_dem,
   tl.cex = 6,
   hc.order = TRUE,
   colors = c(
@@ -395,18 +385,14 @@ corr_mat_DONOHUE <- ggcorrplot(cor_DONOHUE_dem,
   title = "Correlation Matrix, Analysis Donohue",
   legend.title = expression(rho)
 )
-
-
-corr_mat_DONOHUE
 ```
 ]
 .panel[.panel-name[Plot]
 
 ```{r ref.label="heatmap", echo = FALSE, out.width="80%"}
 ```
-
---
-
+]
+.panel[.panel-name[Notes]
 - *strong* correlation within race
 - race shows much stronger correlation than age
 - suggests collinearity
@@ -419,7 +405,7 @@ corr_mat_DONOHUE
 .panelset[
 .panel[.panel-name[Code]
 ```{r heatmap-lott, fig.show = "hide"}
-cor_LOTT_dem <- cor(LOTT_DF %>% dplyr::select(contains("_years")))
+cor_LOTT_dem <- cor(LOTT_DF |> select(contains("_years")))
 
 corr_mat_LOTT <- ggcorrplot(cor_LOTT_dem,
   tl.cex = 6,
@@ -456,10 +442,10 @@ corr_mat_LOTT
 
 ## LOOCV: splits (Donohue)
 
-```{r}
+```{r, cache=TRUE}
 ## split data
 set.seed(124)
-DONOHUE_splits <- d_panel_DONOHUE %>% loo_cv()
+DONOHUE_splits <- d_panel_DONOHUE |> loo_cv()
 DONOHUE_splits
 ```
 
@@ -467,7 +453,7 @@ DONOHUE_splits
 
 ## LOOCV: get data (Donohue)
 
-```{r}
+```{r, cache=TRUE}
 DONOHUE_subsets <- map(pull(DONOHUE_splits, splits), training)
 glimpse(DONOHUE_subsets[[1]])
 ```
@@ -500,18 +486,19 @@ fit_nls_on_bootstrap_DONOHUE <- function(subset) {
 
 ### Use the Function (Donohue)
 
-```{r}
+```{r, cache=TRUE}
 subsets_models_DONOHUE <- map(DONOHUE_subsets, fit_nls_on_bootstrap_DONOHUE)
 
-subsets_models_DONOHUE <- subsets_models_DONOHUE %>%
+subsets_models_DONOHUE <- subsets_models_DONOHUE |>
   map(tidy)
 ```
 
+Note: This code takes a while to run. Suggestion to cache this code chunk!
 ---
 
 ### Save bootstrap output (Donohue)
 
-```{r}
+```{r, cache=TRUE}
 save(subsets_models_DONOHUE,
   file = "data/wrangled/DONOHUE_simulations.rda")
 ```
@@ -520,9 +507,9 @@ save(subsets_models_DONOHUE,
 
 ## LOOCV: splits (Lott)
 
-```{r}
+```{r, cache=TRUE}
 set.seed(124)
-LOTT_splits <- d_panel_LOTT %>% loo_cv()
+LOTT_splits <- d_panel_LOTT |> loo_cv()
 LOTT_subsets <- map(pull(LOTT_splits, splits), training)
 ```
 
@@ -545,11 +532,13 @@ fit_nls_on_bootstrap_LOTT <- function(split) {
 
 ### Use the Function (Lott)
 
-```{r}
+```{r, cache=TRUE}
 subsets_models_LOTT <- map(LOTT_subsets, fit_nls_on_bootstrap_LOTT)
-subsets_models_LOTT <- subsets_models_LOTT %>%
+subsets_models_LOTT <- subsets_models_LOTT |>
   map(tidy)
 ```
+
+Note: This code takes a while to run. Suggestion to cache this code chunk!
 
 ---
 
@@ -575,122 +564,129 @@ names(subsets_models_LOTT) <-
 
 ## Combine simulation data
 
+.panelset[
+.panel[.panel-name[Code]
 ```{r}
-simulations_DONOHUE <- subsets_models_DONOHUE %>%
-  bind_rows(.id = "ID") %>%
+simulations_DONOHUE <- subsets_models_DONOHUE |>
+  bind_rows(.id = "ID") |>
   mutate(Analysis = "Analysis Donohue")
 
-simulations_LOTT <- subsets_models_LOTT %>%
-  bind_rows(.id = "ID") %>%
+simulations_LOTT <- subsets_models_LOTT |>
+  bind_rows(.id = "ID") |>
   mutate(Analysis = "Analysis Lott")
 
-simulations <- bind_rows(
-  simulations_DONOHUE,
-  simulations_LOTT
-)
+simulations <- bind_rows(simulations_DONOHUE, simulations_LOTT)
 
 # order for easier comparison
-simulations <- simulations %>%
+simulations <- simulations |>
   mutate(term = factor(term,
     levels = c(
       str_subset(unique(pull(simulations, term)), "years", negate = TRUE),
-      sort(str_subset(unique(pull(simulations, term)), "years"))
-    )
-  ))
-
-
+      sort(str_subset(unique(pull(simulations, term)), "years")))))
+```
+]
+.panel[.panel-name[Data]
+```{r}
 head(simulations)
 ```
+]]
 
 ---
 
-## Simulation: Plot (coeffiients)
-
-```{r}
-simulation_plot <- simulations %>%
+## Simulation: Plot (coefficients)
+.panelset[
+.panel[.panel-name[Code]
+```{r, simulation, fig.show="hide"}
+simulations |>
   ggplot(aes(x = term, y = estimate)) +
   geom_boxplot() +
   facet_grid(. ~ Analysis, scale = "free_x", space = "free", drop = TRUE) +
-  labs(
-    title = "Coefficient estimates",
-    subtitle = "Estimates across leave-one-out analyses",
-    x = "Term",
-    y = "Coefficient",
-    caption = "Results from simulations"
-  ) +
+  labs(title = "Coefficient estimates",
+       subtitle = "Estimates across leave-one-out analyses",
+       x = "Term",
+       y = "Coefficient",
+       caption = "Results from simulations") +
   theme_linedraw() +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_text(angle = 70, hjust = 1),
-    strip.text.x = element_text(size = 14, face = "bold")
-  )
-
-simulation_plot
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(angle = 70, hjust = 1),
+        strip.text.x = element_text(size = 14, face = "bold"),
+        plot.title.position="plot")
 ```
+]
+.panel[.panel-name[Plot]
 
+```{r ref.label="simulation", echo = FALSE, out.width="100%"}
+```
+]]
 ---
 
 ## Simulation: Plot (sd)
 
-```{r}
-coeff_sd <- simulations %>%
-  group_by(Analysis, term) %>%
+.panelset[
+.panel[.panel-name[Code]
+
+```{r, sd, fig.show="hide"}
+coeff_sd <- simulations |>
+  group_by(Analysis, term) |>
   summarize("SD" = sd(estimate))
 
-simulation_plot <- coeff_sd %>%
+coeff_sd |>
   ggplot(aes(x = Analysis, y = SD)) +
   geom_jitter(width = 0.1, alpha = 0.5, size = 2) +
-  labs(
-    title = "Coefficient variability",
-    subtitle = "SDs of coefficient estimates from leave-one-out analysis",
-    x = "Term",
-    y = "Coefficient Estimate \n Standard Deviations",
-    caption = "Results from simulations"
-  ) +
+  labs(title = "Coefficient variability",
+       subtitle = "SDs of coefficient estimates from leave-one-out analysis",
+       x = "Term",
+       y = "Coefficient Estimate \n Standard Deviations",
+       caption = "Results from simulations") +
   theme_minimal() +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_text(size = 8, color = "black"),
-    axis.text.y = element_text(color = "black")
-  )
-simulation_plot
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(size = 8, color = "black"),
+        axis.text.y = element_text(color = "black"),
+        plot.title.position="plot")
 ```
+]
+.panel[.panel-name[Plot]
 
+```{r ref.label="sd", echo = FALSE, out.width="100%"}
+```
+]]
 ---
 
 ## VIF: Evaluating presence and severity of multicollinearity
 
 Variance Inflation Factor (**VIF**): index that measures how much the variance (the square of the estimate’s standard deviation) of an estimated regression coefficient is increased because of collinearity.
 
---- 
+---
 
 ### Calculating VIF:
-
+.small[
 If our model is : $Y = β_0 + β_1X_1 + β_2X_2 + β_3X_3 + e $, then:
 
 To calculate the VIF value for $X_1$, perform another OLS model, where $X_1$ is now the dependent variable explained by the other explanatory variables:
 
 $$X_1 = β_0 +  β_2X_2 + β_3X_3 + e$$ 
-
+]
 --
-
+.small[
 From this model : $$VIF = \frac{1}{1-R^{2}}$$ 
 
 ...where $R^2$ value is the proportion of variance in $X_1$ explained by the other variables ($X_2$ and $X_3$)
-
+]
 --
-
+.small[
 Repeat for each explanatory variable in the model.
-
+]
 --
-
+.small[
 - the larger the VIF,  the more multicollinearity
 - VIF of >=10 typically indicates problematic multicollinearity
-
+]
 ---
 
 ## Calculating VIF (Donohue)
 
+.panelset[
+.panel[.panel-name[Code-1]
 ```{r}
 # create model matrix
 lm_DONOHUE_data <- as.data.frame(model.matrix(DONOHUE_OUTPUT))
@@ -700,7 +696,10 @@ lm_DONOHUE_data <- lm_DONOHUE_data |>
   mutate(Viol_crime_rate_1k_log = plm::Within(pull(
     d_panel_DONOHUE, Viol_crime_rate_1k_log
   )), effect = "twoways")
-
+```
+]
+.panel[.panel-name[2]
+```{r}
 # specify model
 lm_DONOHUE <- lm(Viol_crime_rate_1k_log ~
 RTC_LAWTRUE +
@@ -719,73 +718,82 @@ data = lm_DONOHUE_data
 
 # calculate VIF
 vif_DONOHUE <- vif(lm_DONOHUE)
-vif_DONOHUE
-
+```
+]
+.panel[.panel-name[3]
+```{r}
 # combine into nice table
-vif_DONOHUE <- vif_DONOHUE %>%
-  as_tibble() %>%
-  cbind(., names(vif_DONOHUE)) %>%
+vif_DONOHUE <- vif_DONOHUE |>
+  as_tibble() |>
+  cbind(names(vif_DONOHUE)) |>
   as_tibble()
 colnames(vif_DONOHUE) <- c("VIF", "Variable")
 vif_DONOHUE
 ```
-
+]]
 ---
 
 ## Calculating VIF (Lott)
 
+.panelset[
+.panel[.panel-name[Code-1]
 ```{r}
 lm_LOTT_data <- as.data.frame(model.matrix(LOTT_OUTPUT))
 lm_LOTT_data <- lm_LOTT_data |>
-  mutate(Viol_crime_rate_1k_log = plm::Within(pull(
-    d_panel_LOTT, Viol_crime_rate_1k_log
-  ), effect = "twoways")) %>%
+  mutate(Viol_crime_rate_1k_log = plm::Within(pull(d_panel_LOTT, Viol_crime_rate_1k_log), effect = "twoways")) |>
   rename(RTC_LAW = RTC_LAWTRUE)
-lm_LOTT <- lm(LOTT_fmla,
-  data = lm_LOTT_data
-)
+lm_LOTT <- lm(LOTT_fmla, data = lm_LOTT_data)
+```
+]
+.panel[.panel-name[2]
+```{r}
 vif_LOTT <- vif(lm_LOTT)
 vif_LOTT
-vif_LOTT <- vif_LOTT %>%
-  as_tibble() %>%
-  cbind(., names(vif_LOTT)) %>%
+vif_LOTT <- vif_LOTT |>
+  as_tibble() |>
+  cbind(names(vif_LOTT)) |>
   as_tibble()
 colnames(vif_LOTT) <- c("VIF", "Variable")
-
-# clean up names
-vif_LOTT %>% mutate(Variable = str_replace(
-  string = Variable,
-  pattern = "RTC_LAW",
-  replacement = "RTC_LAWTRUE"
-))
-vif_LOTT
-
 ```
-
+]
+.panel[.panel-name[3]
+```{r}
+# clean up names
+vif_LOTT |> 
+  mutate(Variable = str_replace(string = Variable,
+                                pattern = "RTC_LAW",
+                                replacement = "RTC_LAWTRUE"))
+vif_LOTT
+```
+]]
 ---
 
-## VIF Across Analyses
-
+**VIF Across Analyses**
+.panelset[
+.panel[.panel-name[Code]
 ```{r}
 vif_DONOHUE <- vif_DONOHUE |>
   mutate(Analysis = "Analysis Donohue")
 vif_LOTT <- vif_LOTT |>
   mutate(Analysis = "Analysis Lott")
-vif_df <- bind_rows(
-  vif_DONOHUE,
-  vif_LOTT
-)
+vif_df <- bind_rows(vif_DONOHUE, vif_LOTT)
+```
+]
+.panel[.panel-name[Table]
+.small[
+```{r, echo=FALSE}
 datatable(vif_df)
 ```
-
+]]]
 
 ---
 
 ### VIF Plot
 
-```{r}
-
-vif_plot <- vif_df %>%
+.panelset[
+.panel[.panel-name[Code]
+```{r, vif, fig.show="hide"}
+vif_df |>
   ggplot(aes(x = Analysis, y = VIF)) +
   geom_jitter(width = 0.1, alpha = 0.5, size = 2) +
   geom_hline(yintercept = 10, color = "red") +
@@ -793,20 +801,23 @@ vif_plot <- vif_df %>%
   coord_trans(y = "log10") +
   labs(title = "Variance inflation factors") +
   theme_minimal() +
-  theme(
-    axis.title.x = element_blank(),
-    axis.text.x = element_text(color = "black"),
-    axis.text.y = element_text(color = "black")
-  )
-vif_plot
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_text(color = "black"),
+        axis.text.y = element_text(color = "black"))
 ```
+]
+.panel[.panel-name[Plot]
+
+```{r ref.label="vif", echo = FALSE, out.width="100%"}
+```
+]]
 
 ---
 
-What to do?
+### What to do?
 
 - different model?
 - different predictors in this model? 
-- [article](https://link.springer.com/content/pdf/10.1007/s11135-006-9018-6.pdf){target="_blank"} for a detailed discussion about what to consider when your model has variables with high VIF values
+- [article](https://link.springer.com/content/pdf/10.1007/s11135-006-9018-6.pdf) for a detailed discussion about what to consider when your model has variables with high VIF values
 
 

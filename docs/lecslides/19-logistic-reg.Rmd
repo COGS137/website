@@ -1,5 +1,5 @@
 ---
-title: "Logistic Regression I"
+title: "Logistic Regression"
 author: "Prof Ellis"
 date: "2021-11-17"
 output:
@@ -13,6 +13,11 @@ output:
       countIncrementalSlides: false
 ---
 
+
+```{r child = "setup.Rmd"}
+```
+
+
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(tidymodels)
@@ -20,6 +25,47 @@ library(openintro)
 library(ggridges)
 set.seed(1234)
 ```
+
+## Q&A
+
+Q: Multi-collinearity is something we heavily get into for CS 02, Are we allowed to us similar code structures you provided in class is answer different sub question but same types of plots.  
+A: Yup! This is definitely an option
+
+Q: Do we have a project for this class?  
+A: Yup - it will be a short analysis in your groups, similar to a case study, but without me telling you the dataset to use. We will discuss in more detail next Monday.
+
+
+---
+## Course Announcements  
+
+- lab08 due Friday (logistic regression)
+- CS01 Grades and Feedback coming later today; will discuss in class Wed
+- lab07 answer key posted
+
+---
+
+## [R Markdown](https://bookdown.org/yihui/rmarkdown/): Tips & Tricks
+.small[
+Can control look of your final report in R Markdown...
+- full document: [update YAML](https://bookdown.org/yihui/rmarkdown/output-formats.html), for example
+```
+    output: 
+      html_document:
+        theme: cosmo
+        code_folding: hide
+        toc: yes
+```
+- **[control individual code chunks](https://bookdown.org/yihui/rmarkdown/r-code.html)** (or all code chunks)
+    - `eval` - whether to evaluate the code chunk (execute the code)
+    - `echo` - whether to display the source code in output document
+    - `include` - whether to include anything from a code chunk in the output document
+    - `warning`, `message`, and `error` - whether to display in output document
+    - `cache` - whether to enable caching
+    - `fig.width`, `fig.height`, `out.width`, `out.height` - display output appearance of figures
+
+- control all code chunks...`knitr::opts_chunk$set(...)`
+]
+---
 
 class: middle
 
@@ -53,7 +99,7 @@ Would you expect longer or shorter emails to be spam?
 
 .pull-left[
 ```{r echo=FALSE, out.width="100%"}
-email %>%
+email |>
   ggplot(aes(x = num_char, y = spam, fill = spam, color = spam)) +
   geom_density_ridges2(alpha = 0.5) +
   labs(
@@ -61,15 +107,15 @@ email %>%
     y = "Spam",
     title = "Spam vs. number of characters"
     ) +
-  guides(color = FALSE, fill = FALSE) +
+  guides(color = "none", fill = "none") +
   scale_fill_manual(values = c("#E48957", "#CA235F")) +
   scale_color_manual(values = c("#DEB4A0", "#CA235F"))
 ```
 ]
 .pull-right[
 ```{r echo=FALSE}
-email %>% 
-  group_by(spam) %>% 
+email |> 
+  group_by(spam) |> 
   summarise(mean_num_char = mean(num_char))
 ```
 ]
@@ -83,7 +129,7 @@ Would you expect emails that have subjects starting with "Re:", "RE:", "re:", or
 --
 
 ```{r echo=FALSE}
-email %>%
+email |>
   ggplot(aes(x = re_subj, fill = spam)) +
   geom_bar(position = "fill") +
   labs(
@@ -110,10 +156,10 @@ email %>%
 
 This isn't something we can reasonably fit a linear model to -- we need something different!
 
-```{r echo=FALSE, out.width="70%"}
-means <- email %>%
-  group_by(spam) %>%
-  summarise(mean_num_char = mean(num_char)) %>%
+```{r echo=FALSE, out.width="100%"}
+means <- email |>
+  group_by(spam) |>
+  summarise(mean_num_char = mean(num_char)) |>
   mutate(group = 1)
 
 ggplot(email, aes(x = num_char, y = spam, color = spam)) +
@@ -121,7 +167,7 @@ ggplot(email, aes(x = num_char, y = spam, color = spam)) +
   geom_line(data = means, aes(x = mean_num_char, y = spam, group = group), color = "black", size = 1.5) +
   labs(x = "Number of characters (in thousands)", y = "Spam") +
   scale_color_manual(values = c("#DEB4A0", "#CA235F")) +
-  guides(color = FALSE)
+  guides(color = "none")
 ```
 
 ---
@@ -193,7 +239,7 @@ $$logit(p) = \log\left(\frac{p}{1-p}\right)$$
 ## Logit function, visualised
 
 ```{r echo=FALSE}
-d <- tibble(p = seq(0.001, 0.999, length.out = 1000)) %>%
+d <- tibble(p = seq(0.001, 0.999, length.out = 1000)) |>
   mutate(logit_p = log(p/(1-p)))
 
 ggplot(d, aes(x = p, y = logit_p)) + 
@@ -245,8 +291,8 @@ In R we fit a GLM in the same way as a linear model except we
 --
 
 ```{r}
-spam_fit <- logistic_reg() %>%
-  set_engine("glm") %>%
+spam_fit <- logistic_reg() |>
+  set_engine("glm") |>
   fit(spam ~ num_char, data = email, family = "binomial")
 
 tidy(spam_fit)
@@ -286,7 +332,7 @@ What is the probability that an email with 15000 characters is spam? What about 
 --
 
 .pull-left[
-```{r spam-predict-viz, echo=FALSE, out.width = "100%", fig.asp=0.5}
+```{r spam-predict-viz, echo=FALSE, out.width = "100%"}
 newdata <- tibble(
   num_char = c(2, 15, 40),
   color    = c("#A7D5E8", "#e9d968", "#8fada7"),
@@ -296,20 +342,20 @@ newdata <- tibble(
 y_hat <- predict(spam_fit, newdata, type = "raw")
 p_hat <- exp(y_hat) / (1 + exp(y_hat))
 
-newdata <- newdata %>%
+newdata <- newdata |>
   bind_cols(
     y_hat = y_hat,
     p_hat = p_hat
   )
 
-spam_aug <- augment(spam_fit$fit) %>%
+spam_aug <- augment(spam_fit$fit) |>
   mutate(prob = exp(.fitted) / (1 + exp(.fitted)))
 
 ggplot(spam_aug, aes(x = num_char)) +
   geom_point(aes(y = as.numeric(spam)-1, color = spam), alpha = 0.3) +
   scale_color_manual(values = c("#DEB4A0", "#CA235F")) +
   scale_y_continuous(breaks = c(0, 1)) +
-  guides(color = FALSE) +
+  guides(color = "none") +
   geom_line(aes(y = prob)) +
   geom_point(data = newdata, aes(x = num_char, y = p_hat), 
              fill = newdata$color, shape = newdata$shape, 
@@ -333,7 +379,7 @@ ggplot(spam_aug, aes(x = num_char)) +
 Would you prefer an email with 2000 characters to be labelled as spam or not? How about 40,000 characters?
 ]
 
-```{r ref.label="spam-predict-viz", echo=FALSE, fig.asp=0.5}
+```{r ref.label="spam-predict-viz", echo=FALSE, out.width="100%"}
 ```
 
 ---

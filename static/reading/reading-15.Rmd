@@ -1,0 +1,11 @@
+---
+title: "Reading 15"
+output: 
+  html_document: 
+    theme: yeti
+---
+
+
+# Estimation via bootstrapping
+- [Intro to Modern Statistics](https://openintro-ims.netlify.app/index.html):
+  + Chapter 12: Confidence intervals with bootstrapping

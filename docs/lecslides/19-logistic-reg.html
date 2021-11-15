@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html lang="" xml:lang="">
   <head>
-    <title>Logistic Regression I</title>
+    <title>Logistic Regression</title>
     <meta charset="utf-8" />
     <meta name="author" content="Prof Ellis" />
     <meta name="date" content="2021-11-17" />
-    <script src="libs/header-attrs-2.9/header-attrs.js"></script>
+    <script src="libs/header-attrs/header-attrs.js"></script>
+    <link href="libs/font-awesome/css/all.css" rel="stylesheet" />
+    <link href="libs/font-awesome/css/v4-shims.css" rel="stylesheet" />
+    <link href="libs/panelset/panelset.css" rel="stylesheet" />
+    <script src="libs/panelset/panelset.js"></script>
     <link rel="stylesheet" href="slides.css" type="text/css" />
   </head>
   <body>
     <textarea id="source">
 class: center, middle, inverse, title-slide
 
-# Logistic Regression I
+# Logistic Regression
 ### Prof Ellis
 ### 2021-11-17
 
@@ -20,6 +24,53 @@ class: center, middle, inverse, title-slide
 
 
 
+
+
+
+
+
+
+
+## Q&amp;A
+
+Q: Multi-collinearity is something we heavily get into for CS 02, Are we allowed to us similar code structures you provided in class is answer different sub question but same types of plots.  
+A: Yup! This is definitely an option
+
+Q: Do we have a project for this class?  
+A: Yup - it will be a short analysis in your groups, similar to a case study, but without me telling you the dataset to use. We will discuss in more detail next Monday.
+
+
+---
+## Course Announcements  
+
+- lab08 due Friday (logistic regression)
+- CS01 Grades and Feedback coming later today; will discuss in class Wed
+- lab07 answer key posted
+
+---
+
+## [R Markdown](https://bookdown.org/yihui/rmarkdown/): Tips &amp; Tricks
+.small[
+Can control look of your final report in R Markdown...
+- full document: [update YAML](https://bookdown.org/yihui/rmarkdown/output-formats.html), for example
+```
+    output: 
+      html_document:
+        theme: cosmo
+        code_folding: hide
+        toc: yes
+```
+- **[control individual code chunks](https://bookdown.org/yihui/rmarkdown/r-code.html)** (or all code chunks)
+    - `eval` - whether to evaluate the code chunk (execute the code)
+    - `echo` - whether to display the source code in output document
+    - `include` - whether to include anything from a code chunk in the output document
+    - `warning`, `message`, and `error` - whether to display in output document
+    - `cache` - whether to enable caching
+    - `fig.width`, `fig.height`, `out.width`, `out.height` - display output appearance of figures
+
+- control all code chunks...`knitr::opts_chunk$set(...)`
+]
+---
 
 class: middle
 
@@ -45,27 +96,27 @@ glimpse(email)
 ```
 ## Rows: 3,921
 ## Columns: 21
-## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
-## $ cc           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2, 1, 0, 2, 0, …
-## $ sent_email   &lt;fct&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, …
-## $ time         &lt;dttm&gt; 2011-12-31 22:16:41, 2011-12-31 23:03:59, 2012-01-01 08:…
-## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ dollar       &lt;dbl&gt; 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, …
-## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no, no, no, no, n…
-## $ inherit      &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ password     &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …
-## $ num_char     &lt;dbl&gt; 11.370, 10.504, 7.773, 13.256, 1.231, 1.091, 4.837, 7.421…
-## $ line_breaks  &lt;int&gt; 202, 202, 192, 255, 29, 25, 193, 237, 69, 68, 25, 79, 191…
-## $ format       &lt;fct&gt; 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, …
-## $ re_subj      &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, …
-## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …
-## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
-## $ exclaim_mess &lt;dbl&gt; 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 10, 4, 10, 20, 0…
-## $ number       &lt;fct&gt; big, small, small, small, none, none, big, small, small, …
+## $ spam         &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ to_multiple  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, …
+## $ from         &lt;fct&gt; 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …
+## $ cc           &lt;int&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, …
+## $ sent_email   &lt;fct&gt; 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, …
+## $ time         &lt;dttm&gt; 2011-12-31 22:16:41, 2011-12-31 23:03:59,…
+## $ image        &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ attach       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, …
+## $ dollar       &lt;dbl&gt; 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ winner       &lt;fct&gt; no, no, no, no, no, no, no, no, no, no, no…
+## $ inherit      &lt;dbl&gt; 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ viagra       &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ password     &lt;dbl&gt; 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ num_char     &lt;dbl&gt; 11.370, 10.504, 7.773, 13.256, 1.231, 1.09…
+## $ line_breaks  &lt;int&gt; 202, 202, 192, 255, 29, 25, 193, 237, 69, …
+## $ format       &lt;fct&gt; 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, …
+## $ re_subj      &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, …
+## $ exclaim_subj &lt;dbl&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ urgent_subj  &lt;fct&gt; 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …
+## $ exclaim_mess &lt;dbl&gt; 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 1…
+## $ number       &lt;fct&gt; big, small, small, small, none, none, big,…
 ```
 ]
 ]
@@ -79,22 +130,12 @@ Would you expect longer or shorter emails to be spam?
 --
 
 .pull-left[
-
-```
-## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
-## "none")` instead.
-```
-
-```
-## Picking joint bandwidth of 1.18
-```
-
-&lt;img src="23-logistic-reg_files/figure-html/unnamed-chunk-2-1.png" width="100%" /&gt;
+&lt;img src="19-logistic-reg_files/figure-html/unnamed-chunk-3-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 
 ```
-## # A tibble: 2 x 2
+## # A tibble: 2 × 2
 ##   spam  mean_num_char
 ##   &lt;fct&gt;         &lt;dbl&gt;
 ## 1 0             11.3 
@@ -110,7 +151,7 @@ Would you expect emails that have subjects starting with "Re:", "RE:", "re:", or
 
 --
 
-![](23-logistic-reg_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+&lt;img src="19-logistic-reg_files/figure-html/unnamed-chunk-5-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -127,13 +168,7 @@ Would you expect emails that have subjects starting with "Re:", "RE:", "re:", or
 
 This isn't something we can reasonably fit a linear model to -- we need something different!
 
-
-```
-## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
-## "none")` instead.
-```
-
-&lt;img src="23-logistic-reg_files/figure-html/unnamed-chunk-5-1.png" width="70%" /&gt;
+&lt;img src="19-logistic-reg_files/figure-html/unnamed-chunk-6-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -203,7 +238,7 @@ class: middle
 
 ## Logit function, visualised
 
-![](23-logistic-reg_files/figure-html/unnamed-chunk-6-1.png)&lt;!-- --&gt;
+&lt;img src="19-logistic-reg_files/figure-html/unnamed-chunk-7-1.png" width="60%" style="display: block; margin: auto;" /&gt;
 
 ---
 
@@ -248,15 +283,15 @@ In R we fit a GLM in the same way as a linear model except we
 
 
 ```r
-spam_fit &lt;- logistic_reg() %&gt;%
-  set_engine("glm") %&gt;%
+spam_fit &lt;- logistic_reg() |&gt;
+  set_engine("glm") |&gt;
   fit(spam ~ num_char, data = email, family = "binomial")
 
 tidy(spam_fit)
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  -1.80     0.0716     -25.1  2.04e-139
@@ -273,7 +308,7 @@ tidy(spam_fit)
 ```
 
 ```
-## # A tibble: 2 x 5
+## # A tibble: 2 × 5
 ##   term        estimate std.error statistic   p.value
 ##   &lt;chr&gt;          &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;
 ## 1 (Intercept)  -1.80     0.0716     -25.1  2.04e-139
@@ -306,13 +341,7 @@ What is the probability that an email with 15000 characters is spam? What about 
 --
 
 .pull-left[
-
-```
-## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
-## "none")` instead.
-```
-
-&lt;img src="23-logistic-reg_files/figure-html/spam-predict-viz-1.png" width="100%" /&gt;
+&lt;img src="19-logistic-reg_files/figure-html/spam-predict-viz-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 ]
 .pull-right[
 - .light-blue[2K chars: P(spam) = 0.13]
@@ -326,13 +355,7 @@ What is the probability that an email with 15000 characters is spam? What about 
 Would you prefer an email with 2000 characters to be labelled as spam or not? How about 40,000 characters?
 ]
 
-
-```
-## Warning: `guides(&lt;scale&gt; = FALSE)` is deprecated. Please use `guides(&lt;scale&gt; =
-## "none")` instead.
-```
-
-![](23-logistic-reg_files/figure-html/unnamed-chunk-9-1.png)&lt;!-- --&gt;
+&lt;img src="19-logistic-reg_files/figure-html/unnamed-chunk-10-1.png" width="100%" style="display: block; margin: auto;" /&gt;
 
 ---
 

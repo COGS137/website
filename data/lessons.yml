@@ -109,7 +109,7 @@ lessons:
     date: "Mon Nov 15"
     title: "Logistic Regression I"
     hw: "hw-04.html"
-    lecslides: "19-logistic-reg.Rmd"
+    lecslides: "19-logistic-reg.html"
     reading: "reading-19.html"
   - date: "Wed Nov 17"
     title: "Logistic Regression II"

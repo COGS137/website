@@ -849,7 +849,7 @@ Variance Inflation Factor (**VIF**): index that measures how much the variance (
 
 ### Calculating VIF:
 .small[
-If our model is : $Y = β_0 + β_1X_1 + β_2X_2 + β_3X_3 + e $, then:
+If our model is : `\(Y = β_0 + β_1X_1 + β_2X_2 + β_3X_3 + e\)`, then:
 
 To calculate the VIF value for `\(X_1\)`, perform another OLS model, where `\(X_1\)` is now the dependent variable explained by the other explanatory variables:
 
@@ -859,7 +859,7 @@ To calculate the VIF value for `\(X_1\)`, perform another OLS model, where `\(X_
 .small[
 From this model : `$$VIF = \frac{1}{1-R^{2}}$$` 
 
-...where `\(R^2\)` value is the proportion of variance in `\(X_1\)` explained by the other variables ($X_2$ and `\(X_3\)`)
+...where `\(R^2\)` value is the proportion of variance in `\(X_1\)` explained by the other variables ( `\(X_2\)` and `\(X_3\)`)
 ]
 --
 .small[

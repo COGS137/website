@@ -94,7 +94,8 @@ resume_variables <- tribble(
 resume_variables %>%
   kbl(linesep = "", booktabs = TRUE) %>%
   kable_styling(bootstrap_options = c("striped", "condensed"), 
-                latex_options = c("striped", "hold_position"), full_width = TRUE) %>%
+                latex_options = c("striped", "hold_position"), 
+                position="left", full_width = TRUE) %>%
   column_spec(1, monospace = TRUE) %>%
   column_spec(2, width = "30em")
 ```

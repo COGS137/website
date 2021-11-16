@@ -401,6 +401,142 @@ class: middle
 .question[
 If you were designing a spam filter, would you want sensitivity and specificity to be high or low? What are the trade-offs associated with each decision? 
 ]
+
+
+---
+
+## Modeling Spam : Multiple predictors
+
+
+```r
+spam_mult &lt;- logistic_reg() |&gt;
+  set_engine("glm") |&gt;
+  fit(spam ~ num_char + to_multiple + re_subj, data = email, family = "binomial")
+
+tidy(spam_mult)
+```
+
+```
+## # A tibble: 4 × 5
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   -1.20     0.0752     -16.0  2.21e-57
+## 2 num_char      -0.0686   0.00781     -8.78 1.57e-18
+## 3 to_multiple1  -2.14     0.299       -7.18 6.92e-13
+## 4 re_subj1      -3.12     0.360       -8.66 4.70e-18
+```
+
+---
+
+## Model: Multiple predictors
+
+
+```r
+tidy(spam_mult)
+```
+
+```
+## # A tibble: 4 × 5
+##   term         estimate std.error statistic  p.value
+##   &lt;chr&gt;           &lt;dbl&gt;     &lt;dbl&gt;     &lt;dbl&gt;    &lt;dbl&gt;
+## 1 (Intercept)   -1.20     0.0752     -16.0  2.21e-57
+## 2 num_char      -0.0686   0.00781     -8.78 1.57e-18
+## 3 to_multiple1  -2.14     0.299       -7.18 6.92e-13
+## 4 re_subj1      -3.12     0.360       -8.66 4.70e-18
+```
+
+$$
+`\begin{aligned}
+log_e \left(\frac{p}{1 - p}\right) &amp;= - 1.20 - 0.07 \times \texttt{num_char} \\
+&amp;\quad - 2.14\times \texttt{to_multiple}_{\texttt{1}} \\
+&amp;\quad - 3.12 \times \texttt{re_subj}_{\texttt{1}} \\
+\end{aligned}`
+$$
+
+---
+
+## Model: Multiple predictors
+
+So for an email with 5,000 characters (4), addressed to a single recipient (0), and that did start with "re:" in the subject line...
+
+$$
+`\begin{aligned}
+log_e \left(\frac{p}{1 - p}\right) = - 1.20 - 0.07 \times 4 - 2.14\times - 3.12 \times 1
+\end{aligned}`
+$$
+
+---
+
+## Model: Multiple predictors
+
+$$
+`\begin{aligned}
+log_e \left(\frac{p}{1 - p}\right) = - 2.2
+\end{aligned}`
+$$
+
+--
+
+...solve for `\(\widehat{p}\)`
+
+$$
+`\begin{aligned}
+\frac{e^{-2.2}}{1 + e^{-2.2}} = 0.0998 = 9.98\%
+\end{aligned}`
+$$
+--
+
+9.98% chance that such an email would be spam
+
+---
+
+class: middle
+
+# Model Comparison
+
+---
+
+## Akaike information criterion (AIC)
+
+- popular model selection method 
+- estimator of prediction error
+- praised for its emphasis on model uncertainty and parsimony
+- In calculating AIC, a penalty is given for including additional variables. This penalty for added model complexity attempts to strike a balance between underfitting (too few variables in the model) and overfitting (too many variables in the model). 
+- a lower AIC value are considered to be “better.” 
+
+---
+
+## Comparing Models: AIC
+
+**Single predictor** (`num_char`)
+
+```r
+glance(spam_fit)
+```
+
+```
+## # A tibble: 1 × 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual
+##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;
+## 1         2437.    3920 -1173. 2350. 2363.    2346.        3919
+## # … with 1 more variable: nobs &lt;int&gt;
+```
+
+**Multiple predictors**
+
+```r
+glance(spam_mult)
+```
+
+```
+## # A tibble: 1 × 8
+##   null.deviance df.null logLik   AIC   BIC deviance df.residual
+##           &lt;dbl&gt;   &lt;int&gt;  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;    &lt;dbl&gt;       &lt;int&gt;
+## 1         2437.    3920 -1032. 2071. 2097.    2063.        3917
+## # … with 1 more variable: nobs &lt;int&gt;
+```
+
+
     </textarea>
 <style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
 <script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>

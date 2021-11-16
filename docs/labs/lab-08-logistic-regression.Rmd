@@ -47,7 +47,7 @@ To get started, accept the lab08 assignment (link on Canvas), clone the repo (us
 
 # Packages
 
-In this lab we will work with the `tidyverse`, `broom`, `infer`, and `openintro` packages. We can load them with the following:
+In this lab we will work with the `tidyverse`, `broom`, `infer`, `tidymodels`, and `openintro` packages. We can load them with the following:
 
 ```{marginfigure}
 Note: If you did not install `openintro` in lecture, you'll likely have to install that using `install.packages()` first.
@@ -56,6 +56,7 @@ Note: If you did not install `openintro` in lecture, you'll likely have to insta
 
 ```{r load-packages, message=FALSE}
 library(tidyverse) 
+library(tidymodels)
 library(infer)
 library(broom)
 library(openintro)
@@ -83,7 +84,7 @@ resume_variables <- tribble(
   "military",          "Indicator for if the resume listed any military experience.",
   "has_email_address", "Indicator for if the resume listed an email address for the applicant.",
   "race",              "Race of the applicant, implied by their first name listed on the resume.",
-  "sex",               "Sex of the applicant (limited to only and in this study), implied by the first name listed on the resume."
+  "gender",               "inferred gender of the applicant (limited to only and in this study), implied by the first name listed on the resume."
 )
 resume_variables %>%
   kbl(linesep = "", booktabs = TRUE, caption = caption_helper("Descriptions of nine variables from the `resume` dataset. Many of the variables are indicator variables, meaning they take the value 1 if the specified characteristic is present and 0 otherwise.")) %>%
@@ -119,11 +120,13 @@ Here, we'll be modelling the probability of a callback for a given resume $i$. (
 
 6. The race variable had taken only two levels: Black and White. Based on the model results, what does the coefficient of this variable say about callback decisions?
 
-
-7. Considering the results from the model you just fit and using a backward elimination strategy, remove any variables from the `m_multiple` model fit previously to identify the most parsimonious model. Store this in `m_resume`. Utilize AIC (Akaike information criterion) for model comparison.
+7. Using your results from `m_resume`, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male? 
 
 ```{marginfigure}
 Reminder: Unlike $R^2$ (which we used in multiple linear regression), when using AIC for model selection, models with a lower AIC value are considered to be "better." Also, AIC provides information about the quality of a model relative to other models, but does not provide information about the overall quality of a model.
 ````
 
-8. Using your results from `m_resume`, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male? 
+8. Considering the results from the model you just fit and using a backward elimination strategy, remove any variables from the `m_multiple` model fit previously to identify the most parsimonious model. Store this in `m_resume`. Utilize AIC (Akaike information criterion) for model comparison.
+
+
+

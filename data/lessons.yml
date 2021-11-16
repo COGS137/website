@@ -113,7 +113,7 @@ lessons:
     reading: "reading-19.html"
   - date: "Wed Nov 17"
     title: "Logistic Regression II"
-    # lecslides: "23-logitistc-reg.html"
+    lecslides: "20-cs01.html"
   - date: "Fri Nov 19"
     title: "CS3: Vaping Behaviors"
     lab: "lab-08-logistic-regression.html"

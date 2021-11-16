@@ -1,0 +1,101 @@
+---
+title: "Lab 08: Logistic Regression"
+author: ""
+date: "2021-11-19"
+output: 
+  xaringan::moon_reader:
+    css: "lab-slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+```{r setup, include=FALSE}
+# R options
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  warm = 1
+  )
+# Set dpi and height for images
+library(knitr)
+opts_chunk$set(fig.height = 2.35, dpi = 300) 
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+# For nonsese...
+library(emo)
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Agenda
+
+1. Lab 08: Modelling resumes
+2. Getting started with lab
+
+
+---
+
+## Data come from...
+
+“Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination.”
+
+Bertrand, Marianne, and Sendhil Mullainathan. 2003. [https://doi.org/10.3386/w9873](https://doi.org/10.3386/w9873).
+
+---
+
+## Study
+
+Goal: understand the influence of race and gender on job application callback rates
+
+--
+
+#### Specs:
+- Two cities: Boston and Chicago
+- Time: several months in 2001 and 2002
+
+--
+
+#### Plan: 
+
+1. Researchers generated resumes, randomizing years of experience and education details
+2. Then: randomly assigned a name to the resume that would communicate the applicant's gender and race 
+  - they tested these names and removed those that did not suggest gender and race consistently
+  - i.e. Lakisha was a name that their survey indicated would be interpreted as a black woman, while Greg was a name that would generally be interpreted to be associated with a white male."
+
+---
+
+## Backwards elimination (Logistic Regression)
+
+- Start with **full** model (including all candidate explanatory variables and all
+candidate interactions)
+
+- Remove one variable at a time, and select the model with the *lowest* AIC
+
+- Continue until AIC does not decrease
+
+--
+
+- You do NOT have to include every model in your lab...just the final one you settle on.
+
+
+---
+
+## A note on this lab
+- There are three parts. We'll be grading to see that you've done *some* EDA and have fit and interpreted at least two models (single and multiple predictors model)
+- It's OK if you don't get to backwards elimination
+
+

@@ -171,11 +171,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>Load the <code>resume</code> data from the <code>openintro</code> package, using:</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">data</span>(resume)</span></code></pre></div>
 <p>We have observations on 30 different variables, some categorical and some numerical. The meaning of each variable can be looked up using <code>?resume</code>; however, we’ll describe the variables used:</p>
-<p><!--
-<caption>--><span class="marginnote shownote">Descriptions of nine variables from the <code>resume</code> dataset. Many of the variables are indicator variables, meaning they take the value 1 if the specified characteristic is present and 0 otherwise.</span><!--</caption>--></p>
+<p><label for="tufte-mn-3" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-3" class="margin-toggle"><span class="marginnote"><span style="display: block;">Descriptions of nine variables from the <code>resume</code> dataset. Many of the variables are indicator variables, meaning they take the value 1 if the specified characteristic is present and 0 otherwise.</span></span></p>
 <table class="table table-striped table-condensed" style="margin-left: auto; margin-right: auto;">
-
-
 <thead>
 <tr>
 <th style="text-align:left;">
@@ -285,7 +282,7 @@ inferred gender of the applicant (limited to only and in this study), implied by
 <li><p>The race variable had taken only two levels: Black and White. Based on the model results, what does the coefficient of this variable say about callback decisions?</p></li>
 <li><p>Using your results from <code>m_resume</code>, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male?</p></li>
 </ol>
-<p><label for="tufte-mn-3" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-3" class="margin-toggle"><span class="marginnote"><span style="display: block;">Reminder: Unlike <span class="math inline"><span class="math inline">\(R^2\)</span></span> (which we used in multiple linear regression), when using AIC for model selection, models with a lower AIC value are considered to be “better.” Also, AIC provides information about the quality of a model relative to other models, but does not provide information about the overall quality of a model.</span></span></p>
+<p><label for="tufte-mn-4" class="margin-toggle">⊕</label><input type="checkbox" id="tufte-mn-4" class="margin-toggle"><span class="marginnote"><span style="display: block;">Reminder: Unlike <span class="math inline"><span class="math inline">\(R^2\)</span></span> (which we used in multiple linear regression), when using AIC for model selection, models with a lower AIC value are considered to be “better.” Also, AIC provides information about the quality of a model relative to other models, but does not provide information about the overall quality of a model.</span></span></p>
 <ol start="8" style="list-style-type: decimal">
 <li>Considering the results from the model you just fit and using a backward elimination strategy, remove any variables from the <code>m_multiple</code> model fit previously to identify the most parsimonious model. Store this in <code>m_resume</code>. Utilize AIC (Akaike information criterion) for model comparison.</li>
 </ol>

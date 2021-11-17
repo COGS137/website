@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>CS01 (Revisited)</title>
+    <meta charset="utf-8" />
+    <meta name="author" content="Prof Ellis" />
+    <meta name="date" content="2021-11-17" />
+    <script src="libs/header-attrs-2.10/header-attrs.js"></script>
+    <link rel="stylesheet" href="slides.css" type="text/css" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# CS01 (Revisited)
+### Prof Ellis
+### 2021-11-17
+
+---
+
+
+
+## Q&amp;A
+
+Q: Since logistic regression is a classification ML algorithm, how come we didn't split the spam data into train and test? Or is it already built-in with the logistic_reg() function?  
+A: Ah, I love this question! So...while logistic regression can be *used* for classification in ML, it is not inherently an ML algorithm. ML *uses* this statistical model for classification; however, it can be used both for inference (understanding/measuring the relationship between variables) and prediction/classification (what you typically do in ML). If we were asking a prediction-based question, we would split the data into training/testing.
+
+Q: I'm still trying to consider how it is bound by explicitly 0 and 1 and utilizing the exponential and log functions for logit()   
+A: Ah, if this isn't totally clicking in yet, try plugging in extreme values to `\(\frac{1}{1 + e^{-x}}\)` to better understand how this helps bound values between 0 and 1.
+
+
+
+---
+
+## Course Announcements  
+
+- **lab08** due Friday (logistic regression)
+- **cs02** due  Monday
+
+--
+
+Grades posted:
+
+- **lab07** scores posted
+  - -0.1 | did not knit
+  - -0.1+ | did not look to us like an hour's worth of work; reference answer key; follow up if you're unsure
+- **cs01** grades and feedback posted (discussing today) 
+
+---
+
+## The Rest of the Quarter:
+
+Due Dates: 
+- lab08 - due Friday 11/19 (wk8)
+- CS02 - due Monday 11/22 (wk9)
+
+--
+
+- CS03 - due Friday 12/3 (wk10)
+- Final Project - due Mon 12/6 (Finals Week)
+  - details will be discussed this coming Monday
+
+--
+
+Going forward:
+- Focus is really on the case studies
+- No lab09 to turn in or hw05 (full credit will be awarded)
+- lab will happen during week 10, but it will be for case study and project questions/progress
+
+---
+
+## Case Study 01 Feedback: General
+
+- Pretty happy overall
+- We're looking for steady improvement with each Case Study
+- Look at your HTMLs after you generate them
+- Consider Rmd tips/tricks discussed last class
+
+---
+
+## Case Study 01 Feedback: Background &amp; Question 
+
+- Pretty good generally
+- Be sure to cite sources...and be sure they reference is correct
+- Should be clear which statements came from which sources
+- Questions being asked should be clearly stated
+
+---
+
+## Feedback: Data &amp; Wrangling 
+
+- A general introduction to the data being used is a good idea
+- Did a good job on wrangling/explaining steps (after hw feedback)
+- For CS02, we'll be reading explanations and code comments carefully to be sure you understood the ocde
+
+
+---
+
+## Feedback: EDA
+
+- OK job here
+- Note that not every plot you make has to be included. 
+- The plots included in your report should help you understand your dataset 
+- Each plot should be interpreted. This is not just an explanation of what is plotted...but an explanation in the context of the data/question being asked
+- Work together to critique and improve plots. Ask yourself "What is the "take-home" message of this plot? And, can I improve how clearly this plot makes that message?"
+
+---
+
+## Feedback: Analysis
+
+- A lot of variability here.
+- Whenever you run a statistical test, add a regression line, etc. it should be clear to you (and the reader!) what question you're answering
+- Your analysis should tell a story that, at the end answers your questions of interest
+- Analyses *must* be quantified, interpreted, and contextualized
+
+---
+
+## Feedback: Conclusion/Discussion
+
+- Pretty good job here.
+- These do not have to be particularly long
+- Discussing limitations and future directions a good idea
+
+---
+
+## Feedback: Extension
+
+- The simplest/most-straightforward extension is adding a question/questions to the analysis. If you do this, it will be clear what your extension is
+- If you've chosen some other extension, please state this clearly in your report. Something like "We've extended beyond the initial case study by..."
+- For CS01, we were *pretty* lenient on what counted for two reasons: 1) first go at this; 2) there wasn't a *ton* of different directions to go in given the data that were provided
+- For CS02, there's *a lot* that can be done, so we'll be looking for a bit more
+
+---
+
+## Reminder: These Case Studies are from OCS
+
+You can learn from and take inspiration from the case study directly.
+
+For example: https://www.opencasestudies.org/ocs-bp-youth-disconnection/
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"highlightLines": true,
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();
+// adds .remark-code-has-line-highlighted class to <pre> parent elements
+// of code chunks containing highlighted lines with class .remark-code-line-highlighted
+(function(d) {
+  const hlines = d.querySelectorAll('.remark-code-line-highlighted');
+  const preParents = [];
+  const findPreParent = function(line, p = 0) {
+    if (p > 1) return null; // traverse up no further than grandparent
+    const el = line.parentElement;
+    return el.tagName === "PRE" ? el : findPreParent(el, ++p);
+  };
+
+  for (let line of hlines) {
+    let pre = findPreParent(line);
+    if (pre && !preParents.includes(pre)) preParents.push(pre);
+  }
+  preParents.forEach(p => p.classList.add("remark-code-has-line-highlighted"));
+})(document);</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

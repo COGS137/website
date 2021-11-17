@@ -1,0 +1,129 @@
+---
+title: "CS01 (Revisited)"
+author: "Prof Ellis"
+date: "2021-11-17"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+## Q&A
+
+Q: 
+
+
+---
+
+## Course Announcements  
+
+- **lab08** due Friday (logistic regression)
+- **cs02** due  Monday
+
+--
+
+Grades posted:
+
+- **lab07** scores posted
+  - -0.1 | did not knit
+  - -0.1+ | did not look to us like an hour's worth of work; reference answer key; follow up if you're unsure
+- **cs01** grades and feedback posted (discussing today) 
+
+---
+
+## The Rest of the Quarter:
+
+Due Dates: 
+- lab08 - due Friday 11/19 (wk8)
+- CS02 - due Monday 11/22 (wk9)
+
+--
+
+- CS03 - due Friday 12/3 (wk10)
+- Final Project - due Mon 12/6 (Finals Week)
+  - details will be discussed this coming Monday
+
+--
+
+Going forward:
+- Focus is really on the case studies
+- No lab09 to turn in or hw05 (full credit will be awarded)
+- lab will happen during week 10, but it will be for case study and project questions/progress
+
+---
+
+## Case Study 01 Feedback: General
+
+- Pretty happy overall
+- We're looking for steady improvement with each Case Study
+- Look at your HTMLs after you generate them
+- Consider Rmd tips/tricks discussed last class
+
+---
+
+## Case Study 01 Feedback: Background & Question 
+
+- Pretty good generally
+- Be sure to cite sources...and be sure they reference is correct
+- Should be clear which statements came from which sources
+- Questions being asked should be clearly stated
+
+---
+
+## Feedback: Data & Wrangling 
+
+- A general introduction to the data being used is a good idea
+- Did a good job on wrangling/explaining steps (after hw feedback)
+- For CS02, we'll be reading explanations and code comments carefully to be sure you understood the ocde
+
+
+---
+
+## Feedback: EDA
+
+- OK job here
+- Note that not every plot you make has to be included. 
+- The plots included in your report should help you understand your dataset 
+- Each plot should be interpreted. This is not just an explanation of what is plotted...but an explanation in the context of the data/question being asked
+- Work together to critique and improve plots. Ask yourself "What is the "take-home" message of this plot? And, can I improve how clearly this plot makes that message?"
+
+---
+
+## Feedback: Analysis
+
+- A lot of variability here.
+- Whenever you run a statistical test, add a regression line, etc. it should be clear to you (and the reader!) what question you're answering
+- Your analysis should tell a story that, at the end answers your questions of interest
+- Analyses *must* be quantified, interpreted, and contextualized
+
+---
+
+## Feedback: Conclusion/Discussion
+
+- Pretty good job here.
+- These do not have to be particularly long
+- Discussing limitations and future directions a good idea
+
+---
+
+## Feedback: Extension
+
+- The simplest/most-straightforward extension is adding a question/questions to the analysis. If you do this, it will be clear what your extension is
+- If you've chosen some other extension, please state this clearly in your report. Something like "We've extended beyond the initial case study by..."
+- For CS01, we were *pretty* lenient on what counted for two reasons: 1) first go at this; 2) there wasn't a *ton* of different directions to go in given the data that were provided
+- For CS02, there's *a lot* that can be done, so we'll be looking for a bit more
+
+---
+
+## Reminder: These Case Studies are from OCS
+
+You can learn from and take inspiration from the case study directly.
+
+For example: https://www.opencasestudies.org/ocs-bp-youth-disconnection/
+

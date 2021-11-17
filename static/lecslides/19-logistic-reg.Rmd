@@ -461,11 +461,11 @@ $$
 
 ## Model: Multiple predictors
 
-So for an email with 5,000 characters (4), addressed to a single recipient (0), and that did start with "re:" in the subject line...
+So for an email with 4,000 characters (4), addressed to a single recipient (0), and that did start with "re:" in the subject line (1)...
 
 $$
 \begin{aligned}
-log_e \left(\frac{p}{1 - p}\right) = - 1.20 - 0.07 \times 4 - 2.14\times - 3.12 \times 1
+log_e \left(\frac{p}{1 - p}\right) = - 1.20 - 0.07 \times 4 - 2.14\times 0 - 3.12 \times 1
 \end{aligned}
 $$
 

@@ -22,7 +22,12 @@ class: center, middle, inverse, title-slide
 
 ## Q&amp;A
 
-Q: 
+Q: Since logistic regression is a classification ML algorithm, how come we didn't split the spam data into train and test? Or is it already built-in with the logistic_reg() function?  
+A: Ah, I love this question! So...while logistic regression can be *used* for classification in ML, it is not inherently an ML algorithm. ML *uses* this statistical model for classification; however, it can be used both for inference (understanding/measuring the relationship between variables) and prediction/classification (what you typically do in ML). If we were asking a prediction-based question, we would split the data into training/testing.
+
+Q: I'm still trying to consider how it is bound by explicitly 0 and 1 and utilizing the exponential and log functions for logit()   
+A: Ah, if this isn't totally clicking in yet, try plugging in extreme values to `\(\frac{1}{1 + e^{-x}}\)` to better understand how this helps bound values between 0 and 1.
+
 
 
 ---

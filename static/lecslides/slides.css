@@ -183,3 +183,10 @@ thead, tfoot, tr:nth-child(even) { background: #eee }
   color: #ee5863; 
   font-weight: bold;
 }
+
+.scrollable {
+   white-space: pre !important;
+   max-height: 400px;
+   overflow-y: scroll !important;
+   height: 50vh !important;
+}

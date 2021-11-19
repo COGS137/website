@@ -1,0 +1,63 @@
+---
+title: "CS03 (Data)"
+author: "Prof Ellis"
+date: "2021-11-18"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# For nonsese...
+library(emo)
+library(DT)
+library(tidyverse)
+
+knitr::opts_chunk$set(warning=FALSE, message=FALSE) 
+```
+
+
+## Q&A
+
+
+
+---
+
+## Course Announcements  
+
+- **cs02** due  Monday
+- **cs03** due 
+--
+
+- For cs03 and final project, there will be a form for each individual to fill out about how group work went; this can be used to adjust individual's scores. 
+---
+
+## Questions
+
+1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+2. How does e-cigarette use compare between males and females?
+3. What vaping brands and flavors appear to be used the most frequently?
+4. Is there a relationship between e-cigarette/vaping use and other tobacco use?
+
+---
+
+## Load the Data
+
+...will only work if you finished last set of notes.
+
+```{r, eval=FALSE}
+load("data/wrangled/wrangled_data_vaping.rda")
+```
+
+
+

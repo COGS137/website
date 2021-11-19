@@ -116,7 +116,7 @@ lessons:
     lecslides: "20-cs01.html"
   - date: "Fri Nov 19"
     title: "CS3: Vaping Behaviors"
-    lecslides: "20-cs03-data.html"
+    lecslides: "21-cs03-data.html"
     lab: "lab-08-logistic-regression.html"
     labslides: "08-lab-deck.html"
   - week: "09"

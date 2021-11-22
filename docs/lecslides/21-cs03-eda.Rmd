@@ -189,6 +189,15 @@ nyts_data |>
 ```
 ]
 ]
+
+---
+
+class: center, middle
+
+### Q1: How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+
+.question[`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]
+
 ---
 
 class: center, middle
@@ -236,6 +245,15 @@ nyts_data |>
 ]
 
 ---
+
+class: center, middle
+
+### Q2: How does e-cigarette use compare between males and females?
+
+.question[`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]
+
+---
+
 
 
 class: center, middle
@@ -319,6 +337,15 @@ nyts_data |>
 
 ---
 
+class: center, middle
+
+### Q3: What vaping brands and flavors appear to be used the most frequently?
+
+.question[`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]
+
+---
+
+
 
 class: center, middle
 
@@ -376,9 +403,13 @@ nyts_data |>
 
 class: center, middle
 
-### Survey Weighting
+### Q4: Is there a relationship between e-cigarette/vaping use and other tobacco use?
+
+.question[`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]
 
 ---
+
+### Survey Weighting
 
 - Data come from a survey
 - Not everyone who was sent a survey responded
@@ -456,6 +487,8 @@ surveyMeanA <- function(currYear) {
                             TRUE ~ "Mean"))}
 ```
 ]
+
+.question[`r emo::ji("question")` **Your Turn**: What's this accomplishing?]
 
 ---
 

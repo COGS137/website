@@ -1,7 +1,7 @@
 ---
-title: "CS03 (Data)"
+title: "CS03 (EDA)"
 author: "Prof Ellis"
-date: "2021-11-18"
+date: "2021-11-22"
 output:
   xaringan::moon_reader:
     css: "slides.css"
@@ -27,19 +27,18 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 ```
 
 
-## Q&A
-
-
-
----
-
 ## Course Announcements  
 
-- **cs02** due  Monday
-- **cs03** due 
+- **cs02** due tonight
+- **cs03** due Friday of week 10 (12/3)
+- **final project due *Wednesday* of finals week** (12/8) 
+
 --
 
-- For cs03 and final project, there will be a form for each individual to fill out about how group work went; this can be used to adjust individual's scores. 
+For cs03 and final project:
+- report in repo on GitHub (1 submission per group)
+- form filled out about group work (1 submission per individual)
+
 ---
 
 ## Questions
@@ -55,9 +54,536 @@ knitr::opts_chunk$set(warning=FALSE, message=FALSE)
 
 ...will only work if you finished last set of notes.
 
-```{r, eval=FALSE}
+```{r}
 load("data/wrangled/wrangled_data_vaping.rda")
 ```
 
+---
+## Packages
+
+```{r}
+library(tidyverse)
+library(tidymodels)
+library(broom)
+# following will likely have to be installed
+library(viridis) 
+library(scales)
+library(srvyr)
+```
+
+---
+
+class: center, middle
+
+### Q1: How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r tobacco, fig.show = "hide"}
+nyts_data |>
+  group_by(year) |>
+  summarize("Ever \n (any lifetime use)" = (mean(tobacco_ever, na.rm = TRUE) * 100),
+            "Current \n (any past-30-day use)" = (mean(tobacco_current, na.rm = TRUE) * 100)) |>
+  pivot_longer(cols = -year, names_to = "User", values_to = "Percentage of students") |>
+  ggplot(aes(x = year, y = `Percentage of students`)) +
+  geom_line(aes(linetype = User)) +
+  geom_point(show.legend = FALSE, size = 2) +
+  # this allows us to choose what type of line we want for each line
+  scale_linetype_manual(values = c(1, 2), 
+                        breaks = c("Ever \n (any lifetime use)", 
+                                   "Current \n (any past-30-day use)")) +
+  # this allows us to specify how the y-axis should appear
+  scale_y_continuous(breaks = seq(0, 70, by = 10),
+                     labels = seq(0, 70, by = 10),
+                     limits = c(0, 70)) +
+  # this adjusts the background style of the plot
+  theme_linedraw() +
+  labs(title = "How has tobacco use varied over the years?",
+       y = "% of students") + 
+  # this moves the legend to the bottom of the plot and removes the x axis title
+  theme(legend.position = "bottom",
+        axis.title.x = element_blank(), 
+        text = element_text(size = 15),
+        plot.title.position = "plot")
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="tobacco", echo = FALSE, out.width="100%"}
+
+```
+]]
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r e-cig, fig.show = "hide"}
+nyts_data |>
+  group_by(year) |>
+  summarize("Ever \n (any lifetime use)" = (mean(ecig_ever, na.rm = TRUE) * 100),
+            "Current \n (any past-30-day use)" = (mean(ecig_current, na.rm = TRUE) * 100)) |>
+  pivot_longer(cols = -year, names_to = "User", values_to = "Percentage of students") |>
+  ggplot(aes(x = year, y = `Percentage of students`)) +
+  geom_line(aes(linetype = User)) +
+  geom_point(show.legend = FALSE, size = 2) +
+  # this allows us to choose what type of line we want for each line
+  scale_linetype_manual(values = c(1, 2), 
+                        breaks = c("Ever \n (any lifetime use)", 
+                                   "Current \n (any past-30-day use)")) +
+  # this allows us to specify how the y-axis should appear
+  scale_y_continuous(breaks = seq(0, 60, by = 10),
+                     labels = seq(0, 60, by = 10),
+                     limits = c(0, 60)) +
+  # this adjusts the background style of the plot
+  theme_linedraw() +
+  labs(title = "How has e-cigarette use varied over the years?",
+       y = "% of students") +
+  # this moves the legend to the bottom of the plot and removes the x axis title
+  theme(legend.position = "bottom",
+        axis.title.x = element_blank(),
+        text = element_text(size = 15),
+        plot.title.position = "plot")
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="e-cig", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+---
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r e-cig-only, fig.show = "hide"}
+v_colors =  viridis(5)[1:4]  #specify color palatte
+
+nyts_data |>
+  group_by(Group, year, n) |>
+  summarize(group_count = n()) |>
+  mutate("Percentage of students" = group_count / n * 100) |>
+  ggplot(aes(x = year, y = `Percentage of students`, color = Group)) +
+  geom_point(size = 2) +
+  geom_line() +
+  scale_color_manual(breaks = c("Neither", "Combination of products",
+                                "Only e-cigarettes", "Only other products"),
+                     values = v_colors) +
+  theme_linedraw() +
+  labs(x = "Year") +
+  theme(text = element_text(size = 15),
+        plot.title.position = "plot")
+
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="e-cig-only", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+---
+
+class: center, middle
+
+### Q2: How does e-cigarette use compare between males and females?
+
+---
+
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r gender, fig.show = "hide"}
+v_colors =  viridis(6)[c(3, 5)]
+
+nyts_data |>
+  filter(!is.na(Sex)) |>
+  group_by(year, Sex) |>
+  summarize("Ever \n (any lifetime use)" = (mean(EELCIGT, na.rm = TRUE) * 100),
+            "Current \n (any past-30-day use)" = (mean(CELCIGT, na.rm = TRUE) * 100)) |>
+  pivot_longer(cols = "Ever \n (any lifetime use)":"Current \n (any past-30-day use)",
+               names_to = "User",
+               values_to = "Percentage of students") |>
+  ggplot(aes(x = year, y = `Percentage of students`, color = Sex)) +
+  geom_line(aes(linetype = User)) +
+  geom_point(show.legend = FALSE, size = 2) +
+  scale_linetype_manual(values = c(2, 1)) +
+  scale_color_manual(values = v_colors) +
+  theme_linedraw() +
+  labs(title = "How does e-cigarette usage compare between males and females?",
+       subtitle = "Current and ever users by sex",
+       y = "% of students") +
+  theme(legend.position = "bottom",
+        axis.title.x = element_blank(),
+        text = element_text(size = 15),
+        plot.title.position = "plot")
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="gender", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+
+---
+
+
+class: center, middle
+
+### Q3: What vaping brands and flavors appear to be used the most frequently?
+
+---
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r product, fig.show = "hide"}
+nyts_data |>
+  filter(year == 2019) |>
+  group_by(brand_ecig) |>
+  filter(!is.na(brand_ecig)) |>
+  summarize(n = n()) |>
+  mutate(total = sum(n),
+         Percent = n * 100 / total) |>
+  mutate(brand_ecig = fct_reorder(brand_ecig, desc(Percent))) |>
+  ggplot(aes(x = brand_ecig, y = Percent, fill = brand_ecig)) +
+  geom_bar(stat = "identity", color = "black") +
+  theme_linedraw() +
+  labs(title = "What vaping brands appear to be used the most frequently?",
+       subtitle = "Brand of e-cigarette most frequently used in the last 30 days (2019)",
+       y = "% of e-cigarette users responding") +
+  theme(legend.position = "none",
+        axis.title.x = element_blank(),
+        text = element_text(size = 15),
+        plot.title.position = "plot")
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="product", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r flavor, fig.show = "hide"}
+nyts_data |>
+  filter(year != 2015) |>
+  group_by(year) |>
+  summarize(Menthol = (mean(menthol) * 100),
+            `Clove or Spice` = (mean(clove_spice) * 100),
+            Fruit = (mean(fruit) * 100),
+            Chocolate = (mean(chocolate) * 100),
+            `Alcoholic Drink` = (mean(alcoholic_drink) * 100),
+            `Candy/Desserts/Sweets` = (mean(candy_dessert_sweets) * 100),
+            Other = (mean(other) * 100)) |>
+  pivot_longer(cols = -year, 
+               names_to = "Flavor",
+               values_to = "Percentage of students") |>
+  rename(Year = year) |>
+  
+  ggplot(aes(y = `Percentage of students`,
+             x = Year,
+             fill = reorder(Flavor, `Percentage of students`))) +
+  geom_bar(stat = "identity",
+           position = "dodge",
+           color = "black") +
+  scale_fill_viridis(discrete = TRUE) +
+  theme_linedraw() +
+  guides(fill = guide_legend("Flavor")) +
+  labs(title = "What flavors appear to be used the most frequently?",
+       subtitle = "Flavors of tobacco products used in the past 30 days") + theme(text = element_text(size = 15))
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="flavor", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+
+---
+
+
+class: center, middle
+
+### Q4: Is there a relationship between e-cigarette/vaping use and other tobacco use?
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r use, fig.show = "hide"}
+v_colors =  viridis(6)[c(1, 4)]
+
+nyts_data |>
+  group_by(year) |>
+  summarize(
+    "Cigarettes, Ever \n (any lifetime use)" = (mean(ECIGT, na.rm = TRUE) * 100),
+    "E-cigarettes, Ever \n (any lifetime use)" = (mean(EELCIGT, na.rm = TRUE) * 100),
+    "Cigarettes, Current \n (any past-30-day use)" = (mean(CCIGT, na.rm = TRUE) * 100),
+    "E-cigarettes, Current \n (any past-30-day use)" = (mean(CELCIGT, na.rm = TRUE) * 100)
+  ) |>
+  pivot_longer(cols = -year,
+               names_to = "Category",
+               values_to = "Percentage of students") |>
+  separate(Category, into = c("Product", "User"), sep = ", ") |>
+  ggplot(aes(
+    x = year,
+    y = `Percentage of students`,
+    color = Product,
+    linetype = User
+  )) +
+  geom_line() +
+  geom_point(show.legend = FALSE, size = 2) +
+  scale_linetype_manual(values = c(2, 1)) +
+  scale_color_manual(values = v_colors) +
+  theme_linedraw() +
+  labs(title = "How does e-cigarette use compare to cigarette use?",
+       subtitle = "Current and ever users of e-cigarettes and cigarettes",
+       y = "% of students") +
+  theme(legend.position = "bottom",
+        axis.title.x = element_blank(),
+        text = element_text(size = 15),
+        plot.title.position = "plot")
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="use", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+
+---
+
+class: center, middle
+
+### Survey Weighting
+
+---
+
+- Data come from a survey
+- Not everyone who was sent a survey responded
+- Could over/under-sample from particular groups
+- Sample may no longer be representative
+
+--
+
+- Requires: Survey weighting
+
+---
+
+### Survey Weight Calculation
+
+$$\frac{\text{actual proportion of group in the population}}{\text{ proportion of group in the respondents}}$$  
+
+
+Note: We do not need to calculate survey weights for our data; they were already supplied in the dataset, as described in the codebooks.
+
+---
+
+## Variables included:
+.small[
+1. `psu`: People are sampled within strata; ensure that the responses are representative of the population of interest. Thus, often people first think about ensuring that surveys are conducted in a variety of geographical areas. This is often called the **primary sampling unit** or **PSU**. In [this survey](https://web.sph.harvard.edu/mch-data-connect/results/national-youth-tobacco-survey-nyts/){target="_blank"}, the county where the student's school was located was used as the PSU. 
+
+2. `stratum`: A categorical variable that indicates subsets of the data that include respondents from different *PSUs*. In our case, strata are determined by the predominant minority in the PSU (Non-Hispanic Black or Hispanic), whether the PSU is urban or non-urban, and what percent of the students in the PSU fall into the predominant minority group. PSUs are allocated across the 16 possible strata according to the sampling scheme. These strata values allow estimates based on the survey responses to be calculated using different strata allowing for improved precision of the response estimates.
+
+3. `finwgt`: The survey weight which was calculated based on a variety of factors.
+]
+---
+
+### `srvyr`
+
+`srvyr::as_survey_design()`: create a survey object with a specified survey design. Includes information about how the survey was conducted that can be taken into account in the analysis.
+
+--
+
+.small[
+1. `strata` - the variable(s) that defined strata in the data. (`stratum`)
+2. `ids` - cluster ids within the data. (`psu`)
+3. `weight` - which variable(s) are the survey weights. (`finwgt`)
+4. `nest = TRUE` - forces cluster ids (in this case the PSU) to be nested within the strata
+]
+
+Note:  survey weights are specific to a single year of the survey result; will need different design objects for each year
+
+---
+
+### `surveyMeanA()` function
+
+.scrollable[
+```{r}
+surveyMeanA <- function(currYear) {
+  options(survey.lonely.psu = "adjust")
+  currYear |>
+    as_survey_design(strata = stratum,
+                     ids = psu,
+                     weight  = finwgt,
+                     nest = TRUE) |>
+    summarize(tobacco_ever = survey_mean(tobacco_ever,
+                                         vartype = "ci",
+                                         na.rm = TRUE),
+              tobacco_current = survey_mean(tobacco_current,
+                                            vartype = "ci",
+                                            na.rm = TRUE))  |>
+    mutate_all("*", 100) |>
+    pivot_longer(everything(),
+                 names_to = "Type",
+                 values_to = "Percentage of students") |>
+    mutate(Estimate = case_when(str_detect(Type, "_low") ~ "Lower",
+                                str_detect(Type, "_upp") ~ "Upper",
+                                TRUE ~ "Mean"),
+           User = case_when(str_detect(Type, "ever") ~ "Ever",
+                            str_detect(Type, "current") ~ "Current",
+                            TRUE ~ "Mean"))}
+```
+]
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+.scrollable[
+```{r weights, fig.show = "hide"}
+nyts_data |>
+  group_by(year) |>
+  group_modify(~ surveyMeanA(.x)) |>
+  dplyr::select(-Type) |>
+  pivot_wider(names_from = Estimate,
+             values_from = `Percentage of students`) |>
+  ggplot(aes(x = year, y = Mean)) +
+  geom_line(aes(linetype = User)) +
+  geom_linerange(aes(ymin = Lower,
+                     ymax = Upper), 
+                     size = 1, 
+              show.legend = FALSE) +
+  scale_linetype_manual(values = c(2, 1)) +
+  scale_y_continuous(breaks = seq(0, 70, by = 10),
+                     labels = seq(0, 70, by = 10),
+                     limits = c(0, 70)) +
+    theme_linedraw() +
+    labs(title = "Tobacco product users more prevalent after 2017",
+         y = "% of students") +
+    theme(legend.position = "none",
+          axis.title.x = element_blank(),
+          text = element_text(size = 15),
+          plot.title.position = "plot")
+```
+]
+]
+.panel[.panel-name[Plot]
+```{r ref.label="weights", echo = FALSE, out.width="100%"}
+
+```
+]
+]
+
+---
+
+### Logistic Regression
+
+$$logit(p)= log_e (\frac{p}{1-p})= \beta_0 + \beta_1 X$$  
+
+- $p$ as the probability that a student respondent is a current e-cigarette user
+
+---
+
+## Model
+
+```{r}
+dat2015 <- nyts_data %>% 
+  filter(year == 2015, !is.na(Sex))
+
+currEcigSex <- logistic_reg() |>
+  set_engine("glm") |>
+  fit(as.factor(ecig_current) ~ Sex, data = dat2015, family = "binomial")
+
+(currEcigSexTidy <- tidy(currEcigSex))
+```
+
+--
+
+.small[
+$$
+\begin{aligned}
+log(odds \ of \ curr. \ e-cig \ use) = \\
+&\quad \beta_0 + \beta_1 \cdot Sex = \\
+&\quad -1.89 - 0.425 \cdot (Sex == female)
+\end{aligned}
+$$
+]
+
+---
+
+### Model Interpretation
+
+.small[
+$$
+\begin{aligned}
+log(odds \ of \ curr. \ e-cig \ use) = \\
+&\quad \beta_0 + \beta_1 \cdot Sex = \\
+&\quad -1.89 - 0.425 \cdot (Sex == female)
+\end{aligned}
+$$
+]
+
+* $-0.425 = \beta_1 = \log(OR)$
+* The log odds of being a current e-cigarette user is 0.425 lower for females compared to males
+* $0.65 = e^{-0.425} = e^{\beta_1} = OR$
+* The odds of being a current e-cigarette user for females is 0.65 times the odds for males.
+* The odds of being a current e-cigarette user for females is 35% lower than the odds for males.
+
+--
+Note: model does not consider other varibles yet...i.e. `Age`
+
+---
+
+## Survey-weighted logistic regression
+
+```{r}
+dat2015_survey_design <- dat2015 %>%
+                          as_survey_design(strata = stratum,
+                                            ids = psu,
+                                            weight  = finwgt,
+                                            nest = TRUE)
+
+
+currEcigSex_svy <- survey::svyglm(ecig_current ~ Sex,
+                                  family = quasibinomial(link = 'logit'),
+                                  design = dat2015_survey_design)
+tidy(currEcigSex_svy)
+```
+
+---
+
+## Survey-weighted Interpretation
+
+```{r, echo=FALSE}
+tidy(currEcigSex_svy)
+```
+
+* $-0.383 = \beta_1 = \log(OR)$
+* The log odds of being a current e-cigarette user is 0.383 lower for females than for males, taking survey weights into account.
+* $0.68 = e^{-0.383} = e^{\beta_1} = OR$
+* The odds of being a current e-cigarette user for females is 0.68 times the odds for males, taking survey weights into account.
+* The odds of being a current e-cigarette user for females is 32% lower than the odds for males, taking survey weights into account.
 
 

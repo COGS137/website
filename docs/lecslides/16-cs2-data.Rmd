@@ -363,7 +363,7 @@ head(DAWpaper[1])
 
 ## Save (Imported) Data
 
-```{r}
+```{r, eval=FALSE}
 save(dem_77_79, dem_80_89, dem_90_99, dem_00_10, #demographic data
      STATE_FIPS, # codes for states 
      ps_data, # police staffing data

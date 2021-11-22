@@ -126,7 +126,7 @@ Here, we'll be modelling the probability of a callback for a given resume $i$. (
 
 6. The race variable had taken only two levels: Black and White. Based on the model results, what does the coefficient of this variable say about callback decisions?
 
-7. Using your results from `m_resume`, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male? 
+7. Using your results from `m_multiple`, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male? 
 
 ```{marginfigure}
 Reminder: Unlike $R^2$ (which we used in multiple linear regression), when using AIC for model selection, models with a lower AIC value are considered to be "better." Also, AIC provides information about the quality of a model relative to other models, but does not provide information about the overall quality of a model.

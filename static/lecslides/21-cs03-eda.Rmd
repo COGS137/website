@@ -41,6 +41,20 @@ For cs03 and final project:
 
 ---
 
+
+## Course Announcements  (Mon 11/29)
+
+- **cs03** due Friday (12/3) 
+- **final project due *Wednesday* of finals week** (12/8; 11:59 PM) 
+- report + group work form (link on Canvas home page)
+
+--
+
+- Please fill out your [CAPEs](https://cape.ucsd.edu/)! (EC if >=85% of class completes)
+- [Post-course survey](https://docs.google.com/forms/d/e/1FAIpQLScBKhtzUSAJRraefPIr1K6pZEnyVdROWle-Ag_sgyC8cQXwlw/viewform?usp=sf_link) (link also on Canvas; "due" 12/8 at 11:59 PM for EC)
+
+---
+
 ## Questions
 
 1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
@@ -542,7 +556,7 @@ $$logit(p)= log_e (\frac{p}{1-p})= \beta_0 + \beta_1 X$$
 ## Model
 
 ```{r}
-dat2015 <- nyts_data %>% 
+dat2015 <- nyts_data |>
   filter(year == 2015, !is.na(Sex))
 
 currEcigSex <- logistic_reg() |>
@@ -592,7 +606,7 @@ Note: model does not consider other varibles yet...i.e. `Age`
 ## Survey-weighted logistic regression
 
 ```{r}
-dat2015_survey_design <- dat2015 %>%
+dat2015_survey_design <- dat2015 |>
                           as_survey_design(strata = stratum,
                                             ids = psu,
                                             weight  = finwgt,

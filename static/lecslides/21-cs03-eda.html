@@ -45,6 +45,20 @@ For cs03 and final project:
 
 ---
 
+
+## Course Announcements  (Mon 11/29)
+
+- **cs03** due Friday (12/3) 
+- **final project due *Wednesday* of finals week** (12/8; 11:59 PM) 
+- report + group work form (link on Canvas home page)
+
+--
+
+- Please fill out your [CAPEs](https://cape.ucsd.edu/)! (EC if &gt;=85% of class completes)
+- [Post-course survey](https://docs.google.com/forms/d/e/1FAIpQLScBKhtzUSAJRraefPIr1K6pZEnyVdROWle-Ag_sgyC8cQXwlw/viewform?usp=sf_link) (link also on Canvas; "due" 12/8 at 11:59 PM for EC)
+
+---
+
 ## Questions
 
 1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
@@ -541,7 +555,7 @@ nyts_data |&gt;
 
 
 ```r
-dat2015 &lt;- nyts_data %&gt;% 
+dat2015 &lt;- nyts_data |&gt;
   filter(year == 2015, !is.na(Sex))
 
 currEcigSex &lt;- logistic_reg() |&gt;
@@ -600,7 +614,7 @@ Note: model does not consider other varibles yet...i.e. `Age`
 
 
 ```r
-dat2015_survey_design &lt;- dat2015 %&gt;%
+dat2015_survey_design &lt;- dat2015 |&gt;
                           as_survey_design(strata = stratum,
                                             ids = psu,
                                             weight  = finwgt,

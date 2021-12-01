@@ -955,55 +955,6 @@ lm_LOTT &lt;- lm(LOTT_fmla, data = lm_LOTT_data)
 
 ```r
 vif_LOTT &lt;- vif(lm_LOTT)
-vif_LOTT
-```
-
-```
-##                        RTC_LAW    White_Female_10_to_19_years 
-##                       1.614063                     120.641561 
-##    White_Female_20_to_29_years    White_Female_30_to_39_years 
-##                      47.179533                      49.551323 
-##    White_Female_40_to_49_years    White_Female_50_to_64_years 
-##                      36.309285                      34.164792 
-## White_Female_65_years_and_over      White_Male_10_to_19_years 
-##                      11.584389                     119.516433 
-##      White_Male_20_to_29_years      White_Male_30_to_39_years 
-##                      41.760782                      70.830662 
-##      White_Male_40_to_49_years      White_Male_50_to_64_years 
-##                      30.870611                      49.953811 
-##   White_Male_65_years_and_over    Black_Female_10_to_19_years 
-##                      12.580172                     341.839459 
-##    Black_Female_20_to_29_years    Black_Female_30_to_39_years 
-##                     107.596490                      79.668249 
-##    Black_Female_40_to_49_years    Black_Female_50_to_64_years 
-##                      97.687605                      66.320239 
-## Black_Female_65_years_and_over      Black_Male_10_to_19_years 
-##                      50.153256                     326.610953 
-##      Black_Male_20_to_29_years      Black_Male_30_to_39_years 
-##                      91.643419                      90.370825 
-##      Black_Male_40_to_49_years      Black_Male_50_to_64_years 
-##                      91.099806                      63.992052 
-##   Black_Male_65_years_and_over    Other_Female_10_to_19_years 
-##                      38.106324                     148.187495 
-##    Other_Female_20_to_29_years    Other_Female_30_to_39_years 
-##                      67.071204                      54.884463 
-##    Other_Female_40_to_49_years    Other_Female_50_to_64_years 
-##                     227.299921                     133.599401 
-## Other_Female_65_years_and_over      Other_Male_10_to_19_years 
-##                      83.898466                     156.792520 
-##      Other_Male_20_to_29_years      Other_Male_30_to_39_years 
-##                      55.711146                      63.459660 
-##      Other_Male_40_to_49_years      Other_Male_50_to_64_years 
-##                     250.840801                     177.496397 
-##   Other_Male_65_years_and_over              Unemployment_rate 
-##                      53.771794                       1.507412 
-##                   Poverty_rate                 Population_log 
-##                       1.412285                       3.393272 
-##            police_per_100k_lag 
-##                       1.732919
-```
-
-```r
 vif_LOTT &lt;- vif_LOTT |&gt;
   as_tibble() |&gt;
   cbind(names(vif_LOTT)) |&gt;

@@ -1,0 +1,272 @@
+---
+title: "Next Steps in R"
+author: "Prof Ellis"
+date: "2021-12-1"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# For nonsese...
+library(emo)
+library(DT)
+library(tidyverse)
+
+knitr::opts_chunk$set(warning=FALSE, message=FALSE) 
+```
+
+
+## Course Announcements
+
+- **cs03** due Friday (12/3) 
+- **final project due *Wednesday* of finals week** (12/8; 11:59 PM) 
+- report + group work form for cs03 and final project (link on Canvas home page)
+- Please fill out your [CAPEs](https://cape.ucsd.edu/)! (EC if >=85% of class completes; currently: 32%)
+- [Post-course survey](https://docs.google.com/forms/d/e/1FAIpQLScBKhtzUSAJRraefPIr1K6pZEnyVdROWle-Ag_sgyC8cQXwlw/viewform?usp=sf_link) (link also on Canvas; "due" 12/8 at 11:59 PM for EC)
+
+---
+
+## Next Steps in R
+
+- Interactive Visualization
+- Package Development
+- Books, Slides, and Personal websites
+- Shiny Apps
+
+---
+
+### Packages
+
+```{r}
+library(ggplot2)
+library(plotly)
+library(gganimate)
+library(r2d3)
+library(gapminder) # the dataset being used
+```
+
+
+---
+
+## The Data: Gapminder
+
+The [gapminder visualization](https://www.gapminder.org/tools/?from=world) was made famous by [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen). The dataset used here includes life expectancy, population, and GDP across 142 countries and 5 continents from 1952-2007.
+
+---
+
+class: center, middle
+
+## Interactive Viz
+`plotly`, `gganimate`, and `r2d3`
+
+---
+
+### `plotly`
+
+- wrapper around `ggplot` plots: `ggplotly()`
+- when it works, it works
+- less control over specifics
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+```{r plotly}
+p <- gapminder |>
+  filter(year==1977) |>
+  ggplot(aes(gdpPercap, lifeExp, size = pop, color=continent)) +
+  geom_point() +
+  theme_bw()
+
+p <- ggplotly(p)
+```
+]
+.panel[.panel-name[Plot]
+```{r,  echo = FALSE, out.height="80%", out.width="100%"}
+p
+```
+]]
+
+---
+
+.panelset[
+.panel[.panel-name[Code]
+```{r plotly-animate}
+gg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +
+  geom_point() +
+  theme_bw()
+
+gg <- ggplotly(gg) |> 
+  highlight("plotly_hover")
+```
+]
+.panel[.panel-name[Plot]
+```{r, echo = FALSE, out.height="80%", out.width="100%"}
+gg
+```
+]]
+
+---
+
+### `gganimate`
+.small[
+Extends grammar of graphics for use in animation:
+- `transition_*()` defines how the data should be spread out and how it relates to itself across time.
+- `view_*()` defines how the positional scales should change along the animation.
+- `shadow_*()` defines how data from other points in time should be presented in the given point in time.
+- `enter_*()`/`exit_*()` defines how new data should appear and how old data should disappear during the course of the animation.
+- `ease_aes()` defines how different aesthetics should be eased during transitions.
+
+Source: https://gganimate.com/
+]
+--
+
+.small[
+- more control
+- slower to render
+- generates GIFs
+]
+---
+.panelset[
+.panel[.panel-name[Code]
+```{r, cache=TRUE}
+gg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +
+  geom_point() +
+  theme_bw() +
+  #gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear')
+```
+]
+.panel[.panel-name[Plot]
+```{r, echo = FALSE, out.height="80%", out.width="100%"}
+gg
+```
+]]
+
+---
+
+### `r2d3`
+
+- D3 is a javascript library for producing viz for HTML
+- able to use custom D3 Visualizations within R
+- create D3.js scripts
+- call them from RMarkdown/Shiny/etc.
+- Example [here](https://observablehq.com/@mbostock/the-wealth-health-of-nations)
+
+---
+
+class: center, middle
+
+## Package Development
+
+---
+
+### Why develop an R package?
+
+- reproducibility
+- include data + code
+- organize a project
+- tools needed: `devtools` and `usethis`
+
+.small[
+- Book: [R Packages](https://r-pkgs.org/), by Jenny Bryan and Hadley Wickham 
+- Blogpost: [Writing an R Package from Scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/), by Hilary Parker (Disclaimer: this is from 2014 and does not implement `usethis`)
+- Blogpost: [Your First Package in 1 hour](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/), by Shannon Pileggi for R-Ladies Philly in 2020
+]
+
+
+---
+
+class: center, middle
+
+## Books, Slides and Personal Websites
+`bookdown`, `xaringan`, and `blogdown`
+
+.small[An ode to [Yihui Xie](https://yihui.org/en/)]
+
+---
+
+### Books: `bookdown`
+
+An R package by Yihui Xie to write online books, with the philosophy that it "should be technically easy to write a book, visually pleasant to view the book, fun to interact with the book, convenient to navigate through the book, straightforward for readers to contribute or leave feedback to the book author(s), and more importantly, authors should not always be distracted by typesetting details"
+
+.small[
+- [`bookdown`: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/), by Yihui Xie
+- [`bookdown` gallery](https://bookdown.org/home/archive/)
+- Example: [What they forgot to teach you about R](https://rstats.wtf/), by Jenny Bryan and Jim Hester
+]
+
+---
+
+### Slides: `xaringan`
+
+An RMarkdown extension (based on JS library remark.js) to generate slides from .Rmd documents. (All slides in this course utilize `xaringan`)
+
+.small[
+- Book Chapter: [`xaringan Presentations`](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+- Slide Show: [Meet Xaringan](https://arm.rbind.io/slides/xaringan.html#1), by Alison Hill
+]
+
+---
+
+### Websites: `blogdown`
+
+Enables personal website creation using R Markdown and Hugo (or Jekyll)
+
+.small[
+- Book: [`blogdown`: Creating websites with R Markdown](https://bookdown.org/yihui/blogdown/), by Yihui Xie, Amber Thomas, and Alison Presmanes Hill
+- Blogpost [Up & running with blogdown in 2021](https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/), by Alison Presmanes Hill
+- Some examples: [Alison Hill](https://www.apreshill.com/), [Yihui](https://yihui.org/), [Prof](http://www.shanellis.com/)
+]
+
+
+---
+class: center, middle
+
+## Shiny Apps
+
+---
+
+### `Shiny`
+`Shiny` is an R package that allows you to build interactive web apps directly from R (initially developed by Winston Chang)
+
+.small[
+- Website: [`Shiny`](https://shiny.rstudio.com/)
+- Examples: [Freedom of the Press Index](https://gallery.shinyapps.io/freedom-press-index/?_ga=2.140525554.1338940047.1638313659-880303198.1633642213#home), [COVID-19 Tracker](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.73694034.1338940047.1638313659-880303198.1633642213), and [recount](https://jhubiostatistics.shinyapps.io/recount/)
+- How-To: [How To Build a `Shiny` app](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.73694034.1338940047.1638313659-880303198.1633642213)
+]
+
+---
+
+## Tidy Tuesday
+
+An online community that works with a new dataset every week. You could continue your R practice. There is a Twitter hashtag to share your work: [#TidyTuesday](https://twitter.com/search?q=%23TidyTuesday&src=hashtag_click)
+
+.small[
+- [Tidy Tuesday](https://www.tidytuesday.com/)
+- [Repo](https://github.com/rfordatascience/tidytuesday)
+]
+ 
+.small[Note: your first midterm dataset came from an older Tidy Tuesday]
+
+---
+
+## Your Turn: Get started on one of these...
+
+Always wanted a personal website? Get Started with `blogdown`! Have a data-centric app you want to share with the world? `Shiny` it up! Have slides that need to be created for a final project? Give `xaringan` a go! Have a visualization that needs animation? Make it move!
+
+
+

@@ -748,7 +748,6 @@ lm_LOTT <- lm(LOTT_fmla, data = lm_LOTT_data)
 .panel[.panel-name[2]
 ```{r}
 vif_LOTT <- vif(lm_LOTT)
-vif_LOTT
 vif_LOTT <- vif_LOTT |>
   as_tibble() |>
   cbind(names(vif_LOTT)) |>

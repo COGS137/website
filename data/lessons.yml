@@ -137,7 +137,7 @@ lessons:
     lecslides: "22-advanced-r.html"
   - date: "Fri Dec 3"
     title: "Wrap-Up"
-    lecslides: "23-wrap-up.Rmd"
+    lecslides: "23-wrap-up.html"
     project: "cs03.html"
   - week: "Finals"
     date: "Wed Dec 8"

@@ -246,7 +246,7 @@ class: center, middle
 .small[
 - Website: [`Shiny`](https://shiny.rstudio.com/)
 - Examples: [Freedom of the Press Index](https://gallery.shinyapps.io/freedom-press-index/?_ga=2.140525554.1338940047.1638313659-880303198.1633642213#home), [COVID-19 Tracker](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.73694034.1338940047.1638313659-880303198.1633642213), and [recount](https://jhubiostatistics.shinyapps.io/recount/)
-- How-To: [How To Build a `Shiny` app](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.73694034.1338940047.1638313659-880303198.1633642213)
+- How-To: [How To Build a `Shiny` app](https://shiny.rstudio.com/articles/build.html)
 ]
 
 ---

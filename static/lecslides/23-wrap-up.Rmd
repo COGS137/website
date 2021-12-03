@@ -1,0 +1,265 @@
+---
+title: "Effective Communication & Wrap Up"
+author: "Prof Ellis"
+date: "2021-12-3"
+output:
+  xaringan::moon_reader:
+    css: "slides.css"
+    logo: img/cogs137-logo-hex.png
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      highlightLines: true
+      countIncrementalSlides: false
+---
+
+
+```{r child = "setup.Rmd"}
+```
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+# For nonsese...
+library(emo)
+library(DT)
+library(tidyverse)
+
+knitr::opts_chunk$set(warning=FALSE, message=FALSE) 
+```
+
+**Q&A**
+
+.small[
+Q: Within R/Python, when should one use SQL over dplyr/Pandas?  
+A: SQL when you need to access information stored in a relational database. Note that there is an R package (`RSQLite`) that helps you do that from R.
+
+
+Q: In Pandas, is there a similar operator like the Pipe operator in R to chain operations?  
+A: No. You can use `.function().funtion()` to chain operators together, but there is nothing that allows for the same ordering/piping in pandas. There is a package that attempts to do so, but it's not fully developed yet. Another note is that there is a package `reticulate` that allows you to execute Python code from R, so you could always combine the two.
+
+Q: Is there a way to save the "website" repository?  
+A: You could fork it.
+
+Q: The plot looks a lot like those would be generated in tableau especially the us map one  
+A: Yup - a lot of the more "advanced" visualizations (especially r2d3) often look like what would be generated from software like Tableau!
+]
+
+---
+
+## Course Announcements
+
+- **cs03** due tonight (12/3) 
+- **final project due Wednesday** (12/8; 11:59 PM) 
+- report + group work form for cs03 and final project (link on Canvas home page)
+
+--
+
+- [Lecture Slide .Rmds](https://github.com/COGS137/website/tree/master/static/lecslides)
+- lab08 graded; lab09 and hw05 "graded"
+- accessing cs03 and final project repos: https://github.com/COGS137
+
+--
+
+- Please fill out your [CAPEs](https://cape.ucsd.edu/)! (currently: 40%)
+- [Post-course survey](https://docs.google.com/forms/d/e/1FAIpQLScBKhtzUSAJRraefPIr1K6pZEnyVdROWle-Ag_sgyC8cQXwlw/viewform?usp=sf_link)
+- [OCS Survey](https://www.opencasestudies.org/) - one submission per case study
+
+---
+
+class: center, middle
+
+## CS02 Discussion
+
+What was your experience like completing CS02 (RTC and violent crime)?
+
+---
+
+## Effective Written Communication
+
+What are some tips for effective written communication?
+
+---
+
+### Storytelling
+
+What makes a good story?
+
+---
+
+### Background
+
+What should be included in a good background section?
+
+---
+
+#### Background: Practice
+
+Topic: What is the relationship between healthcare expenditures and health outcomes in the United States?
+
+---
+
+#### Citations: When Needed?
+
+.small[
+"We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott"
+]
+--
+
+.small[
+"What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue" 
+]
+--
+
+.small[
+"Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit"
+]
+--
+
+.small[
+"In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate."
+]
+--
+
+.small[
+"In the United States, the second amendment permits the right to bear arms, and this law has not been changed since it’s creation in 1791"
+]
+--
+
+.small[
+"The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.”"
+]
+
+--
+
+You do NOT get docked points for citing others' work. You can be at risk of AI Violation if you don't. **When in doubt, give credit.**
+
+---
+#### Aside: Footnotes
+
+Possible to specify footnotes in Rmd documents:
+
+Here is some body text.[^1]
+
+[^1]: This footnote will appear at the bottom of the page.
+
+--
+
+**Superscript**
+
+Superscript also possible: <sup>1</sup> (`^1^`)
+
+---
+
+### Data Section
+
+What should be included in a data section? 
+
+---
+
+class: center, middle
+
+## CS02: Feedback
+
+---
+
+## CS02: Feedback (Narrative)
+
+Report should tell a narrative. 
+- You can't refer to something that hasn't been introduced
+- Should make sense when read from top to bottom
+
+--
+
+- Code should be introduced
+  - General guidance in text
+  - specific code explanations as code comments
+    
+---
+
+## CS02: Feedback (Background)
+
+Background section should:
+  - Introduce the topic(s)
+  - Include relevant context
+  - Include references/citations as needed
+
+---
+
+## CS02: Feedback (Questions)
+
+Questions posed should all be included in questions section
+- for case studies, the question(s) posed in class
+- and any questions you answer in extension
+
+---
+
+## CS02: Feedback (Analysis)
+
+- EDA should *fully* explore your datasets; not just what was presented in class
+
+--
+
+- Text included should:
+  - not *only* explain what you did
+  - should explain what you found
+  - should explain what your findings mean *in context of questions being answered*
+  
+--
+
+- Analyses should answer your questions - double check this
+
+--
+
+- Visualizations should:
+  - not just explain what you plotted
+  - accompanying text should explain what reader shoudl learn
+  - should contextualize what that means for question(s) being answered
+
+---
+
+### CS03 + Final Project
+
+- Narrative/Story
+- Pertinent background
+- Stated questions
+- Clear explanations
+- Clear (& commented, where necessary) code
+- Accurate and Interpreted Viz + Analysis
+
+--
+
+.question[Questions about CS03 + Final Project Tasks or Expectations?]
+
+---
+
+## COGS 137: Where We've Been
+
+- R, RMarkdown & RStudio
+- Data Wrangling w/ the `tidyverse`
+- Dataviz w/ `ggplot2`
+- CS01: Linear Models + Youth Connection
+- CS02: MLR, Multicollinearity & Right to Carry
+- CS03: Logistic Reression & Youth Vaping
+- Next Steps in R: `Shiny`, `bookdown`, `blogdown`, `plotly`/`gganimate`
+
+---
+
+## COGS 137: A Brand New Course
+
+**Lots of thanks!**
+
+- course staff! (Sean, Shubham, & Colin - feedback, grading, answer keys, labs, office hours, etc.)
+
+--
+
+- all of you (hard work, patience as deadlines moved, flexibility, interest, feedback)
+
+--
+
+- [Mine Çetinkaya-Rundel](https://mine-cr.com/), [Open Case Studies](https://www.opencasestudies.org/) Team, RStudio & tidyverse team 
+- Sean Kross & Prof Drew Walker
+
+---
+
+class: center, middle
+
+## Good Luck on Finals, Get Sleep, Be Safe, Drink Water, Take Care of Yourselves, & Have a Wonderful Break!

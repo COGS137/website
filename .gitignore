@@ -14,3 +14,5 @@ docs/lecslides/18-cs2-analysis_cache
 
 # temporarily (while I edit course content)
 Makefile
+
+/.quarto/

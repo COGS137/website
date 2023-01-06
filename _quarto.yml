@@ -1,0 +1,53 @@
+project:
+  type: website
+
+website:
+  title: "COGS 137"
+  image: images/background.png
+  page-footer:
+      left: "This page is built with [Quarto](https://quarto.org/)."
+      background: "#92A86A"
+      right:
+      - text: "License"
+        href: LICENSE.md
+        
+  navbar:
+    background: "#92A86A"
+    logo: "images/cogs137-logo-hex.png"
+    
+    right:
+      - icon: github
+        href: https://cogs137.github.io/website
+        aria-label: GitHub
+      - icon: cloud-fill
+        href: https://datahub.ucsd.edu/
+        aria-label: Datahub
+      
+    left:
+      - text: "Home"
+        href: index.qmd
+      - text: "Schedule"
+        href: schedule.qmd
+      - text: "Policies"
+        href: policies.qmd
+    
+
+  sidebar:
+    style: "docked"
+    search: true
+    contents:
+      - section: "Lectures"
+        contents:
+          - text: "00-welcome"
+            href: content/lectures/00-welcome.qmd
+      - section: "Labs"
+      - section: "Assignments"
+
+format:
+  html:
+    theme: material
+    css: styles.css
+    toc: true
+
+editor: visual
+

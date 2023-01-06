@@ -126,8 +126,8 @@
     "text": "What is the Tidyverse?\n\n\n\n\n\ntidyverse.org\n\n\nThe tidyverse is an opinionated collection of R packages designed for data science.\nAll packages share an underlying philosophy and a common syntax."
   },
   {
-    "objectID": "content/lectures/00-welcome.html#rstudio-projects",
-    "href": "content/lectures/00-welcome.html#rstudio-projects",
+    "objectID": "content/lectures/00-welcome.html#rstudio-projects3",
+    "href": "content/lectures/00-welcome.html#rstudio-projects3",
     "title": "00-welcome",
     "section": "RStudio Projects3",
     "text": "RStudio Projects3\n\nBuilt-in functionality to keep all files for a single project organized"
@@ -413,8 +413,8 @@
     "text": "What is the Tidyverse?\n\n\n\n\n\ntidyverse.org\n\n\nThe tidyverse is an opinionated collection of R packages designed for data science.\nAll packages share an underlying philosophy and a common syntax."
   },
   {
-    "objectID": "content/lectures/00-welcome-slides.html#rstudio-projects",
-    "href": "content/lectures/00-welcome-slides.html#rstudio-projects",
+    "objectID": "content/lectures/00-welcome-slides.html#rstudio-projects3",
+    "href": "content/lectures/00-welcome-slides.html#rstudio-projects3",
     "title": "00-welcome",
     "section": "RStudio Projects1",
     "text": "RStudio Projects1\n\nBuilt-in functionality to keep all files for a single project organized\n\nRStudio Projects Documentation"

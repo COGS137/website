@@ -18,7 +18,7 @@ website:
     
     right:
       - icon: github
-        href: https://cogs137.github.io/website
+        href: https://github.com/COGS137
         aria-label: GitHub
       - icon: cloud-fill
         href: https://datahub.ucsd.edu/
@@ -39,8 +39,10 @@ website:
     contents:
       - section: "Lectures"
         contents:
-          - text: "00-welcome"
+          - text: "00-welcome (notes)"
             href: content/lectures/00-welcome.qmd
+          - text: "00-welcome (slides)"
+            href: content/lectures/00-welcome-slides.html
       - section: "Labs"
       - section: "Assignments"
 

@@ -28,9 +28,19 @@ library(emo)
 # Set dpi and height for images
 knitr::opts_chunk$set(fig.height = 2.65, dpi = 300, echo=TRUE) 
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+
+options(gargle_oauth_email = "sellis@ucsd.edu")
 ```
 
-Slides: <iframe class="slide-deck" src="https://cogs137.github.io/website/content/lectures/00-welcome-slides.html"></iframe>
+## Agenda
+
+1. Describe what this class is
+2. Describe how the class will run 
+3. Go over the tooling for this course:
+- R
+- R Studio
+- R Markdown
+- git & GitHub
 
 ## What is R?
 
@@ -55,11 +65,19 @@ While R has most/all of the functionality of **YFPL** (your favorite programming
 
 Shannon Ellis
 
-<i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>   Peterson Hall 104 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:30PM (Lab: Fri 1-1:50PM)
+<i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>   Peterson Hall 104 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM) 
+
+
 
 ## Who all is involved?
 
-AVOCADO
+|            |                                                |                  |               |                      |
+|---------------|---------------|---------------|---------------|---------------|
+| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
+|            |                                                |                  | Th 12:50-1:50 | CSB 243              |
+| TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD         |
+| IAs        | TBD                                            |                  | Time TBD      | Location TBD         |
+|            | TBD                                            |                  | Time TBD      | Location TBD         |
 
 ## What is this course? {.scrollable}
 
@@ -347,7 +365,7 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 
 ## R Markdown
 
--   Fully reproducible reports -- each time you knit the analysis is ran from the beginning
+-   Fully reproducible reports -- each time you knit, the document is executed from top to bottom
 -   Simple markdown syntax for text
 -   Code goes in chunks, defined by three backticks, narrative goes outside of chunks
 
@@ -491,6 +509,8 @@ Can you answer these questions?
 ::: aside
 Instructions from [quarto](https://quarto.org/docs/presentations/revealjs/presenting.html#print-to-pdf) documentation
 :::
+
+# Students {background-color="#92A86A"}
 
 ## Who's in this class?
 

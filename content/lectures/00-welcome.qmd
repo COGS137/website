@@ -14,6 +14,8 @@ format:
     logo: images/cogs137-logo-hex.png
     css: slides.css
     footer: <https://cogs137.github.io/website/>
+    execute:
+     echo: true
 ---
 
 # Welcome to COGS 137! {background-color="#92A86A"}
@@ -36,11 +38,7 @@ options(gargle_oauth_email = "sellis@ucsd.edu")
 
 1. Describe what this class is
 2. Describe how the class will run 
-3. Go over the tooling for this course:
-- R
-- R Studio
-- R Markdown
-- git & GitHub
+3. Go over the tooling for this course: R, RStudio, GitHub
 
 ## What is R?
 
@@ -63,7 +61,7 @@ While R has most/all of the functionality of **YFPL** (your favorite programming
 
 ## Who am I?
 
-Shannon Ellis
+Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover 
 
 <i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>   Peterson Hall 104 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM) 
 
@@ -74,10 +72,9 @@ Shannon Ellis
 |            |                                                |                  |               |                      |
 |---------------|---------------|---------------|---------------|---------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
-|            |                                                |                  | Th 12:50-1:50 | CSB 243              |
-| TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD         |
-| IAs        | TBD                                            |                  | Time TBD      | Location TBD         |
-|            | TBD                                            |                  | Time TBD      | Location TBD         |
+|            |                                                |                  | Th 12:50-1:50 | CSB 243      |
+| TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD |
+| IAs        | Christian Kim                                  |                  | Time TBD      | Location TBD |
 
 ## What is this course? {.scrollable}
 
@@ -100,7 +97,9 @@ Everything you want to know about the course, and everything you will need for t
 :::
 
 ::: {.column width="60%"}
-Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**! . . .
+Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**! 
+
+. . .
 
 <br/> After that, we'll focus on delving into interesting statistical analyses through **case studies**.
 :::
@@ -187,11 +186,22 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
 
 **But...** if I ever fall short or if you ever have suggestions for improvement, please do share with me! There is also an [anonymous Google Form](https://goo.gl/forms/2nXnDNbgYuS1OsGF2) if you're more comfortable there.
 
-## A new-ish course!
+## A new-ish course! {.scrollable}
 
 -   Offered once previously
 -   If something doesn't make sense, tell me!
 -   If you've got feedback/suggestions, I'm all ears!
+
+. . .
+
+Differences since last iteration:
+
+- Less...pretty much everything
+- New website/lecture platform (quarto)
+- Tu/Th and not early in the morning
+- Multiple final project options
+- Slightly larger class size 
+- I'm a mom & just coming back from parental leave
 
 ## How to get help {.scrollable}
 
@@ -276,7 +286,7 @@ Datahub is a platform hosted by UCSD that gives students access to computational
 
 This means that while you'll be typing on your keyboard, you'll be *using* UCSD's computers in this class.
 
-Website: https://datahub.ucsd.edu/
+Website: [https://datahub.ucsd.edu/]()
 
 . . .
 
@@ -390,7 +400,7 @@ Concepts introduced:
 
 ## R Markdown tips
 
--   Keep the [R Markdown cheat sheet](https://github.com/rstudio/cheatsheets/raw/master/rmarkdown-2.0.pdf) and Markdown Quick Reference (Help -\> Markdown Quick Reference) handy, we'll refer to it often as the course progresses
+-   Keep the [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) and Markdown Quick Reference (Help -\> Markdown Quick Reference) handy, we'll refer to it often as the course progresses
 
 -   The workspace of your R Markdown document is separate from the Console
 
@@ -456,13 +466,12 @@ Concepts introduced:
 -   Connect an R project to Github repository
 -   Working with a local and remote repository
 -   Committing, Pushing and Pulling
--   Setting up AVOCADO
 
 There is a bit more of GitHub that we'll use in this class, but for today this is enough.
 
 ## Your Turn
 
-1.  Navigate to the demo01 URL (on Canvas)
+1.  Navigate to the demo URL (on Canvas)
 2.  Accept the "assignment" (this is NOT graded)
 3.  Clone the repo
 4.  Edit the document

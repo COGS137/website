@@ -43,7 +43,13 @@ website:
             href: content/lectures/00-welcome.qmd
           - text: "00-welcome (slides)"
             href: content/lectures/00-welcome-slides.html
+          # - text: "01-intro-to-r (notes)"
+          #   href: content/lectures/01-intro-to-r.qmd
+          # - text: "01-intro-to-r (slides)"
+          #   href: content/lectures/01-intro-to-r-slides.html
       - section: "Labs"
+          # - text: "01-lab-intro-to-r (notes)"
+          #   href: content/lectures/01-lab-intro-to-r.qmd
       - section: "Assignments"
 
 format:

@@ -116,7 +116,7 @@
     "href": "content/labs/01-lab-intro-r.html#yaml",
     "title": "Lab 01 - Tooling",
     "section": "YAML:",
-    "text": "YAML:"
+    "text": "YAML:\n\n\nThe top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for “Yet Another Markup Language”. It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.\nOpen the R Markdown (Rmd) file in your project, change the author name to your name and knit the document. This will generate an HTML document."
   },
   {
     "objectID": "content/labs/01-lab-intro-r.html#commiting-changes",

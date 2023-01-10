@@ -286,7 +286,7 @@ Datahub is a platform hosted by UCSD that gives students access to computational
 
 This means that while you'll be typing on your keyboard, you'll be *using* UCSD's computers in this class.
 
-Website: [https://datahub.ucsd.edu/]()
+Website: [https://datahub.ucsd.edu/](https://datahub.ucsd.edu/)
 
 . . .
 

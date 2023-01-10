@@ -23,7 +23,15 @@ options(
 
 The main goal of this lab is to introduce you to R and RStudio, which we will be using throughout the course to learn and practice programming and analyze data.
 
+::: aside
+R is the name of the programming language itself and RStudio is a convenient interface.
+:::
+
 An additional goal is to introduce you to git and GitHub, which is the collaboration and version control system that we will be using throughout the course.
+
+::: aside
+git is a version control system (like "Track Changes" features from Microsoft Word on steroids) and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).
+:::
 
 As the labs progress, you are encouraged to explore beyond what the labs say directly; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.
 
@@ -133,49 +141,41 @@ This will be the only time you have to do this. From here on out, you'll be able
 
 ## Cloning the lab
 
-::: columns
-::: {.column width="60%"}
+
 Each of your assignments will begin with the following steps. You saw these once in class and, they're outlined in detail here again. Going forward each lab will start with a "Getting started" section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.
 
 Click on the assignment link for this week's lab on the Canvas homepage. You will have to **Accept** before proceeding. **Refresh the page** and follow the link to the repo created for you. This repo contains a template you can build on to complete your lab.
-:::
 
-::: {.column width="40%"}
+
+::: aside
 ```{r accept, fig.margin = TRUE, echo = FALSE, fig.width=3}
 knitr::include_graphics("img/01-hello-r/accept_assignment.png")
 ```
 :::
-:::
 
-::: columns
-::: {.column width="60%"}
+
 On this page on GitHub, click the URL provided for you. This will bring you to *your copy* of the repo on GitHub. Click on the green `<> Code` button to clone the repo. Be sure that SSH is selected and copy this URL.
 
 ::: {.callout-important}
 Be sure that any time you are copying a link from GitHub under the <code><>Code</code> button, you select and use the 'SSH' URL as this is what will allow you to not have to type your username and password.
 :::
 
-:::
-
-::: {.column width="40%"}
+::: aside
 ```{r clone-repo-url, fig.margin = TRUE, echo = FALSE, fig.width=3}
 knitr::include_graphics("img/01-hello-r/ssh_github.png")
 ```
 :::
-:::
 
-::: columns
-::: {.column width="60%"}
+
 Go to datahub and open RStudio. Go to **File \> New Project**... and select to create a **New Project from Version Control**. On the following menu, select **Git**.
 
 Copy and paste the URL of your assignment repo into the "Repository URL" dialog box:
-:::
 
-::: {.column width="40%"}
+
+::: aside
 ```{r clone-repo-link, fig.margin = TRUE, echo = FALSE, fig.width=3}
 knitr::include_graphics("img/01-hello-r/repo_in_r.png")
 ```
-:::
 :::
 
 Hit **Create Project**. Open up `lab-01.Rmd` and continue through this lab. Your work/answers for this lab will be submitted in that document.
@@ -205,9 +205,7 @@ Note that the packages are also loaded with the same commands in your R Markdown
 
 ## YAML:
 
-
-::: {.callout-tip collapse="true"}
-## Expand To Learn About YAML
+::: aside
 The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for "Yet Another Markup Language". It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.
 :::
 
@@ -225,9 +223,11 @@ Then Go to the Git pane in your RStudio on Datahub.
 
 If you have made changes to your Rmd file, you should see it listed here. Click on it in this list and then click on **Diff**. This shows you the *diff*erence between the last committed state of the document and its current state that includes your changes. Be sure to also select your HTML document. Once you're happy with these changes, write "Update author name" in the **Commit message** box and hit **Commit**.
 
+::: aside
 ```{r update-author-name-commit, fig.fullwidth=TRUE, echo = FALSE}
 knitr::include_graphics("img/01-hello-r/update-author-name-commit.png")
 ```
+:::
 
 You don't have to commit after every change, this would get quite cumbersome. You should consider committing states that are *meaningful to you* for inspection, comparison, or restoration. In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use. As the quarter progresses, we will let you make these decisions.
 
@@ -304,12 +304,8 @@ For the second part of this exercises, we need to calculate a summary statistic:
 But, for illustrative purposes, let's calculate correlation coefficient between `x` and `y`.
 
 
-::: {.callout-note icon=false}
-
-## Hint
-
+::: aside
 Start with `dino_data` and calculate a summary statistic that we will call `r` as the `cor`relation between `x` and `y`.
-
 :::
 
 
@@ -333,10 +329,8 @@ Plot `y` vs. `x` for the `circle` dataset. You can (and should) reuse code we in
 *You should pause again, commit changes with the commit message "Added answer for Ex 4", and push.*
 
 
-::: {.callout-note icon=false}
-
+::: aside
 Facet by the dataset variable, placing the plots in a 3 column grid, and don't add a legend.
-
 :::
 
 ### Exercise 5

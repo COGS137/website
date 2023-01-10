@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.2.313">
+<meta name="generator" content="quarto-1.2.269">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -128,7 +128,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <link rel="stylesheet" href="../../styles.css">
 </head>
 
-<body class="nav-sidebar docked nav-fixed">
+<body class="nav-sidebar docked nav-fixed slimcontent">
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
@@ -248,6 +248,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul class="collapse">
   <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
   <li><a href="#yaml" id="toc-yaml" class="nav-link" data-scroll-target="#yaml">YAML:</a></li>
+  <li><a href="#expand-to-learn-about-yaml" id="toc-expand-to-learn-about-yaml" class="nav-link" data-scroll-target="#expand-to-learn-about-yaml">Expand To Learn About YAML</a></li>
   <li><a href="#commiting-changes" id="toc-commiting-changes" class="nav-link" data-scroll-target="#commiting-changes">Commiting changes:</a></li>
   <li><a href="#pushing-changes" id="toc-pushing-changes" class="nav-link" data-scroll-target="#pushing-changes">Pushing changes:</a></li>
   </ul></li>
@@ -275,7 +276,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </nav>
     </div>
 <!-- main -->
-<main class="content" id="quarto-document-content">
+<main class="content page-columns page-full" id="quarto-document-content">
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
@@ -300,14 +301,20 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 </header>
 
-<section id="introduction" class="level1">
+<section id="introduction" class="level1 page-columns page-full">
 <h1>Introduction</h1>
 <p>The main goal of this lab is to introduce you to R and RStudio, which we will be using throughout the course to learn and practice programming and analyze data.</p>
-<p>An additional goal is to introduce you to git and GitHub, which is the collaboration and version control system that we will be using throughout the course.</p>
-<p>As the labs progress, you are encouraged to explore beyond what the labs say directly; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>R is the name of the programming language itself and RStudio is a convenient interface.</p>
+</div></div><p>An additional goal is to introduce you to git and GitHub, which is the collaboration and version control system that we will be using throughout the course.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>git is a version control system (like “Track Changes” features from Microsoft Word on steroids) and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).</p>
+</div></div><p>As the labs progress, you are encouraged to explore beyond what the labs say directly; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.</p>
 <p>You are encouraged to ask one another questions and work together, but each individual must turn in their own lab each week.</p>
 </section>
-<section id="github" class="level1">
+<section id="github" class="level1 page-columns page-full">
 <h1>GitHub</h1>
 <ul>
 <li><p>If you have a GitHub account, be sure you know your username and password (you’ll need it later in this lab), and go ahead and move on to the next section.</p></li>
@@ -410,23 +417,18 @@ Note
 <p>This will be the only time you have to do this. From here on out, you’ll be able to “communicate” with GitHub from RStudio without typing your username/password.</p>
 </section>
 </section>
-<section id="cloning-the-lab" class="level2">
+<section id="cloning-the-lab" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="cloning-the-lab">Cloning the lab</h2>
-<div class="columns">
-<div class="column" style="width:60%;">
 <p>Each of your assignments will begin with the following steps. You saw these once in class and, they’re outlined in detail here again. Going forward each lab will start with a “Getting started” section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.</p>
 <p>Click on the assignment link for this week’s lab on the Canvas homepage. You will have to <strong>Accept</strong> before proceeding. <strong>Refresh the page</strong> and follow the link to the repo created for you. This repo contains a template you can build on to complete your lab.</p>
-</div><div class="column" style="width:40%;">
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
 <p><img src="img/01-hello-r/accept_assignment.png" class="img-fluid" width="645"></p>
 </div>
 </div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>On this page on GitHub, click the URL provided for you. This will bring you to <em>your copy</em> of the repo on GitHub. Click on the green <code>&lt;&gt; Code</code> button to clone the repo. Be sure that SSH is selected and copy this URL.</p>
+</div></div><p>On this page on GitHub, click the URL provided for you. This will bring you to <em>your copy</em> of the repo on GitHub. Click on the green <code>&lt;&gt; Code</code> button to clone the repo. Be sure that SSH is selected and copy this URL.</p>
 <div class="callout-important callout callout-style-default callout-captioned">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
@@ -440,30 +442,26 @@ Important
 <p>Be sure that any time you are copying a link from GitHub under the <code>&lt;&gt;Code</code> button, you select and use the ‘SSH’ URL as this is what will allow you to not have to type your username and password.</p>
 </div>
 </div>
-</div><div class="column" style="width:40%;">
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
 <p><img src="img/01-hello-r/ssh_github.png" class="img-fluid" width="442"></p>
 </div>
 </div>
-</div>
-</div>
-<div class="columns">
-<div class="column" style="width:60%;">
-<p>Go to datahub and open RStudio. Go to <strong>File &gt; New Project</strong>… and select to create a <strong>New Project from Version Control</strong>. On the following menu, select <strong>Git</strong>.</p>
+</div></div><p>Go to datahub and open RStudio. Go to <strong>File &gt; New Project</strong>… and select to create a <strong>New Project from Version Control</strong>. On the following menu, select <strong>Git</strong>.</p>
 <p>Copy and paste the URL of your assignment repo into the “Repository URL” dialog box:</p>
-</div><div class="column" style="width:40%;">
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
 <p><img src="img/01-hello-r/repo_in_r.png" class="img-fluid" width="529"></p>
 </div>
 </div>
-</div>
-</div>
-<p>Hit <strong>Create Project</strong>. Open up <code>lab-01.Rmd</code> and continue through this lab. Your work/answers for this lab will be submitted in that document.</p>
+</div></div><p>Hit <strong>Create Project</strong>. Open up <code>lab-01.Rmd</code> and continue through this lab. Your work/answers for this lab will be submitted in that document.</p>
 </section>
 </section>
-<section id="warm-up" class="level1">
+<section id="warm-up" class="level1 page-columns page-full">
 <h1>Warm up</h1>
 <p>Before we introduce the data, let’s warm up a bit…</p>
 <section id="packages" class="level2">
@@ -480,39 +478,29 @@ Important
 </section>
 <section id="yaml" class="level2">
 <h2 class="anchored" data-anchor-id="yaml">YAML:</h2>
-<div class="callout-tip callout callout-style-default callout-captioned">
-<div class="callout-header d-flex align-content-center" data-bs-toggle="collapse" data-bs-target=".callout-4-contents" aria-controls="callout-4" aria-expanded="false" aria-label="Toggle callout">
-<div class="callout-icon-container">
-<i class="callout-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Expand To Learn About YAML
-</div>
-<div class="callout-btn-toggle d-inline-block border-0 py-1 ps-1 pe-0 float-end"><i class="callout-toggle"></i></div>
-</div>
-<div id="callout-4" class="callout-4-contents callout-collapse collapse">
-<div class="callout-body-container callout-body">
+</section>
+
+<div class="no-row-height column-margin column-container"><section id="expand-to-learn-about-yaml" class="level2">
+<h2 class="anchored" data-anchor-id="expand-to-learn-about-yaml">Expand To Learn About YAML</h2>
 <p>The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for “Yet Another Markup Language”. It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</p>
-</div>
-</div>
-</div>
-<p>Open the R Markdown (Rmd) file in your project, change the author name to your name and <strong>knit the document</strong>. This will generate an HTML document.</p>
+</section></div><p>Open the R Markdown (Rmd) file in your project, change the author name to your name and <strong>knit the document</strong>. This will generate an HTML document.</p>
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output-display">
 <p><img src="img/01-hello-r/yaml-raw-to-rendered.png" class="img-fluid" width="472"></p>
 </div>
 </div>
-</section>
-<section id="commiting-changes" class="level2">
+<section id="commiting-changes" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="commiting-changes">Commiting changes:</h2>
 <p>Then Go to the Git pane in your RStudio on Datahub.</p>
 <p>If you have made changes to your Rmd file, you should see it listed here. Click on it in this list and then click on <strong>Diff</strong>. This shows you the <em>diff</em>erence between the last committed state of the document and its current state that includes your changes. Be sure to also select your HTML document. Once you’re happy with these changes, write “Update author name” in the <strong>Commit message</strong> box and hit <strong>Commit</strong>.</p>
+
+<div class="no-row-height column-margin column-container"><div class="">
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output-display">
 <p><img src="img/01-hello-r/update-author-name-commit.png" class="img-fluid" width="1000"></p>
 </div>
 </div>
-<p>You don’t have to commit after every change, this would get quite cumbersome. You should consider committing states that are <em>meaningful to you</em> for inspection, comparison, or restoration. In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use. As the quarter progresses, we will let you make these decisions.</p>
+</div></div><p>You don’t have to commit after every change, this would get quite cumbersome. You should consider committing states that are <em>meaningful to you</em> for inspection, comparison, or restoration. In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use. As the quarter progresses, we will let you make these decisions.</p>
 </section>
 <section id="pushing-changes" class="level2">
 <h2 class="anchored" data-anchor-id="pushing-changes">Pushing changes:</h2>
@@ -533,7 +521,7 @@ Thought exercise
 </div>
 </section>
 </section>
-<section id="exercises" class="level1">
+<section id="exercises" class="level1 page-columns page-full">
 <h1>Exercises</h1>
 <section id="data" class="level2">
 <h2 class="anchored" data-anchor-id="data">Data</h2>
@@ -568,9 +556,9 @@ Thought exercise
 <p>The original Datasaurus (<code>dino</code>) was created by Alberto Cairo in <a href="http://www.thefunctionalart.com/2016/08/download-datasaurus-never-trust-summary.html">this great blog post</a>. The other Dozen were generated using simulated annealing and the process is described in the paper <em>Same Stats, Different Graphs: Generating Datasets with Varied Appearance and Identical Statistics</em> through Simulated Annealing by Justin Matejka and George Fitzmaurice.<a href="#fn3" class="footnote-ref" id="fnref3" role="doc-noteref"><sup>3</sup></a> In the paper, the authors simulate a variety of datasets that the same summary statistics to the Datasaurus but have very different distributions.</p>
 </section>
 </section>
-<section id="data-visualization-and-summary" class="level2">
+<section id="data-visualization-and-summary" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="data-visualization-and-summary">Data visualization and summary</h2>
-<section id="exercise-2" class="level3">
+<section id="exercise-2" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="exercise-2">Exercise 2</h3>
 <p>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>dino</code> dataset. Then, calculate the correlation coefficient between <code>x</code> and <code>y</code> for this dataset.</p>
 <p>Below is the code you will need to complete this exercise. Basically, the answer is already given, but you need to include relevant bits in your Rmd document and successfully knit it and view the results.</p>
@@ -593,20 +581,10 @@ Thought exercise
 <p>If this seems like a lot, it is. And you will learn about the philosophy of building data visualizations in layer in detail next week. For now, follow along with the code that is provided.</p>
 <p>For the second part of this exercises, we need to calculate a summary statistic: the correlation coefficient. Correlation coefficient, often referred to as <span class="math inline">\(r\)</span> in statistics, measures the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate <span class="math inline">\(r\)</span> only if relevant. In this case, calculating a correlation coefficient really doesn’t make sense since the relationship between <code>x</code> and <code>y</code> is definitely not linear – it’s dinosaurial!</p>
 <p>But, for illustrative purposes, let’s calculate correlation coefficient between <code>x</code> and <code>y</code>.</p>
-<div class="callout-note callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Hint
-</div>
-</div>
-<div class="callout-body-container callout-body">
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>Start with <code>dino_data</code> and calculate a summary statistic that we will call <code>r</code> as the <code>cor</code>relation between <code>x</code> and <code>y</code>.</p>
-</div>
-</div>
-<div class="cell">
+</div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="sc">|&gt;</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarize</span>(<span class="at">r =</span> <span class="fu">cor</span>(x, y))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
@@ -623,24 +601,14 @@ Hint
 <p>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>star</code> dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between <code>x</code> and <code>y</code> for this dataset. How does this value compare to the <code>r</code> of <code>dino</code>?</p>
 <p><em>This is another good place to pause, commit changes with the commit message “Added answer for Ex 3”, and push.</em></p>
 </section>
-<section id="exercise-4" class="level3">
+<section id="exercise-4" class="level3 page-columns page-full">
 <h3 class="anchored" data-anchor-id="exercise-4">Exercise 4</h3>
 <p>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>circle</code> dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between <code>x</code> and <code>y</code> for this dataset. How does this value compare to the <code>r</code> of <code>dino</code>?</p>
 <p><em>You should pause again, commit changes with the commit message “Added answer for Ex 4”, and push.</em></p>
-<div class="callout-note callout callout-style-default no-icon callout-captioned">
-<div class="callout-header d-flex align-content-center">
-<div class="callout-icon-container">
-<i class="callout-icon no-icon"></i>
-</div>
-<div class="callout-caption-container flex-fill">
-Note
-</div>
-</div>
-<div class="callout-body-container callout-body">
+
+<div class="no-row-height column-margin column-container"><div class="">
 <p>Facet by the dataset variable, placing the plots in a 3 column grid, and don’t add a legend.</p>
-</div>
-</div>
-</section>
+</div></div></section>
 <section id="exercise-5" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
 <p>Finally, let’s plot all datasets at once. In order to do this we will make use of facetting.</p>

@@ -523,7 +523,7 @@ Instructions from [quarto](https://quarto.org/docs/presentations/revealjs/presen
 
 ## Who's in this class?
 
-```{r data, message=FALSE, warning=FALSE, echo=TRUE}
+```{r data, message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
 roster <- read_sheet('10_NsXld_swxoTL_01pCklRKR95OH5XoNlRzTl7L5XXs')
 
 ggplot(roster, aes(x = College)) +

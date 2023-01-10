@@ -669,7 +669,7 @@
     "href": "content/lectures/00-welcome-slides.html#whos-in-this-class",
     "title": "00-welcome",
     "section": "Who’s in this class?",
-    "text": "Who’s in this class?\n\nroster <- read_sheet('10_NsXld_swxoTL_01pCklRKR95OH5XoNlRzTl7L5XXs')\n\nggplot(roster, aes(x = College)) +\n  geom_bar() +\n  labs(title = \"COGS 137\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\n\n\n\nNote: This code will not run for you because you don’t have access to the roster for this course."
+    "text": "Who’s in this class?\n\nroster <- read_sheet('10_NsXld_swxoTL_01pCklRKR95OH5XoNlRzTl7L5XXs')\n\nggplot(roster, aes(x = College)) +\n  geom_bar() +\n  labs(title = \"COGS 137\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\n\n\n\n\n\nNote: This code will not run for you because you don’t have access to the roster for this course."
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#whos-in-this-class-1",

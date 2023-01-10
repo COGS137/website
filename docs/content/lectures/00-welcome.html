@@ -922,7 +922,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1 data-background-color="#92A86A">Students</h1>
 <section id="whos-in-this-class" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="whos-in-this-class">Who’s in this class?</h2>
-<div class="cell" data-output-location="slide">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>roster <span class="ot">&lt;-</span> <span class="fu">read_sheet</span>(<span class="st">'10_NsXld_swxoTL_01pCklRKR95OH5XoNlRzTl7L5XXs'</span>)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(roster, <span class="fu">aes</span>(<span class="at">x =</span> College)) <span class="sc">+</span></span>
@@ -940,7 +940,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div></div></section>
 <section id="whos-in-this-class-1" class="level2">
 <h2 class="anchored" data-anchor-id="whos-in-this-class-1">Who’s in this class?</h2>
-<div class="cell" data-output-location="slide">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">major =</span> <span class="fu">substr</span>(Major, <span class="dv">1</span>, <span class="dv">2</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_infreq</span>(major))) <span class="sc">+</span> </span>
@@ -956,7 +956,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="whos-in-this-class-2" class="level2">
 <h2 class="anchored" data-anchor-id="whos-in-this-class-2">Who’s in this class?</h2>
-<div class="cell" data-output-location="slide">
+<div class="cell">
 <div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>roster <span class="sc">|&gt;</span></span>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="fu">fct_relevel</span>(Level, <span class="st">"JR"</span>, <span class="st">"SR"</span>))) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>() <span class="sc">+</span></span>

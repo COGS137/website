@@ -1,40 +1,40 @@
-| Week  | Date           | Title                                    | Type                     |
-|-------|----------------|------------------------------------------|--------------------------|
-| 1     | Tu Jan 10      | Welcome & Tooling                        | Lecture                  |
-| 1     | Th Jan 12      | Intro to R                               | Lecture                  |
-| 1     | Fri Jan 13     | Lab 01: Intro to R                       | Lab                      |
-| **2** | **Tu Jan 17**  | **Data Wrangling: `dplyr` (day 1)**      | **Lecture**              |
-| **2** | **Th Jan 19**  | **Data Wrangling: `dplyr` (day 2)**      | **Lecture**              |
-| **2** | **Fri Jan 20** | **Lab 02: Data Wrangling**               | **Lab**                  |
-| **2** | **Mon Jan 23** | **<font color="#ABC57D">HW01 due (11:59 PM)</font>**                  | **HW**                   |
-| 3     | Tu Jan 24      | Data Visualization: `ggplot2` (day 1)    | Lecture                  |
-| 3     | Th Jan 26      | Data Visualization: `ggplot2` (day 2)    | Lecture                  |
-| 3     | Fri Jan 27     | Lab 03: Data Visualization               | Lab                      |
-| **4** | **Tu Jan 31**  | **Data Analysis & Modeling**             | **Lecture**              |
-| **4** | **Th Feb 2**   | **Linear Models Review***                | **Lecture**              |
-| **4** | **Fri Feb 3**  | **Lab 04: Modeling**                     | **Lab**                  |
-| **4** | **Mon Feb 6**  | **<font color="#ABC57D">HW02 due (11:59 PM)</font>**                | **HW**                   |
-| 5     | Tu Feb 7       | Effective Communication                  | Lecture                  |
-| 5     | Th Feb 9       | Case Study & Final Project Info          | Lecture                  |
-| 5     | Fri Feb 10     | Lab used for midterm review              | Lab                      |
-| 5     | Mon Feb 13     | <font color="#ABC57D">MIDTERM EXAM (due 11:59 PM) </font>| Exam     |
-| **6** | **Tu Feb 14**  | **Multiple Linear Regression**           | **Lecture**              |
-| **6** | **Th Feb 16**  | **Case Study 01: Right to Carry (day 1)**| **Lecture**              |
-| **6** | **Fri Feb 17** | **Lab 05: Multiple Linear Regression**   | **Lab**                  |
-| **6** | **Mon Feb 20** | **<font color="#ABC57D">HW03 due (11:59 PM)</font>**                  | **HW**                   |
-| 7     | Tu Feb 21      | Case Study 01: Right to Carry (day 2)    | Lecture                  |
-| 7     | Th Feb 23      | Case Study 01: Right to Carry (day 3)    | Lecture                  |
-| 7     | Fri Feb 24     | Lab 06: CS01                             | Lab                      |
-| **8** | **Tu Feb 28**  | **Logistic Regression (day 1)**          | **Lecture**              |
-| **8** | **Th Mar 2**   | **Logistic Regression (day 2)**          | **Lecture**              |
-| **8** | **Fri Mar 3**  | **Lab 07: Logistic Regression**          | **Lab**                  |
-| **8** | **Mon Mar 6**  | **<font color="#ABC57D">CS01 Due (11:59 PM)</font>**                  | **Case Study**           |
-| 9     | Tu Mar 7       | Case Study 02: Vaping (day 1)            | Lecture                  |
-| 9     | Th Mar 9       | Case Study 02: Vaping (day 2)            | Lecture                  |
-| 9     | Fri Mar 10     | Lab 08: CS02                             | Lab                      |
-| 9     | Mon Mar 13     | <font color="#ABC57D">HW04 due (11:59 PM)</font>                      | HW                       |
-| **10**| **Tu Mar 14**  | **Final Project Brainstorming**          | **Lecture**              |
-| **10**| **Th Mar 16**  | **Next Steps**                           | **Lecture**              |
-| **10**| **Fri Mar 17** | **Lab used for Final Project**           | **Lab**                  |
-| **10**| **Mon Mar 20** | **<font color="#ABC57D">CS02 Due</font>**                    | **Case Study**           |
-| Finals| Th Mar 23      | <font color="#ABC57D">Final Project Due (11:59 PM)</font>             | Lecture                  |
+| Week   | Date           | Title                                                         | Type        |
+|--------------|--------------|----------------------------|----------------|
+| 1      | Tu Jan 10      | Welcome & Tooling                                             | Lecture     |
+| 1      | Th Jan 12      | Intro to R                                                    | Lecture     |
+| 1      | Fri Jan 13     | Lab 01: Intro to R                                            | Lab         |
+| **2**  | **Tu Jan 17**  | **Data Wrangling: `dplyr` (day 1)**                           | **Lecture** |
+| **2**  | **Th Jan 19**  | **Data Wrangling: `dplyr` (day 2)**                           | **Lecture** |
+| **2**  | **Fri Jan 20** | **Lab 02: Data Wrangling**                                    | **Lab**     |
+| 3      | **Mon Jan 23** | <font color="#ABC57D">HW01 due (11:59 PM)</font>              | **HW**      |
+| 3      | Tu Jan 24      | Data Visualization: `ggplot2` (day 1)                         | Lecture     |
+| 3      | Th Jan 26      | Data Visualization: `ggplot2` (day 2)                         | Lecture     |
+| 3      | Fri Jan 27     | Lab 03: Data Visualization                                    | Lab         |
+| **4**  | **Tu Jan 31**  | **Data Analysis & Modeling**                                  | **Lecture** |
+| **4**  | **Th Feb 2**   | **Linear Models Review**\*                                    | **Lecture** |
+| **4**  | **Fri Feb 3**  | **Lab 04: Modeling**                                          | **Lab**     |
+| **5**  | **Mon Feb 6**  | <font color="#ABC57D">HW02 due (11:59 PM)</font>              | **HW**      |
+| 5      | Tu Feb 7       | Effective Communication                                       | Lecture     |
+| 5      | Th Feb 9       | Case Study & Final Project Info                               | Lecture     |
+| 5      | Fri Feb 10     | Lab used for midterm review                                   | Lab         |
+| **6**  | **Mon Feb 13** | <font color="#ABC57D">**MIDTERM EXAM (due 11:59 PM)** </font> | **Exam**    |
+| **6**  | **Tu Feb 14**  | **Multiple Linear Regression**                                | **Lecture** |
+| **6**  | **Th Feb 16**  | **Case Study 01: Right to Carry (day 1)**                     | **Lecture** |
+| **6**  | **Fri Feb 17** | **Lab 05: Multiple Linear Regression**                        | **Lab**     |
+| 7      | Mon Feb 20     | <font color="#ABC57D">HW03 due (11:59 PM)</font>              | HW          |
+| 7      | Tu Feb 21      | Case Study 01: Right to Carry (day 2)                         | Lecture     |
+| 7      | Th Feb 23      | Case Study 01: Right to Carry (day 3)                         | Lecture     |
+| 7      | Fri Feb 24     | Lab 06: CS01                                                  | Lab         |
+| **8**  | **Tu Feb 28**  | **Logistic Regression (day 1)**                               | **Lecture** |
+| **8**  | **Th Mar 2**   | **Logistic Regression (day 2)**                               | **Lecture** |
+| **8**  | **Fri Mar 3**  | **Lab 07: Logistic Regression**                               | **Lab**     |
+| 9      | Mon Mar 6      | <font color="#ABC57D">CS01 Due (11:59 PM)</font>              | Case Study  |
+| 9      | Tu Mar 7       | Case Study 02: Vaping (day 1)                                 | Lecture     |
+| 9      | Th Mar 9       | Case Study 02: Vaping (day 2)                                 | Lecture     |
+| 9      | Fri Mar 10     | Lab 08: CS02                                                  | Lab         |
+| **10** | **Mon Mar 13** | <font color="#ABC57D">**HW04 due (11:59 PM)**</font>          | **HW**      |
+| **10** | **Tu Mar 14**  | **Final Project Brainstorming**                               | **Lecture** |
+| **10** | **Th Mar 16**  | **Next Steps**                                                | **Lecture** |
+| **10** | **Fri Mar 17** | **Lab used for Final Project**                                | **Lab**     |
+| Finals | Mon Mar 20     | <font color="#ABC57D">CS02 Due</font>                         | Case Study  |
+| Finals | Th Mar 23      | <font color="#ABC57D">Final Project Due (11:59 PM)</font>     | Lecture     |

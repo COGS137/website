@@ -41,7 +41,10 @@ options(gargle_oauth_email = "sellis@ucsd.edu")
 
 ## Agenda
 
-1. 
+1. Variables
+2. Operators
+3. Data in R
+4. RMarkdown 
 
 # Variables & Assignment {background-color="#92A86A"}
 
@@ -663,6 +666,39 @@ ggplot(cat_lovers, mapping = aes(x = handedness)) +
 Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
 :::
 
+
+# R Markdown
+
+## R Markdown: tour
+
+<center>\[DEMO\]</center>
+
+Before we move on...
+
+[<i class="fa fa-user" aria-hidden="true"></i>   What is the Bechdel test?]{style="background-color: #ADD8E6"}
+
+. . .
+
+The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
+
+. . .
+
+Concepts introduced:
+
+-   Knitting documents
+-   R Markdown and (some) R syntax
+
+## Your Turn
+
+1.  Navigate to the demo URL (on Canvas)
+2.  Accept the "assignment" (this is NOT graded)
+3.  Clone the repo
+4.  Edit the document
+5.  Knit the document
+6.  Push your changes
+
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+
 # Recap  {background-color="#92A86A"}
 
 ## Recap {.scrollable}
@@ -679,7 +715,8 @@ Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
     + If you are absolutely sure of a data class, over-write it in your
     tibble so that you don't need to keep having to keep track of it
         + `mutate` the variable with the correct class
-
+        
+-   What are the components of an R Markdown file?
 - What are atomic vectors?
 - Do I know how to determine the class/type of a variable?
 - Can I define atomic vectors, vectors, and lists?

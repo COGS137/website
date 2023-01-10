@@ -22,6 +22,8 @@ format:
 
 Practical Data Science in R
 
+Please take one <font color="#32cb31">green</font> sticky and one <font color="#ff65a3">pink</font> sticky as they come around. If you're able, try and save these. We'll use them most classes. (But, I'll always have extra!)
+
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(googlesheets4)
@@ -98,8 +100,6 @@ Everything you want to know about the course, and everything you will need for t
 
 ::: {.column width="60%"}
 Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**! 
-
-. . .
 
 <br/> After that, we'll focus on delving into interesting statistical analyses through **case studies**.
 :::
@@ -199,8 +199,10 @@ Differences since last iteration:
 - Less...pretty much everything
 - New website/lecture platform (quarto)
 - Tu/Th and not early in the morning
+- Group mates differ
+- Increased focus on communication
 - Multiple final project options
-- Slightly larger class size 
+- Slightly larger class & slightly smaller staff
 - I'm a mom & just coming back from parental leave
 
 ## How to get help {.scrollable}
@@ -379,25 +381,6 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 -   Simple markdown syntax for text
 -   Code goes in chunks, defined by three backticks, narrative goes outside of chunks
 
-## Let's take a tour -- R Markdown
-
-<center>\[DEMO\]</center>
-
-Before we move on...
-
-[<i class="fa fa-user" aria-hidden="true"></i>   What is the Bechdel test?]{style="background-color: #ADD8E6"}
-
-. . .
-
-The Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.
-
-. . .
-
-Concepts introduced:
-
--   Knitting documents
--   R Markdown and (some) R syntax
-
 ## R Markdown tips
 
 -   Keep the [R Markdown cheat sheet](https://www.rstudio.com/wp-content/uploads/2015/02/rmarkdown-cheatsheet.pdf) and Markdown Quick Reference (Help -\> Markdown Quick Reference) handy, we'll refer to it often as the course progresses
@@ -469,16 +452,6 @@ Concepts introduced:
 
 There is a bit more of GitHub that we'll use in this class, but for today this is enough.
 
-## Your Turn
-
-1.  Navigate to the demo URL (on Canvas)
-2.  Accept the "assignment" (this is NOT graded)
-3.  Clone the repo
-4.  Edit the document
-5.  Knit the document
-6.  Push your changes
-
-Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
 
 ## Recap
 
@@ -486,7 +459,6 @@ Can you answer these questions?
 
 -   What is R vs RStudio?
 -   What are RStudio Projects?
--   What are the components of an R Markdown file?
 -   What is version control, and why do we care?
 -   What is git vs GitHub (and do I need to care)?
 
@@ -575,5 +547,5 @@ roster |>
 -   opportunity for extra credit on final project
 
 ::: aside
-\*links to both surveys are also on Canvas
+Note: Links to both surveys are also on Canvas.
 :::

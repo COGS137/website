@@ -158,7 +158,7 @@
     "href": "content/lectures/00-welcome.html",
     "title": "00-welcome",
     "section": "",
-    "text": "Practical Data Science in R\n\n\n\n\n\n\n\n\nDescribe what this class is\nDescribe how the class will run\nGo over the tooling for this course: R, RStudio, GitHub\n\n\n\n\n : R is a statistical programming language.\nWhile R has most/all of the functionality of YFPL (your favorite programming language), it was designed for the specific use of analyzing data.\n\n\n\n: Data science is the scientific process of using data to answer interesting questions and/or solve important problems.\n\n\n\n\n\nProgram at the introductory level in the R statistical programming language\nEmploy the tidyverse suite of packages to interact with, wrangle, visualize, and model data\nExplain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis\nCommunicate data science projects through effective visualization, oral presentation, and written reports\n\n\n\n\n\nShannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover\n   sellis@ucsd.edu     shanellis.com     Peterson Hall 104     Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM)\n\n\n\n\n\n\nInstructor\nShannon Ellis\nsellis@ucsd.edu\nWed 2-3\nVirtual (see canvas)\n\n\n\n\n\nTh 12:50-1:50\nCSB 243\n\n\nTA\nShubham Kulkarni\n\nTime TBD\nLocation TBD\n\n\nIAs\nChristian Kim\n\nTime TBD\nLocation TBD\n\n\n\n\n\n\nEverything you want to know about the course, and everything you will need for the course will be posted at: https://cogs137.github.io/website/\n\n\nIs this an intro CS course? No.\nWill we be doing computing? Yes.\nWhat computing language will we learn? R.\nIs this an intro stats course? No.\nWill we be doing stats? Yes.\nAre there any prerequisites? Yes, an intro statistics course!\n\n\n\n\n\n\n\n\n\nNope! The first few weeks of the course will be all about getting comfortable using the R programming language!\n. . .\n After that, we’ll focus on delving into interesting statistical analyses through case studies.\n\n\n\nArtwork by @allison_horst"
+    "text": "Practical Data Science in R\n\n\n\n\n\n\n\n\nDescribe what this class is\nDescribe how the class will run\nGo over the tooling for this course: R, RStudio, GitHub\n\n\n\n\n : R is a statistical programming language.\nWhile R has most/all of the functionality of YFPL (your favorite programming language), it was designed for the specific use of analyzing data.\n\n\n\n: Data science is the scientific process of using data to answer interesting questions and/or solve important problems.\n\n\n\n\n\nProgram at the introductory level in the R statistical programming language\nEmploy the tidyverse suite of packages to interact with, wrangle, visualize, and model data\nExplain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis\nCommunicate data science projects through effective visualization, oral presentation, and written reports\n\n\n\n\n\nShannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover\n   sellis@ucsd.edu     shanellis.com     Peterson Hall 104     Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM)\n\n\n\n\n\n\nInstructor\nShannon Ellis\nsellis@ucsd.edu\nWed 2-3\nVirtual (see canvas)\n\n\n\n\n\nTh 12:50-1:50\nCSB 243\n\n\nTA\nShubham Kulkarni\n\nTime TBD\nLocation TBD\n\n\nIAs\nChristian Kim\n\nTime TBD\nLocation TBD\n\n\n\n\n\n\nEverything you want to know about the course, and everything you will need for the course will be posted at: https://cogs137.github.io/website/\n\n\nIs this an intro CS course? No.\nWill we be doing computing? Yes.\nWhat computing language will we learn? R.\nIs this an intro stats course? No.\nWill we be doing stats? Yes.\nAre there any prerequisites? Yes, an intro statistics course!\n\n\n\n\n\n\n\n\n\nNope! The first few weeks of the course will be all about getting comfortable using the R programming language!\n After that, we’ll focus on delving into interesting statistical analyses through case studies.\n\n\n\nArtwork by @allison_horst"
   },
   {
     "objectID": "content/lectures/00-welcome.html#the-general-plan",
@@ -186,7 +186,7 @@
     "href": "content/lectures/00-welcome.html#a-new-ish-course",
     "title": "00-welcome",
     "section": "A new-ish course!",
-    "text": "A new-ish course!\n\nOffered once previously\nIf something doesn’t make sense, tell me!\nIf you’ve got feedback/suggestions, I’m all ears!\n\n\nDifferences since last iteration:\n\nLess…pretty much everything\nNew website/lecture platform (quarto)\nTu/Th and not early in the morning\nMultiple final project options\nSlightly larger class size\nI’m a mom & just coming back from parental leave"
+    "text": "A new-ish course!\n\nOffered once previously\nIf something doesn’t make sense, tell me!\nIf you’ve got feedback/suggestions, I’m all ears!\n\n\nDifferences since last iteration:\n\nLess…pretty much everything\nNew website/lecture platform (quarto)\nTu/Th and not early in the morning\nGroup mates differ\nMultiple final project options\nSlightly larger class size\nI’m a mom & just coming back from parental leave"
   },
   {
     "objectID": "content/lectures/00-welcome.html#how-to-get-help",
@@ -354,7 +354,7 @@
     "href": "content/lectures/00-welcome.html#recap",
     "title": "00-welcome",
     "section": "Recap",
-    "text": "Recap\nCan you answer these questions?\n\nWhat is R vs RStudio?\nWhat are RStudio Projects?\nWhat are the components of an R Markdown file?\nWhat is version control, and why do we care?\nWhat is git vs GitHub (and do I need to care)?"
+    "text": "Recap\nCan you answer these questions?\n\nWhat is R vs RStudio?\nWhat are RStudio Projects?\nWhat is version control, and why do we care?\nWhat is git vs GitHub (and do I need to care)?"
   },
   {
     "objectID": "content/lectures/00-welcome.html#additional-git-resources",
@@ -452,7 +452,7 @@
     "href": "content/lectures/00-welcome-slides.html#soi-dont-have-to-know-how-to-program-already",
     "title": "00-welcome",
     "section": "So…I don’t have to know how to program already?",
-    "text": "So…I don’t have to know how to program already?\n\n\n\n\nNope! The first few weeks of the course will be all about getting comfortable using the R programming language!\n. . .\n After that, we’ll focus on delving into interesting statistical analyses through case studies.\n\n\n\nArtwork by @allison_horst"
+    "text": "So…I don’t have to know how to program already?\n\n\n\n\nNope! The first few weeks of the course will be all about getting comfortable using the R programming language!\n After that, we’ll focus on delving into interesting statistical analyses through case studies.\n\n\n\nArtwork by @allison_horst"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#the-general-plan",
@@ -480,7 +480,7 @@
     "href": "content/lectures/00-welcome-slides.html#a-new-ish-course",
     "title": "00-welcome",
     "section": "A new-ish course!",
-    "text": "A new-ish course!\n\nOffered once previously\nIf something doesn’t make sense, tell me!\nIf you’ve got feedback/suggestions, I’m all ears!\n\n\nDifferences since last iteration:\n\nLess…pretty much everything\nNew website/lecture platform (quarto)\nTu/Th and not early in the morning\nMultiple final project options\nSlightly larger class size\nI’m a mom & just coming back from parental leave"
+    "text": "A new-ish course!\n\nOffered once previously\nIf something doesn’t make sense, tell me!\nIf you’ve got feedback/suggestions, I’m all ears!\n\n\nDifferences since last iteration:\n\nLess…pretty much everything\nNew website/lecture platform (quarto)\nTu/Th and not early in the morning\nGroup mates differ\nIncreased focus on communication\nMultiple final project options\nSlightly larger class & slightly smaller staff\nI’m a mom & just coming back from parental leave"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#how-to-get-help",
@@ -648,7 +648,7 @@
     "href": "content/lectures/00-welcome-slides.html#recap",
     "title": "00-welcome",
     "section": "Recap",
-    "text": "Recap\nCan you answer these questions?\n\nWhat is R vs RStudio?\nWhat are RStudio Projects?\nWhat are the components of an R Markdown file?\nWhat is version control, and why do we care?\nWhat is git vs GitHub (and do I need to care)?"
+    "text": "Recap\nCan you answer these questions?\n\nWhat is R vs RStudio?\nWhat are RStudio Projects?\nWhat is version control, and why do we care?\nWhat is git vs GitHub (and do I need to care)?"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#additional-git-resources",
@@ -690,7 +690,7 @@
     "href": "content/lectures/00-welcome-slides.html#id-like-to-know-more",
     "title": "00-welcome",
     "section": "I’d like to know more!",
-    "text": "I’d like to know more!\n(optional) Student Survey - complete by Monday at 11:59 PM for small amount of extra credit\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\nhttps://cogs137.github.io/website/\n\n\n\n*links to both surveys are also on Canvas"
+    "text": "I’d like to know more!\n(optional) Student Survey - complete by Monday at 11:59 PM for small amount of extra credit\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\nhttps://cogs137.github.io/website/\n\n\n\nNote: Links to both surveys are also on Canvas."
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html",

@@ -41,7 +41,7 @@ You are encouraged to ask one another questions and work together, but each indi
 
 -   If you have a GitHub account, be sure you know your username and password (you'll need it later in this lab), and go ahead and move on to the next section.
 
--   **If you do not yet have a GitHub account, create one at [https://github.com/]()**. Tips for selecting a username [^1]:
+-   **If you do not yet have a GitHub account, create one at [https://github.com/](https://github.com/)**. Tips for selecting a username [^1]:
 
     -   Incorporate your actual name! People like to know who they're dealing with. Also makes your username easier for people to guess or remember.
     -   Reuse your username from other contexts if you can, e.g., Twitter or Slack.
@@ -121,7 +121,7 @@ You'll want to highlight and copy the full result of this command. It will start
 
 ### Step 4: Let GitHub know your key
 
--   In your browser, navigate to [https://github.com/settings/keys]()
+-   In your browser, navigate to [https://github.com/settings/keys](https://github.com/settings/keys)
 -   Click "New SSH Key"
 -   Set title to DSMLP
 -   Paste what you copied in step 3 into the "Key" box

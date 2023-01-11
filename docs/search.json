@@ -158,7 +158,7 @@
     "href": "content/lectures/00-welcome.html",
     "title": "00-welcome",
     "section": "",
-    "text": "Practical Data Science in R\n\n\n\n\n\n\n\n\nDescribe what this class is\nDescribe how the class will run\nGo over the tooling for this course: R, RStudio, GitHub\n\n\n\n\n : R is a statistical programming language.\nWhile R has most/all of the functionality of YFPL (your favorite programming language), it was designed for the specific use of analyzing data.\n\n\n\n: Data science is the scientific process of using data to answer interesting questions and/or solve important problems.\n\n\n\n\n\nProgram at the introductory level in the R statistical programming language\nEmploy the tidyverse suite of packages to interact with, wrangle, visualize, and model data\nExplain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis\nCommunicate data science projects through effective visualization, oral presentation, and written reports\n\n\n\n\n\nShannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover\n   sellis@ucsd.edu     shanellis.com     Peterson Hall 104     Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM)\n\n\n\n\n\n\nInstructor\nShannon Ellis\nsellis@ucsd.edu\nWed 2-3\nVirtual (see canvas)\n\n\n\n\n\nTh 12:50-1:50\nCSB 243\n\n\nTA\nShubham Kulkarni\n\nTime TBD\nLocation TBD\n\n\nIAs\nChristian Kim\n\nTime TBD\nLocation TBD\n\n\n\n\n\n\nEverything you want to know about the course, and everything you will need for the course will be posted at: https://cogs137.github.io/website/\n\n\nIs this an intro CS course? No.\nWill we be doing computing? Yes.\nWhat computing language will we learn? R.\nIs this an intro stats course? No.\nWill we be doing stats? Yes.\nAre there any prerequisites? Yes, an intro statistics course!\n\n\n\n\n\n\n\n\n\nNope! The first few weeks of the course will be all about getting comfortable using the R programming language!\n After that, we’ll focus on delving into interesting statistical analyses through case studies.\n\n\n\nArtwork by @allison_horst"
+    "text": "Practical Data Science in R\nPlease take one green sticky and one pink sticky as they come around. If you’re able, try and save these. We’ll use them most classes. (But, I’ll always have extra!)\n\n\n\n\n\n\n\n\nDescribe what this class is\nDescribe how the class will run\nGo over the tooling for this course: R, RStudio, GitHub\n\n\n\n\n : R is a statistical programming language.\nWhile R has most/all of the functionality of YFPL (your favorite programming language), it was designed for the specific use of analyzing data.\n\n\n\n: Data science is the scientific process of using data to answer interesting questions and/or solve important problems.\n\n\n\n\n\nProgram at the introductory level in the R statistical programming language\nEmploy the tidyverse suite of packages to interact with, wrangle, visualize, and model data\nExplain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis\nCommunicate data science projects through effective visualization, oral presentation, and written reports\n\n\n\n\n\nShannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover\n   sellis@ucsd.edu     shanellis.com     Peterson Hall 104     Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM)\n\n\n\n\n\n\nInstructor\nShannon Ellis\nsellis@ucsd.edu\nWed 2-3\nVirtual (see canvas)\n\n\n\n\n\nTh 12:50-1:50\nCSB 243\n\n\nTA\nShubham Kulkarni\n\nTime TBD\nLocation TBD\n\n\nIAs\nChristian Kim\n\nTime TBD\nLocation TBD\n\n\n\n\n\n\nEverything you want to know about the course, and everything you will need for the course will be posted at: https://cogs137.github.io/website/\n\n\nIs this an intro CS course? No.\nWill we be doing computing? Yes.\nWhat computing language will we learn? R.\nIs this an intro stats course? No.\nWill we be doing stats? Yes.\nAre there any prerequisites? Yes, an intro statistics course!\n\n\n\n\n\n\n\n\n\nNope! The first few weeks of the course will be all about getting comfortable using the R programming language!\n After that, we’ll focus on delving into interesting statistical analyses through case studies.\n\n\n\nArtwork by @allison_horst"
   },
   {
     "objectID": "content/lectures/00-welcome.html#the-general-plan",
@@ -186,7 +186,7 @@
     "href": "content/lectures/00-welcome.html#a-new-ish-course",
     "title": "00-welcome",
     "section": "A new-ish course!",
-    "text": "A new-ish course!\n\nOffered once previously\nIf something doesn’t make sense, tell me!\nIf you’ve got feedback/suggestions, I’m all ears!\n\n\nDifferences since last iteration:\n\nLess…pretty much everything\nNew website/lecture platform (quarto)\nTu/Th and not early in the morning\nGroup mates differ\nMultiple final project options\nSlightly larger class size\nI’m a mom & just coming back from parental leave"
+    "text": "A new-ish course!\n\nOffered once previously\nIf something doesn’t make sense, tell me!\nIf you’ve got feedback/suggestions, I’m all ears!\n\n\nDifferences since last iteration:\n\nLess…pretty much everything\nNew website/lecture platform (quarto)\nTu/Th and not early in the morning\nGroup mates differ\nIncreased focus on communication\nMultiple final project options\nSlightly larger class & slightly smaller staff\nI’m a mom & just coming back from parental leave"
   },
   {
     "objectID": "content/lectures/00-welcome.html#how-to-get-help",
@@ -249,7 +249,7 @@
     "href": "content/lectures/00-welcome.html#r-and-rstudio",
     "title": "00-welcome",
     "section": "R and RStudio",
-    "text": "R and RStudio\n\nR/RStudioTourTryR packages\n\n\nR & RStudio\n\nR is a statistical programming language\nRStudio is a convenient interface for R (an integreated development environment, IDE)\n\n\n\n\n[DEMO]\n\nConcepts introduced:\n\nConsole\nUsing R as a calculator\nEnvironment\nLoading and viewing a data frame\nAccessing a variable in a data frame\nR functions\n\n\n\nYour Turn\n\nLogin to datahub\nCarry out a mathematical operation in the console\nView the diamonds dataframe\nAccess a column from the diamonds dataframe\nCalculate the median for one of the numeric columns\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question.\n\n\n\nPackages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data 1\nAs of Jan 2023, there are ~18,979 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!"
+    "text": "R and RStudio\n\nR/RStudioTourTryR packages\n\n\nR & RStudio\n\nR is a statistical programming language\nRStudio is a convenient interface for R (an integreated development environment, IDE)\n\n\n\n\n[DEMO]\n\nConcepts introduced:\n\nConsole\nUsing R as a calculator\nEnvironment\nLoading and viewing a data frame\nAccessing a variable in a data frame\nR functions\n\n\n\nYour Turn\n\nLogin to datahub\nCarry out a mathematical operation in the console\nView the airquality dataframe\nAccess a column from the airquality dataframe\nCalculate the median for one of the numeric columns\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question.\n\n\n\nPackages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data 1\nAs of Jan 2023, there are ~18,979 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!"
   },
   {
     "objectID": "content/lectures/00-welcome.html#what-is-the-tidyverse",
@@ -396,7 +396,7 @@
     "href": "content/lectures/00-welcome.html#id-like-to-know-more",
     "title": "00-welcome",
     "section": "I’d like to know more!",
-    "text": "I’d like to know more!\n(optional) Student Survey - complete by Monday at 11:59 PM for small amount of extra credit\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\n*links to both surveys are also on Canvas"
+    "text": "I’d like to know more!\n(optional) Student Survey - complete by Monday at 11:59 PM for small amount of extra credit\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\nNote: Links to both surveys are also on Canvas."
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#agenda",
@@ -543,7 +543,7 @@
     "href": "content/lectures/00-welcome-slides.html#r-and-rstudio",
     "title": "00-welcome",
     "section": "R and RStudio",
-    "text": "R and RStudio\n\nR/RStudioTourTryR packages\n\n\nR & RStudio\n\nR is a statistical programming language\nRStudio is a convenient interface for R (an integreated development environment, IDE)\n\n\n\n\n[DEMO]\n\nConcepts introduced:\n\nConsole\nUsing R as a calculator\nEnvironment\nLoading and viewing a data frame\nAccessing a variable in a data frame\nR functions\n\n\n\nYour Turn\n\nLogin to datahub\nCarry out a mathematical operation in the console\nView the diamonds dataframe\nAccess a column from the diamonds dataframe\nCalculate the median for one of the numeric columns\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question.\n\n\n\nPackages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data 1\nAs of Jan 2023, there are ~18,979 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!\n\n\n\n\nWickham and Bryan, R PackagesCRAN contributed packages"
+    "text": "R and RStudio\n\nR/RStudioTourTryR packages\n\n\nR & RStudio\n\nR is a statistical programming language\nRStudio is a convenient interface for R (an integreated development environment, IDE)\n\n\n\n\n[DEMO]\n\nConcepts introduced:\n\nConsole\nUsing R as a calculator\nEnvironment\nLoading and viewing a data frame\nAccessing a variable in a data frame\nR functions\n\n\n\nYour Turn\n\nLogin to datahub\nCarry out a mathematical operation in the console\nView the airquality dataframe\nAccess a column from the airquality dataframe\nCalculate the median for one of the numeric columns\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question.\n\n\n\nPackages are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data 1\nAs of Jan 2023, there are ~18,979 R packages available on CRAN (the Comprehensive R Archive Network)2\nWe’re going to work with a small (but important) subset of these!\n\n\n\n\nWickham and Bryan, R PackagesCRAN contributed packages"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#what-is-the-tidyverse",
@@ -697,7 +697,7 @@
     "href": "content/lectures/01-intro-to-r.html",
     "title": "01-intro-to-r",
     "section": "",
-    "text": "Due Dates:\n\nLab 01 due Friday 11:59 PM"
+    "text": "APPLY NOW: Volunteer or Intern to fight plastic pollution or turn out the vote on campus!\nCALPIRG Students is a student organization on campus that works to protect the environment, address food insecurity, and promote civic engagement. We helped nearly 10,000 students register to vote in California and got the UCs to release new policy to phase out single-use plastics to protect our oceans! Get involved to protect our oceans!\n\nThis Winter, we’re working to protect our oceans. They give us food, provide most of the oxygen we breathe, and are home to awesome biodiversity like whales and sea turtles, but our oceans are at risk from things like overfishing, oil drilling, and pollution. That’s why we’re calling on Governor Newsom to increase protections for marine areas in California!\nWe’re also working on campaigns addressing hunger & homelessness, fighting plastic pollution, and promoting voter participation.\nAs a volunteer or intern with CALPIRG you can:\n\nBuild grassroots support\nWork with the media and help organize press conferences with experts and elected officials\nLobby elected officials\nPlan big events like rallies or a benefit concert\nLearn key nonprofit management and fundraising skills\n\nLearn skills, build your resume, and work with issues that matter. Apply today.\n\n\n\nDue Dates:\n\nStudent survey “due” Sunday (1/15) 11:59 PM\nLab 01 due Friday 11:59 PM\nLecture Participation survey “due” after class (both Tu and today’s lectures)\n\nUpdate: Lab will be podcast but restricted to UCSD students and will not be archived.\n\n\n\n\nVariables\nOperators\nData in R\nRMarkdown"
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html#variables-assignment-1",
@@ -991,7 +991,7 @@
     "href": "content/lectures/01-intro-to-r.html#recap-1",
     "title": "01-intro-to-r",
     "section": "Recap",
-    "text": "Recap\n\nAlways best to think of data as part of a tibble\n\nThis plays nicely with the tidyverse as well\nRows are observations, columns are variables\n\nBe careful about data types / classes\n\nSometimes R makes silly assumptions about your data class\n\nUsing tibbles help, but it might not solve all issues\nThink about your data in context, e.g. 0/1 variable is most likely a factor\n\nIf a plot/output is not behaving the way you expect, first investigate the data class\nIf you are absolutely sure of a data class, over-write it in your tibble so that you don’t need to keep having to keep track of it\n\nmutate the variable with the correct class\n\n\nWhat are atomic vectors?\nDo I know how to determine the class/type of a variable?\nCan I define atomic vectors, vectors, and lists?\nCan I explain dynamic typing?\nCan I operate on variables and values using…\n\narithmetic operators?\ncomparison operators?\n\nWhat is the difference between installing and loading a package?"
+    "text": "Recap\n\nAlways best to think of data as part of a tibble\n\nThis plays nicely with the tidyverse as well\nRows are observations, columns are variables\n\nBe careful about data types / classes\n\nSometimes R makes silly assumptions about your data class\n\nUsing tibbles help, but it might not solve all issues\nThink about your data in context, e.g. 0/1 variable is most likely a factor\n\nIf a plot/output is not behaving the way you expect, first investigate the data class\nIf you are absolutely sure of a data class, over-write it in your tibble so that you don’t need to keep having to keep track of it\n\nmutate the variable with the correct class\n\n\nWhat are the components of an R Markdown file?\nWhat are atomic vectors?\nDo I know how to determine the class/type of a variable?\nCan I define atomic vectors, vectors, and lists?\nCan I explain dynamic typing?\nCan I operate on variables and values using…\n\narithmetic operators?\ncomparison operators?\n\nWhat is the difference between installing and loading a package?"
   },
   {
     "objectID": "content/lectures/01-intro-to-r-slides.html#course-announcements",
@@ -1349,5 +1349,75 @@
     "title": "Lab 01 - Tooling",
     "section": "Expand To Learn About YAML",
     "text": "Expand To Learn About YAML\nThe top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for “Yet Another Markup Language”. It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#agenda",
+    "href": "content/labslides/01-lab-deck.html#agenda",
+    "title": "Lab 01: Tooling",
+    "section": "Agenda",
+    "text": "Agenda\n\nLab structure: Lab structure overview.\nLab 01 intro and demos: Introduce the lab, and work through the first section as a class.\nOn your own: Work on the rest of the lab “on your own”, but feel free to check in with classmates as much as you like."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#lab-strucuture-1",
+    "href": "content/labslides/01-lab-deck.html#lab-strucuture-1",
+    "title": "Lab 01: Tooling",
+    "section": "Lab strucuture",
+    "text": "Lab strucuture\n\n5-10 minute introduction (a bit longer today)\nUse the remaining time to work through the lab exercises and fill out your lab report\n\nSubmit: on your own\nWorking: always allowed to work together\n\nLab instructions posted on the course website on the left panel under “Labs”\n\nLet’s go find today’s lab!"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#tips",
+    "href": "content/labslides/01-lab-deck.html#tips",
+    "title": "Lab 01: Tooling",
+    "section": "Tips",
+    "text": "Tips\n\nYou do not have to finish the lab in class; you have until midnight to submit. But, you might choose to get through portions that you think will be challenging (which initially might be the coding component) in class when staff can help you on the spot, and leave the narrative writing until later.\nDo not pressure each other to finish early; use the time wisely to really learn the material and produce a quality lab.\nWhen working with others, do not split up lab among classmates, work on it together in its entirety.\nSometimes you may not finish the entire lab…and that’s ok! When this happens or you’re unsure about what you turn in, be sure to go back and check your thoughts/work against the posted answer key."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#goals",
+    "href": "content/labslides/01-lab-deck.html#goals",
+    "title": "Lab 01: Tooling",
+    "section": "Goals",
+    "text": "Goals\n\nIntroduce you to Git and GitHub: collaboration and version control system that we will be using throughout the course\n\nGit is a version control system – like “Track Changes” features from Microsoft Word/Google Docs on steroids\nGitHub is the home for your git-based projects on the internet\nConnect your RStudio on datahub to your GitHub account\n\nIntroduce you to R and RStudio:\n\nR is the name of the programming language itself\nRStudio is a convenient interface"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#getting-started-github-datahub",
+    "href": "content/labslides/01-lab-deck.html#getting-started-github-datahub",
+    "title": "Lab 01: Tooling",
+    "section": "Getting started: GitHub & datahub",
+    "text": "Getting started: GitHub & datahub\nFirst, put away computers, and watch me do it:\n\nDemo of the process\nSteps are spelled out in the “GitHub Housekeeping” portion of the lab"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#getting-started-github-assignment-retrieval",
+    "href": "content/labslides/01-lab-deck.html#getting-started-github-assignment-retrieval",
+    "title": "Lab 01: Tooling",
+    "section": "Getting started: GitHub assignment retrieval",
+    "text": "Getting started: GitHub assignment retrieval\nFirst, put away computers, and watch me do it:\n\nClick on the assignment link on Canvas for today’s lab to create your GitHub repository (which we’ll refer to as “repo” going forward) for the lab. This repo contains a template you can build on to complete your lab.\nOn GitHub, accept the assignment. Click on the clipboard icon to copy the repo URL.\nGo to datahub. and open RStudio. Go to File > New Project… and select to create a New Project from Version Control. On the following menu, select Git.\nCopy and paste the URL of your assignment repo into the “Repository URL” dialog box.\nHit Create Project.\n\nNow it’s your turn! Place a green sticky on your laptop when you’re done with this part (you can continue if you like). Place a pink sticky if you have questions."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#getting-started-assignment-retrieval",
+    "href": "content/labslides/01-lab-deck.html#getting-started-assignment-retrieval",
+    "title": "Lab 01: Tooling",
+    "section": "Getting started: Assignment Retrieval",
+    "text": "Getting started: Assignment Retrieval\nFirst, put away computers, and watch me do it:\n\nClick on the assignment link on Canvas for today’s lab to create your GitHub repository (which we’ll refer to as “repo” going forward) for the lab. This repo contains a template you can build on to complete your lab.\nOn GitHub, accept the assignment. Click on the clipboard icon to copy the repo URL.\nGo to datahub. and open RStudio. Go to File > New Project… and select to create a New Project from Version Control. On the following menu, select Git.\nCopy and paste the URL of your assignment repo into the “Repository URL” dialog box.\nHit Create Project.\n\nNow it’s your turn! Place a green sticky on your laptop when you’re done with this part (you can continue if you like). Place a pink sticky if you have questions."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html",
+    "href": "content/labslides/01-lab-deck.html",
+    "title": "Lab 01: Tooling",
+    "section": "",
+    "text": "Lab structure: Lab structure overview.\nLab 01 intro and demos: Introduce the lab, and work through the first section as a class.\nOn your own: Work on the rest of the lab “on your own”, but feel free to check in with classmates as much as you like."
+  },
+  {
+    "objectID": "content/lectures/01-intro-to-r.html#r-markdown-tour",
+    "href": "content/lectures/01-intro-to-r.html#r-markdown-tour",
+    "title": "01-intro-to-r",
+    "section": "R Markdown: tour",
+    "text": "R Markdown: tour\n\n[DEMO]\n\nBefore we move on…\n   What is the Bechdel test?\n\nThe Bechdel test asks whether a work of fiction features at least two women who talk to each other about something other than a man, and there must be two women named characters.\n\n\nConcepts introduced:\n\nKnitting documents\nR Markdown and (some) R syntax"
+  },
+  {
+    "objectID": "content/lectures/01-intro-to-r.html#your-turn-2",
+    "href": "content/lectures/01-intro-to-r.html#your-turn-2",
+    "title": "01-intro-to-r",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nNavigate to the demo URL (on Canvas)\nAccept the “assignment” (this is NOT graded)\nClone the repo\nEdit the document\nKnit the document\nPush your changes\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
   }
 ]

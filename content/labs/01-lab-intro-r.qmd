@@ -6,8 +6,6 @@ output:
     highlight: pygments
     css: lab.css
     preview-links: auto
-
-link-citations: yes
 ---
 
 ```{r include=FALSE}

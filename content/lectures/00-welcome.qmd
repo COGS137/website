@@ -337,8 +337,8 @@ Concepts introduced:
 
 1.  Login to datahub
 2.  Carry out a mathematical operation in the console
-3.  View the `diamonds` dataframe
-4.  Access a column from the `diamonds` dataframe
+3.  View the `airquality` dataframe
+4.  Access a column from the `airquality` dataframe
 5.  Calculate the median for one of the numeric columns
 
 Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.

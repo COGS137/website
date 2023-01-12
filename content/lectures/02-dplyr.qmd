@@ -1,0 +1,632 @@
+---
+title: "02-dplyr"
+author: "Professor Shannon Ellis"
+date: "2023-01-17"
+
+format:
+  html: 
+    output-file: 02-dplyr.html
+  revealjs:
+    output-file: 02-dplyr-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    execute:
+     eval: true
+     echo: true
+---
+
+# Data Maniuplation with `dplyr` {background-color="#92A86A"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+library(DT)
+
+# Set dpi and height for images
+knitr::opts_chunk$set(fig.height = 2.65, dpi = 300, echo=TRUE) 
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+
+## Agenda
+
+- `dplyr`
+  + philosophy
+  + pipes
+  + common operations
+
+
+## Philosophy
+
+> `dplyr` is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges 
+
+::: aside 
+Source: [dplyr.tidyverse.org](https://dplyr.tidyverse.org/)
+:::
+
+# Pipes {background-color="#92A86A"}
+
+
+## The pipe in baseR
+
+<p align="center">
+<img src="images/02/baseR_hex.jpeg" width="300" height="300" align="center">
+</p>
+
+- `|>` should be read as "and then" 
+- for example "Wake up |> brush teeth" would be read as "wake up *and then* brush teeth"
+
+
+## Where does the name come from?
+
+The pipe operator was *first* implemented in the package **magrittr**.
+
+::: columns
+::: {.column width="50%"}
+![](images/02/magritte.jpg)
+:::
+
+::: {.column width="50%"}
+![](images/02/magrittr.jpg)
+:::
+:::
+
+You will see this frequently in code online. It's equivalent to `|>`.
+
+
+
+## Review: How does a pipe work? {.scrollable}
+
+- You can think about the following sequence of actions - find key, 
+unlock car, start car, drive to school, park.
+
+. . .
+
+- Expressed as a set of nested functions in R pseudocode this would look like:
+
+```{r eval=FALSE}
+park(drive(start_car(find("keys")), to = "campus"))
+```
+
+. . . 
+
+- Writing it out using pipes give it a more natural (and easier to read) 
+structure:
+
+```{r eval=FALSE}
+find("keys") |>
+  start_car() |>
+  drive(to = "campus") |>
+  park()
+```
+
+# Data {background-color="#92A86A"}
+
+## NC DOT Fatal Crashes in North Carolina
+
+From OpenDurham's Data Portal
+
+```{r load-data-real,include=FALSE}
+bike <- read_csv2("data/nc_bike_crash.csv", na = c("NA", "", "."))
+```
+
+```{r load-data-fake, eval=FALSE}
+bike <- read_csv2("https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv", 
+                  na = c("NA", "", "."))
+```
+
+## Variables
+
+View the names of variables via
+```{r}
+names(bike)
+```
+
+
+## Viewing your data
+
+- In the Environment, click on the name of the data frame to view
+it in the data viewer (or use the `View` function)
+
+- Use the `glimpse` function to take a peek
+
+```{r}
+glimpse(bike)
+```
+
+
+# `dplyr` {background-color="#92A86A"}
+
+
+## A Grammar of Data Manipulation {.smaller .scrollable}
+
+**dplyr** is based on the concepts of functions as verbs that manipulate data frames.
+
+Single data frame functions / verbs:
+
+* `filter`: pick rows matching criteria
+* `slice`: pick rows using index(es)
+* `select`: pick columns by name
+* `pull`: grab a column as a vector
+* `rename`: rename specific columns
+* `arrange`: reorder rows
+* `mutate`: add new variables
+* `transmute`: create new data frame with variables
+* `distinct`: filter for unique rows
+* `sample_n` / `sample_frac`: randomly sample rows
+* `summarize`: reduce variables to values
+* ... (many more)
+
+
+## **dplyr** rules for functions
+
+1. First argument is *always* a data frame
+
+2. Subsequent arguments say what to do with that data frame
+
+3. Always return a data frame
+
+4. Do not modify in place
+
+5. Performance via lazy evaluation
+
+
+
+## Filter rows with `filter`
+
+- Select a subset of rows in a data frame.
+- Easily filter for many conditions at once.
+
+
+
+## `filter`
+
+for crashes in Durham County
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |>
+  filter(County == "Durham")
+```
+
+
+
+## `filter`
+
+for crashes in Durham County where biker was < 10 yrs old
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |>
+  filter(County == "Durham", Bike_Age < 10)
+```
+
+
+
+## Aside: real data is messy! {.scrollable}
+
+[<i class="fa fa-user" aria-hidden="true"></i>   What in the world does a `BikeAge_gr` of `10-Jun` or `15-Nov` mean?]{style="background-color: #ADD8E6"}
+
+
+```{r}
+bike |>
+  group_by(BikeAge_Gr) |>
+  summarize(crash_count = n())
+```
+
+
+## Careful data scientists clean up their data first!
+
+- We're going to need to do some text parsing to clean up these data
+    + `10-Jun` should be `6-10`
+    + `15-Nov` should be `11-15`
+
+
+## Correct and overwrite `mutate` {.scrollable}
+
+- Remember we want to do the following in the `BikeAge_Gr` variable
+    + `10-Jun` should be `6-10`
+    + `15-Nov` should be `11-15`
+ 
+```{r}
+#| code-line-numbers: "2,8|"
+
+bike <- bike |>
+  mutate(
+    BikeAge_Gr = case_when(
+      BikeAge_Gr == "10-Jun" ~ "6-10",
+      BikeAge_Gr == "15-Nov" ~ "11-15",
+      TRUE                   ~ BikeAge_Gr     # everything else
+    )
+  )
+```
+
+- Note that we're overwriting existing data and columns, so be careful!
+    + But remember, it's easy to revert if you make a mistake since we didn't
+    touch the raw data, we can always reload it and start over
+
+
+
+## Check before you move on
+
+Always check your changes and confirm code did what you wanted it to do
+
+```{r}
+bike |>
+  group_by(BikeAge_Gr) |>
+  summarize(count = n())
+```
+
+
+
+## `mutate` to add new variables
+
+[<i class="fa fa-user" aria-hidden="true"></i>   How is the new `alcohol` variable determined?]{style="background-color: #ADD8E6"}
+
+```{r eval=FALSE}
+bike |>
+  mutate(alcohol = case_when(
+    Bike_Alc_D == "No" & Drvr_Alc_D == "No"      ~ "No",
+    Bike_Alc_D == "Yes" | Drvr_Alc_D == "Yes"    ~ "Yes",
+    Bike_Alc_D == "Missing" & Drvr_Alc_D == "No" ~ "Missing",
+    Bike_Alc_D == "No" & Drvr_Alc_D == "Missing" ~ "Missing"
+  ))
+```
+
+
+
+## "Save" when you `mutate`
+
+Most often when you define a new variable with `mutate` you'll also want to save the resulting data frame, often by writing over the original data frame.
+
+```{r eval=FALSE}
+bike <- bike |>
+  mutate(alcohol = case_when(
+    Bike_Alc_D == "No" & Drvr_Alc_D == "No"      ~ "No",
+    Bike_Alc_D == "Yes" | Drvr_Alc_D == "Yes"    ~ "Yes",
+    Bike_Alc_D == "Missing" & Drvr_Alc_D == "No" ~ "Missing",
+    Bike_Alc_D == "No" & Drvr_Alc_D == "Missing" ~ "Missing"
+  ))
+```
+
+
+
+## `transmute` to create a new dataset
+
+You'll use this much less often than `mutate` but when you need it, you need it.
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |> 
+  transmute(ID = paste(FID, OBJECTID, sep = "-"))
+```
+
+
+
+## `mutate` vs. `transmute`
+
+- `mutate` adds new and keeps original
+- `transmute` adds new; drops existing
+
+
+
+## Your Turn
+
+How many accidents in our dataset required an ambulance ride (`AmbulanceR`) *and* had the `Crash_Type` "Bicyclist Lost Control - Mechanical Problems"?
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
+
+
+## `slice` for certain row numbers
+
+First five
+```{r}
+#| code-line-numbers: "2"
+
+bike |>
+  slice(1:5)
+```
+
+
+
+## `slice` for certain row numbers
+
+Last five
+```{r}
+#| code-line-numbers: "3"
+
+last_row <- nrow(bike)
+bike |>
+  slice((last_row - 4):last_row)
+```
+
+
+
+## `select` to keep only the variables you mention
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |>
+  select(Crash_Loc, Hit_Run) |>
+  table()
+```
+
+
+
+## or `select` to exclude variables
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |>
+  select(-OBJECTID)
+```
+
+
+
+## or `select` a range of variables
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |>
+  select(OBJECTID:Bike_Injur)
+```
+
+
+
+## `pull` to extract a column as a vector
+
+```{r}
+#| code-line-numbers: "3"
+
+bike |>
+  slice(1:6) |>
+  pull(Location)
+```
+
+```{r}
+bike |>
+  slice(1:6) |>
+  select(Location)
+```
+
+
+
+## The two `pull`s in your lives {.smaller .scrollable}
+
+::: columns
+::: {.column width="50%"}
+![](images/02/hex-dplyr.png)
+:::
+
+::: {.column width="50%"}
+![](images/02/Octocat.png)
+:::
+:::
+
+- Don't get `pull` happy when wrangling data! Only extract out variables if you truly need to, otherwise keep in data frame.
+
+- But always `r emo::ji("arrow_down")` `Pull` before starting your work when collaborating on GitHub.
+
+
+## `rename` specific columns
+
+Useful for correcting typos, and renaming to make variable names shorter 
+and/or more informative
+
+- Original names:
+
+```{r}
+names(bike)
+```
+
+
+## `rename` specific columns
+
+- Rename `Speed_Limi` to `Speed_Limit`:
+
+```{r}
+#| code-line-numbers: "2"
+
+bike <- bike |>
+  rename(Speed_Limit = Speed_Limi)
+```
+
+
+
+## Check before you move on {.scrollable}
+
+Always check your changes and confirm code did what you wanted it to do
+
+
+```{r}
+names(bike)
+```
+
+
+
+
+## Your Turn
+
+Your boss in Cumberland County gets overwhelmed by data easily, but he wants some data from you. He wants all bike accidents from his County, but he only wants to know the road's speed limit, the age of the biker, and to know if alcohol was involved. If you have time, mine as well make the column names very clear to your boss while you're at it...
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
+
+
+
+## `summarize` to reduce variables to values
+
+The values are summarized in a data frame
+
+```{r}
+#| code-line-numbers: "2-3"
+
+bike |>
+  group_by(BikeAge_Gr) |>
+  summarize(crash_count = n())
+```
+
+
+
+## and `arrange` to order rows
+
+```{r}
+#| code-line-numbers: "4"
+
+bike |>
+  group_by(BikeAge_Gr) |>
+  summarize(crash_count = n()) |>
+  arrange(desc(crash_count))
+```
+
+
+
+## `count` to group by then count
+
+```{r}
+bike |>
+  count(BikeAge_Gr)
+```
+
+[<i class="fa fa-user" aria-hidden="true"></i>   If you wanted to arrange these in ascending order what would you add to the pipe?]{style="background-color: #ADD8E6"}
+
+
+
+## Select rows with `sample_n` or `sample_frac`
+
+- `sample_n`: randomly sample 5 observations
+
+```{r}
+#| code-line-numbers: "2"
+
+bike_n5 <- bike |>
+  sample_n(5, replace = FALSE)
+
+dim(bike_n5)
+```
+
+- `sample_frac`: randomly sample 20% of observations
+
+```{r}
+#| code-line-numbers: "2"
+
+bike_perc20 <- bike |>
+  sample_frac(0.2, replace = FALSE)
+
+dim(bike_perc20)
+```
+
+
+
+## `distinct` to filter for unique rows
+
+```{r}
+#| code-line-numbers: "3"
+
+bike |> 
+  select(County, City) |> 
+  distinct() |> 
+  arrange(County, City)
+```
+
+
+
+## `distinct` has a .keep_all parameter
+
+```{r}
+#| code-line-numbers: "2"
+
+bike |> 
+  distinct(County, City, .keep_all = TRUE) |> 
+  arrange(County, City)
+```
+
+# Factors {background-color="#92A86A"}
+
+## Factors {.scrollable}
+
+Factor objects are how R stores data for categorical variables (fixed numbers of discrete values).
+
+```{r}
+(x = factor(c("BS", "MS", "PhD", "MS")))
+```
+
+```{r}
+glimpse(x)
+```
+
+```{r}
+typeof(x)
+```
+
+## Returning to: Cat lovers {.scrollable}
+
+Reading in the cat-lovers data...
+
+```{r load-data-real-cats,include=FALSE}
+cat_lovers <- read_csv("data/cat-lovers.csv")
+```
+
+```{r load-data-fake-cats, eval=FALSE}
+cat_lovers <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/cat-lovers.csv")
+```
+
+## Read data in as character strings
+
+```{r}
+glimpse(cat_lovers)
+```
+
+## But coerce when plotting {.scrollable}
+
+```{r}
+ggplot(cat_lovers, mapping = aes(x = handedness)) +
+  geom_bar()
+```
+
+## Use `forcats` to manipulate factors {.scrollable}
+
+```{r}
+cat_lovers <- cat_lovers |>
+  mutate(handedness = fct_relevel(handedness, 
+                                  "right", "left", "ambidextrous"))
+```
+
+```{r}
+ggplot(cat_lovers, mapping = aes(x = handedness)) +
+  geom_bar()
+```
+
+## `forcats` functionality <img src="images/01/hex-forcats.png" width="10%" align="left"/> {.scrollable}
+
+-   R uses factors to handle categorical variables, variables that have a fixed and known set of possible values. Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors.
+
+-   factors are still useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The goal of the forcats package is to provide a suite of useful tools that solve common problems with factors.
+
+::: aside
+Source: [forcats.tidyverse.org](http://forcats.tidyverse.org/)
+:::
+
+# Recap {background-color="#92A86A"}
+
+- Understand the basic tenants of `dplyr`
+- Describe and utilize the pipe in workflows
+- Describe and use common `verbs` (functions)
+- Understand the documentation for `dplyr` functions
+- Understand what factors are an that `forcats` is a package with functionality for working with them
+
+

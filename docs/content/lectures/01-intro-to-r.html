@@ -210,7 +210,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lectures</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lecture Slides</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
@@ -218,24 +218,68 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome (notes)</a>
+  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome (slides)</a>
+  <a href="../../content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Labs</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Lecture Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link active">01-intro-to-r</a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Lab Slides</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Labs</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link">Lab01: Tooling and R</a>
+  </div>
+</li>
+      </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
-      <span class="sidebar-item-text sidebar-link text-start">Assignments</span>
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Lab Slides</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">Lab01</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <span class="sidebar-item-text sidebar-link text-start">Homework</span>
   </li>
     </ul>
     </div>
@@ -249,6 +293,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#introduction-to-r" id="toc-introduction-to-r" class="nav-link active" data-scroll-target="#introduction-to-r">Introduction to R</a>
   <ul class="collapse">
   <li><a href="#ad-calpirg" id="toc-ad-calpirg" class="nav-link" data-scroll-target="#ad-calpirg">[ad] CALPIRG</a></li>
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">Q&amp;A</a></li>
   <li><a href="#course-announcements" id="toc-course-announcements" class="nav-link" data-scroll-target="#course-announcements">Course Announcements</a></li>
   <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
   </ul></li>
@@ -300,17 +345,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#always-respect-check-data-types" id="toc-always-respect-check-data-types" class="nav-link" data-scroll-target="#always-respect-check-data-types">Always respect (&amp; check!) data types</a></li>
   <li><a href="#now-that-we-know-what-were-doing" id="toc-now-that-we-know-what-were-doing" class="nav-link" data-scroll-target="#now-that-we-know-what-were-doing">Now that we know what we’re doing…</a></li>
   <li><a href="#moral-of-the-story" id="toc-moral-of-the-story" class="nav-link" data-scroll-target="#moral-of-the-story">Moral of the story</a></li>
-  <li><a href="#working-with-tibbles-in-pipelines" id="toc-working-with-tibbles-in-pipelines" class="nav-link" data-scroll-target="#working-with-tibbles-in-pipelines">Working with tibbles in pipelines</a></li>
-  <li><a href="#a-result-of-a-pipeline-is-always-a-tibble" id="toc-a-result-of-a-pipeline-is-always-a-tibble" class="nav-link" data-scroll-target="#a-result-of-a-pipeline-is-always-a-tibble">A result of a pipeline is always a tibble</a></li>
   </ul></li>
   <li><a href="#r-markdown" id="toc-r-markdown" class="nav-link" data-scroll-target="#r-markdown">R Markdown</a>
   <ul class="collapse">
   <li><a href="#r-markdown-tour" id="toc-r-markdown-tour" class="nav-link" data-scroll-target="#r-markdown-tour">R Markdown: tour</a></li>
-  <li><a href="#your-turn-2" id="toc-your-turn-2" class="nav-link" data-scroll-target="#your-turn-2">Your Turn</a></li>
-  </ul></li>
-  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a>
-  <ul class="collapse">
-  <li><a href="#recap-1" id="toc-recap-1" class="nav-link" data-scroll-target="#recap-1">Recap</a></li>
+  <li><a href="#giving-the-demo-a-go" id="toc-giving-the-demo-a-go" class="nav-link" data-scroll-target="#giving-the-demo-a-go">Giving the demo a go…</a></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
   </ul></li>
   </ul>
 </nav>
@@ -356,6 +396,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </div>
 <section id="ad-calpirg" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="ad-calpirg">[ad] CALPIRG</h2>
+<div style="font-size: 0.5em">
 <p><a href="https://urldefense.com/v3/__https://forms.gle/RJ2c7S4qPtQhmijM8__;!!Mih3wA!A96o4NZkvPhLgv8iTEY8C38QUYn8jxIWdKl8OhRGFRbPcDCMoIVIOqxmnoXnaF9WDCNpg2JLJ-zLiA$"><strong>APPLY NOW: Volunteer or Intern to fight plastic pollution or turn out the vote on campus!</strong></a></p>
 <p><a href="https://urldefense.com/v3/__https://calpirgstudents.org/__;!!Mih3wA!A96o4NZkvPhLgv8iTEY8C38QUYn8jxIWdKl8OhRGFRbPcDCMoIVIOqxmnoXnaF9WDCNpg2LcNacg3Q$">CALPIRG Students</a> is a student organization on campus that works to protect the environment, address food insecurity, and promote civic engagement. We helped nearly 10,000 students register to vote in California and got the UCs to release new policy to phase out single-use plastics to protect our oceans! <a href="https://urldefense.com/v3/__https://docs.google.com/forms/d/e/1FAIpQLSeHs-qFNAiWePEpqPNBZgN67sy4qfXTrqgq-zwfCtTi5W2mFQ/viewform?usp=sf_link__;!!Mih3wA!A96o4NZkvPhLgv8iTEY8C38QUYn8jxIWdKl8OhRGFRbPcDCMoIVIOqxmnoXnaF9WDCNpg2KgJtA5IA$">Get involved to protect our oceans!</a></p>
 <p><img src="images/01/calpirg_wi22.png" class="img-fluid"></p>
@@ -370,16 +411,57 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li>Learn key nonprofit management and fundraising skills</li>
 </ul>
 <p><a href="https://urldefense.com/v3/__https://forms.gle/RJ2c7S4qPtQhmijM8__;!!Mih3wA!A96o4NZkvPhLgv8iTEY8C38QUYn8jxIWdKl8OhRGFRbPcDCMoIVIOqxmnoXnaF9WDCNpg2JLJ-zLiA$"><strong>Learn skills, build your resume, and work with issues that matter. Apply today.</strong></a></p>
+</div>
+</section>
+<section id="qa" class="level2 scrollable smaller">
+<h2 class="scrollable smaller anchored" data-anchor-id="qa">Q&amp;A</h2>
+<blockquote class="blockquote">
+<p>Q: Curious about why we’re using RStudio on DataHub instead of running it locally. Are there tasks that require the hardware used in DataHub or can most of the tasks be also done on a laptop?<br>
+A: You could run this whole class locally and are free to do so! The one place where you would run into issues is that I assume packages (which have been installed on datahub) are installed. So, you would just have to install those packages before proceeding.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: How exactly do students make appointments for the Wednesday office hour? Is it simply through email or is there a separate form?<br>
+A: I use Calendly for this. The link to sign up is on Canvas!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: I am still not sure how to clone GitHub code into datahub.<br>
+A: This will be covered in lab this week!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: How will we submit the lab. What will the lab being release and when will it due?<br>
+A: Labs, homework, and exams will all be “submitted” by pushing to GitHub (covered in lab on Friday). Once it’s on GitHub, it’s submitted! This weeks lab will be released today. Typically, each week’s lab will be released on Monday of the week it’s due.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: Do we need to bring our own computer to lab?<br>
+A: Good question! I should have covered this. Lab is in the same room as lecture, so you will need your own computer. If you don’t have one, please reach out to me or campus resources (listed in the syllabus) and I’ll see what I can do!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: After class today, I am a little confused on how we will be writing code for assignments. Will we be doing everything through RStudio once we have opened DataHub, or will there be a cell format similar to Jupyter Notebooks when using Python? In other words, can we expect all of our assignments to be conducted in RStudio as we did today?<br>
+A: The code you submit will typically be in R Markdown documents (discussing more today!) These are similar to Jupyter Notebooks. And yes, everything can be done in RStudio as demo-ed on Tuesday.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: I know you mentioned R has changed since you last used it. Would it be possible for you to share any resources or materials that you and other R practitioners find useful. I.E. Frameworks/Conventions/Blogs. A: Ah, so I meant to say that R has changed since I <em>first</em> used it many years ago. I have continued to use and learn R since then! I’ve never stopped using R. That said, I have/know of TONS of resources. Two big compilations I can recommend are: <a href="https://www.learnr4free.com/">learnr4free</a> and the <a href="https://www.bigbookofr.com/">Big Book of R</a>. If there’s something specific you’re interested, feel free to let me know and I can point to more specific resources!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: I’m anxious to learn Github - have put it off for most of my programming life. It seems so complicated! :(<br>
+A: It is complicated, but that’s b/c it’s doing something REALLY hard. That said, the basics are not too complicated. So this course will force you to learn the basics, and then you’ll be on your way to learn the harder stuff!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: Could you talk about the prevalence of R in industry (use cases / types of jobs / etc.)? My general understanding of it is that it’s kind of out the door when compared to Python.<br>
+A: Yes! I’ll try to discuss this more throughout the course, but R is <em>super</em> popular among data scientists, particularly those who have a focus in statistics, biological data (bioinformatics), econometrics, data analysis, and/or data journalism. If you’re trying to do data engineering, you likely won’t see/use R, but if you’re analyzing and visualizing data in your job, you’re likely to encounter R. That said, Python is certainly a more popular language. That’s why I/we teach it in our intro programming course!</p>
+</blockquote>
 </section>
 <section id="course-announcements" class="level2">
 <h2 class="anchored" data-anchor-id="course-announcements">Course Announcements</h2>
 <p><strong>Due Dates</strong>:</p>
 <ul>
+<li><strong>Lab 01</strong> due tomorrow (Friday) 11:59 PM</li>
+<li>Lecture Participation survey “due” after class (both Tu and today’s lectures available)</li>
 <li>Student survey “due” Sunday (1/15) 11:59 PM</li>
-<li><strong>Lab 01</strong> due Friday 11:59 PM</li>
-<li>Lecture Participation survey “due” after class (both Tu and today’s lectures)</li>
 </ul>
+<div class="incremental">
 <p><strong>Update</strong>: Lab will be podcast but restricted to UCSD students and will not be archived.</p>
+</div>
 </section>
 <section id="agenda" class="level2">
 <h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
@@ -530,7 +612,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="lists" class="level2">
 <h2 class="anchored" data-anchor-id="lists">lists</h2>
-<p>So far, every variable has been an .ocean[atomic vector], meaning it only stores a single piece of information.</p>
+<p>So far, every variable has been an <strong>atomic vector</strong>, meaning it only stores a single piece of information.</p>
 <div class="incremental">
 <p><strong>Lists</strong> are 1d objects that can contain any combination of R objects</p>
 <div class="columns">
@@ -577,7 +659,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <section id="functions" class="level2 scrollable">
 <h2 class="scrollable anchored" data-anchor-id="functions">Functions</h2>
 <ul>
-<li><code>class()</code> was our first function…but we’ll show a few more.</li>
+<li><code>class()</code> (and <code>View()</code> &amp; <code>median()</code>) were our first functions…but we’ll show a few more.</li>
 </ul>
 <div class="incremental">
 <ul>
@@ -674,7 +756,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="activity" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="activity">Activity</h2>
-<p><span style="background-color: ##e94f58">What is the type of the following vectors? Explain why they have that type.</span></p>
+<p><span style="background-color: ##e94f58">What is the type of the following vectors? Chat about why they have that type.</span></p>
 <ul>
 <li><code>c(1, NA+1L, "C")</code></li>
 <li><code>c(1L / 0, NA)</code></li>
@@ -855,8 +937,8 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </section>
 <section id="data-sets" class="level1 page-columns page-full">
 <h1>Data “sets”</h1>
-<section id="data-sets-in-r" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="data-sets-in-r">Data “sets” in R</h2>
+<section id="data-sets-in-r" class="level2 scrollable smaller">
+<h2 class="scrollable smaller anchored" data-anchor-id="data-sets-in-r">Data “sets” in R</h2>
 <ul>
 <li><p>“set” is in quotation marks because it is not a formal data class</p></li>
 <li><p>A tidy data “set” can be one of the following types:</p>
@@ -971,7 +1053,7 @@ $names
 <div class="incremental">
 <p><span style="background-color: ##e94f58">🚨 There is code ahead that we’re not going to discuss in detail today, <em>but</em> we will in coming lectures.</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cat_lovers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"data/cat-lovers.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb67"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb67-1"><a href="#cb67-1" aria-hidden="true" tabindex="-1"></a>cat_lovers <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/COGS137/datasets/main/cat-lovers.csv"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </section>
@@ -982,8 +1064,8 @@ $names
 <span id="cb68-2"><a href="#cb68-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">datatable</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-696a91377a3a11eca0c1" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-696a91377a3a11eca0c1">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-8e87a71a2eeb705f6b98" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-8e87a71a2eeb705f6b98">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1049,8 +1131,8 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9a4837f17fee9e80d796" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-9a4837f17fee9e80d796">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-ab7f7da491a5b85c4a31" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-ab7f7da491a5b85c4a31">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20","21","22","23","24","25","26","27","28","29","30","31","32","33","34","35","36","37","38","39","40","41","42","43","44","45","46","47","48","49","50","51","52","53","54","55","56","57","58","59","60"],["Bernice Warren","Woodrow Stone","Willie Bass","Tyrone Estrada","Alex Daniels","Jane Bates","Latoya Simpson","Darin Woods","Agnes Cobb","Tabitha Grant","Perry Cross","Wanda Silva","Alicia Sims","Emily Logan","Woodrow Elliott","Brent Copeland","Pedro Carlson","Patsy Luna","Brett Robbins","Oliver George","Calvin Perry","Lora Gutierrez","Charlotte Sparks","Earl Mack","Leslie Wade","Santiago Barker","Jose Bell","Lynda Smith","Bradford Marshall","Irving Miller","Caroline Simpson","Frances Welch","Melba Jenkins","Veronica Morales","Juanita Cunningham","Maurice Howard","Teri Pierce","Phil Franklin","Jan Zimmerman","Leslie Price","Bessie Patterson","Ethel Wolfe","Naomi Wright","Sadie Frank","Lonnie Cannon","Tony Garcia","Darla Newton","Ginger Clark","Lionel Campbell","Florence Klein","Harriet Leonard","Terrence Harrington","Travis Garner","Doug Bass","Pat Norris","Dawn Young","Shari Alvarez","Tamara Robinson","Megan Morgan","Kara Obrien"],["0","0","1","3","3","2","1","1","0","0","0","0","1","3","3","2","1","1","0","0","1","1","0","0","4","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","0","1","3","3","2","1","1.5 - honestly I think one of my cats is half human","0","0","0","0","1","three","1","1","1","0","0","2"],["left","left","left","left","left","left","left","left","left","left","left","left","left","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","right","ambidextrous","ambidextrous","ambidextrous","ambidextrous","ambidextrous"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>name<\/th>\n      <th>number_of_cats<\/th>\n      <th>handedness<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -1061,16 +1143,25 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <span id="cb77-2"><a href="#cb77-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">number_of_cats =</span> <span class="fu">case_when</span>(</span>
 <span id="cb77-3"><a href="#cb77-3" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Ginger Clark"</span> <span class="sc">~</span> <span class="dv">2</span>,</span>
 <span id="cb77-4"><a href="#cb77-4" aria-hidden="true" tabindex="-1"></a>    name <span class="sc">==</span> <span class="st">"Doug Bass"</span>    <span class="sc">~</span> <span class="dv">3</span>,</span>
-<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                   <span class="sc">~</span> <span class="fu">as.numeric</span>(number_of_cats))) <span class="sc">|&gt;</span></span>
-<span id="cb77-6"><a href="#cb77-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_cats =</span> <span class="fu">mean</span>(number_of_cats))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb77-5"><a href="#cb77-5" aria-hidden="true" tabindex="-1"></a>    <span class="cn">TRUE</span>                   <span class="sc">~</span> <span class="fu">as.numeric</span>(number_of_cats))) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
 <pre><code>Warning in eval_tidy(pair$rhs, env = default_env): NAs introduced by coercion</code></pre>
 </div>
 <div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_cats
-      &lt;dbl&gt;
-1     0.817</code></pre>
+<pre><code># A tibble: 60 × 3
+   name           number_of_cats handedness
+   &lt;chr&gt;                   &lt;dbl&gt; &lt;chr&gt;     
+ 1 Bernice Warren              0 left      
+ 2 Woodrow Stone               0 left      
+ 3 Willie Bass                 1 left      
+ 4 Tyrone Estrada              3 left      
+ 5 Alex Daniels                3 left      
+ 6 Jane Bates                  2 left      
+ 7 Latoya Simpson              1 left      
+ 8 Darin Woods                 1 left      
+ 9 Agnes Cobb                  0 left      
+10 Tabitha Grant               0 left      
+# … with 50 more rows</code></pre>
 </div>
 </div>
 </section>
@@ -1102,6 +1193,7 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <span id="cb82-5"><a href="#cb82-5" aria-hidden="true" tabindex="-1"></a>         <span class="cn">TRUE</span>                   <span class="sc">~</span> number_of_cats),</span>
 <span id="cb82-6"><a href="#cb82-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">number_of_cats =</span> <span class="fu">as.numeric</span>(number_of_cats))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>… store your data in a variable (here we’re overwriting the old <code>cat_lovers</code> tibble).</p>
 </section>
 <section id="moral-of-the-story" class="level2">
 <h2 class="anchored" data-anchor-id="moral-of-the-story">Moral of the story</h2>
@@ -1110,42 +1202,9 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <li><p>Go in and investigate your data, apply the fix, <em>save your data</em>, live happily ever after.</p></li>
 </ul>
 </section>
-<section id="working-with-tibbles-in-pipelines" class="level2">
-<h2 class="anchored" data-anchor-id="working-with-tibbles-in-pipelines">Working with tibbles in pipelines</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb83"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb83-1"><a href="#cb83-1" aria-hidden="true" tabindex="-1"></a>mean_cats <span class="ot">&lt;-</span> cat_lovers <span class="sc">|&gt;</span></span>
-<span id="cb83-2"><a href="#cb83-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">mean_cats =</span> <span class="fu">mean</span>(number_of_cats))</span>
-<span id="cb83-3"><a href="#cb83-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb83-4"><a href="#cb83-4" aria-hidden="true" tabindex="-1"></a>cat_lovers <span class="sc">|&gt;</span></span>
-<span id="cb83-5"><a href="#cb83-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(number_of_cats <span class="sc">&lt;</span> mean_cats) <span class="sc">|&gt;</span></span>
-<span id="cb83-6"><a href="#cb83-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">nrow</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] 60</code></pre>
-</div>
-</div>
-<div class="incremental">
-<p><span style="background-color: #ADD8E6">❓ Do you believe this number? Why, why not?</span></p>
-</div>
 </section>
-<section id="a-result-of-a-pipeline-is-always-a-tibble" class="level2">
-<h2 class="anchored" data-anchor-id="a-result-of-a-pipeline-is-always-a-tibble">A result of a pipeline is always a tibble</h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb85"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb85-1"><a href="#cb85-1" aria-hidden="true" tabindex="-1"></a>mean_cats</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 1
-  mean_cats
-      &lt;dbl&gt;
-1     0.817</code></pre>
-</div>
-<div class="sourceCode cell-code" id="cb87"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb87-1"><a href="#cb87-1" aria-hidden="true" tabindex="-1"></a><span class="fu">class</span>(mean_cats)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>[1] "tbl_df"     "tbl"        "data.frame"</code></pre>
-</div>
-</div>
-</section>
-</section>
-<section id="r-markdown" class="level1">
-<h1>R Markdown</h1>
+<section id="r-markdown" class="level1" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">R Markdown</h1>
 <section id="r-markdown-tour" class="level2">
 <h2 class="anchored" data-anchor-id="r-markdown-tour">R Markdown: tour</h2>
 <center>
@@ -1164,8 +1223,8 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 </ul>
 </div>
 </section>
-<section id="your-turn-2" class="level2">
-<h2 class="anchored" data-anchor-id="your-turn-2">Your Turn</h2>
+<section id="giving-the-demo-a-go" class="level2">
+<h2 class="anchored" data-anchor-id="giving-the-demo-a-go">Giving the demo a go…</h2>
 <ol type="1">
 <li>Navigate to the demo URL (on Canvas)</li>
 <li>Accept the “assignment” (this is NOT graded)</li>
@@ -1174,43 +1233,31 @@ $ handedness     &lt;chr&gt; "left", "left", "left", "left", "left", "left", "le
 <li>Knit the document</li>
 <li>Push your changes</li>
 </ol>
-<p>Put a <font color="#32cb31">green</font> sticky on the front of your computer when you’re done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.</p>
+<p>Try to play around with this after finishing your lab tomorrow!</p>
 </section>
-</section>
-<section id="recap" class="level1" data-background-color="#92A86A">
-<h1 data-background-color="#92A86A">Recap</h1>
-<section id="recap-1" class="level2 scrollable">
-<h2 class="scrollable anchored" data-anchor-id="recap-1">Recap</h2>
+<section id="recap" class="level2 smaller scrollable" data-background-color="#92A86A">
+<h2 class="smaller scrollable anchored" data-background-color="#92A86A" data-anchor-id="recap">Recap</h2>
 <ul>
 <li>Always best to think of data as part of a tibble
 <ul>
 <li>This plays nicely with the <code>tidyverse</code> as well</li>
 <li>Rows are observations, columns are variables</li>
 </ul></li>
-<li>Be careful about data types / classes
+<li>What are the common variable types in R
 <ul>
-<li>Sometimes <code>R</code> makes silly assumptions about your data class
-<ul>
-<li>Using <code>tibble</code>s help, but it might not solve all issues</li>
-<li>Think about your data in context, e.g.&nbsp;0/1 variable is most likely a <code>factor</code></li>
+<li>How do I create a variable of each type?</li>
+<li>When would I use each one?</li>
 </ul></li>
-<li>If a plot/output is not behaving the way you expect, first investigate the data class</li>
-<li>If you are absolutely sure of a data class, over-write it in your tibble so that you don’t need to keep having to keep track of it
-<ul>
-<li><code>mutate</code> the variable with the correct class</li>
-</ul></li>
-</ul></li>
-<li>What are the components of an R Markdown file?</li>
-<li>What are atomic vectors?</li>
 <li>Do I know how to determine the class/type of a variable?</li>
-<li>Can I define atomic vectors, vectors, and lists?</li>
 <li>Can I explain dynamic typing?</li>
 <li>Can I operate on variables and values using…
 <ul>
 <li>arithmetic operators?</li>
 <li>comparison operators?</li>
 </ul></li>
+<li>What are dataframes/tibbles? and why are they useful?</li>
 <li>What is the difference between installing and loading a package?</li>
+<li>What are the components of an R Markdown file?</li>
 </ul>
 
 

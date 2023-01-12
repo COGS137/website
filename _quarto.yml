@@ -37,26 +37,34 @@ website:
     style: "docked"
     search: true
     contents:
-      - section: "Lectures"
+      - section: "Lecture Slides"
         contents:
-          - text: "00-welcome (notes)"
-            href: content/lectures/00-welcome.qmd
-          - text: "00-welcome (slides)"
+          - text: "00-welcome"
             href: content/lectures/00-welcome-slides.html
-          # - text: "01-intro-to-r (notes)"
-          #   href: content/lectures/01-intro-to-r.qmd
-          # - text: "01-intro-to-r (slides)"
-          #   href: content/lectures/01-intro-to-r-slides.html
+          - text: "01-intro-to-r"
+            href: content/lectures/01-intro-to-r-slides.html
+          # - text: "02-dplyr"
+          #   href: content/lectures/02-dplyr-slides.html
+      - section: "Lecture Notes"
+        contents:
+          - text: "00-welcome"
+            href: content/lectures/00-welcome.qmd
+          - text: "01-intro-to-r"
+            href: content/lectures/01-intro-to-r.qmd
+          # - text: "02-dplyr"
+          #   href: content/lectures/02-dplyr.qmd
       - section: "Labs"
         contents:
-          # - text: "Lab01: Tooling and R"
-          #   href: content/labs/01-lab-intro-r.qmd
+          - text: "Lab01: Tooling and R"
+            href: content/labs/01-lab-intro-r.qmd
       - section: "Lab Slides"
         contents:
-          # - text: "Lab01"
-          #   href: content/labslides/01-lab-deck.qmd
-      - section: "Assignments"
-
+          - text: "Lab01"
+            href: content/labslides/01-lab-deck.qmd
+      - section: "Homework"
+        # contents:
+        #   - text: "HW01"
+        #     href: content/hw/hw-01.qmd
 format:
   html:
     theme: material

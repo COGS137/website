@@ -395,7 +395,7 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 
 -   Every lab / project / homework / notes / etc. is an R Markdown document
 -   You'll always have a template R Markdown document to start with
--   The amount of scaffolding in the template will decrease over the semester
+-   The amount of scaffolding in the template will decrease over the quarter
 
 ## Collaboration: Git & GitHub
 

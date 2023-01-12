@@ -39,7 +39,7 @@ You are encouraged to ask one another questions and work together, but each indi
 
 -   If you have a GitHub account, be sure you know your username and password (you'll need it later in this lab), and go ahead and move on to the next section.
 
--   **If you do not yet have a GitHub account, create one at [https://github.com/](https://github.com/)**. Tips for selecting a username [^1]:
+-   **If you do not yet have a GitHub account, create one at <https://github.com/>**. Tips for selecting a username [^1]:
 
     -   Incorporate your actual name! People like to know who they're dealing with. Also makes your username easier for people to guess or remember.
     -   Reuse your username from other contexts if you can, e.g., Twitter or Slack.
@@ -53,20 +53,14 @@ You are encouraged to ask one another questions and work together, but each indi
 
 ## GitHub Housekeeping
 
-
-::: {.callout-note}
-
+::: callout-note
 Your email address is the address tied to your GitHub account and your name should be first and last name.
-
 :::
 
 Before we can get started we need to take care of some required housekeeping. Specifically, we need to configure your git so that RStudio can communicate with GitHub...and so you do not have to type in your username and password every time you want to communicate with GitHub from RStudio. These steps will be demo-ed during lab and you'll have time to walk through the steps!
 
-
-::: {.callout-note}
-
+::: callout-note
 If you aren't able to attend lab and get stuck here, there is a podcast recording from lecture on 9/29 from the COGS 137 Fa21 iteration where you can see these steps demo-ed.
-
 :::
 
 ### Step 1: Email and Username
@@ -119,7 +113,7 @@ You'll want to highlight and copy the full result of this command. It will start
 
 ### Step 4: Let GitHub know your key
 
--   In your browser, navigate to [https://github.com/settings/keys](https://github.com/settings/keys)
+-   In your browser, navigate to <https://github.com/settings/keys>
 -   Click "New SSH Key"
 -   Set title to DSMLP
 -   Paste what you copied in step 3 into the "Key" box
@@ -139,11 +133,9 @@ This will be the only time you have to do this. From here on out, you'll be able
 
 ## Cloning the lab
 
-
 Each of your assignments will begin with the following steps. You saw these once in class and, they're outlined in detail here again. Going forward each lab will start with a "Getting started" section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.
 
 Click on the assignment link for this week's lab on the Canvas homepage. You will have to **Accept** before proceeding. **Refresh the page** and follow the link to the repo created for you. This repo contains a template you can build on to complete your lab.
-
 
 ::: aside
 ```{r accept, fig.margin = TRUE, echo = FALSE, fig.width=3}
@@ -151,11 +143,10 @@ knitr::include_graphics("img/01-hello-r/accept_assignment.png")
 ```
 :::
 
-
 On this page on GitHub, click the URL provided for you. This will bring you to *your copy* of the repo on GitHub. Click on the green `<> Code` button to clone the repo. Be sure that SSH is selected and copy this URL.
 
-::: {.callout-important}
-Be sure that any time you are copying a link from GitHub under the <code><>Code</code> button, you select and use the 'SSH' URL as this is what will allow you to not have to type your username and password.
+::: callout-important
+Be sure that any time you are copying a link from GitHub under the <code>\<\>Code</code> button, you select and use the 'SSH' URL as this is what will allow you to not have to type your username and password.
 :::
 
 ::: aside
@@ -164,11 +155,9 @@ knitr::include_graphics("img/01-hello-r/ssh_github.png")
 ```
 :::
 
-
 Go to datahub and open RStudio. Go to **File \> New Project**... and select to create a **New Project from Version Control**. On the following menu, select **Git**.
 
 Copy and paste the URL of your assignment repo into the "Repository URL" dialog box:
-
 
 ::: aside
 ```{r clone-repo-link, fig.margin = TRUE, echo = FALSE, fig.width=3}
@@ -177,8 +166,6 @@ knitr::include_graphics("img/01-hello-r/repo_in_r.png")
 :::
 
 Hit **Create Project**. Open up `lab-01.Rmd` and continue through this lab. Your work/answers for this lab will be submitted in that document.
-
-
 
 # Warm up
 
@@ -207,9 +194,7 @@ Note that the packages are also loaded with the same commands in your R Markdown
 The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for "Yet Another Markup Language". It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.
 :::
 
-
 Open the R Markdown (Rmd) file in your project, change the author name to your name and **knit the document**. This will generate an HTML document.
-
 
 ```{r yaml-raw-to-rendered, fig.fullwidth=TRUE, echo = FALSE}
 knitr::include_graphics("img/01-hello-r/yaml-raw-to-rendered.png")
@@ -235,8 +220,7 @@ Now that you have made an update and committed this change, it's time to push th
 
 In order to push your changes to GitHub, click on **Push**. Go check your repo on GitHub - you'll see your updated documents there!
 
-::: {.callout-note icon=false}
-
+::: {.callout-note icon="false"}
 ## Thought exercise
 
 For which of the above steps (changing project name, making updates to the document, committing, and pushing changes) do you need to have an internet connection? Discuss with your classmates.
@@ -301,11 +285,9 @@ For the second part of this exercises, we need to calculate a summary statistic:
 
 But, for illustrative purposes, let's calculate correlation coefficient between `x` and `y`.
 
-
 ::: aside
 Start with `dino_data` and calculate a summary statistic that we will call `r` as the `cor`relation between `x` and `y`.
 :::
-
 
 ```{r}
 dino_data |>
@@ -325,7 +307,6 @@ Plot `y` vs. `x` for the `star` dataset. You can (and should) reuse code we intr
 Plot `y` vs. `x` for the `circle` dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between `x` and `y` for this dataset. How does this value compare to the `r` of `dino`?
 
 *You should pause again, commit changes with the commit message "Added answer for Ex 4", and push.*
-
 
 ::: aside
 Facet by the dataset variable, placing the plots in a 3 column grid, and don't add a legend.
@@ -360,7 +341,7 @@ knitr::include_graphics("img/01-hello-r/fig-resize-global.png")
 
 Complete these as time permits to further your experience with, comfort in, and understanding of R Markdown documents.
 
-### Resize your figures 
+### Resize your figures
 
 Click on the gear icon in on top of the R Markdown document, and select "Output Options..." in the dropdown menu. In the pop up dialogue box go to the Figures tab and change the height and width of the figures, and hit OK when done. Then, knit your document and see how you like the new sizes. Change and knit again and again until you're happy with the figure sizes. Note that these values get saved in the YAML.
 
@@ -378,15 +359,13 @@ knitr::include_graphics("img/01-hello-r/theme-highlight.png")
 
 Once again click on the gear icon in on top of the R Markdown document, and select "Output Options..." in the dropdown menu. In the General tab of the pop up dialogue box try out different Syntax highlighting and theme options. Hit OK and knit your document to see how it looks. Play around with these until you're happy with the look.
 
-::: {.callout-note icon=false}
-
+::: {.callout-note icon="false"}
 Not sure how to use emojis on your computer? Maybe a classmate can help? Or you can ask your TA as well!
-
 :::
 
 # Submit
 
-::: {.callout-important}
+::: callout-important
 You'll always want to knit your RMarkdown document to HTML and review that HTML document to ensure it includes all the information you want and looks as you intended, as we grade from the knit HTML.
 :::
 

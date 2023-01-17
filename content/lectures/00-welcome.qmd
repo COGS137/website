@@ -38,9 +38,9 @@ options(gargle_oauth_email = "sellis@ucsd.edu")
 
 ## Agenda
 
-1. Describe what this class is
-2. Describe how the class will run 
-3. Go over the tooling for this course: R, RStudio, GitHub
+1.  Describe what this class is
+2.  Describe how the class will run
+3.  Go over the tooling for this course: R, RStudio, GitHub
 
 ## What is R?
 
@@ -63,20 +63,18 @@ While R has most/all of the functionality of **YFPL** (your favorite programming
 
 ## Who am I?
 
-Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover 
+Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover
 
-<i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>   Peterson Hall 104 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM) 
-
-
+<i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>   Peterson Hall 104 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM)
 
 ## Who all is involved?
 
 |            |                                                |                  |               |                      |
-|---------------|---------------|---------------|---------------|---------------|
+|------------|------------------------------------------------|------------------|---------------|----------------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
-|            |                                                |                  | Th 12:50-1:50 | CSB 243      |
-| TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD |
-| IAs        | Christian Kim                                  |                  | Time TBD      | Location TBD |
+|            |                                                |                  | Th 12:50-1:50 | CSB 243              |
+| TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD         |
+| IAs        | Christian Kim                                  |                  | Time TBD      | Location TBD         |
 
 ## What is this course? {.scrollable}
 
@@ -99,7 +97,7 @@ Everything you want to know about the course, and everything you will need for t
 :::
 
 ::: {.column width="60%"}
-Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**! 
+Nope! The first few weeks of the course will be all about getting **comfortable using the R programming language**!
 
 <br/> After that, we'll focus on delving into interesting statistical analyses through **case studies**.
 :::
@@ -196,14 +194,14 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
 
 Differences since last iteration:
 
-- Less...pretty much everything
-- New website/lecture platform (quarto)
-- Tu/Th and not early in the morning
-- Group mates differ
-- Increased focus on communication
-- Multiple final project options
-- Slightly larger class & slightly smaller staff
-- I'm a mom & just coming back from parental leave
+-   Less...pretty much everything
+-   New website/lecture platform (quarto)
+-   Tu/Th and not early in the morning
+-   Group mates differ
+-   Increased focus on communication
+-   Multiple final project options
+-   Slightly larger class & slightly smaller staff
+-   I'm a mom & just coming back from parental leave
 
 ## How to get help {.scrollable}
 
@@ -288,7 +286,7 @@ Datahub is a platform hosted by UCSD that gives students access to computational
 
 This means that while you'll be typing on your keyboard, you'll be *using* UCSD's computers in this class.
 
-Website: [https://datahub.ucsd.edu/](https://datahub.ucsd.edu/)
+Website: <https://datahub.ucsd.edu/>
 
 . . .
 
@@ -451,7 +449,6 @@ Concepts introduced:
 -   Committing, Pushing and Pulling
 
 There is a bit more of GitHub that we'll use in this class, but for today this is enough.
-
 
 ## Recap
 

@@ -1,0 +1,55 @@
+---
+title: "Lab 02: Wrangling"
+author: ""
+format:
+  revealjs:
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+---
+
+# Lab 02: Wrangling {background-color="#0E3A53"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Agenda
+
+1.  **Lab 02 intro and demos:** Introduce the lab, and work through the first question as a class.
+2.  **On your own:** Work on the rest of the lab "on your own", but feel free to check in with classmates as much as you like.
+
+## `dplyr`: Review {.scrollable .smaller}
+
+**dplyr** provides a "Grammar of Data Manipulation" and is based on the concepts of functions as verbs that manipulate data frames.
+
+-   `filter`: pick rows matching criteria
+-   `slice`: pick rows using index(es)
+-   `select`: pick columns by name
+-   `pull`: grab a column as a vector
+-   `rename`: rename specific columns
+-   `arrange`: reorder rows
+-   `mutate`: add new variables
+-   `transmute`: create new data frame with variables
+-   `distinct`: filter for unique rows
+-   `sample_n` / `sample_frac`: randomly sample rows
+-   `summarize`: reduce variables to values
+-   ... (many more)
+
+## The Data {.smaller}
+
+```{r}
+storms |>
+  slice(1:20)
+```
+
+## The Data: Documentation
+
+From the console...
+
+```{r}
+?storms
+```

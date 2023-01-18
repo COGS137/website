@@ -18,10 +18,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ##### Instructional Staff & Office Hours
 
 |            |                                                |                  |                  |                      |
-|------------|------------------------------------------------|------------------|------------------|----------------------|
+|-------------|-----------------------|-------------|-------------|-------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3          | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 PM | CSB 243              |
-| TA         | Shubham Kulkarni                               |                  | Time TBD         | Location TBD         |
+| TA         | Shubham Kulkarni                               |                  | F 12-1PM         | CSB 114              |
 | IAs        | Christian Kim                                  |                  | Th 11AM-12PM     | CSB 114              |
 
 ### Course Objectives
@@ -39,7 +39,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 Texts are freely available online:
 
 |                                                                         |                                |                              |
-|-------------------------------------------------------------------------|--------------------------------|------------------------------|
+|-------------------------------------|------------------|------------------|
 | [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) | Çetinkaya-Rundeland and Hardin | OpenIntro, 1st Edition, 2021 |
 | [R for Data Science](http://r4ds.had.co.nz/)                            | Grolemund and Wickham          | O'Reilly, 1st edition, 2016  |
 

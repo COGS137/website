@@ -148,7 +148,7 @@ class(first_variable)
 ## Basic Variable Types {.scrollable}
 
 | Variable Type | Explanation                       | Example                                     |
-|-----------------------------|-------------------------|-------------------|
+|---------------|-----------------------------------|---------------------------------------------|
 | character     | stores a string                   | `"cogs137"`, `"hi!"`                        |
 | numeric       | stores whole numbers and decimals | `9`, `9.29`                                 |
 | integer       | specifies integer                 | `9L` (the `L` specifies this is an integer) |

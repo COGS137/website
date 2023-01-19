@@ -9,6 +9,8 @@ format:
     logo: images/cogs137-logo-hex.png
     css: slides.css
     footer: <https://cogs137.github.io/website/>
+    execute:
+      echo: true
 ---
 
 # Lab 02: Wrangling {background-color="#0E3A53"}
@@ -16,6 +18,12 @@ format:
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
+
+## Reminders
+
+- Start with `library(tidyverse)` (includes `tidyr`, `readr`, `dplyr`, etc.)
+- Clone using 'SSH' link from GitHub
+- Knit to .html & push both .Rmd and .html to GitHub
 
 ## Agenda
 

@@ -64,6 +64,32 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 -   Staff office hours updated (see Canvas or website)
 
 
+## Student Survey 
+
+- 88% know Python; 20% know R; most (but not all!) have programmed before
+- Reasons for taking course: learn R, add to resume, analyze data, improve data science skills
+
+. . .
+
+What y'all do outside of school: 
+
+- sports: soccer, rugby, vball, basketball, surfing, skating, etc.
+- indoor activities: reading, gaming, cook, crochet, art, write, youtube, tiktok
+- work
+- sleep
+
+. . .
+
+My favorite boring facts:
+
+- I love cupcakes
+- I like drinking tea
+- I've never had a nosebleed
+- I can sleep for up to 16-17 hours if I forget to set an alarm
+- I don't cook
+
+
+
 ## Tidy Data
 
 The opinionated `tidyverse` is named as such b/c it assumes/necessitates your data be "tidy".

@@ -70,7 +70,7 @@ Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, an
 ## Who all is involved?
 
 |            |                                                |                  |               |                      |
-|------------|------------------------------------------------|------------------|---------------|----------------------|
+|------------|-----------------------|------------|------------|------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 | CSB 243              |
 | TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD         |

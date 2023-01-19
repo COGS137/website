@@ -45,6 +45,8 @@ website:
             href: content/lectures/01-intro-to-r-slides.html
           - text: "02-dplyr"
             href: content/lectures/02-dplyr-slides.html
+          - text: "03-tidyr"
+            href: content/lectures/03-tidyr-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -53,6 +55,8 @@ website:
             href: content/lectures/01-intro-to-r.qmd
           - text: "02-dplyr"
             href: content/lectures/02-dplyr.qmd
+          - text: "03-tidyr"
+            href: content/lectures/03-tidyr.qmd
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

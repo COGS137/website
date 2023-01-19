@@ -36,7 +36,7 @@ Note that the final two questions are optional. Definitely give them a try, but 
 
 ### Exercise 1
 
-How many *unique* *hurricanes* are included in this dataset? 
+How many *unique* *hurricanes* are included in this dataset?
 
 ### Exercise 2
 
@@ -44,17 +44,18 @@ Which tropical storm affected the largest area experiencing tropical storm stren
 
 ### Exercise 3
 
-Among all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?) 
+Among all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?)
 
 ### Exercise 4
 
-Your boss asks for the name, year, and status of all category 5 storms that have happened in the 2000s. Carry out the operations that would deliver what they're looking for. 
+Your boss asks for the name, year, and status of all category 5 storms that have happened in the 2000s. Carry out the operations that would deliver what they're looking for.
 
 ### Exercise 5
 
-Filter these data to only include storms that occurred during *your* lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what's the mean and median air pressure across all measurements taken? 
+Filter these data to only include storms that occurred during *your* lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what's the mean and median air pressure across all measurements taken?
 
 ### Exercise 6
+
 (*optional challenge*) Which decade (of the storms included in the dataset) had the largest number of unique reported storms?
 
 ### Exercise 7

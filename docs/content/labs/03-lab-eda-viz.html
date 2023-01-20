@@ -321,7 +321,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <ul>
   <li><a href="#introduction" id="toc-introduction" class="nav-link active" data-scroll-target="#introduction">Introduction</a></li>
   <li><a href="#getting-started" id="toc-getting-started" class="nav-link" data-scroll-target="#getting-started">Getting started</a></li>
-  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#setup" id="toc-setup" class="nav-link" data-scroll-target="#setup">Setup</a></li>
   <li><a href="#load-the-data" id="toc-load-the-data" class="nav-link" data-scroll-target="#load-the-data">Load the data</a></li>
   <li><a href="#exercises" id="toc-exercises" class="nav-link" data-scroll-target="#exercises">Exercises</a>
   <ul class="collapse">
@@ -385,7 +385,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h1>Introduction</h1>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p><strong>A note on expectations: </strong> For each exercise, include any relevant output (tables, summary statistics, plots) in your answer along with text to guide the reader. Doing this is easy! Just place any relevant R code in a code chunk, any relevant text outside of code chunks, and hit Knit HTML.</p>
+<p><strong>A note on expectations:</strong> For each exercise, include any relevant output (tables, summary statistics, plots) in your answer along with text to guide the reader. Doing this is easy! Just place any relevant R code in a code chunk, any relevant text outside of code chunks, and hit Knit HTML.</p>
 </div></div><p>Some define statistics as the field that focuses on turning information into knowledge. The first step in that process is to summarize and describe raw information - the data. In this lab we explore data on college majors and earnings, specifically the data behind the FiveThirtyEight story <a href="https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/">“The Economic Guide To Picking A College Major”</a>.</p>
 <p>These data originally come from the American Community Survey (ACS) 2010-2012 Public Use Microdata Series. While outside the scope of this lab, if you are curious about how raw data from the ACS were cleaned and prepared, see <a href="https://github.com/fivethirtyeight/data/blob/master/college-majors/college-majors-rscript.R">the code</a> FiveThirtyEight authors used.</p>
 <p>We should also note that there are many considerations that go into picking a major. Earnings potential and employment prospects are two of them, and they are important, but they <em>don’t</em> tell the whole story. Keep this in mind as you analyze the data.</p>
@@ -407,9 +407,10 @@ Important
 </div>
 </div>
 </section>
-<section id="packages" class="level1">
-<h1>Packages</h1>
-<p>In this lab we will work with the <code>tidyverse</code> package. So we need to load it:</p>
+<section id="setup" class="level1">
+<h1>Setup</h1>
+<p>Go ahead and add your name to the YAML at top.</p>
+<p>And, in this lab we will work with the <code>tidyverse</code> package. So we need to load it:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
@@ -437,8 +438,8 @@ Important
 <p>The description of the variables, i.e.&nbsp;the <strong>codebook</strong>, is given below.</p>
 <table class="table">
 <colgroup>
-<col style="width: 34%">
-<col style="width: 66%">
+<col style="width: 29%">
+<col style="width: 70%">
 </colgroup>
 <thead>
 <tr class="header">

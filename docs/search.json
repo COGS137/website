@@ -2609,5 +2609,299 @@
     "title": "COGS 137",
     "section": "",
     "text": "Week\nDate\nTitle\nType\n\n\n\n\n1\nTu Jan 10\nWelcome & Tooling\nLecture\n\n\n1\nTh Jan 12\nIntro to R\nLecture\n\n\n1\nFri Jan 13\nLab 01: Intro to R\nLab\n\n\n2\nTu Jan 17\nData Wrangling: dplyr\nLecture\n\n\n2\nTh Jan 19\nData Wrangling: tidyr\nLecture\n\n\n2\nFri Jan 20\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Jan 23\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Jan 24\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n3\nTh Jan 26\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nFri Jan 27\nLab 03: Data Visualization\nLab\n\n\n4\nTu Jan 31\nData Analysis & Modeling\nLecture\n\n\n4\nTh Feb 2\nLinear Models Review*\nLecture\n\n\n4\nFri Feb 3\nLab 04: Modeling\nLab\n\n\n5\nMon Feb 6\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Feb 7\nEffective Communication\nLecture\n\n\n5\nTh Feb 9\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Feb 10\nLab used for midterm review\nLab\n\n\n6\nMon Feb 13\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Feb 14\nMultiple Linear Regression\nLecture\n\n\n6\nTh Feb 16\nCase Study 01: Right to Carry (day 1)\nLecture\n\n\n6\nFri Feb 17\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nMon Feb 20\nHW03 due (11:59 PM)\nHW\n\n\n7\nTu Feb 21\nCase Study 01: Right to Carry (day 2)\nLecture\n\n\n7\nTh Feb 23\nCase Study 01: Right to Carry (day 3)\nLecture\n\n\n7\nFri Feb 24\nLab 06: CS01\nLab\n\n\n8\nTu Feb 28\nLogistic Regression (day 1)\nLecture\n\n\n8\nTh Mar 2\nLogistic Regression (day 2)\nLecture\n\n\n8\nFri Mar 3\nLab 07: Logistic Regression\nLab\n\n\n9\nMon Mar 6\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Mar 7\nCase Study 02: Vaping (day 1)\nLecture\n\n\n9\nTh Mar 9\nCase Study 02: Vaping (day 2)\nLecture\n\n\n9\nFri Mar 10\nLab 08: CS02\nLab\n\n\n10\nMon Mar 13\nHW04 due (11:59 PM)\nHW\n\n\n10\nTu Mar 14\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Mar 16\nNext Steps\nLecture\n\n\n10\nFri Mar 17\nLab used for Final Project\nLab\n\n\nFinals\nMon Mar 20\nCS02 Due\nCase Study\n\n\nFinals\nTh Mar 23\nFinal Project Due (11:59 PM)\nLecture"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#qa",
+    "href": "content/lectures/04-ggplot2-slides.html#qa",
+    "title": "04-ggplot2",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ:Can we have a demo in class on how to clone our repo and check if our Github submissions submitted properly? I am having trouble doing this.\nA: Yes! Let’s do that today.\n\n\nQ: Does left_join(a, b) = right_join(b, a)?\nA: No. The total information would be equivalent but the order of columns would differ. In the left join, the columns from a would be first and in the right join, the colums from b would be listed first. But the actual rows that are joined/included would be the same.\n\n\nQ: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions?\nA: You’re allowed to store variables into a new data frame whenever you’d like! Now, the more variables you create, the more to keep track of, so I would encourage you to store your output any time you make a “substantial” change to your data. So, say you do a filter, selection, and mutate to get your data into the format for analysis. I wouldn’t store after each step, but I would store it after I wrote the pipe doing all three. Follow up if this doesn’t clarify!\n\n\nQ: I think the left_join, right_join, and full_join was pretty confusing.\nA: You’re right! It is confusing. We’ll go through more examples and get more practice!"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#course-announcements",
+    "href": "content/lectures/04-ggplot2-slides.html#course-announcements",
+    "title": "04-ggplot2",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements:\n\nHappy New Year!\nGitHub assignment clone + submission demo\nLab02 Notes:\n\nLook at the answer key:\ngrouping by name and year\ncan add text outside of code chunks; discuss variable reference\nsolutions to optional exercises"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#ggplot2-in-tidyverse",
+    "href": "content/lectures/04-ggplot2-slides.html#ggplot2-in-tidyverse",
+    "title": "04-ggplot2",
+    "section": "ggplot2 \\(\\in\\) tidyverse",
+    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n   geom_xxx() +\n   other options"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#data-palmer-penguins",
+    "href": "content/lectures/04-ggplot2-slides.html#data-palmer-penguins",
+    "title": "04-ggplot2",
+    "section": "Data: Palmer Penguins",
+    "text": "Data: Palmer Penguins\nMeasurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.\n\n\n\n\n\n\n\n\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\n\n\n\nArtwork by @allison_horst"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#the-data",
+    "href": "content/lectures/04-ggplot2-slides.html#the-data",
+    "title": "04-ggplot2",
+    "section": "The Data",
+    "text": "The Data\n\npenguins |>\n  datatable()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#a-plot",
+    "href": "content/lectures/04-ggplot2-slides.html#a-plot",
+    "title": "04-ggplot2",
+    "section": "A Plot",
+    "text": "A Plot\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section",
+    "href": "content/lectures/04-ggplot2-slides.html#section",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame\n\n\n\nggplot(data = penguins)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-1",
+    "href": "content/lectures/04-ggplot2-slides.html#section-1",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm))"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-2",
+    "href": "content/lectures/04-ggplot2-slides.html#section-2",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm))"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-3",
+    "href": "content/lectures/04-ggplot2-slides.html#section-3",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm)) + \n  geom_point()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-4",
+    "href": "content/lectures/04-ggplot2-slides.html#section-4",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-5",
+    "href": "content/lectures/04-ggplot2-slides.html#section-5",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\")"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-6",
+    "href": "content/lectures/04-ggplot2-slides.html#section-6",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\")"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-7",
+    "href": "content/lectures/04-ggplot2-slides.html#section-7",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\")"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-8",
+    "href": "content/lectures/04-ggplot2-slides.html#section-8",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\")"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-9",
+    "href": "content/lectures/04-ggplot2-slides.html#section-9",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\")"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-10",
+    "href": "content/lectures/04-ggplot2-slides.html#section-10",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source. Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#coding-out-loud-1",
+    "href": "content/lectures/04-ggplot2-slides.html#coding-out-loud-1",
+    "title": "04-ggplot2",
+    "section": "Coding out loud",
+    "text": "Coding out loud\n\nCodePlotNarrative\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()\n\n\n\n\n\n\n\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\nRepresent each observation with a point and map species to the color of each point.\nTitle the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\nFinally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#argument-names",
+    "href": "content/lectures/04-ggplot2-slides.html#argument-names",
+    "title": "04-ggplot2",
+    "section": "Argument names",
+    "text": "Argument names\n\n\n\n\n\n\nTip\n\n\nYou can omit the names of first two arguments when building plots with ggplot().\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm,  \n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  scale_color_viridis_d()\n\n\n\nggplot(penguins, \n       aes(x = bill_depth_mm, \n           y = bill_depth_mm,\n           color = species)) +\n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#your-turn",
+    "href": "content/lectures/04-ggplot2-slides.html#your-turn",
+    "title": "04-ggplot2",
+    "section": "Your Turn",
+    "text": "Your Turn\nGenerate a basic plot in ggplot2 using different variables than those in the last example (last example: bill_depth_mm & bill_depth_mm).\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#aesthetics-options",
+    "href": "content/lectures/04-ggplot2-slides.html#aesthetics-options",
+    "title": "04-ggplot2",
+    "section": "Aesthetics options",
+    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are\n\ncolor\nshape\nsize\nalpha (transparency)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#color",
+    "href": "content/lectures/04-ggplot2-slides.html#color",
+    "title": "04-ggplot2",
+    "section": "Color",
+    "text": "Color\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#shape",
+    "href": "content/lectures/04-ggplot2-slides.html#shape",
+    "title": "04-ggplot2",
+    "section": "Shape",
+    "text": "Shape\nMapped to a different variable than color\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = island)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#shape-1",
+    "href": "content/lectures/04-ggplot2-slides.html#shape-1",
+    "title": "04-ggplot2",
+    "section": "Shape",
+    "text": "Shape\nMapped to same variable as color\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = species)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#size",
+    "href": "content/lectures/04-ggplot2-slides.html#size",
+    "title": "04-ggplot2",
+    "section": "Size",
+    "text": "Size\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = species,\n           size = body_mass_g)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#alpha",
+    "href": "content/lectures/04-ggplot2-slides.html#alpha",
+    "title": "04-ggplot2",
+    "section": "Alpha",
+    "text": "Alpha\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = species,\n           size = body_mass_g,\n           alpha = flipper_length_mm)) + \n  geom_point() +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#mapping-vs.-setting",
+    "href": "content/lectures/04-ggplot2-slides.html#mapping-vs.-setting",
+    "title": "04-ggplot2",
+    "section": "Mapping vs. setting",
+    "text": "Mapping vs. setting\n\nMapping: Determine the size, alpha, etc. of points based on the values of a variable in the data\n\ngoes into aes()\n\nSetting: Determine the size, alpha, etc. of points not based on the values of a variable in the data\n\ngoes into geom_*() (this was geom_point() in the previous example, but we’ll learn about other geoms soon!)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#mapping-vs.-setting-example",
+    "href": "content/lectures/04-ggplot2-slides.html#mapping-vs.-setting-example",
+    "title": "04-ggplot2",
+    "section": "Mapping vs. Setting (example)",
+    "text": "Mapping vs. Setting (example)\n\n\nMapping\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           size = body_mass_g, \n           alpha = flipper_length_mm)) + \n  geom_point()\n\n\n\n\n\nSetting\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm)) + \n  geom_point(size = 2, alpha = 0.5)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#your-turn-1",
+    "href": "content/lectures/04-ggplot2-slides.html#your-turn-1",
+    "title": "04-ggplot2",
+    "section": "Your Turn",
+    "text": "Your Turn\nEdit the basic plot you created earlier to change something about its aesthetics.\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#faceting-1",
+    "href": "content/lectures/04-ggplot2-slides.html#faceting-1",
+    "title": "04-ggplot2",
+    "section": "Faceting",
+    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#various-ways-to-facet",
+    "href": "content/lectures/04-ggplot2-slides.html#various-ways-to-facet",
+    "title": "04-ggplot2",
+    "section": "Various ways to facet",
+    "text": "Various ways to facet\n🧠 In the next few slides describe what each plot displays. Think about how the code relates to the output.\n\n\n\n\n\n\nWarning\n\n\nThe plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what’s happening in the plots. But you should always label your plots!"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-11",
+    "href": "content/lectures/04-ggplot2-slides.html#section-11",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ sex)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-12",
+    "href": "content/lectures/04-ggplot2-slides.html#section-12",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(sex ~ species)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-13",
+    "href": "content/lectures/04-ggplot2-slides.html#section-13",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_wrap(~ species)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-14",
+    "href": "content/lectures/04-ggplot2-slides.html#section-14",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(. ~ species)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#section-15",
+    "href": "content/lectures/04-ggplot2-slides.html#section-15",
+    "title": "04-ggplot2",
+    "section": "",
+    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_wrap(~ species, ncol = 2)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#faceting-summary",
+    "href": "content/lectures/04-ggplot2-slides.html#faceting-summary",
+    "title": "04-ggplot2",
+    "section": "Faceting summary",
+    "text": "Faceting summary\n\nfacet_grid():\n\n2d grid\nrows ~ cols\nuse . for no split\n\nfacet_wrap(): 1d ribbon wrapped according to number of rows and columns specified or available plotting area"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#facet-and-color",
+    "href": "content/lectures/04-ggplot2-slides.html#facet-and-color",
+    "title": "04-ggplot2",
+    "section": "Facet and color",
+    "text": "Facet and color\n\nggplot(\n  penguins, \n  aes(x = bill_depth_mm, \n      y = bill_length_mm, \n      color = species)) + \n  geom_point() +\n  facet_grid(species ~ sex) +\n  scale_color_viridis_d()"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#face-and-color-no-legend",
+    "href": "content/lectures/04-ggplot2-slides.html#face-and-color-no-legend",
+    "title": "04-ggplot2",
+    "section": "Face and color, no legend",
+    "text": "Face and color, no legend\n\nggplot(\n  penguins, \n  aes(x = bill_depth_mm, \n      y = bill_length_mm, \n      color = species)) +\n  geom_point() +\n  facet_grid(species ~ sex) +\n  scale_color_viridis_d() +\n  guides(color = FALSE)"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#common-geoms",
+    "href": "content/lectures/04-ggplot2-slides.html#common-geoms",
+    "title": "04-ggplot2",
+    "section": "Common geoms",
+    "text": "Common geoms\n\n\n\ngeom 1\nDescription 2\n\n\n\n\ngeom_point\nscatterplot\n\n\ngeom_bar\nbarplot\n\n\ngeom_line\nline plot\n\n\ngeom_density\ndensityplot\n\n\ngeom_histogram\nhistogram\n\n\ngeom_boxplot\nboxplot\n\n\n\nggplot2 geoms listed hereWhen each visualization is appropriate here"
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#your-turn-2",
+    "href": "content/lectures/04-ggplot2-slides.html#your-turn-2",
+    "title": "04-ggplot2",
+    "section": "Your Turn",
+    "text": "Your Turn\nGenerate a plot in ggplot2 using a different geom than what you did previously. Customize as much as you can before time is “up.”\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/04-ggplot2-slides.html#suggested-reading",
+    "href": "content/lectures/04-ggplot2-slides.html#suggested-reading",
+    "title": "04-ggplot2",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\nR4DS:\n\nChapter 3: Data Visualization\n\n\n\n\nhttps://cogs137.github.io/website/"
   }
 ]

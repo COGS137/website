@@ -18,6 +18,7 @@ format:
     execute:
      eval: true
      echo: true
+     output: true
 ---
 
 # Tidy Data with `tidyr` {background-color="#92A86A"}
@@ -44,7 +45,7 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 > A: When you want to extract existing columns, `select`! When you want to create a new column in a new dataframe, `transmute`!
 
 > Q: Pulls - when are they necessary?\
-> A: `dplyr` pulls are necessary when you have values in a dataframe, but you want them in a typical vector...or you want to pull a single value. 
+> A: `dplyr` pulls are necessary when you have values in a dataframe, but you want them in a typical vector...or you want to pull a single value.
 
 > Q: If we don't finish the notes on a given day, do I have to learn them on my own?\
 > A: Nope! We'll pick up there on the next class day.
@@ -63,50 +64,47 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
     -   Q2 can delete `expect_true(true_var)` and `expect_false(false_var)` from testing (they should only be in Q3)
 -   Staff office hours updated (see Canvas or website)
 
+## Student Survey
 
-## Student Survey 
-
-- 88% know Python; 20% know R; most (but not all!) have programmed before
-- Reasons for taking course: learn R, add to resume, analyze data, improve data science skills
+-   88% know Python; 20% know R; most (but not all!) have programmed before
+-   Reasons for taking course: learn R, add to resume, analyze data, improve data science skills
 
 . . .
 
-What y'all do outside of school: 
+What y'all do outside of school:
 
-- sports: soccer, rugby, vball, basketball, surfing, skating, etc.
-- indoor activities: reading, gaming, cook, crochet, art, write, youtube, tiktok
-- work
-- sleep
+-   sports: soccer, rugby, vball, basketball, surfing, skating, etc.
+-   indoor activities: reading, gaming, cook, crochet, art, write, youtube, tiktok
+-   work
+-   sleep
 
 . . .
 
 My favorite boring facts:
 
-- I love cupcakes
-- I like drinking tea
-- I've never had a nosebleed
-- I can sleep for up to 16-17 hours if I forget to set an alarm
-- I don't cook
-
-
+-   I love cupcakes
+-   I like drinking tea
+-   I've never had a nosebleed
+-   I can sleep for up to 16-17 hours if I forget to set an alarm
+-   I don't cook
 
 ## Tidy Data
 
 The opinionated `tidyverse` is named as such b/c it assumes/necessitates your data be "tidy".
 
-. . . 
+. . .
 
-> Tidy datasets are all alike, but every messy dataset is messy in its own way. –– Hadley Wickham
+> Tidy datasets are all alike, but every messy dataset is messy in its own way. ---- Hadley Wickham
 
 . . .
 
-1. Each variable must have its own column.
-2. Each observation must have its own row.
-3. Each value must have its own cell.
+1.  Each variable must have its own column.
+2.  Each observation must have its own row.
+3.  Each value must have its own cell.
 
-:::aside
+::: aside
 Source: https://r4ds.had.co.nz/tidy-data.html
-::: 
+:::
 
 ## Tidy or not? {.scrollable .smaller}
 
@@ -127,9 +125,9 @@ bike <- read_csv2("https://raw.githubusercontent.com/COGS137/datasets/main/nc_bi
 bike |> datatable()
 ```
 
-## Summary tables  {.scrollable .smaller}
+## Summary tables {.scrollable .smaller}
 
-[`r emo::ji("question")` Which is  a dataset? Which is a summary table?]{style="background-color: #ADD8E6"}
+[`r emo::ji("question")` Which is a dataset? Which is a summary table?]{style="background-color: #ADD8E6"}
 
 ::: columns
 ::: {.column width="50%"}
@@ -160,8 +158,8 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 
 ## Common issues
 
-- One variable might be spread across multiple columns.
-- One observation might be scattered across multiple rows.
+-   One variable might be spread across multiple columns.
+-   One observation might be scattered across multiple rows.
 
 . . .
 
@@ -170,7 +168,6 @@ Solution: pivoting!
 ## Pivoting {.scrollable}
 
 ::: panel-tabset
-
 ### `pivot_longer`
 
 For when some of the column names are not names of variables, but values of a variable...
@@ -179,12 +176,10 @@ For when some of the column names are not names of variables, but values of a va
 table4a
 ```
 
-
 ```{r}
 table4a |> 
   pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
 ```
-
 
 [`r emo::ji("question")` Why are there backticks around the years? (Note: we have not discussed this yet)]{style="background-color: #ADD8E6"}
 
@@ -196,7 +191,6 @@ For when an observation is scattered across multiple rows...
 table2
 ```
 
-
 ```{r}
 table2 |>
     pivot_wider(names_from = type, values_from = count)
@@ -206,16 +200,15 @@ table2 |>
 
 ### long vs. wide
 
-- **wide** data contains values that do not repeat in the first column.
-- **long** format contains values that do repeat in the first column.
+-   **wide** data contains values that do not repeat in the first column.
+-   **long** format contains values that do repeat in the first column.
 
 Both are good/helpful! We'll return to this idea and discuss more during dataviz next week.
 
 Briefly:
 
-- wide data: analysis
-- long data: plotting
-
+-   wide data: analysis
+-   long data: plotting
 :::
 
 ## Separating & Uniting {.scrollable}
@@ -228,7 +221,6 @@ For when multiple pieces of information are stored in a single column...
 ```{r}
 table3
 ```
-
 
 ```{r}
 table3 |> 
@@ -244,7 +236,7 @@ table3 |>
 
 ### `unite`
 
-Unite is the opposite...it combines data stored across multiple columns. 
+Unite is the opposite...it combines data stored across multiple columns.
 
 The general syntax is:
 
@@ -261,6 +253,7 @@ If we look at `table4a`, it's missing the population information. That's stored 
 ```{r}
 table4b
 ```
+
 ...which is also in the "wide" format
 
 . . .
@@ -289,13 +282,9 @@ A join!
 left_join(tidy4a, tidy4b)
 ```
 
-
 ::: aside
-
 Source: [R4DS](https://r4ds.had.co.nz/relational-data.html)
-
 :::
-
 
 ## The Data: `nycflights13` {.smaller}
 
@@ -303,10 +292,10 @@ Source: [R4DS](https://r4ds.had.co.nz/relational-data.html)
 library(nycflights13)
 ```
 
-- `airlines` : links airline to two letter code
-- `airports` : ID'ed by FAA code
-- `planes` : ID'ed by tailnum
-- `airport` : weather each hour; id'ed by two letter airport code
+-   `airlines` : links airline to two letter code
+-   `airports` : ID'ed by FAA code
+-   `planes` : ID'ed by tailnum
+-   `airport` : weather each hour; id'ed by two letter airport code
 
 . . .
 
@@ -314,13 +303,13 @@ library(nycflights13)
 
 . . .
 
-- `flights` connects to `planes` via a single variable, `tailnum`.
+-   `flights` connects to `planes` via a single variable, `tailnum`.
 
-- `flights` connects to `airlines` through the `carrier` variable.
+-   `flights` connects to `airlines` through the `carrier` variable.
 
-- `flights` connects to `airports` in two ways: via the `origin` and `dest` variables.
+-   `flights` connects to `airports` in two ways: via the `origin` and `dest` variables.
 
-- `flights` connects to `weather` via `origin` (the location), and `year`, `month`, `day` and `hour` (the time).
+-   `flights` connects to `weather` via `origin` (the location), and `year`, `month`, `day` and `hour` (the time).
 
 ## Mutating Joins
 
@@ -342,42 +331,38 @@ There is now a new column `name`...coming from the `airlines` data frame.
 
 **`left_join`**:
 
-- keeps all rows in first df (here: `flights`)
-- adds all matching information from second df (here: `airlines`); adds NAs for any observations not in `airlines`
+-   keeps all rows in first df (here: `flights`)
+-   adds all matching information from second df (here: `airlines`); adds NAs for any observations not in `airlines`
 
 . . .
 
-Other joins: 
+Other joins:
 
-**`right_join`**: keeps all observations in second df
-**`full_join`**: keeps all observations in either df
-
-. . .
-
-![Image Source: [https://r4ds.had.co.nz/relational-data.html](https://r4ds.had.co.nz/relational-data.html)](images/03/join-outer.png)
+**`right_join`**: keeps all observations in second df **`full_join`**: keeps all observations in either df
 
 . . .
 
-**`inner_join`**: 
+![Image Source: <https://r4ds.had.co.nz/relational-data.html>](images/03/join-outer.png)
 
-- takes only rows in *both* dfs
+. . .
 
-![Image Source: [https://r4ds.had.co.nz/relational-data.html](https://r4ds.had.co.nz/relational-data.html)](images/03/join-inner.png)
+**`inner_join`**:
 
+-   takes only rows in *both* dfs
 
+![Image Source: <https://r4ds.had.co.nz/relational-data.html>](images/03/join-inner.png)
 
 # Recap {background-color="#92A86A"}
 
-- Do you understand what constitutes tidy data?
-- Can you identify what needs to be done to take a dataset from untidy to tidy?
-- What is the difference been long data and wide data?
-- Can I take long data to wide data? And wide to long?
-- Can I carry out mutating joins on data?
+-   Do you understand what constitutes tidy data?
+-   Can you identify what needs to be done to take a dataset from untidy to tidy?
+-   What is the difference been long data and wide data?
+-   Can I take long data to wide data? And wide to long?
+-   Can I carry out mutating joins on data?
 
 ## Suggested Reading
 
 R4DS:
 
-- Chapter 12: [Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
-- Chapter 13: [Relational Data](https://r4ds.had.co.nz/relational-data.html)
-
+-   Chapter 12: [Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
+-   Chapter 13: [Relational Data](https://r4ds.had.co.nz/relational-data.html)

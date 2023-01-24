@@ -8,7 +8,7 @@
 
 <meta name="dcterms.date" content="2023-01-27">
 
-<title>COGS 137 - Lab 03 - EDA &amp; Viz</title>
+<title>COGS 137 - Lab 03 - Data Visualization</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -177,7 +177,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Lab 03 - EDA &amp; Viz</h1>
+      <h1 class="quarto-secondary-nav-title">Lab 03 - Data Visualization</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -223,6 +223,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../content/lectures/03-tidyr-slides.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/04-ggplot2-slides.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -253,6 +258,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../content/lectures/03-tidyr.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/04-ggplot2.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -271,6 +281,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/labs/02-lab-wrangling.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/03-lab-viz.html" class="sidebar-item-text sidebar-link active">Lab03: Data Viz</a>
   </div>
 </li>
       </ul>
@@ -297,12 +312,27 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Homework</a>
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Lab Answers</a>
           <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lab-ans/lab02-wrangling-ans.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling (Ans)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Homework</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/hw/hw-01.html" class="sidebar-item-text sidebar-link">HW01</a>
@@ -360,7 +390,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Lab 03 - EDA &amp; Viz</h1>
+<h1 class="title d-none d-lg-block">Lab 03 - Data Visualization</h1>
 </div>
 
 
@@ -403,7 +433,7 @@ Important
 </div>
 </div>
 <div class="callout-body-container callout-body">
-<p>Heads up…this lab is longer than what you can likely accomplish in 1h. This is by design. If you fly through labs b/c you’ve got experience, we want to make sure you’ve got things to explore and continue to learn! If you’re new to R and the <code>tidyverse</code>, you’re not going to get through the whole lab. That’s OK! Do what you can, incomplete responses are fine, incomplete questions are OK, and just be sure to check the answer key for places you were stuck.</p>
+<p>Heads up…this lab is longer than what you can likely accomplish in 1h. This is by design. If you fly through labs b/c you’ve got experience, we want to make sure you’ve got things to explore and continue to learn! If you’re new to R and the <code>tidyverse</code>, you’re not going to get through the whole lab. That’s OK! Do what you can, incomplete responses are fine, incomplete questions are OK, and just be sure to check the answer key for places you were stuck. That said, <strong>be sure to <em>try</em> the visualization exercises (4, 6, &amp; 10)</strong>!</p>
 </div>
 </div>
 </section>
@@ -438,8 +468,8 @@ Important
 <p>The description of the variables, i.e.&nbsp;the <strong>codebook</strong>, is given below.</p>
 <table class="table">
 <colgroup>
-<col style="width: 29%">
-<col style="width: 70%">
+<col style="width: 30%">
+<col style="width: 69%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -722,7 +752,7 @@ Important
 </div>
 <section id="exercise-9" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-9">Exercise 9</h3>
-<p>Which STEM majors have median salaries equal to or less than the median for all majors’s median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major as and should be sorted such that the major with the highest median earning is on top.</p>
+<p>Which STEM majors have median salaries equal to or less than the median for all majors’ median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major as and should be sorted such that the major with the highest median earning is on top.</p>
 </section>
 </section>
 <section id="what-types-of-majors-do-women-tend-to-major-in" class="level2">

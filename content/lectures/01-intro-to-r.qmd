@@ -16,6 +16,7 @@ format:
     footer: <https://cogs137.github.io/website/>
     execute:
      echo: true
+     output: true
 ---
 
 # Introduction to R {background-color="#92A86A"}
@@ -148,7 +149,7 @@ class(first_variable)
 ## Basic Variable Types {.scrollable}
 
 | Variable Type | Explanation                       | Example                                     |
-|---------------|-----------------------------------|---------------------------------------------|
+|----------------|------------------------|--------------------------------|
 | character     | stores a string                   | `"cogs137"`, `"hi!"`                        |
 | numeric       | stores whole numbers and decimals | `9`, `9.29`                                 |
 | integer       | specifies integer                 | `9L` (the `L` specifies this is an integer) |

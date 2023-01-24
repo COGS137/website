@@ -1,5 +1,5 @@
 ---
-title: "Lab 03 - EDA & Viz"
+title: "Lab 03 - Data Visualization"
 date: "2023-01-27"
 output: 
   html: 
@@ -31,7 +31,7 @@ We should also note that there are many considerations that go into picking a ma
 To get started, accept the lab03 assignment (link on Canvas), clone the repo (using SSH) into RStudio on datahub. Update the author name at the top of the .Rmd file in the YAML to be your name. And, then you're ready to go!
 
 ::: callout-important
-Heads up...this lab is longer than what you can likely accomplish in 1h. This is by design. If you fly through labs b/c you've got experience, we want to make sure you've got things to explore and continue to learn! If you're new to R and the `tidyverse`, you're not going to get through the whole lab. That's OK! Do what you can, incomplete responses are fine, incomplete questions are OK, and just be sure to check the answer key for places you were stuck.
+Heads up...this lab is longer than what you can likely accomplish in 1h. This is by design. If you fly through labs b/c you've got experience, we want to make sure you've got things to explore and continue to learn! If you're new to R and the `tidyverse`, you're not going to get through the whole lab. That's OK! Do what you can, incomplete responses are fine, incomplete questions are OK, and just be sure to check the answer key for places you were stuck. That said, **be sure to *try* the visualization exercises (4, 6, & 10)**!
 :::
 
 # Setup
@@ -77,7 +77,7 @@ glimpse(college_recent_grads)
 The description of the variables, i.e. the **codebook**, is given below.
 
 | Header                         | Description                                                                |
-|:-------------------------------|:---------------------------------------------------------------------------|
+|:---------------------|:------------------------------------------------|
 | `rank`                         | Rank by median earnings                                                    |
 | `major_code`                   | Major code, FO1DP in ACS PUMS                                              |
 | `major`                        | Major description                                                          |
@@ -284,7 +284,7 @@ college_recent_grads |>
 
 ### Exercise 9
 
-Which STEM majors have median salaries equal to or less than the median for all majors's median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major as and should be sorted such that the major with the highest median earning is on top.
+Which STEM majors have median salaries equal to or less than the median for all majors' median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major as and should be sorted such that the major with the highest median earning is on top.
 
 ## What types of majors do women tend to major in?
 

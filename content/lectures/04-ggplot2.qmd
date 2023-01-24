@@ -1,0 +1,682 @@
+---
+title: "04-ggplot2"
+author: "Professor Shannon Ellis"
+date: "2023-01-24"
+
+format:
+  html: 
+    output-file: 04-ggplot2.html
+  revealjs:
+    output-file: 04-ggplot2-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    execute:
+     eval: true
+     echo: true
+     output: true
+---
+
+# Data Visualization with `ggplot2` `r emo::ji("heart")` `r emo::ji("penguin")` {background-color="#92A86A"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(palmerpenguins)
+library(DT)
+library(emo)
+
+# Set dpi and height for images
+knitr::opts_chunk$set(fig.height = 2.65, dpi = 300, echo=TRUE) 
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+## Q&A {.smaller}
+
+> Q:Can we have a demo in class on how to clone our repo and check if our Github submissions submitted properly? I am having trouble doing this.\
+> A: Yes! Let's do that today.
+
+> Q: Does `left_join(a, b)` = `right_join(b, a)`?\
+> A: No. The total information would be equivalent but the order of columns would differ. In the left join, the columns from `a` would be first and in the right join, the colums from `b` would be listed first. But the actual rows that are joined/included would be the same.
+
+> Q: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions? \
+> A: You're allowed to store variables into a new data frame whenever you'd like! Now, the more variables you create, the more to keep track of, so I would encourage you to store your output any time you make a "substantial" change to your data. So, say you do a filter, selection, and mutate to get your data into the format for analysis. I wouldn't store after each step, but I would store it after I wrote the pipe doing all three. Follow up if this doesn't clarify!
+
+> Q: I think the left_join, right_join, and full_join was pretty confusing.\
+> A: You're right! It is confusing. We'll go through more examples and get more practice!
+
+
+## Course Announcements
+
+**Due Dates**:
+
+-   **Lab 03** due Friday (1/27; 11:59 PM)
+-   Lecture Participation survey "due" after class
+
+**Course Announcements**:
+
+- Happy New Year!
+- GitHub assignment clone + submission demo
+- Lab02 Notes:
+  - Look at the answer key: 
+  - grouping by name *and* year 
+  - can add text outside of code chunks; discuss variable reference
+  - solutions to optional exercises 
+
+## ggplot2 $\in$ tidyverse
+
+::: columns
+::: {.column width="20%"}
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/04/ggplot2-part-of-tidyverse.png")
+```
+:::
+
+::: {.column width="80%"}
+-   **ggplot2** is tidyverse's data visualization package
+-   Structure of the code for plots can be summarized as
+
+```{r eval = FALSE}
+ggplot(data = [dataset], 
+       mapping = aes(x = [x-variable], 
+                     y = [y-variable])) +
+   geom_xxx() +
+   other options
+```
+:::
+:::
+
+## Data: Palmer Penguins
+
+Measurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.
+
+::: columns
+::: {.column width="30%"}
+```{r echo=FALSE, out.width="80%"}
+knitr::include_graphics("images/04/penguins.png")
+```
+:::
+
+::: {.column width="70%"}
+```{r}
+# install.packages("palmerpenguins")
+library(palmerpenguins)
+glimpse(penguins)
+```
+:::
+:::
+
+::: aside
+Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations/) <a href="https://twitter.com/allison_horst" title="allison_horst"><i class="fa fa-twitter"></i></a>
+:::
+
+## The Data {.smaller}
+
+```{r message=FALSE}
+penguins |>
+  datatable()
+```
+
+## A Plot
+
+```{r ref.label = "penguins", echo = FALSE, warning = FALSE, out.width = "50%"}
+```
+
+```{r penguins, fig.show = "hide"}
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm, y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species") +
+  scale_color_viridis_d()
+
+```
+
+# Coding out loud {background-color="#92A86A"}
+
+##  {.smaller}
+
+> **Start with the `penguins` data frame**
+
+```{r penguins-0, warning = FALSE}
+#| output-location: column
+
+ggplot(data = penguins) 
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, **map bill depth to the x-axis**
+
+```{r penguins-1}
+#| output-location: column
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm))
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis **and map bill length to the y-axis.**
+
+```{r penguins-2}
+#| output-location: column
+#| code-line-numbers: "2-3"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) 
+```
+
+##  {.smaller}
+
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. **Represent each observation with a point**
+
+```{r penguins-3, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "4"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm)) + 
+  geom_point() 
+```
+
+##  {.smaller}
+
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point **and map species to the color of each point.**
+
+```{r penguins-4, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "4"
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) + 
+  geom_point()
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. **Title the plot "Bill depth and length"**
+
+```{r penguins-5, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "6"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length") 
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot "Bill depth and length", **add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins"**
+
+```{r penguins-6, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "7"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins") 
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot "Bill depth and length", add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", **label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively**
+
+```{r penguins-7, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "8"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)") 
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot "Bill depth and length", add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively, **label the legend "Species"**
+
+```{r penguins-8, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "9"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species") 
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot "Bill depth and length", add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively, label the legend "Species", **and add a caption for the data source.**
+
+```{r penguins-9, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "10"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") 
+```
+
+##  {.smaller}
+
+> Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot "Bill depth and length", add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively, label the legend "Species", and add a caption for the data source. **Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.**
+
+```{r penguins-10, warning = FALSE}
+#| output-location: column
+#| code-line-numbers: "11"
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_color_viridis_d() 
+```
+
+## Coding out loud {.smaller}
+
+::: panel-tabset
+
+### Code
+
+```{r penguins-10-nohighlight, fig.show = "hide"}
+
+ggplot(data = penguins,
+       mapping = aes(x = bill_depth_mm,
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  labs(title = "Bill depth and length",
+       subtitle = "Dimensions for Adelie, Chinstrap, and Gentoo Penguins",
+       x = "Bill depth (mm)", y = "Bill length (mm)",
+       color = "Species",
+       caption = "Source: Palmer Station LTER / palmerpenguins package") +
+  scale_color_viridis_d()
+```
+
+### Plot
+
+```{r ref.label="penguins-10-nohighlight", echo = FALSE, warning = FALSE, out.width = "90%", fig.width = 8}
+```
+
+### Narrative
+
+Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis.
+
+Represent each observation with a point and map species to the color of each point.
+
+Title the plot "Bill depth and length", add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively, label the legend "Species", and add a caption for the data source.
+
+Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.
+
+:::
+
+## Argument names
+
+::: callout-tip
+You can omit the names of first two arguments when building plots with `ggplot()`.
+:::
+
+::: columns
+::: {.column width="50%"}
+```{r named-args, eval = FALSE}
+#| code-line-numbers: "1-2"
+
+ggplot(data = penguins, 
+       mapping = aes(x = bill_depth_mm,  
+                     y = bill_length_mm,
+                     color = species)) +
+  geom_point() +
+  scale_color_viridis_d()
+```
+:::
+
+::: {.column width="50%"}
+```{r not-named-args, eval = FALSE}
+#| code-line-numbers: "1-2"
+ggplot(penguins, 
+       aes(x = bill_depth_mm, 
+           y = bill_depth_mm,
+           color = species)) +
+  geom_point() +
+  scale_color_viridis_d()
+```
+:::
+:::
+
+
+
+## Your Turn
+
+Generate a basic plot in `ggplot2` using different variables than those in the last example (last example: `bill_depth_mm` & `bill_depth_mm`).
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
+
+# Aesthetics {background-color="#92A86A"}
+
+## Aesthetics options
+
+Commonly used characteristics of plotting characters that can be **mapped to a specific variable** in the data are
+
+-   `color`
+-   `shape`
+-   `size`
+-   `alpha` (transparency)
+
+## Color
+
+```{r color, warning = FALSE}
+#| code-line-numbers: "4"
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species)) + 
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+## Shape
+
+Mapped to a different variable than `color`
+
+```{r shape-island, warning = FALSE}
+#| code-line-numbers: "5"
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = island)) + 
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+## Shape
+
+Mapped to same variable as `color`
+
+```{r shape-species, warning = FALSE}
+#| code-line-numbers: "4-5"
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = species)) + 
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+## Size
+
+```{r size, warning = FALSE}
+#| code-line-numbers: "6"
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = species,
+           size = body_mass_g)) + 
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+## Alpha
+
+```{r alpha, warning = FALSE}
+#| code-line-numbers: "7"
+ggplot(penguins,
+       aes(x = bill_depth_mm, 
+           y = bill_length_mm,
+           color = species,
+           shape = species,
+           size = body_mass_g,
+           alpha = flipper_length_mm)) + 
+  geom_point() +
+  scale_color_viridis_d()
+```
+
+## Mapping vs. setting
+
+-   **Mapping:** Determine the size, alpha, etc. of points based on the values of a variable in the data
+    -   goes into `aes()`
+-   **Setting:** Determine the size, alpha, etc. of points **not** based on the values of a variable in the data
+    -   goes into `geom_*()` (this was `geom_point()` in the previous example, but we'll learn about other geoms soon!)
+
+## Mapping vs. Setting (example)
+
+::: columns
+::: {.column width="50%"}
+**Mapping**
+
+```{r warning = FALSE, out.width = "100%"}
+#| code-line-numbers: "4-5"
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm,
+           size = body_mass_g, 
+           alpha = flipper_length_mm)) + 
+  geom_point()
+```
+:::
+
+::: {.column width="50%"}
+**Setting**
+
+```{r warning = FALSE, out.width = "100%"}
+#| code-line-numbers: "4"
+ggplot(penguins,
+       aes(x = bill_depth_mm,
+           y = bill_length_mm)) + 
+  geom_point(size = 2, alpha = 0.5) 
+```
+:::
+:::
+
+## Your Turn
+
+Edit the basic plot you created earlier to change something about its aesthetics.
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
+
+
+
+# Faceting {background-color="#92A86A"}
+
+## Faceting
+
+-   Smaller plots that display different subsets of the data
+-   Useful for exploring conditional relationships and large data
+
+. . .
+
+```{r ref.label = "facet", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+```{r facet, fig.show = "hide"}
+#| code-line-numbers: "3"
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ island) 
+```
+
+## Various ways to facet
+
+[`r emo::ji("brain")` In the next few slides describe what each plot displays. Think about how the code relates to the output.]{style="background-color: #ADD8E6"}
+
+
+::: {.callout-warning}
+ The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots. But you should always label your plots! 
+:::
+
+## 
+
+```{r warning = FALSE}
+#| code-line-numbers: "3"
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(species ~ sex) 
+```
+
+## 
+
+```{r warning = FALSE}
+#| code-line-numbers: "3"
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(sex ~ species) 
+```
+
+
+## 
+
+```{r warning = FALSE, fig.asp = 0.5}
+#| code-line-numbers: "3"
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species) 
+```
+
+## 
+
+```{r warning = FALSE, fig.asp = 0.5}
+#| code-line-numbers: "3"
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_grid(. ~ species) 
+```
+
+## 
+
+```{r warning = FALSE}
+#| code-line-numbers: "3"
+ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + 
+  geom_point() +
+  facet_wrap(~ species, ncol = 2) 
+```
+
+
+## Faceting summary
+
+-   `facet_grid()`:
+    -   2d grid
+    -   `rows ~ cols`
+    -   use `.` for no split
+-   `facet_wrap()`: 1d ribbon wrapped according to number of rows and columns specified or available plotting area
+
+
+
+## Facet and color
+
+```{r facet-color-legend, warning = FALSE}
+#| code-line-numbers: "5,8"
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+      color = species)) + 
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() 
+```
+
+
+
+## Face and color, no legend
+
+```{r facet-color-no-legend, warning = FALSE}
+#| code-line-numbers: "9"
+
+ggplot(
+  penguins, 
+  aes(x = bill_depth_mm, 
+      y = bill_length_mm, 
+      color = species)) +
+  geom_point() +
+  facet_grid(species ~ sex) +
+  scale_color_viridis_d() +
+  guides(color = FALSE) 
+```
+
+
+# `geom`s {background-color="#92A86A"}
+
+## Common `geom`s
+
+| `geom` [^1] | Description [^2] |
+|---------------------|--------------------------|
+| `geom_point`        | scatterplot              |
+| `geom_bar`          | barplot                  |
+| `geom_line`         | line plot                |
+| `geom_density`      | densityplot              |
+| `geom_histogram`    | histogram                |
+| `geom_boxplot`      | boxplot                  |
+
+[^1]: `ggplot2` geoms listed [here](https://ggplot2.tidyverse.org/reference/)
+
+[^2]: When each visualization is appropriate [here](https://www.data-to-viz.com/)
+
+## Your Turn
+
+Generate a plot in `ggplot2` using a different `geom` than what you did previously. Customize as much as you can before time is "up."
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
+
+# Recap {background-color="#92A86A"}
+
+-   Can I explain the overall structure of a call to generate a plot in `ggplot2`?
+-   Can I describe `ggplot2` code? Can I create plots using `ggplot2`?
+-   Can I alter the aesthetics of a basic plot? (color, shape, size, transparency)
+-   Am I able to facet a plot to generate a grid of figures
+-   Can I describe what a `geom` is and do I know the basic plots available?
+
+## Suggested Reading
+
+R4DS:
+
+-   Chapter 3: [Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
+

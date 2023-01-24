@@ -47,6 +47,8 @@ website:
             href: content/lectures/02-dplyr-slides.html
           - text: "03-tidyr"
             href: content/lectures/03-tidyr-slides.html
+          - text: "04-ggplot2"
+            href: content/lectures/04-ggplot2-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -57,18 +59,26 @@ website:
             href: content/lectures/02-dplyr.qmd
           - text: "03-tidyr"
             href: content/lectures/03-tidyr.qmd
+          - text: "04-ggplot2"
+            href: content/lectures/04-ggplot2.qmd
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"
             href: content/labs/01-lab-intro-r.qmd
           - text: "Lab02: Wrangling"
             href: content/labs/02-lab-wrangling.qmd
+          - text: "Lab03: Data Viz"
+            href: content/labs/03-lab-viz.qmd
       - section: "Lab Slides"
         contents:
           - text: "Lab01"
             href: content/labslides/01-lab-deck.qmd
           - text: "Lab02"
             href: content/labslides/02-lab-deck.qmd
+      - section: "Lab Answers"
+        contents:
+          - text: "Lab02: Wrangling (Ans)"
+            href: content/lab-ans/lab02-wrangling-ans.qmd
       - section: "Homework"
         contents:
           - text: "HW01"

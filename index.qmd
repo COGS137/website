@@ -38,10 +38,10 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 Texts are freely available online:
 
-|                                                                         |                                |                              |
+|                                                                         |                             |                              |
 |-------------------------------------|------------------|------------------|
-| [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) | Çetinkaya-Rundeland and Hardin | OpenIntro, 1st Edition, 2021 |
-| [R for Data Science](http://r4ds.had.co.nz/)                            | Grolemund and Wickham          | O'Reilly, 1st edition, 2016  |
+| [Introduction to Modern Statistics](https://openintro-ims.netlify.app/) | Çetinkaya-Rundel and Hardin | OpenIntro, 1st Edition, 2021 |
+| [R for Data Science](http://r4ds.had.co.nz/)                            | Grolemund and Wickham       | O'Reilly, 1st edition, 2016  |
 
 ### Materials
 

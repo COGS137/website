@@ -21,9 +21,21 @@ library(tidyverse)
 
 ## Reminders
 
-- Start with `library(tidyverse)` (includes `tidyr`, `readr`, `dplyr`, etc.)
-- Clone using 'SSH' link from GitHub
-- Knit to .html & push both .Rmd and .html to GitHub
+-   Start with `library(tidyverse)` (includes `tidyr`, `readr`, `dplyr`, etc.)
+-   Clone using 'SSH' link from GitHub
+-   Knit to .html & push both .Rmd and .html to GitHub
+
+## Starting a new project
+
+- Go to Canvas to find the link for today's lab: lab03-wi23.
+
+- On GitHub, click on the green Clone or download button, select use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.
+
+- Go to RStudio on datahub. Create a New Project from Git Repo. You will need to click on the down arrow next to the New Project button to see this option.
+
+- Copy and paste the URL of your assignment repo into the dialog box and hit OK.
+
+- Open the .Rmd file with your template in it. Be sure to update the author to your name. 
 
 ## Agenda
 

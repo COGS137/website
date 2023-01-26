@@ -8,6 +8,8 @@ format:
     output-file: 05-viz.html
     execute:
       output: true
+      echo: true
+      eval: true
   revealjs:
     output-file: 05-viz-slides.html
     slide-number: true

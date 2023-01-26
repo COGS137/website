@@ -77,7 +77,7 @@ glimpse(college_recent_grads)
 The description of the variables, i.e. the **codebook**, is given below.
 
 | Header                         | Description                                                                |
-|:---------------------|:------------------------------------------------|
+|:-------------------------------|:---------------------------------------------------------------------------|
 | `rank`                         | Rank by median earnings                                                    |
 | `major_code`                   | Major code, FO1DP in ACS PUMS                                              |
 | `major`                        | Major description                                                          |

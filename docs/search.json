@@ -140,6 +140,48 @@
     "text": "This assignment is meant to get you comfortable with 1) the format of homework assignments in this course and 2) writing R code in RStudio. The specific questions on this assignment will be simpler and should take you less time than those on future assignments. This assignment focuses on variables, operators, datasets, and dplyr basics.\n\nGetting started\nHere are the steps for getting started:\n\nStart by navigating to the hw01 GitHub URL (found on Canvas)\nClone this repo into RStudio on datahub\nMake any changes needed as outlined by the tasks you need to complete for the assignment\nPeriodically knit your file and take a look at the document generated\nCommit changes (for example, once per each new part)\nPush all your changes back to your GitHub repo\n\nYou can of course push multiple to GitHub times throughout the assignment. Your final push at the deadline will be used for grading. (This means even if you made mistakes before that on GitHub, you wouldn’t be penalized for them, so long as the final state of your work is correct).\n\n\n\n\n\n\nImportant\n\n\n\nYou’ll always want to knit your RMarkdown document to HTML and review that HTML document to ensure it includes all the information you want and looks as you intended, as we grade from the knit HTML. Both your .Rmd and .html files should be on GitHub."
   },
   {
+    "objectID": "content/hw/hw-02.html",
+    "href": "content/hw/hw-02.html",
+    "title": "HW 02 - Data Visualization",
+    "section": "",
+    "text": "This assignment is meant to get you more comfortable with generating and customizing visualizations in R using ggplot2. The first section will guide you toward the visualizations you’re expected to generate, while the final two sections will be more open-ended. There are multiple distinct visualizations that could be totally “correct” for each question. You may make a different decision than your classmate and could both be correct.\nAlso, note that the final two parts of this assignment will take you way longer than you think they will. Definitely do not wait until the last minute to start this assignment."
+  },
+  {
+    "objectID": "content/hw/hw-02.html#getting-started",
+    "href": "content/hw/hw-02.html#getting-started",
+    "title": "HW 02 - Data Visualization",
+    "section": "Getting started",
+    "text": "Getting started\nHere are the steps for getting started:\n\nStart with an assignment link that creates a repo on GitHub with starter documents (link on Canvas).\nClone this repo into RStudio on datahub\nMake any changes needed as outlined by the tasks you need to complete for the assignment\nPeriodically commit changes (for example, once per each new part)\nPush all your changes back to your GitHub repo\nThis assignment will be graded from GitHub.\n\nYour final GitHub push prior to the deadline will be used for grading. (This means even if you made mistakes before that submission on GitHub, you won’t be penalized for them, so long as the final state of your work is correct).\n\nImports\nThe following packages must be imported prior to completing this homework: tidyverse and palmerpenguins (Note: If you did not install palmerpenguins during lecture, you’ll have to run install.packages(\"palmerpenguins\") prior to importing it.)\n\n\nGround Rules\nFor this assignment, all visualizations must:\n\nbe completed using ggplot2\nhave an informative title and labeled axes\nfollow good visualization practices (discussed in class)"
+  },
+  {
+    "objectID": "content/hw/hw-02.html#part-i-ggplot2",
+    "href": "content/hw/hw-02.html#part-i-ggplot2",
+    "title": "HW 02 - Data Visualization",
+    "section": "Part I: ggplot2",
+    "text": "Part I: ggplot2\nThis first section will continue to use the penguins dataset from the palmerpenguins package that was used during the ggplot2 lecture.\n\nQuestion 1\nGenerate a visualization that will allow readers to determine whether male or female penguins are larger (by mass).\n\n\nQuestion 2\nGenerate a barplot that visualizes how many penguins there are from each species on each island. Each island should be a different panel (in a 1 row x 3 columns visualization), and each chart should visualize the species count.\n\n\nQuestion 3\nGenerate a scatterplot that will allow the viewer to determine whether flipper length has differed over time. Be sure to color the points on this plot by species."
+  },
+  {
+    "objectID": "content/hw/hw-02.html#part-ii-imitation-is-the-highest-form-of-flattery",
+    "href": "content/hw/hw-02.html#part-ii-imitation-is-the-highest-form-of-flattery",
+    "title": "HW 02 - Data Visualization",
+    "section": "Part II: Imitation is the highest form of flattery",
+    "text": "Part II: Imitation is the highest form of flattery\nIn class we learned a handful of ways to customize visualizations. Now, it’s your turn to apply what you learned by recreating someone else’s visualization.\n\nQuestion 4\nFor this question, find a visualization somewhere on the Internet and recreate the visualization as close as you can using ggplot2. To make this easier on yourself, you’ll likely want to find a visualization where the data are readily available. (To get started, FiveThirtyEight makes a lot of the data from their articles available and has many charts in their articles. You are not required to recreate a visualization from FiveThirtyEight; however, if you’re not sure where to start, you have this option.) Your answer should include an image of the original visualization, a reference to the original image (this could simply be a URL), and your code + recreation.\nNotes: - To insert an image in an RMarkdown document, you can use the syntax ![alt text](path/to/image.png). - The R/ggplot2 code to create your visualization cannot already exist on the internet. (For example, choosing to recreate a plot from the R Graph Gallery would not be an option b/c all the code is already there and you wouldn’t learn as much.)\n\n\nQuestion 5\nBriefly explain what you learned about ggplot2 in the process of re-creating this visualization.\n\n\nQuestion 6\nExplain how your visualization differs from the original (It’s OK if yours is not a perfect recreation!)"
+  },
+  {
+    "objectID": "content/hw/hw-02.html#part-iii-take-a-sad-plot-and-make-it-better",
+    "href": "content/hw/hw-02.html#part-iii-take-a-sad-plot-and-make-it-better",
+    "title": "HW 02 - Data Visualization",
+    "section": "Part III: Take a sad plot and make it better",
+    "text": "Part III: Take a sad plot and make it better\n\nQuestion 7\nThis question was inspired by Alison Hill’s talk. The idea here is that there is a lot of data all around us and a whole bunch of visualizations. Some of them are really excellent, and some could be improved. Choose a visualization you’ve created in the past OR a visualization you’ve found out in the world that could benefit from a redesign and/or significant visual improvement. (This could be the same visualization you recreated above, but for most it will likely be a totally different visualization.) Your answer should include an image of the original visualization, a reference to the original image (this could simply be a URL), and your code + improved version.\nNote: If you’re unsure where to look for visualizations that would benefit from improvement, check out Flowing Data’s Ugly Charts or Reddit’s Data is ugly. You may need to recreate the dataset (meaning store the values from the visualization in a tibble) needed to generate the visualization prior to improving the design.\n\n\nQuestion 8\nBriefly explain what you learned about ggplot2 in the process of re-creating this visualization.\n\n\nQuestion 9\nExplain why you made the design and visualization choices you did for your improved version."
+  },
+  {
+    "objectID": "content/hw/hw-02.html#submission",
+    "href": "content/hw/hw-02.html#submission",
+    "title": "HW 02 - Data Visualization",
+    "section": "Submission",
+    "text": "Submission\nBe sure to knit your file to HTML, look at the output HTML file to make sure everything looks as you expected, and then commit and push your final changes to GitHub. We will be grading from the HTML file. Before you wrap up the assignment, make sure all documents are updated on your GitHub repo."
+  },
+  {
     "objectID": "content/labslides/02-lab-deck.html#reminders",
     "href": "content/labslides/02-lab-deck.html#reminders",
     "title": "Lab 02: Wrangling",
@@ -845,6 +887,454 @@
     "title": "00-welcome",
     "section": "I’d like to know more!",
     "text": "I’d like to know more!\n(optional) Student Survey - complete by Monday at 11:59 PM for small amount of extra credit\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\nhttps://cogs137.github.io/website/\n\n\n\nNote: Links to both surveys are also on Canvas."
+  },
+  {
+    "objectID": "content/lectures/05-viz.html",
+    "href": "content/lectures/05-viz.html",
+    "title": "05-viz",
+    "section": "",
+    "text": "Slides modified from datascienceinabox.org\n\n\n\nQ: What were those columns in the NC Bike Accident Data we used?\nA: Variables are described here\n\n\nQ: I was confused by wrap vs grid and how should I choose between them.\nA: When you want to generate a plot that uses two other variables in the dataset to determine which subset of the data to plot, grid! When you want to use a single variable to facet your data and want to specify how many columns/rows to display, wrap!\n\n\nQ: When programming in R so far, I often find myself stuck at getting going on a problem and have a different time identifying on where to start. Any tips/advice on how to get past this initial bump in order to start getting through the problem?\nA: This is a common struggle! This may sound like an old-person response, but jotting down what you have and what you want (like on actual paper/iPad) can be really helpful. For example, if you have 3 columns and you know you want to have 3 columns at the end, but you want fewer rows, you can draw a picture of this and help yourself realize you need a filter. Of course when there are multiple steps, the drawings become a bit more complex…but also more helpful! The same can be said for data visualization. Drawing out quickly what you want can help you get started.\n\n\nQ:In what time frame will the lecture survey be available, how many hours after class will the survey be closed\nA: It will be open for at least 2h.\n\n\nQ:For HW1 Q7, I used read_csv and got an error message. I tried read.csv and it worked. Is there any difference between read_csv and read.csv?\nA: Hmm…I’d love to take a look to see what error you got. They are similar and often behave the same way. The difference is read.csv() was made before the tidyverse, so it reads your data in as a dataframe. read_csv() is a function that “plays nicely” with the tidyverse and reads the data in as a tibble/data frame. What does that mean practically? It means that typically each one will read the data in and you’ll get the same number of rows and columns. What could differ would be the column names and/or the column types (depending upon the data). All that said, read_csv() is what I’ll recommend in this course…so that’s why I’m curious about the error you got!\n\n\n\n\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements:\n\nLab02 Grades (Canvas) & Feedback (GitHub Issue) Posted\nDiscord? - Campuswire post\n“Vote” on posts when grades released (pink: send message; green: announce in class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCredit: Angela Zoss and Eric Monson, Duke DVS"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#principles-for-effective-visualizations-1",
+    "href": "content/lectures/05-viz.html#principles-for-effective-visualizations-1",
+    "title": "05-viz",
+    "section": "Principles for effective visualizations",
+    "text": "Principles for effective visualizations\n\nOrder matters\nPut long categories on the y-axis\nKeep scales consistent\nSelect meaningful colors\nUse meaningful and nonredundant labels"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#data",
+    "href": "content/lectures/05-viz.html#data",
+    "title": "05-viz",
+    "section": "Data",
+    "text": "Data\nIn September 2019, YouGov survey asked 1,639 GB adults the following question:\n\n\n\nIn hindsight, do you think Britain was right/wrong to vote to leave EU?\n\nRight to leave\n\nWrong to leave\n\nDon’t know\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource: YouGov Survey Results, retrieved Oct 7, 2019"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#the-data-code",
+    "href": "content/lectures/05-viz.html#the-data-code",
+    "title": "05-viz",
+    "section": "The Data: Code",
+    "text": "The Data: Code\n\nbrexit <- tibble(\n  opinion = c(\n    rep(\"Right\", 664), rep(\"Wrong\", 787), rep(\"Don't know\", 188)\n  ),\n  region = c(\n    rep(\"london\", 63), rep(\"rest_of_south\", 241), rep(\"midlands_wales\", 145), rep(\"north\", 176), rep(\"scot\", 39),\n    rep(\"london\", 110), rep(\"rest_of_south\", 257), rep(\"midlands_wales\", 152), rep(\"north\", 176), rep(\"scot\", 92),\n    rep(\"london\", 24), rep(\"rest_of_south\", 49), rep(\"midlands_wales\", 57), rep(\"north\", 48), rep(\"scot\", 10)\n  )\n)"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#order-matters",
+    "href": "content/lectures/05-viz.html#order-matters",
+    "title": "05-viz",
+    "section": "Order matters",
+    "text": "Order matters\nAlphabetical is rarely ideal\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(x = opinion)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#order-by-frequency",
+    "href": "content/lectures/05-viz.html#order-by-frequency",
+    "title": "05-viz",
+    "section": "Order by frequency",
+    "text": "Order by frequency\n\nPlotCode\n\n\n\n\n\n\n\n\n\nfct_infreq: Reorder factors’ levels by frequency\n\nggplot(brexit, aes(x = fct_infreq(opinion))) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#clean-up-labels",
+    "href": "content/lectures/05-viz.html#clean-up-labels",
+    "title": "05-viz",
+    "section": "Clean up labels",
+    "text": "Clean up labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(x = opinion)) +\n  geom_bar() +\n  labs( \n    x = \"Opinion\", \n    y = \"Count\" \n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#avoiding-alphabetical-order",
+    "href": "content/lectures/05-viz.html#avoiding-alphabetical-order",
+    "title": "05-viz",
+    "section": "Avoiding Alphabetical Order",
+    "text": "Avoiding Alphabetical Order\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(x = region)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#use-inherent-level-order",
+    "href": "content/lectures/05-viz.html#use-inherent-level-order",
+    "title": "05-viz",
+    "section": "Use inherent level order",
+    "text": "Use inherent level order\n\nRelevelPlot\n\n\nfct_relevel: Reorder factor levels using a custom order\n\nbrexit <- brexit |>\n  mutate(\n    region = fct_relevel( \n      region,\n      \"london\", \"rest_of_south\", \"midlands_wales\", \"north\", \"scot\"\n    )\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#clean-up-labels-1",
+    "href": "content/lectures/05-viz.html#clean-up-labels-1",
+    "title": "05-viz",
+    "section": "Clean up labels",
+    "text": "Clean up labels\n\nRecodePlot\n\n\nfct_recode: Change factor levels by hand\n\nbrexit <- brexit |>\n  mutate(\n    region = fct_recode( \n      region,\n      London = \"london\",\n      `Rest of South` = \"rest_of_south\",\n      `Midlands / Wales` = \"midlands_wales\",\n      North = \"north\",\n      Scotland = \"scot\"\n    )\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#move-them-to-the-y-axis",
+    "href": "content/lectures/05-viz.html#move-them-to-the-y-axis",
+    "title": "05-viz",
+    "section": "Move them to the y-axis",
+    "text": "Move them to the y-axis\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = region)) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#and-reverse-the-order-of-levels",
+    "href": "content/lectures/05-viz.html#and-reverse-the-order-of-levels",
+    "title": "05-viz",
+    "section": "And reverse the order of levels",
+    "text": "And reverse the order of levels\n\nPlotCode\n\n\n\n\n\n\n\n\n\nfct_rev: Reverse order of factor levels\n\nggplot(brexit, aes(y = fct_rev(region))) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#clean-up-labels-2",
+    "href": "content/lectures/05-viz.html#clean-up-labels-2",
+    "title": "05-viz",
+    "section": "Clean up labels",
+    "text": "Clean up labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = fct_rev(region))) +\n  geom_bar() +\n  labs( \n    x = \"Count\", \n    y = \"Region\" \n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#segmented-bar-plots-can-be-hard-to-read",
+    "href": "content/lectures/05-viz.html#segmented-bar-plots-can-be-hard-to-read",
+    "title": "05-viz",
+    "section": "Segmented bar plots can be hard to read",
+    "text": "Segmented bar plots can be hard to read\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = region, fill = opinion)) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#use-facets",
+    "href": "content/lectures/05-viz.html#use-facets",
+    "title": "05-viz",
+    "section": "Use facets",
+    "text": "Use facets\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = region)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1)"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#avoid-redundancy",
+    "href": "content/lectures/05-viz.html#avoid-redundancy",
+    "title": "05-viz",
+    "section": "Avoid redundancy?",
+    "text": "Avoid redundancy?"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#redundancy-can-help-tell-a-story",
+    "href": "content/lectures/05-viz.html#redundancy-can-help-tell-a-story",
+    "title": "05-viz",
+    "section": "Redundancy can help tell a story",
+    "text": "Redundancy can help tell a story\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1)"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#be-selective-with-redundancy",
+    "href": "content/lectures/05-viz.html#be-selective-with-redundancy",
+    "title": "05-viz",
+    "section": "Be selective with redundancy",
+    "text": "Be selective with redundancy\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\")"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#use-informative-labels",
+    "href": "content/lectures/05-viz.html#use-informative-labels",
+    "title": "05-viz",
+    "section": "Use informative labels",
+    "text": "Use informative labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\", \n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#a-bit-more-info",
+    "href": "content/lectures/05-viz.html#a-bit-more-info",
+    "title": "05-viz",
+    "section": "A bit more info",
+    "text": "A bit more info\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\",\n    subtitle = \"YouGov Survey Results, 2-3 September 2019\", \n    caption = \"Source: https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/x0msmggx08/YouGov%20-%20Brexit%20and%202019%20election.pdf\", \n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#lets-do-better",
+    "href": "content/lectures/05-viz.html#lets-do-better",
+    "title": "05-viz",
+    "section": "Let’s do better",
+    "text": "Let’s do better\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\",\n    subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n    caption = \"Source: bit.ly/2lCJZVg\", \n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#fix-up-facet-labels",
+    "href": "content/lectures/05-viz.html#fix-up-facet-labels",
+    "title": "05-viz",
+    "section": "Fix up facet labels",
+    "text": "Fix up facet labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region,\n    nrow = 1,\n    labeller = label_wrap_gen(width = 12) \n  ) + \n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\",\n    subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n    caption = \"Source: bit.ly/2lCJZVg\",\n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#rainbow-colors-not-always-best",
+    "href": "content/lectures/05-viz.html#rainbow-colors-not-always-best",
+    "title": "05-viz",
+    "section": "Rainbow colors not always best",
+    "text": "Rainbow colors not always best"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#manually-choose-colors-when-needed",
+    "href": "content/lectures/05-viz.html#manually-choose-colors-when-needed",
+    "title": "05-viz",
+    "section": "Manually choose colors when needed",
+    "text": "Manually choose colors when needed\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c( \n    \"Wrong\" = \"red\", \n    \"Right\" = \"green\", \n    \"Don't know\" = \"gray\" \n  ))"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#choosing-better-colors",
+    "href": "content/lectures/05-viz.html#choosing-better-colors",
+    "title": "05-viz",
+    "section": "Choosing better colors",
+    "text": "Choosing better colors\ncolorbrewer2.org"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#use-better-colors",
+    "href": "content/lectures/05-viz.html#use-better-colors",
+    "title": "05-viz",
+    "section": "Use better colors",
+    "text": "Use better colors\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c(\n    \"Wrong\" = \"#ef8a62\", \n    \"Right\" = \"#67a9cf\", \n    \"Don't know\" = \"gray\" \n  ))"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#select-theme",
+    "href": "content/lectures/05-viz.html#select-theme",
+    "title": "05-viz",
+    "section": "Select theme",
+    "text": "Select theme\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c(\"Wrong\" = \"#ef8a62\",\n                               \"Right\" = \"#67a9cf\",\n                               \"Don't know\" = \"gray\")) +\n  theme_minimal() \n\n\n\n\n\n\nggthemes described here"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#customize-theme",
+    "href": "content/lectures/05-viz.html#customize-theme",
+    "title": "05-viz",
+    "section": "Customize theme",
+    "text": "Customize theme\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c(\"Wrong\" = \"#ef8a62\",\n                               \"Right\" = \"#67a9cf\",\n                               \"Don't know\" = \"gray\")) +\n  theme_minimal(base_size = 16) + \n  theme(plot.title.position = \"plot\", \n        panel.grid.major.y = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#your-turn",
+    "href": "content/lectures/05-viz.html#your-turn",
+    "title": "05-viz",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nRead in the data (Data slide)\nThink of at least three different ways to tell slightly different stories with these data\nTry to implement at least one of these ideas!"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#suggested-reading",
+    "href": "content/lectures/05-viz.html#suggested-reading",
+    "title": "05-viz",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nR4DS Chapter 28: Graphics for Communication\nThe Glamour of Graphics: [video] [slides] [Prof’s slides inspired by Will’s talk]"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#qa",
+    "href": "content/lectures/05-viz-slides.html#qa",
+    "title": "05-viz",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: What were those columns in the NC Bike Accident Data we used?\nA: Variables are described here\n\n\nQ: I was confused by wrap vs grid and how should I choose between them.\nA: When you want to generate a plot that uses two other variables in the dataset to determine which subset of the data to plot, grid! When you want to use a single variable to facet your data and want to specify how many columns/rows to display, wrap!\n\n\nQ: When programming in R so far, I often find myself stuck at getting going on a problem and have a different time identifying on where to start. Any tips/advice on how to get past this initial bump in order to start getting through the problem?\nA: This is a common struggle! This may sound like an old-person response, but jotting down what you have and what you want (like on actual paper/iPad) can be really helpful. For example, if you have 3 columns and you know you want to have 3 columns at the end, but you want fewer rows, you can draw a picture of this and help yourself realize you need a filter. Of course when there are multiple steps, the drawings become a bit more complex…but also more helpful! The same can be said for data visualization. Drawing out quickly what you want can help you get started.\n\n\nQ:In what time frame will the lecture survey be available, how many hours after class will the survey be closed\nA: It will be open for at least 2h.\n\n\nQ:For HW1 Q7, I used read_csv and got an error message. I tried read.csv and it worked. Is there any difference between read_csv and read.csv?\nA: Hmm…I’d love to take a look to see what error you got. They are similar and often behave the same way. The difference is read.csv() was made before the tidyverse, so it reads your data in as a dataframe. read_csv() is a function that “plays nicely” with the tidyverse and reads the data in as a tibble/data frame. What does that mean practically? It means that typically each one will read the data in and you’ll get the same number of rows and columns. What could differ would be the column names and/or the column types (depending upon the data). All that said, read_csv() is what I’ll recommend in this course…so that’s why I’m curious about the error you got!"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#course-announcements",
+    "href": "content/lectures/05-viz-slides.html#course-announcements",
+    "title": "05-viz",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements:\n\nLab02 Grades (Canvas) & Feedback (GitHub Issue) Posted\nDiscord? - Campuswire post\n“Vote” on posts when grades released (pink: send message; green: announce in class)"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#keep-it-simple",
+    "href": "content/lectures/05-viz-slides.html#keep-it-simple",
+    "title": "05-viz",
+    "section": "Keep it simple",
+    "text": "Keep it simple"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#use-color-to-draw-attention",
+    "href": "content/lectures/05-viz-slides.html#use-color-to-draw-attention",
+    "title": "05-viz",
+    "section": "Use color to draw attention",
+    "text": "Use color to draw attention"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#tell-a-story",
+    "href": "content/lectures/05-viz-slides.html#tell-a-story",
+    "title": "05-viz",
+    "section": "Tell a story",
+    "text": "Tell a story\n\n\n\n\n\n\n\nCredit: Angela Zoss and Eric Monson, Duke DVS"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#principles-for-effective-visualizations-1",
+    "href": "content/lectures/05-viz-slides.html#principles-for-effective-visualizations-1",
+    "title": "05-viz",
+    "section": "Principles for effective visualizations",
+    "text": "Principles for effective visualizations\n\nOrder matters\nPut long categories on the y-axis\nKeep scales consistent\nSelect meaningful colors\nUse meaningful and nonredundant labels"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#data",
+    "href": "content/lectures/05-viz-slides.html#data",
+    "title": "05-viz",
+    "section": "Data",
+    "text": "Data\nIn September 2019, YouGov survey asked 1,639 GB adults the following question:\n\n\n\nIn hindsight, do you think Britain was right/wrong to vote to leave EU?\n\nRight to leave\n\nWrong to leave\n\nDon’t know\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource: YouGov Survey Results, retrieved Oct 7, 2019"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#the-data-code",
+    "href": "content/lectures/05-viz-slides.html#the-data-code",
+    "title": "05-viz",
+    "section": "The Data: Code",
+    "text": "The Data: Code\n\nbrexit <- tibble(\n  opinion = c(\n    rep(\"Right\", 664), rep(\"Wrong\", 787), rep(\"Don't know\", 188)\n  ),\n  region = c(\n    rep(\"london\", 63), rep(\"rest_of_south\", 241), rep(\"midlands_wales\", 145), rep(\"north\", 176), rep(\"scot\", 39),\n    rep(\"london\", 110), rep(\"rest_of_south\", 257), rep(\"midlands_wales\", 152), rep(\"north\", 176), rep(\"scot\", 92),\n    rep(\"london\", 24), rep(\"rest_of_south\", 49), rep(\"midlands_wales\", 57), rep(\"north\", 48), rep(\"scot\", 10)\n  )\n)"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#order-matters",
+    "href": "content/lectures/05-viz-slides.html#order-matters",
+    "title": "05-viz",
+    "section": "Order matters",
+    "text": "Order matters\nAlphabetical is rarely ideal\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(x = opinion)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#order-by-frequency",
+    "href": "content/lectures/05-viz-slides.html#order-by-frequency",
+    "title": "05-viz",
+    "section": "Order by frequency",
+    "text": "Order by frequency\n\nPlotCode\n\n\n\n\n\n\n\n\n\nfct_infreq: Reorder factors’ levels by frequency\n\nggplot(brexit, aes(x = fct_infreq(opinion))) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#clean-up-labels",
+    "href": "content/lectures/05-viz-slides.html#clean-up-labels",
+    "title": "05-viz",
+    "section": "Clean up labels",
+    "text": "Clean up labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(x = opinion)) +\n  geom_bar() +\n  labs( \n    x = \"Opinion\", \n    y = \"Count\" \n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#avoiding-alphabetical-order",
+    "href": "content/lectures/05-viz-slides.html#avoiding-alphabetical-order",
+    "title": "05-viz",
+    "section": "Avoiding Alphabetical Order",
+    "text": "Avoiding Alphabetical Order\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(x = region)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#use-inherent-level-order",
+    "href": "content/lectures/05-viz-slides.html#use-inherent-level-order",
+    "title": "05-viz",
+    "section": "Use inherent level order",
+    "text": "Use inherent level order\n\nRelevelPlot\n\n\nfct_relevel: Reorder factor levels using a custom order\n\nbrexit <- brexit |>\n  mutate(\n    region = fct_relevel( \n      region,\n      \"london\", \"rest_of_south\", \"midlands_wales\", \"north\", \"scot\"\n    )\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#clean-up-labels-1",
+    "href": "content/lectures/05-viz-slides.html#clean-up-labels-1",
+    "title": "05-viz",
+    "section": "Clean up labels",
+    "text": "Clean up labels\n\nRecodePlot\n\n\nfct_recode: Change factor levels by hand\n\nbrexit <- brexit |>\n  mutate(\n    region = fct_recode( \n      region,\n      London = \"london\",\n      `Rest of South` = \"rest_of_south\",\n      `Midlands / Wales` = \"midlands_wales\",\n      North = \"north\",\n      Scotland = \"scot\"\n    )\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#move-them-to-the-y-axis",
+    "href": "content/lectures/05-viz-slides.html#move-them-to-the-y-axis",
+    "title": "05-viz",
+    "section": "Move them to the y-axis",
+    "text": "Move them to the y-axis\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = region)) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#and-reverse-the-order-of-levels",
+    "href": "content/lectures/05-viz-slides.html#and-reverse-the-order-of-levels",
+    "title": "05-viz",
+    "section": "And reverse the order of levels",
+    "text": "And reverse the order of levels\n\nPlotCode\n\n\n\n\n\n\n\n\n\nfct_rev: Reverse order of factor levels\n\nggplot(brexit, aes(y = fct_rev(region))) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#clean-up-labels-2",
+    "href": "content/lectures/05-viz-slides.html#clean-up-labels-2",
+    "title": "05-viz",
+    "section": "Clean up labels",
+    "text": "Clean up labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = fct_rev(region))) +\n  geom_bar() +\n  labs( \n    x = \"Count\", \n    y = \"Region\" \n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#segmented-bar-plots-can-be-hard-to-read",
+    "href": "content/lectures/05-viz-slides.html#segmented-bar-plots-can-be-hard-to-read",
+    "title": "05-viz",
+    "section": "Segmented bar plots can be hard to read",
+    "text": "Segmented bar plots can be hard to read\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = region, fill = opinion)) + \n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#use-facets",
+    "href": "content/lectures/05-viz-slides.html#use-facets",
+    "title": "05-viz",
+    "section": "Use facets",
+    "text": "Use facets\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = region)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1)"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#avoid-redundancy",
+    "href": "content/lectures/05-viz-slides.html#avoid-redundancy",
+    "title": "05-viz",
+    "section": "Avoid redundancy?",
+    "text": "Avoid redundancy?"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#redundancy-can-help-tell-a-story",
+    "href": "content/lectures/05-viz-slides.html#redundancy-can-help-tell-a-story",
+    "title": "05-viz",
+    "section": "Redundancy can help tell a story",
+    "text": "Redundancy can help tell a story\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1)"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#be-selective-with-redundancy",
+    "href": "content/lectures/05-viz-slides.html#be-selective-with-redundancy",
+    "title": "05-viz",
+    "section": "Be selective with redundancy",
+    "text": "Be selective with redundancy\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\")"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#use-informative-labels",
+    "href": "content/lectures/05-viz-slides.html#use-informative-labels",
+    "title": "05-viz",
+    "section": "Use informative labels",
+    "text": "Use informative labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\", \n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#a-bit-more-info",
+    "href": "content/lectures/05-viz-slides.html#a-bit-more-info",
+    "title": "05-viz",
+    "section": "A bit more info",
+    "text": "A bit more info\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\",\n    subtitle = \"YouGov Survey Results, 2-3 September 2019\", \n    caption = \"Source: https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/x0msmggx08/YouGov%20-%20Brexit%20and%202019%20election.pdf\", \n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#lets-do-better",
+    "href": "content/lectures/05-viz-slides.html#lets-do-better",
+    "title": "05-viz",
+    "section": "Let’s do better",
+    "text": "Let’s do better\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1) +\n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\",\n    subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n    caption = \"Source: bit.ly/2lCJZVg\", \n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#fix-up-facet-labels",
+    "href": "content/lectures/05-viz-slides.html#fix-up-facet-labels",
+    "title": "05-viz",
+    "section": "Fix up facet labels",
+    "text": "Fix up facet labels\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region,\n    nrow = 1,\n    labeller = label_wrap_gen(width = 12) \n  ) + \n  guides(fill = \"none\") +\n  labs(\n    title = \"Was Britain right/wrong to vote to leave EU?\",\n    subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n    caption = \"Source: bit.ly/2lCJZVg\",\n    x = NULL, y = NULL\n  )"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#rainbow-colors-not-always-best",
+    "href": "content/lectures/05-viz-slides.html#rainbow-colors-not-always-best",
+    "title": "05-viz",
+    "section": "Rainbow colors not always best",
+    "text": "Rainbow colors not always best"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#manually-choose-colors-when-needed",
+    "href": "content/lectures/05-viz-slides.html#manually-choose-colors-when-needed",
+    "title": "05-viz",
+    "section": "Manually choose colors when needed",
+    "text": "Manually choose colors when needed\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c( \n    \"Wrong\" = \"red\", \n    \"Right\" = \"green\", \n    \"Don't know\" = \"gray\" \n  ))"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#choosing-better-colors",
+    "href": "content/lectures/05-viz-slides.html#choosing-better-colors",
+    "title": "05-viz",
+    "section": "Choosing better colors",
+    "text": "Choosing better colors\ncolorbrewer2.org"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#use-better-colors",
+    "href": "content/lectures/05-viz-slides.html#use-better-colors",
+    "title": "05-viz",
+    "section": "Use better colors",
+    "text": "Use better colors\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c(\n    \"Wrong\" = \"#ef8a62\", \n    \"Right\" = \"#67a9cf\", \n    \"Don't know\" = \"gray\" \n  ))"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#select-theme",
+    "href": "content/lectures/05-viz-slides.html#select-theme",
+    "title": "05-viz",
+    "section": "Select theme",
+    "text": "Select theme\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c(\"Wrong\" = \"#ef8a62\",\n                               \"Right\" = \"#67a9cf\",\n                               \"Don't know\" = \"gray\")) +\n  theme_minimal() \n\n\n\n\n\n\nggthemes described here"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#customize-theme",
+    "href": "content/lectures/05-viz-slides.html#customize-theme",
+    "title": "05-viz",
+    "section": "Customize theme",
+    "text": "Customize theme\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(brexit, aes(y = opinion, fill = opinion)) +\n  geom_bar() +\n  facet_wrap(~region, nrow = 1, labeller = label_wrap_gen(width = 12)) +\n  guides(fill = \"none\") +\n  labs(title = \"Was Britain right/wrong to vote to leave EU?\",\n       subtitle = \"YouGov Survey Results, 2-3 September 2019\",\n       caption = \"Source: bit.ly/2lCJZVg\",\n       x = NULL, y = NULL) +\n  scale_fill_manual(values = c(\"Wrong\" = \"#ef8a62\",\n                               \"Right\" = \"#67a9cf\",\n                               \"Don't know\" = \"gray\")) +\n  theme_minimal(base_size = 16) + \n  theme(plot.title.position = \"plot\", \n        panel.grid.major.y = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#your-turn",
+    "href": "content/lectures/05-viz-slides.html#your-turn",
+    "title": "05-viz",
+    "section": "Your Turn",
+    "text": "Your Turn\n\nRead in the data (Data slide)\nThink of at least three different ways to tell slightly different stories with these data\nTry to implement at least one of these ideas!"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#suggested-reading",
+    "href": "content/lectures/05-viz-slides.html#suggested-reading",
+    "title": "05-viz",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nR4DS Chapter 28: Graphics for Communication\nThe Glamour of Graphics: [video] [slides] [Prof’s slides inspired by Will’s talk]\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
   {
     "objectID": "content/lectures/02-dplyr.html",
@@ -2055,7 +2545,7 @@
     "href": "content/lectures/04-ggplot2.html",
     "title": "04-ggplot2",
     "section": "",
-    "text": "Q:Can we have a demo in class on how to clone our repo and check if our Github submissions submitted properly? I am having trouble doing this.\nA: Yes! Let’s do that today.\n\n\nQ: Does left_join(a, b) = right_join(b, a)?\nA: No. The total information would be equivalent but the order of columns would differ. In the left join, the columns from a would be first and in the right join, the colums from b would be listed first. But the actual rows that are joined/included would be the same.\n\n\nQ: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions?\nA: You’re allowed to store variables into a new data frame whenever you’d like! Now, the more variables you create, the more to keep track of, so I would encourage you to store your output any time you make a “substantial” change to your data. So, say you do a filter, selection, and mutate to get your data into the format for analysis. I wouldn’t store after each step, but I would store it after I wrote the pipe doing all three. Follow up if this doesn’t clarify!\n\n\nQ: I think the left_join, right_join, and full_join was pretty confusing.\nA: You’re right! It is confusing. We’ll go through more examples and get more practice!\n\n\n\n\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements: - Happy New Year! - Do the GitHub assignment clone + submission demo - Lab02 Notes: - Look at the answer key: - grouping by name and year - can add text outside of code chunks; discuss variable reference - solutions to optional exercises\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n   geom_xxx() +\n   other options\n\n\n\n\n\n\nMeasurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.\n\n\n\n\n\n\n\n\n\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\n\n\n\nArtwork by @allison_horst \n\n\n\n\npenguins |>\n  datatable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()\n\nWarning: Removed 2 rows containing missing values (`geom_point()`)."
+    "text": "Q:Can we have a demo in class on how to clone our repo and check if our Github submissions submitted properly? I am having trouble doing this.\nA: Yes! Let’s do that today.\n\n\nQ: Does left_join(a, b) = right_join(b, a)?\nA: No. The total information would be equivalent but the order of columns would differ. In the left join, the columns from a would be first and in the right join, the colums from b would be listed first. But the actual rows that are joined/included would be the same.\n\n\nQ: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions?\nA: You’re allowed to store variables into a new data frame whenever you’d like! Now, the more variables you create, the more to keep track of, so I would encourage you to store your output any time you make a “substantial” change to your data. So, say you do a filter, selection, and mutate to get your data into the format for analysis. I wouldn’t store after each step, but I would store it after I wrote the pipe doing all three. Follow up if this doesn’t clarify!\n\n\nQ: I think the left_join, right_join, and full_join was pretty confusing.\nA: You’re right! It is confusing. We’ll go through more examples and get more practice!\n\n\n\n\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements:\n\nHappy New Year!\nGitHub assignment clone + submission demo\nLab02 Notes:\n\nLook at the answer key:\ngrouping by name and year\ncan add text outside of code chunks; discuss variable reference\nsolutions to optional exercises\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n   geom_xxx() +\n   other options\n\n\n\n\n\n\nMeasurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.\n\n\n\n\n\n\n\n\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\n\n\n\nArtwork by @allison_horst \n\n\n\n\npenguins |>\n  datatable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()\n\nWarning: Removed 2 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "content/lectures/04-ggplot2.html#section",
@@ -2296,319 +2786,18 @@
     "text": "Common geoms\n\n\n\ngeom 1\nDescription 2\n\n\n\n\ngeom_point\nscatterplot\n\n\ngeom_bar\nbarplot\n\n\ngeom_line\nline plot\n\n\ngeom_density\ndensityplot\n\n\ngeom_histogram\nhistogram\n\n\ngeom_boxplot\nboxplot"
   },
   {
+    "objectID": "content/lectures/04-ggplot2.html#your-turn-2",
+    "href": "content/lectures/04-ggplot2.html#your-turn-2",
+    "title": "04-ggplot2",
+    "section": "Your Turn",
+    "text": "Your Turn\nGenerate a plot in ggplot2 using a different geom than what you did previously. Customize as much as you can before time is “up.”\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
     "objectID": "content/lectures/04-ggplot2.html#suggested-reading",
     "href": "content/lectures/04-ggplot2.html#suggested-reading",
     "title": "04-ggplot2",
     "section": "Suggested Reading",
-    "text": "Suggested Reading\nR4DS:\n\nChapter 3: Data Visualization"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#qa",
-    "href": "content/lectures/03-ggplot2-slides.html#qa",
-    "title": "04-ggplot2",
-    "section": "Q&A",
-    "text": "Q&A\n\nQ:Can we have a demo in class on how to clone our repo and check if our Github submissions submitted properly? I am having trouble doing this.\nA: Yes! Let’s do that today.\n\n\nQ: Does left_join(a, b) = right_join(b, a)?\nA: No. The total information would be equivalent but the order of columns would differ. In the left join, the columns from a would be first and in the right join, the colums from b would be listed first. But the actual rows that are joined/included would be the same.\n\n\nQ: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions?\nA: You’re allowed to store variables into a new data frame whenever you’d like! Now, the more variables you create, the more to keep track of, so I would encourage you to store your output any time you make a “substantial” change to your data. So, say you do a filter, selection, and mutate to get your data into the format for analysis. I wouldn’t store after each step, but I would store it after I wrote the pipe doing all three. Follow up if this doesn’t clarify!\n\n\nQ: I think the left_join, right_join, and full_join was pretty confusing.\nA: You’re right! It is confusing. We’ll go through more examples and get more practice!"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#course-announcements",
-    "href": "content/lectures/03-ggplot2-slides.html#course-announcements",
-    "title": "04-ggplot2",
-    "section": "Course Announcements",
-    "text": "Course Announcements\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements: - Happy New Year! - Do the GitHub assignment clone + submission demo - Lab02 Notes: - Look at the answer key: - grouping by name and year - can add text outside of code chunks; discuss variable reference - solutions to optional exercises"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#ggplot2-in-tidyverse",
-    "href": "content/lectures/03-ggplot2-slides.html#ggplot2-in-tidyverse",
-    "title": "04-ggplot2",
-    "section": "ggplot2 \\(\\in\\) tidyverse",
-    "text": "ggplot2 \\(\\in\\) tidyverse\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n   geom_xxx() +\n   other options"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#data-palmer-penguins",
-    "href": "content/lectures/03-ggplot2-slides.html#data-palmer-penguins",
-    "title": "04-ggplot2",
-    "section": "Data: Palmer Penguins",
-    "text": "Data: Palmer Penguins\nMeasurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.\n\n\n\n\n\n\n\n\n\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\n\n\n\nArtwork by @allison_horst"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#the-data",
-    "href": "content/lectures/03-ggplot2-slides.html#the-data",
-    "title": "04-ggplot2",
-    "section": "The Data",
-    "text": "The Data\n\npenguins |>\n  datatable()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#a-plot",
-    "href": "content/lectures/03-ggplot2-slides.html#a-plot",
-    "title": "04-ggplot2",
-    "section": "A Plot",
-    "text": "A Plot\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section",
-    "href": "content/lectures/03-ggplot2-slides.html#section",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame\n\n\n\nggplot(data = penguins)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-1",
-    "href": "content/lectures/03-ggplot2-slides.html#section-1",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm))"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-2",
-    "href": "content/lectures/03-ggplot2-slides.html#section-2",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm))"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-3",
-    "href": "content/lectures/03-ggplot2-slides.html#section-3",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm)) + \n  geom_point()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-4",
-    "href": "content/lectures/03-ggplot2-slides.html#section-4",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) + \n  geom_point()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-5",
-    "href": "content/lectures/03-ggplot2-slides.html#section-5",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\")"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-6",
-    "href": "content/lectures/03-ggplot2-slides.html#section-6",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\")"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-7",
-    "href": "content/lectures/03-ggplot2-slides.html#section-7",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\")"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-8",
-    "href": "content/lectures/03-ggplot2-slides.html#section-8",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\")"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-9",
-    "href": "content/lectures/03-ggplot2-slides.html#section-9",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\")"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-10",
-    "href": "content/lectures/03-ggplot2-slides.html#section-10",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "Start with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point and map species to the color of each point. Title the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source. Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#coding-out-loud-1",
-    "href": "content/lectures/03-ggplot2-slides.html#coding-out-loud-1",
-    "title": "04-ggplot2",
-    "section": "Coding out loud",
-    "text": "Coding out loud\n\nCodePlotNarrative\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()\n\n\n\n\n\n\n\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\nRepresent each observation with a point and map species to the color of each point.\nTitle the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\nFinally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#argument-names",
-    "href": "content/lectures/03-ggplot2-slides.html#argument-names",
-    "title": "04-ggplot2",
-    "section": "Argument names",
-    "text": "Argument names\n\n\n\n\n\n\nTip\n\n\nYou can omit the names of first two arguments when building plots with ggplot().\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm,  \n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  scale_color_viridis_d()\n\n\n\nggplot(penguins, \n       aes(x = bill_depth_mm, \n           y = bill_depth_mm,\n           color = species)) +\n  geom_point() +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#your-turn",
-    "href": "content/lectures/03-ggplot2-slides.html#your-turn",
-    "title": "04-ggplot2",
-    "section": "Your Turn",
-    "text": "Your Turn\nGenerate a basic plot in ggplot2 using different variables than those in the last example (last example: bill_depth_mm & bill_depth_mm).\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#aesthetics-options",
-    "href": "content/lectures/03-ggplot2-slides.html#aesthetics-options",
-    "title": "04-ggplot2",
-    "section": "Aesthetics options",
-    "text": "Aesthetics options\nCommonly used characteristics of plotting characters that can be mapped to a specific variable in the data are\n\ncolor\nshape\nsize\nalpha (transparency)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#color",
-    "href": "content/lectures/03-ggplot2-slides.html#color",
-    "title": "04-ggplot2",
-    "section": "Color",
-    "text": "Color\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species)) + \n  geom_point() +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#shape",
-    "href": "content/lectures/03-ggplot2-slides.html#shape",
-    "title": "04-ggplot2",
-    "section": "Shape",
-    "text": "Shape\nMapped to a different variable than color\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = island)) + \n  geom_point() +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#shape-1",
-    "href": "content/lectures/03-ggplot2-slides.html#shape-1",
-    "title": "04-ggplot2",
-    "section": "Shape",
-    "text": "Shape\nMapped to same variable as color\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = species)) + \n  geom_point() +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#size",
-    "href": "content/lectures/03-ggplot2-slides.html#size",
-    "title": "04-ggplot2",
-    "section": "Size",
-    "text": "Size\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = species,\n           size = body_mass_g)) + \n  geom_point() +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#alpha",
-    "href": "content/lectures/03-ggplot2-slides.html#alpha",
-    "title": "04-ggplot2",
-    "section": "Alpha",
-    "text": "Alpha\n\nggplot(penguins,\n       aes(x = bill_depth_mm, \n           y = bill_length_mm,\n           color = species,\n           shape = species,\n           size = body_mass_g,\n           alpha = flipper_length_mm)) + \n  geom_point() +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#mapping-vs.-setting",
-    "href": "content/lectures/03-ggplot2-slides.html#mapping-vs.-setting",
-    "title": "04-ggplot2",
-    "section": "Mapping vs. setting",
-    "text": "Mapping vs. setting\n\nMapping: Determine the size, alpha, etc. of points based on the values of a variable in the data\n\ngoes into aes()\n\nSetting: Determine the size, alpha, etc. of points not based on the values of a variable in the data\n\ngoes into geom_*() (this was geom_point() in the previous example, but we’ll learn about other geoms soon!)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#mapping-vs.-setting-example",
-    "href": "content/lectures/03-ggplot2-slides.html#mapping-vs.-setting-example",
-    "title": "04-ggplot2",
-    "section": "Mapping vs. Setting (example)",
-    "text": "Mapping vs. Setting (example)\n\n\nMapping\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm,\n           size = body_mass_g, \n           alpha = flipper_length_mm)) + \n  geom_point()\n\n\n\n\n\nSetting\n\nggplot(penguins,\n       aes(x = bill_depth_mm,\n           y = bill_length_mm)) + \n  geom_point(size = 2, alpha = 0.5)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#your-turn-1",
-    "href": "content/lectures/03-ggplot2-slides.html#your-turn-1",
-    "title": "04-ggplot2",
-    "section": "Your Turn",
-    "text": "Your Turn\nEdit the basic plot you created earlier to change something about its aesthetics.\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#faceting-1",
-    "href": "content/lectures/03-ggplot2-slides.html#faceting-1",
-    "title": "04-ggplot2",
-    "section": "Faceting",
-    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#various-ways-to-facet",
-    "href": "content/lectures/03-ggplot2-slides.html#various-ways-to-facet",
-    "title": "04-ggplot2",
-    "section": "Various ways to facet",
-    "text": "Various ways to facet\n🧠 In the next few slides describe what each plot displays. Think about how the code relates to the output.\n\n\n\n\n\n\nWarning\n\n\nThe plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what’s happening in the plots. But you should always label your plots!"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-11",
-    "href": "content/lectures/03-ggplot2-slides.html#section-11",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ sex)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-12",
-    "href": "content/lectures/03-ggplot2-slides.html#section-12",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(sex ~ species)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-13",
-    "href": "content/lectures/03-ggplot2-slides.html#section-13",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_wrap(~ species)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-14",
-    "href": "content/lectures/03-ggplot2-slides.html#section-14",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(. ~ species)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#section-15",
-    "href": "content/lectures/03-ggplot2-slides.html#section-15",
-    "title": "04-ggplot2",
-    "section": "",
-    "text": "ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_wrap(~ species, ncol = 2)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#faceting-summary",
-    "href": "content/lectures/03-ggplot2-slides.html#faceting-summary",
-    "title": "04-ggplot2",
-    "section": "Faceting summary",
-    "text": "Faceting summary\n\nfacet_grid():\n\n2d grid\nrows ~ cols\nuse . for no split\n\nfacet_wrap(): 1d ribbon wrapped according to number of rows and columns specified or available plotting area"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#facet-and-color",
-    "href": "content/lectures/03-ggplot2-slides.html#facet-and-color",
-    "title": "04-ggplot2",
-    "section": "Facet and color",
-    "text": "Facet and color\n\nggplot(\n  penguins, \n  aes(x = bill_depth_mm, \n      y = bill_length_mm, \n      color = species)) + \n  geom_point() +\n  facet_grid(species ~ sex) +\n  scale_color_viridis_d()"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#face-and-color-no-legend",
-    "href": "content/lectures/03-ggplot2-slides.html#face-and-color-no-legend",
-    "title": "04-ggplot2",
-    "section": "Face and color, no legend",
-    "text": "Face and color, no legend\n\nggplot(\n  penguins, \n  aes(x = bill_depth_mm, \n      y = bill_length_mm, \n      color = species)) +\n  geom_point() +\n  facet_grid(species ~ sex) +\n  scale_color_viridis_d() +\n  guides(color = FALSE)"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#common-geoms",
-    "href": "content/lectures/03-ggplot2-slides.html#common-geoms",
-    "title": "04-ggplot2",
-    "section": "Common geoms",
-    "text": "Common geoms\n\n\n\ngeom 1\nDescription 2\n\n\n\n\ngeom_point\nscatterplot\n\n\ngeom_bar\nbarplot\n\n\ngeom_line\nline plot\n\n\ngeom_density\ndensityplot\n\n\ngeom_histogram\nhistogram\n\n\ngeom_boxplot\nboxplot\n\n\n\nggplot2 geoms listed hereWhen each visualization is appropriate here"
-  },
-  {
-    "objectID": "content/lectures/03-ggplot2-slides.html#suggested-reading",
-    "href": "content/lectures/03-ggplot2-slides.html#suggested-reading",
-    "title": "04-ggplot2",
-    "section": "Suggested Reading",
-    "text": "Suggested Reading\nR4DS:\n\nChapter 3: Data Visualization\n\n\n\n\nhttps://cogs137.github.io/website/"
-  },
-  {
-    "objectID": "index.html",
-    "href": "index.html",
-    "title": "COGS 137: Practical Data Science in R",
-    "section": "",
-    "text": "Course Info\nPractical Data Science in R focuses on teaching students how to think rigorously throughout the data science process. To this end, through interaction with unique data sets and interesting questions, this course helps students 1) gain fluency in the R programming language, 2) effectively explore & visualize data, 3) use statistical thinking to analyze data and rigorously evaluate their conclusions, and 4) effectively communicate their results. Course objectives are accomplished through hands-on practice, using real-world data to learn via case studies, and project-based learning.\n\nDays & Times\n\n\n\n\n\n Lecture: Tu/Th 2-3:20 (Peterson Hall 104)\n Lab: Fri 1-1:50 (Peterson Hall 104)\n\nInstructional Staff & Office Hours\n\n\n\nInstructor\nShannon Ellis\nsellis@ucsd.edu\nWed 2-3\nVirtual (see canvas)\n\n\n\n\n\nTh 12:50-1:50 PM\nCSB 243\n\n\nTA\nShubham Kulkarni\n\nF 12-1PM\nCSB 114\n\n\nIAs\nChristian Kim\n\nTh 11AM-12PM\nCSB 114\n\n\n\n\n\n\n\nCourse Objectives\n\nProgram at the introductory level in the R statistical programming language\nEmploy the tidyverse suite of packages to interact with, wrangle, visualize, and model data\nExplain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis\nCommunicate data science projects through effective visualization, oral presentation, and written reports\n\n\n\nTexts\nTexts are freely available online:\n\n\n\nIntroduction to Modern Statistics\nÇetinkaya-Rundel and Hardin\nOpenIntro, 1st Edition, 2021\n\n\nR for Data Science\nGrolemund and Wickham\nO’Reilly, 1st edition, 2016\n\n\n\n\n\nMaterials\nYou should have access to a laptop and bring it to every class, fully charged (as possible).\nNote: If you do not have consistent access to the technology needed, please use this form to request a loaner laptop. (For any issues that you may have, please email vcsa@ucsd.edu, and they will work to assist you.)\n\n\nAcknowledgements\nI want to first recognize Dr. Mine Çetinkaya-Rundeland for her unparalleled efforts in support of education and educators in data science, statistics, and R programming. This course website was adapted from her course website. These course slides/labs/homework…also adapted from Mine’s course and the related datascienceinabox. I am so *very* indebted to Mine! I also want to thank the Open Case Studies team for their tireless work in putting together interesting and topical case studies, a handful of which we use throughout the course. And, finally, thanks to Allison Horst, whose artwork is inspiring, educational, and fun…and is used throughout this course. Further, thanks to the R (education) community generally; planning this course was really fun because I had so many awesome resources to choose from. Having these materials made course prep and planning is just another example of what sets the R community apart!"
-  },
-  {
-    "objectID": "policies.html",
-    "href": "policies.html",
-    "title": "COGS 137",
-    "section": "",
-    "text": "Class\nClass will include short lectures as well as interactive activities. The goal of lecture is to introduce the topics and information needed for the course. The goal of your time outside of lecture is to practice with topics that are introduced and deepen your understanding of material presented in class. Since so much of programming and statistical analysis is learned best by doing, we’ll prioritize that throughout the course, both in and outside of the classroom.\n\n\nDiversity & Inclusion\nMy goal is that every student, regardless of their background or perspective, will be well-served by this course. My philosophy is that the diversity of students in this class is a huge asset to our learning community; our differences provide opportunities for learning and understanding. I intend to present course materials that are conscious of and respectful to diversity (gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, politics, and culture); however, if I ever fall short or if you ever have suggestions for improvement, please do share with me! This feedback is always welcomed, and I am always in the process of learning and improving to this end. If you would like to provide that feedback anonymously, please use the anonymous Google Form.*\n\nWhat should you call me?\nMost students call me Professor/Prof Ellis, and that’s great! This is how I typically sign emails to students. I’m also totally OK with you addressing me as Shannon or Dr. Ellis.\n\n\nWhat I should call you?\nI should call you by your preferred name, with the correct pronunciation. Please correct me (in the moment or via email/Campuswire after the fact…however you’re most comfortable) if I ever make a mistake.\n\n\n\nDisability Access\nStudents requesting accommodations due to a disability should provide a current Authorization for Accommodation (AFA) letter. These letters are issued by the Office for Students with Disabilities (OSD), which is located in University Center 202 behind Center Hall. If you are struggling to get necessary accommodations or want to further discuss your accommodations, please feel free to reach out to Professor Ellis directly.\nContacting the OSD can help you further:\n858.534.4382 (phone)\nosd@ucsd.edu (email)\nhttp://disabilities.ucsd.edu\n\n\nHow to get help\nIt’s great that we have so many ways to communicate, but it can get tricky to figure out who to contact or where your question belongs or when to expect a response. These guidelines are to help you get your question answered as quickly as possible and to ensure that we’re able to get to everyone’s questions.\nThat said, to ensure that we’re respecting their time, TAs and IAs have been instructed they’re only encouraged to answer questions between standard working hours (M-F 9AM-5PM). Professor Ellis is also going to do her best to stick to these working hours and only go on Campuswire M-F each week. However, we know that’s not necessarily when you may be doing your work. So, please feel free to post whenever is best for you while knowing that if you post late at night or on a weekend, you may not get a response until the next weekday. As such, do your best not to wait until the last minute to ask a question.\nIf you have:\n\nquestions about course content - these are awesome! We want everyone to see them and have their questions answered too, so post these to Campuswire!\na technical assignment question - come to office hours (or post to Campuswire). Answering technical questions is often best accomplished ‘in person’ where we can discuss the question and talk through ideas. However, if that is not possible, post your question to Campuswire. Be as specific as you can in the question you ask. And, for those answering, help your classmates as much as you can without just giving the answer. Help guide them, point them in a direction, provide pseudo code, but do not provide code that answers assignment questions.\nbeen stuck on something for a while (>30min) and aren’t even really sure where to start - Programming can be frustrating and it may not always be obvious what is going wrong or why something isn’t working. That’s OK - we’ve all been there! If you are stuck, you can and should reach out for help, even if you aren’t exactly sure what your specific question is. To determine when to reach out, consider the 2-hour rule. This rule states that if you are stuck, work on that problem for an hour. Then, take a 30 minute break and do something else. When you come back after your break, try for another 30 minutes or so to solve your problem. If you are still completely stuck, stop and contact us (office hours, post on Campuswire). If you don’t have a specific question, include the information you have (what you’re stuck on, the code you’ve been trying that hasn’t been happening, and/or the error messages you’ve been getting).\nquestions about course logistics - first, check the course website. If you can’t find the answer there, first ask a classmate. If still unsure, post on Campuswire.\nquestions about a grade - Post on Campuswire with “regrades” tag in a private post to “Instructors & TAs”.\nsomething super cool to share related to class or want to talk about a topic in further depth - feel free to email Professor Ellis (sellis@ucsd.edu) or come to office hours. Please include COGS137 in the email subject line.\nsome feedback about the course you want to share anonymously - If you’ve been offended by an example in class, really liked or disliked a lesson, or wish there were something covered in class that wasn’t but would rather not share this publicly, etc., please fill out the anonymous Google Form*\n\n*This form can be taken down at any time if it’s not being used for its intended purpose; however, you all will be notified should that happen.\n\n\nAcademic integrity\nDon’t cheat.\nYou are generally encouraged to work together and help one another in this course. However, you are personally responsible for the work you submit. A helpful heuristic can b to ask yourself “Can I explain each piece of code and each analysis carried out in what I’m submitting? Could I reproduce this code/analysis on my own?”; you should be able to answer “Yes” to both questions for everything you submit in this course. For labs and assignments, you are allowed and encouraged to work together, but it is your responsibility to ensure you understand everything you’ve submitted. (For exams, all work has to be completed individually and communication with others about the exam is not allowed; this will be discussed more explicitly before exams.)\nA note on sharing / reusing code: The Internet is an excellent resource; there will be many times you find helpful information online. You should use available resources (e.g. StackOverflow), but you must explicitly cite any code you use directly or any code you use as inspiration. This can be done by including the URL/reference to the source directly in your code (as a code comment) or in accompanying text for a given assignment/exam/lab. You should never share code directly (e.g. copy + paste; share an send an answer to a classmate), but you can discuss code and work together on everything other than take-home exams.\nPlease review UCSD’s academic integrity policies here.\nCheating and plagiarism have been and will be strongly penalized. If, for whatever reason, Canvas or DataHub is down or something else prohibits you from being able to turn in an assignment on time, immediately contact Professor Ellis by emailing your assignment (sellis@ucsd.edu), or else it will be graded as late.\n\n\nCourse components\n\nLecture\nLectures will be your introduction to course topics and material. Lectures will be interactive, and you will be given time to practice with the lecture concepts during class. Attendance is not required, but is encouraged if you’re feeling well. To help incentivize coming to class, there will be a daily participation survey that will open at the end of lecture and close shortly after each Tues/Thurs lecture. Each time you fill out the lecture survey, you get a small % of credit toward your final project Completion of all surveys can provide up to 3.5% extra credit on your final project (not your final course grade).\n\nReadings\nReadings will be assigned for some class days and are best completed prior to the day’s lecture. These are meant to provide background and additional context for the upcoming day’s lecture topics. These can also be a good source after class when studying or reviewing topics discussed in class.\n\n\nPodcast\nIn case you miss class or would like to review the material covered in class, you can view the podcasts here.\n\n\n\nLabs (16%)\nLabs are meant to give you deeper understanding and hands-on experience with the technical and statistical topics introduced during lecture in a low-stakes environment. Lab sections will typically comprise of a short review and explanation of the lab and then time for you to complete the assigned weekly lab. Labs are submitted individually, but you are encouraged to work together during lab. You are free to ask and answer each others’ questions and discuss your work. Instructional staff will be present during lab to help further your understanding.\nLabs are graded for concerted effort. This is because when we learn something new, mistakes are going to happen! In fact, we learn a lot from the mistakes we make during the learning process. If your submission reflects ~50 min of work/effort, you will receive full credit for the week’s lab.\nLab attendance is not required, but is definitely encouraged if you are feeling well. While slides used are shared, lab sessions are not recorded, so being present is the best way to fully engage in the course.\n\n\nHomework (32%)\nAfter practice in lecture and labs, homework assignments are meant to demonstrate your solidified understanding of the course material. These are typically 2-4x longer and more involved than labs. Homework assignments are completed and submitted individually and are marked for correctness. You are allowed to work together on homework assignments, but academic integrity must be upheld.\n\n\nMidterm (15%)\nThere will be a single take-home exam due in week 4, and you will have at least 48 hours to complete it. This exam is meant to assess your understanding of the R programming language prior to us moving into focusing on case studies and full analyses. The exam will be completed individually and will be open-notes and open-Internet; however, you will not be permitted to ask questions of one another, the Internet, nor instructional staff while completing the take-home exam.\n\n\nTeams\nThere will be two case study mini-projects and a final project. Teams will be randomly assigned for the mini-projects but you will choose your final project groups. (By working with teammates throughout the course, you will also be able to use one another as a resource during labs and assignments.)\n\n\nCase Study Mini-projects (20%)\nStarting week 5, we will transition to a project-based course. This will allow us to use case studies to focus on deepening statistical knowledge and carrying out interesting analyses. In this, specific case studies and statistics topics will be discussed in class. In your teams and for each of the case studies, you will: 1) extend the analysis from class and 2) write up a full report of the case study for your team project.\n\n\nFinal Project (17%)\nThe final project will be completed in groups. There will be two different general final projects from which your group can choose, but the idea is that whichever you choose, you will be able to tackle it using and building upon the tools and techniques discussed in class. Briefly here, the two options will be: 1. Create a technical presentation on a statistics topic and/or an R package. 2. Carry out a data analysis.\nEach will require a written report and an oral presentation, but the specific requirements will differ between the two.\nFinal Projects will be due on Th 3/23 of finals week at 11:59 PM.\n\n\n\nGrading\nYour final grade will be comprised of the following:\n\n\n\nLabs (8)\n16%\n\n\nHomework (4)\n32%\n\n\nMidterm (1)\n16%\n\n\nCase Study Projects* (2)\n20%\n\n\nFinal Project(*) (1)\n17%\n\n\n\n* indicates group submission\n\nFinal Grades\nTo calculate final grades, I use the standard grading scale and do not round grades up (given the numerous extra credit opportunities offered):\n\n\n\n97-100%\nA+\n\n\n93-96%\nA\n\n\n90-92%\nA-\n\n\n87-89%\nB+\n\n\n83-86%\nB\n\n\n80-82%\nB-\n\n\n77-79%\nC+\n\n\n73-76%\nC\n\n\n70-72%\nC-\n\n\n67-69%\nD+\n\n\n63-66%\nD\n\n\n60-62%\nD-\n\n\n<60%\nF\n\n\n\n\n\n\nLate / missed work\nLate homework assignments and case study projects will be accepted up to 3 days (72 hours) after the assigned deadline. Late submissions will receive a 25% deduction.\nThere are no late deadlines for labs, the exam, or the final project.\nNote: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.\n\n\nRegrade requests\nWe will work hard to grade everyone fairly and return assignments quickly. And, we know you also work hard and want you to receive the grade you’ve earned. Occasionally, grading mistakes do happen, and it’s important to us to correct them. If you think there is a mistake in your grade on an assignment, post privately on Campuswire to “Instructors” using the “regrades” tag within 72 hours. This post should include evidence of why you think your answer was correct and should point to the specific part of the assignment in question.\n\n\nProfessionalism\nPlease refrain from texting or using your computer for anything other than coursework during class. Not only is this distracting to you, but it can also be distracting to those around you. (Note that there is no consequence associated with this. I know it can be difficult, but I ask that you try your best!)"
-  },
-  {
-    "objectID": "schedule.html",
-    "href": "schedule.html",
-    "title": "COGS 137",
-    "section": "",
-    "text": "Week\nDate\nTitle\nType\n\n\n\n\n1\nTu Jan 10\nWelcome & Tooling\nLecture\n\n\n1\nTh Jan 12\nIntro to R\nLecture\n\n\n1\nFri Jan 13\nLab 01: Intro to R\nLab\n\n\n2\nTu Jan 17\nData Wrangling: dplyr\nLecture\n\n\n2\nTh Jan 19\nData Wrangling: tidyr\nLecture\n\n\n2\nFri Jan 20\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Jan 23\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Jan 24\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n3\nTh Jan 26\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nFri Jan 27\nLab 03: Data Visualization\nLab\n\n\n4\nTu Jan 31\nData Analysis & Modeling\nLecture\n\n\n4\nTh Feb 2\nLinear Models Review*\nLecture\n\n\n4\nFri Feb 3\nLab 04: Modeling\nLab\n\n\n5\nMon Feb 6\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Feb 7\nEffective Communication\nLecture\n\n\n5\nTh Feb 9\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Feb 10\nLab used for midterm review\nLab\n\n\n6\nMon Feb 13\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Feb 14\nMultiple Linear Regression\nLecture\n\n\n6\nTh Feb 16\nCase Study 01: Right to Carry (day 1)\nLecture\n\n\n6\nFri Feb 17\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nMon Feb 20\nHW03 due (11:59 PM)\nHW\n\n\n7\nTu Feb 21\nCase Study 01: Right to Carry (day 2)\nLecture\n\n\n7\nTh Feb 23\nCase Study 01: Right to Carry (day 3)\nLecture\n\n\n7\nFri Feb 24\nLab 06: CS01\nLab\n\n\n8\nTu Feb 28\nLogistic Regression (day 1)\nLecture\n\n\n8\nTh Mar 2\nLogistic Regression (day 2)\nLecture\n\n\n8\nFri Mar 3\nLab 07: Logistic Regression\nLab\n\n\n9\nMon Mar 6\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Mar 7\nCase Study 02: Vaping (day 1)\nLecture\n\n\n9\nTh Mar 9\nCase Study 02: Vaping (day 2)\nLecture\n\n\n9\nFri Mar 10\nLab 08: CS02\nLab\n\n\n10\nMon Mar 13\nHW04 due (11:59 PM)\nHW\n\n\n10\nTu Mar 14\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Mar 16\nNext Steps\nLecture\n\n\n10\nFri Mar 17\nLab used for Final Project\nLab\n\n\nFinals\nMon Mar 20\nCS02 Due\nCase Study\n\n\nFinals\nTh Mar 23\nFinal Project Due (11:59 PM)\nLecture"
+    "text": "Suggested Reading\n\nR4DS Chapter 3: Data Visualization\nData to Viz: https://www.data-to-viz.com/"
   },
   {
     "objectID": "content/lectures/04-ggplot2-slides.html#qa",
@@ -2902,6 +3091,41 @@
     "href": "content/lectures/04-ggplot2-slides.html#suggested-reading",
     "title": "04-ggplot2",
     "section": "Suggested Reading",
-    "text": "Suggested Reading\nR4DS:\n\nChapter 3: Data Visualization\n\n\n\n\nhttps://cogs137.github.io/website/"
+    "text": "Suggested Reading\n\nR4DS Chapter 3: Data Visualization\nData to Viz: https://www.data-to-viz.com/\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "COGS 137: Practical Data Science in R",
+    "section": "",
+    "text": "Course Info\nPractical Data Science in R focuses on teaching students how to think rigorously throughout the data science process. To this end, through interaction with unique data sets and interesting questions, this course helps students 1) gain fluency in the R programming language, 2) effectively explore & visualize data, 3) use statistical thinking to analyze data and rigorously evaluate their conclusions, and 4) effectively communicate their results. Course objectives are accomplished through hands-on practice, using real-world data to learn via case studies, and project-based learning.\n\nDays & Times\n\n\n\n\n\n Lecture: Tu/Th 2-3:20 (Peterson Hall 104)\n Lab: Fri 1-1:50 (Peterson Hall 104)\n\nInstructional Staff & Office Hours\n\n\n\nInstructor\nShannon Ellis\nsellis@ucsd.edu\nWed 2-3\nVirtual (see canvas)\n\n\n\n\n\nTh 12:50-1:50 PM\nCSB 243\n\n\nTA\nShubham Kulkarni\n\nF 12-1PM\nCSB 114\n\n\nIAs\nChristian Kim\n\nTh 11AM-12PM\nCSB 114\n\n\n\n\n\n\n\nCourse Objectives\n\nProgram at the introductory level in the R statistical programming language\nEmploy the tidyverse suite of packages to interact with, wrangle, visualize, and model data\nExplain & apply statistical concepts (estimation, linear regression, logistic regression, etc.) for data analysis\nCommunicate data science projects through effective visualization, oral presentation, and written reports\n\n\n\nTexts\nTexts are freely available online:\n\n\n\nIntroduction to Modern Statistics\nÇetinkaya-Rundel and Hardin\nOpenIntro, 1st Edition, 2021\n\n\nR for Data Science\nGrolemund and Wickham\nO’Reilly, 1st edition, 2016\n\n\n\n\n\nMaterials\nYou should have access to a laptop and bring it to every class, fully charged (as possible).\nNote: If you do not have consistent access to the technology needed, please use this form to request a loaner laptop. (For any issues that you may have, please email vcsa@ucsd.edu, and they will work to assist you.)\n\n\nAcknowledgements\nI want to first recognize Dr. Mine Çetinkaya-Rundeland for her unparalleled efforts in support of education and educators in data science, statistics, and R programming. This course website was adapted from her course website. These course slides/labs/homework…also adapted from Mine’s course and the related datascienceinabox. I am so *very* indebted to Mine! I also want to thank the Open Case Studies team for their tireless work in putting together interesting and topical case studies, a handful of which we use throughout the course. And, finally, thanks to Allison Horst, whose artwork is inspiring, educational, and fun…and is used throughout this course. Further, thanks to the R (education) community generally; planning this course was really fun because I had so many awesome resources to choose from. Having these materials made course prep and planning is just another example of what sets the R community apart!"
+  },
+  {
+    "objectID": "policies.html",
+    "href": "policies.html",
+    "title": "COGS 137",
+    "section": "",
+    "text": "Class\nClass will include short lectures as well as interactive activities. The goal of lecture is to introduce the topics and information needed for the course. The goal of your time outside of lecture is to practice with topics that are introduced and deepen your understanding of material presented in class. Since so much of programming and statistical analysis is learned best by doing, we’ll prioritize that throughout the course, both in and outside of the classroom.\n\n\nDiversity & Inclusion\nMy goal is that every student, regardless of their background or perspective, will be well-served by this course. My philosophy is that the diversity of students in this class is a huge asset to our learning community; our differences provide opportunities for learning and understanding. I intend to present course materials that are conscious of and respectful to diversity (gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, politics, and culture); however, if I ever fall short or if you ever have suggestions for improvement, please do share with me! This feedback is always welcomed, and I am always in the process of learning and improving to this end. If you would like to provide that feedback anonymously, please use the anonymous Google Form.*\n\nWhat should you call me?\nMost students call me Professor/Prof Ellis, and that’s great! This is how I typically sign emails to students. I’m also totally OK with you addressing me as Shannon or Dr. Ellis.\n\n\nWhat I should call you?\nI should call you by your preferred name, with the correct pronunciation. Please correct me (in the moment or via email/Campuswire after the fact…however you’re most comfortable) if I ever make a mistake.\n\n\n\nDisability Access\nStudents requesting accommodations due to a disability should provide a current Authorization for Accommodation (AFA) letter. These letters are issued by the Office for Students with Disabilities (OSD), which is located in University Center 202 behind Center Hall. If you are struggling to get necessary accommodations or want to further discuss your accommodations, please feel free to reach out to Professor Ellis directly.\nContacting the OSD can help you further:\n858.534.4382 (phone)\nosd@ucsd.edu (email)\nhttp://disabilities.ucsd.edu\n\n\nHow to get help\nIt’s great that we have so many ways to communicate, but it can get tricky to figure out who to contact or where your question belongs or when to expect a response. These guidelines are to help you get your question answered as quickly as possible and to ensure that we’re able to get to everyone’s questions.\nThat said, to ensure that we’re respecting their time, TAs and IAs have been instructed they’re only encouraged to answer questions between standard working hours (M-F 9AM-5PM). Professor Ellis is also going to do her best to stick to these working hours and only go on Campuswire M-F each week. However, we know that’s not necessarily when you may be doing your work. So, please feel free to post whenever is best for you while knowing that if you post late at night or on a weekend, you may not get a response until the next weekday. As such, do your best not to wait until the last minute to ask a question.\nIf you have:\n\nquestions about course content - these are awesome! We want everyone to see them and have their questions answered too, so post these to Campuswire!\na technical assignment question - come to office hours (or post to Campuswire). Answering technical questions is often best accomplished ‘in person’ where we can discuss the question and talk through ideas. However, if that is not possible, post your question to Campuswire. Be as specific as you can in the question you ask. And, for those answering, help your classmates as much as you can without just giving the answer. Help guide them, point them in a direction, provide pseudo code, but do not provide code that answers assignment questions.\nbeen stuck on something for a while (>30min) and aren’t even really sure where to start - Programming can be frustrating and it may not always be obvious what is going wrong or why something isn’t working. That’s OK - we’ve all been there! If you are stuck, you can and should reach out for help, even if you aren’t exactly sure what your specific question is. To determine when to reach out, consider the 2-hour rule. This rule states that if you are stuck, work on that problem for an hour. Then, take a 30 minute break and do something else. When you come back after your break, try for another 30 minutes or so to solve your problem. If you are still completely stuck, stop and contact us (office hours, post on Campuswire). If you don’t have a specific question, include the information you have (what you’re stuck on, the code you’ve been trying that hasn’t been happening, and/or the error messages you’ve been getting).\nquestions about course logistics - first, check the course website. If you can’t find the answer there, first ask a classmate. If still unsure, post on Campuswire.\nquestions about a grade - Post on Campuswire with “regrades” tag in a private post to “Instructors & TAs”.\nsomething super cool to share related to class or want to talk about a topic in further depth - feel free to email Professor Ellis (sellis@ucsd.edu) or come to office hours. Please include COGS137 in the email subject line.\nsome feedback about the course you want to share anonymously - If you’ve been offended by an example in class, really liked or disliked a lesson, or wish there were something covered in class that wasn’t but would rather not share this publicly, etc., please fill out the anonymous Google Form*\n\n*This form can be taken down at any time if it’s not being used for its intended purpose; however, you all will be notified should that happen.\n\n\nAcademic integrity\nDon’t cheat.\nYou are generally encouraged to work together and help one another in this course. However, you are personally responsible for the work you submit. A helpful heuristic can b to ask yourself “Can I explain each piece of code and each analysis carried out in what I’m submitting? Could I reproduce this code/analysis on my own?”; you should be able to answer “Yes” to both questions for everything you submit in this course. For labs and assignments, you are allowed and encouraged to work together, but it is your responsibility to ensure you understand everything you’ve submitted. (For exams, all work has to be completed individually and communication with others about the exam is not allowed; this will be discussed more explicitly before exams.)\nA note on sharing / reusing code: The Internet is an excellent resource; there will be many times you find helpful information online. You should use available resources (e.g. StackOverflow), but you must explicitly cite any code you use directly or any code you use as inspiration. This can be done by including the URL/reference to the source directly in your code (as a code comment) or in accompanying text for a given assignment/exam/lab. You should never share code directly (e.g. copy + paste; share an send an answer to a classmate), but you can discuss code and work together on everything other than take-home exams.\nPlease review UCSD’s academic integrity policies here.\nCheating and plagiarism have been and will be strongly penalized. If, for whatever reason, Canvas or DataHub is down or something else prohibits you from being able to turn in an assignment on time, immediately contact Professor Ellis by emailing your assignment (sellis@ucsd.edu), or else it will be graded as late.\n\n\nCourse components\n\nLecture\nLectures will be your introduction to course topics and material. Lectures will be interactive, and you will be given time to practice with the lecture concepts during class. Attendance is not required, but is encouraged if you’re feeling well. To help incentivize coming to class, there will be a daily participation survey that will open at the end of lecture and close shortly after each Tues/Thurs lecture. Each time you fill out the lecture survey, you get a small % of credit toward your final project Completion of all surveys can provide up to 3.5% extra credit on your final project (not your final course grade).\n\nReadings\nReadings will be assigned for some class days and are best completed prior to the day’s lecture. These are meant to provide background and additional context for the upcoming day’s lecture topics. These can also be a good source after class when studying or reviewing topics discussed in class.\n\n\nPodcast\nIn case you miss class or would like to review the material covered in class, you can view the podcasts here.\n\n\n\nLabs (16%)\nLabs are meant to give you deeper understanding and hands-on experience with the technical and statistical topics introduced during lecture in a low-stakes environment. Lab sections will typically comprise of a short review and explanation of the lab and then time for you to complete the assigned weekly lab. Labs are submitted individually, but you are encouraged to work together during lab. You are free to ask and answer each others’ questions and discuss your work. Instructional staff will be present during lab to help further your understanding.\nLabs are graded for concerted effort. This is because when we learn something new, mistakes are going to happen! In fact, we learn a lot from the mistakes we make during the learning process. If your submission reflects ~50 min of work/effort, you will receive full credit for the week’s lab.\nLab attendance is not required, but is definitely encouraged if you are feeling well. While slides used are shared, lab sessions are not recorded, so being present is the best way to fully engage in the course.\n\n\nHomework (32%)\nAfter practice in lecture and labs, homework assignments are meant to demonstrate your solidified understanding of the course material. These are typically 2-4x longer and more involved than labs. Homework assignments are completed and submitted individually and are marked for correctness. You are allowed to work together on homework assignments, but academic integrity must be upheld.\n\n\nMidterm (15%)\nThere will be a single take-home exam due in week 4, and you will have at least 48 hours to complete it. This exam is meant to assess your understanding of the R programming language prior to us moving into focusing on case studies and full analyses. The exam will be completed individually and will be open-notes and open-Internet; however, you will not be permitted to ask questions of one another, the Internet, nor instructional staff while completing the take-home exam.\n\n\nTeams\nThere will be two case study mini-projects and a final project. Teams will be randomly assigned for the mini-projects but you will choose your final project groups. (By working with teammates throughout the course, you will also be able to use one another as a resource during labs and assignments.)\n\n\nCase Study Mini-projects (20%)\nStarting week 5, we will transition to a project-based course. This will allow us to use case studies to focus on deepening statistical knowledge and carrying out interesting analyses. In this, specific case studies and statistics topics will be discussed in class. In your teams and for each of the case studies, you will: 1) extend the analysis from class and 2) write up a full report of the case study for your team project.\n\n\nFinal Project (17%)\nThe final project will be completed in groups. There will be two different general final projects from which your group can choose, but the idea is that whichever you choose, you will be able to tackle it using and building upon the tools and techniques discussed in class. Briefly here, the two options will be: 1. Create a technical presentation on a statistics topic and/or an R package. 2. Carry out a data analysis.\nEach will require a written report and an oral presentation, but the specific requirements will differ between the two.\nFinal Projects will be due on Th 3/23 of finals week at 11:59 PM.\n\n\n\nGrading\nYour final grade will be comprised of the following:\n\n\n\nLabs (8)\n16%\n\n\nHomework (4)\n32%\n\n\nMidterm (1)\n16%\n\n\nCase Study Projects* (2)\n20%\n\n\nFinal Project(*) (1)\n17%\n\n\n\n* indicates group submission\n\nFinal Grades\nTo calculate final grades, I use the standard grading scale and do not round grades up (given the numerous extra credit opportunities offered):\n\n\n\n97-100%\nA+\n\n\n93-96%\nA\n\n\n90-92%\nA-\n\n\n87-89%\nB+\n\n\n83-86%\nB\n\n\n80-82%\nB-\n\n\n77-79%\nC+\n\n\n73-76%\nC\n\n\n70-72%\nC-\n\n\n67-69%\nD+\n\n\n63-66%\nD\n\n\n60-62%\nD-\n\n\n<60%\nF\n\n\n\n\n\n\nLate / missed work\nLate homework assignments and case study projects will be accepted up to 3 days (72 hours) after the assigned deadline. Late submissions will receive a 25% deduction.\nThere are no late deadlines for labs, the exam, or the final project.\nNote: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.\n\n\nRegrade requests\nWe will work hard to grade everyone fairly and return assignments quickly. And, we know you also work hard and want you to receive the grade you’ve earned. Occasionally, grading mistakes do happen, and it’s important to us to correct them. If you think there is a mistake in your grade on an assignment, post privately on Campuswire to “Instructors” using the “regrades” tag within 72 hours. This post should include evidence of why you think your answer was correct and should point to the specific part of the assignment in question.\n\n\nProfessionalism\nPlease refrain from texting or using your computer for anything other than coursework during class. Not only is this distracting to you, but it can also be distracting to those around you. (Note that there is no consequence associated with this. I know it can be difficult, but I ask that you try your best!)"
+  },
+  {
+    "objectID": "schedule.html",
+    "href": "schedule.html",
+    "title": "COGS 137",
+    "section": "",
+    "text": "Week\nDate\nTitle\nType\n\n\n\n\n1\nTu Jan 10\nWelcome & Tooling\nLecture\n\n\n1\nTh Jan 12\nIntro to R\nLecture\n\n\n1\nFri Jan 13\nLab 01: Intro to R\nLab\n\n\n2\nTu Jan 17\nData Wrangling: dplyr\nLecture\n\n\n2\nTh Jan 19\nData Wrangling: tidyr\nLecture\n\n\n2\nFri Jan 20\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Jan 23\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Jan 24\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n3\nTh Jan 26\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nFri Jan 27\nLab 03: Data Visualization\nLab\n\n\n4\nTu Jan 31\nData Analysis & Modeling\nLecture\n\n\n4\nTh Feb 2\nLinear Models Review*\nLecture\n\n\n4\nFri Feb 3\nLab 04: Modeling\nLab\n\n\n5\nMon Feb 6\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Feb 7\nEffective Communication\nLecture\n\n\n5\nTh Feb 9\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Feb 10\nLab used for midterm review\nLab\n\n\n6\nMon Feb 13\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Feb 14\nMultiple Linear Regression\nLecture\n\n\n6\nTh Feb 16\nCase Study 01: Right to Carry (day 1)\nLecture\n\n\n6\nFri Feb 17\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nMon Feb 20\nHW03 due (11:59 PM)\nHW\n\n\n7\nTu Feb 21\nCase Study 01: Right to Carry (day 2)\nLecture\n\n\n7\nTh Feb 23\nCase Study 01: Right to Carry (day 3)\nLecture\n\n\n7\nFri Feb 24\nLab 06: CS01\nLab\n\n\n8\nTu Feb 28\nLogistic Regression (day 1)\nLecture\n\n\n8\nTh Mar 2\nLogistic Regression (day 2)\nLecture\n\n\n8\nFri Mar 3\nLab 07: Logistic Regression\nLab\n\n\n9\nMon Mar 6\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Mar 7\nCase Study 02: Vaping (day 1)\nLecture\n\n\n9\nTh Mar 9\nCase Study 02: Vaping (day 2)\nLecture\n\n\n9\nFri Mar 10\nLab 08: CS02\nLab\n\n\n10\nMon Mar 13\nHW04 due (11:59 PM)\nHW\n\n\n10\nTu Mar 14\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Mar 16\nNext Steps\nLecture\n\n\n10\nFri Mar 17\nLab used for Final Project\nLab\n\n\nFinals\nMon Mar 20\nCS02 Due\nCase Study\n\n\nFinals\nTh Mar 23\nFinal Project Due (11:59 PM)\nLecture"
+  },
+  {
+    "objectID": "content/lectures/05-viz.html#put-long-categories-on-the-y-axis",
+    "href": "content/lectures/05-viz.html#put-long-categories-on-the-y-axis",
+    "title": "05-viz",
+    "section": "Put long categories on the y-axis",
+    "text": "Put long categories on the y-axis\nLong categories can be hard to read"
+  },
+  {
+    "objectID": "content/lectures/05-viz-slides.html#put-long-categories-on-the-y-axis",
+    "href": "content/lectures/05-viz-slides.html#put-long-categories-on-the-y-axis",
+    "title": "05-viz",
+    "section": "Put long categories on the y-axis",
+    "text": "Put long categories on the y-axis\nLong categories can be hard to read"
   }
 ]

@@ -676,7 +676,5 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 
 ## Suggested Reading
 
-R4DS:
-
--   Chapter 3: [Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
-
+- R4DS Chapter 3: [Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
+- Data to Viz: [https://www.data-to-viz.com/](https://www.data-to-viz.com/)

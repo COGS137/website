@@ -49,6 +49,8 @@ website:
             href: content/lectures/03-tidyr-slides.html
           - text: "04-ggplot2"
             href: content/lectures/04-ggplot2-slides.html
+          - text: "05-viz"
+            href: content/lectures/05-viz-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -61,6 +63,8 @@ website:
             href: content/lectures/03-tidyr.qmd
           - text: "04-ggplot2"
             href: content/lectures/04-ggplot2.qmd
+          - text: "05-viz"
+            href: content/lectures/05-viz.qmd
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"
@@ -83,6 +87,8 @@ website:
         contents:
           - text: "HW01"
             href: content/hw/hw-01.qmd
+          - text: "HW02"
+            href: content/hw/hw-02.qmd
 format:
   html:
     theme: material

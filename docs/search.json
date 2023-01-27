@@ -2188,7 +2188,7 @@
     "href": "content/lectures/01-intro-to-r.html#the-question",
     "title": "01-intro-to-r",
     "section": "The Question",
-    "text": "The Question\nHow many respondents have a below average number of cats?\n\nGiving it a first shot…\n\ncat_lovers |>\n  summarise(mean = mean(number_of_cats))\n\nWarning in mean.default(number_of_cats): argument is not numeric or logical:\nreturning NA\n\n\n# A tibble: 1 × 1\n   mean\n  <dbl>\n1    NA\n\n\n\n\n💡 maybe there is missing data in the number_of_cats column!\nOh why will you still not work??!!\n\ncat_lovers |>\n  summarise(mean_cats = mean(number_of_cats, na.rm = TRUE))\n\nWarning in mean.default(number_of_cats, na.rm = TRUE): argument is not numeric\nor logical: returning NA\n\n\n# A tibble: 1 × 1\n  mean_cats\n      <dbl>\n1        NA\n\n\n\n\n💡What is the type of the number_of_cats variable?"
+    "text": "The Question\nHow many respondents have a below average number of cats?\n\nGiving it a first shot…\n\ncat_lovers |>\n  summarise(mean = mean(number_of_cats))\n\n# A tibble: 1 × 1\n   mean\n  <dbl>\n1    NA\n\n\n\n\n💡 maybe there is missing data in the number_of_cats column!\nOh why will you still not work??!!\n\ncat_lovers |>\n  summarise(mean_cats = mean(number_of_cats, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  mean_cats\n      <dbl>\n1        NA\n\n\n\n\n💡What is the type of the number_of_cats variable?"
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html#take-a-breath-and-look-at-your-data",
@@ -2209,7 +2209,7 @@
     "href": "content/lectures/01-intro-to-r.html#sometimes-you-need-to-babysit-your-respondents",
     "title": "01-intro-to-r",
     "section": "Sometimes you need to babysit your respondents",
-    "text": "Sometimes you need to babysit your respondents\n\ncat_lovers |>\n  mutate(number_of_cats = case_when(\n    name == \"Ginger Clark\" ~ 2,\n    name == \"Doug Bass\"    ~ 3,\n    TRUE                   ~ as.numeric(number_of_cats))) \n\nWarning in eval_tidy(pair$rhs, env = default_env): NAs introduced by coercion\n\n\n# A tibble: 60 × 3\n   name           number_of_cats handedness\n   <chr>                   <dbl> <chr>     \n 1 Bernice Warren              0 left      \n 2 Woodrow Stone               0 left      \n 3 Willie Bass                 1 left      \n 4 Tyrone Estrada              3 left      \n 5 Alex Daniels                3 left      \n 6 Jane Bates                  2 left      \n 7 Latoya Simpson              1 left      \n 8 Darin Woods                 1 left      \n 9 Agnes Cobb                  0 left      \n10 Tabitha Grant               0 left      \n# … with 50 more rows"
+    "text": "Sometimes you need to babysit your respondents\n\ncat_lovers |>\n  mutate(number_of_cats = case_when(\n    name == \"Ginger Clark\" ~ 2,\n    name == \"Doug Bass\"    ~ 3,\n    TRUE                   ~ as.numeric(number_of_cats))) \n\n# A tibble: 60 × 3\n   name           number_of_cats handedness\n   <chr>                   <dbl> <chr>     \n 1 Bernice Warren              0 left      \n 2 Woodrow Stone               0 left      \n 3 Willie Bass                 1 left      \n 4 Tyrone Estrada              3 left      \n 5 Alex Daniels                3 left      \n 6 Jane Bates                  2 left      \n 7 Latoya Simpson              1 left      \n 8 Darin Woods                 1 left      \n 9 Agnes Cobb                  0 left      \n10 Tabitha Grant               0 left      \n# … with 50 more rows"
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html#always-respect-check-data-types",
@@ -3133,7 +3133,7 @@
     "href": "content/labslides/03-lab-deck.html#agenda",
     "title": "Lab 03: Exploring & Visualizing Data",
     "section": "Agenda",
-    "text": "Agenda\n\nLab introduction: Review FiveThirtyEight article on college majors.\nTips:\n\n\nReview a few common RMarkdown mistakes.\nReview continuous vs discrete variable types"
+    "text": "Agenda\n\nTips:\n\nBriefly review a question regarding sorting.\nReview numeric vs categorical variable types.\n\nLab introduction:\n\nReview FiveThirtyEight article on college majors."
   },
   {
     "objectID": "content/labslides/03-lab-deck.html#lab-intro",

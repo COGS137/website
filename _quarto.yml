@@ -79,6 +79,8 @@ website:
             href: content/labslides/01-lab-deck.qmd
           - text: "Lab02"
             href: content/labslides/02-lab-deck.qmd
+          - text: "Lab03"
+            href: content/labslides/03-lab-deck.qmd
       - section: "Lab Answers"
         contents:
           - text: "Lab02: Wrangling (Ans)"

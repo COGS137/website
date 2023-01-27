@@ -23,10 +23,10 @@ library(rvest)
 
 ## Agenda
 
-1. **Lab introduction:** Review FiveThirtyEight article on college majors.
-2. **Tips:** 
-- Review a few common RMarkdown mistakes.
-- Review continuous vs discrete variable types
+1. **Tips:** 
+- Briefly review a question regarding sorting.
+- Review numeric vs categorical variable types.
+2. **Lab introduction:** Review FiveThirtyEight article on college majors.
 
 
 ## Lab Intro

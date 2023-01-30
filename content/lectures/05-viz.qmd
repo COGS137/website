@@ -7,7 +7,6 @@ format:
   html: 
     output-file: 05-viz.html
     execute:
-      output: true
       embed-resources: true
   revealjs:
     output-file: 05-viz-slides.html
@@ -22,7 +21,6 @@ format:
      eval: true
      echo: true
      output: true       
-     embed-resources: true
 ---
 
 

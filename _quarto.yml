@@ -51,6 +51,8 @@ website:
             href: content/lectures/04-ggplot2-slides.html
           - text: "05-viz"
             href: content/lectures/05-viz-slides.html
+          # - text: "06-analysis"
+          #   href: content/lectures/06-analysis-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -65,6 +67,8 @@ website:
             href: content/lectures/04-ggplot2.qmd
           - text: "05-viz"
             href: content/lectures/05-viz.qmd
+          # - text: "06-analysis"
+          #   href: content/lectures/06-analysis.qmd
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"
@@ -73,6 +77,8 @@ website:
             href: content/labs/02-lab-wrangling.qmd
           - text: "Lab03: Data Viz"
             href: content/labs/03-lab-viz.qmd
+          - text: "Lab04: Modelling"
+            href: content/labs/04-lab-modelling.qmd
       - section: "Lab Slides"
         contents:
           - text: "Lab01"
@@ -85,6 +91,8 @@ website:
         contents:
           - text: "Lab02: Wrangling (Ans)"
             href: content/lab-ans/lab02-wrangling-ans.qmd
+          - text: "Lab03: Data Viz (Ans)"
+            href: content/lab-ans/lab03-viz-ans.qmd
       - section: "Homework"
         contents:
           - text: "HW01"

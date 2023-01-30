@@ -21,7 +21,8 @@ format:
     execute:
      eval: true
      echo: true
-     output: true
+     output: true       
+     embed-resources: true
 ---
 
 

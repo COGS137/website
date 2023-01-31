@@ -6,6 +6,8 @@ date: "2023-01-31"
 format:
   html: 
     output-file: 06-analysis.html
+    execute:
+      embed-resources: true
   revealjs:
     output-file: 06-analysis-slides.html
     slide-number: true
@@ -18,7 +20,7 @@ format:
     execute:
      eval: true
      echo: true
-     output: true       
+     output: true 
 ---
 
 # Intro to Data Analysis {background-color="#92A86A"}
@@ -58,6 +60,7 @@ format:
 **Notes**:
 
 -   HW01 Grades (Canvas) & Feedback (GitHub Issue) Posted
+-   Lab03 Answer Key Posted
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -74,7 +77,7 @@ knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, mes
 
 - Exploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.
 
-- Often, this is visual. (That's what we're focusing on first today.)
+- Often, this is visual....but the visuals do not have to be *perfect*. (Save that for communication) 
 
 - Calculating summary statistics is also part of EDA.
 
@@ -109,7 +112,7 @@ The Goal: *KNOW* YOUR DATA!
 
 - Data visualization is the creation and study of the visual representation of data.
 
-- There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (**ggplot2** is what we'll continue to use).
+- There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (**`ggplot2`** is what we'll continue to use).
 
 - EDA will involve making plots/visualizing your data
 
@@ -117,7 +120,7 @@ The Goal: *KNOW* YOUR DATA!
 # Data: Paris Paintings {background-color="#92A86A"}
 
 
-## Paris Paintings
+## Paris Paintings {.smaller}
 
 ```{r message=FALSE}
 pp <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv", 
@@ -125,37 +128,29 @@ pp <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/paris_pa
 ```
 
 
-## Meet the data curators
-
-
-![](images/06/sandra-van-ginhoven.png) ![](images/06/hilary-coe-cronheim.png)
-
-Sandra van Ginhoven &nbsp; &nbsp; Hilary Coe Cronheim
-
-PhD students in the Duke Art, Law, and Markets Initiative in 2013
-
-
-::: aside 
-Source: Printed catalogues of 28 auction sales in Paris, 1764- 1780
-- 3,393 paintings, their prices, and descriptive details from sales catalogues over 60 variables
-:::
+- Source: Printed catalogs of 28 auction sales in Paris, 1764 - 1780
+- Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues
+- `r nrow(pp)` paintings, their prices, and descriptive details from sales catalogues over 60 variables
 
 ## Auctions today
 
-![](images/06/auction-video.png)
+```{r out.width="80%", echo=FALSE}
+knitr::include_graphics("images/06/auction-video.png")
+```
 
 ::: aside
-Source: http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html
+Source: [Sothebys](http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html)
 :::
 
 
-## Auctions back in the day
+## Auctions back in the day {.smaller}
 
-![](images/06/old-auction.png)
+```{r out.width="75%", echo=FALSE}
+knitr::include_graphics("images/06/old-auction.png")
+```
 
-::: aside
-Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)
-:::
+
+Source: Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)
 
 
 ## Paris auction market
@@ -180,33 +175,23 @@ Two paintings very rich in composition, of a beautiful execution, and whose meri
 :::
 :::
 
-## {.smaller}
+## Depart pour la chasse as Data {.smaller}
 
-
-```{r}
-  pp |> 
-  filter(name == "R1777-89a") |> 
-  select(name:endbuyer) |> 
-  t() # transposes the dataframe
+```{r, out.width="90%", echo=FALSE}
+knitr::include_graphics("images/06/painting1.png")
+knitr::include_graphics("images/06/painting2.png")
+knitr::include_graphics("images/06/painting3.png")
 ```
 
 ## {.smaller}
 
-```{r}
-  pp |> 
-  filter(name == "R1777-89a") |> 
-  select(Interm:finished) |> 
-  t()
-```
-
-## {.smaller}
 
 ```{r}
-  pp |> 
-    filter(name == "R1777-89a") |> 
-    select(lrgfont:other) |> 
-    t()
+pp |>
+  filter(name == "R1777-89a") |>
+  glimpse()
 ```
+
 
 # EDA: Paris Paintings {background-color="#92A86A"}
 
@@ -221,13 +206,36 @@ Two paintings very rich in composition, of a beautiful execution, and whose meri
 * spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
 * unusual observations
 
-## Histograms 
+## Histograms {.smaller}
 
-```{r fig.width = 7, fig.height=4}
-ggplot(data = pp, mapping = aes(x = Height_in)) +
-  geom_histogram(binwidth = 10)
+::: panel-tabset
+
+### Heights
+
+```{r, fig.width = 7, fig.height=4}
+ggplot(data = pp, aes(x = Height_in)) +
+  geom_histogram(binwidth = 5) +
+  labs(x = "Height, in inches", y = NULL)
 ```
 
+
+### Widths
+
+```{r, fig.width = 7, fig.height=4}
+ggplot(data = pp, aes(x = Width_in)) +
+  geom_histogram(binwidth = 5) +
+  labs(x = "Width, in inches", y = NULL)
+```
+
+
+### Prices
+
+```{r}
+ggplot(data = pp, aes(x = price)) +
+  geom_histogram(binwidth = 100) +
+  labs(x = "Price", y = NULL)
+```
+:::
 
 ## Density plots
 
@@ -279,11 +287,20 @@ ggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +
 ## Your Turn
 
 
-[`r emo::ji("question")` Which of the previous two bar plots is a more useful representation for visualizing the relationship between gender and hair color?]{style="background-color: #ADD8E6"}
+[`r emo::ji("question")` Which of the previous two bar plots is a more useful representation for visualizing the relationship between landscape and painting material?]{style="background-color: #ADD8E6"}
 
 . . .
 
 [`r emo::ji("question")` What else would you want to do/know to complete EDA?]{style="background-color: #ADD8E6"}
+
+. . .
+
+[`r emo::ji("brain")` Try to answer at least one thing you'd want to know from the dataset.]{style="background-color: #ADD8E6"}
+
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
 
 
 # Modelling {background-color="#92A86A"}
@@ -449,7 +466,7 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 
 ## Multiple explanatory variables {.smaller}
 
-[`r emo::ji("question")` How, if at all, the relationship between width and height of paintings vary by whether or not they have any landscape elements?]{style="background-color: #ADD8E6"}
+[`r emo::ji("question")` How, if at all, does the relationship between width and height of paintings vary by whether or not they have any landscape elements?]{style="background-color: #ADD8E6"}
 
 ```{r warning = FALSE, fig.height=2}
 ggplot(data = pp, aes(x = Width_in, y = Height_in, 
@@ -461,11 +478,13 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in,
 
 
 
-## Models - upsides and downsides {.smaller}
+## Models - upsides and downsides
 
 - Models can sometimes reveal patterns that are not evident in a graph of the
 data. This is a great advantage of modelling over simple visual inspection of
 data. 
+
+. . .
 
 - There is a real risk, however, that a model is imposing structure that is
 not really there on the scatter of data, just as people imagine animal shapes in
@@ -476,8 +495,12 @@ the stars. A skeptical approach is always warranted.
 
 is just as important as the model, if not more!
 
+. . .
+
 *Statistics is the explanation of variation in the context of what remains
 unexplained.*
+
+. . .
 
 - The scatter suggests that there might be other factors that account for large parts 
 of painting-to-painting variability, or perhaps just that randomness plays a big role.

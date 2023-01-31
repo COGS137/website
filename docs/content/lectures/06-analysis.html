@@ -235,6 +235,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../content/lectures/05-viz-slides.html" class="sidebar-item-text sidebar-link">05-viz</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -273,6 +278,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/lectures/05-viz.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link active">06-analysis</a>
   </div>
 </li>
       </ul>
@@ -397,15 +407,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#data-paris-paintings" id="toc-data-paris-paintings" class="nav-link" data-scroll-target="#data-paris-paintings">Data: Paris Paintings</a>
   <ul class="collapse">
   <li><a href="#paris-paintings" id="toc-paris-paintings" class="nav-link" data-scroll-target="#paris-paintings">Paris Paintings</a></li>
-  <li><a href="#meet-the-data-curators" id="toc-meet-the-data-curators" class="nav-link" data-scroll-target="#meet-the-data-curators">Meet the data curators</a></li>
   <li><a href="#auctions-today" id="toc-auctions-today" class="nav-link" data-scroll-target="#auctions-today">Auctions today</a></li>
   <li><a href="#auctions-back-in-the-day" id="toc-auctions-back-in-the-day" class="nav-link" data-scroll-target="#auctions-back-in-the-day">Auctions back in the day</a></li>
   <li><a href="#paris-auction-market" id="toc-paris-auction-market" class="nav-link" data-scroll-target="#paris-auction-market">Paris auction market</a></li>
   <li><a href="#depart-pour-la-chasse" id="toc-depart-pour-la-chasse" class="nav-link" data-scroll-target="#depart-pour-la-chasse">Depart pour la chasse</a></li>
   <li><a href="#auction-catalogue-text" id="toc-auction-catalogue-text" class="nav-link" data-scroll-target="#auction-catalogue-text">Auction catalogue text</a></li>
+  <li><a href="#depart-pour-la-chasse-as-data" id="toc-depart-pour-la-chasse-as-data" class="nav-link" data-scroll-target="#depart-pour-la-chasse-as-data">Depart pour la chasse as Data</a></li>
   <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
-  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
-  <li><a href="#section-2" id="toc-section-2" class="nav-link" data-scroll-target="#section-2"></a></li>
   </ul></li>
   <li><a href="#eda-paris-paintings" id="toc-eda-paris-paintings" class="nav-link" data-scroll-target="#eda-paris-paintings">EDA: Paris Paintings</a>
   <ul class="collapse">
@@ -431,7 +439,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <li><a href="#visualizing-the-linear-model-2" id="toc-visualizing-the-linear-model-2" class="nav-link" data-scroll-target="#visualizing-the-linear-model-2">Visualizing the linear model</a></li>
   <li><a href="#vocabulary" id="toc-vocabulary" class="nav-link" data-scroll-target="#vocabulary">Vocabulary</a></li>
   <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals">Residuals</a></li>
-  <li><a href="#section-3" id="toc-section-3" class="nav-link" data-scroll-target="#section-3"></a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
   <li><a href="#landscape-paintings" id="toc-landscape-paintings" class="nav-link" data-scroll-target="#landscape-paintings">Landscape paintings</a></li>
   <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables">Multiple explanatory variables</a></li>
   <li><a href="#models---upsides-and-downsides" id="toc-models---upsides-and-downsides" class="nav-link" data-scroll-target="#models---upsides-and-downsides">Models - upsides and downsides</a></li>
@@ -521,6 +529,7 @@ A: Because I assume that some students are using this as a resource. And, that�
 <p><strong>Notes</strong>:</p>
 <ul>
 <li>HW01 Grades (Canvas) &amp; Feedback (GitHub Issue) Posted</li>
+<li>Lab03 Answer Key Posted</li>
 </ul>
 <div class="cell">
 
@@ -533,7 +542,7 @@ A: Because I assume that some students are using this as a resource. And, that�
 <h2 class="anchored" data-anchor-id="what-is-eda">What is EDA?</h2>
 <ul>
 <li><p>Exploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.</p></li>
-<li><p>Often, this is visual. (That’s what we’re focusing on first today.)</p></li>
+<li><p>Often, this is visual….but the visuals do not have to be <em>perfect</em>. (Save that for communication)</p></li>
 <li><p>Calculating summary statistics is also part of EDA.</p></li>
 </ul>
 <div class="incremental">
@@ -568,43 +577,45 @@ A: Because I assume that some students are using this as a resource. And, that�
 </blockquote>
 <ul>
 <li><p>Data visualization is the creation and study of the visual representation of data.</p></li>
-<li><p>There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (<strong>ggplot2</strong> is what we’ll continue to use).</p></li>
+<li><p>There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (<strong><code>ggplot2</code></strong> is what we’ll continue to use).</p></li>
 <li><p>EDA will involve making plots/visualizing your data</p></li>
 </ul>
 </section>
 </section>
 <section id="data-paris-paintings" class="level1 page-columns page-full" data-background-color="#92A86A">
 <h1 data-background-color="#92A86A">Data: Paris Paintings</h1>
-<section id="paris-paintings" class="level2">
-<h2 class="anchored" data-anchor-id="paris-paintings">Paris Paintings</h2>
+<section id="paris-paintings" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="paris-paintings">Paris Paintings</h2>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv"</span>, </span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"n/a"</span>, <span class="st">""</span>, <span class="st">"NA"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<ul>
+<li>Source: Printed catalogs of 28 auction sales in Paris, 1764 - 1780</li>
+<li>Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues</li>
+<li>3393 paintings, their prices, and descriptive details from sales catalogues over 60 variables</li>
+</ul>
 </section>
-<section id="meet-the-data-curators" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="meet-the-data-curators">Meet the data curators</h2>
-<p><img src="images/06/sandra-van-ginhoven.png" class="img-fluid"> <img src="images/06/hilary-coe-cronheim.png" class="img-fluid"></p>
-<p>Sandra van Ginhoven &nbsp; &nbsp; Hilary Coe Cronheim</p>
-<p>PhD students in the Duke Art, Law, and Markets Initiative in 2013</p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Source: Printed catalogues of 28 auction sales in Paris, 1764- 1780 - 3,393 paintings, their prices, and descriptive details from sales catalogues over 60 variables</p>
-</div></div></section>
 <section id="auctions-today" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="auctions-today">Auctions today</h2>
-<p><img src="images/06/auction-video.png" class="img-fluid"></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/06/auction-video.png" class="img-fluid" style="width:80.0%"></p>
+</div>
+</div>
 
 <div class="no-row-height column-margin column-container"><div class="">
-<p>Source: http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html</p>
+<p>Source: <a href="http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html">Sothebys</a></p>
 </div></div></section>
-<section id="auctions-back-in-the-day" class="level2 page-columns page-full">
-<h2 class="anchored" data-anchor-id="auctions-back-in-the-day">Auctions back in the day</h2>
-<p><img src="images/06/old-auction.png" class="img-fluid"></p>
-
-<div class="no-row-height column-margin column-container"><div class="">
-<p>Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)</p>
-</div></div></section>
+<section id="auctions-back-in-the-day" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="auctions-back-in-the-day">Auctions back in the day</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/06/old-auction.png" class="img-fluid" style="width:75.0%"></p>
+</div>
+</div>
+<p>Source: Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)</p>
+</section>
 <section id="paris-auction-market" class="level2">
 <h2 class="anchored" data-anchor-id="paris-auction-market">Paris auction market</h2>
 <p><img src="images/06/auction-trend-paris.png" class="img-fluid"></p>
@@ -623,105 +634,95 @@ A: Because I assume that some students are using this as a resource. And, that�
 </div>
 </div>
 </section>
+<section id="depart-pour-la-chasse-as-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="depart-pour-la-chasse-as-data">Depart pour la chasse as Data</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/06/painting1.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="images/06/painting2.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="images/06/painting3.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+</section>
 <section id="section" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="section"></h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>  pp <span class="sc">|&gt;</span> </span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"R1777-89a"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(name<span class="sc">:</span>endbuyer) <span class="sc">|&gt;</span> </span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>() <span class="co"># transposes the dataframe</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pp <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"R1777-89a"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
-<pre><code>                  [,1]                                     
-name              "R1777-89a"                              
-sale              "R1777"                                  
-lot               "89"                                     
-position          "0.3755274"                              
-dealer            "R"                                      
-year              "1777"                                   
-origin_author     "D/FL"                                   
-origin_cat        "D/FL"                                   
-school_pntg       "D/FL"                                   
-diff_origin       "0"                                      
-logprice          "8.575462"                               
-price             "5300"                                   
-count             "1"                                      
-subject           "D\x8epart pour la chasse"               
-authorstandard    "Wouwerman, Philips"                     
-artistliving      "0"                                      
-authorstyle       NA                                       
-author            "Philippe Wouwermans"                    
-winningbidder     "Langlier, Jacques for Poullain, Antoine"
-winningbiddertype "DC"                                     
-endbuyer          "C"                                      </code></pre>
-</div>
-</div>
-</section>
-<section id="section-1" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="section-1"></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>  pp <span class="sc">|&gt;</span> </span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"R1777-89a"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(Interm<span class="sc">:</span>finished) <span class="sc">|&gt;</span> </span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">t</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>              [,1]      
-Interm        "1"       
-type_intermed "D"       
-Height_in     "17.25"   
-Width_in      "23"      
-Surface_Rect  "396.75"  
-Diam_in       NA        
-Surface_Rnd   NA        
-Shape         "squ_rect"
-Surface       "396.75"  
-material      "bois"    
-mat           "b"       
-materialCat   "wood"    
-quantity      "1"       
-nfigures      "0"       
-engraved      "0"       
-original      "0"       
-prevcoll      "1"       
-othartist     "0"       
-paired        "1"       
-figures       "0"       
-finished      "0"       </code></pre>
-</div>
-</div>
-</section>
-<section id="section-2" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="section-2"></h2>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>  pp <span class="sc">|&gt;</span> </span>
-<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>    <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"R1777-89a"</span>) <span class="sc">|&gt;</span> </span>
-<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">select</span>(lrgfont<span class="sc">:</span>other) <span class="sc">|&gt;</span> </span>
-<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">t</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-<div class="cell-output cell-output-stdout">
-<pre><code>           [,1]
-lrgfont       0
-relig         0
-landsALL      1
-lands_sc      0
-lands_elem    1
-lands_figs    1
-lands_ment    0
-arch          1
-mytho         0
-peasant       0
-othgenre      0
-singlefig     0
-portrait      0
-still_life    0
-discauth      0
-history       0
-allegory      0
-pastorale     0
-other         0</code></pre>
+<pre><code>Rows: 1
+Columns: 61
+$ name              &lt;chr&gt; "R1777-89a"
+$ sale              &lt;chr&gt; "R1777"
+$ lot               &lt;chr&gt; "89"
+$ position          &lt;dbl&gt; 0.3755274
+$ dealer            &lt;chr&gt; "R"
+$ year              &lt;dbl&gt; 1777
+$ origin_author     &lt;chr&gt; "D/FL"
+$ origin_cat        &lt;chr&gt; "D/FL"
+$ school_pntg       &lt;chr&gt; "D/FL"
+$ diff_origin       &lt;dbl&gt; 0
+$ logprice          &lt;dbl&gt; 8.575462
+$ price             &lt;dbl&gt; 5300
+$ count             &lt;dbl&gt; 1
+$ subject           &lt;chr&gt; "D\x8epart pour la chasse"
+$ authorstandard    &lt;chr&gt; "Wouwerman, Philips"
+$ artistliving      &lt;dbl&gt; 0
+$ authorstyle       &lt;chr&gt; NA
+$ author            &lt;chr&gt; "Philippe Wouwermans"
+$ winningbidder     &lt;chr&gt; "Langlier, Jacques for Poullain, Antoine"
+$ winningbiddertype &lt;chr&gt; "DC"
+$ endbuyer          &lt;chr&gt; "C"
+$ Interm            &lt;dbl&gt; 1
+$ type_intermed     &lt;chr&gt; "D"
+$ Height_in         &lt;dbl&gt; 17.25
+$ Width_in          &lt;dbl&gt; 23
+$ Surface_Rect      &lt;dbl&gt; 396.75
+$ Diam_in           &lt;dbl&gt; NA
+$ Surface_Rnd       &lt;dbl&gt; NA
+$ Shape             &lt;chr&gt; "squ_rect"
+$ Surface           &lt;dbl&gt; 396.75
+$ material          &lt;chr&gt; "bois"
+$ mat               &lt;chr&gt; "b"
+$ materialCat       &lt;chr&gt; "wood"
+$ quantity          &lt;dbl&gt; 1
+$ nfigures          &lt;dbl&gt; 0
+$ engraved          &lt;dbl&gt; 0
+$ original          &lt;dbl&gt; 0
+$ prevcoll          &lt;dbl&gt; 1
+$ othartist         &lt;dbl&gt; 0
+$ paired            &lt;dbl&gt; 1
+$ figures           &lt;dbl&gt; 0
+$ finished          &lt;dbl&gt; 0
+$ lrgfont           &lt;dbl&gt; 0
+$ relig             &lt;dbl&gt; 0
+$ landsALL          &lt;dbl&gt; 1
+$ lands_sc          &lt;dbl&gt; 0
+$ lands_elem        &lt;dbl&gt; 1
+$ lands_figs        &lt;dbl&gt; 1
+$ lands_ment        &lt;dbl&gt; 0
+$ arch              &lt;dbl&gt; 1
+$ mytho             &lt;dbl&gt; 0
+$ peasant           &lt;dbl&gt; 0
+$ othgenre          &lt;dbl&gt; 0
+$ singlefig         &lt;dbl&gt; 0
+$ portrait          &lt;dbl&gt; 0
+$ still_life        &lt;dbl&gt; 0
+$ discauth          &lt;dbl&gt; 0
+$ history           &lt;dbl&gt; 0
+$ allegory          &lt;dbl&gt; 0
+$ pastorale         &lt;dbl&gt; 0
+$ other             &lt;dbl&gt; 0</code></pre>
 </div>
 </div>
 </section>
 </section>
-<section id="eda-paris-paintings" class="level1" data-background-color="#92A86A">
+<section id="eda-paris-paintings" class="level1 page-columns page-full" data-background-color="#92A86A">
 <h1 data-background-color="#92A86A">EDA: Paris Paintings</h1>
 <section id="visualizing-numerical-data" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="visualizing-numerical-data">Visualizing numerical data</h2>
@@ -737,33 +738,61 @@ other         0</code></pre>
 <li>unusual observations</li>
 </ul>
 </section>
-<section id="histograms" class="level2">
-<h2 class="anchored" data-anchor-id="histograms">Histograms</h2>
+<section id="histograms" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="histograms">Histograms</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Heights</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Widths</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Prices</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">10</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Height, in inches"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-5-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Width, in inches"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Price"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</div>
 </div>
 </div>
 </section>
 <section id="density-plots" class="level2">
 <h2 class="anchored" data-anchor-id="density-plots">Density plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
-<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
 <section id="side-by-side-box-plots" class="level2">
 <h2 class="anchored" data-anchor-id="side-by-side-box-plots">Side-by-side box plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Height_in, <span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Height_in, <span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -777,40 +806,46 @@ other         0</code></pre>
 <section id="bar-plots" class="level2">
 <h2 class="anchored" data-anchor-id="bar-plots">Bar plots</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
 <section id="segmented-bar-plots-counts" class="level2">
 <h2 class="anchored" data-anchor-id="segmented-bar-plots-counts">Segmented bar plots, counts</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
 <section id="segmented-bar-plots-proportions" class="level2">
 <h2 class="anchored" data-anchor-id="segmented-bar-plots-proportions">Segmented bar plots, proportions</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
-<section id="your-turn" class="level2">
+<section id="your-turn" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="your-turn">Your Turn</h2>
-<p><span style="background-color: #ADD8E6">❓ Which of the previous two bar plots is a more useful representation for visualizing the relationship between gender and hair color?</span></p>
+<p><span style="background-color: #ADD8E6">❓ Which of the previous two bar plots is a more useful representation for visualizing the relationship between landscape and painting material?</span></p>
 <div class="incremental">
 <p><span style="background-color: #ADD8E6">❓ What else would you want to do/know to complete EDA?</span></p>
 </div>
+<div class="incremental page-columns page-full">
+<p><span style="background-color: #ADD8E6">🧠 Try to answer at least one thing you’d want to know from the dataset.</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Put a <font color="#32cb31">green</font> sticky on the front of your computer when you’re done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.</p>
+</div></div></div>
 </section>
 </section>
 <section id="modelling" class="level1" data-background-color="#92A86A">
@@ -833,13 +868,13 @@ other         0</code></pre>
 <li>You’re familiar with the tidyverse:</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <ul>
 <li>The broom package takes the messy output of built-in functions in R, such as <code>lm</code>, and turns them into tidy data frames.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 </div>
@@ -849,10 +884,10 @@ other         0</code></pre>
 <p><strong>EDA: Prices</strong></p>
 <p><span style="background-color: #ADD8E6">❗ Describe the distribution of prices of paintings.</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
-<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -873,18 +908,18 @@ other         0</code></pre>
 <p><span style="background-color: #ADD8E6">❗ Describe the relationship between height and width of paintings.</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-14-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
 <section id="visualizing-the-linear-model" class="level2">
 <h2 class="anchored" data-anchor-id="visualizing-the-linear-model">Visualizing the linear model</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
-<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-15-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -892,11 +927,11 @@ other         0</code></pre>
 <h2 class="anchored" data-anchor-id="visualizing-the-linear-model-1">Visualizing the linear model</h2>
 <p>… without the measure of uncertainty around the line</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="1500"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="1500"></p>
 </div>
 </div>
 </section>
@@ -904,14 +939,14 @@ other         0</code></pre>
 <h2 class="anchored" data-anchor-id="visualizing-the-linear-model-2">Visualizing the linear model</h2>
 <p>… with different cosmetic choices for the line</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
-<span id="cb20-2"><a href="#cb20-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
-<span id="cb20-3"><a href="#cb20-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
-<span id="cb20-4"><a href="#cb20-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="st">"pink"</span>,      <span class="co"># color</span></span>
-<span id="cb20-5"><a href="#cb20-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">lty =</span> <span class="dv">2</span>,           <span class="co"># line type</span></span>
-<span id="cb20-6"><a href="#cb20-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">3</span>)     <span class="co"># line weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="st">"pink"</span>,      <span class="co"># color</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">lty =</span> <span class="dv">2</span>,           <span class="co"># line type</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">3</span>)     <span class="co"># line weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="1500"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="1500"></p>
 </div>
 </div>
 </section>
@@ -948,16 +983,16 @@ other         0</code></pre>
 <p><span style="background-color: #ADD8E6">❓ What does a negative residual mean? Which paintings on the plot have have negative residuals?</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
-<section id="section-3" class="level2">
-<h2 class="anchored" data-anchor-id="section-3"></h2>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
 <p>The plot below displays the relationship between height and width of paintings. It uses a lower alpha level for the points than the previous plots we looked at.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 <p><span style="background-color: #ADD8E6">❓ What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?</span></p>
@@ -977,33 +1012,41 @@ other         0</code></pre>
 </section>
 <section id="multiple-explanatory-variables" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="multiple-explanatory-variables">Multiple explanatory variables</h2>
-<p><span style="background-color: #ADD8E6">❓ How, if at all, the relationship between width and height of paintings vary by whether or not they have any landscape elements?</span></p>
+<p><span style="background-color: #ADD8E6">❓ How, if at all, does the relationship between width and height of paintings vary by whether or not they have any landscape elements?</span></p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in, </span>
-<span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">factor</span>(landsALL))) <span class="sc">+</span></span>
-<span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
-<span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
-<span id="cb21-5"><a href="#cb21-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"landscape"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">factor</span>(landsALL))) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"landscape"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
-<section id="models---upsides-and-downsides" class="level2 smaller">
-<h2 class="smaller anchored" data-anchor-id="models---upsides-and-downsides">Models - upsides and downsides</h2>
+<section id="models---upsides-and-downsides" class="level2">
+<h2 class="anchored" data-anchor-id="models---upsides-and-downsides">Models - upsides and downsides</h2>
 <ul>
-<li><p>Models can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modelling over simple visual inspection of data.</p></li>
-<li><p>There is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted.</p></li>
+<li>Models can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modelling over simple visual inspection of data.</li>
 </ul>
+<div class="incremental">
+<ul>
+<li>There is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted.</li>
+</ul>
+</div>
 </section>
 <section id="variation-around-the-model" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="variation-around-the-model">Variation around the model…</h2>
 <p>is just as important as the model, if not more!</p>
+<div class="incremental">
 <p><em>Statistics is the explanation of variation in the context of what remains unexplained.</em></p>
+</div>
+<div class="incremental">
 <ul>
 <li><p>The scatter suggests that there might be other factors that account for large parts of painting-to-painting variability, or perhaps just that randomness plays a big role.</p></li>
 <li><p>Adding more explanatory variables to a model can sometimes usefully reduce the size of the scatter around the model. (We’ll talk more about this later.)</p></li>
 </ul>
+</div>
 </section>
 <section id="how-do-we-use-models" class="level2">
 <h2 class="anchored" data-anchor-id="how-do-we-use-models">How do we use models?</h2>

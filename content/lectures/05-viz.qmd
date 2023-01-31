@@ -23,15 +23,13 @@ format:
      output: true       
 ---
 
-
 # Effective Data Visualization {background-color="#92A86A"}
-
 
 Slides modified from [datascienceinabox.org](https://datasciencebox.org/)
 
 ## Q&A {.smaller}
 
-> Q: What were those columns in the NC Bike Accident Data we used? \
+> Q: What were those columns in the NC Bike Accident Data we used?\
 > A: Variables are described [here](https://rdrr.io/github/rstudio-education/dsbox/man/ncbikecrash.html)
 
 > Q: I was confused by wrap vs grid and how should I choose between them.\
@@ -45,7 +43,6 @@ Slides modified from [datascienceinabox.org](https://datasciencebox.org/)
 
 > Q:For HW1 Q7, I used read_csv and got an error message. I tried read.csv and it worked. Is there any difference between read_csv and read.csv?\
 > A: Hmm...I'd love to take a look to see what error you got. They are *similar* and often behave the same way. The difference is `read.csv()` was made *before* the tidyverse, so it reads your data in as a dataframe. `read_csv()` is a function that "plays nicely" with the tidyverse and reads the data in as a tibble/data frame. What does that mean practically? It means that typically each one will read the data in and you'll get the same number of rows and columns. What *could* differ would be the column names *and/or* the column types (depending upon the data). All that said, `read_csv()` is what I'll recommend in this course...so that's why I'm curious about the error you got!
-
 
 ## Course Announcements
 
@@ -67,7 +64,6 @@ library(scales)
 
 knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE) 
 ```
-
 
 ## Keep it simple
 
@@ -97,8 +93,7 @@ ggplot(d, aes(x = fct_reorder(category, value), y = value)) +
 :::
 :::
 
-
-## Use	color	to	draw	attention
+## Use color to draw attention
 
 ::: columns
 ::: {.column width="50%"}
@@ -111,7 +106,7 @@ d |>
   labs(x = "", y = "") +
   theme(legend.position = "none")
 ```
-::: 
+:::
 
 ::: {.column width="50%"}
 ```{r echo = FALSE, out.width="100%"}
@@ -126,7 +121,6 @@ ggplot(d, aes(x = fct_reorder(category, value), y = value, fill = category)) +
 :::
 :::
 
-
 ## Tell a story
 
 ```{r echo = FALSE, out.width = "100%"}
@@ -137,17 +131,15 @@ knitr::include_graphics("images/05/time-series-story.png")
 Credit: Angela Zoss and Eric Monson, Duke DVS
 :::
 
-# Principles	for	effective	visualizations {background-color="#92A86A"}
+# Principles for effective visualizations {background-color="#92A86A"}
 
+## Principles for effective visualizations
 
-
-## Principles	for	effective	visualizations
-
-- Order matters
-- Put long categories on the y-axis
-- Keep	scales consistent
-- Select meaningful colors
-- Use meaningful and nonredundant labels
+-   Order matters
+-   Put long categories on the y-axis
+-   Keep scales consistent
+-   Select meaningful colors
+-   Use meaningful and nonredundant labels
 
 ## Data
 
@@ -157,12 +149,10 @@ In September 2019, YouGov survey asked 1,639 GB adults the following question:
 ::: {.column width="50%"}
 > In hindsight, do you think Britain was right/wrong to vote to leave EU?
 >
->- Right to leave  
->- Wrong to leave  
->- Don't know
-
+> -   Right to leave\
+> -   Wrong to leave\
+> -   Don't know
 :::
-
 
 ::: {.column width="50%"}
 ```{r echo = FALSE}
@@ -185,10 +175,9 @@ ggplot(brexit, aes(x = opinion)) +
 :::
 :::
 
-:::aside 
+::: aside
 Source: [YouGov Survey Results](https://d25d2506sfb94s.cloudfront.net/cumulus_uploads/document/x0msmggx08/YouGov%20-%20Brexit%20and%202019%20election.pdf), retrieved Oct 7, 2019
 :::
-
 
 ## The Data: Code
 
@@ -210,8 +199,7 @@ brexit <- tibble(
 **Alphabetical is rarely ideal**
 
 ::: panel-tabset
-
-### Plot 
+### Plot
 
 ```{r ref.label="default-opinion", echo = FALSE}
 ```
@@ -224,17 +212,15 @@ ggplot(brexit, aes(x = opinion)) +
 ```
 :::
 
-
 ## Order by frequency
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="infreq", echo = FALSE}
 ```
 
-
-### Code 
+### Code
 
 `fct_infreq`: Reorder factors' levels by frequency
 
@@ -244,20 +230,17 @@ ggplot(brexit, aes(x = opinion)) +
 ggplot(brexit, aes(x = fct_infreq(opinion))) + 
   geom_bar()
 ```
-
 :::
-
 
 ## Clean up labels
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="labels", echo = FALSE}
 ```
 
-
-### Code 
+### Code
 
 ```{r labels, fig.show = "hide"}
 #| code-line-numbers: "3-6"
@@ -271,13 +254,13 @@ ggplot(brexit, aes(x = opinion)) +
 ```
 :::
 
-
----
+------------------------------------------------------------------------
 
 ## Avoiding Alphabetical Order
-::: panel-tabset
 
+::: panel-tabset
 ### Plot
+
 ```{r ref.label="region-default", echo = FALSE}
 ```
 
@@ -289,11 +272,9 @@ ggplot(brexit, aes(x = region)) +
 ```
 :::
 
-
 ## Use inherent level order
 
 ::: panel-tabset
-
 ### Relevel
 
 `fct_relevel`: Reorder factor levels using a custom order
@@ -310,22 +291,20 @@ brexit <- brexit |>
   )
 ```
 
-### Plot 
+### Plot
 
 ```{r echo=FALSE}
 ggplot(brexit, aes(x = region)) +
   geom_bar()
 ```
-
 :::
 
----
+------------------------------------------------------------------------
 
 ## Clean up labels
 
 ::: panel-tabset
-
-### Recode 
+### Recode
 
 `fct_recode`: Change factor levels by hand
 
@@ -353,7 +332,6 @@ ggplot(brexit, aes(x = region)) +
 ```
 :::
 
-
 ## Put long categories on the y-axis
 
 **Long categories can be hard to read**
@@ -361,12 +339,11 @@ ggplot(brexit, aes(x = region)) +
 ```{r ref.label="recode-plot", echo = FALSE}
 ```
 
-
 ## Move them to the y-axis
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="flip", echo = FALSE}
 ```
 
@@ -378,20 +355,17 @@ ggplot(brexit, aes(x = region)) +
 ggplot(brexit, aes(y = region)) + 
   geom_bar()
 ```
-
 :::
-
 
 ## And reverse the order of levels
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="rev", echo = FALSE}
 ```
 
-
-### Code 
+### Code
 
 `fct_rev`: Reverse order of factor levels
 
@@ -403,15 +377,13 @@ ggplot(brexit, aes(y = fct_rev(region))) +
 ```
 :::
 
-
 ## Clean up labels
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="labels-again", echo = FALSE}
 ```
-
 
 ### Code
 
@@ -427,19 +399,15 @@ ggplot(brexit, aes(y = fct_rev(region))) +
 ```
 :::
 
-
-# Pick a purpose  {background-color="#92A86A"}
-
+# Pick a purpose {background-color="#92A86A"}
 
 ## Segmented bar plots can be hard to read
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="segment", echo = FALSE}
 ```
-
 
 ### Code
 
@@ -451,12 +419,11 @@ ggplot(brexit, aes(y = region, fill = opinion)) +
 ```
 :::
 
-
 ## Use facets
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="facet", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
 
@@ -471,7 +438,6 @@ ggplot(brexit, aes(y = opinion, fill = region)) +
 ```
 :::
 
-
 ## Avoid redundancy?
 
 ```{r echo = FALSE, fig.asp = 0.45, out.width = "90%"}
@@ -483,8 +449,8 @@ ggplot(brexit, aes(y = opinion)) +
 ## Redundancy can help tell a story
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="facet-fill", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
 
@@ -497,11 +463,9 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 :::
 
-
 ## Be selective with redundancy
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="hide-legend", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
@@ -519,12 +483,10 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 :::
 
-
 ## Use informative labels
 
 ::: panel-tabset
-
-### Plot 
+### Plot
 
 ```{r ref.label="informative-label", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
@@ -545,11 +507,9 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 :::
 
-
 ## A bit more info
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="more-info", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
@@ -573,11 +533,9 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 :::
 
-
 ## Let's do better
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="short-link", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
@@ -604,7 +562,6 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ## Fix up facet labels
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="label-wrap", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
@@ -629,27 +586,22 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     x = NULL, y = NULL
   )
 ```
-
 :::
 
-
-# Select meaningful colors  {background-color="#92A86A"}
-
+# Select meaningful colors {background-color="#92A86A"}
 
 ## Rainbow colors not always best
 
 ```{r ref.label="label-wrap", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
 
-
 ## Manually choose colors when needed
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="red-green", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
-
 
 ### Code
 
@@ -672,9 +624,7 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 :::
 
-
 ## Choosing better colors
-
 
 [colorbrewer2.org](https://colorbrewer2.org/)
 
@@ -682,12 +632,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 knitr::include_graphics("images/05/color-brewer.png")
 ```
 
-
 ## Use better colors
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="color-brewer", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
 
@@ -710,19 +659,18 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
     "Don't know" = "gray" 
   ))
 ```
-
 :::
 
 ## Select theme
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="theme", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
 
-
 ### Code
+
 ```{r theme, fig.show = "hide"}
 #| code-line-numbers: "12"
 
@@ -745,12 +693,11 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 `ggthemes` described [here](https://ggplot2.tidyverse.org/reference/ggtheme.html)
 :::
 
-
 ## Customize theme
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="theme-custom", echo = FALSE, fig.asp = 0.45, out.width = "90%"}
 ```
 
@@ -776,21 +723,19 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 ```
 :::
 
-
 ## Your Turn
 
-- Read in the data ([Data slide](https://cogs137.github.io/website/content/lectures/05-viz-slides.html#/the-data-code))
-- Think of at least three different ways to tell slightly different stories with these data
-- Try to implement at least one of these ideas!
-
+-   Read in the data ([Data slide](https://cogs137.github.io/website/content/lectures/05-viz-slides.html#/the-data-code))
+-   Think of at least three different ways to tell slightly different stories with these data
+-   Try to implement at least one of these ideas!
 
 # Recap {background-color="#92A86A"}
 
-- Can you determine what needs to be done to improve the effectiveness of your visualizations?
-- Can you execute said improvements using `ggplot2`?
-- Can you tell a story with data? 
+-   Can you determine what needs to be done to improve the effectiveness of your visualizations?
+-   Can you execute said improvements using `ggplot2`?
+-   Can you tell a story with data?
 
 ## Suggested Reading
 
-- R4DS Chapter 28: [Graphics for Communication](https://r4ds.had.co.nz/graphics-for-communication.html)
-- The Glamour of Graphics: [[video](https://www.rstudio.com/resources/rstudioconf-2020/the-glamour-of-graphics/)] [[slides](https://www.williamrchase.com/slides/assets/player/KeynoteDHTMLPlayer.html)] [[Prof's slides inspired by Will's talk](https://docs.google.com/presentation/d/1wT9M4J2O72s_pbcoqmaNLgBQJIUi2SzmvSmULmOWbSM/edit?usp=sharing)]
+-   R4DS Chapter 28: [Graphics for Communication](https://r4ds.had.co.nz/graphics-for-communication.html)
+-   The Glamour of Graphics: \[[video](https://www.rstudio.com/resources/rstudioconf-2020/the-glamour-of-graphics/)\] \[[slides](https://www.williamrchase.com/slides/assets/player/KeynoteDHTMLPlayer.html)\] \[[Prof's slides inspired by Will's talk](https://docs.google.com/presentation/d/1wT9M4J2O72s_pbcoqmaNLgBQJIUi2SzmvSmULmOWbSM/edit?usp=sharing)\]

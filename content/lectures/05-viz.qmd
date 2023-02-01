@@ -6,8 +6,7 @@ date: "2023-01-26"
 format:
   html: 
     output-file: 05-viz.html
-    execute:
-      embed-resources: true
+    embed-resources: true
   revealjs:
     output-file: 05-viz-slides.html
     slide-number: true
@@ -16,11 +15,11 @@ format:
     logo: images/cogs137-logo-hex.png
     css: slides.css
     footer: <https://cogs137.github.io/website/>
-    scrollable: true
+    scrollable: true      
+    embed-resources: true
     execute:
-     eval: true
-     echo: true
-     output: true       
+      echo: true
+      eval: true
 ---
 
 # Effective Data Visualization {background-color="#92A86A"}

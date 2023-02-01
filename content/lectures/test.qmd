@@ -1,0 +1,34 @@
+---
+title: "05-viz"
+author: "Professor Shannon Ellis"
+date: "2023-01-26"
+
+format:
+  html: 
+    output-file: test.html
+    embed-resources: true
+  revealjs:
+    output-file: test-slides.html
+    embed-resources: true
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+
+---
+
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Test
+
+```{r}
+ggplot(mtcars, aes(x=cyl, y=mpg)) +
+  geom_point()
+```
+

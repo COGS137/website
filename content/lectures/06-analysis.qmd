@@ -6,8 +6,7 @@ date: "2023-01-31"
 format:
   html: 
     output-file: 06-analysis.html
-    execute:
-      embed-resources: true
+    embed-resources: true
   revealjs:
     output-file: 06-analysis-slides.html
     slide-number: true
@@ -17,10 +16,10 @@ format:
     css: slides.css
     footer: <https://cogs137.github.io/website/>
     scrollable: true
+    embed-resources: true
     execute:
-     eval: true
-     echo: true
-     output: true 
+      echo: true
+      eval: true
 ---
 
 # Intro to Data Analysis {background-color="#92A86A"}

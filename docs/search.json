@@ -1572,7 +1572,7 @@
     "href": "content/lectures/05-viz.html",
     "title": "05-viz",
     "section": "",
-    "text": "Slides modified from datascienceinabox.org\n\n\n\nQ: What were those columns in the NC Bike Accident Data we used?\nA: Variables are described here\n\n\nQ: I was confused by wrap vs grid and how should I choose between them.\nA: When you want to generate a plot that uses two other variables in the dataset to determine which subset of the data to plot, grid! When you want to use a single variable to facet your data and want to specify how many columns/rows to display, wrap!\n\n\nQ: When programming in R so far, I often find myself stuck at getting going on a problem and have a different time identifying on where to start. Any tips/advice on how to get past this initial bump in order to start getting through the problem?\nA: This is a common struggle! This may sound like an old-person response, but jotting down what you have and what you want (like on actual paper/iPad) can be really helpful. For example, if you have 3 columns and you know you want to have 3 columns at the end, but you want fewer rows, you can draw a picture of this and help yourself realize you need a filter. Of course when there are multiple steps, the drawings become a bit more complex…but also more helpful! The same can be said for data visualization. Drawing out quickly what you want can help you get started.\n\n\nQ:In what time frame will the lecture survey be available, how many hours after class will the survey be closed\nA: It will be open for at least 2h.\n\n\nQ:For HW1 Q7, I used read_csv and got an error message. I tried read.csv and it worked. Is there any difference between read_csv and read.csv?\nA: Hmm…I’d love to take a look to see what error you got. They are similar and often behave the same way. The difference is read.csv() was made before the tidyverse, so it reads your data in as a dataframe. read_csv() is a function that “plays nicely” with the tidyverse and reads the data in as a tibble/data frame. What does that mean practically? It means that typically each one will read the data in and you’ll get the same number of rows and columns. What could differ would be the column names and/or the column types (depending upon the data). All that said, read_csv() is what I’ll recommend in this course…so that’s why I’m curious about the error you got!\n\n\n\n\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements:\n\nLab02 Grades (Canvas) & Feedback (GitHub Issue) Posted\nHW02 Now Available\nDiscord? - Campuswire post\n“Vote” on posts when grades released (pink: send message; green: announce in class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCredit: Angela Zoss and Eric Monson, Duke DVS"
+    "text": "Slides modified from datascienceinabox.org\n\n\n\nQ: What were those columns in the NC Bike Accident Data we used?\nA: Variables are described here\n\n\nQ: I was confused by wrap vs grid and how should I choose between them.\nA: When you want to generate a plot that uses two other variables in the dataset to determine which subset of the data to plot, grid! When you want to use a single variable to facet your data and want to specify how many columns/rows to display, wrap!\n\n\nQ: When programming in R so far, I often find myself stuck at getting going on a problem and have a different time identifying on where to start. Any tips/advice on how to get past this initial bump in order to start getting through the problem?\nA: This is a common struggle! This may sound like an old-person response, but jotting down what you have and what you want (like on actual paper/iPad) can be really helpful. For example, if you have 3 columns and you know you want to have 3 columns at the end, but you want fewer rows, you can draw a picture of this and help yourself realize you need a filter. Of course when there are multiple steps, the drawings become a bit more complex…but also more helpful! The same can be said for data visualization. Drawing out quickly what you want can help you get started.\n\n\nQ:In what time frame will the lecture survey be available, how many hours after class will the survey be closed\nA: It will be open for at least 2h.\n\n\nQ:For HW1 Q7, I used read_csv and got an error message. I tried read.csv and it worked. Is there any difference between read_csv and read.csv?\nA: Hmm…I’d love to take a look to see what error you got. They are similar and often behave the same way. The difference is read.csv() was made before the tidyverse, so it reads your data in as a dataframe. read_csv() is a function that “plays nicely” with the tidyverse and reads the data in as a tibble/data frame. What does that mean practically? It means that typically each one will read the data in and you’ll get the same number of rows and columns. What could differ would be the column names and/or the column types (depending upon the data). All that said, read_csv() is what I’ll recommend in this course…so that’s why I’m curious about the error you got!\n\n\n\n\nDue Dates:\n\nLab 03 due Friday (1/27; 11:59 PM)\nLecture Participation survey “due” after class\n\nCourse Announcements:\n\nLab02 Grades (Canvas) & Feedback (GitHub Issue) Posted\nHW02 Now Available\nDiscord? - Campuswire post\n“Vote” on posts when grades released (pink: send message; green: announce in class)\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nCredit: Angela Zoss and Eric Monson, Duke DVS"
   },
   {
     "objectID": "content/lectures/05-viz.html#principles-for-effective-visualizations-1",
@@ -1586,7 +1586,7 @@
     "href": "content/lectures/05-viz.html#data",
     "title": "05-viz",
     "section": "Data",
-    "text": "Data\nIn September 2019, YouGov survey asked 1,639 GB adults the following question:\n\n\n\nIn hindsight, do you think Britain was right/wrong to vote to leave EU?\n\nRight to leave\n\nWrong to leave\n\nDon’t know\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource: YouGov Survey Results, retrieved Oct 7, 2019"
+    "text": "Data\nIn September 2019, YouGov survey asked 1,639 GB adults the following question:\n\n\n\nIn hindsight, do you think Britain was right/wrong to vote to leave EU?\n\nRight to leave\n\nWrong to leave\n\nDon’t know\n\n\n\n\n\n\n\n\n\n\n\n\nSource: YouGov Survey Results, retrieved Oct 7, 2019"
   },
   {
     "objectID": "content/lectures/05-viz.html#the-data-code",
@@ -1831,7 +1831,7 @@
     "href": "content/lectures/05-viz-slides.html#data",
     "title": "05-viz",
     "section": "Data",
-    "text": "Data\nIn September 2019, YouGov survey asked 1,639 GB adults the following question:\n\n\n\nIn hindsight, do you think Britain was right/wrong to vote to leave EU?\n\nRight to leave\n\nWrong to leave\n\nDon’t know\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nSource: YouGov Survey Results, retrieved Oct 7, 2019"
+    "text": "Data\nIn September 2019, YouGov survey asked 1,639 GB adults the following question:\n\n\n\nIn hindsight, do you think Britain was right/wrong to vote to leave EU?\n\nRight to leave\n\nWrong to leave\n\nDon’t know\n\n\n\n\n\n\n\n\n\n\n\n\nSource: YouGov Survey Results, retrieved Oct 7, 2019"
   },
   {
     "objectID": "content/lectures/05-viz-slides.html#the-data-code",
@@ -3806,5 +3806,26 @@
     "title": "COGS 137",
     "section": "",
     "text": "Week\nDate\nTitle\nType\n\n\n\n\n1\nTu Jan 10\nWelcome & Tooling\nLecture\n\n\n1\nTh Jan 12\nIntro to R\nLecture\n\n\n1\nFri Jan 13\nLab 01: Intro to R\nLab\n\n\n2\nTu Jan 17\nData Wrangling: dplyr\nLecture\n\n\n2\nTh Jan 19\nData Wrangling: tidyr\nLecture\n\n\n2\nFri Jan 20\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Jan 23\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Jan 24\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n3\nTh Jan 26\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nFri Jan 27\nLab 03: Data Visualization\nLab\n\n\n4\nTu Jan 31\nData Analysis & Modeling\nLecture\n\n\n4\nTh Feb 2\nLinear Models Review*\nLecture\n\n\n4\nFri Feb 3\nLab 04: Modeling\nLab\n\n\n5\nMon Feb 6\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Feb 7\nEffective Communication\nLecture\n\n\n5\nTh Feb 9\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Feb 10\nLab used for midterm review\nLab\n\n\n6\nMon Feb 13\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Feb 14\nMultiple Linear Regression\nLecture\n\n\n6\nTh Feb 16\nCase Study 01: Right to Carry (day 1)\nLecture\n\n\n6\nFri Feb 17\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nMon Feb 20\nHW03 due (11:59 PM)\nHW\n\n\n7\nTu Feb 21\nCase Study 01: Right to Carry (day 2)\nLecture\n\n\n7\nTh Feb 23\nCase Study 01: Right to Carry (day 3)\nLecture\n\n\n7\nFri Feb 24\nLab 06: CS01\nLab\n\n\n8\nTu Feb 28\nLogistic Regression (day 1)\nLecture\n\n\n8\nTh Mar 2\nLogistic Regression (day 2)\nLecture\n\n\n8\nFri Mar 3\nLab 07: Logistic Regression\nLab\n\n\n9\nMon Mar 6\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Mar 7\nCase Study 02: Vaping (day 1)\nLecture\n\n\n9\nTh Mar 9\nCase Study 02: Vaping (day 2)\nLecture\n\n\n9\nFri Mar 10\nLab 08: CS02\nLab\n\n\n10\nMon Mar 13\nHW04 due (11:59 PM)\nHW\n\n\n10\nTu Mar 14\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Mar 16\nNext Steps\nLecture\n\n\n10\nFri Mar 17\nLab used for Final Project\nLab\n\n\nFinals\nMon Mar 20\nCS02 Due\nCase Study\n\n\nFinals\nTh Mar 23\nFinal Project Due (11:59 PM)\nLecture"
+  },
+  {
+    "objectID": "content/lectures/test-slides.html#keep-it-simple",
+    "href": "content/lectures/test-slides.html#keep-it-simple",
+    "title": "05-viz",
+    "section": "Keep it simple",
+    "text": "Keep it simple\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/test-slides.html#test",
+    "href": "content/lectures/test-slides.html#test",
+    "title": "05-viz",
+    "section": "Test",
+    "text": "Test\n\n\n\n\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/test.html",
+    "href": "content/lectures/test.html",
+    "title": "05-viz",
+    "section": "",
+    "text": "ggplot(mtcars, aes(x=cyl, y=mpg)) +\n  geom_point()"
   }
 ]

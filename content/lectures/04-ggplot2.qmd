@@ -6,6 +6,7 @@ date: "2023-01-24"
 format:
   html: 
     output-file: 04-ggplot2.html
+    embed-resources: true
   revealjs:
     output-file: 04-ggplot2-slides.html
     slide-number: true
@@ -15,10 +16,10 @@ format:
     css: slides.css
     footer: <https://cogs137.github.io/website/>
     scrollable: true
+    embed-resources: true
     execute:
-     eval: true
-     echo: true
-     output: true
+      echo: true
+      eval: true
 ---
 
 # Data Visualization with `ggplot2` `r emo::ji("heart")` `r emo::ji("penguin")` {background-color="#92A86A"}
@@ -42,12 +43,11 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 > Q: Does `left_join(a, b)` = `right_join(b, a)`?\
 > A: No. The total information would be equivalent but the order of columns would differ. In the left join, the columns from `a` would be first and in the right join, the colums from `b` would be listed first. But the actual rows that are joined/included would be the same.
 
-> Q: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions? \
+> Q: I would still like to know if there is a way to save data sets more often when using functions on them, such as filter. I see we only saved data sets when we use functions like mutate, but why not other functions?\
 > A: You're allowed to store variables into a new data frame whenever you'd like! Now, the more variables you create, the more to keep track of, so I would encourage you to store your output any time you make a "substantial" change to your data. So, say you do a filter, selection, and mutate to get your data into the format for analysis. I wouldn't store after each step, but I would store it after I wrote the pipe doing all three. Follow up if this doesn't clarify!
 
 > Q: I think the left_join, right_join, and full_join was pretty confusing.\
 > A: You're right! It is confusing. We'll go through more examples and get more practice!
-
 
 ## Course Announcements
 
@@ -58,13 +58,13 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 **Course Announcements**:
 
-- Happy New Year!
-- GitHub assignment clone + submission demo
-- Lab02 Notes:
-  - Look at the answer key: 
-  - grouping by name *and* year 
-  - can add text outside of code chunks; discuss variable reference
-  - solutions to optional exercises 
+-   Happy New Year!
+-   GitHub assignment clone + submission demo
+-   Lab02 Notes:
+    -   Look at the answer key:
+    -   grouping by name *and* year
+    -   can add text outside of code chunks; discuss variable reference
+    -   solutions to optional exercises
 
 ## ggplot2 $\in$ tidyverse
 
@@ -174,7 +174,6 @@ ggplot(data = penguins,
 
 ##  {.smaller}
 
-
 > Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. **Represent each observation with a point**
 
 ```{r penguins-3, warning = FALSE}
@@ -188,7 +187,6 @@ ggplot(data = penguins,
 ```
 
 ##  {.smaller}
-
 
 > Start with the `penguins` data frame, map bill depth to the x-axis and map bill length to the y-axis. Represent each observation with a point **and map species to the color of each point.**
 
@@ -316,7 +314,6 @@ ggplot(data = penguins,
 ## Coding out loud {.smaller}
 
 ::: panel-tabset
-
 ### Code
 
 ```{r penguins-10-nohighlight, fig.show = "hide"}
@@ -348,7 +345,6 @@ Represent each observation with a point and map species to the color of each poi
 Title the plot "Bill depth and length", add the subtitle "Dimensions for Adelie, Chinstrap, and Gentoo Penguins", label the x and y axes as "Bill depth (mm)" and "Bill length (mm)", respectively, label the legend "Species", and add a caption for the data source.
 
 Finally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness.
-
 :::
 
 ## Argument names
@@ -383,8 +379,6 @@ ggplot(penguins,
 ```
 :::
 :::
-
-
 
 ## Your Turn
 
@@ -521,8 +515,6 @@ Edit the basic plot you created earlier to change something about its aesthetics
 Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
 :::
 
-
-
 # Faceting {background-color="#92A86A"}
 
 ## Faceting
@@ -546,9 +538,8 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
 
 [`r emo::ji("brain")` In the next few slides describe what each plot displays. Think about how the code relates to the output.]{style="background-color: #ADD8E6"}
 
-
-::: {.callout-warning}
- The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots. But you should always label your plots! 
+::: callout-warning
+The plots in the next few slides do not have proper titles, axis labels, etc. because we want you to figure out what's happening in the plots. But you should always label your plots!
 :::
 
 ## 
@@ -568,7 +559,6 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
   geom_point() +
   facet_grid(sex ~ species) 
 ```
-
 
 ## 
 
@@ -597,7 +587,6 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
   facet_wrap(~ species, ncol = 2) 
 ```
 
-
 ## Faceting summary
 
 -   `facet_grid()`:
@@ -605,8 +594,6 @@ ggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) +
     -   `rows ~ cols`
     -   use `.` for no split
 -   `facet_wrap()`: 1d ribbon wrapped according to number of rows and columns specified or available plotting area
-
-
 
 ## Facet and color
 
@@ -621,8 +608,6 @@ ggplot(
   facet_grid(species ~ sex) +
   scale_color_viridis_d() 
 ```
-
-
 
 ## Face and color, no legend
 
@@ -640,19 +625,18 @@ ggplot(
   guides(color = FALSE) 
 ```
 
-
 # `geom`s {background-color="#92A86A"}
 
 ## Common `geom`s
 
-| `geom` [^1] | Description [^2] |
-|---------------------|--------------------------|
-| `geom_point`        | scatterplot              |
-| `geom_bar`          | barplot                  |
-| `geom_line`         | line plot                |
-| `geom_density`      | densityplot              |
-| `geom_histogram`    | histogram                |
-| `geom_boxplot`      | boxplot                  |
+| `geom` [^1]      | Description [^2] |
+|------------------|------------------|
+| `geom_point`     | scatterplot      |
+| `geom_bar`       | barplot          |
+| `geom_line`      | line plot        |
+| `geom_density`   | densityplot      |
+| `geom_histogram` | histogram        |
+| `geom_boxplot`   | boxplot          |
 
 [^1]: `ggplot2` geoms listed [here](https://ggplot2.tidyverse.org/reference/)
 
@@ -676,5 +660,5 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 
 ## Suggested Reading
 
-- R4DS Chapter 3: [Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
-- Data to Viz: [https://www.data-to-viz.com/](https://www.data-to-viz.com/)
+-   R4DS Chapter 3: [Data Visualization](https://r4ds.had.co.nz/data-visualisation.html)
+-   Data to Viz: <https://www.data-to-viz.com/>

@@ -24,13 +24,12 @@ format:
 
 # Intro to Data Analysis {background-color="#92A86A"}
 
-
 ## Q&A {.smaller}
 
-> Q: What if we're not good at coming up with ideas of what plots to generate from a given dataset? \
+> Q: What if we're not good at coming up with ideas of what plots to generate from a given dataset?\
 > A: We're going to discuss this and practice this! If you're not sure where to start, the DatatoViz resource is a great place to help with ideas! If you're still struggling, be sure when we get to case studies to really think to yourself for each plot, why did prof choose this plot? Could another have been better? And, discuss with your teammates (once you have those)!
 
-> Q: maybe i missed it... but i am confused about the difference between "count" and "proportions". Would they end up being the same thing? is the code different for doing count vs. proportion? \
+> Q: maybe i missed it... but i am confused about the difference between "count" and "proportions". Would they end up being the same thing? is the code different for doing count vs. proportion?\
 > A: Another student had this question, and it's a good one! Count is for the value *across the dataset*. Proportions are calculated *within the group*, such that each group's values are displayed out of 100%. Happy to discuss more if there are questions. We'll see an example of this in today's lecture!
 
 > Q: Not the lecture, but the way to think in the way to get the "right" plot for the data.\
@@ -39,14 +38,13 @@ format:
 > Q: Why is ChatGPT mentioned in the lab answers?\
 > A: Because I assume that some students are using this as a resource. And, that's great! It's there so that you get a sense of ChatGPT's strengths (sometimes it really does give helpful dplyr code or get you started on the right path) and its weaknesses (it's still important to think critically if you're choosing to use it as a tool!) ChatGPT is by no means required in this course. In fact, I think labs/assignments may take longer if you are using it. I don't have a sense yet who would learn the material better!
 
-
 ## Agenda
 
-- Discuss Exploratory Data Analysis (EDA)
-- Introduce modelling as a concept
-- Paintings example
-  - EDA
-  - Modelling (Linear)
+-   Discuss Exploratory Data Analysis (EDA)
+-   Introduce modelling as a concept
+-   Paintings example
+    -   EDA
+    -   Modelling (Linear)
 
 ## Course Announcements
 
@@ -74,15 +72,15 @@ knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, mes
 
 ## What is EDA?
 
-- Exploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.
+-   Exploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.
 
-- Often, this is visual....but the visuals do not have to be *perfect*. (Save that for communication) 
+-   Often, this is visual....but the visuals do not have to be *perfect*. (Save that for communication)
 
-- Calculating summary statistics is also part of EDA.
+-   Calculating summary statistics is also part of EDA.
 
 . . .
 
-- Data tidying/wrangling/manipulation/transformation typically happens before this stage of the analysis.
+-   Data tidying/wrangling/manipulation/transformation typically happens before this stage of the analysis.
 
 . . .
 
@@ -90,34 +88,31 @@ The Goal: *KNOW* YOUR DATA!
 
 ## Consider: No. of variables involved
 
-* **Univariate data analysis** - distribution of single variable
+-   **Univariate data analysis** - distribution of single variable
 
-* **Bivariate data analysis** - relationship between two variables
+-   **Bivariate data analysis** - relationship between two variables
 
-* **Multivariate data analysis** - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
+-   **Multivariate data analysis** - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others
 
----
+------------------------------------------------------------------------
 
 ## Consider: Types of variables
 
-- **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively. 
+-   **Numerical variables** can be classified as **continuous** or **discrete** based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.
 
-- If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
-
+-   If the variable is **categorical**, we can determine if it is **ordinal** based on whether or not the levels have a natural ordering.
 
 ## Data visualization
 
-> *"The simple graph has brought more information to the data analyst’s mind than any other device." — John Tukey*
+> *"The simple graph has brought more information to the data analyst's mind than any other device." --- John Tukey*
 
-- Data visualization is the creation and study of the visual representation of data.
+-   Data visualization is the creation and study of the visual representation of data.
 
-- There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (**`ggplot2`** is what we'll continue to use).
+-   There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (**`ggplot2`** is what we'll continue to use).
 
-- EDA will involve making plots/visualizing your data
-
+-   EDA will involve making plots/visualizing your data
 
 # Data: Paris Paintings {background-color="#92A86A"}
-
 
 ## Paris Paintings {.smaller}
 
@@ -126,10 +121,9 @@ pp <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/paris_pa
                na = c("n/a", "", "NA"))
 ```
 
-
-- Source: Printed catalogs of 28 auction sales in Paris, 1764 - 1780
-- Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues
-- `r nrow(pp)` paintings, their prices, and descriptive details from sales catalogues over 60 variables
+-   Source: Printed catalogs of 28 auction sales in Paris, 1764 - 1780
+-   Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues
+-   `r nrow(pp)` paintings, their prices, and descriptive details from sales catalogues over 60 variables
 
 ## Auctions today
 
@@ -141,26 +135,21 @@ knitr::include_graphics("images/06/auction-video.png")
 Source: [Sothebys](http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html)
 :::
 
-
 ## Auctions back in the day {.smaller}
 
 ```{r out.width="75%", echo=FALSE}
 knitr::include_graphics("images/06/old-auction.png")
 ```
 
-
 Source: Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)
-
 
 ## Paris auction market
 
 ![](images/06/auction-trend-paris.png)
 
-
 ## Depart pour la chasse
 
 ![](images/06/depart-pour-la-chasse.png)
-
 
 ## Auction catalogue text {.smaller}
 
@@ -182,8 +171,7 @@ knitr::include_graphics("images/06/painting2.png")
 knitr::include_graphics("images/06/painting3.png")
 ```
 
-## {.smaller}
-
+##  {.smaller}
 
 ```{r}
 pp |>
@@ -191,24 +179,22 @@ pp |>
   glimpse()
 ```
 
-
 # EDA: Paris Paintings {background-color="#92A86A"}
 
 ## Visualizing numerical data {.smaller}
 
 **Describing shapes of numerical distributions**
 
-* shape:
-    * skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
-    * modality: unimodal, bimodal, multimodal, uniform
-* center: mean (`mean`), median (`median`), mode (not always useful)
-* spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
-* unusual observations
+-   shape:
+    -   skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)
+    -   modality: unimodal, bimodal, multimodal, uniform
+-   center: mean (`mean`), median (`median`), mode (not always useful)
+-   spread: range (`range`), standard deviation (`sd`), inter-quartile range (`IQR`)
+-   unusual observations
 
 ## Histograms {.smaller}
 
 ::: panel-tabset
-
 ### Heights
 
 ```{r, fig.width = 7, fig.height=4}
@@ -217,7 +203,6 @@ ggplot(data = pp, aes(x = Height_in)) +
   labs(x = "Height, in inches", y = NULL)
 ```
 
-
 ### Widths
 
 ```{r, fig.width = 7, fig.height=4}
@@ -225,7 +210,6 @@ ggplot(data = pp, aes(x = Width_in)) +
   geom_histogram(binwidth = 5) +
   labs(x = "Width, in inches", y = NULL)
 ```
-
 
 ### Prices
 
@@ -243,7 +227,6 @@ ggplot(data = pp, mapping = aes(x = Height_in)) +
   geom_density()
 ```
 
-
 ## Side-by-side box plots
 
 ```{r fig.width = 7, fig.height=4}
@@ -251,11 +234,10 @@ ggplot(data = pp, mapping = aes(y = Height_in, x = as.factor(landsALL))) +
   geom_boxplot()
 ```
 
-
 ## Visualizing categorical data
 
-* count/proportion of values
-* unusual observations
+-   count/proportion of values
+-   unusual observations
 
 ## Bar plots
 
@@ -264,9 +246,7 @@ ggplot(data = pp, mapping = aes(x = as.factor(landsALL))) +
   geom_bar()
 ```
 
-
 ## Segmented bar plots, counts
-
 
 ```{r fig.width = 7, fig.height=4}
 ggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +
@@ -275,16 +255,13 @@ ggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +
 
 ## Segmented bar plots, proportions
 
-
 ```{r fig.width = 7, fig.height=4}
 ggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +
   geom_bar(position = "fill") +
   labs(y = "proportion")
 ```
 
-
 ## Your Turn
-
 
 [`r emo::ji("question")` Which of the previous two bar plots is a more useful representation for visualizing the relationship between landscape and painting material?]{style="background-color: #ADD8E6"}
 
@@ -296,20 +273,17 @@ ggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +
 
 [`r emo::ji("brain")` Try to answer at least one thing you'd want to know from the dataset.]{style="background-color: #ADD8E6"}
 
-
 ::: aside
 Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
 :::
-
 
 # Modelling {background-color="#92A86A"}
 
 ## Modelling
 
-- Use models to explain the relationship between variables and to make predictions
+-   Use models to explain the relationship between variables and to make predictions
 
-- For now we focus on **linear** models (but remember there are other types of models too!)
-
+-   For now we focus on **linear** models (but remember there are other types of models too!)
 
 ## Packages
 
@@ -321,20 +295,19 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 :::
 
 ::: {.column width="70%"}
+-   You're familiar with the tidyverse:
 
-- You're familiar with the tidyverse:
 ```{r message=FALSE}
 library(tidyverse)
 ```
 
-- The broom package takes the messy output of built-in functions in R, such as `lm`, and turns them into tidy data frames.
+-   The broom package takes the messy output of built-in functions in R, such as `lm`, and turns them into tidy data frames.
+
 ```{r message=FALSE}
 library(broom)
 ```
-
 :::
 :::
-
 
 ## Modelling the relationship between variables
 
@@ -347,25 +320,23 @@ ggplot(data = pp, aes(x = price)) +
   geom_histogram(binwidth = 1000)
 ```
 
-
 ## Models as functions
 
-- We can represent relationships between variables using **functions**
+-   We can represent relationships between variables using **functions**
 
-- A function is a mathematical concept: the relationship between an output
-and one or more inputs. 
-    - Plug in the inputs and receive back the output
-    - Example: the formula $y = 3x + 7$ is a function with input $x$ and output $y$,
-    when $x$ is $5$, the output $y$ is $22$
-    ```
-    y = 3 * 5 + 7 = 22
-    ```
+-   A function is a mathematical concept: the relationship between an output and one or more inputs.
 
+    -   Plug in the inputs and receive back the output
+    -   Example: the formula $y = 3x + 7$ is a function with input $x$ and output $y$, when $x$ is $5$, the output $y$ is $22$
+
+    ```{=html}
+    <!-- -->
+    ```
+        y = 3 * 5 + 7 = 22
 
 ## Height as a function of width
 
 [`r emo::ji("exclamation")` Describe the relationship between height and width of paintings.]{style="background-color: #ADD8E6"}
-
 
 ```{r warning = FALSE, echo=FALSE}
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
@@ -380,7 +351,6 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_smooth(method = "lm") # lm for linear model
 ```
 
-
 ## Visualizing the linear model
 
 ... without the measure of uncertainty around the line
@@ -390,7 +360,6 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE) # lm for linear model
 ```
-
 
 ## Visualizing the linear model
 
@@ -405,26 +374,24 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
               linewidth = 3)     # line weight
 ```
 
-
 ## Vocabulary {.smaller}
 
-- **Response variable:** Variable whose behavior or variation you are trying to understand, on the y-axis (dependent variable)
-
-. . . 
-
-- **Explanatory variables:** Other variables that you want to use to explain the variation in the response, on the x-axis (independent variables)
-
-. . . 
-
-- **Predicted value:** Output of the function **model function**
-    - The model function gives the typical value of the response variable
-    *conditioning* on the explanatory variables
+-   **Response variable:** Variable whose behavior or variation you are trying to understand, on the y-axis (dependent variable)
 
 . . .
 
-- **Residuals:** Show how far each case is from its model value
-    - Residual = Observed value - Predicted value
-    - Tells how far above/below the model function each case is
+-   **Explanatory variables:** Other variables that you want to use to explain the variation in the response, on the x-axis (independent variables)
+
+. . .
+
+-   **Predicted value:** Output of the function **model function**
+    -   The model function gives the typical value of the response variable *conditioning* on the explanatory variables
+
+. . .
+
+-   **Residuals:** Show how far each case is from its model value
+    -   Residual = Observed value - Predicted value
+    -   Tells how far above/below the model function each case is
 
 . . .
 
@@ -432,36 +399,33 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
 
 [`r emo::ji("question")` What does a negative residual mean? Which paintings on the plot have have negative residuals?]{style="background-color: #ADD8E6"}
 
-
 ```{r warning = FALSE, echo=FALSE}
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point() +
   geom_smooth(method = "lm", se = FALSE)
 ```
 
-##  
+## 
 
-The plot below displays the relationship between height and width of paintings. It  uses a lower alpha level for the points than the previous plots we looked at.
+The plot below displays the relationship between height and width of paintings. It uses a lower alpha level for the points than the previous plots we looked at.
 
 ```{r warning = FALSE, echo=FALSE}
 ggplot(data = pp, aes(x = Width_in, y = Height_in)) +
   geom_point(alpha = 0.2)
 ```
 
-[`r emo::ji("question")`  What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?]{style="background-color: #ADD8E6"}
+[`r emo::ji("question")` What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?]{style="background-color: #ADD8E6"}
 
 ## Landscape paintings
 
-- Landscape painting is the depiction in art of landscapes – natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view – with its elements arranged into a coherent composition.[^1]
-    - Landscape paintings tend to be wider than longer.
-
-- Portrait painting is a genre in painting, where the intent is to depict a human subject.[^2]
-    - Portrait paintings tend to be longer than wider.
+-   Landscape painting is the depiction in art of landscapes -- natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view -- with its elements arranged into a coherent composition.[^1]
+    -   Landscape paintings tend to be wider than longer.
+-   Portrait painting is a genre in painting, where the intent is to depict a human subject.[^2]
+    -   Portrait paintings tend to be longer than wider.
 
 [^1]: Source: Wikipedia, [Landscape painting](https://en.wikipedia.org/wiki/Landscape_painting)
 
 [^2]: Source: Wikipedia, [Portait painting](https://en.wikipedia.org/wiki/Portrait_painting)
-
 
 ## Multiple explanatory variables {.smaller}
 
@@ -475,20 +439,13 @@ ggplot(data = pp, aes(x = Width_in, y = Height_in,
   labs(color = "landscape")
 ```
 
-
-
 ## Models - upsides and downsides
 
-- Models can sometimes reveal patterns that are not evident in a graph of the
-data. This is a great advantage of modelling over simple visual inspection of
-data. 
+-   Models can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modelling over simple visual inspection of data.
 
 . . .
 
-- There is a real risk, however, that a model is imposing structure that is
-not really there on the scatter of data, just as people imagine animal shapes in
-the stars. A skeptical approach is always warranted.
-
+-   There is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted.
 
 ## Variation around the model... {.smaller}
 
@@ -496,35 +453,33 @@ is just as important as the model, if not more!
 
 . . .
 
-*Statistics is the explanation of variation in the context of what remains
-unexplained.*
+*Statistics is the explanation of variation in the context of what remains unexplained.*
 
 . . .
 
-- The scatter suggests that there might be other factors that account for large parts 
-of painting-to-painting variability, or perhaps just that randomness plays a big role.
+-   The scatter suggests that there might be other factors that account for large parts of painting-to-painting variability, or perhaps just that randomness plays a big role.
 
-- Adding more explanatory variables to a model can sometimes usefully reduce
-the size of the scatter around the model. (We'll talk more about this later.)
-
+-   Adding more explanatory variables to a model can sometimes usefully reduce the size of the scatter around the model. (We'll talk more about this later.)
 
 ## How do we use models?
 
-1. **Explanation**: Characterize the relationship between $y$ and $x$ via *slopes* for
-numerical explanatory variables or *differences* for categorical explanatory
-variables (Inference)
+1.  **Explanation**: Characterize the relationship between $y$ and $x$ via *slopes* for numerical explanatory variables or *differences* for categorical explanatory variables (Inference)
 
-2. **Prediction**: Plug in $x$, get the predicted $y$ (Machine Learning)
-
-
+2.  **Prediction**: Plug in $x$, get the predicted $y$ (Machine Learning)
 
 # Recap {background-color="#92A86A"}
 
-- Do I understand the goals of EDA?
-- Can I carry out EDA on a given dataset?
-- Can I describe modelling as a concept?
- 
+-   Do I understand the goals of EDA?
+-   Can I carry out EDA on a given dataset?
+-   Can I describe modelling as a concept?
+
 ## Suggested Reading
+
+-   Introduction to Modern Statistics Chapter 4: [Exploring Categorical Data](
+https://openintro-ims.netlify.app/explore-categorical.html)
+-   Introduction to Modern Statistics Chapter 5: [Exploring Numerical Data](
+https://openintro-ims.netlify.app/explore-numerical.html)
+
 
 -   R4DS Chapter 22: [Introduction to Modelling](https://r4ds.had.co.nz/model-intro.html)
 -   R4DS Chapter 23: [Model Basics](https://r4ds.had.co.nz/model-intro.html)

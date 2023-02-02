@@ -53,6 +53,8 @@ website:
             href: content/lectures/05-viz-slides.html
           - text: "06-analysis"
             href: content/lectures/06-analysis-slides.html
+          - text: "07-linear-models"
+            href: content/lectures/07-linear-models-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -69,6 +71,8 @@ website:
             href: content/lectures/05-viz.qmd
           - text: "06-analysis"
             href: content/lectures/06-analysis.qmd
+          - text: "07-linear-models"
+            href: content/lectures/07-linear-models.html
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

@@ -103,6 +103,10 @@ website:
             href: content/hw/hw-01.qmd
           - text: "HW02"
             href: content/hw/hw-02.qmd
+      - section: "Exam"
+        contents:
+          - text: "Practice Midterm"
+            href: content/exams/practice-exam.qmd
 format:
   html:
     theme: material

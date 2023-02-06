@@ -378,6 +378,41 @@
     "text": "What types of majors do women tend to major in?\n\nExercise 10\nCreate a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. Describe the association between these three variables.\n\ncollege_recent_grads |>\n  drop_na(sharewomen) |> ## This will drop rows for which sharewomen has NA value\n  ggplot(aes(x = median,\n             y = sharewomen,\n             color = major_type)) +\n  geom_point(alpha = .6) +\n  labs(x = \"Median income for major\",\n       y = \"Share of women in major\",\n       color = \"STEM major?\")\n\n\n\n\nIn general, there appears to be a negative relationship between median income and the proportion of women (sharewomen) in a major. Both variables are also correlated with major_type: stem majors tend to have a lower proportion of women (and lower median income), while not stem majors have a higher proportion (and higher median income).\n(Note that the negative relationship with median income is somewhat clearer if log(median) is used instead.)"
   },
   {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html",
+    "href": "content/lab-ans/lab04-modelling-ans.html",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidymodels)\n\n\n\n\n\nevals <- read_csv(\"data/evals-mod.csv\")"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-1",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-1",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 1",
+    "text": "Part 1\n\nExercise 1\nFirst, we use rowwise to group evals by each row. We then use mutate to compute a new variable (bty_avg) corresponding to the average of the six beauty scores.\nFinally, we ungroup so that the dataframe isn’t still grouped by each row.\n\nevals <- evals |>\n  rowwise() |>\n  mutate(bty_avg = mean( c( bty_f1lower, bty_f1upper,\n                            bty_f2upper, bty_m1lower,\n                            bty_m1upper, bty_m2upper) )) |>\n  ungroup()"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-2",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-2",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 2",
+    "text": "Part 2\n\nExercise 2\nThe distribution is slightly left-skewed, i.e., many scores are on the higher side (between 4-5) with a longer tail going to the left.\nThis is further corroborrated by the fact that the mean is lower than the median. Given that the mean is more affected by skew than the median, this is what we’d expect with negatively skewed data.\n\nevals |>\n  ggplot(aes(x = score))+\n  geom_histogram() +\n  theme_bw()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\nevals |>\n  summarise(mean = mean(score),\n            median = median(score),\n            sd = sd(score))\n\n# A tibble: 1 × 3\n   mean median    sd\n  <dbl>  <dbl> <dbl>\n1  4.17    4.3 0.544\n\n\n\n\nExercise 3\nIt seems like there’s a slight positive relationship between bty_avg and score, though it’s hard to tell given that many points overlap and form “bands” along particular values (e.g., many teachers have the same score).\n\nevals |>\n  ggplot(aes(x = bty_avg,\n             y = score))+\n  geom_point() +\n  theme_bw()\n\n\n\n\n\n\nExercise 4\nOne way to deal with the above is to add jitter to the plot, which reveals that certain clusters of points were either larger or smaller than initially thought. (Another apprpoach would be to change the alpha of geom_point, allowing us to detect denser clusters.)\n\nevals |>\n  ggplot(aes(x = bty_avg,\n             y = score))+\n  geom_jitter() +\n  theme_bw()"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-3",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-3",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 3",
+    "text": "Part 3\n\nExercise 5\nAccording to the model, the linear equation would be as follows:\n\\(\\hat{y} = 3.88 + 0.07*X\\)\nWhere \\(X\\) is bty_avg.\nWe use broom::tidy to transform the model object into a tidy dataframe.\n\nm_bty <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ bty_avg, data = evals)\n\nm_bty |>\n  tidy() |>\n  select(term, estimate)\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)   3.88  \n2 bty_avg       0.0666\n\n\n\n\nExercise 6\n\nevals |>\n  ggplot(aes(x = bty_avg,\n             y = score))+\n  geom_point() +\n  geom_smooth(method = \"lm\", \n              color = \"orange\",\n              se = FALSE) +\n  theme_bw()\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nExercise 7\nProfessors with higher average beauty ratings also tend to receive higher teaching scores.\nThe slope is approximately 0.07, which means that for every 1-unit increase in beauty rating (i.e., from 4 to 5), we can expect that a professor will receive .07 higher teaching scores (with a ~0.02 standard error).\n\nm_bty |>\n  tidy() |>\n  filter(term == \"bty_avg\") |>\n  select(term, estimate, std.error)\n\n# A tibble: 1 × 3\n  term    estimate std.error\n  <chr>      <dbl>     <dbl>\n1 bty_avg   0.0666    0.0163\n\n\n\n\nExercise 8\nThe intercept is 3.88. This is the estimated score for professors with a beauty score of 0, i.e., it is the value of \\(\\hat{y}\\) when the regression line crosses \\(x = 0\\).\nThis may or may not make sense; given that possible beauty scores ranged from 1-6, it is a little strange to imagine a scenario where the beauty score is 0 (and it would be even stranger to imagine scenarios where the beauty scores is negative).\nOn the other hand, it is not inconsistent with other features of the data: the mean score, for example, is 4.17, so it makes sense that the intercept of a linear model would be slightly lower than the mean, allowing the explanatory variable to account for increases in score throughout the data.\n\nm_bty |>\n  tidy() |>\n  filter(term == \"(Intercept)\") |>\n  select(term, estimate, std.error)\n\n# A tibble: 1 × 3\n  term        estimate std.error\n  <chr>          <dbl>     <dbl>\n1 (Intercept)     3.88    0.0761\n\n\n\n\nExercise 9\nHere, we identify the \\(R^2\\) of the model using glance, which identifies model-level characteristics.\nThe value is 0.0350, which means that our explanatory variable accounts for roughly 3.5% of the variance in our response variable.\n\nm_bty |>\n  glance() |>\n  select(r.squared)\n\n# A tibble: 1 × 1\n  r.squared\n      <dbl>\n1    0.0350"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-4",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-4",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 4",
+    "text": "Part 4\n\nExercise 10\nThe linear equation would be as follows:\n\\(\\hat{y} = 4.09 + 0.142*X\\)\nWhere \\(X = 1\\) for male professors and \\(X = 0\\) for female professors. In other words, the intercept corresponds to the mean score for female professors, while the slope tells us the difference in mean between the female average and the male average.\n\nm_gen <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit( score ~ gender, data = evals)\n\nm_gen |>\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  <chr>          <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)    4.09     0.0387    106.   0      \n2 gendermale     0.142    0.0508      2.78 0.00558\n\n\n\n\nExercise 11\nAs specified above, the slope coefficient for the \\(X\\) term signifies the difference in means between male and female professors.\n\n\nExercise 12\nHere, the model equation would look as follows:\n\\(\\hat{y} = 4.28 + -0.13*X_1 + -0.145*X_2\\)\nWhere \\(X_1 = 1\\) for tenure track professors and 0 for all else, and \\(X_2 = 1\\) for tenured professors and 0 for all else.\nIn other words: the intercept tells us the mean for teaching professors, and the two slope coefficients tell us the difference between that mean and the two other levels of rank.\n\ntable(evals$rank)\n\n\n    teaching tenure track      tenured \n         102          108          253 \n\nm_rank <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ rank, data = evals)\n\nm_rank |>\n  tidy()\n\n# A tibble: 3 × 5\n  term             estimate std.error statistic   p.value\n  <chr>               <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)         4.28     0.0537     79.9  1.02e-271\n2 ranktenure track   -0.130    0.0748     -1.73 8.37e-  2\n3 ranktenured        -0.145    0.0636     -2.28 2.28e-  2\n\n\n\n\nExercise 13\nHere, we use the factor command (within mutate) to reorder the levels of rank such that tenure track is the first level.\n\nevals <- evals |>\n  mutate(rank_relevel = fct_relevel(factor(rank), c(\"tenure track\",\n                                                    \"teaching\",\n                                                    \"tenured\")))\n\n\n\nExercise 14\nThis model has the same structure as the previous model using rank, but it has reordered the levels of rank (for rank_relevel) such that tenure track is now first.\nThis means that the intercept should now be interpreted as the mean score for tenure track professors, and the coefficients represent the difference in means for teaching and tenured professors, respectively.\n\\(\\hat{y} = 4.15 + 0.13*X_1 + -0.0155*X_2\\)\nWhere \\(X_1 = 1\\) for teaching professors and 0 for all else; and \\(X_2 = 1\\) for tenured professors and 0 for all else.\nWe can compare tehse to the coefficients for the previous model, where teaching was the baseline: in both cases, we see that the difference between teaching and tenure track is 0.13 (just in opposite directions, depending on the baseline).\nThe \\(R^2\\) of the model is 0.0116 in both cases. In other words, the model explains approximately 1.16% of the variance in score.\n\nm_rank_relevel <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ rank_relevel, data = evals)\n\n\nm_rank_relevel |>\n  tidy()\n\n# A tibble: 3 × 5\n  term                 estimate std.error statistic   p.value\n  <chr>                   <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)            4.15      0.0521    79.7   2.58e-271\n2 rank_relevelteaching   0.130     0.0748     1.73  8.37e-  2\n3 rank_releveltenured   -0.0155    0.0623    -0.249 8.04e-  1\n\nm_rank_relevel |>\n  glance() |>\n  select(r.squared)\n\n# A tibble: 1 × 1\n  r.squared\n      <dbl>\n1    0.0116\n\n\n\n\nExercise 15\n\nevals <- evals |>\n  mutate(tenure_eligible = case_when(\n    rank == \"teaching\" ~ \"no\",\n    TRUE ~ \"yes\"\n  ))\n\n## Double check\ntable(evals$rank, evals$tenure_eligible)\n\n              \n                no yes\n  teaching     102   0\n  tenure track   0 108\n  tenured        0 253\n\n\n\n\nExercise 16\nThe linear equation is as follows:\n\\(\\hat{y} = 4.28 + -0.141*X_1\\)\nWhere \\(X_1 = 1\\) for tenure eligible professors and \\(X_1 = 0\\) for non-tenure-eligible professors.\nThus, this means that the mean score for non-tenure-eligible professors is 4.28, and professors that are tenure eligible can expect a score that’s -0.141 lower, on average.\n\nm_tenure_eligible <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ tenure_eligible, data = evals)\n\nm_tenure_eligible |>\n  tidy()\n\n# A tibble: 2 × 5\n  term               estimate std.error statistic   p.value\n  <chr>                 <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)           4.28     0.0536     79.9  2.72e-272\n2 tenure_eligibleyes   -0.141    0.0607     -2.32 2.10e-  2\n\n\nWe can also calculate the \\(R^2\\), and we see that it is 0.0115. In other words, the model explains approximately 1.15% of the variance in score.\n\nm_tenure_eligible |>\n  glance()\n\n# A tibble: 1 × 12\n  r.squ…¹ adj.r…² sigma stati…³ p.value    df logLik   AIC   BIC devia…⁴ df.re…⁵\n    <dbl>   <dbl> <dbl>   <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>   <dbl>   <int>\n1  0.0115 0.00935 0.541    5.36  0.0210     1  -372.  750.  762.    135.     461\n# … with 1 more variable: nobs <int>, and abbreviated variable names\n#   ¹​r.squared, ²​adj.r.squared, ³​statistic, ⁴​deviance, ⁵​df.residual"
+  },
+  {
     "objectID": "content/lab-ans/lab02-wrangling-ans.html",
     "href": "content/lab-ans/lab02-wrangling-ans.html",
     "title": "Lab 02 - Wrangling (Ans)",
@@ -1778,6 +1813,363 @@
     "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
   },
   {
+    "objectID": "content/lectures/08-effective-communication-slides.html#course-announcements",
+    "href": "content/lectures/08-effective-communication-slides.html#course-announcements",
+    "title": "08-effective-communication",
+    "section": "Course Announcements",
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM)\nreleased Friday after lab\ncompleted individually\nLab03 Scores & Feedback Posted\nPractice Exam Posted"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#agenda",
+    "href": "content/lectures/08-effective-communication-slides.html#agenda",
+    "title": "08-effective-communication",
+    "section": "Agenda",
+    "text": "Agenda\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#what-does-this-mean",
+    "href": "content/lectures/08-effective-communication-slides.html#what-does-this-mean",
+    "title": "08-effective-communication",
+    "section": "What does this mean?",
+    "text": "What does this mean?\nWhat does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#whats-the-right-level",
+    "href": "content/lectures/08-effective-communication-slides.html#whats-the-right-level",
+    "title": "08-effective-communication",
+    "section": "What’s the right level?",
+    "text": "What’s the right level?\n\n\nGeneral Audience\n✔ background\n🚫 limit technical details\n🎉 emphasize take-home\n\n\n\nTechnical Audience\n⬇ limit background\n💻 all-the-details\n🎉 emphasize take-home"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#considerations",
+    "href": "content/lectures/08-effective-communication-slides.html#considerations",
+    "title": "08-effective-communication",
+    "section": "Considerations",
+    "text": "Considerations\n\nPlatform: written? oral?\n\n\n\nSetting: informal? formal?\n\n\n\n\nTiming: never go over your time limit!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#storytelling",
+    "href": "content/lectures/08-effective-communication-slides.html#storytelling",
+    "title": "08-effective-communication",
+    "section": "Storytelling",
+    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\nYou should explain your choices and the “why”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#choose-informative-titles",
+    "href": "content/lectures/08-effective-communication-slides.html#choose-informative-titles",
+    "title": "08-effective-communication",
+    "section": "Choose informative titles",
+    "text": "Choose informative titles\nOn presentations: Balance b/w short and informative (goal: concise)\n\n\nAvoid: “Analyzing NHANES”\n\nBetter: “Data from the NHANES study shows that diet is related to overall health”\n\n\nOn visualizations: emphasize the take-home! (what’s learned or what action to take)\n\n\n\nAvoid: “Boxplot of gender”\n\nBetter: “Twice as many females as males included for analysis”\n\n\n\nAvoid: “Tickets vs. Time”\n\nBetter: “Staff unable to respond to incoming tickets; need to hire 2 FTEs”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#presentations-are-for-listening",
+    "href": "content/lectures/08-effective-communication-slides.html#presentations-are-for-listening",
+    "title": "08-effective-communication",
+    "section": "Presentations are for listening",
+    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nuse animation to build your story (not to distract)\nintroduce your axes\nwatch your speech speed\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\npractice!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "href": "content/lectures/08-effective-communication-slides.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "title": "08-effective-communication",
+    "section": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood",
+    "text": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood\n\nRed Riding Hood (RRH) has to walk 0.54 mi from Point A (home) to Point B (Grandma’s)\nRRH meets Wolf who (1) runs ahead to Grandma’s, (2) eats her, and (3) dresses in her clothes\nRRH arrives at Grandmas at 2PM, asks her three questions\nIdentified problem: after third question, Wolf eats RRH\nSolution: vendor (Woodsman) employs tool (ax)\nExpected outcome: Grandma and RRH alive, wolf is not"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#benefits-of-written-communciation",
+    "href": "content/lectures/08-effective-communication-slides.html#benefits-of-written-communciation",
+    "title": "08-effective-communication",
+    "section": "Benefits of written communciation",
+    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\n\nHold the reader’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\n\n\n\nVisually:\n\nmore on a single visualization\ntext/labels larger\n\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#example-when-you-have-time-to-digest",
+    "href": "content/lectures/08-effective-communication-slides.html#example-when-you-have-time-to-digest",
+    "title": "08-effective-communication",
+    "section": "Example: When you have time to digest",
+    "text": "Example: When you have time to digest"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
+    "href": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Data Science Reports in .Rmd",
+    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#controlling-html-document-settings",
+    "href": "content/lectures/08-effective-communication-slides.html#controlling-html-document-settings",
+    "title": "08-effective-communication",
+    "section": "Controlling HTML document settings",
+    "text": "Controlling HTML document settings\n\nTable of Contents\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n---\n\n\nTheme\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    theme: united\n    highlight: tango\n---\n\n\n\nFigure Options\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    fig_width: 7\n    fig_height: 6\n    fig_caption: true\n---\n\n\n\nCode Folding\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    code_folding: hide\n---"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#controlling-code-chunk-output",
+    "href": "content/lectures/08-effective-communication-slides.html#controlling-code-chunk-output",
+    "title": "08-effective-communication",
+    "section": "Controlling code chunk output",
+    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n{r, chunk-label, results='hide', fig.height=4}\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#editing-proofreading",
+    "href": "content/lectures/08-effective-communication-slides.html#editing-proofreading",
+    "title": "08-effective-communication",
+    "section": "Editing & Proofreading",
+    "text": "Editing & Proofreading\n\nDid you end up telling a story?\n\nThings missing?\nThings to delete?\n\n\n\n\nDo not fall in love with your words/code/plots\n\n\n\n\nDo spell check\nDo read it over before sending/presenting/submitting"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#aside-citing-sources",
+    "href": "content/lectures/08-effective-communication-slides.html#aside-citing-sources",
+    "title": "08-effective-communication",
+    "section": "Aside: Citing Sources",
+    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#footnotes-in-.rmd",
+    "href": "content/lectures/08-effective-communication-slides.html#footnotes-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Footnotes in .Rmd",
+    "text": "Footnotes in .Rmd\nHow to specify a footnote in text:\nHere is some body text.[^1]\nHow to include the footnote’s reference:\n[^1]: This footnote will appear at the bottom of the page.\n\n\nNote: .bib files can be included with BibTeX references using the bibliography parameter in your YAML"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#the-glamour-of-graphics",
+    "href": "content/lectures/08-effective-communication-slides.html#the-glamour-of-graphics",
+    "title": "08-effective-communication",
+    "section": "The Glamour of Graphics",
+    "text": "The Glamour of Graphics\n\nbuilds on top of the grammar (components) of a graphic\nconsiderations for the design of a graphic\ncolor, typography, layout\ngoing from accurate to 😍effective\n\n\n\nThese ideas and slides are all modified from Will Chase’s rstudio::conf2020 slides/talk"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#left-align-titles-at-top-left",
+    "href": "content/lectures/08-effective-communication-slides.html#left-align-titles-at-top-left",
+    "title": "08-effective-communication",
+    "section": "Left-align titles at top-left",
+    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#avoid-head-tilting",
+    "href": "content/lectures/08-effective-communication-slides.html#avoid-head-tilting",
+    "title": "08-effective-communication",
+    "section": "Avoid head-tilting",
+    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#borders-backgrounds",
+    "href": "content/lectures/08-effective-communication-slides.html#borders-backgrounds",
+    "title": "08-effective-communication",
+    "section": "Borders & Backgrounds: 👎",
+    "text": "Borders & Backgrounds: 👎\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_bw() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#organize-removelighten-as-much-as-possible",
+    "href": "content/lectures/08-effective-communication-slides.html#organize-removelighten-as-much-as-possible",
+    "title": "08-effective-communication",
+    "section": "Organize & Remove/Lighten as much as possible",
+    "text": "Organize & Remove/Lighten as much as possible\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#legends-suck",
+    "href": "content/lectures/08-effective-communication-slides.html#legends-suck",
+    "title": "08-effective-communication",
+    "section": "Legends suck",
+    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#additional-guidance",
+    "href": "content/lectures/08-effective-communication-slides.html#additional-guidance",
+    "title": "08-effective-communication",
+    "section": "Additional Guidance",
+    "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#recap",
+    "href": "content/lectures/08-effective-communication-slides.html#recap",
+    "title": "08-effective-communication",
+    "section": "Recap",
+    "text": "Recap"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#suggested-reading",
+    "href": "content/lectures/08-effective-communication-slides.html#suggested-reading",
+    "title": "08-effective-communication",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html",
+    "href": "content/lectures/08-effective-communication.html",
+    "title": "08-effective-communication",
+    "section": "",
+    "text": "Lecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM)\nreleased Friday after lab\ncompleted individually\nLab03 Scores & Feedback Posted\nPractice Exam Posted\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#what-does-this-mean",
+    "href": "content/lectures/08-effective-communication.html#what-does-this-mean",
+    "title": "08-effective-communication",
+    "section": "What does this mean?",
+    "text": "What does this mean?\nWhat does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#whats-the-right-level",
+    "href": "content/lectures/08-effective-communication.html#whats-the-right-level",
+    "title": "08-effective-communication",
+    "section": "What’s the right level?",
+    "text": "What’s the right level?\n\n\nGeneral Audience\n✔ background\n🚫 limit technical details\n🎉 emphasize take-home\n\n\n\nTechnical Audience\n⬇ limit background\n💻 all-the-details\n🎉 emphasize take-home"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#considerations",
+    "href": "content/lectures/08-effective-communication.html#considerations",
+    "title": "08-effective-communication",
+    "section": "Considerations",
+    "text": "Considerations\n\nPlatform: written? oral?\n\n\n\nSetting: informal? formal?\n\n\n\n\nTiming: never go over your time limit!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#storytelling",
+    "href": "content/lectures/08-effective-communication.html#storytelling",
+    "title": "08-effective-communication",
+    "section": "Storytelling",
+    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\nYou should explain your choices and the “why”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#choose-informative-titles",
+    "href": "content/lectures/08-effective-communication.html#choose-informative-titles",
+    "title": "08-effective-communication",
+    "section": "Choose informative titles",
+    "text": "Choose informative titles\nOn presentations: Balance b/w short and informative (goal: concise)\n\n\nAvoid: “Analyzing NHANES”\n\nBetter: “Data from the NHANES study shows that diet is related to overall health”\n\n\nOn visualizations: emphasize the take-home! (what’s learned or what action to take)\n\n\n\nAvoid: “Boxplot of gender”\n\nBetter: “Twice as many females as males included for analysis”\n\n\n\nAvoid: “Tickets vs. Time”\n\nBetter: “Staff unable to respond to incoming tickets; need to hire 2 FTEs”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#presentations-are-for-listening",
+    "href": "content/lectures/08-effective-communication.html#presentations-are-for-listening",
+    "title": "08-effective-communication",
+    "section": "Presentations are for listening",
+    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nuse animation to build your story (not to distract)\nintroduce your axes\nwatch your speech speed\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\npractice!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "href": "content/lectures/08-effective-communication.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "title": "08-effective-communication",
+    "section": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood",
+    "text": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood\n\nRed Riding Hood (RRH) has to walk 0.54 mi from Point A (home) to Point B (Grandma’s)\nRRH meets Wolf who (1) runs ahead to Grandma’s, (2) eats her, and (3) dresses in her clothes\nRRH arrives at Grandmas at 2PM, asks her three questions\nIdentified problem: after third question, Wolf eats RRH\nSolution: vendor (Woodsman) employs tool (ax)\nExpected outcome: Grandma and RRH alive, wolf is not"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#benefits-of-written-communciation",
+    "href": "content/lectures/08-effective-communication.html#benefits-of-written-communciation",
+    "title": "08-effective-communication",
+    "section": "Benefits of written communciation",
+    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\n\nHold the reader’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\n\n\n\nVisually:\n\nmore on a single visualization\ntext/labels larger\n\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#example-when-you-have-time-to-digest",
+    "href": "content/lectures/08-effective-communication.html#example-when-you-have-time-to-digest",
+    "title": "08-effective-communication",
+    "section": "Example: When you have time to digest",
+    "text": "Example: When you have time to digest"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
+    "href": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Data Science Reports in .Rmd",
+    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#controlling-html-document-settings",
+    "href": "content/lectures/08-effective-communication.html#controlling-html-document-settings",
+    "title": "08-effective-communication",
+    "section": "Controlling HTML document settings",
+    "text": "Controlling HTML document settings\n\nTable of Contents\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n---\n\n\nTheme\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    theme: united\n    highlight: tango\n---\n\n\n\nFigure Options\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    fig_width: 7\n    fig_height: 6\n    fig_caption: true\n---\n\n\n\nCode Folding\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    code_folding: hide\n---"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#controlling-code-chunk-output",
+    "href": "content/lectures/08-effective-communication.html#controlling-code-chunk-output",
+    "title": "08-effective-communication",
+    "section": "Controlling code chunk output",
+    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n{r, chunk-label, results='hide', fig.height=4}\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#editing-proofreading",
+    "href": "content/lectures/08-effective-communication.html#editing-proofreading",
+    "title": "08-effective-communication",
+    "section": "Editing & Proofreading",
+    "text": "Editing & Proofreading\n\nDid you end up telling a story?\n\nThings missing?\nThings to delete?\n\n\n\n\nDo not fall in love with your words/code/plots\n\n\n\n\nDo spell check\nDo read it over before sending/presenting/submitting"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#aside-citing-sources",
+    "href": "content/lectures/08-effective-communication.html#aside-citing-sources",
+    "title": "08-effective-communication",
+    "section": "Aside: Citing Sources",
+    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#footnotes-in-.rmd",
+    "href": "content/lectures/08-effective-communication.html#footnotes-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Footnotes in .Rmd",
+    "text": "Footnotes in .Rmd\nHow to specify a footnote in text:\nHere is some body text.[^1]\nHow to include the footnote’s reference:\n[^1]: This footnote will appear at the bottom of the page.\n\n\nNote: .bib files can be included with BibTeX references using the bibliography parameter in your YAML"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#the-glamour-of-graphics",
+    "href": "content/lectures/08-effective-communication.html#the-glamour-of-graphics",
+    "title": "08-effective-communication",
+    "section": "The Glamour of Graphics",
+    "text": "The Glamour of Graphics\n\nbuilds on top of the grammar (components) of a graphic\nconsiderations for the design of a graphic\ncolor, typography, layout\ngoing from accurate to 😍effective\n\n\n\nThese ideas and slides are all modified from Will Chase’s rstudio::conf2020 slides/talk"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#left-align-titles-at-top-left",
+    "href": "content/lectures/08-effective-communication.html#left-align-titles-at-top-left",
+    "title": "08-effective-communication",
+    "section": "Left-align titles at top-left",
+    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#avoid-head-tilting",
+    "href": "content/lectures/08-effective-communication.html#avoid-head-tilting",
+    "title": "08-effective-communication",
+    "section": "Avoid head-tilting",
+    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#borders-backgrounds",
+    "href": "content/lectures/08-effective-communication.html#borders-backgrounds",
+    "title": "08-effective-communication",
+    "section": "Borders & Backgrounds: 👎",
+    "text": "Borders & Backgrounds: 👎\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_bw() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#organize-removelighten-as-much-as-possible",
+    "href": "content/lectures/08-effective-communication.html#organize-removelighten-as-much-as-possible",
+    "title": "08-effective-communication",
+    "section": "Organize & Remove/Lighten as much as possible",
+    "text": "Organize & Remove/Lighten as much as possible\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#legends-suck",
+    "href": "content/lectures/08-effective-communication.html#legends-suck",
+    "title": "08-effective-communication",
+    "section": "Legends suck",
+    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#additional-guidance",
+    "href": "content/lectures/08-effective-communication.html#additional-guidance",
+    "title": "08-effective-communication",
+    "section": "Additional Guidance",
+    "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#recap",
+    "href": "content/lectures/08-effective-communication.html#recap",
+    "title": "08-effective-communication",
+    "section": "Recap",
+    "text": "Recap"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#suggested-reading",
+    "href": "content/lectures/08-effective-communication.html#suggested-reading",
+    "title": "08-effective-communication",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
+  },
+  {
     "objectID": "content/lectures/06-analysis-slides.html#qa",
     "href": "content/lectures/06-analysis-slides.html#qa",
     "title": "06-analysis",
@@ -2798,20 +3190,6 @@
     "title": "05-viz",
     "section": "Suggested Reading",
     "text": "Suggested Reading\n\nR4DS Chapter 28: Graphics for Communication\nThe Glamour of Graphics: [video] [slides] [Prof’s slides inspired by Will’s talk]"
-  },
-  {
-    "objectID": "content/lectures/test-slides.html#test",
-    "href": "content/lectures/test-slides.html#test",
-    "title": "05-viz",
-    "section": "Test",
-    "text": "Test\n\n\n\n\n\n\n\n\nhttps://cogs137.github.io/website/"
-  },
-  {
-    "objectID": "content/lectures/test.html",
-    "href": "content/lectures/test.html",
-    "title": "05-viz",
-    "section": "",
-    "text": "ggplot(mtcars, aes(x=cyl, y=mpg)) +\n  geom_point()"
   },
   {
     "objectID": "content/lectures/02-dplyr-slides.html#qa",

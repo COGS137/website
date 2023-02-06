@@ -482,6 +482,6 @@ https://openintro-ims.netlify.app/explore-numerical.html)
 
 
 -   R4DS Chapter 22: [Introduction to Modelling](https://r4ds.had.co.nz/model-intro.html)
--   R4DS Chapter 23: [Model Basics](https://r4ds.had.co.nz/model-intro.html)
+-   R4DS Chapter 23: [Model Basics](https://r4ds.had.co.nz/model-basics.html)
 -   R4DS Chapter 24: [Model Building](https://r4ds.had.co.nz/model-building.html)
 

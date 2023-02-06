@@ -97,6 +97,8 @@ website:
             href: content/lab-ans/lab02-wrangling-ans.qmd
           - text: "Lab03: Data Viz (Ans)"
             href: content/lab-ans/lab03-viz-ans.qmd
+          - text: "Lab04: Modelling (Ans)"
+            href: content/lab-ans/lab04-modelling-ans.qmd
       - section: "Homework"
         contents:
           - text: "HW01"

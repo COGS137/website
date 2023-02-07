@@ -1817,7 +1817,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#course-announcements",
     "title": "08-effective-communication",
     "section": "Course Announcements",
-    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM)\nreleased Friday after lab\ncompleted individually\nLab03 Scores & Feedback Posted\nPractice Exam Posted"
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday after lab\ncompleted individually\n\n\n\n\nPractice Midterm Posted (Answer key posted Wed/tomorrow)\nLab03 & Lab04 Scores & Feedback Posted\nLab04 Notes:\n\nModel Interpretations\nText, code, & viz all matter"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#agenda",
@@ -1831,7 +1831,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#what-does-this-mean",
     "title": "08-effective-communication",
     "section": "What does this mean?",
-    "text": "What does this mean?\nWhat does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
+    "text": "What does this mean?\n❓ What does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#whats-the-right-level",
@@ -1852,7 +1852,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#storytelling",
     "title": "08-effective-communication",
     "section": "Storytelling",
-    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\nYou should explain your choices and the “why”"
+    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\n\n\n\n\nHold the audience’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\nYou should explain your choices and the “why”"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#choose-informative-titles",
@@ -1866,7 +1866,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#presentations-are-for-listening",
     "title": "08-effective-communication",
     "section": "Presentations are for listening",
-    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nuse animation to build your story (not to distract)\nintroduce your axes\nwatch your speech speed\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\npractice!"
+    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\nuse animation to build your story (not to distract)\nintroduce your axes\ntext/labels larger\nwatch your speech speed\npractice!"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
@@ -1880,14 +1880,14 @@
     "href": "content/lectures/08-effective-communication-slides.html#benefits-of-written-communciation",
     "title": "08-effective-communication",
     "section": "Benefits of written communciation",
-    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\n\nHold the reader’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\n\n\n\nVisually:\n\nmore on a single visualization\ntext/labels larger\n\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
+    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\nVisually: more on a single visualization\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
   },
   {
-    "objectID": "content/lectures/08-effective-communication-slides.html#example-when-you-have-time-to-digest",
-    "href": "content/lectures/08-effective-communication-slides.html#example-when-you-have-time-to-digest",
+    "objectID": "content/lectures/08-effective-communication-slides.html#when-you-have-time-to-digest-read",
+    "href": "content/lectures/08-effective-communication-slides.html#when-you-have-time-to-digest-read",
     "title": "08-effective-communication",
-    "section": "Example: When you have time to digest",
-    "text": "Example: When you have time to digest"
+    "section": "When you have time to digest (read)",
+    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
@@ -1943,14 +1943,14 @@
     "href": "content/lectures/08-effective-communication-slides.html#left-align-titles-at-top-left",
     "title": "08-effective-communication",
     "section": "Left-align titles at top-left",
-    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")"
+    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#avoid-head-tilting",
     "href": "content/lectures/08-effective-communication-slides.html#avoid-head-tilting",
     "title": "08-effective-communication",
     "section": "Avoid head-tilting",
-    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
+    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#borders-backgrounds",
@@ -1971,7 +1971,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#legends-suck",
     "title": "08-effective-communication",
     "section": "Legends suck",
-    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
+    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 7) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 20) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#additional-guidance",
@@ -1979,13 +1979,6 @@
     "title": "08-effective-communication",
     "section": "Additional Guidance",
     "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
-  },
-  {
-    "objectID": "content/lectures/08-effective-communication-slides.html#recap",
-    "href": "content/lectures/08-effective-communication-slides.html#recap",
-    "title": "08-effective-communication",
-    "section": "Recap",
-    "text": "Recap"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#suggested-reading",
@@ -1999,14 +1992,14 @@
     "href": "content/lectures/08-effective-communication.html",
     "title": "08-effective-communication",
     "section": "",
-    "text": "Lecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM)\nreleased Friday after lab\ncompleted individually\nLab03 Scores & Feedback Posted\nPractice Exam Posted\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+    "text": "Lecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday after lab\ncompleted individually\n\n\n\n\nPractice Midterm Posted (Answer key posted Wed/tomorrow)\nLab03 & Lab04 Scores & Feedback Posted\nLab04 Notes:\n\nModel Interpretations\nText, code, & viz all matter\n\n\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#what-does-this-mean",
     "href": "content/lectures/08-effective-communication.html#what-does-this-mean",
     "title": "08-effective-communication",
     "section": "What does this mean?",
-    "text": "What does this mean?\nWhat does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
+    "text": "What does this mean?\n❓ What does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#whats-the-right-level",
@@ -2027,7 +2020,7 @@
     "href": "content/lectures/08-effective-communication.html#storytelling",
     "title": "08-effective-communication",
     "section": "Storytelling",
-    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\nYou should explain your choices and the “why”"
+    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\n\n\n\n\nHold the audience’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\nYou should explain your choices and the “why”"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#choose-informative-titles",
@@ -2041,7 +2034,7 @@
     "href": "content/lectures/08-effective-communication.html#presentations-are-for-listening",
     "title": "08-effective-communication",
     "section": "Presentations are for listening",
-    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nuse animation to build your story (not to distract)\nintroduce your axes\nwatch your speech speed\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\npractice!"
+    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\nuse animation to build your story (not to distract)\nintroduce your axes\ntext/labels larger\nwatch your speech speed\npractice!"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
@@ -2055,14 +2048,14 @@
     "href": "content/lectures/08-effective-communication.html#benefits-of-written-communciation",
     "title": "08-effective-communication",
     "section": "Benefits of written communciation",
-    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\n\nHold the reader’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\n\n\n\nVisually:\n\nmore on a single visualization\ntext/labels larger\n\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
+    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\nVisually: more on a single visualization\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
   },
   {
-    "objectID": "content/lectures/08-effective-communication.html#example-when-you-have-time-to-digest",
-    "href": "content/lectures/08-effective-communication.html#example-when-you-have-time-to-digest",
+    "objectID": "content/lectures/08-effective-communication.html#when-you-have-time-to-digest-read",
+    "href": "content/lectures/08-effective-communication.html#when-you-have-time-to-digest-read",
     "title": "08-effective-communication",
-    "section": "Example: When you have time to digest",
-    "text": "Example: When you have time to digest"
+    "section": "When you have time to digest (read)",
+    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
@@ -2118,14 +2111,14 @@
     "href": "content/lectures/08-effective-communication.html#left-align-titles-at-top-left",
     "title": "08-effective-communication",
     "section": "Left-align titles at top-left",
-    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")"
+    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#avoid-head-tilting",
     "href": "content/lectures/08-effective-communication.html#avoid-head-tilting",
     "title": "08-effective-communication",
     "section": "Avoid head-tilting",
-    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
+    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#borders-backgrounds",
@@ -2146,7 +2139,7 @@
     "href": "content/lectures/08-effective-communication.html#legends-suck",
     "title": "08-effective-communication",
     "section": "Legends suck",
-    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
+    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 7) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 20) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#additional-guidance",
@@ -2154,13 +2147,6 @@
     "title": "08-effective-communication",
     "section": "Additional Guidance",
     "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
-  },
-  {
-    "objectID": "content/lectures/08-effective-communication.html#recap",
-    "href": "content/lectures/08-effective-communication.html#recap",
-    "title": "08-effective-communication",
-    "section": "Recap",
-    "text": "Recap"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#suggested-reading",
@@ -4961,6 +4947,20 @@
     "title": "COGS 137",
     "section": "",
     "text": "Class\nClass will include short lectures as well as interactive activities. The goal of lecture is to introduce the topics and information needed for the course. The goal of your time outside of lecture is to practice with topics that are introduced and deepen your understanding of material presented in class. Since so much of programming and statistical analysis is learned best by doing, we’ll prioritize that throughout the course, both in and outside of the classroom.\n\n\nDiversity & Inclusion\nMy goal is that every student, regardless of their background or perspective, will be well-served by this course. My philosophy is that the diversity of students in this class is a huge asset to our learning community; our differences provide opportunities for learning and understanding. I intend to present course materials that are conscious of and respectful to diversity (gender identity, sexuality, disability, age, socioeconomic status, ethnicity, race, nationality, religion, politics, and culture); however, if I ever fall short or if you ever have suggestions for improvement, please do share with me! This feedback is always welcomed, and I am always in the process of learning and improving to this end. If you would like to provide that feedback anonymously, please use the anonymous Google Form.*\n\nWhat should you call me?\nMost students call me Professor/Prof Ellis, and that’s great! This is how I typically sign emails to students. I’m also totally OK with you addressing me as Shannon or Dr. Ellis.\n\n\nWhat I should call you?\nI should call you by your preferred name, with the correct pronunciation. Please correct me (in the moment or via email/Campuswire after the fact…however you’re most comfortable) if I ever make a mistake.\n\n\n\nDisability Access\nStudents requesting accommodations due to a disability should provide a current Authorization for Accommodation (AFA) letter. These letters are issued by the Office for Students with Disabilities (OSD), which is located in University Center 202 behind Center Hall. If you are struggling to get necessary accommodations or want to further discuss your accommodations, please feel free to reach out to Professor Ellis directly.\nContacting the OSD can help you further:\n858.534.4382 (phone)\nosd@ucsd.edu (email)\nhttp://disabilities.ucsd.edu\n\n\nHow to get help\nIt’s great that we have so many ways to communicate, but it can get tricky to figure out who to contact or where your question belongs or when to expect a response. These guidelines are to help you get your question answered as quickly as possible and to ensure that we’re able to get to everyone’s questions.\nThat said, to ensure that we’re respecting their time, TAs and IAs have been instructed they’re only encouraged to answer questions between standard working hours (M-F 9AM-5PM). Professor Ellis is also going to do her best to stick to these working hours and only go on Campuswire M-F each week. However, we know that’s not necessarily when you may be doing your work. So, please feel free to post whenever is best for you while knowing that if you post late at night or on a weekend, you may not get a response until the next weekday. As such, do your best not to wait until the last minute to ask a question.\nIf you have:\n\nquestions about course content - these are awesome! We want everyone to see them and have their questions answered too, so post these to Campuswire!\na technical assignment question - come to office hours (or post to Campuswire). Answering technical questions is often best accomplished ‘in person’ where we can discuss the question and talk through ideas. However, if that is not possible, post your question to Campuswire. Be as specific as you can in the question you ask. And, for those answering, help your classmates as much as you can without just giving the answer. Help guide them, point them in a direction, provide pseudo code, but do not provide code that answers assignment questions.\nbeen stuck on something for a while (>30min) and aren’t even really sure where to start - Programming can be frustrating and it may not always be obvious what is going wrong or why something isn’t working. That’s OK - we’ve all been there! If you are stuck, you can and should reach out for help, even if you aren’t exactly sure what your specific question is. To determine when to reach out, consider the 2-hour rule. This rule states that if you are stuck, work on that problem for an hour. Then, take a 30 minute break and do something else. When you come back after your break, try for another 30 minutes or so to solve your problem. If you are still completely stuck, stop and contact us (office hours, post on Campuswire). If you don’t have a specific question, include the information you have (what you’re stuck on, the code you’ve been trying that hasn’t been happening, and/or the error messages you’ve been getting).\nquestions about course logistics - first, check the course website. If you can’t find the answer there, first ask a classmate. If still unsure, post on Campuswire.\nquestions about a grade - Post on Campuswire with “regrades” tag in a private post to “Instructors & TAs”.\nsomething super cool to share related to class or want to talk about a topic in further depth - feel free to email Professor Ellis (sellis@ucsd.edu) or come to office hours. Please include COGS137 in the email subject line.\nsome feedback about the course you want to share anonymously - If you’ve been offended by an example in class, really liked or disliked a lesson, or wish there were something covered in class that wasn’t but would rather not share this publicly, etc., please fill out the anonymous Google Form*\n\n*This form can be taken down at any time if it’s not being used for its intended purpose; however, you all will be notified should that happen.\n\n\nAcademic integrity\nDon’t cheat.\nYou are generally encouraged to work together and help one another in this course. However, you are personally responsible for the work you submit. A helpful heuristic can b to ask yourself “Can I explain each piece of code and each analysis carried out in what I’m submitting? Could I reproduce this code/analysis on my own?”; you should be able to answer “Yes” to both questions for everything you submit in this course. For labs and assignments, you are allowed and encouraged to work together, but it is your responsibility to ensure you understand everything you’ve submitted. (For exams, all work has to be completed individually and communication with others about the exam is not allowed; this will be discussed more explicitly before exams.)\nA note on sharing / reusing code: The Internet is an excellent resource; there will be many times you find helpful information online. You should use available resources (e.g. StackOverflow), but you must explicitly cite any code you use directly or any code you use as inspiration. This can be done by including the URL/reference to the source directly in your code (as a code comment) or in accompanying text for a given assignment/exam/lab. You should never share code directly (e.g. copy + paste; share an send an answer to a classmate), but you can discuss code and work together on everything other than take-home exams.\nPlease review UCSD’s academic integrity policies here.\nCheating and plagiarism have been and will be strongly penalized. If, for whatever reason, Canvas or DataHub is down or something else prohibits you from being able to turn in an assignment on time, immediately contact Professor Ellis by emailing your assignment (sellis@ucsd.edu), or else it will be graded as late.\n\n\nCourse components\n\nLecture\nLectures will be your introduction to course topics and material. Lectures will be interactive, and you will be given time to practice with the lecture concepts during class. Attendance is not required, but is encouraged if you’re feeling well. To help incentivize coming to class, there will be a daily participation survey that will open at the end of lecture and close shortly after each Tues/Thurs lecture. Each time you fill out the lecture survey, you get a small % of credit toward your final project Completion of all surveys can provide up to 3.5% extra credit on your final project (not your final course grade).\n\nReadings\nReadings will be assigned for some class days and are best completed prior to the day’s lecture. These are meant to provide background and additional context for the upcoming day’s lecture topics. These can also be a good source after class when studying or reviewing topics discussed in class.\n\n\nPodcast\nIn case you miss class or would like to review the material covered in class, you can view the podcasts here.\n\n\n\nLabs (16%)\nLabs are meant to give you deeper understanding and hands-on experience with the technical and statistical topics introduced during lecture in a low-stakes environment. Lab sections will typically comprise of a short review and explanation of the lab and then time for you to complete the assigned weekly lab. Labs are submitted individually, but you are encouraged to work together during lab. You are free to ask and answer each others’ questions and discuss your work. Instructional staff will be present during lab to help further your understanding.\nLabs are graded for concerted effort. This is because when we learn something new, mistakes are going to happen! In fact, we learn a lot from the mistakes we make during the learning process. If your submission reflects ~50 min of work/effort, you will receive full credit for the week’s lab.\nLab attendance is not required, but is definitely encouraged if you are feeling well. While slides used are shared, lab sessions are not recorded, so being present is the best way to fully engage in the course.\n\n\nHomework (32%)\nAfter practice in lecture and labs, homework assignments are meant to demonstrate your solidified understanding of the course material. These are typically 2-4x longer and more involved than labs. Homework assignments are completed and submitted individually and are marked for correctness. You are allowed to work together on homework assignments, but academic integrity must be upheld.\n\n\nMidterm (15%)\nThere will be a single take-home exam due in week 4, and you will have at least 48 hours to complete it. This exam is meant to assess your understanding of the R programming language prior to us moving into focusing on case studies and full analyses. The exam will be completed individually and will be open-notes and open-Internet; however, you will not be permitted to ask questions of one another, the Internet, nor instructional staff while completing the take-home exam.\n\n\nTeams\nThere will be two case study mini-projects and a final project. Teams will be randomly assigned for the mini-projects but you will choose your final project groups. (By working with teammates throughout the course, you will also be able to use one another as a resource during labs and assignments.)\n\n\nCase Study Mini-projects (20%)\nStarting week 5, we will transition to a project-based course. This will allow us to use case studies to focus on deepening statistical knowledge and carrying out interesting analyses. In this, specific case studies and statistics topics will be discussed in class. In your teams and for each of the case studies, you will: 1) extend the analysis from class and 2) write up a full report of the case study for your team project.\n\n\nFinal Project (17%)\nThe final project will be completed in groups. There will be two different general final projects from which your group can choose, but the idea is that whichever you choose, you will be able to tackle it using and building upon the tools and techniques discussed in class. Briefly here, the two options will be: 1. Create a technical presentation on a statistics topic and/or an R package. 2. Carry out a data analysis.\nEach will require a written report and an oral presentation, but the specific requirements will differ between the two.\nFinal Projects will be due on Th 3/23 of finals week at 11:59 PM.\n\n\n\nGrading\nYour final grade will be comprised of the following:\n\n\n\nLabs (8)\n16%\n\n\nHomework (4)\n32%\n\n\nMidterm (1)\n16%\n\n\nCase Study Projects* (2)\n20%\n\n\nFinal Project(*) (1)\n17%\n\n\n\n* indicates group submission\n\nFinal Grades\nTo calculate final grades, I use the standard grading scale and do not round grades up (given the numerous extra credit opportunities offered):\n\n\n\n97-100%\nA+\n\n\n93-96%\nA\n\n\n90-92%\nA-\n\n\n87-89%\nB+\n\n\n83-86%\nB\n\n\n80-82%\nB-\n\n\n77-79%\nC+\n\n\n73-76%\nC\n\n\n70-72%\nC-\n\n\n67-69%\nD+\n\n\n63-66%\nD\n\n\n60-62%\nD-\n\n\n<60%\nF\n\n\n\n\n\n\nLate / missed work\nLate homework assignments and case study projects will be accepted up to 3 days (72 hours) after the assigned deadline. Late submissions will receive a 25% deduction.\nThere are no late deadlines for labs, the exam, or the final project.\nNote: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.\n\n\nRegrade requests\nWe will work hard to grade everyone fairly and return assignments quickly. And, we know you also work hard and want you to receive the grade you’ve earned. Occasionally, grading mistakes do happen, and it’s important to us to correct them. If you think there is a mistake in your grade on an assignment, post privately on Campuswire to “Instructors” using the “regrades” tag within 72 hours. This post should include evidence of why you think your answer was correct and should point to the specific part of the assignment in question.\n\n\nProfessionalism\nPlease refrain from texting or using your computer for anything other than coursework during class. Not only is this distracting to you, but it can also be distracting to those around you. (Note that there is no consequence associated with this. I know it can be difficult, but I ask that you try your best!)"
+  },
+  {
+    "objectID": "test.html",
+    "href": "test.html",
+    "title": "Document Title",
+    "section": "",
+    "text": "This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see http://rmarkdown.rstudio.com.\nWhen you click the Knit button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:\n\nsummary(cars)\n\n     speed           dist       \n Min.   : 4.0   Min.   :  2.00  \n 1st Qu.:12.0   1st Qu.: 26.00  \n Median :15.0   Median : 36.00  \n Mean   :15.4   Mean   : 42.98  \n 3rd Qu.:19.0   3rd Qu.: 56.00  \n Max.   :25.0   Max.   :120.00"
+  },
+  {
+    "objectID": "test.html#including-plots",
+    "href": "test.html#including-plots",
+    "title": "Document Title",
+    "section": "Including Plots",
+    "text": "Including Plots\nYou can also embed plots, for example:\n\n\n\n\n\nNote that the echo = FALSE parameter was added to the code chunk to prevent printing of the R code that generated the plot."
   },
   {
     "objectID": "schedule.html",

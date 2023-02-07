@@ -41,12 +41,19 @@ format:
 
 ## Course Announcements
 
--   Lecture Participation survey "due" after class
--   **Midterm** due Monday (2/13; 11:59 PM)
-  - released Friday *after* lab
-  - completed individually
-- Lab03 Scores & Feedback Posted
-- Practice Exam Posted
+- Lecture Participation survey "due" after class
+- **Midterm** due Monday (2/13; 11:59 PM):
+  + released Friday *after* lab
+  + completed individually
+  
+. . .
+
+- Practice Midterm Posted (Answer key posted Wed/tomorrow)
+- Lab03 & Lab04 Scores & Feedback Posted
+- Lab04 Notes:
+  + Model Interpretations
+  + Text, code, & viz all matter
+
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -81,7 +88,7 @@ knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE)
 
 ## What does this mean?
 
-What does it mean to "consider your audience?"
+[`r emo::ji("question")` What does it mean to "consider your audience?"]{style="background-color: #ADD8E6"}
 
 . . .
 
@@ -142,6 +149,11 @@ Simply: **You do the work so they don't have to.**
 
 - Reports and presentations should tell a story
 - Planning out your report/presentation can help
+
+. . .
+
+- Hold the audience's attention with what needs to be said; do so effectively
+- Tell your audience why they should care; why it matters
 - You should explain your choices and the "why"
 
 ## Choose informative titles
@@ -192,10 +204,12 @@ Brainstorm: Advice You've Been Given?
 To accomplish:
 
   - don’t read directly off slides
+  - repetition is ok: tell what you're going to tell them, tell them, tell them what you told them
   - use animation to build your story (not to distract)
   - introduce your axes
+  - text/labels larger
   - watch your speech speed
-  - repetition is ok: tell what you're going to tell them, tell them, tell them what you told them
+  
   - practice!
 
 ## For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood {.smaller}
@@ -231,25 +245,20 @@ Your audience has time to process...but the explanation has to be there!
 
 . . .
 
-- Hold the reader's attention with what needs to be said; do so effectively
-- Tell your audience why they should care; why it matters
-
-
-. . .
-
-Visually: 
-
-- more on a single visualization
-- text/labels larger
+Visually: more on a single visualization
 
 . . .
 
 Yes, often there are different visualizations for reports/papers than for presentations/lectures.
 
 
-## Example: When you have time to digest
+## When you have time to digest (read)
 
 ![](images/08/written.png)
+
+. . .
+
+[`r emo::ji("question")` What makes this an effective visualization for a written communication?"]{style="background-color: #ADD8E6"}
 
 ## Data Science Reports in .Rmd
 
@@ -421,6 +430,9 @@ Note: .bib files can be included with BibTeX references using the `bibliography`
 
 # Effective Visual Communication {background-color="#92A86A"}
 
+Brainstorm: Advice You've Been Given?
+
+
 ## The *Glamour* of Graphics
 
 - builds on top of the grammar (*components*) of a graphic
@@ -453,7 +465,7 @@ ggplot(penguins, aes(x = species, fill = species)) +
   geom_bar() +
   labs(title = "Adelie Penguins are the most common in Antarctica", 
        subtitle = "Frequency of each penguin species studied near Palmer Station, Antarctica") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
         plot.title.position = "plot")
 ```
 :::
@@ -469,7 +481,7 @@ ggplot(penguins, aes(x = species, fill = species)) +
   geom_bar() +
   labs(title = "Adelie Penguins are the most common in Antarctica", 
        subtitle = "Frequency of each penguin species studied near Palmer Station, Antarctica") +
-  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust=1),
+  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),
         plot.title.position = "plot")
 ```
 :::
@@ -581,12 +593,12 @@ ggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +
 ```{r}
 ggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +
   geom_bar() +
-  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = "white", size = 6) +
+  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = "white", size = 7) +
   scale_x_continuous(expand = c(0, 0)) +
   scale_fill_manual(values = c("#454545", rep("#adadad", 2))) +
   labs(title = "Adelie Penguins are the most common in Antarctica", 
        subtitle = "Frequency of each penguin species studied near Palmer Station, Antarctica") +
-  theme_minimal(base_size = 18) +
+  theme_minimal(base_size = 20) +
   theme(axis.text.x = element_blank(),
         plot.title.position = "plot", 
         panel.grid.major = element_blank(), panel.grid.minor = element_blank(),
@@ -603,9 +615,6 @@ ggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +
 - Use Color Effectively
 
 
-## Recap {.smaller background-color="#92A86A"}
-
-- 
 
 ## Suggested Reading
 

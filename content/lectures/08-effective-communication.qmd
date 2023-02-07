@@ -53,6 +53,7 @@ format:
 - Lab04 Notes:
   + Model Interpretations
   + Text, code, & viz all matter
+- [Link for Later](https://docs.google.com/forms/d/e/1FAIpQLSdwapo5AWOZHIZTJ0HAvtdmDK6W6WCKBAfJh-LsE4tIoG09rA/viewform)
 
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
@@ -259,6 +260,10 @@ Yes, often there are different visualizations for reports/papers than for presen
 . . .
 
 [`r emo::ji("question")` What makes this an effective visualization for a written communication?"]{style="background-color: #ADD8E6"}
+
+::: aside
+Source: [Storytelling wtih data](https://www.storytellingwithdata.com/book/downloads) by cole nussbaumer knaflic
+:::
 
 ## Data Science Reports in .Rmd
 

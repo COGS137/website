@@ -193,7 +193,7 @@ Better: "Staff unable to respond to incoming tickets; need to hire 2 FTEs"
 
 Brainstorm: Advice You've Been Given?
 
-## Student responses
+## Student responses  {.smaller}
 
 ```{r, echo=FALSE, results="asis"}
 student_responses <- read_sheet('1CRNv9Y9tuFIbxb0mO_XWsL94BUOcQq6LMJC5MHVbEP8')
@@ -203,7 +203,7 @@ student_responses |>
   select(`Advice you've received`) |> 
   kable() |>
     kable_styling() |>
-    scroll_box(width = "100%", height = "350px")
+    scroll_box(width = "100%", height = "500px")
 ```
 
 
@@ -255,7 +255,7 @@ To accomplish:
 
 Brainstorm: Advice You've Been Given?
 
-## Student responses
+## Student responses  {.smaller}
 
 ```{r, echo=FALSE, results="asis"}
 student_responses |> 
@@ -263,7 +263,7 @@ student_responses |>
   select(`Advice you've received`) |> 
   kable() |>
     kable_styling() |>
-    scroll_box(width = "100%", height = "350px")
+    scroll_box(width = "100%", height = "500px")
 ```
 
 
@@ -462,7 +462,7 @@ Note: .bib files can be included with BibTeX references using the `bibliography`
 
 Brainstorm: Advice You've Been Given?
 
-## Student Responses
+## Student Responses {.smaller}
 
 ```{r, echo=FALSE, results="asis"}
 student_responses |> 
@@ -470,7 +470,7 @@ student_responses |>
   select(`Advice you've received`) |> 
   kable() |>
     kable_styling() |>
-    scroll_box(width = "100%", height = "350px")
+    scroll_box(width = "100%", height = "500px")
 ```
 
 ## The *Glamour* of Graphics

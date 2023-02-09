@@ -113,6 +113,8 @@ website:
         contents:
           - text: "Practice Midterm"
             href: content/exams/practice-exam.qmd
+          - text: "Practice Midterm (Ans)"
+            href: content/exams/practice-exam-ans.qmd
 format:
   html:
     theme: material

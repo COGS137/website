@@ -62,6 +62,7 @@ library(emo)
 library(knitr)
 library(kableExtra)
 library(palmerpenguins)
+library(googlesheets4)
 
 # ggplot2 color palette with gray
 color_palette <- list(gray = "#999999", 
@@ -192,6 +193,20 @@ Better: "Staff unable to respond to incoming tickets; need to hire 2 FTEs"
 
 Brainstorm: Advice You've Been Given?
 
+## Student responses
+
+```{r, echo=FALSE, results="asis"}
+student_responses <- read_sheet('1CRNv9Y9tuFIbxb0mO_XWsL94BUOcQq6LMJC5MHVbEP8')
+
+student_responses |> 
+  filter(`Type of Communication` == "Oral") |>
+  select(`Advice you've received`) |> 
+  kable() |>
+    kable_styling() |>
+    scroll_box(width = "100%", height = "350px")
+```
+
+
 ## Presentations are for listening {.smaller}
 
 - Advantage: words to explain out loud what you’re showing
@@ -240,6 +255,18 @@ To accomplish:
 
 Brainstorm: Advice You've Been Given?
 
+## Student responses
+
+```{r, echo=FALSE, results="asis"}
+student_responses |> 
+  filter(`Type of Communication` == "Writing") |>
+  select(`Advice you've received`) |> 
+  kable() |>
+    kable_styling() |>
+    scroll_box(width = "100%", height = "350px")
+```
+
+
 ## Benefits of written communciation
 
 Your audience has time to process...but the explanation has to be there!
@@ -261,9 +288,7 @@ Yes, often there are different visualizations for reports/papers than for presen
 
 [`r emo::ji("question")` What makes this an effective visualization for a written communication?"]{style="background-color: #ADD8E6"}
 
-::: aside
 Source: [Storytelling wtih data](https://www.storytellingwithdata.com/book/downloads) by cole nussbaumer knaflic
-:::
 
 ## Data Science Reports in .Rmd
 
@@ -437,6 +462,16 @@ Note: .bib files can be included with BibTeX references using the `bibliography`
 
 Brainstorm: Advice You've Been Given?
 
+## Student Responses
+
+```{r, echo=FALSE, results="asis"}
+student_responses |> 
+  filter(`Type of Communication` == "Visual", `Advice you've received` != "NA") |>
+  select(`Advice you've received`) |> 
+  kable() |>
+    kable_styling() |>
+    scroll_box(width = "100%", height = "350px")
+```
 
 ## The *Glamour* of Graphics
 

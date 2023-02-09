@@ -1887,7 +1887,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#when-you-have-time-to-digest-read",
     "title": "08-effective-communication",
     "section": "When you have time to digest (read)",
-    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\n\n\n\nSource: Storytelling wtih data by cole nussbaumer knaflic"
+    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\nSource: Storytelling wtih data by cole nussbaumer knaflic"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
@@ -2055,7 +2055,7 @@
     "href": "content/lectures/08-effective-communication.html#when-you-have-time-to-digest-read",
     "title": "08-effective-communication",
     "section": "When you have time to digest (read)",
-    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\n\n\nSource: Storytelling wtih data by cole nussbaumer knaflic"
+    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\nSource: Storytelling wtih data by cole nussbaumer knaflic"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
@@ -4968,5 +4968,369 @@
     "title": "COGS 137",
     "section": "",
     "text": "Week\nDate\nTitle\nType\n\n\n\n\n1\nTu Jan 10\nWelcome & Tooling\nLecture\n\n\n1\nTh Jan 12\nIntro to R\nLecture\n\n\n1\nFri Jan 13\nLab 01: Intro to R\nLab\n\n\n2\nTu Jan 17\nData Wrangling: dplyr\nLecture\n\n\n2\nTh Jan 19\nData Wrangling: tidyr\nLecture\n\n\n2\nFri Jan 20\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Jan 23\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Jan 24\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n3\nTh Jan 26\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nFri Jan 27\nLab 03: Data Visualization\nLab\n\n\n4\nTu Jan 31\nData Analysis & Modeling\nLecture\n\n\n4\nTh Feb 2\nLinear Models Review\nLecture\n\n\n4\nFri Feb 3\nLab 04: Modeling\nLab\n\n\n5\nMon Feb 6\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Feb 7\nEffective Communication\nLecture\n\n\n5\nTh Feb 9\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Feb 10\nLab used for midterm review\nLab\n\n\n6\nMon Feb 13\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Feb 14\nMultiple Linear Regression\nLecture\n\n\n6\nTh Feb 16\nCase Study 01: Right to Carry (day 1)\nLecture\n\n\n6\nFri Feb 17\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nMon Feb 20\nHW03 due (11:59 PM)\nHW\n\n\n7\nTu Feb 21\nCase Study 01: Right to Carry (day 2)\nLecture\n\n\n7\nTh Feb 23\nCase Study 01: Right to Carry (day 3)\nLecture\n\n\n7\nFri Feb 24\nLab 06: CS01\nLab\n\n\n8\nTu Feb 28\nLogistic Regression (day 1)\nLecture\n\n\n8\nTh Mar 2\nLogistic Regression (day 2)\nLecture\n\n\n8\nFri Mar 3\nLab 07: Logistic Regression\nLab\n\n\n9\nMon Mar 6\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Mar 7\nCase Study 02: Vaping (day 1)\nLecture\n\n\n9\nTh Mar 9\nCase Study 02: Vaping (day 2)\nLecture\n\n\n9\nFri Mar 10\nLab 08: CS02\nLab\n\n\n10\nMon Mar 13\nHW04 due (11:59 PM)\nHW\n\n\n10\nTu Mar 14\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Mar 16\nNext Steps\nLecture\n\n\n10\nFri Mar 17\nLab used for Final Project\nLab\n\n\nFinals\nMon Mar 20\nCS02 Due\nCase Study\n\n\nFinals\nTh Mar 23\nFinal Project Due (11:59 PM)\nLecture"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#student-responses",
+    "href": "content/lectures/08-effective-communication.html#student-responses",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nSpeak loudly and clearly enough for everyone to hear (project your voice!); be engaging so that people are inclined to pay attention\n\n\nMake eye contact with your audience as you speak\n\n\nDon't just read off slides, and (most of the time) don't read from a script\n\n\nloud and clear voice\n\n\nPosture, eye contact, and mannerisms can all influence oral presentation performance. While presenting don't stand in one spot, get up, move around and engage with the audience.\n\n\ntry harder to better word choice\n\n\nLook at the audience when I am talking to them. Speak loud and clear.\n\n\nEye contact!!!\n\n\neye contact, try not to use filler words, talk slower than you would normally, don't just read off of the slides\n\n\ndont overcomplicate the wording, what might make sense to you might be revolutionary to someone else. Using simple words for simple explainations for begginer simple thought processes\n\n\ndrink water constantly\n\n\nmaking enough eye contact"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#student-responses",
+    "href": "content/lectures/08-effective-communication-slides.html#student-responses",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nSpeak loudly and clearly enough for everyone to hear (project your voice!); be engaging so that people are inclined to pay attention\n\n\nMake eye contact with your audience as you speak\n\n\nDon't just read off slides, and (most of the time) don't read from a script\n\n\nloud and clear voice\n\n\nPosture, eye contact, and mannerisms can all influence oral presentation performance. While presenting don't stand in one spot, get up, move around and engage with the audience.\n\n\ntry harder to better word choice\n\n\nLook at the audience when I am talking to them. Speak loud and clear.\n\n\nEye contact!!!\n\n\neye contact, try not to use filler words, talk slower than you would normally, don't just read off of the slides\n\n\ndont overcomplicate the wording, what might make sense to you might be revolutionary to someone else. Using simple words for simple explainations for begginer simple thought processes\n\n\ndrink water constantly\n\n\nmaking enough eye contact"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html",
+    "href": "content/lectures/09-projects.html",
+    "title": "09-projects",
+    "section": "",
+    "text": "Q: When is the presentation?\n\n\n\nA: Discussing this today! Written reports will be throughout the rest of the quarter. Oral presentation will be part of your final project. These will be able to be recorded or given live in person during finals week.\n\n\nQ: Will we have another lab with as many questions as Lab 4? The turnaround was pretty stressful, so just want to be prepared.\n\n\n\nA: The next lab (multiple linear regression) is also a tady lengthy, but after that I don’t plan on the rest being quite as long. Just as a reminder that you do not need to complete the entire lab to receive credit!\n\n\n\n\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday (tomorrow) after lab\ncompleted individually\n\nPractice Midterm Answer Key Posted\n\n\n\n\n\nHW02 recap\nCase Studies\nFinal Project"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#hw02-q1",
+    "href": "content/lectures/09-projects.html#hw02-q1",
+    "title": "09-projects",
+    "section": "HW02 : Q1",
+    "text": "HW02 : Q1\nGenerate a visualization that will allow readers to determine whether male or female penguins are larger (by mass)."
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#boxplot",
+    "href": "content/lectures/09-projects.html#boxplot",
+    "title": "09-projects",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npenguins |>\n  drop_na() |> \n  ggplot(aes(x = sex, y = body_mass_g)) +\n  geom_boxplot() +\n  labs(title = \"Penguin body mass by sex\", \n       y = \"body mass (g)\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#histogram",
+    "href": "content/lectures/09-projects.html#histogram",
+    "title": "09-projects",
+    "section": "Histogram",
+    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npenguins |>\n  filter(!is.na(sex)) |>\n  ggplot(mapping = aes(x = body_mass_g, fill = sex)) +\n  geom_histogram() +\n  labs(\n    title = 'Body Mass Distribution by Sex',\n    x = 'Body Mass (g)',\n    y = 'Count',\n    color = 'Sex'\n  )"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#faceted-histograms",
+    "href": "content/lectures/09-projects.html#faceted-histograms",
+    "title": "09-projects",
+    "section": "Faceted Histograms",
+    "text": "Faceted Histograms\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npenguins |>\n  filter(!is.na(body_mass_g)) |>\n  ggplot(., mapping=aes(y=body_mass_g)) + \n  geom_histogram(binwidth=100) +\n  facet_grid(. ~ sex) + \n  labs(\n    title='Frequency of Penguins based on their Body mass and Female/Male Penguins',\n    x='Frequency / Count',\n    y='Body Mass (of penguins, in g (grams))')"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#hw02-q2",
+    "href": "content/lectures/09-projects.html#hw02-q2",
+    "title": "09-projects",
+    "section": "HW02 : Q2",
+    "text": "HW02 : Q2\nGenerate a barplot that visualizes how many penguins there are from each species on each island. Each island should be a different panel (in a 1 row x 3 columns visualization), and each chart should visualize the species count."
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#barplot",
+    "href": "content/lectures/09-projects.html#barplot",
+    "title": "09-projects",
+    "section": "Barplot",
+    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species)) +\n  geom_bar() +\n  facet_wrap(~ island) +\n  labs(title = \"Count of species per island\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#barplot-with-color",
+    "href": "content/lectures/09-projects.html#barplot-with-color",
+    "title": "09-projects",
+    "section": "Barplot with color",
+    "text": "Barplot with color\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n  ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +\n  geom_bar() +\n  facet_wrap(~island, nrow = 1) +\n  guides(fill = \"none\") + \n  labs(\n    title = \"Count of Penguin Species Across the Palmer Archipelago Islands\",\n    x = \"Species\",\n    y = \"Number of Penguins\"\n  )"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#hw02-q3",
+    "href": "content/lectures/09-projects.html#hw02-q3",
+    "title": "09-projects",
+    "section": "HW02 : Q3",
+    "text": "HW02 : Q3\nGenerate a scatterplot that will allow the viewer to determine whether flipper length has differed over time. Be sure to color the points on this plot by species."
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#scatterplot-no-jitter",
+    "href": "content/lectures/09-projects.html#scatterplot-no-jitter",
+    "title": "09-projects",
+    "section": "Scatterplot (no jitter)",
+    "text": "Scatterplot (no jitter)\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = year, \n           y = flipper_length_mm,\n           color = species)) +\ngeom_point() + \nscale_color_viridis_d() +\nscale_x_continuous(n.breaks = 3) +\nlabs(\n  title = \"Flipper Lengths of Penguin Species Over Time\",\n  color = \"Species\",\n  x = \"Year\",\n  y = \"Flipper Length (mm)\"\n)"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#scatterplot-w-jitter",
+    "href": "content/lectures/09-projects.html#scatterplot-w-jitter",
+    "title": "09-projects",
+    "section": "Scatterplot (w/ jitter)",
+    "text": "Scatterplot (w/ jitter)\n::: panel-tabset\n\nPlot\n\n\n\n\n\n\n\nCode\n\nggplot(penguins,\n       mapping = aes(x = year,\n                     y = flipper_length_mm,\n                     color = species)) +\n  scale_color_viridis_d() +\n  geom_jitter(na.rm = TRUE) +\n  labs(title = \"Flipper length of different penguin species by year\",\n       y = \"Flipper length (mm)\",\n       x = \"Year\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#hw02-part-ii",
+    "href": "content/lectures/09-projects.html#hw02-part-ii",
+    "title": "09-projects",
+    "section": "HW02 : Part II",
+    "text": "HW02 : Part II\nImitation is the highest form of flattery\n\n# Eric890916\nchessData <- data.frame(country = c(\"United States\", \"Germany\", \"Canada\", \"Spain\", \"Russia\", \"France\", \"Bosnia and Herzegovina\", \"Croatia\", \"Turkey\", \"Austria\"),\n                        num = c(89, 55, 44, 41, 36, 34, 32, 32, 31, 29))\n\nggplot(chessData, aes(y = reorder(country, num), x = num)) + \n  geom_col(fill = \"#008080\") + \n  geom_text(aes(label = num), hjust = 1, nudge_x = -.5) +\n  labs(title = \"More players transfer to the U.S. than to any other country\",\n       subtitle = \"Nations that received the highest number of player transfers, 2000-17\",\n       caption = \"2017 data as of April 11. SOURCE: FIDE\",\n       x = \"NUMBER OF TRANSFERS\", y = \"COUNTRY\")\n\n\n\n\n\n# JulianBouchard\n# recreation of the data\nparents <- tibble(\n  category = c(rep(\"\", 100), rep(\"BY RACE\", 400), rep(\"BY INCOME\", 300)),\n  name = c(\n    rep(\"All parents\", 100),\n    rep(\"Black\", 100), rep(\"Hispanic\", 100), rep(\"White\", 100), rep(\"Asian\", 100),\n    rep(\"Lower income\", 100), rep(\"Middle income\", 100), rep(\"Upper income\", 100)\n  ),\n  val = c(\n    rep(\"all\", 25), rep(\"some\", 58), rep(\"other\", 17),\n    rep(\"all\", 39), rep(\"some\", 44), rep(\"other\", 17),\n    rep(\"all\", 39), rep(\"some\", 49), rep(\"other\", 12),\n    rep(\"all\", 18), rep(\"some\", 63), rep(\"other\", 19),\n    rep(\"all\", 13), rep(\"some\", 57), rep(\"other\", 30),\n    rep(\"all\", 38), rep(\"some\", 49), rep(\"other\", 13),\n    rep(\"all\", 21), rep(\"some\", 60), rep(\"other\", 19),\n    rep(\"all\", 14), rep(\"some\", 65), rep(\"other\", 21)\n  )\n)\n\nparents |>\n  # adjust the order of all names\n    mutate(\n    name = fct_rev(fct_relevel( \n      name,\n      \"All parents\",\n      \"Black\",\n      \"Hispanic\",\n      \"White\",\n      \"Asian\",\n      \"Lower income\",\n      \"Middle income\",\n      \"Upper income\"\n    ))) |>\n  # adjust the order of the categories\n    mutate(\n    category = fct_relevel( \n      category,\n      \"\",\n      \"BY RACE\",\n      \"BY INCOME\"\n    )) |>\n  # adjust the order in which the 'all', 'some' or 'other' is shown\n      mutate(\n    val = fct_relevel( \n      val,\n      \"all\",\n      \"some\",\n      \"other\"\n    )) |>\n  ggplot(aes(y = name, fill=val)) +\n  geom_bar(position = \"fill\") +\n  scale_x_reverse() +\n  labs(title = \"Black and Hispanic parents are more likely to enjoy parenting\",\n       subtitle = str_wrap(\"Share of American parents who said they find being a parent enjoyable, by income group, race and overall\", 80),\n       caption = str_wrap(\"White, Black and Asian parents include those who report being only one race and are not Hispanic. Hispanic parents are of any race. Middle income is defined as two-thirds to double the median annual family income for panelists in Pew's American Trends Panel. Lower income falls below that range and upper income falls above it.\", 110),\n       fill=\"\",\n       color = \"Species\") +\n  facet_wrap(~category, ncol = 1) +\n  scale_fill_manual(\n    values=c(\"#066971\", \"#6dcbcd\", \"#e0e0e0\"), \n    labels=c(\"ENJOYABLE ALL OF THE TIME\", \"ENJOYABLE SOME OF THE TIME\", \"OTHER\")) +\n  theme_classic() +\n  # manual theme adjustments\n  theme(axis.title.x = element_blank(),\n        axis.text.x = element_blank(),\n        axis.title.y = element_blank(),\n        legend.position=\"top\",\n        plot.title = element_text(face = \"bold\"),\n        strip.text.x = element_text(size = 9, color = \"black\", face = \"bold\"),\n        plot.caption = element_text(hjust = 0)\n        )\n\n\n\n\n\n# ckwon822\ncommon_first_names <- read.csv(\"https://raw.githubusercontent.com/fivethirtyeight/data/master/most-common-name/new-top-firstNames.csv\")\n\n# editing data\ncommon_first_names <- common_first_names[1:20, ]\ncommon_first_names <- common_first_names %>%\n  mutate(sex = case_when (name == \"Mary\" | \n                          name == \"Jennifer\" |\n                          name == \"Patricia\" |\n                          name == \"Linda\" |\n                          name == \"Elizabeth\" ~ \"female\",\n                          name != \"Mary\" | \n                          name != \"Jennifer\" |\n                          name != \"Patricia\" |\n                          name != \"Linda\" |\n                          name != \"Elizabeth\" ~ \"male\",),\n         percentage = round(newPerct2013 * 1000, digits = 1))\n\n# creating visualization\ncommon_first_names %>%\n  ggplot(aes(y = reorder(name, percentage),  x = percentage, fill = sex)) +\n  geom_histogram(stat = \"identity\") +\n  guides(fill = \"none\") +\n  annotate(\"text\", x = 9.65, y = 21.7, label = expression(bold(\"MALE\")), cex = 3.85, hjust = 1, vjust = 1, color = \"dodgerblue\") +\n  annotate(\"text\", x = 11.5, y = 21.7, label = expression(bold(\"FEMALE\")), cex = 3.85, hjust = 1, vjust = 1, color = \"gold1\") +\n  geom_text(aes(label = signif(percentage)), nudge_x = 0.5) +\n  labs(title = \"Most Common First Names\",\n       subtitle = \"Per 1,000 Americans as of 2013\") +\n  scale_fill_manual(values = c(\"male\" = \"dodgerblue\",\n                               \"female\" = \"gold1\")) +\n  theme_classic() +\n  theme(plot.title.position = \"plot\", \n        panel.grid.major.y = element_blank(),\n        plot.title = element_text(size = 16,\n                                  face = \"bold\"),\n        plot.subtitle = element_text(size = 11),\n        axis.ticks.x = element_blank(),\n        axis.ticks.y = element_blank(),\n        axis.line.x = element_blank(),\n        axis.line.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.text.y = element_text(color = \"black\"),\n        axis.title.x = element_blank(),\n        axis.title.y = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#hw03-part-iii",
+    "href": "content/lectures/09-projects.html#hw03-part-iii",
+    "title": "09-projects",
+    "section": "HW03 : Part III",
+    "text": "HW03 : Part III\nTake a Sad Plot & Make It Better\n\n# ckwon\nmedals <- tibble(\n  country = c(\n    rep(\"USA\", 79), rep(\"CHN\", 70), rep(\"ROC\", 53), rep(\"GBR\", 48), rep(\"JPN\", 40)),\n  medal_type = c(\n    rep(\"gold\", 25), rep(\"silver\", 31), rep(\"bronze\", 23),\n    rep(\"gold\", 32), rep(\"silver\", 22), rep(\"bronze\", 16),\n    rep(\"gold\", 14), rep(\"silver\", 21), rep(\"bronze\", 18),\n    rep(\"gold\", 15), rep(\"silver\", 18), rep(\"bronze\", 15),\n    rep(\"gold\", 21), rep(\"silver\", 7), rep(\"bronze\", 12)))\n\n# creating visualization\nmedal_viz <- medals %>%\n   mutate(country = factor(country, levels = c(\"JPN\", \"GBR\",\"ROC\", \"CHN\", \"USA\"))) %>%\n  ggplot(aes(y = country, fill = factor(medal_type, levels = c(\"bronze\", \"silver\", \"gold\")))) + \n  geom_bar() +\n  annotate(\"text\", x = 4.5, y = 5.05, label = \"25\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 30.5, y = 5.05, label = \"31\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 61.5, y = 5.05, label = \"23\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 86.5, y = 5.05, label = expression(bold(\"79\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 4.05, label = \"32\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 37.5, y = 4.05, label = \"22\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 58.5, y = 4.05, label = \"16\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 76.5, y = 4.05, label = expression(bold(\"70\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 3.05, label = \"14\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 18.5, y = 3.05, label = \"21\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 39.5, y = 3.05, label = \"18\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 59.5, y = 3.05, label = expression(bold(\"53\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 2.05, label = \"15\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 19.5, y = 2.05, label = \"18\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 38, y = 2.05, label = \"15\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 54.5, y = 2.05, label = expression(bold(\"48\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 1.05, label = \"21\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 23.5, y = 1.05, label = \"7\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 32.5, y = 1.05, label = \"12\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 46.5, y = 1.05, label = expression(bold(\"40\")) , cex = 5, hjust = 1, vjust = 1) +\n  labs(title = \"Medals Won at the Tokyo Olympics (ongoing)\", \n       subtitle = \"Distribution of medals won by the top 5 countries (ordered by total)\", \n       fill = \"Medal Type\") +\n  scale_fill_manual(values = c(\"gold\" = \"gold\",\n                               \"silver\" = \"gray75\",\n                               \"bronze\" = \"tan3\")) +\n  theme(#legend.title = element_text(face = \"bold\"),\n        legend.position = \"top\") + \n  guides(fill = guide_legend(title.position = \"top\")) +\n  theme_classic() +\n  theme(plot.title.position = \"plot\", \n        panel.grid.major.y = element_blank(),\n        plot.title = element_text(size = 16,\n                                  face = \"bold\"),\n        plot.subtitle = element_text(size = 11),\n        axis.ticks.x = element_blank(),\n        axis.ticks.y = element_blank(),\n        axis.line.x = element_blank(),\n        axis.line.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.text.y = element_text(color = \"black\", \n                                   #face = \"bold\", \n                                   size = 11),\n        axis.title.x = element_blank(),\n        axis.title.y = element_blank())\n\n\nmedal_viz +\n  theme(legend.position = c(0.8, 0.25))"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#opencasestudies",
+    "href": "content/lectures/09-projects.html#opencasestudies",
+    "title": "09-projects",
+    "section": "OpenCaseStudies",
+    "text": "OpenCaseStudies\n\nOpenCaseStudies\nUses R/the tidyverse\nasks public health-centric questions\ngoal: to teach statistical analysis/data science through case studies"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#what-well-do",
+    "href": "content/lectures/09-projects.html#what-well-do",
+    "title": "09-projects",
+    "section": "What We’ll Do",
+    "text": "What We’ll Do\nFor each case study (2), during lecture:\n\nStats: 1-2 Lectures\nBackground, Data & Wrangling (1-2d)\nEDA & Analysis (1d)\n\n\nFor each case study:\n\nyou’ll also work with case study data in lab.\nyou’ll work in assigned groups of ~3 students to complete a data science report"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#data-science-reports",
+    "href": "content/lectures/09-projects.html#data-science-reports",
+    "title": "09-projects",
+    "section": "Data Science Reports",
+    "text": "Data Science Reports\nWith your group, you will:\n\ncarry out all steps of the analysis\n\nsome code will be taken directly from lecture\n\nadd text/organize into a report\n\n\n\nhave to extend the case study"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#what-does-it-mean-to-extend-the-case-study",
+    "href": "content/lectures/09-projects.html#what-does-it-mean-to-extend-the-case-study",
+    "title": "09-projects",
+    "section": "What does it mean to extend the case study?",
+    "text": "What does it mean to extend the case study?\nYou’ll need to do something more on the topic beyond what is presented in class.\n\nExamples:\n\nAsking an additional question and answering it from the data provided\nFinding an additional dataset and using it to add to the case study\nGenerating a handful of additional and very informative visualizations (beyond what’s presented in class)"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#grading",
+    "href": "content/lectures/09-projects.html#grading",
+    "title": "09-projects",
+    "section": "Grading",
+    "text": "Grading\nGraded on:\n\ncontent\neffective written communication\nextension carried out"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#final-project-logistics",
+    "href": "content/lectures/09-projects.html#final-project-logistics",
+    "title": "09-projects",
+    "section": "Final Project Logistics",
+    "text": "Final Project Logistics\n\nwill be completed in groups of 3-4 students\nyou get to choose the group\nI will ask at the end of week 7 for your final project groups"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#final-project-details",
+    "href": "content/lectures/09-projects.html#final-project-details",
+    "title": "09-projects",
+    "section": "Final Project Details",
+    "text": "Final Project Details\nTwo possible Paths:\n\nCreate a technical presentation on a statistics topic and/or an R package.\nCarry out a data analysis"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#option-1-technical-presentation",
+    "href": "content/lectures/09-projects.html#option-1-technical-presentation",
+    "title": "09-projects",
+    "section": "Option 1: Technical Presentation",
+    "text": "Option 1: Technical Presentation\n\n.Rmd document used to make slides\n“Teaches” the details of the R package/statistics topic\nDemonstrates how to use the package and/or carry out the statistical analysis in R\nTopic/Package must go beyond what was taught in this course or what you should have learned in an intro stats course\nPresentation Length: 10-15min"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#option-2-data-analysis",
+    "href": "content/lectures/09-projects.html#option-2-data-analysis",
+    "title": "09-projects",
+    "section": "Option 2: Data Analysis",
+    "text": "Option 2: Data Analysis\n\n.Rmd document used for data science report\nAsks a question, finds data, analyzes data (basically: a mini case report, but you find the data and formulate the question)\nPresentation Length: 3-5min (brief summary of the full report)"
+  },
+  {
+    "objectID": "content/lectures/09-projects.html#wherewhen-for-this-presentation",
+    "href": "content/lectures/09-projects.html#wherewhen-for-this-presentation",
+    "title": "09-projects",
+    "section": "Where/when for this presentation?",
+    "text": "Where/when for this presentation?\n\nRecord ahead of time: submit by Th 3/23 of finals week at 11:59 PM\nPresent in-person Th of finals week (slots to sign up for a time will be released later)"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#student-responses-1",
+    "href": "content/lectures/08-effective-communication.html#student-responses-1",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nYour rough draft should be rough. Don't polish it because it will flush all your great ideas away.\n\n\nInclude data/metrics that highlight quantifiable impact of work.\n\n\nbe concise when writing\n\n\nshorter sentences = good\n\n\nState your main point clearly; use good grammar\n\n\ndon't use crazy fonts and coloring. If things need to be emphasized stick to italics bold and font size generally speaking.\n\n\nDisplay contents of slides in a left to right fashion.\n\n\nUse clear fonts.\n\n\nas concise as possible\n\n\nIf it's a presentation, less wording is often better. Use oral communication to fill in gaps between the main points\n\n\nRead what you write in between every iteration. Try to avoid repeating words - show some variety. Use punctuation well. Split up paragraphs; monolithic walls of text are intimidating and readers will skip them. It's cliche, but for a reason - the topic, argument, evidence structure is effective.\n\n\nExplicitly write out the opposing arguments/concerns in your paper and answer them as best you can. That way the paper feels more like a conversation with the author than just something to read.\n\n\nMake sentences flow well. Include a conclusion to summarize\n\n\nstay on topic, summarize main points at end,\n\n\nRepeat the point you want the readers to remember"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#student-responses-2",
+    "href": "content/lectures/08-effective-communication.html#student-responses-2",
+    "title": "08-effective-communication",
+    "section": "Student Responses",
+    "text": "Student Responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nTry to make the title of the plot something descriptive rather than simply, eg, \"Time vs Length\" or \"linear regression of pet sizes\".\"\n\n\nshow the kind of plot that can be understood by audience\n\n\nI heard that when making a visual graphic, you should try remove as much as you can while still showing the necessary information. The less on the screen, the better.\n\n\nWhen giving a presentation, try to keep bullet points shorter than 7 words so it's easier digest/remember\n\n\nWhen displaying data and visualizations. Take note of people with eye color visualization disabilities. Also present things based on intuitive knowledge. Like reading left to right\n\n\nhighlighting only the important bits with color usage\n\n\n(picture / plot / visualization) > words\n\n\nUse appropriate colors and use them to highlight findings.\n\n\nMake plots big and clear\n\n\nSometimes simple is better, try to stay away from distracting visualizations\n\n\nUse appropriate (non-misleading) scales\n\n\nColors choices are important, and also remember about color blind people\n\n\nlabel axis, always include a title, use ticks if they help understand the data, think about color choices, big text\n\n\nInclude visuals only if they are meaningful and/or strengthen your argument"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#qa",
+    "href": "content/lectures/09-projects-slides.html#qa",
+    "title": "09-projects",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: When is the presentation?\nA: Discussing this today! Written reports will be throughout the rest of the quarter. Oral presentation will be part of your final project. These will be able to be recorded or given live in person during finals week.\n\n\nQ: Will we have another lab with as many questions as Lab 4? The turnaround was pretty stressful, so just want to be prepared.\nA: The next lab (multiple linear regression) is also a tady lengthy, but after that I don’t plan on the rest being quite as long. Just as a reminder that you do not need to complete the entire lab to receive credit!"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#course-announcements",
+    "href": "content/lectures/09-projects-slides.html#course-announcements",
+    "title": "09-projects",
+    "section": "Course Announcements",
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday (tomorrow) after lab\ncompleted individually\n\nPractice Midterm Answer Key Posted"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#agenda",
+    "href": "content/lectures/09-projects-slides.html#agenda",
+    "title": "09-projects",
+    "section": "Agenda",
+    "text": "Agenda\n\nHW02 recap\nCase Studies\nFinal Project"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#hw02-q1",
+    "href": "content/lectures/09-projects-slides.html#hw02-q1",
+    "title": "09-projects",
+    "section": "HW02 : Q1",
+    "text": "HW02 : Q1\nGenerate a visualization that will allow readers to determine whether male or female penguins are larger (by mass)."
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#boxplot",
+    "href": "content/lectures/09-projects-slides.html#boxplot",
+    "title": "09-projects",
+    "section": "Boxplot",
+    "text": "Boxplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npenguins |>\n  drop_na() |> \n  ggplot(aes(x = sex, y = body_mass_g)) +\n  geom_boxplot() +\n  labs(title = \"Penguin body mass by sex\", \n       y = \"body mass (g)\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#histogram",
+    "href": "content/lectures/09-projects-slides.html#histogram",
+    "title": "09-projects",
+    "section": "Histogram",
+    "text": "Histogram\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npenguins |>\n  filter(!is.na(sex)) |>\n  ggplot(mapping = aes(x = body_mass_g, fill = sex)) +\n  geom_histogram() +\n  labs(\n    title = 'Body Mass Distribution by Sex',\n    x = 'Body Mass (g)',\n    y = 'Count',\n    color = 'Sex'\n  )"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#faceted-histograms",
+    "href": "content/lectures/09-projects-slides.html#faceted-histograms",
+    "title": "09-projects",
+    "section": "Faceted Histograms",
+    "text": "Faceted Histograms\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\npenguins |>\n  filter(!is.na(body_mass_g)) |>\n  ggplot(., mapping=aes(y=body_mass_g)) + \n  geom_histogram(binwidth=100) +\n  facet_grid(. ~ sex) + \n  labs(\n    title='Frequency of Penguins based on their Body mass and Female/Male Penguins',\n    x='Frequency / Count',\n    y='Body Mass (of penguins, in g (grams))')"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#hw02-q2",
+    "href": "content/lectures/09-projects-slides.html#hw02-q2",
+    "title": "09-projects",
+    "section": "HW02 : Q2",
+    "text": "HW02 : Q2\nGenerate a barplot that visualizes how many penguins there are from each species on each island. Each island should be a different panel (in a 1 row x 3 columns visualization), and each chart should visualize the species count."
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#barplot",
+    "href": "content/lectures/09-projects-slides.html#barplot",
+    "title": "09-projects",
+    "section": "Barplot",
+    "text": "Barplot\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = species)) +\n  geom_bar() +\n  facet_wrap(~ island) +\n  labs(title = \"Count of species per island\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#barplot-with-color",
+    "href": "content/lectures/09-projects-slides.html#barplot-with-color",
+    "title": "09-projects",
+    "section": "Barplot with color",
+    "text": "Barplot with color\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\n  ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +\n  geom_bar() +\n  facet_wrap(~island, nrow = 1) +\n  guides(fill = \"none\") + \n  labs(\n    title = \"Count of Penguin Species Across the Palmer Archipelago Islands\",\n    x = \"Species\",\n    y = \"Number of Penguins\"\n  )"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#hw02-q3",
+    "href": "content/lectures/09-projects-slides.html#hw02-q3",
+    "title": "09-projects",
+    "section": "HW02 : Q3",
+    "text": "HW02 : Q3\nGenerate a scatterplot that will allow the viewer to determine whether flipper length has differed over time. Be sure to color the points on this plot by species."
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#scatterplot-no-jitter",
+    "href": "content/lectures/09-projects-slides.html#scatterplot-no-jitter",
+    "title": "09-projects",
+    "section": "Scatterplot (no jitter)",
+    "text": "Scatterplot (no jitter)\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = year, \n           y = flipper_length_mm,\n           color = species)) +\ngeom_point() + \nscale_color_viridis_d() +\nscale_x_continuous(n.breaks = 3) +\nlabs(\n  title = \"Flipper Lengths of Penguin Species Over Time\",\n  color = \"Species\",\n  x = \"Year\",\n  y = \"Flipper Length (mm)\"\n)"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#scatterplot-w-jitter",
+    "href": "content/lectures/09-projects-slides.html#scatterplot-w-jitter",
+    "title": "09-projects",
+    "section": "Scatterplot (w/ jitter)",
+    "text": "Scatterplot (w/ jitter)\n::: panel-tabset\nPlot\n\nCode\n\nggplot(penguins,\n       mapping = aes(x = year,\n                     y = flipper_length_mm,\n                     color = species)) +\n  scale_color_viridis_d() +\n  geom_jitter(na.rm = TRUE) +\n  labs(title = \"Flipper length of different penguin species by year\",\n       y = \"Flipper length (mm)\",\n       x = \"Year\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#hw02-part-ii",
+    "href": "content/lectures/09-projects-slides.html#hw02-part-ii",
+    "title": "09-projects",
+    "section": "HW02 : Part II",
+    "text": "HW02 : Part II\nImitation is the highest form of flattery\n\n# Eric890916\nchessData <- data.frame(country = c(\"United States\", \"Germany\", \"Canada\", \"Spain\", \"Russia\", \"France\", \"Bosnia and Herzegovina\", \"Croatia\", \"Turkey\", \"Austria\"),\n                        num = c(89, 55, 44, 41, 36, 34, 32, 32, 31, 29))\n\nggplot(chessData, aes(y = reorder(country, num), x = num)) + \n  geom_col(fill = \"#008080\") + \n  geom_text(aes(label = num), hjust = 1, nudge_x = -.5) +\n  labs(title = \"More players transfer to the U.S. than to any other country\",\n       subtitle = \"Nations that received the highest number of player transfers, 2000-17\",\n       caption = \"2017 data as of April 11. SOURCE: FIDE\",\n       x = \"NUMBER OF TRANSFERS\", y = \"COUNTRY\")\n\n\n\n\n\n# JulianBouchard\n# recreation of the data\nparents <- tibble(\n  category = c(rep(\"\", 100), rep(\"BY RACE\", 400), rep(\"BY INCOME\", 300)),\n  name = c(\n    rep(\"All parents\", 100),\n    rep(\"Black\", 100), rep(\"Hispanic\", 100), rep(\"White\", 100), rep(\"Asian\", 100),\n    rep(\"Lower income\", 100), rep(\"Middle income\", 100), rep(\"Upper income\", 100)\n  ),\n  val = c(\n    rep(\"all\", 25), rep(\"some\", 58), rep(\"other\", 17),\n    rep(\"all\", 39), rep(\"some\", 44), rep(\"other\", 17),\n    rep(\"all\", 39), rep(\"some\", 49), rep(\"other\", 12),\n    rep(\"all\", 18), rep(\"some\", 63), rep(\"other\", 19),\n    rep(\"all\", 13), rep(\"some\", 57), rep(\"other\", 30),\n    rep(\"all\", 38), rep(\"some\", 49), rep(\"other\", 13),\n    rep(\"all\", 21), rep(\"some\", 60), rep(\"other\", 19),\n    rep(\"all\", 14), rep(\"some\", 65), rep(\"other\", 21)\n  )\n)\n\nparents |>\n  # adjust the order of all names\n    mutate(\n    name = fct_rev(fct_relevel( \n      name,\n      \"All parents\",\n      \"Black\",\n      \"Hispanic\",\n      \"White\",\n      \"Asian\",\n      \"Lower income\",\n      \"Middle income\",\n      \"Upper income\"\n    ))) |>\n  # adjust the order of the categories\n    mutate(\n    category = fct_relevel( \n      category,\n      \"\",\n      \"BY RACE\",\n      \"BY INCOME\"\n    )) |>\n  # adjust the order in which the 'all', 'some' or 'other' is shown\n      mutate(\n    val = fct_relevel( \n      val,\n      \"all\",\n      \"some\",\n      \"other\"\n    )) |>\n  ggplot(aes(y = name, fill=val)) +\n  geom_bar(position = \"fill\") +\n  scale_x_reverse() +\n  labs(title = \"Black and Hispanic parents are more likely to enjoy parenting\",\n       subtitle = str_wrap(\"Share of American parents who said they find being a parent enjoyable, by income group, race and overall\", 80),\n       caption = str_wrap(\"White, Black and Asian parents include those who report being only one race and are not Hispanic. Hispanic parents are of any race. Middle income is defined as two-thirds to double the median annual family income for panelists in Pew's American Trends Panel. Lower income falls below that range and upper income falls above it.\", 110),\n       fill=\"\",\n       color = \"Species\") +\n  facet_wrap(~category, ncol = 1) +\n  scale_fill_manual(\n    values=c(\"#066971\", \"#6dcbcd\", \"#e0e0e0\"), \n    labels=c(\"ENJOYABLE ALL OF THE TIME\", \"ENJOYABLE SOME OF THE TIME\", \"OTHER\")) +\n  theme_classic() +\n  # manual theme adjustments\n  theme(axis.title.x = element_blank(),\n        axis.text.x = element_blank(),\n        axis.title.y = element_blank(),\n        legend.position=\"top\",\n        plot.title = element_text(face = \"bold\"),\n        strip.text.x = element_text(size = 9, color = \"black\", face = \"bold\"),\n        plot.caption = element_text(hjust = 0)\n        )\n\n\n\n\n\n# ckwon822\ncommon_first_names <- read.csv(\"https://raw.githubusercontent.com/fivethirtyeight/data/master/most-common-name/new-top-firstNames.csv\")\n\n# editing data\ncommon_first_names <- common_first_names[1:20, ]\ncommon_first_names <- common_first_names %>%\n  mutate(sex = case_when (name == \"Mary\" | \n                          name == \"Jennifer\" |\n                          name == \"Patricia\" |\n                          name == \"Linda\" |\n                          name == \"Elizabeth\" ~ \"female\",\n                          name != \"Mary\" | \n                          name != \"Jennifer\" |\n                          name != \"Patricia\" |\n                          name != \"Linda\" |\n                          name != \"Elizabeth\" ~ \"male\",),\n         percentage = round(newPerct2013 * 1000, digits = 1))\n\n# creating visualization\ncommon_first_names %>%\n  ggplot(aes(y = reorder(name, percentage),  x = percentage, fill = sex)) +\n  geom_histogram(stat = \"identity\") +\n  guides(fill = \"none\") +\n  annotate(\"text\", x = 9.65, y = 21.7, label = expression(bold(\"MALE\")), cex = 3.85, hjust = 1, vjust = 1, color = \"dodgerblue\") +\n  annotate(\"text\", x = 11.5, y = 21.7, label = expression(bold(\"FEMALE\")), cex = 3.85, hjust = 1, vjust = 1, color = \"gold1\") +\n  geom_text(aes(label = signif(percentage)), nudge_x = 0.5) +\n  labs(title = \"Most Common First Names\",\n       subtitle = \"Per 1,000 Americans as of 2013\") +\n  scale_fill_manual(values = c(\"male\" = \"dodgerblue\",\n                               \"female\" = \"gold1\")) +\n  theme_classic() +\n  theme(plot.title.position = \"plot\", \n        panel.grid.major.y = element_blank(),\n        plot.title = element_text(size = 16,\n                                  face = \"bold\"),\n        plot.subtitle = element_text(size = 11),\n        axis.ticks.x = element_blank(),\n        axis.ticks.y = element_blank(),\n        axis.line.x = element_blank(),\n        axis.line.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.text.y = element_text(color = \"black\"),\n        axis.title.x = element_blank(),\n        axis.title.y = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#hw03-part-iii",
+    "href": "content/lectures/09-projects-slides.html#hw03-part-iii",
+    "title": "09-projects",
+    "section": "HW03 : Part III",
+    "text": "HW03 : Part III\nTake a Sad Plot & Make It Better\n\n# ckwon\nmedals <- tibble(\n  country = c(\n    rep(\"USA\", 79), rep(\"CHN\", 70), rep(\"ROC\", 53), rep(\"GBR\", 48), rep(\"JPN\", 40)),\n  medal_type = c(\n    rep(\"gold\", 25), rep(\"silver\", 31), rep(\"bronze\", 23),\n    rep(\"gold\", 32), rep(\"silver\", 22), rep(\"bronze\", 16),\n    rep(\"gold\", 14), rep(\"silver\", 21), rep(\"bronze\", 18),\n    rep(\"gold\", 15), rep(\"silver\", 18), rep(\"bronze\", 15),\n    rep(\"gold\", 21), rep(\"silver\", 7), rep(\"bronze\", 12)))\n\n# creating visualization\nmedal_viz <- medals %>%\n   mutate(country = factor(country, levels = c(\"JPN\", \"GBR\",\"ROC\", \"CHN\", \"USA\"))) %>%\n  ggplot(aes(y = country, fill = factor(medal_type, levels = c(\"bronze\", \"silver\", \"gold\")))) + \n  geom_bar() +\n  annotate(\"text\", x = 4.5, y = 5.05, label = \"25\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 30.5, y = 5.05, label = \"31\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 61.5, y = 5.05, label = \"23\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 86.5, y = 5.05, label = expression(bold(\"79\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 4.05, label = \"32\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 37.5, y = 4.05, label = \"22\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 58.5, y = 4.05, label = \"16\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 76.5, y = 4.05, label = expression(bold(\"70\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 3.05, label = \"14\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 18.5, y = 3.05, label = \"21\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 39.5, y = 3.05, label = \"18\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 59.5, y = 3.05, label = expression(bold(\"53\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 2.05, label = \"15\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 19.5, y = 2.05, label = \"18\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 38, y = 2.05, label = \"15\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 54.5, y = 2.05, label = expression(bold(\"48\")), cex = 5, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 4.5, y = 1.05, label = \"21\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 23.5, y = 1.05, label = \"7\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 32.5, y = 1.05, label = \"12\", cex = 4, hjust = 1, vjust = 1) +\n  annotate(\"text\", x = 46.5, y = 1.05, label = expression(bold(\"40\")) , cex = 5, hjust = 1, vjust = 1) +\n  labs(title = \"Medals Won at the Tokyo Olympics (ongoing)\", \n       subtitle = \"Distribution of medals won by the top 5 countries (ordered by total)\", \n       fill = \"Medal Type\") +\n  scale_fill_manual(values = c(\"gold\" = \"gold\",\n                               \"silver\" = \"gray75\",\n                               \"bronze\" = \"tan3\")) +\n  theme(#legend.title = element_text(face = \"bold\"),\n        legend.position = \"top\") + \n  guides(fill = guide_legend(title.position = \"top\")) +\n  theme_classic() +\n  theme(plot.title.position = \"plot\", \n        panel.grid.major.y = element_blank(),\n        plot.title = element_text(size = 16,\n                                  face = \"bold\"),\n        plot.subtitle = element_text(size = 11),\n        axis.ticks.x = element_blank(),\n        axis.ticks.y = element_blank(),\n        axis.line.x = element_blank(),\n        axis.line.y = element_blank(),\n        axis.text.x = element_blank(),\n        axis.text.y = element_text(color = \"black\", \n                                   #face = \"bold\", \n                                   size = 11),\n        axis.title.x = element_blank(),\n        axis.title.y = element_blank())\n\n\nmedal_viz +\n  theme(legend.position = c(0.8, 0.25))"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#opencasestudies",
+    "href": "content/lectures/09-projects-slides.html#opencasestudies",
+    "title": "09-projects",
+    "section": "OpenCaseStudies",
+    "text": "OpenCaseStudies\n\nOpenCaseStudies\nUses R/the tidyverse\nasks public health-centric questions\ngoal: to teach statistical analysis/data science through case studies"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#what-well-do",
+    "href": "content/lectures/09-projects-slides.html#what-well-do",
+    "title": "09-projects",
+    "section": "What We’ll Do",
+    "text": "What We’ll Do\nFor each case study (2), during lecture:\n\nStats: 1-2 Lectures\nBackground, Data & Wrangling (1-2d)\nEDA & Analysis (1d)\n\n\nFor each case study:\n\nyou’ll also work with case study data in lab.\nyou’ll work in assigned groups of ~3 students to complete a data science report"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#data-science-reports",
+    "href": "content/lectures/09-projects-slides.html#data-science-reports",
+    "title": "09-projects",
+    "section": "Data Science Reports",
+    "text": "Data Science Reports\nWith your group, you will:\n\ncarry out all steps of the analysis\n\nsome code will be taken directly from lecture\n\nadd text/organize into a report\n\n\n\nhave to extend the case study"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#what-does-it-mean-to-extend-the-case-study",
+    "href": "content/lectures/09-projects-slides.html#what-does-it-mean-to-extend-the-case-study",
+    "title": "09-projects",
+    "section": "What does it mean to extend the case study?",
+    "text": "What does it mean to extend the case study?\nYou’ll need to do something more on the topic beyond what is presented in class.\n\nExamples:\n\nAsking an additional question and answering it from the data provided\nFinding an additional dataset and using it to add to the case study\nGenerating a handful of additional and very informative visualizations (beyond what’s presented in class)"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#grading",
+    "href": "content/lectures/09-projects-slides.html#grading",
+    "title": "09-projects",
+    "section": "Grading",
+    "text": "Grading\nGraded on:\n\ncontent\neffective written communication\nextension carried out"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#final-project-logistics",
+    "href": "content/lectures/09-projects-slides.html#final-project-logistics",
+    "title": "09-projects",
+    "section": "Final Project Logistics",
+    "text": "Final Project Logistics\n\nwill be completed in groups of 3-4 students\nyou get to choose the group\nI will ask at the end of week 7 for your final project groups"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#final-project-details",
+    "href": "content/lectures/09-projects-slides.html#final-project-details",
+    "title": "09-projects",
+    "section": "Final Project Details",
+    "text": "Final Project Details\nTwo possible Paths:\n\nCreate a technical presentation on a statistics topic and/or an R package.\nCarry out a data analysis"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#option-1-technical-presentation",
+    "href": "content/lectures/09-projects-slides.html#option-1-technical-presentation",
+    "title": "09-projects",
+    "section": "Option 1: Technical Presentation",
+    "text": "Option 1: Technical Presentation\n\n.Rmd document used to make slides\n“Teaches” the details of the R package/statistics topic\nDemonstrates how to use the package and/or carry out the statistical analysis in R\nTopic/Package must go beyond what was taught in this course or what you should have learned in an intro stats course\nPresentation Length: 10-15min"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#option-2-data-analysis",
+    "href": "content/lectures/09-projects-slides.html#option-2-data-analysis",
+    "title": "09-projects",
+    "section": "Option 2: Data Analysis",
+    "text": "Option 2: Data Analysis\n\n.Rmd document used for data science report\nAsks a question, finds data, analyzes data (basically: a mini case report, but you find the data and formulate the question)\nPresentation Length: 3-5min (brief summary of the full report)"
+  },
+  {
+    "objectID": "content/lectures/09-projects-slides.html#wherewhen-for-this-presentation",
+    "href": "content/lectures/09-projects-slides.html#wherewhen-for-this-presentation",
+    "title": "09-projects",
+    "section": "Where/when for this presentation?",
+    "text": "Where/when for this presentation?\n\nRecord ahead of time: submit by Th 3/23 of finals week at 11:59 PM\nPresent in-person Th of finals week (slots to sign up for a time will be released later)\n\n\n\n\nhttps://cogs137.github.io/website/"
   }
 ]

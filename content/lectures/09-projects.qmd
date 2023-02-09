@@ -27,10 +27,14 @@ format:
 ## Q&A {.smaller}
 
 > Q: When is the presentation? \
-> A: Discussing this today! Written reports will be throughout the rest of the quarter. Oral presentation will be part of your final project. These will be able to be recorded or given live in person during finals week.
+> A: Discussing this today! It's at the end of the quarter. While written reports will be completed throughout the rest of the quarter as we do case studies, an oral presentation will be part of your final project. These will be able to be recorded or given live in person during finals week.
 
 > Q: Will we have another lab with as many questions as Lab 4? The turnaround was pretty stressful, so just want to be prepared. \
 > A: The next lab (multiple linear regression) is also a tady lengthy, but after that I don't plan on the rest being quite as long. Just as a reminder that you do *not* need to complete the entire lab to receive credit!
+
+> Q: I'm not really comfortable with log transformations yet. Will we get more practice on that? \
+> A: Yup! Last lecture was a first introduction. We'll return to this in upcoming case studies. The midterm does not require any transformations.
+
 
 ## Course Announcements
 
@@ -64,9 +68,22 @@ knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE)
 
 ## Agenda
 
+- Exam chat
 - HW02 recap
 - Case Studies
 - Final Project
+
+# Midterm {background-color="#92A86A"}
+
+## Midterm Details
+
+::: {.incremental}
+
+- Instructions will be posted on the website at 2PM Fri (tomorrow)
+- You'll be provided a template (link on Canvas) and "submit" on GitHub
+- You'll be provided with data and a data dictionary
+- Covers data wrangling/tidying, `dplyr`, viz/`ggplot2`, and linear regression/`tidymodels`
+:::
 
 # HW02 {background-color="#92A86A"}
 
@@ -241,7 +258,7 @@ labs(
 
 ```{r scatterplot-jitter-q3, fig.show = "hide"}
 ggplot(penguins,
-       mapping = aes(x = year,
+       mapping = aes(x = factor(year),
                      y = flipper_length_mm,
                      color = species)) +
   scale_color_viridis_d() +
@@ -257,9 +274,21 @@ ggplot(penguins,
 
 Imitation is the highest form of flattery
 
-##
+Example from: Eric Ko
 
-```{r}
+::: panel-tabset
+
+### Original
+
+![](images/09/goodplot.png)
+
+### Plot
+
+```{r ref.label="Eric", echo = FALSE, out.width="100%"}
+```
+
+### Code
+```{r Eric, fig.show = "hide"}
 # Eric890916
 chessData <- data.frame(country = c("United States", "Germany", "Canada", "Spain", "Russia", "France", "Bosnia and Herzegovina", "Croatia", "Turkey", "Austria"),
                         num = c(89, 55, 44, 41, 36, 34, 32, 32, 31, 29))
@@ -273,7 +302,9 @@ ggplot(chessData, aes(y = reorder(country, num), x = num)) +
        x = "NUMBER OF TRANSFERS", y = "COUNTRY")
 ```
 
-```{r}
+:::
+
+```{r, include=FALSE}
 # JulianBouchard
 # recreation of the data
 parents <- tibble(
@@ -349,9 +380,23 @@ parents |>
         )
 ```
 
+## 
 
-```{r}
-# ckwon822
+Example from: Christine Kwon
+
+::: panel-tabset
+
+### Original
+
+![](images/09/chalabi-flowers-feature-commonname-1.webp)
+
+### Plot
+
+```{r ref.label="Christine", echo = FALSE, out.width="100%"}
+```
+
+### Code
+```{r Christine, fig.show = "hide"}
 common_first_names <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/most-common-name/new-top-firstNames.csv")
 
 # editing data
@@ -397,12 +442,86 @@ common_first_names %>%
         axis.title.y = element_blank())
 ```
 
+:::
+
+## 
+
+Example by: Cheng Chang (FA21)
+
+::: panel-tabset
+
+
+### Original
+
+![](images/09/biden_pre.png)
+
+### Plot
+```{r ref.label="cheng", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r, cheng, fig.show = "hide"}
+# get data
+poll <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls_adjusted.csv")
+poll_mean <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_toplines.csv")
+
+poll <- poll |>
+  filter(subject == "Biden", party != "all") |>
+  mutate(Party=case_when(party == "D" ~ "Democrats",
+                         party == "I" ~ "Independents",
+                         party == "R" ~ "Republicans")) |>
+  mutate(enddate=as.Date(enddate, format="%m/%d/%Y"))
+
+poll_mean <- poll_mean |>
+  filter(subject == "Biden", party != "all") |>
+  mutate(Party=case_when(party == "D" ~ "Democrats",
+                         party == "I" ~ "Independents",
+                         party == "R" ~ "Republicans")) |>
+  mutate(modeldate=as.Date(modeldate, format="%m/%d/%Y"))
+
+ggplot() +
+  geom_point(data=poll,
+             aes(x=enddate, y=approve_adjusted, color=Party),
+             size=1,
+             alpha = 0.5) +
+  geom_path(data=poll_mean, aes(x=modeldate, y=approve_estimate, color=Party)) +
+  labs(title="Approval of Biden’s response varies widely by party",
+       subtitle=
+         "A calculation of the share of Democrats, Republicans and independents who approve of the president’s\nhandling of the coronavirus outbreak",
+       x=NULL,
+       y=NULL) +
+  scale_color_manual(values = c("Democrats" = "#2acaea",
+                                "Independents" = "#ce7e00",
+                                "Republicans" = "#f44336")) +
+  theme(plot.title.position = "plot",
+        panel.grid.major = element_line(color="grey"),
+        panel.border = element_rect(fill=NA, color="grey"),
+        panel.background = element_rect(fill="white"))
+```
+
+:::
+
 ## HW03 : Part III 
 
 Take a Sad Plot & Make It Better
 
-```{r}
-# ckwon
+Example from: Christine Kwon
+
+::: panel-tabset
+
+### Original
+
+![](images/09/medals.png)
+
+### Plot
+
+```{r ref.label="Christine2", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Christine2, fig.show = "hide"}
 medals <- tibble(
   country = c(
     rep("USA", 79), rep("CHN", 70), rep("ROC", 53), rep("GBR", 48), rep("JPN", 40)),
@@ -468,7 +587,7 @@ medal_viz <- medals %>%
 medal_viz +
   theme(legend.position = c(0.8, 0.25))
 ```
-
+:::
 # Case Studies  {background-color="#92A86A"}
 
 ## OpenCaseStudies
@@ -482,7 +601,7 @@ medal_viz +
 
 For each case study (2), during lecture:
 
-- Stats: 1-2 Lectures
+- Stats: (1-2d)
 - Background, Data & Wrangling (1-2d)
 - EDA & Analysis (1d)
 
@@ -505,7 +624,7 @@ With your group, you will:
 
 - have to extend the case study
 
-## What does it mean to extend the case study?
+## What does extend the case study mean? {.smaller}
 
 You'll need to do something more on the topic beyond what is presented in class. 
 
@@ -521,7 +640,7 @@ Examples:
 
 Graded on:
 
-- content
+- content (code, text, viz)
 - effective written communication
 - extension carried out
 
@@ -556,5 +675,19 @@ Two possible Paths:
 
 ## Where/when for this presentation?
 
+You get to choose:
+
 - Record ahead of time: submit by Th 3/23 of finals week at 11:59 PM
-- Present in-person Th of finals week (slots to sign up for a time will be released later)
+- Present in-person Th of finals week (slots to sign up for a time will be released later; want this option for those interested in getting more practice)
+
+## Should I be working on my final project now?
+
+...probably not
+
+. . . 
+
+But, you should start thinking about/**getting a group of 3-4 people together**.
+
+. . . 
+
+I'd recommend you start planning/working on your final project around **wk 8**

@@ -57,6 +57,8 @@ website:
             href: content/lectures/07-linear-models-slides.html
           - text: "08-effective-communication"
             href: content/lectures/08-effective-communication-slides.html
+          - text: "09-projects"
+            href: content/lectures/09-projects-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -77,6 +79,8 @@ website:
             href: content/lectures/07-linear-models.html
           - text: "08-effective-communication"
             href: content/lectures/08-effective-communication.html
+          - text: "09-projects"
+            href: content/lectures/09-projects.html
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

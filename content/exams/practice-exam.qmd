@@ -79,8 +79,4 @@ The data are stored in `data/vb_matches.csv`. You'll need to read the dataset in
 Q7 had a typo when this course was offered previously leading to students spending wayyyyy longer than intended on this exam. That typo has been fixed for this practice midterm.
 :::
 
-
 **Question 8 (1 pts)** - If you were in charge of designing the plot you just recreated in the plot above, what changes would you make to improve its effectiveness as a visualization? (You do not have to write any code for this question, just explain the different design/viz choices you would make.)
-
-
-

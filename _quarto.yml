@@ -119,6 +119,8 @@ website:
             href: content/exams/practice-exam.qmd
           - text: "Practice Midterm (Ans)"
             href: content/exams/practice-exam-ans.qmd
+          - text: "Midterm"
+            href: content/exams/midterm_wi23.qmd
 format:
   html:
     theme: material

@@ -91,6 +91,8 @@ website:
             href: content/labs/03-lab-viz.qmd
           - text: "Lab04: Modelling"
             href: content/labs/04-lab-modelling.qmd
+          - text: "Lab05: MLR"
+            href: content/labs/05-lab-mlr.qmd
       - section: "Lab Slides"
         contents:
           - text: "Lab01"

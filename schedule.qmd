@@ -1,5 +1,5 @@
 | Week   | Date           | Title                                                         | Type        |
-|--------|----------------|---------------------------------------------------------------|-------------|
+|------------|------------|-------------------------------------|------------|
 | 1      | Tu Jan 10      | Welcome & Tooling                                             | Lecture     |
 | 1      | Th Jan 12      | Intro to R                                                    | Lecture     |
 | 1      | Fri Jan 13     | Lab 01: Intro to R                                            | Lab         |
@@ -21,10 +21,10 @@
 | **6**  | **Tu Feb 14**  | **Multiple Linear Regression**                                | **Lecture** |
 | **6**  | **Th Feb 16**  | **Case Study 01: Right to Carry (day 1)**                     | **Lecture** |
 | **6**  | **Fri Feb 17** | **Lab 05: Multiple Linear Regression**                        | **Lab**     |
-| 7      | Mon Feb 20     | <font color="#ABC57D">HW03 due (11:59 PM)</font>              | HW          |
 | 7      | Tu Feb 21      | Case Study 01: Right to Carry (day 2)                         | Lecture     |
 | 7      | Th Feb 23      | Case Study 01: Right to Carry (day 3)                         | Lecture     |
 | 7      | Fri Feb 24     | Lab 06: CS01                                                  | Lab         |
+| **8**      | **Mon Feb 27**     | **<font color="#ABC57D">HW03 due (11:59 PM)</font>**              | **HW**          |
 | **8**  | **Tu Feb 28**  | **Logistic Regression (day 1)**                               | **Lecture** |
 | **8**  | **Th Mar 2**   | **Logistic Regression (day 2)**                               | **Lecture** |
 | **8**  | **Fri Mar 3**  | **Lab 07: Logistic Regression**                               | **Lab**     |

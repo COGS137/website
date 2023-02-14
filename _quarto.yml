@@ -59,6 +59,10 @@ website:
             href: content/lectures/08-effective-communication-slides.html
           - text: "09-projects"
             href: content/lectures/09-projects-slides.html
+          - text: "10-mlr"
+            href: content/lectures/10-mlr-slides.html
+          - text: "11-cs01-data"
+            href: content/lectures/11-cs01-data-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -81,6 +85,10 @@ website:
             href: content/lectures/08-effective-communication.html
           - text: "09-projects"
             href: content/lectures/09-projects.html
+          - text: "10-mlr"
+            href: content/lectures/10-mlr.html
+          - text: "11-cs01-data"
+            href: content/lectures/11-cs01-data.html
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

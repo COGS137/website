@@ -1,0 +1,156 @@
+---
+title: "11-cs01-data"
+author: "Professor Shannon Ellis"
+date: "2023-02-14"
+
+format:
+  html: 
+    output-file: 11-cs01-data.html
+    embed-resources: true
+  revealjs:
+    output-file: 11-cs01-data-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# CS01: Right-To-Carry (Data) {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+> Q: \
+> A: 
+
+
+## Course Announcements
+
+**Due Dates**:
+
+Coming Thursday
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(patchwork)
+
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+## Agenda
+
+- Background
+- Data Intro
+- Wrangle
+- Combine!
+
+# Background  {background-color="#92A86A"}
+
+
+## Right To Carry Laws[^1] {.smaller}
+
+**Right to Carry (RTC) Laws** - "a law that specifies if and how citizens are allowed to have a firearm on their person or nearby (for example, in a citizen’s car) in public."[^2]
+
+
+[^1]: Case Study Reference: Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com//opencasestudies/ocs-bp-RTC-analysis. Influence of Multicollinearity on Measured Impact of Right-to-Carry Gun Laws (Version v1.0.0).
+
+[^2]: In this discussion, we will use the National Rifle Association (NRA) terminology. Please keep in mind that there are other terms that people use.
+
+
+## RTC Laws (cont'd) {.smaller}
+
+::: incremental
+- The Second Amendment to the United States Constitution guarantees the right to “keep and bear arms”. The amendment was ratified in 1791 as part of the Bill of Rights.
+- There are no federal laws about carrying firearms in public.
+- These laws are created and enforced at the US state level. States vary greatly in their laws about the right to carry firearms.
+-  Some require extensive effort to obtain a permit to legally carry a firearm, while other states require very minimal effort to do so. An increasing number of states do not require permits at all.
+:::
+
+## RTC Laws Across the US
+
+![](images/11/rtc-laws.png)
+
+
+## RTC Laws Across the US
+
+![](images/11/rtc-map.png)
+
+
+# Questions  {background-color="#92A86A"}
+
+1. What is the relationship between right to carry laws and violence rates in the US?
+2. What is the effect of multicollinearity on coefficient estimates from linear regression models when analyzing right to carry laws and violence rates?
+
+
+# The Data  {background-color="#92A86A"}
+
+## The Data: Source
+
+Two contradictory analyses: 
+
+1. John J. Donohue et al., Right‐to‐Carry Laws and Violent Crime: A Comprehensive Assessment Using Panel Data and a State‐Level Synthetic Control Analysis. Journal of Empirical Legal Studies, 16,2 (2019).
+
+2. David B. Mustard & John Lott. Crime, Deterrence, and Right-to-Carry Concealed Handguns. Coase-Sandor Institute for Law & Economics Working Paper No. 41, (1996).
+
+
+
+## The Data {.smaller}
+
+![](images/11/variables-used.png)
+
+
+## Two Analyses
+
+![](images/11/previous-analyses.png)
+
+
+## Limitations {.smaller}
+
+::: incremental
+1. The analyses differed in variables used; we will not be recreating either analysis in full
+2. We'll account for either the adoption or lack of adoption of a permissive right-to-carry law in each state; we will not account for differences in the level of permissiveness of the laws.
+3. Race is included here (as it was in initial analysis); however, any association between demographic variables (indicating the proportion of the population from specific race and age groups) and violent crime does not necessarily indicate that the two are linked causally.
+:::
+
+## Packages 
+
+```{r packages-load}
+library(OCSdata) # will need to be installed
+library(tidyverse)
+library(pdftools)
+library(readxl)
+```
+
+## Raw Data
+
+There are a whole bunch of different data files we'll be using...
+
+```{r, eval = FALSE}
+# only get the data once
+OCSdata::load_raw_data("ocs-bp-RTC-wrangling", outpath = '.')
+```
+
+- creates a "data" sub-directory in your current working directory (if it does not already exist)
+- creates a "raw" sub-directory within "data"; contains the directories with the data
+
+[`r emo::ji("backhand index pointing right")` **Your Turn**: Load the data into RStudio. It will take a while...so just let it get started.]{style="background-color: #ADD8E6"}
+
+
+## To Be Continued...

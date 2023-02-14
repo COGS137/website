@@ -1,0 +1,583 @@
+---
+title: "10-mlr"
+author: "Professor Shannon Ellis"
+date: "2023-02-14"
+
+format:
+  html: 
+    output-file: 10-mlr.html
+    embed-resources: true
+  revealjs:
+    output-file: 10-mlr-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# Multiple Linear Regression {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+> Q: I didn't know we don't have to complete all parts of the lab to get credit - how does it work if we're graded on effort? Do we still get a full score?\
+> A: We grade on concerted effort. Meaning, we look at everyone's labs, and using a rubric relative to what we expect a student could complete in ~1h of work, we grade and give full credit if it looks like at least an hour of time was spent. Now, sometimes it's hard to judge this as students work at different speeds. If you ever receive less than full credit (2) but feel you made a concerted effort that week in lab, reach out and we'll chat about it! 
+
+> Q: I am still confused about when are we supposed to use jitter on our scatterplot.\
+> A: When points on a plot are on top of one another and you can't tell how many observations are *actually* plotted, jittering is something to consider. You can alternatively use transparency (`alpha`) or scale the points relative to how many observations are present at each point. There's no "you must jitter now" rule, but there are times to consider it.
+
+## Course Announcements
+
+**Due Dates**:
+
+-   **Lab 05** due Friday (2/17; 11:59 PM)
+-   [mid-course survey](https://docs.google.com/forms/d/e/1FAIpQLSdpvo3bamtS4ClT8tquYaTehuBw16x2lBF-nKOhVkLbLQK4uw/viewform?usp=sf_link) (optional for EC) due Fri (2/17; 11:59 PM)
+-   Lecture Participation survey "due" after class
+
+. . .
+
+-   **HW03** will be available tomorrow (Wed); **due (2/27)** <- that's a change
+
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(tidymodels)
+library(patchwork)
+
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+## Agenda
+
+- Multiple Linear Regression
+  - Multiple predictors
+  - Main vs interaction effects
+  - Model comparison
+  - Backward selection 
+
+## Packages & Data
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(tidymodels)
+```
+
+. . .
+
+**Data: Paris Paintings**
+```{r message=FALSE}
+pp <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv", 
+               na = c("n/a", "", "NA")) |> 
+  mutate(log_price = log(price))
+```
+
+-   Number of observations: `r nrow(pp)`
+-   Number of variables: `r ncol(pp)`
+
+# Two numerical predictors {background-color="#92A86A"}
+
+
+## Multiple predictors
+
+- Response variable: `log_price` 
+- Explanatory variables: Width and height
+
+. . .
+
+```{r model-price-width-height}
+lin_mod <- linear_reg() |>
+  set_engine("lm")
+
+pp_fit <- lin_mod |>
+  fit(log_price ~ Width_in + Height_in, data = pp)
+tidy(pp_fit)
+```
+
+##  Linear model with multiple predictors
+
+```{r model-price-width-height-tidy, echo=FALSE}
+tidy(pp_fit)
+```
+
+<br>
+
+$$\widehat{log\_price} = 4.77 + 0.0269 \times width - 0.0133 \times height$$
+
+. . .
+
+[`r emo::ji("question")` How do we interpret this model?]{style="background-color: #ADD8E6"}
+
+
+# Numerical and categorical predictors {background-color="#92A86A"}
+
+
+## Price, surface area, and living artist
+
+- Explore the relationship between price of paintings and surface area, conditioned 
+on whether or not the artist is still living
+- First visualize and explore, then model
+
+. . .
+
+- But first, prep the data:
+
+```{r}
+pp <- pp |>
+  mutate(artistliving = case_when(artistliving == 0 ~ "Deceased", 
+                                  TRUE ~ "Living"))
+
+pp |>
+  count(artistliving)
+```
+
+
+
+## Typical surface area
+
+:::: panel-tabset
+
+### Plot 
+
+
+```{r ref.label = "viz-surf-artistliving", echo = FALSE, warning = FALSE, out.width="100%"}
+```
+
+Typical surface area appears to be less than 1000 square inches (~ 80cm x 80cm). There are very few paintings that have surface area above 5000 square inches.
+
+
+### Code 
+```{r viz-surf-artistliving, fig.show = "hide"}
+ggplot(data = pp, aes(x = Surface, fill = artistliving)) +
+  geom_histogram(binwidth = 500) + 
+  facet_grid(artistliving ~ .) +
+  scale_fill_manual(values = c("#E48957", "#071381")) +
+  guides(fill = "none") +
+  labs(x = "Surface area", y = NULL) +
+  geom_vline(xintercept = 1000) +
+  geom_vline(xintercept = 5000, linetype = "dashed", color = "gray")
+```
+
+::::
+
+
+## Narrowing the scope
+
+::: panel-tabset
+
+### Plot 
+
+For simplicity let's focus on the paintings with `Surface < 5000`:
+
+```{r ref.label = "viz-surf-lt-5000-artistliving", echo = FALSE, warning = FALSE, out.width = "100%"}
+```
+
+### Code 
+
+```{r viz-surf-lt-5000-artistliving, fig.show = "hide"}
+pp_Surf_lt_5000 <- pp |>
+  filter(Surface < 5000)
+
+ggplot(data = pp_Surf_lt_5000, 
+       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +
+  geom_point(alpha = 0.5) +
+  labs(color = "Artist", shape = "Artist") +
+  scale_color_manual(values = c("#E48957", "#071381"))
+```
+:::
+
+
+
+## Facet to get a better look
+
+::: panel-tabset
+
+### Plot
+
+```{r ref.label = "viz-surf-lt-5000-artistliving-facet", echo = FALSE, warning = FALSE, out.width = "100%", fig.asp = 0.5}
+```
+
+### Code
+
+```{r viz-surf-lt-5000-artistliving-facet, fig.show = "hide"}
+ggplot(data = pp_Surf_lt_5000, 
+       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +
+  geom_point(alpha = 0.5) +
+  facet_wrap(~artistliving) +
+  scale_color_manual(values = c("#E48957", "#071381")) +
+  labs(color = "Artist", shape = "Artist")
+```
+:::
+
+
+## Two ways to model
+
+- **Main effects:** Assuming relationship between surface and logged price 
+**does not vary** by whether or not the artist is living.
+- **Interaction effects:** Assuming relationship between surface and logged 
+price **varies** by whether or not the artist is living.
+
+## Interacting explanatory variables
+
+- Including an interaction effect in the model allows for different slopes, i.e. 
+nonparallel lines.
+- This implies that the regression coefficient for an explanatory variable would 
+change as another explanatory variable changes.
+- This can be accomplished by adding an interaction variable: the product of two 
+explanatory variables.
+
+## Two ways to model {.smaller    }
+
+::: columns
+::: {.column width="30%"}
+- **Main effects:** Assuming relationship between surface and logged price **does not vary** by whether or not the artist is living
+- **Interaction effects:** Assuming relationship between surface and logged price **varies** by whether or not the artist is living
+::: 
+
+::: {.column width="70%"}
+```{r pp-main-int-viz, echo=FALSE, out.width="800%", fig.asp = 0.9}
+pp_main_fit <- lin_mod |>
+  fit(log_price ~ Surface + artistliving, data = pp_Surf_lt_5000)
+pp_main_fit_aug <- augment(pp_main_fit$fit)
+
+pp_int_fit <- lin_mod |>
+  fit(log_price ~ Surface * artistliving, data = pp_Surf_lt_5000)
+pp_int_fit_aug <- augment(pp_int_fit$fit)
+
+p_main <- ggplot(
+  pp_main_fit_aug,
+  aes(y = log_price, x = Surface, color = artistliving)
+) +
+  geom_point(aes(shape = artistliving), alpha = 0.5) +
+  scale_x_continuous(breaks = c(0, 2500, 5000)) +
+  scale_color_manual(values = c("#E48957", "#071381")) +
+  geom_line(aes(y = .fitted), size = 1.5) +
+  labs(y = "log_price", title = "Main effects", color = "Artist", shape = "Artist")
+
+p_int <- ggplot(
+  pp_int_fit_aug,
+  aes(y = log_price, x = Surface, color = artistliving)
+) +
+  geom_point(aes(shape = artistliving), alpha = 0.5) +
+  scale_x_continuous(breaks = c(0, 2500, 5000)) +
+  scale_color_manual(values = c("#E48957", "#071381")) +
+  geom_line(aes(y = .fitted), size = 1.5) +
+  labs(y = "log_price", title = "Interaction effects", color = "Artist", shape = "Artist")
+
+p_main /
+  p_int  + 
+  plot_layout(guides = "collect") & theme(legend.position = "bottom")
+```
+:::
+:::
+
+. . .
+
+[`r emo::ji("question")` Which does your intuition/knowledge of the data suggest is more appropriate?]{style="background-color: #ADD8E6"}
+
+Put a <font color="#32cb31">green</font> sticky if you think main;  <font color="#ff65a3">pink</font> if you think interaction.
+
+## Fit model with main effects {.smaller}
+
+- Response variable: `log_price`
+- Explanatory variables: `Surface` area and `artistliving`
+
+```{r model-main-effects}
+pp_main_fit <- lin_mod |>
+  fit(log_price ~ Surface + artistliving, data = pp_Surf_lt_5000)
+tidy(pp_main_fit)
+```
+
+
+. . . 
+
+$$\widehat{log\_price} = 4.88 + 0.000265 \times surface + 0.137 \times artistliving$$
+
+
+## Solving the model
+
+- Non-living artist: Plug in 0 for `artistliving`
+
+$\widehat{log\_price} = 4.88 + 0.000265 \times surface + 0.137 \times 0$  
+$= 4.88 + 0.000265 \times surface$
+
+. . . 
+
+- Living artist: Plug in 1 for `artistliving`
+
+$\widehat{log\_price} = 4.88 + 0.000265 \times surface + 0.137 \times 1$   
+$= 5.017 + 0.000265 \times surface$
+
+
+## Visualizing main effects {.smaller}
+
+::: columns
+::: {.column width="40%"}
+- **Same slope:** Rate of change in price as the surface area increases does 
+not vary between paintings by living and non-living artists.
+- **Different intercept:** Paintings by living artists are consistently more 
+expensive than paintings by non-living artists.
+::: 
+
+::: {.column width="60%"}
+```{r out.width="100%", echo = FALSE}
+p_main
+```
+:::
+:::
+
+## Interpreting main effects {.smaller}
+
+```{r exp-coefs}
+tidy(pp_main_fit) |> 
+  mutate(exp_estimate = exp(estimate)) |>
+  select(term, estimate, exp_estimate)
+```
+
+::: incremental
+- All else held constant, for each additional square inch in painting's surface area, the price of the painting is predicted, on average, to be higher by a factor of 1.
+- All else held constant, paintings by a living artist are predicted, on average, to be higher by a factor of 1.15 compared to paintings by an artist who is no longer alive.
+- Paintings that are by an artist who is not alive and that have a surface area of 0 square inches are predicted, on average, to be 132 livres.
+:::
+
+## Main vs. interaction effects {.smaller}
+
+- The way we specified our main effects model only lets `artistliving` affect the intercept.
+- Model implicitly assumes that paintings with living and deceased artists have the *same slope* and only allows for *different intercepts*.  
+
+. . . 
+
+[`r emo::ji("question")` What seems more appropriate in this case?]{style="background-color: #ADD8E6"}
+
+- Same slope and same intercept for both colors
+- Same slope and different intercept for both colors
+- Different slope and different intercept for both colors
+
+## Interaction: `Surface * artistliving` {.smaller}
+
+```{r out.width="80%", echo = FALSE}
+p_int
+```
+
+## Fit model with interaction effects {.smaller}
+
+- Response variable: `log_price`
+- Explanatory variables: `Surface` area, `artistliving`, and their interaction
+
+```{r model-interaction-effects}
+pp_int_fit <- lin_mod |>
+  fit(log_price ~ Surface * artistliving, data = pp_Surf_lt_5000)
+tidy(pp_int_fit)
+```
+
+## Linear model with interaction effects {.smaller}
+
+
+```{r model-interaction-effects-tidy, echo=FALSE}
+tidy(pp_int_fit)
+```
+
+
+$$\widehat{log\_price} = 4.91 + 0.00021 \times surface - 0.126 \times artistliving$$
+$$+ ~ 0.00048 \times surface * artistliving$$
+
+
+
+## Interpretation of interaction effects {.smaller}
+
+::: incremental
+- Rate of change in price as the surface area of the painting increases does 
+vary between paintings by living and non-living artists (different slopes)
+- Some paintings by living artists are more expensive than paintings by
+non-living artists, and some are not (different intercept).
+:::
+
+. . . 
+
+::: columns
+::: {.column width="50%"}
+
+::: incremental
+- Non-living artist: 
+$\widehat{log\_price} = 4.91 + 0.00021 \times surface$
+$- 0.126 \times 0 + 0.00048 \times surface \times 0$
+$= 4.91 + 0.00021 \times surface$
+- Living artist: 
+$\widehat{log\_price} = 4.91 + 0.00021 \times surface$
+$- 0.126 \times 1 + 0.00048 \times surface \times 1$
+$= 4.91 + 0.00021 \times surface$
+$- 0.126 + 0.00048 \times surface$
+$= 4.784 + 0.00069 \times surface$
+:::
+
+::: 
+::: {.column width="50%"}
+```{r viz-interaction-effects2, out.width="100%", echo = FALSE}
+p_int
+```
+:::
+
+:::
+
+# Comparing models {background-color="#92A86A"}
+
+## R-squared
+
+- $R^2$ is the percentage of variability in the response variable explained by 
+the regression model.
+
+```{r}
+glance(pp_main_fit)$r.squared
+glance(pp_int_fit)$r.squared
+```
+
+. . .
+
+- Clearly the model with interactions has a higher $R^2$.
+
+. . .
+
+- However using $R^2$ for model selection in models with multiple explanatory variables is not a good idea as $R^2$ increases when **any** variable is added to the model.
+
+
+## Adjusted R-squared
+
+It appears that adding the interaction actually increased adjusted $R^2$, so we 
+should indeed use the model with the interactions.
+
+```{r}
+glance(pp_main_fit)$adj.r.squared
+glance(pp_int_fit)$adj.r.squared
+```
+
+## Third order interactions
+
+- Can you? Yes
+- Should you? Probably not if you want to interpret these interactions in context
+of the data.
+
+
+## In pursuit of Occam's razor {.smaller}
+
+::: incremental
+- Occam's Razor states that among competing hypotheses that predict equally well, the one with the fewest assumptions should be selected.
+
+- Model selection follows this principle.
+
+- We only want to add another variable to the model if the addition of that variable brings something valuable in terms of predictive power to the model.
+
+- In other words, we prefer the simplest best model, i.e. **parsimonious** model.
+:::
+
+## Backward selection
+
+For this demo, we'll ignore interaction effects...and just model main effects to start:
+
+```{r}
+pp_full <-  lin_mod |>
+  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) 
+
+glance(pp_full)$adj.r.squared
+```
+
+- $R^2$ (full): `r glance(pp_full)$adj.r.squared``
+
+. . .
+
+### Remove `artistliving`
+
+```{r}
+pp_noartist <- lin_mod |>
+  fit(log_price ~ Width_in + Height_in + Surface, data=pp) 
+
+glance(pp_noartist)$adj.r.squared
+```
+. . . 
+
+- $R^2$ (full): `r round(glance(pp_full)$adj.r.squared, 4)`
+- $R^2$ (no `artistliving`): `r round(glance(pp_noartist)$adj.r.squared, 4)`
+
+...Improved variance explained
+
+. . .
+
+### Remove `Surface`
+
+```{r}
+pp_noartist_nosurface <- lin_mod |>
+  fit(log_price ~ Width_in + Height_in, data=pp) 
+
+glance(pp_noartist_nosurface)$adj.r.squared
+```
+
+. . .
+
+- $R^2$ (full): `r round(glance(pp_full)$adj.r.squared, 4)`
+- $R^2$ (no `artistliving`): `r round(glance(pp_noartist)$adj.r.squared, 4)`
+- $R^2$ (no `artistliving` or `Surface`): `r round(glance(pp_noartist_nosurface)$adj.r.squared, 4)`
+
+. . .
+
+...no longer gaining improvement, so we stick with: `log_price ~ Width_in + Height_in + Surface`
+
+## Other approach: 
+
+```{r}
+# requires package installation: 
+# install.packages("olsrr")
+library(olsrr)
+```
+
+. . .
+
+**Step 1: Fit model (w/o `tidymodels`)**
+
+```{r}
+# fit the model (not using tidymodels)
+mod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp_Surf_lt_5000)
+```
+
+. . .
+
+**Step 2: Determine which variables to remove**
+
+```{r}
+ols_step_backward_p(mod)
+```
+
+...specifies that `artistliving` should be removed
+
+. . .
+
+**Step 2 (alternate): Compare all possible models...**
+
+```{r}
+ols_step_all_possible(mod) |>
+  arrange(desc(adjr))
+```
+
+## Recap {.smaller background-color="#92A86A"}
+
+- Can you model and interpret linear models with multiple predictors?
+- Can you explain the difference in a model with main effects vs. interaction effects?
+- Can you compare different models and determine how to proceed?
+- Can you carry out and explain backward selection?
+
+## Suggested Reading
+
+Introduction to Modern Statistics Chapter 8: [Linear Regression with Multiple Predictors](https://openintro-ims.netlify.app/model-mlr.html)

@@ -655,14 +655,14 @@
     "href": "content/lectures/10-mlr-slides.html#course-announcements",
     "title": "10-mlr",
     "section": "Course Announcements",
-    "text": "Course Announcements\nDue Dates:\n\nLab 05 due Friday (2/17; 11:59 PM)\nmid-course survey (optional for EC) due Fri (2/17; 11:59 PM)\nLecture Participation survey “due” after class\n\n\n\nHW03 now available; due (2/27) <- that’s a change"
+    "text": "Course Announcements\nDue Dates:\n\nLab 05 due Friday (2/17; 11:59 PM)\nmid-course survey (optional for EC) due Fri (2/17; 11:59 PM)\nLecture Participation survey “due” after class\n\n\n\nHW03 will be available tomorrow (Wed); due (2/27) <- that’s a change"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#agenda",
     "href": "content/lectures/10-mlr-slides.html#agenda",
     "title": "10-mlr",
     "section": "Agenda",
-    "text": "Agenda"
+    "text": "Agenda\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#packages-data",
@@ -683,7 +683,7 @@
     "href": "content/lectures/10-mlr-slides.html#linear-model-with-multiple-predictors",
     "title": "10-mlr",
     "section": "Linear model with multiple predictors",
-    "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]"
+    "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]\n\n❓ How do we interpret this model?"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#price-surface-area-and-living-artist",
@@ -732,7 +732,7 @@
     "href": "content/lectures/10-mlr-slides.html#two-ways-to-model-1",
     "title": "10-mlr",
     "section": "Two ways to model",
-    "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living"
+    "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living\n\n\n\n\n\n\n\n\n\n\n❓ Which does your intuition/knowledge of the data suggest is more appropriate?\nPut a green sticky if you think main; pink if you think interaction."
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#fit-model-with-main-effects",
@@ -795,7 +795,7 @@
     "href": "content/lectures/10-mlr-slides.html#interpretation-of-interaction-effects",
     "title": "10-mlr",
     "section": "Interpretation of interaction effects",
-    "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
+    "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#r-squared",
@@ -830,21 +830,21 @@
     "href": "content/lectures/10-mlr-slides.html#backward-selection",
     "title": "10-mlr",
     "section": "Backward selection",
-    "text": "Backward selection\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\nR^2 (full): 0.0257014`\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\nR^2 (full): 0.0257 R^2 (no artistliving): 0.0258\n…Improved variance explained\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\nR^2 (full): 0.0257 R^2 (no artistliving): 0.0258 R^2 (no artistliving or Surface): 0.0223\n\n\n…no longer gaining improvement, so we stick with log_price ~ Width_in + Height_in + Surface"
+    "text": "Backward selection\nFor this demo, we’ll ignore interaction effects…and just model main effects to start:\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\n\n\\(R^2\\) (full): 0.0257014`\n\n\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\n…Improved variance explained\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\\(R^2\\) (no artistliving or Surface): 0.0223\n\n\n\n…no longer gaining improvement, so we stick with: log_price ~ Width_in + Height_in + Surface"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#other-approach",
     "href": "content/lectures/10-mlr-slides.html#other-approach",
     "title": "10-mlr",
     "section": "Other approach:",
-    "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp)\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0267      0.0258    3.6877    12700.7148    1.8326    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\nCompare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0267311371  2.579859e-02\n2     15 4 Width_in Height_in Surface artistliving 0.0269449324  2.570141e-02\n3      5 2                        Width_in Surface 0.0262133980  2.559157e-02\n4     12 3           Width_in Surface artistliving 0.0264354211  2.550259e-02\n5      6 2                      Width_in Height_in 0.0229395061  2.231559e-02\n6     13 3         Width_in Height_in artistliving 0.0231905276  2.225459e-02\n7      1 1                                Width_in 0.0194002626  1.908747e-02\n8      7 2                   Width_in artistliving 0.0197097980  1.908421e-02\n9      8 2                    Surface artistliving 0.0081437013  7.526491e-03\n10     2 1                                 Surface 0.0075746864  7.266000e-03\n11    14 3          Height_in Surface artistliving 0.0078636593  6.913034e-03\n12     9 2                       Height_in Surface 0.0075089344  6.875160e-03\n13    10 2                  Height_in artistliving 0.0071024720  6.469650e-03\n14     3 1                               Height_in 0.0067547008  6.438280e-03\n15     4 1                            artistliving 0.0002579173 -3.690488e-05\n   Mallow's Cp\n1     3.687709\n2     5.000000\n3     3.353107\n4     4.638931\n5    13.884147\n6    15.076693\n7    24.852249\n8    25.855443\n9    70.670831\n10   70.553482\n11   64.378217\n12   63.519250\n13   69.195025\n14   68.317322\n15  290.636542"
+    "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp_Surf_lt_5000)\n\n\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0261      0.0251    3.8495    12603.7727    1.8315    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\n\n\nStep 2 (alternate): Compare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0260749939  0.0251349118\n2     15 4 Width_in Height_in Surface artistliving 0.0263412027  0.0250876993\n3      5 2                      Width_in Height_in 0.0256902566  0.0250634893\n4     12 3         Width_in Height_in artistliving 0.0259732581  0.0250330779\n5      6 2                        Width_in Surface 0.0249136264  0.0242863596\n6     13 3           Width_in Surface artistliving 0.0251787948  0.0242378477\n7      7 2                   Width_in artistliving 0.0212864021  0.0206568018\n8      1 1                                Width_in 0.0209415833  0.0206267736\n9      8 2                    Surface artistliving 0.0132088377  0.0125897717\n10     2 1                                 Surface 0.0125899681  0.0122803381\n11    14 3          Height_in Surface artistliving 0.0130836930  0.0121310711\n12     9 2                       Height_in Surface 0.0126782901  0.0120431523\n13    10 2                  Height_in artistliving 0.0062698155  0.0056305552\n14     3 1                               Height_in 0.0058797727  0.0055601199\n15     4 1                            artistliving 0.0005531617  0.0002397573\n   Mallow's Cp\n1     3.849487\n2     5.000000\n3     3.077206\n4     4.174132\n5     5.555476\n6     6.709309\n7    17.130153\n8    16.230489\n9    51.971190\n10   52.001268\n11   45.305459\n12   44.599123\n13   65.048926\n14   64.293574\n15   91.485605"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#recap",
     "href": "content/lectures/10-mlr-slides.html#recap",
     "title": "10-mlr",
     "section": "Recap",
-    "text": "Recap"
+    "text": "Recap\n\nCan you model and interpret linear models with multiple predictors?\nCan you explain the difference in a model with main effects vs. interaction effects?\nCan you compare different models and determine how to proceed?\nCan you carry out and explain backward selection?"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#suggested-reading",
@@ -858,7 +858,7 @@
     "href": "content/lectures/10-mlr.html",
     "title": "10-mlr",
     "section": "",
-    "text": "Q: I didn’t know we don’t have to complete all parts of the lab to get credit - how does it work if we’re graded on effort? Do we still get a full score?\nA: We grade on concerted effort. Meaning, we look at everyone’s labs, and using a rubric relative to what we expect a student could complete in ~1h of work, we grade and give full credit if it looks like at least an hour of time was spent. Now, sometimes it’s hard to judge this as students work at different speeds. If you ever receive less than full credit (2) but feel you made a concerted effort that week in lab, reach out and we’ll chat about it!\n\n\nQ: I am still confused about when are we supposed to use jitter on our scatterplot.\nA: When points on a plot are on top of one another and you can’t tell how many observations are actually plotted, jittering is something to consider. You can alternatively use transparency (alpha) or scale the points relative to how many observations are present at each point. There’s no “you must jitter now” rule, but there are times to consider it.\n\n\n\n\nDue Dates:\n\nLab 05 due Friday (2/17; 11:59 PM)\nmid-course survey (optional for EC) due Fri (2/17; 11:59 PM)\nLecture Participation survey “due” after class\n\n\n\nHW03 now available; due (2/27) <- that’s a change\n\n\n\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
+    "text": "Q: I didn’t know we don’t have to complete all parts of the lab to get credit - how does it work if we’re graded on effort? Do we still get a full score?\nA: We grade on concerted effort. Meaning, we look at everyone’s labs, and using a rubric relative to what we expect a student could complete in ~1h of work, we grade and give full credit if it looks like at least an hour of time was spent. Now, sometimes it’s hard to judge this as students work at different speeds. If you ever receive less than full credit (2) but feel you made a concerted effort that week in lab, reach out and we’ll chat about it!\n\n\nQ: I am still confused about when are we supposed to use jitter on our scatterplot.\nA: When points on a plot are on top of one another and you can’t tell how many observations are actually plotted, jittering is something to consider. You can alternatively use transparency (alpha) or scale the points relative to how many observations are present at each point. There’s no “you must jitter now” rule, but there are times to consider it.\n\n\n\n\nDue Dates:\n\nLab 05 due Friday (2/17; 11:59 PM)\nmid-course survey (optional for EC) due Fri (2/17; 11:59 PM)\nLecture Participation survey “due” after class\n\n\n\nHW03 will be available tomorrow (Wed); due (2/27) <- that’s a change\n\n\n\n\n\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
   },
   {
     "objectID": "content/lectures/10-mlr.html#multiple-predictors",
@@ -872,7 +872,7 @@
     "href": "content/lectures/10-mlr.html#linear-model-with-multiple-predictors",
     "title": "10-mlr",
     "section": "Linear model with multiple predictors",
-    "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]"
+    "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]\n\n❓ How do we interpret this model?"
   },
   {
     "objectID": "content/lectures/10-mlr.html#price-surface-area-and-living-artist",
@@ -921,7 +921,7 @@
     "href": "content/lectures/10-mlr.html#two-ways-to-model-1",
     "title": "10-mlr",
     "section": "Two ways to model",
-    "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living"
+    "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living\n\n\n\n\n\n\n\n\n\n\n❓ Which does your intuition/knowledge of the data suggest is more appropriate?\nPut a green sticky if you think main; pink if you think interaction."
   },
   {
     "objectID": "content/lectures/10-mlr.html#fit-model-with-main-effects",
@@ -984,7 +984,7 @@
     "href": "content/lectures/10-mlr.html#interpretation-of-interaction-effects",
     "title": "10-mlr",
     "section": "Interpretation of interaction effects",
-    "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
+    "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
   },
   {
     "objectID": "content/lectures/10-mlr.html#r-squared",
@@ -1019,21 +1019,21 @@
     "href": "content/lectures/10-mlr.html#backward-selection",
     "title": "10-mlr",
     "section": "Backward selection",
-    "text": "Backward selection\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\nR^2 (full): 0.0257014`\n\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\nR^2 (full): 0.0257 R^2 (no artistliving): 0.0258\n…Improved variance explained\n\n\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\nR^2 (full): 0.0257 R^2 (no artistliving): 0.0258 R^2 (no artistliving or Surface): 0.0223\n\n\n…no longer gaining improvement, so we stick with log_price ~ Width_in + Height_in + Surface"
+    "text": "Backward selection\nFor this demo, we’ll ignore interaction effects…and just model main effects to start:\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\n\n\\(R^2\\) (full): 0.0257014`\n\n\n\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\n…Improved variance explained\n\n\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\\(R^2\\) (no artistliving or Surface): 0.0223\n\n\n\n…no longer gaining improvement, so we stick with: log_price ~ Width_in + Height_in + Surface"
   },
   {
     "objectID": "content/lectures/10-mlr.html#other-approach",
     "href": "content/lectures/10-mlr.html#other-approach",
     "title": "10-mlr",
     "section": "Other approach:",
-    "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp)\n\n\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0267      0.0258    3.6877    12700.7148    1.8326    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\n\n\nCompare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0267311371  2.579859e-02\n2     15 4 Width_in Height_in Surface artistliving 0.0269449324  2.570141e-02\n3      5 2                        Width_in Surface 0.0262133980  2.559157e-02\n4     12 3           Width_in Surface artistliving 0.0264354211  2.550259e-02\n5      6 2                      Width_in Height_in 0.0229395061  2.231559e-02\n6     13 3         Width_in Height_in artistliving 0.0231905276  2.225459e-02\n7      1 1                                Width_in 0.0194002626  1.908747e-02\n8      7 2                   Width_in artistliving 0.0197097980  1.908421e-02\n9      8 2                    Surface artistliving 0.0081437013  7.526491e-03\n10     2 1                                 Surface 0.0075746864  7.266000e-03\n11    14 3          Height_in Surface artistliving 0.0078636593  6.913034e-03\n12     9 2                       Height_in Surface 0.0075089344  6.875160e-03\n13    10 2                  Height_in artistliving 0.0071024720  6.469650e-03\n14     3 1                               Height_in 0.0067547008  6.438280e-03\n15     4 1                            artistliving 0.0002579173 -3.690488e-05\n   Mallow's Cp\n1     3.687709\n2     5.000000\n3     3.353107\n4     4.638931\n5    13.884147\n6    15.076693\n7    24.852249\n8    25.855443\n9    70.670831\n10   70.553482\n11   64.378217\n12   63.519250\n13   69.195025\n14   68.317322\n15  290.636542"
+    "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp_Surf_lt_5000)\n\n\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0261      0.0251    3.8495    12603.7727    1.8315    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\n\n\nStep 2 (alternate): Compare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0260749939  0.0251349118\n2     15 4 Width_in Height_in Surface artistliving 0.0263412027  0.0250876993\n3      5 2                      Width_in Height_in 0.0256902566  0.0250634893\n4     12 3         Width_in Height_in artistliving 0.0259732581  0.0250330779\n5      6 2                        Width_in Surface 0.0249136264  0.0242863596\n6     13 3           Width_in Surface artistliving 0.0251787948  0.0242378477\n7      7 2                   Width_in artistliving 0.0212864021  0.0206568018\n8      1 1                                Width_in 0.0209415833  0.0206267736\n9      8 2                    Surface artistliving 0.0132088377  0.0125897717\n10     2 1                                 Surface 0.0125899681  0.0122803381\n11    14 3          Height_in Surface artistliving 0.0130836930  0.0121310711\n12     9 2                       Height_in Surface 0.0126782901  0.0120431523\n13    10 2                  Height_in artistliving 0.0062698155  0.0056305552\n14     3 1                               Height_in 0.0058797727  0.0055601199\n15     4 1                            artistliving 0.0005531617  0.0002397573\n   Mallow's Cp\n1     3.849487\n2     5.000000\n3     3.077206\n4     4.174132\n5     5.555476\n6     6.709309\n7    17.130153\n8    16.230489\n9    51.971190\n10   52.001268\n11   45.305459\n12   44.599123\n13   65.048926\n14   64.293574\n15   91.485605"
   },
   {
     "objectID": "content/lectures/10-mlr.html#recap",
     "href": "content/lectures/10-mlr.html#recap",
     "title": "10-mlr",
     "section": "Recap",
-    "text": "Recap"
+    "text": "Recap\n\nCan you model and interpret linear models with multiple predictors?\nCan you explain the difference in a model with main effects vs. interaction effects?\nCan you compare different models and determine how to proceed?\nCan you carry out and explain backward selection?"
   },
   {
     "objectID": "content/lectures/10-mlr.html#suggested-reading",
@@ -2322,6 +2322,188 @@
     "title": "07-linear-models",
     "section": "Suggested Reading",
     "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#qa",
+    "href": "content/lectures/11-cs01-data-slides.html#qa",
+    "title": "11-cs01-data",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ:\nA:"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#course-announcements",
+    "href": "content/lectures/11-cs01-data-slides.html#course-announcements",
+    "title": "11-cs01-data",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\nComing Thursday"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#agenda",
+    "href": "content/lectures/11-cs01-data-slides.html#agenda",
+    "title": "11-cs01-data",
+    "section": "Agenda",
+    "text": "Agenda\n\nBackground\nData Intro\nWrangle\nCombine!"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#right-to-carry-laws1",
+    "href": "content/lectures/11-cs01-data-slides.html#right-to-carry-laws1",
+    "title": "11-cs01-data",
+    "section": "Right To Carry Laws1",
+    "text": "Right To Carry Laws1\nRight to Carry (RTC) Laws - “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby (for example, in a citizen’s car) in public.”2\nCase Study Reference: Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com//opencasestudies/ocs-bp-RTC-analysis. Influence of Multicollinearity on Measured Impact of Right-to-Carry Gun Laws (Version v1.0.0).In this discussion, we will use the National Rifle Association (NRA) terminology. Please keep in mind that there are other terms that people use."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#rtc-laws-contd",
+    "href": "content/lectures/11-cs01-data-slides.html#rtc-laws-contd",
+    "title": "11-cs01-data",
+    "section": "RTC Laws (cont’d)",
+    "text": "RTC Laws (cont’d)\n\n\nThe Second Amendment to the United States Constitution guarantees the right to “keep and bear arms”. The amendment was ratified in 1791 as part of the Bill of Rights.\nThere are no federal laws about carrying firearms in public.\nThese laws are created and enforced at the US state level. States vary greatly in their laws about the right to carry firearms.\nSome require extensive effort to obtain a permit to legally carry a firearm, while other states require very minimal effort to do so. An increasing number of states do not require permits at all."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#rtc-laws-across-the-us",
+    "href": "content/lectures/11-cs01-data-slides.html#rtc-laws-across-the-us",
+    "title": "11-cs01-data",
+    "section": "RTC Laws Across the US",
+    "text": "RTC Laws Across the US"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#rtc-laws-across-the-us-1",
+    "href": "content/lectures/11-cs01-data-slides.html#rtc-laws-across-the-us-1",
+    "title": "11-cs01-data",
+    "section": "RTC Laws Across the US",
+    "text": "RTC Laws Across the US"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#the-data-source",
+    "href": "content/lectures/11-cs01-data-slides.html#the-data-source",
+    "title": "11-cs01-data",
+    "section": "The Data: Source",
+    "text": "The Data: Source\nTwo contradictory analyses:\n\nJohn J. Donohue et al., Right‐to‐Carry Laws and Violent Crime: A Comprehensive Assessment Using Panel Data and a State‐Level Synthetic Control Analysis. Journal of Empirical Legal Studies, 16,2 (2019).\nDavid B. Mustard & John Lott. Crime, Deterrence, and Right-to-Carry Concealed Handguns. Coase-Sandor Institute for Law & Economics Working Paper No. 41, (1996)."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#the-data-1",
+    "href": "content/lectures/11-cs01-data-slides.html#the-data-1",
+    "title": "11-cs01-data",
+    "section": "The Data",
+    "text": "The Data"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#two-analyses",
+    "href": "content/lectures/11-cs01-data-slides.html#two-analyses",
+    "title": "11-cs01-data",
+    "section": "Two Analyses",
+    "text": "Two Analyses"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#limitations",
+    "href": "content/lectures/11-cs01-data-slides.html#limitations",
+    "title": "11-cs01-data",
+    "section": "Limitations",
+    "text": "Limitations\n\n\nThe analyses differed in variables used; we will not be recreating either analysis in full\nWe’ll account for either the adoption or lack of adoption of a permissive right-to-carry law in each state; we will not account for differences in the level of permissiveness of the laws.\nRace is included here (as it was in initial analysis); however, any association between demographic variables (indicating the proportion of the population from specific race and age groups) and violent crime does not necessarily indicate that the two are linked causally."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#packages",
+    "href": "content/lectures/11-cs01-data-slides.html#packages",
+    "title": "11-cs01-data",
+    "section": "Packages",
+    "text": "Packages\n\nlibrary(OCSdata) # will need to be installed\nlibrary(tidyverse)\nlibrary(pdftools)\nlibrary(readxl)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#raw-data",
+    "href": "content/lectures/11-cs01-data-slides.html#raw-data",
+    "title": "11-cs01-data",
+    "section": "Raw Data",
+    "text": "Raw Data\nThere are a whole bunch of different data files we’ll be using…\n\n# only get the data once\nOCSdata::load_raw_data(\"ocs-bp-RTC-wrangling\", outpath = '.')\n\n\ncreates a “data” sub-directory in your current working directory (if it does not already exist)\ncreates a “raw” sub-directory within “data”; contains the directories with the data\n\n👉 Your Turn: Load the data into RStudio. It will take a while…so just let it get started."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#to-be-continued",
+    "href": "content/lectures/11-cs01-data-slides.html#to-be-continued",
+    "title": "11-cs01-data",
+    "section": "To Be Continued…",
+    "text": "To Be Continued…\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html",
+    "href": "content/lectures/11-cs01-data.html",
+    "title": "11-cs01-data",
+    "section": "",
+    "text": "Q:\nA:\n\n\n\n\nDue Dates:\nComing Thursday\n\n\n\n\nBackground\nData Intro\nWrangle\nCombine!"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#right-to-carry-laws1",
+    "href": "content/lectures/11-cs01-data.html#right-to-carry-laws1",
+    "title": "11-cs01-data",
+    "section": "Right To Carry Laws1",
+    "text": "Right To Carry Laws1\nRight to Carry (RTC) Laws - “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby (for example, in a citizen’s car) in public.”2"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#rtc-laws-contd",
+    "href": "content/lectures/11-cs01-data.html#rtc-laws-contd",
+    "title": "11-cs01-data",
+    "section": "RTC Laws (cont’d)",
+    "text": "RTC Laws (cont’d)\n\n\nThe Second Amendment to the United States Constitution guarantees the right to “keep and bear arms”. The amendment was ratified in 1791 as part of the Bill of Rights.\nThere are no federal laws about carrying firearms in public.\nThese laws are created and enforced at the US state level. States vary greatly in their laws about the right to carry firearms.\nSome require extensive effort to obtain a permit to legally carry a firearm, while other states require very minimal effort to do so. An increasing number of states do not require permits at all."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#rtc-laws-across-the-us",
+    "href": "content/lectures/11-cs01-data.html#rtc-laws-across-the-us",
+    "title": "11-cs01-data",
+    "section": "RTC Laws Across the US",
+    "text": "RTC Laws Across the US"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#rtc-laws-across-the-us-1",
+    "href": "content/lectures/11-cs01-data.html#rtc-laws-across-the-us-1",
+    "title": "11-cs01-data",
+    "section": "RTC Laws Across the US",
+    "text": "RTC Laws Across the US"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#the-data-source",
+    "href": "content/lectures/11-cs01-data.html#the-data-source",
+    "title": "11-cs01-data",
+    "section": "The Data: Source",
+    "text": "The Data: Source\nTwo contradictory analyses:\n\nJohn J. Donohue et al., Right‐to‐Carry Laws and Violent Crime: A Comprehensive Assessment Using Panel Data and a State‐Level Synthetic Control Analysis. Journal of Empirical Legal Studies, 16,2 (2019).\nDavid B. Mustard & John Lott. Crime, Deterrence, and Right-to-Carry Concealed Handguns. Coase-Sandor Institute for Law & Economics Working Paper No. 41, (1996)."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#the-data-1",
+    "href": "content/lectures/11-cs01-data.html#the-data-1",
+    "title": "11-cs01-data",
+    "section": "The Data",
+    "text": "The Data"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#two-analyses",
+    "href": "content/lectures/11-cs01-data.html#two-analyses",
+    "title": "11-cs01-data",
+    "section": "Two Analyses",
+    "text": "Two Analyses"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#limitations",
+    "href": "content/lectures/11-cs01-data.html#limitations",
+    "title": "11-cs01-data",
+    "section": "Limitations",
+    "text": "Limitations\n\n\nThe analyses differed in variables used; we will not be recreating either analysis in full\nWe’ll account for either the adoption or lack of adoption of a permissive right-to-carry law in each state; we will not account for differences in the level of permissiveness of the laws.\nRace is included here (as it was in initial analysis); however, any association between demographic variables (indicating the proportion of the population from specific race and age groups) and violent crime does not necessarily indicate that the two are linked causally."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#packages",
+    "href": "content/lectures/11-cs01-data.html#packages",
+    "title": "11-cs01-data",
+    "section": "Packages",
+    "text": "Packages\n\nlibrary(OCSdata) # will need to be installed\nlibrary(tidyverse)\nlibrary(pdftools)\nlibrary(readxl)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#raw-data",
+    "href": "content/lectures/11-cs01-data.html#raw-data",
+    "title": "11-cs01-data",
+    "section": "Raw Data",
+    "text": "Raw Data\nThere are a whole bunch of different data files we’ll be using…\n\n# only get the data once\nOCSdata::load_raw_data(\"ocs-bp-RTC-wrangling\", outpath = '.')\n\n\ncreates a “data” sub-directory in your current working directory (if it does not already exist)\ncreates a “raw” sub-directory within “data”; contains the directories with the data\n\n👉 Your Turn: Load the data into RStudio. It will take a while…so just let it get started."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#to-be-continued",
+    "href": "content/lectures/11-cs01-data.html#to-be-continued",
+    "title": "11-cs01-data",
+    "section": "To Be Continued…",
+    "text": "To Be Continued…"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#course-announcements",

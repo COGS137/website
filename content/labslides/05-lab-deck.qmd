@@ -1,0 +1,37 @@
+---
+title: "Lab 05: Modelling course evals (Pt. 2)"
+author: ""
+format:
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    footer: <https://cogs137.github.io/website/>
+    execute:
+      echo: true
+---
+
+# Lab 05: Modelling course evals (Pt. 2) {background-color="#0E3A53"}
+
+## Agenda
+
+1.  Documentation
+2.  Lab 05: Modelling course evaluations
+3.  Getting started with lab
+
+## Documentation
+
+Demo on how to utilize/read/understand R Documentation
+
+## Reminder: Data come from...
+
+"Beauty in the classroom: instructors' pulchritude and putative pedagogical productivity"
+
+Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005. [http://www.sciencedirect.com/science/article/pii/S0272775704001165](http://www.sciencedirect.com/science/article/pii/S0272775704001165)
+
+## Some notes on this lab
+
+-   This is an extension of lab04. It may be worth briefly looking over that lab and/or the answer key to get that fresh in your mind prior to beginning this lab.
+-   There are three parts. Ideally, you'd get through Exercise 12. We'll be looking to see you've fit and interpreted models with multiple predictors.

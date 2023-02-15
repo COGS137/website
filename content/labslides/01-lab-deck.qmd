@@ -3,11 +3,11 @@ title: "Lab 01: Tooling"
 author: ""
 format:
   revealjs:
+    embed-resources: true
     slide-number: true
     chalkboard: false 
     preview-links: auto
     logo: images/cogs137-logo-hex.png
-    css: slides.css
     footer: <https://cogs137.github.io/website/>
 ---
 

@@ -104,11 +104,11 @@ website:
       - section: "Lab Slides"
         contents:
           - text: "Lab01"
-            href: content/labslides/01-lab-deck.qmd
+            href: content/labslides/01-lab-deck.html
           - text: "Lab02"
-            href: content/labslides/02-lab-deck.qmd
+            href: content/labslides/02-lab-deck.html
           - text: "Lab03"
-            href: content/labslides/03-lab-deck.qmd
+            href: content/labslides/03-lab-deck.html
       - section: "Lab Answers"
         contents:
           - text: "Lab02: Wrangling (Ans)"

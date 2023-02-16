@@ -55,7 +55,8 @@ format:
 
 . . .
 
-**Notes**
+**Notes**:
+
 - CS01 
   - instructions posted on website
   - invited to GH repo (accept invitation, please!)
@@ -1068,8 +1069,11 @@ dim(DONOHUE_DF)
 
 ## Things to Consider
 
+::: incremental
 - How RMarkdown documents work
 - How to control what is executed each time you render
+- What to do with all this after this lecture? 
+:::
 
 ## Save 
 

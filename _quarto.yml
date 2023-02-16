@@ -123,6 +123,8 @@ website:
             href: content/hw/hw-01.qmd
           - text: "HW02"
             href: content/hw/hw-02.qmd
+          - text: "HW03"
+            href: content/hw/hw-03.qmd
       - section: "Exam"
         contents:
           - text: "Practice Midterm"
@@ -131,6 +133,11 @@ website:
             href: content/exams/practice-exam-ans.qmd
           - text: "Midterm"
             href: content/exams/midterm_wi23.qmd
+      - section: "Case Studies"
+        contents:
+          - text: "CS01"
+            href: content/cs/cs01.qmd
+
 format:
   html:
     theme: material

@@ -7,10 +7,10 @@ Thumbs.db
 *.Rproj
 
 # do not include large datasets
-static/lecslides/data
-docs/lecslides/data
-static/lecslides/18-cs2-analysis_cache
-docs/lecslides/18-cs2-analysis_cache
+content/lectures/data
+docs/lectures/data
+#Content/lectures/18-cs2-analysis_cache
+#docs/lecslides/18-cs2-analysis_cache
 
 # temporarily (while I edit course content)
 Makefile

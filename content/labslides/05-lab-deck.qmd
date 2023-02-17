@@ -21,6 +21,8 @@ format:
 2.  Lab 05: Modelling course evaluations
 3.  Getting started with lab
 
+Reminder to complete [mid-course survey](https://docs.google.com/forms/d/e/1FAIpQLSdpvo3bamtS4ClT8tquYaTehuBw16x2lBF-nKOhVkLbLQK4uw/viewform?usp=sf_link)
+
 ## Documentation
 
 Demo on how to utilize/read/understand R Documentation
@@ -29,7 +31,7 @@ Demo on how to utilize/read/understand R Documentation
 
 "Beauty in the classroom: instructors' pulchritude and putative pedagogical productivity"
 
-Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005. [http://www.sciencedirect.com/science/article/pii/S0272775704001165](http://www.sciencedirect.com/science/article/pii/S0272775704001165)
+Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005. <http://www.sciencedirect.com/science/article/pii/S0272775704001165>
 
 ## Some notes on this lab
 

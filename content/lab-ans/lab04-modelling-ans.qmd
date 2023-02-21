@@ -4,7 +4,6 @@ author: "Sean Trott"
 output: 
   html: 
     highlight: pygments
-    css: lab.css
     preview-links: auto
 ---
 

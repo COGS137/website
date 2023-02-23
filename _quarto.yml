@@ -143,6 +143,8 @@ website:
             href: content/exams/practice-exam-ans.qmd
           - text: "Midterm"
             href: content/exams/midterm_wi23.qmd
+          - text: "Midterm (Ans)"
+            href: content/exams/midterm_wi23-ans.qmd
       - section: "Case Studies"
         contents:
           - text: "CS01"

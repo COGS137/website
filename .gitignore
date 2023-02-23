@@ -8,6 +8,7 @@ Thumbs.db
 
 # do not include large datasets
 content/lectures/data
+content/exams/data
 docs/lectures/data
 #Content/lectures/18-cs2-analysis_cache
 #docs/lecslides/18-cs2-analysis_cache

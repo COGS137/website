@@ -4536,6 +4536,11 @@ vertical-align: -.125em;
   <a href="../../content/lectures/12-cs01-eda-slides.html" class="sidebar-item-text sidebar-link">12-cs01-eda</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/13-cs01-analysis-slides.html" class="sidebar-item-text sidebar-link">13-cs01-analysis</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -4609,6 +4614,11 @@ vertical-align: -.125em;
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/lectures/12-cs01-eda.html" class="sidebar-item-text sidebar-link active">12-cs01-eda</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/13-cs01-analysis.html" class="sidebar-item-text sidebar-link">13-cs01-analysis</a>
   </div>
 </li>
       </ul>
@@ -4763,7 +4773,7 @@ vertical-align: -.125em;
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/exams/midterm-wi23-ans.qmd" class="sidebar-item-text sidebar-link">Mdterm (Ans)</a>
+  <a href="../../content/exams/midterm_wi23-ans.html" class="sidebar-item-text sidebar-link">Midterm (Ans)</a>
   </div>
 </li>
       </ul>
@@ -4913,8 +4923,8 @@ A: As long as you’re working on separate lines/parts of the file, you can all 
 <div class="cell">
 <div class="cell-output-display">
 
-<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-9a7e552e82d0b3dbb3a1" style="width:100%;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-9a7e552e82d0b3dbb3a1">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["I would make the labs shorter or easier, I end up spending 2+ hours after in-person lab to complete the lab enough to get full credit","Based on the schedule, it looks like in the upcoming weeks we are only covering logistic regression but I would be interested in possibly being introduced to other machine-learning methods (doesn't have to be in depth, but at least a general idea of how to start it and/or when it could be useful such as PCA, etc. because other classes in R like BIMM143 cover it and have us code it but don't really explain it as much.)","I think going a little more in depth into R code and some interesting interactions would be a cool addition.","Nothing really. Maybe adding in a mathematical lesson/sub lesson with modeling?","Even out the workload of HW/Lab and etc.","Maybe create assignments with different difficulties or basic to more advanced stuff. Then students can select which difficulty to chose for credit. and students could do the more advanced topics after they complete basic.","n/a","More examples on machine learning and linear regression, it can be a little difficult to follow how to use this in the work place/ personal projects","Release HW answers after HW is dued.","allowing all assignments to be turned in late for 1/3 letter grade each dat"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Optional: If you were in charge and could change one thing about COGS 137, what would it be?<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
+<div class="datatables html-widget html-fill-item-overflow-hidden html-fill-item" id="htmlwidget-44769a08d9b4a0867f9c" style="width:100%;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-44769a08d9b4a0867f9c">{"x":{"filter":"none","vertical":false,"data":[["1","2","3","4","5","6","7","8","9","10"],["I would make the labs shorter or easier, I end up spending 2+ hours after in-person lab to complete the lab enough to get full credit","Based on the schedule, it looks like in the upcoming weeks we are only covering logistic regression but I would be interested in possibly being introduced to other machine-learning methods (doesn't have to be in depth, but at least a general idea of how to start it and/or when it could be useful such as PCA, etc. because other classes in R like BIMM143 cover it and have us code it but don't really explain it as much.)","I think going a little more in depth into R code and some interesting interactions would be a cool addition.","Nothing really. Maybe adding in a mathematical lesson/sub lesson with modeling?","Even out the workload of HW/Lab and etc.","Maybe create assignments with different difficulties or basic to more advanced stuff. Then students can select which difficulty to chose for credit. and students could do the more advanced topics after they complete basic.","n/a","More examples on machine learning and linear regression, it can be a little difficult to follow how to use this in the work place/ personal projects","Release HW answers after HW is dued.","allowing all assignments to be turned in late for 1/3 letter grade each dat"]],"container":"<table class=\"display\">\n  <thead>\n    <tr>\n      <th> <\/th>\n      <th>Optional: If you were in charge and could change one thing about COGS 137, what would it be?<\/th>\n    <\/tr>\n  <\/thead>\n<\/table>","options":{"columnDefs":[{"orderable":false,"targets":0}],"order":[],"autoWidth":false,"orderClasses":false}},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 </section>
@@ -5006,8 +5016,16 @@ $ Population_log                 &lt;dbl&gt; 12.91085, 14.82195, 14.64354, 16.98
 <div class="cell">
 <div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(LOTT_DF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in inline_hist(RTC_LAW_YEAR, 5): Variable contains Inf or -Inf value(s)
-that were converted to NA.</code></pre>
+<pre><code>Warning: There was 1 warning in `dplyr::summarize()`.
+ℹ In argument: `dplyr::across(tidyselect::any_of(variable_names),
+  mangled_skimmers$funs)`.
+ℹ In group 0: .
+Caused by warning:
+! There was 1 warning in `dplyr::summarize()`.
+ℹ In argument: `dplyr::across(tidyselect::any_of(variable_names),
+  mangled_skimmers$funs)`.
+Caused by warning in `inline_hist()`:
+! Variable contains Inf or -Inf value(s) that were converted to NA.</code></pre>
 </div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">
@@ -5814,8 +5832,16 @@ $ Population_log            &lt;dbl&gt; 12.91085, 14.82195, 14.64354, 16.98490, 
 <div class="cell">
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a>skimr<span class="sc">::</span><span class="fu">skim</span>(DONOHUE_DF)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stderr">
-<pre><code>Warning in inline_hist(RTC_LAW_YEAR, 5): Variable contains Inf or -Inf value(s)
-that were converted to NA.</code></pre>
+<pre><code>Warning: There was 1 warning in `dplyr::summarize()`.
+ℹ In argument: `dplyr::across(tidyselect::any_of(variable_names),
+  mangled_skimmers$funs)`.
+ℹ In group 0: .
+Caused by warning:
+! There was 1 warning in `dplyr::summarize()`.
+ℹ In argument: `dplyr::across(tidyselect::any_of(variable_names),
+  mangled_skimmers$funs)`.
+Caused by warning in `inline_hist()`:
+! Variable contains Inf or -Inf value(s) that were converted to NA.</code></pre>
 </div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped">

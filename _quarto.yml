@@ -65,6 +65,8 @@ website:
             href: content/lectures/11-cs01-data-slides.html
           - text: "12-cs01-eda"
             href: content/lectures/12-cs01-eda-slides.html
+          - text: "13-cs01-analysis"
+            href: content/lectures/13-cs01-analysis-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -93,6 +95,8 @@ website:
             href: content/lectures/11-cs01-data.html
           - text: "12-cs01-eda"
             href: content/lectures/12-cs01-eda.html
+          - text: "13-cs01-analysis"
+            href: content/lectures/13-cs01-analysis.html
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

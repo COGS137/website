@@ -10,8 +10,10 @@ Thumbs.db
 content/lectures/data
 content/exams/data
 docs/lectures/data
-#Content/lectures/18-cs2-analysis_cache
-#docs/lecslides/18-cs2-analysis_cache
+content/lectures/13-cs01-analysis_cache
+docs/lectures/13-cs01-analysis_cache
+content/lectures/13-cs01-analysis_files
+
 
 # temporarily (while I edit course content)
 Makefile

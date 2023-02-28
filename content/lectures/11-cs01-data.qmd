@@ -26,7 +26,7 @@ format:
 
 ## Q&A {.smaller}
 
-> Q: Is there ever a time when we should use $R^2$ instead of adjusted R^2 when analyzing a model?\
+> Q: Is there ever a time when we should use $R^2$ instead of adjusted R\^2 when analyzing a model?\
 > A: When talking about variance explained of a single model, $R^2$ is great, but when comparing across models, you'll always want to use adjusted $R^2$
 
 > Q: How do we use the data from OCS for our case study? Should we merge the data files?\
@@ -35,15 +35,14 @@ format:
 > Q: Do we need to look at the p-value when we do analysis? (Midterm01)\
 > A: When interpreting a model, no. When doing hypothesis testing (we'll get there), it is one piece you can look at. A few people did interpret p-values on the midterm, and that's ok! (But it was not required.)
 
-> Q: Can we have a system where we can find other students to group with? Like a google form? \
+> Q: Can we have a system where we can find other students to group with? Like a google form?\
 > A: Great question! I'll start a pinned thread on Campuswire so you all can find one another.
 
-> Q: I think the data seems pretty confusing. \
+> Q: I think the data seems pretty confusing.\
 > A: That's b/c it is! We've got a lot of work to do to get it into a usable/understandable format.
 
-> Q: In what context of data we should use interaction model or main effect model? \
+> Q: In what context of data we should use interaction model or main effect model?\
 > A: Interaction terms should be included when the relationship between one predictor and the outcome varies by another predictor.
-
 
 ## Course Announcements
 
@@ -57,13 +56,13 @@ format:
 
 **Notes**:
 
-- CS01 
-  - instructions posted on website
-  - invited to GH repo (accept invitation, please!)
-  - have an email with other group mates
-  - goal: meet more people in the class & work together
-- HW03 posted
-- Reminder to think about final project group mates; thread on campuswire
+-   CS01
+    -   instructions posted on website
+    -   invited to GH repo (accept invitation, please!)
+    -   have an email with other group mates
+    -   goal: meet more people in the class & work together
+-   HW03 posted
+-   Reminder to think about final project group mates; thread on campuswire
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -85,79 +84,70 @@ knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, mes
 
 ## Agenda
 
-- Background
-- Data Intro
-- Wrangle
-- Combine!
+-   Background
+-   Data Intro
+-   Wrangle
+-   Combine!
 
-# Background  {background-color="#92A86A"}
+# Background {background-color="#92A86A"}
 
 ## Right To Carry Laws[^1] {.smaller}
 
-**Right to Carry (RTC) Laws** - "a law that specifies if and how citizens are allowed to have a firearm on their person or nearby (for example, in a citizen’s car) in public."[^2]
-
-
 [^1]: Case Study Reference: Wright, Carrie and Ontiveros, Michael and Jager, Leah and Taub, Margaret and Hicks, Stephanie. (2020). https://github.com//opencasestudies/ocs-bp-RTC-analysis. Influence of Multicollinearity on Measured Impact of Right-to-Carry Gun Laws (Version v1.0.0).
 
-[^2]: In this discussion, we will use the National Rifle Association (NRA) terminology. Please keep in mind that there are other terms that people use.
+**Right to Carry (RTC) Laws** - "a law that specifies if and how citizens are allowed to have a firearm on their person or nearby (for example, in a citizen's car) in public."[^2]
 
+[^2]: In this discussion, we will use the National Rifle Association (NRA) terminology. Please keep in mind that there are other terms that people use.
 
 ## RTC Laws (cont'd) {.smaller}
 
 ::: incremental
-- The Second Amendment to the United States Constitution guarantees the right to “keep and bear arms”. The amendment was ratified in 1791 as part of the Bill of Rights.
-- There are no federal laws about carrying firearms in public.
-- These laws are created and enforced at the US state level. States vary greatly in their laws about the right to carry firearms.
--  Some require extensive effort to obtain a permit to legally carry a firearm, while other states require very minimal effort to do so. An increasing number of states do not require permits at all.
+-   The Second Amendment to the United States Constitution guarantees the right to "keep and bear arms". The amendment was ratified in 1791 as part of the Bill of Rights.
+-   There are no federal laws about carrying firearms in public.
+-   These laws are created and enforced at the US state level. States vary greatly in their laws about the right to carry firearms.
+-   Some require extensive effort to obtain a permit to legally carry a firearm, while other states require very minimal effort to do so. An increasing number of states do not require permits at all.
 :::
 
 ## RTC Laws Across the US
 
 ![](images/11/rtc-laws.png)
 
-
 ## RTC Laws Across the US
 
 ![](images/11/rtc-map.png)
 
+# Questions {background-color="#92A86A"}
 
-# Questions  {background-color="#92A86A"}
+1.  What is the relationship between right to carry laws and violence rates in the US?
+2.  What is the effect of multicollinearity on coefficient estimates from linear regression models when analyzing right to carry laws and violence rates?
 
-1. What is the relationship between right to carry laws and violence rates in the US?
-2. What is the effect of multicollinearity on coefficient estimates from linear regression models when analyzing right to carry laws and violence rates?
-
-
-# The Data  {background-color="#92A86A"}
+# The Data {background-color="#92A86A"}
 
 ## The Data: Source
 
-Two contradictory analyses: 
+Two contradictory analyses:
 
-1. John J. Donohue et al., Right‐to‐Carry Laws and Violent Crime: A Comprehensive Assessment Using Panel Data and a State‐Level Synthetic Control Analysis. Journal of Empirical Legal Studies, 16,2 (2019).
+1.  John J. Donohue et al., Right‐to‐Carry Laws and Violent Crime: A Comprehensive Assessment Using Panel Data and a State‐Level Synthetic Control Analysis. Journal of Empirical Legal Studies, 16,2 (2019).
 
-2. David B. Mustard & John Lott. Crime, Deterrence, and Right-to-Carry Concealed Handguns. Coase-Sandor Institute for Law & Economics Working Paper No. 41, (1996).
-
-
+2.  David B. Mustard & John Lott. Crime, Deterrence, and Right-to-Carry Concealed Handguns. Coase-Sandor Institute for Law & Economics Working Paper No. 41, (1996).
 
 ## The Data {.smaller}
 
 ![](images/11/variables-used.png)
 
-
 ## Two Analyses
 
 ![](images/11/previous-analyses.png)
 
-
 ## Limitations {.smaller}
 
 ::: incremental
-1. The analyses differed in variables used; we will not be recreating either analysis in full
-2. We'll account for either the adoption or lack of adoption of a permissive right-to-carry law in each state; we will not account for differences in the level of permissiveness of the laws.
-3. Race is included here (as it was in initial analysis); however, any association between demographic variables (indicating the proportion of the population from specific race and age groups) and violent crime does not necessarily indicate that the two are linked causally.
+1.  The analyses differed in variables used; we will not be recreating either analysis in full
+2.  We'll account for either the adoption or lack of adoption of a permissive right-to-carry law in each state; we will not account for differences in the level of permissiveness of the laws.
+3.  Race is included here (as it was in initial analysis); however, any association between demographic variables (indicating the proportion of the population from specific race and age groups) and violent crime does not necessarily indicate that the two are linked causally.
 :::
 
-## Packages 
+## Packages
 
 ```{r packages-load}
 library(OCSdata) # will need to be installed
@@ -175,8 +165,8 @@ There are a whole bunch of different data files we'll be using...
 OCSdata::load_raw_data("ocs-bp-RTC-wrangling", outpath = '.')
 ```
 
-- creates a "data" sub-directory in your current working directory (if it does not already exist)
-- creates a "raw" sub-directory within "data"; contains the directories with the data
+-   creates a "data" sub-directory in your current working directory (if it does not already exist)
+-   creates a "raw" sub-directory within "data"; contains the directories with the data
 
 [`r emo::ji("backhand index pointing right")` **Your Turn**: Load the data into RStudio. It will take a while...so just let it get started.]{style="background-color: #ADD8E6"}
 
@@ -188,7 +178,6 @@ Get two datasets (Lott, Donohue) that contain demographic, population, police st
 
 [`r emo::ji("question")` What would be the tidy way to store these data?]{style="background-color: #ADD8E6"}
 
-
 ## Your Turn
 
 `r emo::ji("brain")` Take a look in one of the data folders, open at least one of the data files to view it, and try to get a sense of the type of information contained within it.
@@ -197,12 +186,10 @@ Get two datasets (Lott, Donohue) that contain demographic, population, police st
 Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
 :::
 
-
 ## Demographic & Population Data {.smaller}
 
 ::: panel-tabset
-
-### Code 
+### Code
 
 ```{r}
 #| code-line-numbers: "|1|3-7|9-13"
@@ -234,24 +221,22 @@ Source: US Census Bureau Data
 ```{r}
 glimpse(dem_00_10[[1]])
 ```
-
 :::
 
 ## State FIPS Codes
 
 ::: panel-tabset
-
 ### Image
 
 ![](images/11/FIPS.png)
 
-### Code 
+### Code
 
 ```{r}
 STATE_FIPS <- readxl::read_xls("data/raw/State_FIPS_codes/state-geocodes-v2014.xls", skip = 5)
 ```
 
-### Data 
+### Data
 
 ```{r}
 glimpse(STATE_FIPS)
@@ -268,16 +253,14 @@ STATE_FIPS <- STATE_FIPS |>
 
 STATE_FIPS
 ```
-
 :::
 
 ## Police Staffing Data
 
 ::: panel-tabset
-
 ### Code
 
-There's an issue currently with the `ps_data` file from OCS, so we'll use this file instead: 
+There's an issue currently with the `ps_data` file from OCS, so we'll use this file instead:
 
 ```{r}
 ps_data <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/pe_1960_2018.csv")
@@ -293,13 +276,11 @@ glimpse(ps_data)
 ## Unemployment Data
 
 ::: panel-tabset
-
 ### Image
 
 ![unemployment](images/11/unemp.png)
 
-
-### Code 
+### Code
 
 ```{r, message=FALSE}
 #| code-line-numbers: "|1-5|7-13"
@@ -320,12 +301,14 @@ unlist()
 names(ue_rate_data) <- ue_rate_names
 ```
 
-### Data 
+### Data
+
 ```{r}
 head(ue_rate_data)[1]
 ```
 
 ### Wrangle
+
 ```{r}
 ue_rate_data <- ue_rate_data |>
   map_df(bind_rows, .id = "STATE") |>
@@ -336,32 +319,29 @@ ue_rate_data <- ue_rate_data |>
 
 ue_rate_data
 ```
-
-::: 
+:::
 
 ## Poverty Data
 
 ::: panel-tabset
+### Code
 
-### Code 
 ```{r, message=FALSE}
 poverty_rate_data <- read_xls("data/raw/Poverty/hstpov21.xls", skip=2)
 ```
 
 ### Data
+
 ```{r}
 head(poverty_rate_data)
 ```
-
 :::
 
 Source: US Census Bureau Data
 
-
 ## Violent Crime Data
 
 ::: panel-tabset
-
 ### Code
 
 ```{r, message=FALSE}
@@ -370,29 +350,26 @@ crime_data <- read_lines("data/raw/Crime/CrimeStatebyState.csv",
                          skip_empty_rows = TRUE)
 ```
 
-Due to spaces and `/` in the column names, `read_lines()` from the readr package works better than `read_csv()` 
+Due to spaces and `/` in the column names, `read_lines()` from the readr package works better than `read_csv()`
 
 ### Data
 
 ```{r}
 head(crime_data)
 ```
-
 :::
-
 
 ## Right-To-Carry Data
 
 ::: panel-tabset
-
-### Code 
+### Code
 
 ```{r, message=FALSE}
 DAWpaper <- pdf_text("data/raw/w23510.pdf")
 ```
 
-
 ### Data
+
 ```{r}
 head(DAWpaper[1])
 ```
@@ -410,13 +387,13 @@ save(dem_77_79, dem_80_89, dem_90_99, dem_00_10,
      DAWpaper, file = "data/imported_data_rtc.rda")
 ```
 
-# Data Wrangling  {background-color="#92A86A"}
+# Data Wrangling {background-color="#92A86A"}
 
 ## Wrangle: Demo Data {.smaller}
 
 ::: panel-tabset
-
 ### 77-79
+
 ```{r}
 #| code-line-numbers: "|1-8|10-13"
 dem_77_79 <- dem_77_79 |>
@@ -462,7 +439,6 @@ dem_80_89 <- dem_80_89 |>
 
 dem_80_89
 ```
-
 
 ### 90s
 
@@ -543,11 +519,9 @@ glimpse(dem_00_10)
 ```
 :::
 
-
 ## Wrangle: Population Data
 
 ::: panel-tabset
-
 ### 77-79
 
 ```{r}
@@ -566,7 +540,7 @@ pop_80_89 <- dem_80_89 |>
   summarize(TOT_POP = sum(SUB_POP), .groups = "drop") 
 ```
 
-### 90s 
+### 90s
 
 ```{r}
 pop_90_99 <- dem_90_99 |>
@@ -575,19 +549,17 @@ pop_90_99 <- dem_90_99 |>
 ```
 
 ### 00s
+
 ```{r}
 pop_00_10 <- dem_00_10 |>
   group_by(YEAR, STATE) |>
   summarize(TOT_POP = sum(SUB_POP), .groups = "drop")
 ```
-
 :::
-
 
 ## Combine: Demo + Population
 
 ::: panel-tabset
-
 ### 77-79
 
 ```{r}
@@ -624,6 +596,7 @@ dem_90_99
 ```
 
 ### 00s
+
 ```{r}
 dem_00_10 <- dem_00_10 |>
   left_join(pop_00_10, by = c("YEAR", "STATE")) |>
@@ -636,17 +609,15 @@ dem_00_10
 ### Idea
 
 [`r emo::ji("exclamation")` This would be a good part of the code to write a user-defined function...]{style="background-color: #ADD8E6"}
-
 :::
 
 ## Aside: UDF
 
 ::: panel-tabset
-
 ### The What
 
-- User-defined functions (UDFs) are functions you write to make your code cleaner
-- Any time you copy+paste very similar code, think to yourself...I should make this a function!
+-   User-defined functions (UDFs) are functions you write to make your code cleaner
+-   Any time you copy+paste very similar code, think to yourself...I should make this a function!
 
 ### The How
 
@@ -684,9 +655,8 @@ combine_demo_pop <- function(df_dem, df_pop){
 combined_df <- combine_demo_pop(dem_00_10, pop_00_10)
 ```
 
-- Note: if you've already combined the data into `dem_00_10`, this would not work.
-- Cleaning up/improving code in your case studies is encouraged!
-
+-   Note: if you've already combined the data into `dem_00_10`, this would not work.
+-   Cleaning up/improving code in your case studies is encouraged!
 :::
 
 ## Combine: Demo/Pop Across Decades
@@ -699,7 +669,6 @@ dem <- bind_rows(dem_77_79,
 
 glimpse(dem)
 ```
-
 
 ## Demographic Data (Donohue)
 
@@ -729,7 +698,6 @@ dem_DONOHUE <- dem |>
 dem_DONOHUE
 ```
 
-
 ## Demographic Data (Lott)
 
 ```{r}
@@ -757,7 +725,6 @@ dem_LOTT <- dem |>
 glimpse(dem_LOTT)
 ```
 
-
 ## Combine: Population Data
 
 ```{r}
@@ -771,7 +738,6 @@ population_data <- population_data |>
   rename("VALUE" = TOT_POP)
 
 ```
-
 
 ## Wrangling: Police staffing
 
@@ -975,7 +941,6 @@ RTC <- p_62 |>
 
 ```
 
-
 ## Wrangling: Combining! (Donohue)
 
 ```{r}
@@ -1021,7 +986,6 @@ DONOHUE_DF |>
   glimpse()
 ```
 
-
 ## Wrangling: Combining! (Lott)
 
 ```{r}
@@ -1054,7 +1018,6 @@ LOTT_DF <- LOTT_DF |>
 LOTT_DF
 ```
 
-
 ## Why?
 
 [`r emo::ji("question")` Why are there different dimensions for LOTT vs DONOHUE??]{style="background-color: #ADD8E6"}
@@ -1070,12 +1033,12 @@ dim(DONOHUE_DF)
 ## Things to Consider
 
 ::: incremental
-- How RMarkdown documents work
-- How to control what is executed each time you render
-- What to do with all this after this lecture? 
+-   How RMarkdown documents work
+-   How to control what is executed each time you render
+-   What to do with all this after this lecture?
 :::
 
-## Save 
+## Save
 
 ```{r}
 save(LOTT_DF, DONOHUE_DF, file = "data/wrangled/wrangled_data_rtc.rda")

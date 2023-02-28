@@ -1,0 +1,150 @@
+---
+title: "Lab 07 - Logistic Regression"
+date: "2023-03-03"
+output: 
+  html: 
+    highlight: pygments
+    preview-links: auto
+    execute:
+      eval: false
+---
+
+
+```{r setup, include=FALSE}
+library(tidyverse)
+library(tufte)
+suppressMessages(library(kableExtra))
+
+library(knitr)
+options(
+  htmltools.dir.version = FALSE, # for blogdown
+  show.signif.stars = FALSE,     # for regression output
+  digits = 2
+  )
+knitr::opts_chunk$set(eval = TRUE)
+
+caption_helper <- function(txt) {
+  if (knitr::is_latex_output())
+    stringr::str_replace_all(txt, "([^`]*)`(.*?)`", "\\1\\\\texttt{\\2}") %>%
+    stringr::str_replace_all("_", "\\\\_")
+  else
+    txt
+}
+```
+
+## Introduction
+
+"This experimental data comes from a study that sought to understand the influence of race and gender on job application callback rates. The study monitored job postings in Boston and Chicago for several months during 2001 and 2002 and used this to build up a set of test cases. Over this time period, the researchers randomly generated resumes to go out to a job posting, such as years of experience and education details, to create a realistic-looking resume. They then randomly assigned a name to the resume that would communicate the applicant's gender and race. The first names chosen for the study were selected so that the names would predominantly be recognized as belonging to black or white individuals. For example, Lakisha was a name that their survey indicated would be interpreted as a black woman, while Greg was a name that would generally be interpreted to be associated with a white male." (`openintro`)
+
+::: aside
+Bertrand, Marianne, and Sendhil Mullainathan. 2003. “Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination.” [https://doi.org/10.3386/w9873](https://doi.org/10.3386/w9873).
+:::
+
+# Getting started
+
+To get started, accept the lab07 assignment (link on Canvas), clone the repo (using SSH) into RStudio on datahub. Update the author name at the top of the .Rmd file in the YAML to be your name. And, then you're ready to go!
+
+# Packages
+
+In this lab we will work with the `tidyverse`, `infer`, `tidymodels`, and `openintro` packages. We can load them with the following:
+
+::: aside
+Note: If you did not install `openintro` in lecture, you'll likely have to install that using `install.packages()` first.
+:::
+
+
+```{r load-packages, message=FALSE}
+library(tidyverse) 
+library(tidymodels)
+library(infer)
+library(openintro)
+```
+
+# The data
+
+Load the `resume` data from the `openintro` package, using:
+
+```{r load-data}
+data(resume)
+```
+
+
+We have observations on 30 different variables, some categorical and some 
+numerical. The meaning of each variable can be looked up using `?resume`; however, we'll describe the variables used:
+
+::: aside
+Descriptions of nine variables from the `resume` dataset. Many of the variables are indicator variables, meaning they take the value 1 if the specified characteristic is present and 0 otherwise.
+:::
+
+```{r resume-variables, echo=FALSE}
+resume_variables <- tribble(
+  ~variable,           ~description,
+  "received_callback", "Specifies whether the employer called the applicant following submission of the application for the job.",
+  "job_city",          "City where the job was located: Boston or Chicago.",
+  "college_degree",    "An indicator for whether the resume listed a college degree.",
+  "years_experience",  "Number of years of experience listed on the resume.",
+  "honors",            "Indicator for the resume listing some sort of honors, e.g. employee of the month.",
+  "military",          "Indicator for if the resume listed any military experience.",
+  "has_email_address", "Indicator for if the resume listed an email address for the applicant.",
+  "race",              "Race of the applicant, implied by their first name listed on the resume.",
+  "gender",               "inferred gender of the applicant (limited to only and in this study), implied by the first name listed on the resume."
+)
+resume_variables %>%
+  kbl(linesep = "", booktabs = TRUE) %>%
+  kable_styling(bootstrap_options = c("striped", "condensed"), 
+                latex_options = c("striped", "hold_position"), 
+                position="left", full_width = TRUE) %>%
+  column_spec(1, monospace = TRUE) %>%
+  column_spec(2, width = "30em")
+```
+
+# Exercises
+
+
+## Part 1: EDA
+
+### Exercise 1
+
+Do some EDA! The first step in the analysis of a new dataset is getting acquainted with the data.
+Make summaries of the variables in your dataset, determine  which variables are 
+categorical and which are numerical. For numerical variables, are there outliers? What are the observations in this data set? How many observations are there in our dataset?
+If you aren't sure or want to take a closer look at the data, make a plot.
+
+## Part 2: Single Predictor Logistic Regression
+
+Here, we'll be modelling the probability of a callback for a given resume $i$. ($Y_i$ will be used to represent whether resume $i$ received a callback ($Y_i=1$) or not ($Y_i=0$)).
+
+### Exercise 2
+
+Fit a logistic regression model: `m_honors`, predicting the probability of a callback (`received_callback`) given whether the applicant had any `honors` listed on their resume. Write the logistic regression model out.
+
+### Exercise 3
+
+If a resume is randomly selected from the study and it does not have any honors listed, what is the probability it resulted in a callback?
+
+### Exercise 4
+
+What would the probability be if the resume did list some honors?
+
+## Part 3: Multiple Predictors Logistic Regression
+
+### Exercise 5
+
+Fit a logistic regression model `m_multiple` predicting the probability of a callback (`received_callback`) given all of the variables specified in the description above. Write the logistic regression model out.
+
+### Exercise 6
+
+The race variable had taken only two levels: Black and White. Based on the model results, what does the coefficient of this variable say about callback decisions?
+
+### Exercise 7
+
+Using your results from `m_multiple`, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male? 
+
+::: aside
+Reminder: Unlike $R^2$ (which we used in multiple linear regression), when using AIC for model selection, models with a lower AIC value are considered to be "better." Also, AIC provides information about the quality of a model relative to other models, but does not provide information about the overall quality of a model.
+:::
+
+### Exercise 8
+
+Considering the results from the model you just fit and using a backward elimination strategy, remove any variables from the `m_multiple` model fit previously to identify the most parsimonious model. Store this in `m_resume`. Utilize AIC (Akaike information criterion) for model comparison.
+

@@ -67,6 +67,8 @@ website:
             href: content/lectures/12-cs01-eda-slides.html
           - text: "13-cs01-analysis"
             href: content/lectures/13-cs01-analysis-slides.html
+          - text: "14-logistic-regression"
+            href: content/lectures/14-logistic-regression-slides.html
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -97,6 +99,8 @@ website:
             href: content/lectures/12-cs01-eda.html
           - text: "13-cs01-analysis"
             href: content/lectures/13-cs01-analysis.html
+          - text: "14-logistic-regression"
+            href: content/lectures/14-logistic-regression.html
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

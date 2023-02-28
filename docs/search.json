@@ -154,6 +154,34 @@
     "text": "Part 2: Possible extensions?\nThink about the data you have access to, the EDA/analysis presented in class, and the questions we said we’re going to address. What possible extensions to this analysis would you be interested in carrying out? This is a space for brainstorming. Include any possible thoughts you have here, even if they aren’t “good” or you aren’t sure if they are “possible.” This can be used as a jumping off point for when you start discussing analysis extensions with your group."
   },
   {
+    "objectID": "content/labs/07-lab-logistic-regression.html",
+    "href": "content/labs/07-lab-logistic-regression.html",
+    "title": "Lab 07 - Logistic Regression",
+    "section": "",
+    "text": "“This experimental data comes from a study that sought to understand the influence of race and gender on job application callback rates. The study monitored job postings in Boston and Chicago for several months during 2001 and 2002 and used this to build up a set of test cases. Over this time period, the researchers randomly generated resumes to go out to a job posting, such as years of experience and education details, to create a realistic-looking resume. They then randomly assigned a name to the resume that would communicate the applicant’s gender and race. The first names chosen for the study were selected so that the names would predominantly be recognized as belonging to black or white individuals. For example, Lakisha was a name that their survey indicated would be interpreted as a black woman, while Greg was a name that would generally be interpreted to be associated with a white male.” (openintro)\n\n\nBertrand, Marianne, and Sendhil Mullainathan. 2003. “Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination.” https://doi.org/10.3386/w9873."
+  },
+  {
+    "objectID": "content/labs/07-lab-logistic-regression.html#part-1-eda",
+    "href": "content/labs/07-lab-logistic-regression.html#part-1-eda",
+    "title": "Lab 07 - Logistic Regression",
+    "section": "Part 1: EDA",
+    "text": "Part 1: EDA\n\nExercise 1\nDo some EDA! The first step in the analysis of a new dataset is getting acquainted with the data. Make summaries of the variables in your dataset, determine which variables are categorical and which are numerical. For numerical variables, are there outliers? What are the observations in this data set? How many observations are there in our dataset? If you aren’t sure or want to take a closer look at the data, make a plot."
+  },
+  {
+    "objectID": "content/labs/07-lab-logistic-regression.html#part-2-single-predictor-logistic-regression",
+    "href": "content/labs/07-lab-logistic-regression.html#part-2-single-predictor-logistic-regression",
+    "title": "Lab 07 - Logistic Regression",
+    "section": "Part 2: Single Predictor Logistic Regression",
+    "text": "Part 2: Single Predictor Logistic Regression\nHere, we’ll be modelling the probability of a callback for a given resume \\(i\\). (\\(Y_i\\) will be used to represent whether resume \\(i\\) received a callback (\\(Y_i=1\\)) or not (\\(Y_i=0\\))).\n\nExercise 2\nFit a logistic regression model: m_honors, predicting the probability of a callback (received_callback) given whether the applicant had any honors listed on their resume. Write the logistic regression model out.\n\n\nExercise 3\nIf a resume is randomly selected from the study and it does not have any honors listed, what is the probability it resulted in a callback?\n\n\nExercise 4\nWhat would the probability be if the resume did list some honors?"
+  },
+  {
+    "objectID": "content/labs/07-lab-logistic-regression.html#part-3-multiple-predictors-logistic-regression",
+    "href": "content/labs/07-lab-logistic-regression.html#part-3-multiple-predictors-logistic-regression",
+    "title": "Lab 07 - Logistic Regression",
+    "section": "Part 3: Multiple Predictors Logistic Regression",
+    "text": "Part 3: Multiple Predictors Logistic Regression\n\nExercise 5\nFit a logistic regression model m_multiple predicting the probability of a callback (received_callback) given all of the variables specified in the description above. Write the logistic regression model out.\n\n\nExercise 6\nThe race variable had taken only two levels: Black and White. Based on the model results, what does the coefficient of this variable say about callback decisions?\n\n\nExercise 7\nUsing your results from m_multiple, estimate the probability of receiving a callback for a job in Chicago where the candidate lists 14 years experience, no honors, no military experience, includes an email address, and has a first name that implies they are a White male. How do these results differ from someone who has a first name that implies they are a Black male?\n\n\nReminder: Unlike \\(R^2\\) (which we used in multiple linear regression), when using AIC for model selection, models with a lower AIC value are considered to be “better.” Also, AIC provides information about the quality of a model relative to other models, but does not provide information about the overall quality of a model.\n\n\nExercise 8\nConsidering the results from the model you just fit and using a backward elimination strategy, remove any variables from the m_multiple model fit previously to identify the most parsimonious model. Store this in m_resume. Utilize AIC (Akaike information criterion) for model comparison."
+  },
+  {
     "objectID": "content/labs/01-lab-intro-r.html",
     "href": "content/labs/01-lab-intro-r.html",
     "title": "Lab 01 - Tooling",
@@ -803,6 +831,419 @@
     "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
     "section": "Questions",
     "text": "Questions\nQuestion 1 (0.75 points) - How many FIVB and AVP matches are included in this dataset?\n\ndf |> \n  group_by(circuit) |>\n  count()\n\n# A tibble: 2 × 2\n# Groups:   circuit [2]\n  circuit     n\n  <chr>   <int>\n1 AVP      2656\n2 FIVB     9043\n\n\n\n2656 AVP\n9043 FIVB\n\nQuestion 2 (0.75 points) - Find the match with the longest duration. a. Where was this tournament played (City & Country)? b. How long did the match last? c. Who were the two winners?\n\ndf |> \n  slice(which.max(duration))\n\n# A tibble: 1 × 65\n  circuit tournament country   year date       gender match…¹ w_pla…² w_p1_bir…³\n  <chr>   <chr>      <chr>    <dbl> <date>     <chr>    <dbl> <chr>   <date>    \n1 AVP     Austin     United …  2018 2018-05-17 M           37 Nathan… 1991-06-15\n# … with 56 more variables: w_p1_age <dbl>, w_p1_hgt <dbl>, w_p1_country <chr>,\n#   w_player2 <chr>, w_p2_birthdate <date>, w_p2_age <dbl>, w_p2_hgt <dbl>,\n#   w_p2_country <chr>, w_rank <chr>, l_player1 <chr>, l_p1_birthdate <date>,\n#   l_p1_age <dbl>, l_p1_hgt <dbl>, l_p1_country <chr>, l_player2 <chr>,\n#   l_p2_birthdate <date>, l_p2_age <dbl>, l_p2_hgt <dbl>, l_p2_country <chr>,\n#   l_rank <chr>, score <chr>, duration <time>, bracket <chr>, round <chr>,\n#   w_p1_tot_attacks <dbl>, w_p1_tot_kills <dbl>, w_p1_tot_errors <dbl>, …\n\n\n\nAustin, USA\n1h 42 min\nNathan Yang & Steven Irvin\n\n\nQuestion 3 (1.5 points) - Across all tournaments included in this dataset, which teams have won the most tournaments? Your response should include both the winning players, their gender, and the number of tournaments they’ve won in descending order. Who has the most wins? How many men’s and how many women’s teams are in the top 10?\nNote: “winning a tournament” is indicated by winning either a “Gold Medal” (FIVB) or “Finals” (AVP) match, specified in the bracket column.\n\ndf |> \n  filter(bracket %in% c(\"Gold Medal\", \"Finals\")) |> \n  group_by(w_player1, w_player2, gender) |>\n  count() |> \n  arrange(desc(n)) |>\n  head(10)\n\n# A tibble: 10 × 4\n# Groups:   w_player1, w_player2, gender [10]\n   w_player1              w_player2                 gender     n\n   <chr>                  <chr>                     <chr>  <int>\n 1 Alix Klineman          \"April Ross\"              W         11\n 2 Anders Mol             \"Christian Sorum\"         M         10\n 3 Melissa Humana-Paredes \"Sarah Pavan\"             W          6\n 4 Nick Lucena            \"Phil Dalhausser\"         M          6\n 5 Jake Gibb              \"Taylor Crabb\"            M          5\n 6 Jingzhe Wang           \"Shuhui Wen\"              W          5\n 7 Agatha Bednarczuk      \"Eduarda \\\"Duda\\\" Lisboa\" W          4\n 8 Aleksandrs Samoilovs   \"Janis Smedins\"           M          4\n 9 Betsi Flint            \"Emily Day\"               W          4\n10 Alexander Brouwer      \"Robert Meeuwsen\"         M          3\n\n\n\nAlix Klineman and April Ross have won the most tournaments\nThere are 5 men’s teams and 5 women’s teams\n\nQuestion 4 (1.5 points) - Of only the AVP tournaments included in this dataset, how many different cities hosted tournaments in 2018 and 2019? And, which cities (if any) hosted a tournament in both 2018 and 2019?\nNote that tournaments are named for the city hosting the tournament.\n\n# distinct locations\ndf |> \n  filter(circuit == 'AVP') |>\n  distinct(tournament)\n\n# A tibble: 9 × 1\n  tournament      \n  <chr>           \n1 Austin          \n2 New York        \n3 Seattle         \n4 San Francisco   \n5 Hermosa Beach   \n6 Manhattan Beach \n7 Chicago         \n8 Waikiki         \n9 Huntington Beach\n\n\n\n9 distinct locations\n\n\nlocations <- df |> \n  filter(circuit == 'AVP') |>\n  group_by(year, date) |> \n    distinct(tournament) \n\ndf |>\n  filter(circuit == \"AVP\") |>\n  group_by(year, date) |>\n  distinct(tournament) |>\n  group_by(tournament) |>\n  count() |>\n  filter(n > 1)\n\n# A tibble: 6 × 2\n# Groups:   tournament [6]\n  tournament          n\n  <chr>           <int>\n1 Austin              2\n2 Chicago             2\n3 Hermosa Beach       2\n4 Manhattan Beach     2\n5 New York            2\n6 Seattle             2\n\n\n\n6 locations were duplicates between 2018 and 2019, including Chicago, Manhattan Beach, Hermosa Beach, Seattle, New York, and Austin\n\nQuestion 5 (2.5 points) - Prof Ellis plays a lot of women’s beach volleyball and is only 5’5” (65 inches). Despite not having the sheer talent or raw athletic ability to make it as a professional volleyball player, she wonders if she ever had a chance at her height. To help her out, answer each of the following: a. Who was the shortest women’s player to compete in a tournament in 2018/2019? b. How tall are they? c. Did they win a tournament in 2018 or 2019?\nReminder: there are 4 players in each match whose height should be considered.\n\n# find shortest in each column\ndf |>\n  filter(gender == \"W\") |>\n  summarize(min_p1 = min(w_p1_hgt, na.rm=TRUE), \n            min_p2  = min(w_p2_hgt, na.rm=TRUE), \n            min_l_p1 = min(l_p1_hgt, na.rm=TRUE),\n            min_l_p2 = min(l_p2_hgt, na.rm=TRUE))\n\n# A tibble: 1 × 4\n  min_p1 min_p2 min_l_p1 min_l_p2\n   <dbl>  <dbl>    <dbl>    <dbl>\n1     63     64       62       61\n\n# determine the shortest player\ndf |> filter(l_p2_hgt == 61)\n\n# A tibble: 2 × 65\n  circuit tournament  country  year date       gender match…¹ w_pla…² w_p1_bir…³\n  <chr>   <chr>       <chr>   <dbl> <date>     <chr>    <dbl> <chr>   <date>    \n1 FIVB    Visakhapat… India    2019 2019-02-28 W            7 Meliss… 1995-01-27\n2 FIVB    Visakhapat… India    2019 2019-02-28 W           16 Ekater… 1990-11-06\n# … with 56 more variables: w_p1_age <dbl>, w_p1_hgt <dbl>, w_p1_country <chr>,\n#   w_player2 <chr>, w_p2_birthdate <date>, w_p2_age <dbl>, w_p2_hgt <dbl>,\n#   w_p2_country <chr>, w_rank <chr>, l_player1 <chr>, l_p1_birthdate <date>,\n#   l_p1_age <dbl>, l_p1_hgt <dbl>, l_p1_country <chr>, l_player2 <chr>,\n#   l_p2_birthdate <date>, l_p2_age <dbl>, l_p2_hgt <dbl>, l_p2_country <chr>,\n#   l_rank <chr>, score <chr>, duration <time>, bracket <chr>, round <chr>,\n#   w_p1_tot_attacks <dbl>, w_p1_tot_kills <dbl>, w_p1_tot_errors <dbl>, …\n\n\nPerumal Yogeshwari was the shortest to compete (at 61 inches). By deduction, since this is the l_p2 column, we know that she did not win any tournaments.\nQuestion 6 (3 pts) - Which country has hosted the most FIVB tournaments? Did this differ by year? Generate a visualization that shows how many FIVB tournaments each country hosted. Allow viewer to visualize this by year. And, be sure each tournament is only counted once (regardless of how many games were played).\n\ndf |>\n  filter(circuit == 'FIVB') |>\n  distinct(tournament, year, .keep_all = TRUE) |>\n  ggplot(aes(y=fct_infreq(country))) + \n  geom_bar() + \n  facet_wrap(~year) +\n  labs(y=NULL,\n       x=\"Count\",\n       title = \"Number of FIVB tournaments hosted by each country\") + \n  theme_bw() +\n  theme(plot.title.position = \"plot\")\n\n\n\n\nQuestion 7 (3 pts) - Recreate the plot included below using the data you’ve been working with. Once you have created the visualization, in no more than one paragraph, describe what you think the point of this visualization might be.\nHint: The visualization uses the variable avg_team_height, which is not included in the provided data frame. You will have to create avg_team_height yourself, be determining the average (mean) team height for each winning team.\n\n\ndf |>\n  filter(circuit == 'AVP') |>\n  mutate(avg_team_height = (w_p1_hgt + w_p2_hgt)/2) |>\n  ggplot(aes(x = fct_infreq(w_p1_country), y = avg_team_height, fill=w_p1_country)) +\n  geom_boxplot() + \n  facet_wrap(~gender, \n             scales=\"free_y\", \n             nrow=2) +\n  labs(y = 'Average Team Height (in)',\n       x = 'Country',\n       title = 'Average team heights for AVP match winners in 2018 and 2019') +\n  theme(plot.title.position = \"plot\") +\n  guides(fill=\"none\") \n\nWarning: Removed 1288 rows containing non-finite values (`stat_boxplot()`).\n\n\n\n\n\nVisualizes which countries have the tallest winning teams on average. For men, we see that players from the Netherlands are quite tall. For Women, it’s the US and Canada.\n\nQuestion 8 (1 pts) - If you were in charge of designing the plot you just recreated in the plot above, what changes would you make to improve its effectiveness as a visualization? (You do not have to write any code for this question, just explain the different design/viz choices you would make.)\n\n\nswap axes\naccurate/more informative labelling labeling\nmeaningful ordering of countries (geography?)\nimproved color choices (flag colors?)\nincrease text size\nremove background\netc."
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#qa",
+    "href": "content/lectures/14-logistic-regression-slides.html#qa",
+    "title": "14-logistic-regression",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: Understanding the meaning behind the heat maps. How is it collinear regarding race and not age? What would collinearity look like if it were correlated with age?\nA: Great question - we’re going to continue with this today!\n\n\nQ: Are we allowed to use the analysis we use in class, for our analysis for the case study? As long as we understand it, can we just copy and paste?\nA: Kind of. What we discuss in class will help answer Q2 about collinearity…and will get you well on your way to answering Q1 about the relationship between RTC laws and violent crime. So, yes, you can copy+paste anything from class that you want, but you’ll need to additionally make some decisions to fully answer the questions.\n\n\nQ: I am confused about if our group accidentally works on the same lines/parts of the file for cs01, will our work be overwritten by those who push later? I’m not familiar to GitHub so I may need to explain more.\nA: If you work on the exact same lines, yes, this will cause a “merge conflict” …so it will not silently overwrite what someone else did…but it will force you to decide whose version you want to keep. Best solution is to not work on the same parts of the file at the same time."
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#adgross-self-promotion-last-lecture-wed-5pm",
+    "href": "content/lectures/14-logistic-regression-slides.html#adgross-self-promotion-last-lecture-wed-5pm",
+    "title": "14-logistic-regression",
+    "section": "[ad/gross self-promotion?] Last Lecture Wed @ 5pm",
+    "text": "[ad/gross self-promotion?] Last Lecture Wed @ 5pm\n Last Lecture: Life Lessons That Have Nothing to Do with Data or Science A UCSD Data Science Education will teach you a lot. There will be programming, data, dataviz, statistics, machine learning, linear algebra, ethics, capstone projects, and domain knowledge galore. But, these courses will not teach you the very specific lessons that Prof Ellis has learned along her journey. Come hear the advice that took Prof Ellis decades to receive, their surrounding stories, and the lessons she hopes you learn faster than she did in one jam-packed chat.\nThe Last Lecture Series is a huge opportunity for students to gain some insight about a Professor’s journey and the obstacles they had to overcome to get to where they are today, especially coming from professors who have reached success in the field of data science. We highly encourage you to attend!\nThis event will be happening at 5pm on Wednesday, 3/1.\nWe’ll be hosting this at the SDSC Auditorium! Registration is no longer needed."
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#course-announcements",
+    "href": "content/lectures/14-logistic-regression-slides.html#course-announcements",
+    "title": "14-logistic-regression",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\n\nLecture Participation survey “due” after class\nLab07 due Friday (3/3; 11:59 PM)\nCS01 due Mon (3/6; 11:59 PM)\n\n\nNotes:\n\nlab 05 and lab06 scores posted\nlab07 will be posted later today (wanted to start the material before posting lab)\ncs01 team willing to take on an additional member?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#agenda",
+    "href": "content/lectures/14-logistic-regression-slides.html#agenda",
+    "title": "14-logistic-regression",
+    "section": "Agenda",
+    "text": "Agenda\n\nLab06 Review\nLogistic Regression\n\nSingle predictor\nMultiple predictors\n\nModel evaluation"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#lab-06-eda",
+    "href": "content/lectures/14-logistic-regression-slides.html#lab-06-eda",
+    "title": "14-logistic-regression",
+    "section": "Lab 06: EDA",
+    "text": "Lab 06: EDA\nEDA Example #1: Shenova\n\nPlotCode\n\n\n\n\n\n\nggplot(DONOHUE_DF, aes(y=Viol_crime_count, x=YEAR)) + \n  geom_line() + \n  labs(\n    title = \"Violent Crime Rate by State and Year\", \n    x = \"Year\",\n    y = \"Total Violent Crime Rate\") +\n  \n  facet_wrap(~STATE, nrow = 5)+ \n  theme(axis.text.x = element_text(angle = 90), plot.title.position = \"plot\")\n\n\n\n\nEDA Example #2\n\nPlotCode\n\n\n\n\n\n\np2 <- DONOHUE_DF |>\n  group_by(STATE) |>\n  summarise(RTC_LAW_YEAR=RTC_LAW_YEAR) |>\n  distinct() |>\n  ggplot(aes(x=RTC_LAW_YEAR)) +\n  geom_bar() +\n  scale_x_continuous(\n    breaks = seq(1980, 2015, by = 1)\n  ) +\n  labs(\n    title = \"Distribution of RTC Law Years\",\n    x = \"RTC Law Year\", y = \"Count\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 90), plot.title.position = \"plot\")\np2\n\n\n\n\nEDA Example #3: Sebastian\n\nPlotCode\n\n\n\n\n\n\nlibrary(maps)\n\n# load state map data\nstates_map <- map_data(\"state\")\n\n# merge state map data with DONOHUE_DF data\nDONOHUE_DF_map <- merge(states_map, DONOHUE_DF, by.x = \"region\", by.y = \"STATE\")\n\n# plot map using ggplot2\nggplot() +\n  geom_polygon(data = DONOHUE_DF_map, aes(x = long, y = lat, group = group, fill = cut(Viol_crime_rate_1k, breaks = c(0, 3, 4, 5, 6, 7, 8, 9, 10), labels = c(\"0-3\", \"3-4\", \"4-5\", \"5-6\", \"6-7\", \"7-8\", \"8-9\", \"9-10\"))), color = \"white\", size = 0.1) +\n  coord_fixed() +\n  theme_void() +\n  scale_fill_brewer(name = \"Violent Crime Rate per 1k\", palette = \"YlOrRd\", na.value = \"white\",\n                    labels = c(\"0-3\", \"3-4\", \"4-5\", \"5-6\", \"6-7\", \"7-8\", \"8-9\", \"9-10\"),\n                    breaks = c(\"0-3\", \"3-4\", \"4-5\", \"5-6\", \"6-7\", \"7-8\", \"8-9\", \"9-10\")) +\n  labs(title = \"Southern States Have the Highest Violent Crime Rates\",\n       subtitle = \"Violent Crime Rates per 1000 in Each State\",\n       caption = \"Note: White areas indicate missing data\") +\n  theme(plot.title = element_text(size = 15, face = \"bold\"),\n        plot.subtitle = element_text(size = 12),\n        plot.caption = element_text(size = 8, hjust = 0),\n        legend.position = \"bottom\",\n        legend.title.align = 0.5,\n        legend.text = element_text(size = 6),\n        legend.title = element_text(size = 8))"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#lab06-brainstorming",
+    "href": "content/lectures/14-logistic-regression-slides.html#lab06-brainstorming",
+    "title": "14-logistic-regression",
+    "section": "Lab06: Brainstorming",
+    "text": "Lab06: Brainstorming\n\n\nFocusing in on a variable in the data (i.e. poverty, # of police officers, etc.) and answering more detailed questions about it (in relation to main question)\nFocusing in on a demographic subset (i.e. specific race or specific age group) and asking the questions posed within that group specifically\nAnalyzing with a focus on geographic differences (i.e. border states, specific states - be sure to explain decision)\nFocusing on a different aspect of guns (i.e. accidental fatalities, specific types of crimes, specific type of carry, etc.)\nFocus in and go deep on a specific period of time\nStudying the relationship between gun laws and violent crime rates in other countries\nConsider a “new” but related variable (i.e. “overpolicing”)"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#spam-filters",
+    "href": "content/lectures/14-logistic-regression-slides.html#spam-filters",
+    "title": "14-logistic-regression",
+    "section": "Spam filters",
+    "text": "Spam filters\n\n\n\nData from 3921 emails and 21 variables on them\nOutcome: whether the email is spam or not\nPredictors: number of characters, whether the email had “Re:” in the subject, time at which email was sent, number of times the word “inherit” shows up in the email, etc.\n\n\n\nlibrary(openintro)\nglimpse(email)\n\nRows: 3,921\nColumns: 21\n$ spam         <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ to_multiple  <fct> 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ from         <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ cc           <int> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2, 1, 0, 2, 0, …\n$ sent_email   <fct> 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, …\n$ time         <dttm> 2011-12-31 22:16:41, 2011-12-31 23:03:59, 2012-01-01 08:…\n$ image        <dbl> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ attach       <dbl> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ dollar       <dbl> 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, …\n$ winner       <fct> no, no, no, no, no, no, no, no, no, no, no, no, no, no, n…\n$ inherit      <dbl> 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ viagra       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ password     <dbl> 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …\n$ num_char     <dbl> 11.370, 10.504, 7.773, 13.256, 1.231, 1.091, 4.837, 7.421…\n$ line_breaks  <int> 202, 202, 192, 255, 29, 25, 193, 237, 69, 68, 25, 79, 191…\n$ format       <fct> 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, …\n$ re_subj      <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, …\n$ exclaim_subj <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …\n$ urgent_subj  <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ exclaim_mess <dbl> 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 10, 4, 10, 20, 0…\n$ number       <fct> big, small, small, small, none, none, big, small, small, …"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#section",
+    "href": "content/lectures/14-logistic-regression-slides.html#section",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ Would you expect longer or shorter emails to be spam??\n\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  spam  mean_num_char\n  <fct>         <dbl>\n1 0             11.3 \n2 1              5.44"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#section-1",
+    "href": "content/lectures/14-logistic-regression-slides.html#section-1",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ Would you expect emails that have subjects starting with “Re:”, “RE:”, “re:”, or “rE:” to be spam or not?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#modelling-spam",
+    "href": "content/lectures/14-logistic-regression-slides.html#modelling-spam",
+    "title": "14-logistic-regression",
+    "section": "Modelling spam",
+    "text": "Modelling spam\n\n\nBoth number of characters and whether the message has “re:” in the subject might be related to whether the email is spam. How do we come up with a model that will let us explore this relationship?\nFor simplicity, we’ll focus on the number of characters (num_char) as predictor, but the model we describe can be expanded to take multiple predictors as well."
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#modelling-spam-1",
+    "href": "content/lectures/14-logistic-regression-slides.html#modelling-spam-1",
+    "title": "14-logistic-regression",
+    "section": "Modelling spam",
+    "text": "Modelling spam\nThis isn’t something we can reasonably fit a linear model to – we need something different!"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#framing-the-problem",
+    "href": "content/lectures/14-logistic-regression-slides.html#framing-the-problem",
+    "title": "14-logistic-regression",
+    "section": "Framing the problem",
+    "text": "Framing the problem\n\nWe can treat each outcome (spam and not) as successes and failures arising from separate Bernoulli trials\n\nBernoulli trial: a random experiment with exactly two possible outcomes, “success” and “failure”, in which the probability of success is the same every time the experiment is conducted\n\n\n\n\nEach Bernoulli trial can have a separate probability of success\n\n\\[ y_i ∼ Bern(p) \\]\n\n\nWe can then use the predictor variables to model that probability of success, \\(p_i\\)\nWe can’t just use a linear model for \\(p_i\\) (since \\(p_i\\) must be between 0 and 1) but we can transform the linear model to have the appropriate range"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#generalized-linear-models",
+    "href": "content/lectures/14-logistic-regression-slides.html#generalized-linear-models",
+    "title": "14-logistic-regression",
+    "section": "Generalized linear models",
+    "text": "Generalized linear models\n\n\nThis is a very general way of addressing many problems in regression and the resulting models are called generalized linear models (GLMs)\nLogistic regression is just one example"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#three-characteristics-of-glms",
+    "href": "content/lectures/14-logistic-regression-slides.html#three-characteristics-of-glms",
+    "title": "14-logistic-regression",
+    "section": "Three characteristics of GLMs",
+    "text": "Three characteristics of GLMs\nAll GLMs have the following three characteristics:\n\n\nA probability distribution describing a generative model for the outcome variable\nA linear model: \\[\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_k X_k\\]\nA link function that relates the linear model to the parameter of the outcome distribution"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#logistic-regression-2",
+    "href": "content/lectures/14-logistic-regression-slides.html#logistic-regression-2",
+    "title": "14-logistic-regression",
+    "section": "Logistic regression",
+    "text": "Logistic regression\n\n\nLogistic regression is a GLM used to model a binary categorical outcome using numerical and categorical predictors\nTo finish specifying the Logistic model we just need to define a reasonable link function that connects \\(\\eta_i\\) to \\(p_i\\): logit function\nLogit function: For \\(0\\le p \\le 1\\)\n\n\n\n\\[logit(p) = \\log\\left(\\frac{p}{1-p}\\right)\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#logit-function-visualised",
+    "href": "content/lectures/14-logistic-regression-slides.html#logit-function-visualised",
+    "title": "14-logistic-regression",
+    "section": "Logit function, visualised",
+    "text": "Logit function, visualised"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#properties-of-the-logit",
+    "href": "content/lectures/14-logistic-regression-slides.html#properties-of-the-logit",
+    "title": "14-logistic-regression",
+    "section": "Properties of the logit",
+    "text": "Properties of the logit\n\n\nThe logit function takes a value between 0 and 1 and maps it to a value between \\(-\\infty\\) and \\(\\infty\\)\nInverse logit (logistic) function: \\[g^{-1}(x) = \\frac{\\exp(x)}{1+\\exp(x)} = \\frac{1}{1+\\exp(-x)}\\]\nThe inverse logit function takes a value between \\(-\\infty\\) and \\(\\infty\\) and maps it to a value between 0 and 1\nThis formulation is also useful for interpreting the model, since the logit can be interpreted as the log odds of a success – more on this later"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#the-logistic-regression-model",
+    "href": "content/lectures/14-logistic-regression-slides.html#the-logistic-regression-model",
+    "title": "14-logistic-regression",
+    "section": "The logistic regression model",
+    "text": "The logistic regression model\n\nBased on the three GLM criteria we have\n\n\\(y_i \\sim \\text{Bern}(p_i)\\)\n\\(\\eta_i = \\beta_0+\\beta_1 x_{1,i} + \\cdots + \\beta_n x_{n,i}\\)\n\\(\\text{logit}(p_i) = \\eta_i\\)\n\n\n\n\nFrom which we get\n\n\\[p_i = \\frac{\\exp(\\beta_0+\\beta_1 x_{1,i} + \\cdots + \\beta_k x_{k,i})}{1+\\exp(\\beta_0+\\beta_1 x_{1,i} + \\cdots + \\beta_k x_{k,i})}\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#modeling-spam",
+    "href": "content/lectures/14-logistic-regression-slides.html#modeling-spam",
+    "title": "14-logistic-regression",
+    "section": "Modeling spam",
+    "text": "Modeling spam\nIn R we fit a GLM in the same way as a linear model except we:\n\nspecify the model with logistic_reg()\nuse \"glm\" instead of \"lm\" as the engine\ndefine family = \"binomial\" for the link function to be used in the model\n\n\nspam_fit <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(spam ~ num_char, data = email, family = \"binomial\")\n\ntidy(spam_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  <chr>          <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)  -1.80     0.0716     -25.1  2.04e-139\n2 num_char     -0.0621   0.00801     -7.75 9.50e- 15"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#spam-model",
+    "href": "content/lectures/14-logistic-regression-slides.html#spam-model",
+    "title": "14-logistic-regression",
+    "section": "Spam model",
+    "text": "Spam model\n\ntidy(spam_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  <chr>          <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)  -1.80     0.0716     -25.1  2.04e-139\n2 num_char     -0.0621   0.00801     -7.75 9.50e- 15\n\n\nModel:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right) = -1.80-0.0621\\times \\text{num_char}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#pspam-for-an-email-with-2000-characters",
+    "href": "content/lectures/14-logistic-regression-slides.html#pspam-for-an-email-with-2000-characters",
+    "title": "14-logistic-regression",
+    "section": "P(spam) for an email with 2000 characters",
+    "text": "P(spam) for an email with 2000 characters\n\\[\\log\\left(\\frac{p}{1-p}\\right) = -1.80-0.0621\\times 2\\]\n\n\\[\\frac{p}{1-p} = \\exp(-1.9242) = 0.15 \\rightarrow p = 0.15 \\times (1 - p)\\]\n\n\n\\[p = 0.15 - 0.15p \\rightarrow 1.15p = 0.15\\]\n\n\n\\[p = 0.15 / 1.15 = 0.13\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#section-2",
+    "href": "content/lectures/14-logistic-regression-slides.html#section-2",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ What is the probability that an email with 15000 characters is spam? What about an email with 40000 characters?\n\n\n\n\n\n\n\n\n\n\n2K chars: P(spam) = 0.13\n15K chars, P(spam) = 0.06\n40K chars, P(spam) = 0.01"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#section-3",
+    "href": "content/lectures/14-logistic-regression-slides.html#section-3",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ Would you prefer an email with 2000 characters to be labelled as spam or not? How about 40,000 characters?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#false-positive-and-negative",
+    "href": "content/lectures/14-logistic-regression-slides.html#false-positive-and-negative",
+    "title": "14-logistic-regression",
+    "section": "False positive and negative",
+    "text": "False positive and negative\n\n\n\n\n\n\n\n\n\nEmail is spam\nEmail is not spam\n\n\n\n\nEmail labelled spam\nTrue positive\nFalse positive (Type 1 error)\n\n\nEmail labelled not spam\nFalse negative (Type 2 error)\nTrue negative\n\n\n\n\n\nFalse negative rate = P(Labelled not spam | Email spam) = FN / (TP + FN)\nFalse positive rate = P(Labelled spam | Email not spam) = FP / (FP + TN)"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#sensitivity-and-specificity-1",
+    "href": "content/lectures/14-logistic-regression-slides.html#sensitivity-and-specificity-1",
+    "title": "14-logistic-regression",
+    "section": "Sensitivity and Specificity",
+    "text": "Sensitivity and Specificity\n\n\n\n\n\n\n\n\n\nEmail is spam\nEmail is not spam\n\n\n\n\nEmail labelled spam\nTrue positive\nFalse positive (Type 1 error)\n\n\nEmail labelled not spam\nFalse negative (Type 2 error)\nTrue negative\n\n\n\n\n\nSensitivity = P(Labelled spam | Email spam) = TP / (TP + FN)\n\nSensitivity = 1 − False negative rate\n\nSpecificity = P(Labelled not spam | Email not spam) = TN / (FP + TN)\n\nSpecificity = 1 − False positive rate\n\n\n\n\n❓ If you were designing a spam filter, would you want sensitivity and specificity to be high or low? What are the trade-offs associated with each decision?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#modeling-spam-multiple-predictors",
+    "href": "content/lectures/14-logistic-regression-slides.html#modeling-spam-multiple-predictors",
+    "title": "14-logistic-regression",
+    "section": "Modeling Spam : Multiple predictors",
+    "text": "Modeling Spam : Multiple predictors\n\nspam_mult <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(spam ~ num_char + to_multiple + re_subj, data = email, family = \"binomial\")\n\ntidy(spam_mult)\n\n# A tibble: 4 × 5\n  term         estimate std.error statistic  p.value\n  <chr>           <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -1.20     0.0752     -16.0  2.21e-57\n2 num_char      -0.0686   0.00781     -8.78 1.57e-18\n3 to_multiple1  -2.14     0.299       -7.18 6.92e-13\n4 re_subj1      -3.12     0.360       -8.66 4.70e-18"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#model-multiple-predictors",
+    "href": "content/lectures/14-logistic-regression-slides.html#model-multiple-predictors",
+    "title": "14-logistic-regression",
+    "section": "Model: Multiple predictors",
+    "text": "Model: Multiple predictors\n\ntidy(spam_mult)\n\n# A tibble: 4 × 5\n  term         estimate std.error statistic  p.value\n  <chr>           <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -1.20     0.0752     -16.0  2.21e-57\n2 num_char      -0.0686   0.00781     -8.78 1.57e-18\n3 to_multiple1  -2.14     0.299       -7.18 6.92e-13\n4 re_subj1      -3.12     0.360       -8.66 4.70e-18\n\n\n\n\\[\n\\begin{aligned}\nlog_e \\left(\\frac{p}{1 - p}\\right) &= - 1.20 - 0.07 \\times \\texttt{num_char} \\\\\n&\\quad - 2.14\\times \\texttt{to_multiple}_{\\texttt{1}} \\\\\n&\\quad - 3.12 \\times \\texttt{re_subj}_{\\texttt{1}} \\\\\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#model-multiple-predictors-1",
+    "href": "content/lectures/14-logistic-regression-slides.html#model-multiple-predictors-1",
+    "title": "14-logistic-regression",
+    "section": "Model: Multiple predictors",
+    "text": "Model: Multiple predictors\nSo for an email with 4,000 characters (4), addressed to a single recipient (0), and that did start with “re:” in the subject line (1)…\n\\[\n\\begin{aligned}\nlog_e \\left(\\frac{p}{1 - p}\\right) = - 1.20 - 0.07 \\times 4 - 2.14\\times 0 - 3.12 \\times 1\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#model-multiple-predictors-2",
+    "href": "content/lectures/14-logistic-regression-slides.html#model-multiple-predictors-2",
+    "title": "14-logistic-regression",
+    "section": "Model: Multiple predictors",
+    "text": "Model: Multiple predictors\n\\[\n\\begin{aligned}\nlog_e \\left(\\frac{p}{1 - p}\\right) = - 2.2\n\\end{aligned}\n\\]\n\n…solve for \\(\\widehat{p}\\)\n\\[\n\\begin{aligned}\n\\frac{e^{-2.2}}{1 + e^{-2.2}} = 0.0998 = 9.98\\%\n\\end{aligned}\n\\]\n\n\n9.98% chance that such an email would be spam"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#akaike-information-criterion-aic",
+    "href": "content/lectures/14-logistic-regression-slides.html#akaike-information-criterion-aic",
+    "title": "14-logistic-regression",
+    "section": "Akaike information criterion (AIC)",
+    "text": "Akaike information criterion (AIC)\n\npopular model selection method\nestimator of prediction error\npraised for its emphasis on model uncertainty and parsimony\nIn calculating AIC, a penalty is given for including additional variables. This penalty for added model complexity attempts to strike a balance between underfitting (too few variables in the model) and overfitting (too many variables in the model).\na lower AIC value are considered to be “better.”"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#comparing-models-aic",
+    "href": "content/lectures/14-logistic-regression-slides.html#comparing-models-aic",
+    "title": "14-logistic-regression",
+    "section": "Comparing Models: AIC",
+    "text": "Comparing Models: AIC\nSingle predictor (num_char)\n\nglance(spam_fit)\n\n# A tibble: 1 × 8\n  null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs\n          <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>\n1         2437.    3920 -1173. 2350. 2363.    2346.        3919  3921\n\n\nMultiple predictors\n\nglance(spam_mult)\n\n# A tibble: 1 × 8\n  null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs\n          <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>\n1         2437.    3920 -1032. 2071. 2097.    2063.        3917  3921"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression-slides.html#suggested-reading",
+    "href": "content/lectures/14-logistic-regression-slides.html#suggested-reading",
+    "title": "14-logistic-regression",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\nIntroduction to Modern Statistics Chapter 9: Logistic Regression\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html",
+    "href": "content/lectures/14-logistic-regression.html",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "Q: Understanding the meaning behind the heat maps. How is it collinear regarding race and not age? What would collinearity look like if it were correlated with age?\nA: Great question - we’re going to continue with this today!\n\n\nQ: Are we allowed to use the analysis we use in class, for our analysis for the case study? As long as we understand it, can we just copy and paste?\nA: Kind of. What we discuss in class will help answer Q2 about collinearity…and will get you well on your way to answering Q1 about the relationship between RTC laws and violent crime. So, yes, you can copy+paste anything from class that you want, but you’ll need to additionally make some decisions to fully answer the questions.\n\n\nQ: I am confused about if our group accidentally works on the same lines/parts of the file for cs01, will our work be overwritten by those who push later? I’m not familiar to GitHub so I may need to explain more.\nA: If you work on the exact same lines, yes, this will cause a “merge conflict” …so it will not silently overwrite what someone else did…but it will force you to decide whose version you want to keep. Best solution is to not work on the same parts of the file at the same time.\n\n\n\n\n Last Lecture: Life Lessons That Have Nothing to Do with Data or Science A UCSD Data Science Education will teach you a lot. There will be programming, data, dataviz, statistics, machine learning, linear algebra, ethics, capstone projects, and domain knowledge galore. But, these courses will not teach you the very specific lessons that Prof Ellis has learned along her journey. Come hear the advice that took Prof Ellis decades to receive, their surrounding stories, and the lessons she hopes you learn faster than she did in one jam-packed chat.\nThe Last Lecture Series is a huge opportunity for students to gain some insight about a Professor’s journey and the obstacles they had to overcome to get to where they are today, especially coming from professors who have reached success in the field of data science. We highly encourage you to attend!\nThis event will be happening at 5pm on Wednesday, 3/1.\nWe’ll be hosting this at the SDSC Auditorium! Registration is no longer needed.\n\n\n\nDue Dates:\n\nLecture Participation survey “due” after class\nLab07 due Friday (3/3; 11:59 PM)\nCS01 due Mon (3/6; 11:59 PM)\n\n\nNotes:\n\nlab 05 and lab06 scores posted\nlab07 will be posted later today (wanted to start the material before posting lab)\ncs01 team willing to take on an additional member?\n\n\n\n\n\n\nLab06 Review\nLogistic Regression\n\nSingle predictor\nMultiple predictors\n\nModel evaluation\n\n\n\n\nEDA Example #1: Shenova\n\nPlotCode\n\n\n\n\n\n\nggplot(DONOHUE_DF, aes(y=Viol_crime_count, x=YEAR)) + \n  geom_line() + \n  labs(\n    title = \"Violent Crime Rate by State and Year\", \n    x = \"Year\",\n    y = \"Total Violent Crime Rate\") +\n  \n  facet_wrap(~STATE, nrow = 5)+ \n  theme(axis.text.x = element_text(angle = 90), plot.title.position = \"plot\")\n\n\n\n\nEDA Example #2\n\nPlotCode\n\n\n\n\n\n\np2 <- DONOHUE_DF |>\n  group_by(STATE) |>\n  summarise(RTC_LAW_YEAR=RTC_LAW_YEAR) |>\n  distinct() |>\n  ggplot(aes(x=RTC_LAW_YEAR)) +\n  geom_bar() +\n  scale_x_continuous(\n    breaks = seq(1980, 2015, by = 1)\n  ) +\n  labs(\n    title = \"Distribution of RTC Law Years\",\n    x = \"RTC Law Year\", y = \"Count\"\n  ) +\n  theme_minimal() +\n  theme(axis.text.x = element_text(angle = 90), plot.title.position = \"plot\")\np2\n\n\n\n\nEDA Example #3: Sebastian\n\nPlotCode\n\n\n\n\n\n\nlibrary(maps)\n\n# load state map data\nstates_map <- map_data(\"state\")\n\n# merge state map data with DONOHUE_DF data\nDONOHUE_DF_map <- merge(states_map, DONOHUE_DF, by.x = \"region\", by.y = \"STATE\")\n\n# plot map using ggplot2\nggplot() +\n  geom_polygon(data = DONOHUE_DF_map, aes(x = long, y = lat, group = group, fill = cut(Viol_crime_rate_1k, breaks = c(0, 3, 4, 5, 6, 7, 8, 9, 10), labels = c(\"0-3\", \"3-4\", \"4-5\", \"5-6\", \"6-7\", \"7-8\", \"8-9\", \"9-10\"))), color = \"white\", size = 0.1) +\n  coord_fixed() +\n  theme_void() +\n  scale_fill_brewer(name = \"Violent Crime Rate per 1k\", palette = \"YlOrRd\", na.value = \"white\",\n                    labels = c(\"0-3\", \"3-4\", \"4-5\", \"5-6\", \"6-7\", \"7-8\", \"8-9\", \"9-10\"),\n                    breaks = c(\"0-3\", \"3-4\", \"4-5\", \"5-6\", \"6-7\", \"7-8\", \"8-9\", \"9-10\")) +\n  labs(title = \"Southern States Have the Highest Violent Crime Rates\",\n       subtitle = \"Violent Crime Rates per 1000 in Each State\",\n       caption = \"Note: White areas indicate missing data\") +\n  theme(plot.title = element_text(size = 15, face = \"bold\"),\n        plot.subtitle = element_text(size = 12),\n        plot.caption = element_text(size = 8, hjust = 0),\n        legend.position = \"bottom\",\n        legend.title.align = 0.5,\n        legend.text = element_text(size = 6),\n        legend.title = element_text(size = 8))\n\n\n\n\n\n\n\n\n\nFocusing in on a variable in the data (i.e. poverty, # of police officers, etc.) and answering more detailed questions about it (in relation to main question)\nFocusing in on a demographic subset (i.e. specific race or specific age group) and asking the questions posed within that group specifically\nAnalyzing with a focus on geographic differences (i.e. border states, specific states - be sure to explain decision)\nFocusing on a different aspect of guns (i.e. accidental fatalities, specific types of crimes, specific type of carry, etc.)\nFocus in and go deep on a specific period of time\nStudying the relationship between gun laws and violent crime rates in other countries\nConsider a “new” but related variable (i.e. “overpolicing”)"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#spam-filters",
+    "href": "content/lectures/14-logistic-regression.html#spam-filters",
+    "title": "14-logistic-regression",
+    "section": "Spam filters",
+    "text": "Spam filters\n\n\n\nData from 3921 emails and 21 variables on them\nOutcome: whether the email is spam or not\nPredictors: number of characters, whether the email had “Re:” in the subject, time at which email was sent, number of times the word “inherit” shows up in the email, etc.\n\n\n\nlibrary(openintro)\nglimpse(email)\n\nRows: 3,921\nColumns: 21\n$ spam         <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ to_multiple  <fct> 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ from         <fct> 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, …\n$ cc           <int> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 2, 1, 0, 2, 0, …\n$ sent_email   <fct> 0, 0, 0, 0, 0, 0, 1, 1, 0, 0, 1, 0, 0, 1, 0, 1, 0, 0, 1, …\n$ time         <dttm> 2011-12-31 22:16:41, 2011-12-31 23:03:59, 2012-01-01 08:…\n$ image        <dbl> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ attach       <dbl> 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ dollar       <dbl> 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 2, 0, 5, 0, 0, …\n$ winner       <fct> no, no, no, no, no, no, no, no, no, no, no, no, no, no, n…\n$ inherit      <dbl> 0, 0, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ viagra       <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ password     <dbl> 0, 0, 0, 0, 2, 2, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …\n$ num_char     <dbl> 11.370, 10.504, 7.773, 13.256, 1.231, 1.091, 4.837, 7.421…\n$ line_breaks  <int> 202, 202, 192, 255, 29, 25, 193, 237, 69, 68, 25, 79, 191…\n$ format       <fct> 1, 1, 1, 1, 0, 0, 1, 1, 0, 1, 1, 0, 1, 1, 1, 1, 1, 1, 0, …\n$ re_subj      <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 1, 1, 1, 0, 1, 1, …\n$ exclaim_subj <dbl> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 0, 0, …\n$ urgent_subj  <fct> 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, …\n$ exclaim_mess <dbl> 0, 1, 6, 48, 1, 1, 1, 18, 1, 0, 2, 1, 0, 10, 4, 10, 20, 0…\n$ number       <fct> big, small, small, small, none, none, big, small, small, …"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#section",
+    "href": "content/lectures/14-logistic-regression.html#section",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ Would you expect longer or shorter emails to be spam??\n\n\n\n\n\n\n\n\n\n\n\n# A tibble: 2 × 2\n  spam  mean_num_char\n  <fct>         <dbl>\n1 0             11.3 \n2 1              5.44"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#section-1",
+    "href": "content/lectures/14-logistic-regression.html#section-1",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ Would you expect emails that have subjects starting with “Re:”, “RE:”, “re:”, or “rE:” to be spam or not?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#modelling-spam",
+    "href": "content/lectures/14-logistic-regression.html#modelling-spam",
+    "title": "14-logistic-regression",
+    "section": "Modelling spam",
+    "text": "Modelling spam\n\n\nBoth number of characters and whether the message has “re:” in the subject might be related to whether the email is spam. How do we come up with a model that will let us explore this relationship?\nFor simplicity, we’ll focus on the number of characters (num_char) as predictor, but the model we describe can be expanded to take multiple predictors as well."
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#modelling-spam-1",
+    "href": "content/lectures/14-logistic-regression.html#modelling-spam-1",
+    "title": "14-logistic-regression",
+    "section": "Modelling spam",
+    "text": "Modelling spam\nThis isn’t something we can reasonably fit a linear model to – we need something different!"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#framing-the-problem",
+    "href": "content/lectures/14-logistic-regression.html#framing-the-problem",
+    "title": "14-logistic-regression",
+    "section": "Framing the problem",
+    "text": "Framing the problem\n\nWe can treat each outcome (spam and not) as successes and failures arising from separate Bernoulli trials\n\nBernoulli trial: a random experiment with exactly two possible outcomes, “success” and “failure”, in which the probability of success is the same every time the experiment is conducted\n\n\n\n\nEach Bernoulli trial can have a separate probability of success\n\n\\[ y_i ∼ Bern(p) \\]\n\n\nWe can then use the predictor variables to model that probability of success, \\(p_i\\)\nWe can’t just use a linear model for \\(p_i\\) (since \\(p_i\\) must be between 0 and 1) but we can transform the linear model to have the appropriate range"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#generalized-linear-models",
+    "href": "content/lectures/14-logistic-regression.html#generalized-linear-models",
+    "title": "14-logistic-regression",
+    "section": "Generalized linear models",
+    "text": "Generalized linear models\n\n\nThis is a very general way of addressing many problems in regression and the resulting models are called generalized linear models (GLMs)\nLogistic regression is just one example"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#three-characteristics-of-glms",
+    "href": "content/lectures/14-logistic-regression.html#three-characteristics-of-glms",
+    "title": "14-logistic-regression",
+    "section": "Three characteristics of GLMs",
+    "text": "Three characteristics of GLMs\nAll GLMs have the following three characteristics:\n\n\nA probability distribution describing a generative model for the outcome variable\nA linear model: \\[\\eta = \\beta_0 + \\beta_1 X_1 + \\cdots + \\beta_k X_k\\]\nA link function that relates the linear model to the parameter of the outcome distribution"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#logistic-regression-2",
+    "href": "content/lectures/14-logistic-regression.html#logistic-regression-2",
+    "title": "14-logistic-regression",
+    "section": "Logistic regression",
+    "text": "Logistic regression\n\n\nLogistic regression is a GLM used to model a binary categorical outcome using numerical and categorical predictors\nTo finish specifying the Logistic model we just need to define a reasonable link function that connects \\(\\eta_i\\) to \\(p_i\\): logit function\nLogit function: For \\(0\\le p \\le 1\\)\n\n\n\n\\[logit(p) = \\log\\left(\\frac{p}{1-p}\\right)\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#logit-function-visualised",
+    "href": "content/lectures/14-logistic-regression.html#logit-function-visualised",
+    "title": "14-logistic-regression",
+    "section": "Logit function, visualised",
+    "text": "Logit function, visualised"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#properties-of-the-logit",
+    "href": "content/lectures/14-logistic-regression.html#properties-of-the-logit",
+    "title": "14-logistic-regression",
+    "section": "Properties of the logit",
+    "text": "Properties of the logit\n\n\nThe logit function takes a value between 0 and 1 and maps it to a value between \\(-\\infty\\) and \\(\\infty\\)\nInverse logit (logistic) function: \\[g^{-1}(x) = \\frac{\\exp(x)}{1+\\exp(x)} = \\frac{1}{1+\\exp(-x)}\\]\nThe inverse logit function takes a value between \\(-\\infty\\) and \\(\\infty\\) and maps it to a value between 0 and 1\nThis formulation is also useful for interpreting the model, since the logit can be interpreted as the log odds of a success – more on this later"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#the-logistic-regression-model",
+    "href": "content/lectures/14-logistic-regression.html#the-logistic-regression-model",
+    "title": "14-logistic-regression",
+    "section": "The logistic regression model",
+    "text": "The logistic regression model\n\nBased on the three GLM criteria we have\n\n\\(y_i \\sim \\text{Bern}(p_i)\\)\n\\(\\eta_i = \\beta_0+\\beta_1 x_{1,i} + \\cdots + \\beta_n x_{n,i}\\)\n\\(\\text{logit}(p_i) = \\eta_i\\)\n\n\n\n\nFrom which we get\n\n\\[p_i = \\frac{\\exp(\\beta_0+\\beta_1 x_{1,i} + \\cdots + \\beta_k x_{k,i})}{1+\\exp(\\beta_0+\\beta_1 x_{1,i} + \\cdots + \\beta_k x_{k,i})}\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#modeling-spam",
+    "href": "content/lectures/14-logistic-regression.html#modeling-spam",
+    "title": "14-logistic-regression",
+    "section": "Modeling spam",
+    "text": "Modeling spam\nIn R we fit a GLM in the same way as a linear model except we:\n\nspecify the model with logistic_reg()\nuse \"glm\" instead of \"lm\" as the engine\ndefine family = \"binomial\" for the link function to be used in the model\n\n\nspam_fit <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(spam ~ num_char, data = email, family = \"binomial\")\n\ntidy(spam_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  <chr>          <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)  -1.80     0.0716     -25.1  2.04e-139\n2 num_char     -0.0621   0.00801     -7.75 9.50e- 15"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#spam-model",
+    "href": "content/lectures/14-logistic-regression.html#spam-model",
+    "title": "14-logistic-regression",
+    "section": "Spam model",
+    "text": "Spam model\n\ntidy(spam_fit)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic   p.value\n  <chr>          <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)  -1.80     0.0716     -25.1  2.04e-139\n2 num_char     -0.0621   0.00801     -7.75 9.50e- 15\n\n\nModel:\n\\[\n\\log\\left(\\frac{p}{1-p}\\right) = -1.80-0.0621\\times \\text{num_char}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#pspam-for-an-email-with-2000-characters",
+    "href": "content/lectures/14-logistic-regression.html#pspam-for-an-email-with-2000-characters",
+    "title": "14-logistic-regression",
+    "section": "P(spam) for an email with 2000 characters",
+    "text": "P(spam) for an email with 2000 characters\n\\[\\log\\left(\\frac{p}{1-p}\\right) = -1.80-0.0621\\times 2\\]\n\n\\[\\frac{p}{1-p} = \\exp(-1.9242) = 0.15 \\rightarrow p = 0.15 \\times (1 - p)\\]\n\n\n\\[p = 0.15 - 0.15p \\rightarrow 1.15p = 0.15\\]\n\n\n\\[p = 0.15 / 1.15 = 0.13\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#section-2",
+    "href": "content/lectures/14-logistic-regression.html#section-2",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ What is the probability that an email with 15000 characters is spam? What about an email with 40000 characters?\n\n\n\n\n\n\n\n\n\n\n2K chars: P(spam) = 0.13\n15K chars, P(spam) = 0.06\n40K chars, P(spam) = 0.01"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#section-3",
+    "href": "content/lectures/14-logistic-regression.html#section-3",
+    "title": "14-logistic-regression",
+    "section": "",
+    "text": "❓ Would you prefer an email with 2000 characters to be labelled as spam or not? How about 40,000 characters?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#false-positive-and-negative",
+    "href": "content/lectures/14-logistic-regression.html#false-positive-and-negative",
+    "title": "14-logistic-regression",
+    "section": "False positive and negative",
+    "text": "False positive and negative\n\n\n\n\n\n\n\n\n\nEmail is spam\nEmail is not spam\n\n\n\n\nEmail labelled spam\nTrue positive\nFalse positive (Type 1 error)\n\n\nEmail labelled not spam\nFalse negative (Type 2 error)\nTrue negative\n\n\n\n\n\nFalse negative rate = P(Labelled not spam | Email spam) = FN / (TP + FN)\nFalse positive rate = P(Labelled spam | Email not spam) = FP / (FP + TN)"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#sensitivity-and-specificity-1",
+    "href": "content/lectures/14-logistic-regression.html#sensitivity-and-specificity-1",
+    "title": "14-logistic-regression",
+    "section": "Sensitivity and Specificity",
+    "text": "Sensitivity and Specificity\n\n\n\n\n\n\n\n\n\nEmail is spam\nEmail is not spam\n\n\n\n\nEmail labelled spam\nTrue positive\nFalse positive (Type 1 error)\n\n\nEmail labelled not spam\nFalse negative (Type 2 error)\nTrue negative\n\n\n\n\n\nSensitivity = P(Labelled spam | Email spam) = TP / (TP + FN)\n\nSensitivity = 1 − False negative rate\n\nSpecificity = P(Labelled not spam | Email not spam) = TN / (FP + TN)\n\nSpecificity = 1 − False positive rate\n\n\n\n\n❓ If you were designing a spam filter, would you want sensitivity and specificity to be high or low? What are the trade-offs associated with each decision?"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#modeling-spam-multiple-predictors",
+    "href": "content/lectures/14-logistic-regression.html#modeling-spam-multiple-predictors",
+    "title": "14-logistic-regression",
+    "section": "Modeling Spam : Multiple predictors",
+    "text": "Modeling Spam : Multiple predictors\n\nspam_mult <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(spam ~ num_char + to_multiple + re_subj, data = email, family = \"binomial\")\n\ntidy(spam_mult)\n\n# A tibble: 4 × 5\n  term         estimate std.error statistic  p.value\n  <chr>           <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -1.20     0.0752     -16.0  2.21e-57\n2 num_char      -0.0686   0.00781     -8.78 1.57e-18\n3 to_multiple1  -2.14     0.299       -7.18 6.92e-13\n4 re_subj1      -3.12     0.360       -8.66 4.70e-18"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#model-multiple-predictors",
+    "href": "content/lectures/14-logistic-regression.html#model-multiple-predictors",
+    "title": "14-logistic-regression",
+    "section": "Model: Multiple predictors",
+    "text": "Model: Multiple predictors\n\ntidy(spam_mult)\n\n# A tibble: 4 × 5\n  term         estimate std.error statistic  p.value\n  <chr>           <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -1.20     0.0752     -16.0  2.21e-57\n2 num_char      -0.0686   0.00781     -8.78 1.57e-18\n3 to_multiple1  -2.14     0.299       -7.18 6.92e-13\n4 re_subj1      -3.12     0.360       -8.66 4.70e-18\n\n\n\n\\[\n\\begin{aligned}\nlog_e \\left(\\frac{p}{1 - p}\\right) &= - 1.20 - 0.07 \\times \\texttt{num_char} \\\\\n&\\quad - 2.14\\times \\texttt{to_multiple}_{\\texttt{1}} \\\\\n&\\quad - 3.12 \\times \\texttt{re_subj}_{\\texttt{1}} \\\\\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#model-multiple-predictors-1",
+    "href": "content/lectures/14-logistic-regression.html#model-multiple-predictors-1",
+    "title": "14-logistic-regression",
+    "section": "Model: Multiple predictors",
+    "text": "Model: Multiple predictors\nSo for an email with 4,000 characters (4), addressed to a single recipient (0), and that did start with “re:” in the subject line (1)…\n\\[\n\\begin{aligned}\nlog_e \\left(\\frac{p}{1 - p}\\right) = - 1.20 - 0.07 \\times 4 - 2.14\\times 0 - 3.12 \\times 1\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#model-multiple-predictors-2",
+    "href": "content/lectures/14-logistic-regression.html#model-multiple-predictors-2",
+    "title": "14-logistic-regression",
+    "section": "Model: Multiple predictors",
+    "text": "Model: Multiple predictors\n\\[\n\\begin{aligned}\nlog_e \\left(\\frac{p}{1 - p}\\right) = - 2.2\n\\end{aligned}\n\\]\n\n…solve for \\(\\widehat{p}\\)\n\\[\n\\begin{aligned}\n\\frac{e^{-2.2}}{1 + e^{-2.2}} = 0.0998 = 9.98\\%\n\\end{aligned}\n\\]\n\n\n9.98% chance that such an email would be spam"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#akaike-information-criterion-aic",
+    "href": "content/lectures/14-logistic-regression.html#akaike-information-criterion-aic",
+    "title": "14-logistic-regression",
+    "section": "Akaike information criterion (AIC)",
+    "text": "Akaike information criterion (AIC)\n\npopular model selection method\nestimator of prediction error\npraised for its emphasis on model uncertainty and parsimony\nIn calculating AIC, a penalty is given for including additional variables. This penalty for added model complexity attempts to strike a balance between underfitting (too few variables in the model) and overfitting (too many variables in the model).\na lower AIC value are considered to be “better.”"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#comparing-models-aic",
+    "href": "content/lectures/14-logistic-regression.html#comparing-models-aic",
+    "title": "14-logistic-regression",
+    "section": "Comparing Models: AIC",
+    "text": "Comparing Models: AIC\nSingle predictor (num_char)\n\nglance(spam_fit)\n\n# A tibble: 1 × 8\n  null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs\n          <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>\n1         2437.    3920 -1173. 2350. 2363.    2346.        3919  3921\n\n\nMultiple predictors\n\nglance(spam_mult)\n\n# A tibble: 1 × 8\n  null.deviance df.null logLik   AIC   BIC deviance df.residual  nobs\n          <dbl>   <int>  <dbl> <dbl> <dbl>    <dbl>       <int> <int>\n1         2437.    3920 -1032. 2071. 2097.    2063.        3917  3921"
+  },
+  {
+    "objectID": "content/lectures/14-logistic-regression.html#suggested-reading",
+    "href": "content/lectures/14-logistic-regression.html#suggested-reading",
+    "title": "14-logistic-regression",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\nIntroduction to Modern Statistics Chapter 9: Logistic Regression"
   },
   {
     "objectID": "content/lectures/10-mlr-slides.html#qa",
@@ -3392,7 +3833,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2004, 1992, 1982, 2004, 2008, 2005, 1988, 19…\n$ STATE                     <chr> \"Oklahoma\", \"Colorado\", \"California\", \"Massa…\n$ Black_Male_15_to_19_years <dbl> 0.35688421, 0.17716789, 0.39735657, 0.325422…\n$ Black_Male_20_to_39_years <dbl> 1.19898458, 0.82228443, 1.41563516, 1.059404…\n$ Other_Male_15_to_19_years <dbl> 0.7230444, 0.1234684, 0.3479408, 0.2620596, …\n$ Other_Male_20_to_39_years <dbl> 2.0804582, 0.5386424, 1.4129075, 1.1964385, …\n$ White_Male_15_to_19_years <dbl> 2.745124, 3.111970, 3.480710, 2.972359, 2.39…\n$ White_Male_20_to_39_years <dbl> 10.518312, 15.516930, 15.493639, 11.341362, …\n$ Unemployment_rate         <dbl> 4.9, 6.0, 10.0, 5.1, 6.1, 5.0, 6.6, 5.7, 6.0…\n$ Poverty_rate              <dbl> 10.8, 10.8, 14.1, 9.3, 13.9, 11.4, 14.6, 16.…\n$ Viol_crime_count          <dbl> 17635, 20086, 201429, 29489, 43125, 18498, 9…\n$ Population                <dbl> 3525233, 3459995, 24820025, 6412281, 9309449…\n$ police_per_100k_lag       <dbl> 301.0014, 331.9947, 250.2536, 321.9915, 373.…\n$ RTC_LAW_YEAR              <dbl> 1996, 2003, Inf, Inf, 1996, 2003, 1992, 1996…\n$ RTC_LAW                   <lgl> TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 5.002506, 5.805211, 8.115584, 4.598832, 4.63…\n$ Viol_crime_rate_1k_log    <dbl> 1.6099390, 1.7587559, 2.0937862, 1.5258023, …\n$ Population_log            <dbl> 15.07546, 15.05678, 17.02716, 15.67373, 16.0…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1988, 2010, 1999, 1990, 2001, 2002, 2009, 19…\n$ STATE                     <chr> \"Colorado\", \"Louisiana\", \"Minnesota\", \"Louis…\n$ Black_Male_15_to_19_years <dbl> 0.18238783, 1.42118749, 0.14951289, 1.427718…\n$ Black_Male_20_to_39_years <dbl> 0.84704588, 4.40105558, 0.56523830, 4.549842…\n$ Other_Male_15_to_19_years <dbl> 0.12479006, 0.14583335, 0.20364326, 0.071506…\n$ Other_Male_20_to_39_years <dbl> 0.49600295, 0.58311335, 0.59976865, 0.263131…\n$ White_Male_15_to_19_years <dbl> 3.457460, 2.063673, 3.670667, 2.434123, 3.50…\n$ White_Male_20_to_39_years <dbl> 16.847639, 8.754644, 12.999727, 10.998159, 1…\n$ Unemployment_rate         <dbl> 6.5, 8.0, 2.8, 6.2, 3.8, 5.6, 8.1, 6.0, 4.7,…\n$ Poverty_rate              <dbl> 12.5, 21.5, 7.3, 23.6, 10.3, 9.5, 10.8, 12.5…\n$ Viol_crime_count          <dbl> 15548, 25241, 13085, 37914, 1435, 49578, 305…\n$ Population                <dbl> 3262279, 4544228, 4775508, 4219179, 1285692,…\n$ police_per_100k_lag       <dbl> 311.6839, 514.0367, 257.8783, 344.0243, 227.…\n$ RTC_LAW_YEAR              <dbl> 2003, 1996, 2003, 1996, 1986, 1989, Inf, 199…\n$ RTC_LAW                   <lgl> FALSE, TRUE, FALSE, FALSE, TRUE, TRUE, FALSE…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 4.765993, 5.554519, 2.740023, 8.986108, 1.11…\n$ Viol_crime_rate_1k_log    <dbl> 1.5615060, 1.7146118, 1.0079662, 2.1956799, …\n$ Population_log            <dbl> 14.99794, 15.32937, 15.37901, 15.25515, 14.0…"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#wrangling-combining-lott",
@@ -3658,7 +4099,7 @@
     "href": "content/lectures/11-cs01-data.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1994, 1988, 2003, 1986, 1994, 1998, 1980, 20…\n$ STATE                     <chr> \"Virginia\", \"New York\", \"Alaska\", \"Illinois\"…\n$ Black_Male_15_to_19_years <dbl> 0.7589527, 0.7337070, 0.1619336, 0.7291754, …\n$ Black_Male_20_to_39_years <dbl> 3.3599617, 2.7448593, 0.7031002, 2.2818860, …\n$ Other_Male_15_to_19_years <dbl> 0.12665275, 0.16034462, 1.39077811, 0.097705…\n$ Other_Male_20_to_39_years <dbl> 0.6112345, 0.7894219, 3.5594543, 0.4390262, …\n$ White_Male_15_to_19_years <dbl> 2.461521, 2.874966, 2.852190, 3.214403, 3.77…\n$ White_Male_20_to_39_years <dbl> 12.958279, 12.925951, 10.407240, 13.995156, …\n$ Unemployment_rate         <dbl> 4.9, 4.3, 7.8, 8.3, 8.8, 6.1, 6.4, 10.4, 4.5…\n$ Poverty_rate              <dbl> 10.7, 13.4, 9.6, 13.3, 18.6, 10.9, 15.0, 14.…\n$ Viol_crime_count          <dbl> 23437, 196396, 3877, 93454, 3931, 2946, 2658…\n$ Population                <dbl> 6536771, 17941357, 648414, 11387247, 1818490…\n$ police_per_100k_lag       <dbl> 316.4865, 395.3380, 286.2369, 300.9156, 214.…\n$ RTC_LAW_YEAR              <dbl> 1995, Inf, 1995, 2014, 1990, Inf, 1996, 1988…\n$ RTC_LAW                   <lgl> FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, FALS…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 3.585409, 10.946552, 5.979205, 8.206900, 2.1…\n$ Viol_crime_rate_1k_log    <dbl> 1.2768727, 2.3930245, 1.7882876, 2.1049753, …\n$ Population_log            <dbl> 15.69295, 16.70262, 13.38228, 16.24800, 14.4…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2002, 2008, 1997, 1989, 2001, 1989, 2000, 20…\n$ STATE                     <chr> \"Minnesota\", \"Georgia\", \"North Dakota\", \"Ken…\n$ Black_Male_15_to_19_years <dbl> 0.18866552, 1.40178012, 0.03448034, 0.363746…\n$ Black_Male_20_to_39_years <dbl> 0.7314301, 4.2616696, 0.1574238, 1.1552267, …\n$ Other_Male_15_to_19_years <dbl> 0.30438729, 0.21017706, 0.27568668, 0.029124…\n$ Other_Male_20_to_39_years <dbl> 0.9438457, 0.8562582, 0.8318967, 0.1212851, …\n$ White_Male_15_to_19_years <dbl> 3.382271, 2.199068, 3.980685, 3.655086, 3.43…\n$ White_Male_20_to_39_years <dbl> 12.422815, 9.065684, 13.493201, 14.588717, 1…\n$ Unemployment_rate         <dbl> 4.5, 6.2, 2.7, 6.4, 4.5, 4.2, 3.0, 10.6, 5.0…\n$ Poverty_rate              <dbl> 6.5, 15.5, 13.6, 16.1, 7.9, 10.8, 10.4, 14.3…\n$ Viol_crime_count          <dbl> 13428, 47353, 559, 13302, 12486, 10073, 523,…\n$ Population                <dbl> 5018935, 9504843, 640945, 3677287, 5406835, …\n$ police_per_100k_lag       <dbl> 262.6055, 565.3118, 243.3906, 195.1167, 334.…\n$ RTC_LAW_YEAR              <dbl> 2003, 1990, 1986, 1997, 2012, 2007, 1986, 19…\n$ RTC_LAW                   <lgl> FALSE, TRUE, TRUE, FALSE, FALSE, FALSE, TRUE…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 2.6754680, 4.9819866, 0.8721497, 3.6173407, …\n$ Viol_crime_rate_1k_log    <dbl> 0.9841243, 1.6058287, -0.1367942, 1.2857391,…\n$ Population_log            <dbl> 15.42873, 16.06731, 13.37070, 15.11769, 15.5…"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#wrangling-combining-lott",

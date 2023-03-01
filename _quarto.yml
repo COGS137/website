@@ -115,6 +115,8 @@ website:
             href: content/labs/05-lab-mlr.qmd
           - text: "Lab06: CS01"
             href: content/labs/06-lab-cs01.qmd
+          - text: "Lab07: Logistic Regression"
+            href: content/labs/07-lab-logistic-regression.qmd
       - section: "Lab Slides"
         contents:
           - text: "Lab01"

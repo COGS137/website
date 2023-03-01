@@ -46,7 +46,7 @@ To get started, accept the lab07 assignment (link on Canvas), clone the repo (us
 
 # Packages
 
-In this lab we will work with the `tidyverse`, `infer`, `tidymodels`, and `openintro` packages. We can load them with the following:
+In this lab we will work with the `tidyverse`, `tidymodels`, and `openintro` packages. We can load them with the following:
 
 ::: aside
 Note: If you did not install `openintro` in lecture, you'll likely have to install that using `install.packages()` first.
@@ -56,7 +56,6 @@ Note: If you did not install `openintro` in lecture, you'll likely have to insta
 ```{r load-packages, message=FALSE}
 library(tidyverse) 
 library(tidymodels)
-library(infer)
 library(openintro)
 ```
 

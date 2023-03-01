@@ -127,6 +127,8 @@ website:
             href: content/labslides/03-lab-deck.html
           - text: "Lab05"
             href: content/labslides/05-lab-deck.html
+          - text: "Lab07"
+            href: content/labslides/07-lab-deck.html
       - section: "Lab Answers"
         contents:
           - text: "Lab02: Wrangling (Ans)"

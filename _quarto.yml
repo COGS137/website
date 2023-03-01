@@ -155,6 +155,8 @@ website:
             href: content/exams/midterm_wi23-ans.qmd
       - section: "Case Studies"
         contents:
+          - text: "CS: Example"
+            href: content/cs/cs-example.qmd
           - text: "CS01"
             href: content/cs/cs01.qmd
 

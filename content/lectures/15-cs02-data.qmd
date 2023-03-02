@@ -51,7 +51,7 @@ format:
 
 **Notes**:
 
-:: incremental
+::: incremental
 - lab07 now available
 - Example case study posted
 - Final Project 
@@ -59,7 +59,7 @@ format:
   - final project group repos will be created tomorrow
 - CS02 Groups Discussion
 - No HW04 (full credit will be posted)
-::
+:::
 
 ## Agenda
 

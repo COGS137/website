@@ -51,11 +51,15 @@ format:
 
 **Notes**:
 
+:: incremental
 - lab07 now available
 - Example case study posted
 - Final Project 
   - instructions posted on website
   - final project group repos will be created tomorrow
+- CS02 Groups Discussion
+- No HW04 (full credit will be posted)
+::
 
 ## Agenda
 
@@ -521,3 +525,6 @@ glimpse(nyts_data)
 save(nyts_data, file="data/wrangled/wrangled_data_vaping.rda")
 ```
 
+## Suggested Reading
+
+-   [Case Study from OCS](https://www.opencasestudies.org/ocs-bp-vaping-case-study/)

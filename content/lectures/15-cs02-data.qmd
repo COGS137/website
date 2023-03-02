@@ -1,0 +1,523 @@
+---
+title: "15-cs02-data"
+author: "Professor Shannon Ellis"
+date: "2023-02-14"
+
+format:
+  html: 
+    output-file: 15-cs02-data.html
+    embed-resources: true
+  revealjs:
+    output-file: 15-cs02-data-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# CS02: Vaping Behaviors in American Youth (Data) {background-color="#92A86A"}
+
+## Q&A {.smaller}
+> Q: So linear regression is just for numerical variables and logistic regression is just for a binary outcome? Can we only use one or the other depending on the data? \
+> A: The model you use, be it linear regression, logistic regression, or something else is always driven by the data-generating process, the assumptions of the model, and the question asking. Specifically, for these two models, yes, the outcome variable guides the choice here. If the outcome is binary, linear regression won't work given the fact that extrapolation beyond the two possible outcomes (meaning, you can get values other than TRUE/FALSE) will always be possible with linear regression. For logistic regression, it models a binary outcome, given the constraints specified by the model. 
+
+> Q: I noticed the tremendous difference in the complexity/difficulty level between things introduced in lectures and the lab/HW assignments. I wonder if the expectation of the complexity level, for the case study, is similar to lab/HW assignments.\
+> A: So, I'd love to chat more about this from anyone who has thoughts here b/c I'm always looking for the student perspective. Partially, this is by design. The main concepts are presented in lecture, lab gives you a low-stakes environment to deepend your understanding (since it's graded on effort and there is an answer key provided), and then hw, now the third time you've seen/interacted with the material is where it's the most "difficult" because you've already seen this material before. If I presented the most complex stuff in lecture then people would leave confused b/c they just learned the basics. That said, while the course is designed this way, the leaps are not intended to feel insurmountable, so I'd love to hear more from students about where particularly they're struggling. *That all said*, I think of the case studies similar to HW. You've seen the material in lecture. You've interacted in lab. And, now, you're working in groups on your third interaction with the material. Keep in mind that we do expect this to be the work of multiple group members. One group members should not be doing all the work.
+
+> Q: Will CS02 be with the same group or a different one? \
+> A: They will be different. I'll be asking about feedback on this policy at the end of the course. Last time we kept the same groups for all case studies (there were three last time) and final projects. Students requested different groups, so I tried that this quarter and will get feedback from you all on this!
+
+> Q: I am confused about some of the code provided in the boostrapping section. \
+> A: The shortest explanation is we wanted to run the same model a whole bunch of times...but if we ran it on the same dataset, we'd get the same answer. Instead, we want to see how stable the model is by running the model with a *slightly* different set of observations each time. To do this, we remove one observation for each model. If the model is stable, removing a single data point should not change the coefficients much...but if by removing a single observation we get very different coefficient estimates, that suggests something is off with our data or model. So, we run the model on all of the subsets, with each subset being slightly different (by one observation) than the next. We store the model outputs. Then, we compare all of the results. 
+
+## Course Announcements {.smaller}
+
+**Due Dates**:
+
+- Lecture Participation survey "due" after class
+- Lab07 due tomorrow (3/3; 11:59 PM)
+- CS01 due Mon (3/6; 11:59 PM)
+  - Repo w/ Rmd AND HTML
+  - Survey completed on group work (individually; canvas for link)
+
+. . .
+
+**Notes**:
+
+- lab07 now available
+- Example case study posted
+- Final Project 
+  - instructions posted on website
+  - final project group repos will be created tomorrow
+
+## Agenda
+
+- Background
+- Data Import
+- Data Wrangling
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+
+# Background {background-color="#92A86A"}
+
+
+## Previously known before report? 
+
+![](images/15/previously-known.png)
+
+::: aside
+Source: [CDC](https://www.cdc.gov/mmwr/volumes/68/wr/mm6806e1.htm?s_cid=mm6806e1_w)
+:::
+
+
+## What e-cigarette vapors contain...
+
+![](images/15/vapors.jpeg)
+
+
+::: aside
+Source: [CDC](https://www.cdc.gov/tobacco/basic_information/e-cigarettes/images/e-cigarette-aerosol-can-contain-harmful-ingredients-desktop-700.jpg)
+:::
+
+
+## Use associated with lung injury
+
+![](images/15/lung-injury.png)
+
+Source: [Chand et al.](https://www.frontiersin.org/articles/10.3389/fphar.2019.01619/full)
+
+
+
+# Questions {background-color="#92A86A"}
+
+1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+2. How does e-cigarette use compare between males and females?
+3. What vaping brands and flavors appear to be used the most frequently?
+4. Is there a relationship between e-cigarette/vaping use and other tobacco use?
+
+
+## Limitations {.smaller}
+
+
+1. The [National Youth Tobacco Survey (NYTS)](https://www.cdc.gov/tobacco/data_statistics/surveys/nyts/index.htm) does not follow the same individual student respondents over time.  A [longitudinal study](https://www.bmj.com/about-bmj/resources-readers/publications/epidemiology-uninitiated/7-longitudinal-studies) that does follow the same individuals over time collects data called [panel data](https://en.wikipedia.org/wiki/Panel_data). The data in this study is called pooled [cross-sectional data](https://en.wikipedia.org/wiki/Cross-sectional_data), and is obtained from random collection of observations across time.
+
+2. The data include percentages of student respondents reporting use of each particular tobacco product, but the survey questions did not ask the relative amount of use of one product compared to another. For example, the survey included questions like: "What flavors of tobacco products have you used in the past 30 days?" but did not ask how often one flavor was used by the same individual over another.
+
+3. While [gender](https://www.genderspectrum.org/quick-links/understanding-gender/) and [sex](https://www.who.int/genomics/gender/en/index1.html) are not actually binary, the data used in this analysis only contain information for groups of individuals who answered the survey questions as male or female. 
+
+
+
+# The Data {background-color="#92A86A"}
+
+
+
+## The Data: Source
+
+Data come from the [National Youth Tobacco Survey (NYTS)](https://www.cdc.gov/tobacco/data_statistics/surveys/nyts/index.htm)
+- annual survey that asks students in high school and middle school (grades 6-12) about tobacco usage in the United States of America.
+- we'll use data from 2015-2019
+
+::: aside 
+Data available [here](https://www.cdc.gov/tobacco/data_statistics/surveys/nyts/data/index.html)
+:::
+
+
+## The Data: Format
+
+- One excel spreadsheet for each year
+- Corresponding [codebook](http://pbrown.ca/teaching/appliedstats/data/2019-nyts-codebook-p.pdf) (explains what each variable stores)
+
+. . .
+
+### The Data: Example
+
+![](images/15/raw-data.png)
+
+
+## Codebook Example: Variables
+
+![](images/15/codebook-1.png)
+
+
+## Codebook Example: Details
+
+![](images/15/codebook-2.png)
+
+
+## Data Import
+
+```{r, eval=FALSE}
+# only have to run this once 
+# A good time for `eval=FALSE` in code chunk
+OCSdata::load_simpler_import("ocs-bp-vaping-case-study", outpath = getwd())
+```
+
+[`r emo::ji("backhand index pointing right")` **Your Turn**: Load the data into RStudio.]{style="background-color: #ADD8E6"}
+
+. . .
+
+- The data have already been cleaned to only include columns of interest
+- will store 5 CSVs in `data/simpler_import`
+
+
+## Data Wrangling
+
+```{r}
+# read in CSVs
+nyts_data <- list.files("data/simpler_import/", 
+                        pattern = "*.csv", 
+                        full.names = TRUE) |>
+  map(~ read_csv(.))
+
+# get names
+nyts_data_names <- list.files("data/simpler_import/",
+                              pattern = "*.csv") |>
+  str_extract("nyts201[5-9]")
+
+# apply names
+names(nyts_data) <- nyts_data_names
+```
+
+
+[`r emo::ji("bulb")` How are the data stored after this code has executed?]{style="background-color: #ADD8E6"}
+
+## Data Exploration
+
+
+```{r}
+glimpse(nyts_data)
+```
+
+
+## Data Cleaning (Variable Names)
+
+::: panel-tabset
+
+### 2015
+
+```{r}
+nyts_data[["nyts2015"]] <- nyts_data[["nyts2015"]] |>
+  rename(Age = Qn1,
+         Sex = Qn2,
+         Grade = Qn3)
+```
+
+### Function
+
+```{r}
+update_survey <- function(dataset) { 
+  dataset |>
+    rename(Age = Q1,
+           Sex = Q2,
+           Grade = Q3,
+           menthol = Q50A,
+           clove_spice = Q50B,
+           fruit = Q50C,
+           chocolate = Q50D,
+           alcoholic_drink = Q50E,
+           candy_dessert_sweets = Q50F,
+           other = Q50G)
+}
+```
+
+### 2016-2018
+
+```{r}
+nyts_data <- nyts_data |> 
+  map_at(c("nyts2016", "nyts2017", "nyts2018"), update_survey)
+```
+
+
+[`r emo::ji("bulb")` **Your Turn**: Why are we only applying this function for three of the years?]{style="background-color: #ADD8E6"}
+
+### 2019
+
+Note: some of the 2019 questions use the values “.N”, ".M", “.S”, and “.Z” to indicate different types of missing data -> turn into `NA`s
+
+```{r}
+nyts_data[["nyts2019"]] <- nyts_data[["nyts2019"]] |>
+  rename(brand_ecig = Q40,
+         Age = Q1,
+         Sex = Q2,
+         Grade = Q3,
+         menthol = Q62A,
+         clove_spice = Q62B,
+         fruit = Q62C,
+         chocolate = Q62D,
+         alcoholic_drink = Q62E,
+         candy_dessert_sweets = Q62F,
+         other = Q62G) |>
+  mutate_all(~ replace(., . %in% c(".N", ".S", ".Z", ".M"), NA))
+```
+
+
+### Check
+```{r}
+map(nyts_data, names)
+```
+
+
+:::
+
+## Data Cleaning (Variable Values)
+
+Values correspond to a *category*:
+
+- `Age` Value 1 == 9 years old
+- `Grade` Value 1 == 6th grade)
+
+
+## Data Cleaning (Variable Values)
+
+::: panel-tabset
+
+### Function
+
+```{r}
+update_values <- function(dataset){
+  dataset |>
+    mutate_all(~ replace(., . %in% c("*", "**"), NA)) |>
+    mutate(Age = as.numeric(Age) + 8,
+           Grade = as.numeric(Grade) + 5) |>
+    mutate(Age = as.factor(Age),
+           Grade = as.factor(Grade),
+           Sex = as.factor(Sex)) |>
+    mutate(Sex = case_match(Sex,
+                            "1" ~ "male",
+                            "2" ~ "female")) |>
+    mutate_all(~ replace(., . %in% c("*", "**"), NA)) |>
+    mutate(Age = case_match(Age, "19" ~ ">18"),
+           Grade = case_match(Grade,
+                              "13" ~ "Ungraded/Other")) |>
+    mutate_at(vars(starts_with("E", ignore.case = FALSE),
+                   starts_with("C", ignore.case = FALSE)
+    ), list( ~ recode(., `1` = TRUE,
+                         `2`  = FALSE,
+                         .default = NA,
+                         .missing = NA)))
+}
+```
+
+[`r emo::ji("brain")` **Your Turn**: Explain what at least *one* function in here is doing?]{style="background-color: #ADD8E6"}
+
+### Apply
+
+```{r}
+nyts_data <- map(nyts_data, update_values)
+
+# function to count how many males
+count_sex <- function(dataset){dataset |> 
+    filter(Sex=='male') |> 
+    count(Sex) |> 
+    pull(n)}
+```
+
+### 2019-specific
+
+```{r}
+nyts_data[["nyts2019"]] <- nyts_data[["nyts2019"]]  |>
+  mutate(psu = as.character(psu)) |>
+  mutate(brand_ecig = recode(brand_ecig,
+                             `1` = "Other", # levels 1,8 combined to `Other`
+                             `2` = "Blu",
+                             `3` = "JUUL",
+                             `4` = "Logic",
+                             `5` = "MarkTen",
+                             `6` = "NJOY",
+                             `7` = "Vuse",
+                             `8` = "Other"))
+```
+
+### Check {.smaller}
+
+According to the codebook, we should have:  
+
+1) 8,958 males in 2015  
+2) 10,438 males in 2016  
+3) 8,881 males in 2017  
+4) 10,069 males in 2018  
+5) 9,803 males in 2019   ]
+
+```{r}
+# count how many males are in our dataset
+map(nyts_data, count_sex)
+```
+
+:::
+
+## Flavor Data (2016-2019) {.smaller}
+
+- setting missing values to FALSE, then... 
+- the TRUE values will represent those who reported using a specific flavor out of all users (rather than those that used a specific flavor compared to those who used a different flavor.)
+
+
+```{r}
+update_flavors <- function(dataset){
+  dataset |>
+    mutate_at(vars(menthol:other),
+              list(~ recode(.,
+                            `1` = TRUE,
+                            .default = FALSE,
+                            .missing = FALSE))) }
+
+nyts_data  <- nyts_data  |> 
+  map_at(vars(-nyts2015), update_flavors)
+```
+
+
+
+## Combine the data!
+
+```{r}
+nyts_data <- nyts_data |>
+  map_df(bind_rows, .id = "year") |>
+  mutate(year = as.numeric(str_remove(year, "nyts")))
+```
+
+[`r emo::ji("question")` **Your Turn**: What does this code do?]{style="background-color: #ADD8E6"}
+
+## The Data
+
+
+```{r}
+glimpse(nyts_data)
+```
+
+
+## Current vs. ever users
+
+We define these two groups as follows:
+
+1) **current** = students who used a product for >=1 day in the past 30 days  
+2) **ever** =  students who report having used or tried a product at any point in time
+
+All **current** users are therefore **ever** users but not all **ever** users are **current** users. Thus, **current** users are a subset of **ever** users.
+
+
+## What this looks like in the data..
+
+ - `EPIPE`: Students who reported they have smoked tobacco from a pipe (not hookah).  
+ - `CPIPE`: Students who reported they smoked tobacco in a pipe (not hookah) during the past 30 days. 
+ - `EROLLCIGTS`: Students who reported they have tried smoking roll-your-own cigarettes. 
+ - `CROLLCIGTS`: Students who reported they smoked roll-your-own cigarettes during the past 30 days. 
+ 
+
+## Clean up columns: tobacco
+
+```{r}
+nyts_data <- nyts_data %>%
+  mutate(tobacco_sum_ever = rowSums(select(., starts_with("E", 
+                                    ignore.case = FALSE)), na.rm = TRUE),
+         tobacco_sum_current = rowSums(select(., starts_with("C", 
+                                    ignore.case = FALSE)), na.rm = TRUE))  |>
+  mutate(tobacco_ever = case_when(tobacco_sum_ever > 0 ~ TRUE,
+                                  tobacco_sum_ever == 0 ~ FALSE),
+         tobacco_current = case_when(tobacco_sum_current > 0 ~ TRUE,
+                                     tobacco_sum_current == 0 ~ FALSE))
+```
+
+[`r emo::ji("question")` **Your Turn**: What does this code do?]{style="background-color: #ADD8E6"}
+ 
+
+## Clean up columns: e-cig/vaping vs others {.smaller}
+
+
+```{r}
+nyts_data <- nyts_data %>% 
+  mutate(ecig_sum_ever = rowSums(select(., EELCIGT), na.rm = TRUE),
+         ecig_sum_current = rowSums(select(., CELCIGT), na.rm = TRUE),
+         non_ecig_sum_ever = rowSums(select(., starts_with("E",  ignore.case = FALSE), 
+                                            -EELCIGT), na.rm = TRUE),
+         non_ecig_sum_current = rowSums(select(., starts_with("C", ignore.case = FALSE), 
+                                               -CELCIGT), na.rm = TRUE)) |>
+  mutate(ecig_ever = case_when(ecig_sum_ever > 0 ~ TRUE,
+                              ecig_sum_ever == 0 ~ FALSE),
+         ecig_current = case_when(ecig_sum_current > 0 ~ TRUE,
+                                  ecig_sum_current == 0 ~ FALSE),
+         non_ecig_ever = case_when(non_ecig_sum_ever > 0 ~ TRUE,
+                                   non_ecig_sum_ever == 0 ~ FALSE),
+         non_ecig_current = case_when(non_ecig_sum_current > 0 ~ TRUE,
+                                      non_ecig_sum_current == 0 ~ FALSE))
+```
+
+## Specify use group
+
+```{r}
+nyts_data <- nyts_data |>
+             mutate(ecig_only_ever = case_when(ecig_ever == TRUE &
+                                           non_ecig_ever == FALSE &
+                                            ecig_current == FALSE &
+                                        non_ecig_current == FALSE ~ TRUE,
+                                                             TRUE ~ FALSE),
+              ecig_only_current = case_when(ecig_current == TRUE &
+                                           non_ecig_ever == FALSE &
+                                        non_ecig_current == FALSE ~ TRUE,
+                                                            TRUE ~ FALSE),
+            non_ecig_only_ever = case_when(non_ecig_ever == TRUE &
+                                               ecig_ever == FALSE &
+                                            ecig_current == FALSE &
+                                        non_ecig_current == FALSE ~ TRUE,
+                                                            TRUE ~ FALSE),
+      non_ecig_only_current = case_when(non_ecig_current == TRUE &
+                                               ecig_ever == FALSE &
+                                            ecig_current == FALSE ~ TRUE,
+                                                            TRUE ~ FALSE),
+                        no_use = case_when(non_ecig_ever == FALSE &
+                                               ecig_ever == FALSE &
+                                            ecig_current == FALSE &
+                                        non_ecig_current == FALSE ~ TRUE,
+                                                            TRUE ~ FALSE)) %>%
+                 mutate(Group = case_when(ecig_only_ever == TRUE |
+                                       ecig_only_current == TRUE ~ "Only e-cigarettes",
+                                      non_ecig_only_ever == TRUE |
+                                   non_ecig_only_current == TRUE ~ "Only other products",
+                                                  no_use == TRUE ~ "Neither",
+                                          ecig_only_ever == FALSE &
+                                       ecig_only_current == FALSE &
+                                      non_ecig_only_ever == FALSE &
+                                   non_ecig_only_current == FALSE &
+                                                  no_use == FALSE ~ "Combination of products"))
+```
+
+## Add yearly survey totals
+
+```{r}
+nyts_data <- nyts_data |> 
+  add_count(year)
+```
+
+. . . 
+
+**The Data** 
+```{r}
+glimpse(nyts_data)
+```
+
+## Save the Data
+
+```{r, eval=FALSE}
+save(nyts_data, file="data/wrangled/wrangled_data_vaping.rda")
+```
+

@@ -69,6 +69,8 @@ website:
             href: content/lectures/13-cs01-analysis-slides.html
           - text: "14-logistic-regression"
             href: content/lectures/14-logistic-regression-slides.html
+          - text: "15-cs02-data"
+            href: content/lectures/15-cs02-data-slides.html  
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -101,6 +103,8 @@ website:
             href: content/lectures/13-cs01-analysis.html
           - text: "14-logistic-regression"
             href: content/lectures/14-logistic-regression.html
+          - text: "15-cs02-data"
+            href: content/lectures/15-cs02-data.html  
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"
@@ -163,7 +167,10 @@ website:
             href: content/cs/cs-example.qmd
           - text: "CS01"
             href: content/cs/cs01.qmd
-
+      - section: "Final"
+        contents:
+          - text: "Final Project"
+            href: content/final/final.qmd
 format:
   html:
     theme: material

@@ -61,8 +61,6 @@ color_palette <- list(gray = "#999999",
 knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
 ```
 
-## Agenda
-
 
 # Questions {background-color="#92A86A"}
 
@@ -74,7 +72,7 @@ knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, mes
 
 ## Data
 
-...will only work if you finished last set of notes.
+...will only work if you finished last set of notes (or open this week's lab).
 
 ```{r, eval=FALSE}
 load("data/wrangled/wrangled_data_vaping.rda")

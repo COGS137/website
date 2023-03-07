@@ -2279,7 +2279,7 @@
     "href": "content/lectures/16-cs02-eda-slides.html#data",
     "title": "16-cs02-eda",
     "section": "Data",
-    "text": "Data\n…will only work if you finished last set of notes.\n\nload(\"data/wrangled/wrangled_data_vaping.rda\")"
+    "text": "Data\n…will only work if you finished last set of notes (or open this week’s lab).\n\nload(\"data/wrangled/wrangled_data_vaping.rda\")"
   },
   {
     "objectID": "content/lectures/16-cs02-eda-slides.html#question",
@@ -2314,7 +2314,7 @@
     "href": "content/lectures/16-cs02-eda.html#data",
     "title": "16-cs02-eda",
     "section": "Data",
-    "text": "Data\n…will only work if you finished last set of notes.\n\nload(\"data/wrangled/wrangled_data_vaping.rda\")"
+    "text": "Data\n…will only work if you finished last set of notes (or open this week’s lab).\n\nload(\"data/wrangled/wrangled_data_vaping.rda\")"
   },
   {
     "objectID": "content/lectures/16-cs02-eda.html#question",

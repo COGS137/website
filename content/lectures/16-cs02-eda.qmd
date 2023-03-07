@@ -1,0 +1,109 @@
+---
+title: "16-cs02-eda"
+author: "Professor Shannon Ellis"
+date: "2023-03-07"
+
+format:
+  html: 
+    output-file: 16-cs02-eda.html
+    embed-resources: true
+  revealjs:
+    output-file: 16-cs02-eda-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# CS02: Vaping Behaviors in American Youth (EDA) {background-color="#92A86A"}
+
+
+
+## Course Announcements {.smaller}
+
+**Due Dates**:
+
+- Lecture Participation survey "due" after class
+- Lab08 Due Friday (CS02 EDA)
+- CS02 due Monday of Finals week (3/20)
+- Final Project due Th of Finals week (3/23)
+
+. . .
+
+**Notes**:
+
+- cs01 group work form is still open - please complete (if you haven't)
+- cs02 and final project groups/repos assigned
+- don't wait until finals week to do cs02 and final project
+
+
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+## Agenda
+
+
+# Questions {background-color="#92A86A"}
+
+1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+2. How does e-cigarette use compare between males and females?
+3. What vaping brands and flavors appear to be used the most frequently?
+4. Is there a relationship between e-cigarette/vaping use and other tobacco use?
+
+
+## Data
+
+...will only work if you finished last set of notes.
+
+```{r, eval=FALSE}
+load("data/wrangled/wrangled_data_vaping.rda")
+```
+
+## Question
+
+When is pivoting your data from wide to long (or long to wide) helpful?
+
+. . . 
+
+```{r, eval=FALSE}
+data |>
+   pivot_longer(cols = columns_to_pivot , names_to = "new_col_for_labels" , values_to = "new_col_for_values")
+```
+
+
+## EDA
+
+What do you want to know? 
+
+\[We're going to fill these in during class\]
+
+. . .
+
+How would you go about doing that?
+
+
+
+## Suggested Reading
+
+-   [Case Study from OCS](https://www.opencasestudies.org/ocs-bp-vaping-case-study/)

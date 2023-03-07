@@ -71,6 +71,8 @@ website:
             href: content/lectures/14-logistic-regression-slides.html
           - text: "15-cs02-data"
             href: content/lectures/15-cs02-data-slides.html  
+          - text: "16-cs02-eda"
+            href: content/lectures/16-cs02-eda-slides.html  
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -105,6 +107,8 @@ website:
             href: content/lectures/14-logistic-regression.html
           - text: "15-cs02-data"
             href: content/lectures/15-cs02-data.html  
+          - text: "16-cs02-eda"
+            href: content/lectures/16-cs02-eda.html  
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"
@@ -121,6 +125,8 @@ website:
             href: content/labs/06-lab-cs01.qmd
           - text: "Lab07: Logistic Regression"
             href: content/labs/07-lab-logistic-regression.qmd
+          - text: "Lab08: CS02"
+            href: content/labs/08-lab-cs02.qmd
       - section: "Lab Slides"
         contents:
           - text: "Lab01"

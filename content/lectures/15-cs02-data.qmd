@@ -273,7 +273,11 @@ nyts_data[["nyts2019"]] <- nyts_data[["nyts2019"]] |>
          alcoholic_drink = Q62E,
          candy_dessert_sweets = Q62F,
          other = Q62G) |>
-  mutate_all(~ replace(., . %in% c(".N", ".S", ".Z", ".M"), NA))
+  mutate_all(~ replace(., . %in% c(".N", ".S", ".Z", ".M", "M"), NA)) |>
+  mutate_at(vars(starts_with("E", ignore.case = FALSE),
+                 starts_with("C", ignore.case = FALSE),
+                 menthol:other), 
+            list( ~ as.numeric(.)))
 ```
 
 
@@ -312,15 +316,16 @@ update_values <- function(dataset){
                             "1" ~ "male",
                             "2" ~ "female")) |>
     mutate_all(~ replace(., . %in% c("*", "**"), NA)) |>
-    mutate(Age = case_match(Age, "19" ~ ">18"),
+    mutate(Age = case_match(Age, "19" ~ ">18", 
+                            .default = Age),
            Grade = case_match(Grade,
-                              "13" ~ "Ungraded/Other")) |>
+                              "13" ~ "Ungraded/Other",
+                              .default = Grade)) |>
     mutate_at(vars(starts_with("E", ignore.case = FALSE),
                    starts_with("C", ignore.case = FALSE)
-    ), list( ~ recode(., `1` = TRUE,
-                         `2`  = FALSE,
-                         .default = NA,
-                         .missing = NA)))
+    ), list( ~ case_match(., 1 ~ TRUE,
+                             2  ~ FALSE,
+                          .default = NA)))
 }
 ```
 
@@ -343,15 +348,15 @@ count_sex <- function(dataset){dataset |>
 ```{r}
 nyts_data[["nyts2019"]] <- nyts_data[["nyts2019"]]  |>
   mutate(psu = as.character(psu)) |>
-  mutate(brand_ecig = recode(brand_ecig,
-                             `1` = "Other", # levels 1,8 combined to `Other`
-                             `2` = "Blu",
-                             `3` = "JUUL",
-                             `4` = "Logic",
-                             `5` = "MarkTen",
-                             `6` = "NJOY",
-                             `7` = "Vuse",
-                             `8` = "Other"))
+  mutate(brand_ecig = case_match(brand_ecig,
+                             "1" ~ "Other", # levels 1,8 combined to `Other`
+                             "2" ~ "Blu",
+                             "3" ~ "JUUL",
+                             "4" ~ "Logic",
+                             "5" ~ "MarkTen",
+                             "6" ~ "NJOY",
+                             "7" ~ "Vuse",
+                             "8" ~ "Other"))
 ```
 
 ### Check {.smaller}
@@ -381,10 +386,9 @@ map(nyts_data, count_sex)
 update_flavors <- function(dataset){
   dataset |>
     mutate_at(vars(menthol:other),
-              list(~ recode(.,
-                            `1` = TRUE,
-                            .default = FALSE,
-                            .missing = FALSE))) }
+              list(~ case_match(.,
+                            1 ~ TRUE,
+                            NA ~ FALSE))) }
 
 nyts_data  <- nyts_data  |> 
   map_at(vars(-nyts2015), update_flavors)
@@ -449,7 +453,7 @@ nyts_data <- nyts_data %>%
 
 
 ```{r}
-nyts_data <- nyts_data %>% 
+nyts_data <- nyts_data %>%
   mutate(ecig_sum_ever = rowSums(select(., EELCIGT), na.rm = TRUE),
          ecig_sum_current = rowSums(select(., CELCIGT), na.rm = TRUE),
          non_ecig_sum_ever = rowSums(select(., starts_with("E",  ignore.case = FALSE), 
@@ -457,7 +461,7 @@ nyts_data <- nyts_data %>%
          non_ecig_sum_current = rowSums(select(., starts_with("C", ignore.case = FALSE), 
                                                -CELCIGT), na.rm = TRUE)) |>
   mutate(ecig_ever = case_when(ecig_sum_ever > 0 ~ TRUE,
-                              ecig_sum_ever == 0 ~ FALSE),
+                               ecig_sum_ever == 0 ~ FALSE),
          ecig_current = case_when(ecig_sum_current > 0 ~ TRUE,
                                   ecig_sum_current == 0 ~ FALSE),
          non_ecig_ever = case_when(non_ecig_sum_ever > 0 ~ TRUE,
@@ -474,7 +478,7 @@ nyts_data <- nyts_data |>
                                            non_ecig_ever == FALSE &
                                             ecig_current == FALSE &
                                         non_ecig_current == FALSE ~ TRUE,
-                                                             TRUE ~ FALSE),
+                                                            TRUE ~ FALSE),
               ecig_only_current = case_when(ecig_current == TRUE &
                                            non_ecig_ever == FALSE &
                                         non_ecig_current == FALSE ~ TRUE,
@@ -524,6 +528,8 @@ glimpse(nyts_data)
 ```{r, eval=FALSE}
 save(nyts_data, file="data/wrangled/wrangled_data_vaping.rda")
 ```
+
+Note: This code assumes `dplyr` 1.1.0. To get most up-to-date `tidyverse` packages: `install.packages("tidyverse")`. This *will* take 10-20 min to run. 
 
 ## Suggested Reading
 

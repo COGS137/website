@@ -4541,6 +4541,11 @@ vertical-align: -.125em;
   <a href="../../content/lectures/15-cs02-data-slides.html" class="sidebar-item-text sidebar-link">15-cs02-data</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/16-cs02-eda-slides.html" class="sidebar-item-text sidebar-link">16-cs02-eda</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -4631,6 +4636,11 @@ vertical-align: -.125em;
   <a href="../../content/lectures/15-cs02-data.html" class="sidebar-item-text sidebar-link active">15-cs02-data</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/16-cs02-eda.html" class="sidebar-item-text sidebar-link">16-cs02-eda</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -4674,6 +4684,11 @@ vertical-align: -.125em;
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/labs/07-lab-logistic-regression.html" class="sidebar-item-text sidebar-link">Lab07: Logistic Regression</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/08-lab-cs02.html" class="sidebar-item-text sidebar-link">Lab08: CS02</a>
   </div>
 </li>
       </ul>
@@ -5498,7 +5513,11 @@ A: The shortest explanation is we wanted to run the same model a whole bunch of 
 <span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">alcoholic_drink =</span> Q62E,</span>
 <span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a>         <span class="at">candy_dessert_sweets =</span> Q62F,</span>
 <span id="cb8-12"><a href="#cb8-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">other =</span> Q62G) <span class="sc">|&gt;</span></span>
-<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;.N&quot;</span>, <span class="st">&quot;.S&quot;</span>, <span class="st">&quot;.Z&quot;</span>, <span class="st">&quot;.M&quot;</span>), <span class="cn">NA</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb8-13"><a href="#cb8-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;.N&quot;</span>, <span class="st">&quot;.S&quot;</span>, <span class="st">&quot;.Z&quot;</span>, <span class="st">&quot;.M&quot;</span>, <span class="st">&quot;M&quot;</span>), <span class="cn">NA</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb8-14"><a href="#cb8-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">starts_with</span>(<span class="st">&quot;E&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb8-15"><a href="#cb8-15" aria-hidden="true" tabindex="-1"></a>                 <span class="fu">starts_with</span>(<span class="st">&quot;C&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb8-16"><a href="#cb8-16" aria-hidden="true" tabindex="-1"></a>                 menthol<span class="sc">:</span>other), </span>
+<span id="cb8-17"><a href="#cb8-17" aria-hidden="true" tabindex="-1"></a>            <span class="fu">list</span>( <span class="sc">~</span> <span class="fu">as.numeric</span>(.)))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-1-5" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-5-tab">
@@ -5599,16 +5618,17 @@ $nyts2019
 <span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;1&quot;</span> <span class="sc">~</span> <span class="st">&quot;male&quot;</span>,</span>
 <span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a>                            <span class="st">&quot;2&quot;</span> <span class="sc">~</span> <span class="st">&quot;female&quot;</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_all</span>(<span class="sc">~</span> <span class="fu">replace</span>(., . <span class="sc">%in%</span> <span class="fu">c</span>(<span class="st">&quot;*&quot;</span>, <span class="st">&quot;**&quot;</span>), <span class="cn">NA</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Age =</span> <span class="fu">case_match</span>(Age, <span class="st">&quot;19&quot;</span> <span class="sc">~</span> <span class="st">&quot;&gt;18&quot;</span>),</span>
-<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>           <span class="at">Grade =</span> <span class="fu">case_match</span>(Grade,</span>
-<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;13&quot;</span> <span class="sc">~</span> <span class="st">&quot;Ungraded/Other&quot;</span>)) <span class="sc">|&gt;</span></span>
-<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">starts_with</span>(<span class="st">&quot;E&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>),</span>
-<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">starts_with</span>(<span class="st">&quot;C&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>)</span>
-<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    ), <span class="fu">list</span>( <span class="sc">~</span> <span class="fu">recode</span>(., <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">TRUE</span>,</span>
-<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                         <span class="st">`</span><span class="at">2</span><span class="st">`</span>  <span class="ot">=</span> <span class="cn">FALSE</span>,</span>
-<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.default =</span> <span class="cn">NA</span>,</span>
-<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>                         <span class="at">.missing =</span> <span class="cn">NA</span>)))</span>
-<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Age =</span> <span class="fu">case_match</span>(Age, <span class="st">&quot;19&quot;</span> <span class="sc">~</span> <span class="st">&quot;&gt;18&quot;</span>, </span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> Age),</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>           <span class="at">Grade =</span> <span class="fu">case_match</span>(Grade,</span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>                              <span class="st">&quot;13&quot;</span> <span class="sc">~</span> <span class="st">&quot;Ungraded/Other&quot;</span>,</span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>                              <span class="at">.default =</span> Grade)) <span class="sc">|&gt;</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(<span class="fu">starts_with</span>(<span class="st">&quot;E&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>),</span>
+<span id="cb11-19"><a href="#cb11-19" aria-hidden="true" tabindex="-1"></a>                   <span class="fu">starts_with</span>(<span class="st">&quot;C&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>)</span>
+<span id="cb11-20"><a href="#cb11-20" aria-hidden="true" tabindex="-1"></a>    ), <span class="fu">list</span>( <span class="sc">~</span> <span class="fu">case_match</span>(., <span class="dv">1</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb11-21"><a href="#cb11-21" aria-hidden="true" tabindex="-1"></a>                             <span class="dv">2</span>  <span class="sc">~</span> <span class="cn">FALSE</span>,</span>
+<span id="cb11-22"><a href="#cb11-22" aria-hidden="true" tabindex="-1"></a>                          <span class="at">.default =</span> <span class="cn">NA</span>)))</span>
+<span id="cb11-23"><a href="#cb11-23" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p><span style="background-color: #ADD8E6">🧠 <strong>Your Turn</strong>: Explain what at least <em>one</em> function in here is doing?</span></p>
 </div>
@@ -5627,15 +5647,15 @@ $nyts2019
 <div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>nyts_data[[<span class="st">&quot;nyts2019&quot;</span>]] <span class="ot">&lt;-</span> nyts_data[[<span class="st">&quot;nyts2019&quot;</span>]]  <span class="sc">|&gt;</span></span>
 <span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">psu =</span> <span class="fu">as.character</span>(psu)) <span class="sc">|&gt;</span></span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">brand_ecig =</span> <span class="fu">recode</span>(brand_ecig,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Other&quot;</span>, <span class="co"># levels 1,8 combined to `Other`</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">2</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Blu&quot;</span>,</span>
-<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">3</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;JUUL&quot;</span>,</span>
-<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">4</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Logic&quot;</span>,</span>
-<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">5</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;MarkTen&quot;</span>,</span>
-<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">6</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;NJOY&quot;</span>,</span>
-<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">7</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Vuse&quot;</span>,</span>
-<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                             <span class="st">`</span><span class="at">8</span><span class="st">`</span> <span class="ot">=</span> <span class="st">&quot;Other&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">brand_ecig =</span> <span class="fu">case_match</span>(brand_ecig,</span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;1&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>, <span class="co"># levels 1,8 combined to `Other`</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;2&quot;</span> <span class="sc">~</span> <span class="st">&quot;Blu&quot;</span>,</span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;3&quot;</span> <span class="sc">~</span> <span class="st">&quot;JUUL&quot;</span>,</span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;4&quot;</span> <span class="sc">~</span> <span class="st">&quot;Logic&quot;</span>,</span>
+<span id="cb13-8"><a href="#cb13-8" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;5&quot;</span> <span class="sc">~</span> <span class="st">&quot;MarkTen&quot;</span>,</span>
+<span id="cb13-9"><a href="#cb13-9" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;6&quot;</span> <span class="sc">~</span> <span class="st">&quot;NJOY&quot;</span>,</span>
+<span id="cb13-10"><a href="#cb13-10" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;7&quot;</span> <span class="sc">~</span> <span class="st">&quot;Vuse&quot;</span>,</span>
+<span id="cb13-11"><a href="#cb13-11" aria-hidden="true" tabindex="-1"></a>                             <span class="st">&quot;8&quot;</span> <span class="sc">~</span> <span class="st">&quot;Other&quot;</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </div>
 <div id="tabset-2-4" class="tab-pane" role="tabpanel" aria-labelledby="tabset-2-4-tab">
@@ -5685,13 +5705,12 @@ $nyts2019
 <div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a>update_flavors <span class="ot">&lt;-</span> <span class="cf">function</span>(dataset){</span>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  dataset <span class="sc">|&gt;</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate_at</span>(<span class="fu">vars</span>(menthol<span class="sc">:</span>other),</span>
-<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="sc">~</span> <span class="fu">recode</span>(.,</span>
-<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                            <span class="st">`</span><span class="at">1</span><span class="st">`</span> <span class="ot">=</span> <span class="cn">TRUE</span>,</span>
-<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.default =</span> <span class="cn">FALSE</span>,</span>
-<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>                            <span class="at">.missing =</span> <span class="cn">FALSE</span>))) }</span>
-<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>nyts_data  <span class="ot">&lt;-</span> nyts_data  <span class="sc">|&gt;</span> </span>
-<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>nyts2015), update_flavors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>              <span class="fu">list</span>(<span class="sc">~</span> <span class="fu">case_match</span>(.,</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>                            <span class="dv">1</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>                            <span class="cn">NA</span> <span class="sc">~</span> <span class="cn">FALSE</span>))) }</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a>nyts_data  <span class="ot">&lt;-</span> nyts_data  <span class="sc">|&gt;</span> </span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">map_at</span>(<span class="fu">vars</span>(<span class="sc">-</span>nyts2015), update_flavors)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 </section>
 <section id="combine-the-data" class="level2">
@@ -5714,9 +5733,9 @@ $ year                 &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 201
 $ psu                  &lt;chr&gt; &quot;015438&quot;, &quot;015438&quot;, &quot;015438&quot;, &quot;015438&quot;, &quot;015438&quot;,…
 $ finwgt               &lt;dbl&gt; 216.7268, 324.9620, 324.9620, 397.1552, 264.8745,…
 $ stratum              &lt;chr&gt; &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, …
-$ Age                  &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ Age                  &lt;chr&gt; &quot;18&quot;, &quot;17&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;…
 $ Sex                  &lt;chr&gt; &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;fema…
-$ Grade                &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N…
+$ Grade                &lt;chr&gt; &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;…
 $ ECIGT                &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRUE…
 $ ECIGAR               &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FAL…
 $ ESLT                 &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, T…
@@ -5791,7 +5810,7 @@ $ brand_ecig           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <section id="clean-up-columns-e-cigvaping-vs-others" class="level2 smaller">
 <h2 class="smaller anchored" data-anchor-id="clean-up-columns-e-cigvaping-vs-others">Clean up columns: e-cig/vaping vs others</h2>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nyts_data <span class="ot">&lt;-</span> nyts_data <span class="sc">%&gt;%</span> </span>
+<div class="sourceCode cell-code" id="cb21"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb21-1"><a href="#cb21-1" aria-hidden="true" tabindex="-1"></a>nyts_data <span class="ot">&lt;-</span> nyts_data <span class="sc">%&gt;%</span></span>
 <span id="cb21-2"><a href="#cb21-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ecig_sum_ever =</span> <span class="fu">rowSums</span>(<span class="fu">select</span>(., EELCIGT), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb21-3"><a href="#cb21-3" aria-hidden="true" tabindex="-1"></a>         <span class="at">ecig_sum_current =</span> <span class="fu">rowSums</span>(<span class="fu">select</span>(., CELCIGT), <span class="at">na.rm =</span> <span class="cn">TRUE</span>),</span>
 <span id="cb21-4"><a href="#cb21-4" aria-hidden="true" tabindex="-1"></a>         <span class="at">non_ecig_sum_ever =</span> <span class="fu">rowSums</span>(<span class="fu">select</span>(., <span class="fu">starts_with</span>(<span class="st">&quot;E&quot;</span>,  <span class="at">ignore.case =</span> <span class="cn">FALSE</span>), </span>
@@ -5799,7 +5818,7 @@ $ brand_ecig           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb21-6"><a href="#cb21-6" aria-hidden="true" tabindex="-1"></a>         <span class="at">non_ecig_sum_current =</span> <span class="fu">rowSums</span>(<span class="fu">select</span>(., <span class="fu">starts_with</span>(<span class="st">&quot;C&quot;</span>, <span class="at">ignore.case =</span> <span class="cn">FALSE</span>), </span>
 <span id="cb21-7"><a href="#cb21-7" aria-hidden="true" tabindex="-1"></a>                                               <span class="sc">-</span>CELCIGT), <span class="at">na.rm =</span> <span class="cn">TRUE</span>)) <span class="sc">|&gt;</span></span>
 <span id="cb21-8"><a href="#cb21-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">ecig_ever =</span> <span class="fu">case_when</span>(ecig_sum_ever <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
-<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>                              ecig_sum_ever <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">FALSE</span>),</span>
+<span id="cb21-9"><a href="#cb21-9" aria-hidden="true" tabindex="-1"></a>                               ecig_sum_ever <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">FALSE</span>),</span>
 <span id="cb21-10"><a href="#cb21-10" aria-hidden="true" tabindex="-1"></a>         <span class="at">ecig_current =</span> <span class="fu">case_when</span>(ecig_sum_current <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
 <span id="cb21-11"><a href="#cb21-11" aria-hidden="true" tabindex="-1"></a>                                  ecig_sum_current <span class="sc">==</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">FALSE</span>),</span>
 <span id="cb21-12"><a href="#cb21-12" aria-hidden="true" tabindex="-1"></a>         <span class="at">non_ecig_ever =</span> <span class="fu">case_when</span>(non_ecig_sum_ever <span class="sc">&gt;</span> <span class="dv">0</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
@@ -5816,7 +5835,7 @@ $ brand_ecig           &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, N
 <span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>                                           non_ecig_ever <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
 <span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>                                            ecig_current <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
 <span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>                                        non_ecig_current <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
-<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                                             <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">FALSE</span>),</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>                                                            <span class="cn">TRUE</span> <span class="sc">~</span> <span class="cn">FALSE</span>),</span>
 <span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>              <span class="at">ecig_only_current =</span> <span class="fu">case_when</span>(ecig_current <span class="sc">==</span> <span class="cn">TRUE</span> <span class="sc">&amp;</span></span>
 <span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>                                           non_ecig_ever <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">&amp;</span></span>
 <span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a>                                        non_ecig_current <span class="sc">==</span> <span class="cn">FALSE</span> <span class="sc">~</span> <span class="cn">TRUE</span>,</span>
@@ -5864,9 +5883,9 @@ $ year                  &lt;dbl&gt; 2015, 2015, 2015, 2015, 2015, 2015, 2015, 20
 $ psu                   &lt;chr&gt; &quot;015438&quot;, &quot;015438&quot;, &quot;015438&quot;, &quot;015438&quot;, &quot;015438&quot;…
 $ finwgt                &lt;dbl&gt; 216.7268, 324.9620, 324.9620, 397.1552, 264.8745…
 $ stratum               &lt;chr&gt; &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;, &quot;BR3&quot;,…
-$ Age                   &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Age                   &lt;chr&gt; &quot;18&quot;, &quot;17&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, &quot;18&quot;, …
 $ Sex                   &lt;chr&gt; &quot;female&quot;, &quot;male&quot;, &quot;male&quot;, &quot;male&quot;, &quot;female&quot;, &quot;fem…
-$ Grade                 &lt;chr&gt; NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, NA, …
+$ Grade                 &lt;chr&gt; &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, &quot;12&quot;, …
 $ ECIGT                 &lt;lgl&gt; FALSE, TRUE, FALSE, TRUE, FALSE, TRUE, TRUE, TRU…
 $ ECIGAR                &lt;lgl&gt; TRUE, TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FA…
 $ ESLT                  &lt;lgl&gt; FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TRUE, …
@@ -5928,6 +5947,7 @@ $ n                     &lt;int&gt; 17711, 17711, 17711, 17711, 17711, 17711, 17
 <div class="cell">
 <div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(nyts_data, <span class="at">file=</span><span class="st">&quot;data/wrangled/wrangled_data_vaping.rda&quot;</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
+<p>Note: This code assumes <code>dplyr</code> 1.1.0. To get most up-to-date <code>tidyverse</code> packages: <code>install.packages(&quot;tidyverse&quot;)</code>. This <em>will</em> take 10-20 min to run.</p>
 </section>
 <section id="suggested-reading" class="level2">
 <h2 class="anchored" data-anchor-id="suggested-reading">Suggested Reading</h2>

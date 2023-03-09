@@ -72,7 +72,9 @@ website:
           - text: "15-cs02-data"
             href: content/lectures/15-cs02-data-slides.html  
           - text: "16-cs02-eda"
-            href: content/lectures/16-cs02-eda-slides.html  
+            href: content/lectures/16-cs02-eda-slides.html 
+          - text: "17-cs02-analysis"
+            href: content/lectures/17-cs02-analysis-slides.html 
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -109,6 +111,8 @@ website:
             href: content/lectures/15-cs02-data.html  
           - text: "16-cs02-eda"
             href: content/lectures/16-cs02-eda.html  
+          - text: "17-cs02-analysis"
+            href: content/lectures/17-cs02-analysis.html 
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"
@@ -149,6 +153,8 @@ website:
             href: content/lab-ans/lab04-modelling-ans.qmd
           - text: "Lab05: MLR (Ans)"
             href: content/lab-ans/lab05-mlr-ans.qmd
+          - text: "Lab07: Logistic Regression (Ans)"
+            href: content/lab-ans/lab07-logistic-regression-ans.qmd
       - section: "Homework"
         contents:
           - text: "HW01"

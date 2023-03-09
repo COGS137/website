@@ -721,6 +721,34 @@
     "text": "Load packages\n\nlibrary(tidyverse) \n\n\n\nExercise 1\nHow many unique hurricanes are included in this dataset?\n(Note the specific value may differ based on the version of the dataset you’re using, but the code would not change.)\n\nn_unique <- storms |> \n  filter(status == \"hurricane\") |>\n  distinct(name, year, .keep_all = TRUE) |>\n  count() |>\n  pull(n)\n\n# OR\n\nstorms |> \n  filter(status == \"hurricane\") |>\n  group_by(year, name) |> \n  count() |>\n  nrow()\n\n[1] 310\n\n# ChatGPT answer\n# idea is correct; code is not\n# n_distinct(storms, name)\n\nThere are 310 unique hurricanes.\n(Note that we need to group by name and year, as certain storms have the same name…in different years.)\n\n\nExercise 2\nNote: If you used storms on datahub, the ts_diameter column has missing information and were likely unable to complete this question. Otherwise…this would have been the approach…\nWhich tropical storm affected the largest area experiencing tropical storm strength winds? And, what was the maximum sustained wind speed for that storm?\n\nstorms |> \n  filter(status == \"tropical storm\", \n         !is.na(ts_diameter)) |> \n  slice_max(ts_diameter)\n\nOR\n\nstorms |>\n  filter(status == \"tropical storm\",\n         !is.na(ts_diameter)) |> \n  filter(ts_diameter == max(ts_diameter, na.rm=TRUE))\n\n# ChatGPT answer is way off\n\nSandy (2012) had the largest area affected.\n\n\nExercise 3\nAmong all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?)\n\n# most common month\nstorms |> \n  distinct(name, year, .keep_all=TRUE) |>\n  group_by(month) |>\n  summarise(n = n()) |> # could alternatively use count() here\n  arrange(desc(n))\n\n# A tibble: 10 × 2\n   month     n\n   <dbl> <int>\n 1     9   208\n 2     8   173\n 3    10    99\n 4     7    67\n 5     6    41\n 6    11    29\n 7     5    13\n 8    12     5\n 9     1     2\n10     4     2\n\n# ChatGPT is close but missing uniqueness of the storm (would still get the correct answer)\n\nSeptember is the most common month.\n\n# depend on status?\nstorms |> \n  group_by(status, month) |>\n  summarise(n = n()) |> # could alternatively use count() here\n  slice_max(n)\n\n`summarise()` has grouped output by 'status'. You can override using the\n`.groups` argument.\n\n\n# A tibble: 9 × 3\n# Groups:   status [9]\n  status                 month     n\n  <fct>                  <dbl> <int>\n1 disturbance                7    45\n2 extratropical              9   732\n3 hurricane                  9  2380\n4 other low                  9   446\n5 subtropical depression     8    36\n6 subtropical storm          9    72\n7 tropical depression        9  1315\n8 tropical storm             9  2448\n9 tropical wave              8    55\n\n\nIt does not depend on status. September is the most common for all three storm types.\n\n\nExercise 4\nYour boss asks for the name, year, and status of all category 5 storms that have happened in the 2000s. Carry out the operations that would deliver what they’re looking for.\n\nstorms |>\n  filter(category == 5,\n         between(year, 2000, 2009)) |>\n  select(name, year, status) |>\n  distinct(name, year, .keep_all=TRUE)\n\n# A tibble: 8 × 3\n  name     year status   \n  <chr>   <dbl> <fct>    \n1 Isabel   2003 hurricane\n2 Ivan     2004 hurricane\n3 Emily    2005 hurricane\n4 Katrina  2005 hurricane\n5 Rita     2005 hurricane\n6 Wilma    2005 hurricane\n7 Dean     2007 hurricane\n8 Felix    2007 hurricane\n\n# ChatGPT answer\n# incorrect b/c it mixes up status and category\n# also missing the equal to aspect for an inclusive decade\n# storms %>%\n#   filter(year >= 2000, year < 2010, status == \"5\") %>%\n#   select(name, year, status)\n\n\n\nExercise 5\nFilter these data to only include storms that occurred during your lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what’s the mean and median air pressure across all measurements taken?\n\nmy_storms <- storms |>\n  filter(between(year, 1988, 2023)) # alternatively filter(year >= 1988)\n\nmy_storms |>\n  summarise(median_pressure = median(pressure),\n            mean_pressure = mean(pressure))\n\n# A tibble: 1 × 2\n  median_pressure mean_pressure\n            <dbl>         <dbl>\n1            1000          993.\n\n# ChatGPT did well here\n\n\nMedian: 999 millibars\nMean: 991 millibars\n\n\n\nExercise 6\nWhich decade (of the storms included in the dataset) had the largest number of unique reported storms?\n\nstorms |> \n  distinct(name, year) |>\n  mutate(decade = year - year %% 10) |> # there are MANY different ways to approach this!\n  group_by(decade) |>\n  count()\n\n# A tibble: 6 × 2\n# Groups:   decade [6]\n  decade     n\n   <dbl> <int>\n1   1970    40\n2   1980    90\n3   1990   127\n4   2000   169\n5   2010   163\n6   2020    50\n\n# ChatGPT answer\n# incorrect b/c of the distinct name/near piece missing\n# would get correct decade but not the correct answer\n# storms %>%\n#   mutate(decade = floor(year/10)*10) %>%\n#   group_by(decade) %>%\n#   summarise(unique_storms = n_distinct(name)) %>%\n#   arrange(desc(unique_storms)) %>%\n#   top_n(1)\n\nThe 2000s.\n(Note: we want to be sure to only count each storm once. Could also arrange by desc(n) to have 2000 at top.)\n\n\nExercise 7\nAmong the subset of storms occurring in your lifetime, which storm lasted the longest? Include your code and explain your answer.\n\nmy_storms |>  \n  group_by(name, year) |> \n  count() |> \n  arrange(desc(n))\n\n# A tibble: 532 × 3\n# Groups:   name, year [532]\n   name      year     n\n   <chr>    <dbl> <int>\n 1 Nadine    2012    96\n 2 Ivan      2004    94\n 3 Kyle      2002    90\n 4 Leslie    2018    89\n 5 Paulette  2020    88\n 6 Alberto   2000    87\n 7 Jose      2017    85\n 8 Nicholas  2003    80\n 9 Florence  2018    79\n10 Marilyn   1995    79\n# … with 522 more rows\n\n\nNadine lasted the longest (unless you were born after 2012).\n(Note: The logic here is that storms are reported every six hours, per the description of the dataset, so the storm that has the most rows/entries would have lasted the longest)"
   },
   {
+    "objectID": "content/lab-ans/lab07-logistic-regression-ans.html",
+    "href": "content/lab-ans/lab07-logistic-regression-ans.html",
+    "title": "Lab 07: Logistic Regression - Answers",
+    "section": "",
+    "text": "library(tidyverse) \nlibrary(tidymodels)\nlibrary(openintro)\n\n\n\n\n\ndata(resume)"
+  },
+  {
+    "objectID": "content/lab-ans/lab07-logistic-regression-ans.html#part-1",
+    "href": "content/lab-ans/lab07-logistic-regression-ans.html#part-1",
+    "title": "Lab 07: Logistic Regression - Answers",
+    "section": "Part 1",
+    "text": "Part 1\n\nExercise 1\nThere are 4,870 observations (rows) in the dataset and 30 dimensions (columns).\n\nnrow(resume)\n\n[1] 4870\n\nncol(resume)\n\n[1] 30\n\n\nOf these, only 392 received a callback.\n\nresume |>\n  group_by(received_callback) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  received_callback `n()`\n              <dbl> <int>\n1                 0  4478\n2                 1   392\n\n\n2166 were in Boston, 2704 were in Chicago.\n\nresume |>\n  group_by(job_city) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  job_city `n()`\n  <chr>    <int>\n1 Boston    2166\n2 Chicago   2704\n\n\n3504 applicants had a college degree.\n\nresume |>\n  group_by(college_degree) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  college_degree `n()`\n           <dbl> <int>\n1              0  1366\n2              1  3504\n\n\nThe mean years of experience was a little under 10 years. One applicant had over 40 years of experience, which appears to be something of an outlier.\n\nresume |>\n  ggplot(aes(x = years_experience)) +\n  # geom_histogram(bins = 10) +\n  geom_bar() +\n  geom_vline(xintercept = mean(resume$years_experience),\n             linetype = \"dotted\") +\n  labs(x = \"Years of Experience\") +\n  theme_bw()\n\n\n\n\n257 had honors degrees.\n\nresume |>\n  group_by(honors) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  honors `n()`\n   <int> <int>\n1      0  4613\n2      1   257\n\n\n473 served in the military.\n\nresume |>\n  group_by(military) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  military `n()`\n     <int> <int>\n1        0  4397\n2        1   473\n\n\n2334 had email addresses.\n\nresume |>\n  group_by(has_email_address) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  has_email_address `n()`\n              <int> <int>\n1                 0  2536\n2                 1  2334\n\n\nOf these, 3746 are female, and 1124 are male.\n\nresume |>\n  group_by(gender) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  gender `n()`\n  <chr>  <int>\n1 f       3746\n2 m       1124\n\n\nIt appears to be evenly split among black and white ppts (2435 each).\n\nresume |>\n  group_by(race) |>\n  summarise(n())\n\n# A tibble: 2 × 2\n  race  `n()`\n  <chr> <int>\n1 black  2435\n2 white  2435\n\n\nNote that many of these factors are supposed to be categorical, but are actually coded as numeric, so let’s recode those.\n\nresume <- resume |>\n  mutate(\n    received_callback = as.factor(received_callback),\n    college_degree = as.factor(college_degree),\n    honors = as.factor(honors),\n    military = as.factor(military),\n    has_email_address = as.factor(has_email_address),\n    race = if_else(race == \"black\", \"Black\", \"White\")\n    ) |>\n  select(received_callback, job_city, college_degree, years_experience,\n         honors, military, has_email_address, race, gender)"
+  },
+  {
+    "objectID": "content/lab-ans/lab07-logistic-regression-ans.html#part-2",
+    "href": "content/lab-ans/lab07-logistic-regression-ans.html#part-2",
+    "title": "Lab 07: Logistic Regression - Answers",
+    "section": "Part 2",
+    "text": "Part 2\nRecall that in logistic regression, we are trying to predict the probability of a binary variable.\nThis is modeled using generalized linear model, using a logit function to link a linear model to \\(p(y)\\). That is, we model a linear relationship between our predictors and the log-odds of the outcome.\n\nExercise 2\nHere, we use logistic_reg (from tidymodels) to fit a logistic regression model with only honors as a predictor.\nThe resulting equation looks as follows:\n\\(log(\\frac{p}{1-p})=-2.5 + .87X_1\\)\n\nresume_full_fit <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(received_callback ~ honors, \n      data = resume,\n      family = \"binomial\")\n\nresume_full_fit |>\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic    p.value\n  <chr>          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)   -2.50     0.0556    -45.0  0         \n2 honors1        0.867    0.178       4.88 0.00000106\n\n\n\n\nExercise 3\nRecall that the coefficients in the linear equation reflect the relationship to the log-odds of the outcome.\nThus, \\(\\beta_0\\) indicates the log-odds of getting a callback, given that someone doesn’t have honors. We can convert this log-odds to a probability using the logistic function:\n\\(p_i = \\frac{exp(\\beta_0)}{1 + exp(\\beta_0)}\\)\n\np = exp(-2.5) / (1 + exp(-2.5))\np\n\n[1] 0.07585818\n\n\nThis gives us a probability of about 7.6%.\nThis matches the descriptive statistic, if we just calculate the proportion of people without an honors degree who got a callback:\n\nresume |>\n  filter(honors == 0) |>\n  mutate(total = n()) |>\n  ungroup() |>\n  group_by(received_callback) |>\n  summarise(count = n(),\n            prop = count/total) |>\n  distinct()\n\nWarning: Returning more (or less) than 1 row per `summarise()` group was deprecated in\ndplyr 1.1.0.\nℹ Please use `reframe()` instead.\nℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`\n  always returns an ungrouped data frame and adjust accordingly.\n\n\n`summarise()` has grouped output by 'received_callback'. You can override using\nthe `.groups` argument.\n\n\n# A tibble: 2 × 3\n# Groups:   received_callback [2]\n  received_callback count   prop\n  <fct>             <int>  <dbl>\n1 0                  4263 0.924 \n2 1                   350 0.0759\n\n\n\n\nExercise 4\nTo calculate the probability with honors, we first need to add the coefficients together:\n\\(log(\\frac{p}{1-p})=-2.5 + .87X_1\\)\n\nlog_odds = -2.5 + .87\n\nWe then convert that to a probability, agian using the logistic function:\n\np = exp(log_odds) / (1 + exp(log_odds))\np\n\n[1] 0.1638304\n\n\nThis gives us a probability of about 16.3% of getting a callback, given that someone has honors.\nAgain, this matches the descriptive statistic: \\(p(callback | honors = True)\\).\n\nresume |>\n  filter(honors == 1) |>\n  mutate(total = n()) |>\n  ungroup() |>\n  group_by(received_callback) |>\n  summarise(count = n(),\n            prop = count/total) |>\n  distinct()\n\nWarning: Returning more (or less) than 1 row per `summarise()` group was deprecated in\ndplyr 1.1.0.\nℹ Please use `reframe()` instead.\nℹ When switching from `summarise()` to `reframe()`, remember that `reframe()`\n  always returns an ungrouped data frame and adjust accordingly.\n\n\n`summarise()` has grouped output by 'received_callback'. You can override using\nthe `.groups` argument.\n\n\n# A tibble: 2 × 3\n# Groups:   received_callback [2]\n  received_callback count  prop\n  <fct>             <int> <dbl>\n1 0                   215 0.837\n2 1                    42 0.163"
+  },
+  {
+    "objectID": "content/lab-ans/lab07-logistic-regression-ans.html#part-3",
+    "href": "content/lab-ans/lab07-logistic-regression-ans.html#part-3",
+    "title": "Lab 07: Logistic Regression - Answers",
+    "section": "Part 3",
+    "text": "Part 3\n\nExercise 5\nNow we add all the variables. The equation looks like this:\n\\(log(\\frac{p}{1-p})=-2.72 - 0.44X_1 + 0.02X_2 + 0.76X_3 - 0.34X_4 + 0.22X_5 + 0.44X_6 - 0.2X_7\\)\nWhere:\n\nX1 = job_city (Chicago = 1)\nX2 = years_experience\nX_3 = honors (1 = 1)\nX_4 = military (1 = 1)\nX_5 = has_email_address (1 = 1)\nX_6 = race (White = 1)\nX_7 = gender (m = 1)\n\n\nm_multiple <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(received_callback ~ job_city + years_experience + honors + military + has_email_address + race + gender, \n      data = resume, \n      family = \"binomial\")\n\nm_multiple |>\n  tidy()\n\n# A tibble: 8 × 5\n  term               estimate std.error statistic  p.value\n  <chr>                 <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)         -2.72      0.155     -17.5  1.15e-68\n2 job_cityChicago     -0.436     0.114      -3.83 1.30e- 4\n3 years_experience     0.0206    0.0102      2.02 4.30e- 2\n4 honors1              0.763     0.185       4.12 3.77e- 5\n5 military1           -0.344     0.216      -1.60 1.11e- 1\n6 has_email_address1   0.222     0.113       1.97 4.94e- 2\n7 raceWhite            0.443     0.108       4.10 4.13e- 5\n8 genderm             -0.196     0.135      -1.45 1.47e- 1\n\n\n\n\nExercise 6\nThe equation lists a positive coefficient for race, for which White is coded as 1.\nThis positive coefficient reflects a positive gain in callback rate for resumes where the candidate’s first name implied they were White.\nThe model results suggest that prospective employers favor resumes where the first name is typically interpreted to be White.\n\n\nExercise 7\nFirst, let’s calculate the AIC for the full model. It’s 2675.5.\n\nm_multiple |>\n  glance() |>\n  pull(AIC)\n\n[1] 2675.548\n\n\nNow, we successively eliminate different variables from the model, and see whether removing any of these models improves the model fit.\nAccording to this analysis, removing gender from the model doesn’t really affect AIC (it only changes it by about 0.2). Removing military only changes AIC by 0.7, and removing years_experience affects it by about 1.5.\nFor the purposes of this exercise, I removed gender and called the resulting model m_resume.\n\nm_resume <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(received_callback ~ \n        job_city + \n        years_experience + \n        honors + \n        military + \n        has_email_address + \n        race,\n        # gender, \n      data = resume, \n      family = \"binomial\")\nm_resume |>\n  glance() |>\n  pull(AIC)\n\n[1] 2675.702\n\n## Just for comparison\nlogistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(received_callback ~ \n        job_city + \n        # years_experience + \n        honors + \n        military + \n        has_email_address + \n        race +\n        gender, \n      data = resume, \n      family = \"binomial\") |>\n  glance() |>\n  pull(AIC)\n\n[1] 2677.496\n\n\n\n\nExercise 8\nWe can plug each of those variables into the original equation from m_multiple:\n\\(log(\\frac{p}{1-p})=-2.72 - 0.44X_1 + 0.02X_2 + 0.76X_3 - 0.34X_4 + 0.22X_5 + 0.44X_6 - 0.2X_7\\)\nWhere:\n\nX1 = job_city (Chicago = 1)\nX2 = years_experience\nX_3 = honors (1 = 1)\nX_4 = military (1 = 1)\nX_5 = has_email_address (1 = 1)\nX_6 = race (White = 1)\nX_7 = gender (m = 1)\n\nThis applicant has about an 8.2% chance of getting called back.\n\nlog_pred = -2.72 - #intercept\n  0.44 + # Lives in chicago\n  .02*14 + # 14 years of experience\n  0.76*0 - # No honors, so set this to zero\n  0.34 * 0 + # No military, so set this to zero\n  0.22 * 1 + # Has an email address\n  0.44 * 1 - # First name implies white\n  0.2 * 1 # First name implies male\n\np = exp(log_pred) / (1 + exp(log_pred))\np\n\n[1] 0.08166026\n\n\nIn contrast, an applicant with exactly the same experience but with a first name implying they are a Black male would have only a 5.4% chance of getting called back—providing evidence of discrimination in hiring.\n\nlog_pred = -2.72 - #intercept\n  0.44 + # Lives in chicago\n  .02*14 + # 14 years of experience\n  0.76*0 - # No honors, so set this to zero\n  0.34 * 0 + # No military, so set this to zero\n  0.22 * 1 + # Has an email address\n  0.44 * 0 - # First name implies Black\n  0.2 * 1 # First name implies male\n\np = exp(log_pred) / (1 + exp(log_pred))\np\n\n[1] 0.0541667"
+  },
+  {
     "objectID": "content/exams/midterm_wi23.html",
     "href": "content/exams/midterm_wi23.html",
     "title": "COGS 137 - Winter 2023 - Midterm",
@@ -2268,13 +2296,6 @@
     "text": "Course Announcements\nDue Dates:\n\nLecture Participation survey “due” after class\nLab08 Due Friday (CS02 EDA)\nCS02 due Monday of Finals week (3/20)\nFinal Project due Th of Finals week (3/23)\n\n\nNotes:\n\ncs01 group work form is still open - please complete (if you haven’t)\ncs02 and final project groups/repos assigned\ndon’t wait until finals week to do cs02 and final project"
   },
   {
-    "objectID": "content/lectures/16-cs02-eda-slides.html#agenda",
-    "href": "content/lectures/16-cs02-eda-slides.html#agenda",
-    "title": "16-cs02-eda",
-    "section": "Agenda",
-    "text": "Agenda"
-  },
-  {
     "objectID": "content/lectures/16-cs02-eda-slides.html#data",
     "href": "content/lectures/16-cs02-eda-slides.html#data",
     "title": "16-cs02-eda",
@@ -2289,11 +2310,67 @@
     "text": "Question\nWhen is pivoting your data from wide to long (or long to wide) helpful?\n\n\ndata |>\n   pivot_longer(cols = columns_to_pivot , names_to = \"new_col_for_labels\" , values_to = \"new_col_for_values\")"
   },
   {
-    "objectID": "content/lectures/16-cs02-eda-slides.html#eda",
-    "href": "content/lectures/16-cs02-eda-slides.html#eda",
+    "objectID": "content/lectures/16-cs02-eda-slides.html#eda-brainstorm",
+    "href": "content/lectures/16-cs02-eda-slides.html#eda-brainstorm",
     "title": "16-cs02-eda",
-    "section": "EDA",
-    "text": "EDA\nWhat do you want to know?\n[We’re going to fill these in during class]\n\nHow would you go about doing that?"
+    "section": "EDA: Brainstorm",
+    "text": "EDA: Brainstorm\nWhat do you want to know?\nNotes from class:\n\ncount:\n\nby age groups - age distribution\nGrade\nGroup\nSex: Males, Females, NA\n\nRelative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)\nDistribution of most popular brands (all brands)\nDistribution of most popuular flavors (all flavors)\nyear on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#eda-skim",
+    "href": "content/lectures/16-cs02-eda-slides.html#eda-skim",
+    "title": "16-cs02-eda",
+    "section": "EDA: skim",
+    "text": "EDA: skim\n\nlibrary(skimr)\nskim(nyts_data)\n\n\nData summary\n\n\nName\nnyts_data\n\n\nNumber of rows\n95465\n\n\nNumber of columns\n59\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n7\n\n\nlogical\n43\n\n\nnumeric\n9\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\npsu\n0\n1.00\n5\n6\n0\n431\n0\n\n\nstratum\n0\n1.00\n3\n3\n0\n16\n0\n\n\nAge\n417\n1.00\n1\n3\n0\n11\n0\n\n\nSex\n778\n0.99\n4\n6\n0\n2\n0\n\n\nGrade\n477\n1.00\n1\n14\n0\n8\n0\n\n\nbrand_ecig\n91861\n0.04\n3\n7\n0\n7\n0\n\n\nGroup\n0\n1.00\n7\n23\n0\n4\n0\n\n\n\nVariable type: logical\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\ncount\n\n\n\n\nECIGT\n1470\n0.98\n0.18\nFAL: 76819, TRU: 17176\n\n\nECIGAR\n1757\n0.98\n0.15\nFAL: 79724, TRU: 13984\n\n\nESLT\n1862\n0.98\n0.07\nFAL: 87041, TRU: 6562\n\n\nEELCIGT\n1715\n0.98\n0.26\nFAL: 69417, TRU: 24333\n\n\nEROLLCIGTS\n2929\n0.97\n0.05\nFAL: 88100, TRU: 4436\n\n\nEFLAVCIGTS\n78469\n0.18\n0.05\nFAL: 16126, TRU: 870\n\n\nEBIDIS\n2940\n0.97\n0.01\nFAL: 91369, TRU: 1156\n\n\nEFLAVCIGAR\n58568\n0.39\n0.09\nFAL: 33530, TRU: 3367\n\n\nEHOOKAH\n2388\n0.97\n0.09\nFAL: 84515, TRU: 8562\n\n\nEPIPE\n2941\n0.97\n0.02\nFAL: 90348, TRU: 2176\n\n\nESNUS\n2941\n0.97\n0.03\nFAL: 89379, TRU: 3145\n\n\nEDISSOLV\n2939\n0.97\n0.01\nFAL: 91423, TRU: 1103\n\n\nCCIGT\n1840\n0.98\n0.05\nFAL: 88747, TRU: 4878\n\n\nCCIGAR\n2019\n0.98\n0.05\nFAL: 88423, TRU: 5023\n\n\nCSLT\n2173\n0.98\n0.03\nFAL: 90496, TRU: 2796\n\n\nCELCIGT\n1505\n0.98\n0.12\nFAL: 82799, TRU: 11161\n\n\nCROLLCIGTS\n3049\n0.97\n0.02\nFAL: 90440, TRU: 1976\n\n\nCFLAVCIGTS\n78521\n0.18\n0.02\nFAL: 16529, TRU: 415\n\n\nCBIDIS\n3038\n0.97\n0.01\nFAL: 91956, TRU: 471\n\n\nCHOOKAH\n2666\n0.97\n0.03\nFAL: 89657, TRU: 3142\n\n\nCPIPE\n3061\n0.97\n0.01\nFAL: 91603, TRU: 801\n\n\nCSNUS\n3053\n0.97\n0.01\nFAL: 91198, TRU: 1214\n\n\nCDISSOLV\n3050\n0.97\n0.01\nFAL: 91938, TRU: 477\n\n\nmenthol\n17711\n0.81\n0.06\nFAL: 73305, TRU: 4449\n\n\nclove_spice\n17711\n0.81\n0.01\nFAL: 77360, TRU: 394\n\n\nfruit\n17711\n0.81\n0.07\nFAL: 71945, TRU: 5809\n\n\nchocolate\n17711\n0.81\n0.01\nFAL: 76875, TRU: 879\n\n\nalcoholic_drink\n17711\n0.81\n0.02\nFAL: 76510, TRU: 1244\n\n\ncandy_dessert_sweets\n17711\n0.81\n0.05\nFAL: 74188, TRU: 3566\n\n\nother\n17711\n0.81\n0.03\nFAL: 75675, TRU: 2079\n\n\nEHTP\n78434\n0.18\n0.02\nFAL: 16633, TRU: 398\n\n\nCHTP\n76592\n0.20\n0.02\nFAL: 18582, TRU: 291\n\n\ntobacco_ever\n0\n1.00\n0.35\nFAL: 61793, TRU: 33672\n\n\ntobacco_current\n0\n1.00\n0.18\nFAL: 78757, TRU: 16708\n\n\necig_ever\n0\n1.00\n0.25\nFAL: 71132, TRU: 24333\n\n\necig_current\n0\n1.00\n0.12\nFAL: 84304, TRU: 11161\n\n\nnon_ecig_ever\n0\n1.00\n0.27\nFAL: 69674, TRU: 25791\n\n\nnon_ecig_current\n0\n1.00\n0.12\nFAL: 84419, TRU: 11046\n\n\necig_only_ever\n0\n1.00\n0.05\nFAL: 90308, TRU: 5157\n\n\necig_only_current\n0\n1.00\n0.03\nFAL: 92756, TRU: 2709\n\n\nnon_ecig_only_ever\n0\n1.00\n0.07\nFAL: 89147, TRU: 6318\n\n\nnon_ecig_only_current\n0\n1.00\n0.03\nFAL: 92439, TRU: 3026\n\n\nno_use\n0\n1.00\n0.65\nTRU: 61738, FAL: 33727\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nyear\n0\n1\n2017.02\n1.40\n2015.00\n2016.00\n2017.00\n2018.00\n2019.00\n▇▇▇▇▇\n\n\nfinwgt\n0\n1\n1421.44\n1093.13\n11.15\n708.52\n1131.48\n1754.38\n6505.08\n▇▅▁▁▁\n\n\ntobacco_sum_ever\n0\n1\n0.91\n1.68\n0.00\n0.00\n0.00\n1.00\n12.00\n▇▁▁▁▁\n\n\ntobacco_sum_current\n0\n1\n0.34\n0.97\n0.00\n0.00\n0.00\n0.00\n11.00\n▇▁▁▁▁\n\n\necig_sum_ever\n0\n1\n0.25\n0.44\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▃\n\n\necig_sum_current\n0\n1\n0.12\n0.32\n0.00\n0.00\n0.00\n0.00\n1.00\n▇▁▁▁▁\n\n\nnon_ecig_sum_ever\n0\n1\n0.66\n1.41\n0.00\n0.00\n0.00\n1.00\n11.00\n▇▁▁▁▁\n\n\nnon_ecig_sum_current\n0\n1\n0.23\n0.78\n0.00\n0.00\n0.00\n0.00\n10.00\n▇▁▁▁▁\n\n\nn\n0\n1\n19167.48\n1193.77\n17711.00\n17872.00\n19018.00\n20189.00\n20675.00\n▇▁▃▁▇\n\n\n\n\n\nNote: If you include this in a report, you should also guide the viewer. Theres a lot in there. What do you want your reader to know?\nThings discussed in class when looking at skim output:\n\nwhy brand_ecig has so many missing values (only have brand information for 2019)\nwhat mean calculation for a categorical value means (proportion of TRUE values)\nwhy Age min and max values look off (b/c it’s coded as a character due to >18 category)\nthat the n category is how many respondents there are each year\n\nRemember: It can be very helpful to thinkg “what overall trends do I see?” and “is there anything weird going on?” any time you’re looking at an EDA output"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#eda-basics",
+    "href": "content/lectures/16-cs02-eda-slides.html#eda-basics",
+    "title": "16-cs02-eda",
+    "section": "EDA: Basics",
+    "text": "EDA: Basics\nGetting a sense for some of the categorical data\n\ntable(nyts_data$Age)\n\n\n  >18    10    11    12    13    14    15    16    17    18     9 \n  727    50  5360 13499 14613 14036 13498 13205 12754  7108   198 \n\n\n\ntable(nyts_data$Group)\n\n\nCombination of products                 Neither       Only e-cigarettes \n                  16517                   61738                    7866 \n    Only other products \n                   9344 \n\n\n\ntable(nyts_data$year)\n\n\n 2015  2016  2017  2018  2019 \n17711 20675 17872 20189 19018 \n\n\nRemember: If you include this in a report, you’ll also need text to explain what the reader should know/take away from any of these."
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#eda-plots",
+    "href": "content/lectures/16-cs02-eda-slides.html#eda-plots",
+    "title": "16-cs02-eda",
+    "section": "EDA: Plots",
+    "text": "EDA: Plots"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#sex-by-year",
+    "href": "content/lectures/16-cs02-eda-slides.html#sex-by-year",
+    "title": "16-cs02-eda",
+    "section": "Sex by Year",
+    "text": "Sex by Year\n\nnyts_data |>\n  group_by(year) |>\n  count(Sex) |> \n  ggplot(aes(x=year, y=n, color=Sex)) + \n  geom_col()\n\n\n(Note: I argued that this was not the best way to display these data…but it’s a good start. If you include in your report, you likely want to improve!)"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#e-cig-use-by-gender",
+    "href": "content/lectures/16-cs02-eda-slides.html#e-cig-use-by-gender",
+    "title": "16-cs02-eda",
+    "section": "E-Cig use by gender",
+    "text": "E-Cig use by gender\nStudent suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#brands",
+    "href": "content/lectures/16-cs02-eda-slides.html#brands",
+    "title": "16-cs02-eda",
+    "section": "Brands",
+    "text": "Brands\nStudent suggestion: Distribution of most popular brands (all brands)\n\nnyts_data |> \n  group_by(year) |>\n  count(brand_ecig)\n\n# A tibble: 12 × 3\n# Groups:   year [5]\n    year brand_ecig     n\n   <dbl> <chr>      <int>\n 1  2015 <NA>       17711\n 2  2016 <NA>       20675\n 3  2017 <NA>       17872\n 4  2018 <NA>       20189\n 5  2019 Blu          111\n 6  2019 JUUL        2028\n 7  2019 Logic         36\n 8  2019 MarkTen       32\n 9  2019 NJOY          44\n10  2019 Other       1253\n11  2019 Vuse         100\n12  2019 <NA>       15414\n\n\nThe above helps us remember that we only have brand information from 2019.\n\n\nnyts_data |> \n  filter(year == 2019, !is.na(brand_ecig)) |> \n  ggplot(aes(x=brand_ecig)) +\n  geom_bar()\n\n\n\n\nNote: If including in a report, you’ll want titles, cleaner axis names, and likely to sort the x-axis values, but for your first pass EDA where you’re just trying to understand the data, this is sufficient."
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#flavors",
+    "href": "content/lectures/16-cs02-eda-slides.html#flavors",
+    "title": "16-cs02-eda",
+    "section": "Flavors",
+    "text": "Flavors\nStudent suggestion: Distribution of most popular flavors (all flavors)\nThis one is more complicated b/c flavor data are across multiple columns…going to leave this for the analysis set of notes"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda-slides.html#tabacco-use-across-time",
+    "href": "content/lectures/16-cs02-eda-slides.html#tabacco-use-across-time",
+    "title": "16-cs02-eda",
+    "section": "Tabacco use across time",
+    "text": "Tabacco use across time\nStudent suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)"
   },
   {
     "objectID": "content/lectures/16-cs02-eda-slides.html#suggested-reading",
@@ -2324,16 +2401,436 @@
     "text": "Question\nWhen is pivoting your data from wide to long (or long to wide) helpful?\n\n\ndata |>\n   pivot_longer(cols = columns_to_pivot , names_to = \"new_col_for_labels\" , values_to = \"new_col_for_values\")"
   },
   {
-    "objectID": "content/lectures/16-cs02-eda.html#eda",
-    "href": "content/lectures/16-cs02-eda.html#eda",
+    "objectID": "content/lectures/16-cs02-eda.html#eda-brainstorm",
+    "href": "content/lectures/16-cs02-eda.html#eda-brainstorm",
     "title": "16-cs02-eda",
-    "section": "EDA",
-    "text": "EDA\nWhat do you want to know?\n[We’re going to fill these in during class]\n\nHow would you go about doing that?"
+    "section": "EDA: Brainstorm",
+    "text": "EDA: Brainstorm\nWhat do you want to know?\nNotes from class:\n\ncount:\n\nby age groups - age distribution\nGrade\nGroup\nSex: Males, Females, NA\n\nRelative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)\nDistribution of most popular brands (all brands)\nDistribution of most popuular flavors (all flavors)\nyear on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#eda-skim",
+    "href": "content/lectures/16-cs02-eda.html#eda-skim",
+    "title": "16-cs02-eda",
+    "section": "EDA: skim",
+    "text": "EDA: skim\n\nlibrary(skimr)\nskim(nyts_data)\n\n\nData summary\n\n\nName\nnyts_data\n\n\nNumber of rows\n95465\n\n\nNumber of columns\n59\n\n\n_______________________\n\n\n\nColumn type frequency:\n\n\n\ncharacter\n7\n\n\nlogical\n43\n\n\nnumeric\n9\n\n\n________________________\n\n\n\nGroup variables\nNone\n\n\n\nVariable type: character\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmin\nmax\nempty\nn_unique\nwhitespace\n\n\n\n\npsu\n0\n1.00\n5\n6\n0\n431\n0\n\n\nstratum\n0\n1.00\n3\n3\n0\n16\n0\n\n\nAge\n417\n1.00\n1\n3\n0\n11\n0\n\n\nSex\n778\n0.99\n4\n6\n0\n2\n0\n\n\nGrade\n477\n1.00\n1\n14\n0\n8\n0\n\n\nbrand_ecig\n91861\n0.04\n3\n7\n0\n7\n0\n\n\nGroup\n0\n1.00\n7\n23\n0\n4\n0\n\n\n\nVariable type: logical\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\ncount\n\n\n\n\nECIGT\n1470\n0.98\n0.18\nFAL: 76819, TRU: 17176\n\n\nECIGAR\n1757\n0.98\n0.15\nFAL: 79724, TRU: 13984\n\n\nESLT\n1862\n0.98\n0.07\nFAL: 87041, TRU: 6562\n\n\nEELCIGT\n1715\n0.98\n0.26\nFAL: 69417, TRU: 24333\n\n\nEROLLCIGTS\n2929\n0.97\n0.05\nFAL: 88100, TRU: 4436\n\n\nEFLAVCIGTS\n78469\n0.18\n0.05\nFAL: 16126, TRU: 870\n\n\nEBIDIS\n2940\n0.97\n0.01\nFAL: 91369, TRU: 1156\n\n\nEFLAVCIGAR\n58568\n0.39\n0.09\nFAL: 33530, TRU: 3367\n\n\nEHOOKAH\n2388\n0.97\n0.09\nFAL: 84515, TRU: 8562\n\n\nEPIPE\n2941\n0.97\n0.02\nFAL: 90348, TRU: 2176\n\n\nESNUS\n2941\n0.97\n0.03\nFAL: 89379, TRU: 3145\n\n\nEDISSOLV\n2939\n0.97\n0.01\nFAL: 91423, TRU: 1103\n\n\nCCIGT\n1840\n0.98\n0.05\nFAL: 88747, TRU: 4878\n\n\nCCIGAR\n2019\n0.98\n0.05\nFAL: 88423, TRU: 5023\n\n\nCSLT\n2173\n0.98\n0.03\nFAL: 90496, TRU: 2796\n\n\nCELCIGT\n1505\n0.98\n0.12\nFAL: 82799, TRU: 11161\n\n\nCROLLCIGTS\n3049\n0.97\n0.02\nFAL: 90440, TRU: 1976\n\n\nCFLAVCIGTS\n78521\n0.18\n0.02\nFAL: 16529, TRU: 415\n\n\nCBIDIS\n3038\n0.97\n0.01\nFAL: 91956, TRU: 471\n\n\nCHOOKAH\n2666\n0.97\n0.03\nFAL: 89657, TRU: 3142\n\n\nCPIPE\n3061\n0.97\n0.01\nFAL: 91603, TRU: 801\n\n\nCSNUS\n3053\n0.97\n0.01\nFAL: 91198, TRU: 1214\n\n\nCDISSOLV\n3050\n0.97\n0.01\nFAL: 91938, TRU: 477\n\n\nmenthol\n17711\n0.81\n0.06\nFAL: 73305, TRU: 4449\n\n\nclove_spice\n17711\n0.81\n0.01\nFAL: 77360, TRU: 394\n\n\nfruit\n17711\n0.81\n0.07\nFAL: 71945, TRU: 5809\n\n\nchocolate\n17711\n0.81\n0.01\nFAL: 76875, TRU: 879\n\n\nalcoholic_drink\n17711\n0.81\n0.02\nFAL: 76510, TRU: 1244\n\n\ncandy_dessert_sweets\n17711\n0.81\n0.05\nFAL: 74188, TRU: 3566\n\n\nother\n17711\n0.81\n0.03\nFAL: 75675, TRU: 2079\n\n\nEHTP\n78434\n0.18\n0.02\nFAL: 16633, TRU: 398\n\n\nCHTP\n76592\n0.20\n0.02\nFAL: 18582, TRU: 291\n\n\ntobacco_ever\n0\n1.00\n0.35\nFAL: 61793, TRU: 33672\n\n\ntobacco_current\n0\n1.00\n0.18\nFAL: 78757, TRU: 16708\n\n\necig_ever\n0\n1.00\n0.25\nFAL: 71132, TRU: 24333\n\n\necig_current\n0\n1.00\n0.12\nFAL: 84304, TRU: 11161\n\n\nnon_ecig_ever\n0\n1.00\n0.27\nFAL: 69674, TRU: 25791\n\n\nnon_ecig_current\n0\n1.00\n0.12\nFAL: 84419, TRU: 11046\n\n\necig_only_ever\n0\n1.00\n0.05\nFAL: 90308, TRU: 5157\n\n\necig_only_current\n0\n1.00\n0.03\nFAL: 92756, TRU: 2709\n\n\nnon_ecig_only_ever\n0\n1.00\n0.07\nFAL: 89147, TRU: 6318\n\n\nnon_ecig_only_current\n0\n1.00\n0.03\nFAL: 92439, TRU: 3026\n\n\nno_use\n0\n1.00\n0.65\nTRU: 61738, FAL: 33727\n\n\n\nVariable type: numeric\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nskim_variable\nn_missing\ncomplete_rate\nmean\nsd\np0\np25\np50\np75\np100\nhist\n\n\n\n\nyear\n0\n1\n2017.02\n1.40\n2015.00\n2016.00\n2017.00\n2018.00\n2019.00\n▇▇▇▇▇\n\n\nfinwgt\n0\n1\n1421.44\n1093.13\n11.15\n708.52\n1131.48\n1754.38\n6505.08\n▇▅▁▁▁\n\n\ntobacco_sum_ever\n0\n1\n0.91\n1.68\n0.00\n0.00\n0.00\n1.00\n12.00\n▇▁▁▁▁\n\n\ntobacco_sum_current\n0\n1\n0.34\n0.97\n0.00\n0.00\n0.00\n0.00\n11.00\n▇▁▁▁▁\n\n\necig_sum_ever\n0\n1\n0.25\n0.44\n0.00\n0.00\n0.00\n1.00\n1.00\n▇▁▁▁▃\n\n\necig_sum_current\n0\n1\n0.12\n0.32\n0.00\n0.00\n0.00\n0.00\n1.00\n▇▁▁▁▁\n\n\nnon_ecig_sum_ever\n0\n1\n0.66\n1.41\n0.00\n0.00\n0.00\n1.00\n11.00\n▇▁▁▁▁\n\n\nnon_ecig_sum_current\n0\n1\n0.23\n0.78\n0.00\n0.00\n0.00\n0.00\n10.00\n▇▁▁▁▁\n\n\nn\n0\n1\n19167.48\n1193.77\n17711.00\n17872.00\n19018.00\n20189.00\n20675.00\n▇▁▃▁▇\n\n\n\n\n\nNote: If you include this in a report, you should also guide the viewer. Theres a lot in there. What do you want your reader to know?\nThings discussed in class when looking at skim output:\n\nwhy brand_ecig has so many missing values (only have brand information for 2019)\nwhat mean calculation for a categorical value means (proportion of TRUE values)\nwhy Age min and max values look off (b/c it’s coded as a character due to >18 category)\nthat the n category is how many respondents there are each year\n\nRemember: It can be very helpful to thinkg “what overall trends do I see?” and “is there anything weird going on?” any time you’re looking at an EDA output"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#eda-basics",
+    "href": "content/lectures/16-cs02-eda.html#eda-basics",
+    "title": "16-cs02-eda",
+    "section": "EDA: Basics",
+    "text": "EDA: Basics\nGetting a sense for some of the categorical data\n\ntable(nyts_data$Age)\n\n\n  >18    10    11    12    13    14    15    16    17    18     9 \n  727    50  5360 13499 14613 14036 13498 13205 12754  7108   198 \n\n\n\ntable(nyts_data$Group)\n\n\nCombination of products                 Neither       Only e-cigarettes \n                  16517                   61738                    7866 \n    Only other products \n                   9344 \n\n\n\ntable(nyts_data$year)\n\n\n 2015  2016  2017  2018  2019 \n17711 20675 17872 20189 19018 \n\n\nRemember: If you include this in a report, you’ll also need text to explain what the reader should know/take away from any of these."
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#eda-plots",
+    "href": "content/lectures/16-cs02-eda.html#eda-plots",
+    "title": "16-cs02-eda",
+    "section": "EDA: Plots",
+    "text": "EDA: Plots"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#sex-by-year",
+    "href": "content/lectures/16-cs02-eda.html#sex-by-year",
+    "title": "16-cs02-eda",
+    "section": "Sex by Year",
+    "text": "Sex by Year\n\nnyts_data |>\n  group_by(year) |>\n  count(Sex) |> \n  ggplot(aes(x=year, y=n, color=Sex)) + \n  geom_col()\n\n\n\n\n(Note: I argued that this was not the best way to display these data…but it’s a good start. If you include in your report, you likely want to improve!)"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#e-cig-use-by-gender",
+    "href": "content/lectures/16-cs02-eda.html#e-cig-use-by-gender",
+    "title": "16-cs02-eda",
+    "section": "E-Cig use by gender",
+    "text": "E-Cig use by gender\nStudent suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#brands",
+    "href": "content/lectures/16-cs02-eda.html#brands",
+    "title": "16-cs02-eda",
+    "section": "Brands",
+    "text": "Brands\nStudent suggestion: Distribution of most popular brands (all brands)\n\nnyts_data |> \n  group_by(year) |>\n  count(brand_ecig)\n\n# A tibble: 12 × 3\n# Groups:   year [5]\n    year brand_ecig     n\n   <dbl> <chr>      <int>\n 1  2015 <NA>       17711\n 2  2016 <NA>       20675\n 3  2017 <NA>       17872\n 4  2018 <NA>       20189\n 5  2019 Blu          111\n 6  2019 JUUL        2028\n 7  2019 Logic         36\n 8  2019 MarkTen       32\n 9  2019 NJOY          44\n10  2019 Other       1253\n11  2019 Vuse         100\n12  2019 <NA>       15414\n\n\nThe above helps us remember that we only have brand information from 2019.\n\n\nnyts_data |> \n  filter(year == 2019, !is.na(brand_ecig)) |> \n  ggplot(aes(x=brand_ecig)) +\n  geom_bar()\n\n\n\n\nNote: If including in a report, you’ll want titles, cleaner axis names, and likely to sort the x-axis values, but for your first pass EDA where you’re just trying to understand the data, this is sufficient."
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#flavors",
+    "href": "content/lectures/16-cs02-eda.html#flavors",
+    "title": "16-cs02-eda",
+    "section": "Flavors",
+    "text": "Flavors\nStudent suggestion: Distribution of most popular flavors (all flavors)\nThis one is more complicated b/c flavor data are across multiple columns…going to leave this for the analysis set of notes"
+  },
+  {
+    "objectID": "content/lectures/16-cs02-eda.html#tabacco-use-across-time",
+    "href": "content/lectures/16-cs02-eda.html#tabacco-use-across-time",
+    "title": "16-cs02-eda",
+    "section": "Tabacco use across time",
+    "text": "Tabacco use across time\nStudent suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)"
   },
   {
     "objectID": "content/lectures/16-cs02-eda.html#suggested-reading",
     "href": "content/lectures/16-cs02-eda.html#suggested-reading",
     "title": "16-cs02-eda",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nCase Study from OCS"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#qa",
+    "href": "content/lectures/17-cs02-analysis-slides.html#qa",
+    "title": "17-cs02-analysis",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: I am wondering when can we get the feedback for cs01 since it can help us to make cs02 better.\nA: Great question! Grading is underway. We plan to finish Sunday night and release Monday of week 10, so that you can incorporate feedback for cs02.\n\n\nQ: Why is a video mentioned in assignments for the Final Project?\nA: All groups will have to do a presentation. This can be recorded (video) or presented live Thursday of finals week. See description here.\n\n\nQ: The most confusing part of the lecture was why did we use the histogram plot instead of a bar plot when plotting the variables for case study 2.\nA: Hmm….we used a bar plot and not a histogram when doing the plotting. For the skim outputs (if that’s what you’re asking), it will generate a histogram in line for any numeric type variables. If I’m misunderstanding your question, please do follow up!"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#course-announcements",
+    "href": "content/lectures/17-cs02-analysis-slides.html#course-announcements",
+    "title": "17-cs02-analysis",
+    "section": "Course Announcements",
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nLab08 Due tomorrow (CS02 EDA)\nCS02 due Monday of Finals week (3/20; repo + survey)\nFinal Project due Th of Finals week (3/23; repo + presentation + survey)\n\n\nNotes:\n\nCollaboration via git for group work, some options if you’re newer to git:\n\nremember: pull before you make changes; push when done\nwork in separate Rmd and combine"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#agenda",
+    "href": "content/lectures/17-cs02-analysis-slides.html#agenda",
+    "title": "17-cs02-analysis",
+    "section": "Agenda",
+    "text": "Agenda"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#packages",
+    "href": "content/lectures/17-cs02-analysis-slides.html#packages",
+    "title": "17-cs02-analysis",
+    "section": "Packages",
+    "text": "Packages\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(viridis)\nlibrary(srvyr)"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#data",
+    "href": "content/lectures/17-cs02-analysis-slides.html#data",
+    "title": "17-cs02-analysis",
+    "section": "Data",
+    "text": "Data\n…will only work if you finished data set of notes (or open this week’s lab).\n\nload(\"data/wrangled/wrangled_data_vaping.rda\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#tobacco-use",
+    "href": "content/lectures/17-cs02-analysis-slides.html#tobacco-use",
+    "title": "17-cs02-analysis",
+    "section": "Tobacco Use",
+    "text": "Tobacco Use\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  group_by(year) |>\n  summarize(\"Ever \\n (any lifetime use)\" = (mean(tobacco_ever, na.rm = TRUE) * 100),\n            \"Current \\n (any past-30-day use)\" = (mean(tobacco_current, na.rm = TRUE) * 100)) |>\n  pivot_longer(cols = -year, names_to = \"User\", values_to = \"Percentage of students\") |>\n  ggplot(aes(x = year, y = `Percentage of students`)) +\n  geom_line(aes(linetype = User)) +\n  geom_point(show.legend = FALSE, size = 2) +\n  # this allows us to choose what type of line we want for each line\n  scale_linetype_manual(values = c(1, 2), \n                        breaks = c(\"Ever \\n (any lifetime use)\", \n                                   \"Current \\n (any past-30-day use)\")) +\n  # this allows us to specify how the y-axis should appear\n  scale_y_continuous(breaks = seq(0, 70, by = 10),\n                     labels = seq(0, 70, by = 10),\n                     limits = c(0, 70)) +\n  # this adjusts the background style of the plot\n  theme_linedraw() +\n  labs(title = \"How has tobacco use varied over the years?\",\n       y = \"% of students\") + \n  # this moves the legend to the bottom of the plot and removes the x axis title\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(), \n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#e-cig-use",
+    "href": "content/lectures/17-cs02-analysis-slides.html#e-cig-use",
+    "title": "17-cs02-analysis",
+    "section": "E-cig Use",
+    "text": "E-cig Use\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  group_by(year) |>\n  summarize(\"Ever \\n (any lifetime use)\" = (mean(ecig_ever, na.rm = TRUE) * 100),\n            \"Current \\n (any past-30-day use)\" = (mean(ecig_current, na.rm = TRUE) * 100)) |>\n  pivot_longer(cols = -year, names_to = \"User\", values_to = \"Percentage of students\") |>\n  ggplot(aes(x = year, y = `Percentage of students`)) +\n  geom_line(aes(linetype = User)) +\n  geom_point(show.legend = FALSE, size = 2) +\n  # this allows us to choose what type of line we want for each line\n  scale_linetype_manual(values = c(1, 2), \n                        breaks = c(\"Ever \\n (any lifetime use)\", \n                                   \"Current \\n (any past-30-day use)\")) +\n  # this allows us to specify how the y-axis should appear\n  scale_y_continuous(breaks = seq(0, 60, by = 10),\n                     labels = seq(0, 60, by = 10),\n                     limits = c(0, 60)) +\n  # this adjusts the background style of the plot\n  theme_linedraw() +\n  labs(title = \"How has e-cigarette use varied over the years?\",\n       y = \"% of students\") +\n  # this moves the legend to the bottom of the plot and removes the x axis title\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(),\n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#product-usage",
+    "href": "content/lectures/17-cs02-analysis-slides.html#product-usage",
+    "title": "17-cs02-analysis",
+    "section": "Product Usage",
+    "text": "Product Usage\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nv_colors =  viridis(5)[1:4]  #specify color palatte\n\nnyts_data |>\n  group_by(Group, year, n) |>\n  summarize(group_count = n()) |>\n  mutate(\"Percentage of students\" = group_count / n * 100) |>\n  ggplot(aes(x = year, y = `Percentage of students`, color = Group)) +\n  geom_point(size = 2) +\n  geom_line() +\n  scale_color_manual(breaks = c(\"Neither\", \"Combination of products\",\n                                \"Only e-cigarettes\", \"Only other products\"),\n                     values = v_colors) +\n  theme_linedraw() +\n  labs(x = \"Year\") +\n  theme(text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#q1-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis-slides.html#q1-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q1: What’s the answer?",
+    "text": "Q1: What’s the answer?\nHow has tobacco and e-cigarette/vaping use by American youths changed since 2015?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#e-cig-usage-by-sex",
+    "href": "content/lectures/17-cs02-analysis-slides.html#e-cig-usage-by-sex",
+    "title": "17-cs02-analysis",
+    "section": "E-cig usage by Sex",
+    "text": "E-cig usage by Sex\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nv_colors =  viridis(6)[c(3, 5)]\n\nnyts_data |>\n  filter(!is.na(Sex)) |>\n  group_by(year, Sex) |>\n  summarize(\"Ever \\n (any lifetime use)\" = (mean(EELCIGT, na.rm = TRUE) * 100),\n            \"Current \\n (any past-30-day use)\" = (mean(CELCIGT, na.rm = TRUE) * 100)) |>\n  pivot_longer(cols = \"Ever \\n (any lifetime use)\":\"Current \\n (any past-30-day use)\",\n               names_to = \"User\",\n               values_to = \"Percentage of students\") |>\n  ggplot(aes(x = year, y = `Percentage of students`, color = Sex)) +\n  geom_line(aes(linetype = User)) +\n  geom_point(show.legend = FALSE, size = 2) +\n  scale_linetype_manual(values = c(2, 1)) +\n  scale_color_manual(values = v_colors) +\n  theme_linedraw() +\n  labs(title = \"How does e-cigarette usage compare between males and females?\",\n       subtitle = \"Current and ever users by sex\",\n       y = \"% of students\") +\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(),\n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#q2-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis-slides.html#q2-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q2: What’s the answer?",
+    "text": "Q2: What’s the answer?\nHow does e-cigarette use compare between males and females?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#flavors",
+    "href": "content/lectures/17-cs02-analysis-slides.html#flavors",
+    "title": "17-cs02-analysis",
+    "section": "Flavors",
+    "text": "Flavors\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  filter(year != 2015) |>\n  group_by(year) |>\n  summarize(Menthol = (mean(menthol) * 100),\n            `Clove or Spice` = (mean(clove_spice) * 100),\n            Fruit = (mean(fruit) * 100),\n            Chocolate = (mean(chocolate) * 100),\n            `Alcoholic Drink` = (mean(alcoholic_drink) * 100),\n            `Candy/Desserts/Sweets` = (mean(candy_dessert_sweets) * 100),\n            Other = (mean(other) * 100)) |>\n  pivot_longer(cols = -year, \n               names_to = \"Flavor\",\n               values_to = \"Percentage of students\") |>\n  rename(Year = year) |>\n  ggplot(aes(y = `Percentage of students`,\n             x = Year,\n             fill = reorder(Flavor, `Percentage of students`))) +\n  geom_bar(stat = \"identity\",\n           position = \"dodge\",\n           color = \"black\") +\n  scale_fill_viridis(discrete = TRUE) +\n  theme_linedraw() +\n  guides(fill = guide_legend(\"Flavor\")) +\n  labs(title = \"What flavors appear to be used the most frequently?\",\n       subtitle = \"Flavors of tobacco products used in the past 30 days\") + theme(text = element_text(size = 15))"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#q3-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis-slides.html#q3-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q3: What’s the answer?",
+    "text": "Q3: What’s the answer?\nWhat vaping brands and flavors appear to be used the most frequently?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#current-ever",
+    "href": "content/lectures/17-cs02-analysis-slides.html#current-ever",
+    "title": "17-cs02-analysis",
+    "section": "Current & Ever",
+    "text": "Current & Ever\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nv_colors =  viridis(6)[c(1, 4)]\n\nnyts_data |>\n  group_by(year) |>\n  summarize(\n    \"Cigarettes, Ever \\n (any lifetime use)\" = (mean(ECIGT, na.rm = TRUE) * 100),\n    \"E-cigarettes, Ever \\n (any lifetime use)\" = (mean(EELCIGT, na.rm = TRUE) * 100),\n    \"Cigarettes, Current \\n (any past-30-day use)\" = (mean(CCIGT, na.rm = TRUE) * 100),\n    \"E-cigarettes, Current \\n (any past-30-day use)\" = (mean(CELCIGT, na.rm = TRUE) * 100)\n  ) |>\n  pivot_longer(cols = -year,\n               names_to = \"Category\",\n               values_to = \"Percentage of students\") |>\n  separate(Category, into = c(\"Product\", \"User\"), sep = \", \") |>\n  ggplot(aes(\n    x = year,\n    y = `Percentage of students`,\n    color = Product,\n    linetype = User\n  )) +\n  geom_line() +\n  geom_point(show.legend = FALSE, size = 2) +\n  scale_linetype_manual(values = c(2, 1)) +\n  scale_color_manual(values = v_colors) +\n  theme_linedraw() +\n  labs(title = \"How does e-cigarette use compare to cigarette use?\",\n       subtitle = \"Current and ever users of e-cigarettes and cigarettes\",\n       y = \"% of students\") +\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(),\n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#q4-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis-slides.html#q4-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q4: What’s the answer?",
+    "text": "Q4: What’s the answer?\nIs there a relationship between e-cigarette/vaping use and other tobacco use?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#survey-weighting",
+    "href": "content/lectures/17-cs02-analysis-slides.html#survey-weighting",
+    "title": "17-cs02-analysis",
+    "section": "Survey Weighting",
+    "text": "Survey Weighting\n\nData come from a survey\nNot everyone who was sent a survey responded\nCould over/under-sample from particular groups\nSample may no longer be representative\n\n\n\nRequires: Survey weighting"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#survey-weight-calculation",
+    "href": "content/lectures/17-cs02-analysis-slides.html#survey-weight-calculation",
+    "title": "17-cs02-analysis",
+    "section": "Survey Weight Calculation",
+    "text": "Survey Weight Calculation\n\\[\\frac{\\text{actual proportion of group in the population}}{\\text{ proportion of group in the respondents}}\\]\nNote: We do not need to calculate survey weights for our data; they were already supplied in the dataset, as described in the codebooks."
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#variables-included",
+    "href": "content/lectures/17-cs02-analysis-slides.html#variables-included",
+    "title": "17-cs02-analysis",
+    "section": "Variables included",
+    "text": "Variables included\n\n\npsu: People are sampled within strata; ensure that the responses are representative of the population of interest. Thus, often people first think about ensuring that surveys are conducted in a variety of geographical areas. This is often called the primary sampling unit or PSU. In this survey, the county where the student’s school was located was used as the PSU.\nstratum: A categorical variable that indicates subsets of the data that include respondents from different PSUs. In our case, strata are determined by the predominant minority in the PSU (Non-Hispanic Black or Hispanic), whether the PSU is urban or non-urban, and what percent of the students in the PSU fall into the predominant minority group. PSUs are allocated across the 16 possible strata according to the sampling scheme. These strata values allow estimates based on the survey responses to be calculated using different strata allowing for improved precision of the response estimates.\nfinwgt: The survey weight which was calculated based on a variety of factors."
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#srvyr",
+    "href": "content/lectures/17-cs02-analysis-slides.html#srvyr",
+    "title": "17-cs02-analysis",
+    "section": "srvyr",
+    "text": "srvyr\nsrvyr::as_survey_design(): create a survey object with a specified survey design. Includes information about how the survey was conducted that can be taken into account in the analysis.\n\n\nstrata - the variable(s) that defined strata in the data. (stratum)\nids - cluster ids within the data. (psu)\nweight - which variable(s) are the survey weights. (finwgt)\nnest = TRUE - forces cluster ids (in this case the PSU) to be nested within the strata\n\nNote: survey weights are specific to a single year of the survey result; will need different design objects for each year"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#function-surveymeana",
+    "href": "content/lectures/17-cs02-analysis-slides.html#function-surveymeana",
+    "title": "17-cs02-analysis",
+    "section": "function: surveyMeanA()",
+    "text": "function: surveyMeanA()\n\nsurveyMeanA <- function(currYear) {\n  options(survey.lonely.psu = \"adjust\")\n  currYear |>\n    as_survey_design(strata = stratum,\n                     ids = psu,\n                     weight  = finwgt,\n                     nest = TRUE) |>\n    summarize(tobacco_ever = survey_mean(tobacco_ever,\n                                         vartype = \"ci\",\n                                         na.rm = TRUE),\n              tobacco_current = survey_mean(tobacco_current,\n                                            vartype = \"ci\",\n                                            na.rm = TRUE))  |>\n    mutate_all(\"*\", 100) |>\n    pivot_longer(everything(),\n                 names_to = \"Type\",\n                 values_to = \"Percentage of students\") |>\n    mutate(Estimate = case_when(str_detect(Type, \"_low\") ~ \"Lower\",\n                                str_detect(Type, \"_upp\") ~ \"Upper\",\n                                TRUE ~ \"Mean\"),\n           User = case_when(str_detect(Type, \"ever\") ~ \"Ever\",\n                            str_detect(Type, \"current\") ~ \"Current\",\n                            TRUE ~ \"Mean\"))}\n\n❓ What’s this accomplishing?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#tobacco-use-1",
+    "href": "content/lectures/17-cs02-analysis-slides.html#tobacco-use-1",
+    "title": "17-cs02-analysis",
+    "section": "Tobacco Use",
+    "text": "Tobacco Use\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  group_by(year) |>\n  group_modify(~ surveyMeanA(.x)) |>\n  dplyr::select(-Type) |>\n  pivot_wider(names_from = Estimate,\n             values_from = `Percentage of students`) |>\n  ggplot(aes(x = year, y = Mean)) +\n  geom_line(aes(linetype = User)) +\n  geom_linerange(aes(ymin = Lower,\n                     ymax = Upper), \n                     linewidth = 1, \n              show.legend = FALSE) +\n  scale_linetype_manual(values = c(2, 1)) +\n  scale_y_continuous(breaks = seq(0, 70, by = 10),\n                     labels = seq(0, 70, by = 10),\n                     limits = c(0, 70)) +\n    theme_linedraw() +\n    labs(title = \"Tobacco product users more prevalent after 2017\",\n         y = \"% of students\") +\n    theme(legend.position = \"none\",\n          axis.title.x = element_blank(),\n          text = element_text(size = 15),\n          plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#logistic-regression",
+    "href": "content/lectures/17-cs02-analysis-slides.html#logistic-regression",
+    "title": "17-cs02-analysis",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\n\\[logit(p)= log_e (\\frac{p}{1-p})= \\beta_0 + \\beta_1 X\\]\n\n\\(p\\) as the probability that a student respondent is a current e-cigarette user"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#model",
+    "href": "content/lectures/17-cs02-analysis-slides.html#model",
+    "title": "17-cs02-analysis",
+    "section": "Model",
+    "text": "Model\n\ndat2015 <- nyts_data |>\n  filter(year == 2015, !is.na(Sex))\n\ncurrEcigSex <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(as.factor(ecig_current) ~ Sex, data = dat2015, family = \"binomial\")\n\n(currEcigSexTidy <- tidy(currEcigSex))\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -2.32     0.0377    -61.5  0       \n2 Sexmale        0.425    0.0490      8.66 4.73e-18\n\n\n\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -1.89 - 0.425 \\cdot (Sex == female)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#model-interpretation",
+    "href": "content/lectures/17-cs02-analysis-slides.html#model-interpretation",
+    "title": "17-cs02-analysis",
+    "section": "Model Interpretation",
+    "text": "Model Interpretation\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -1.89 - 0.425 \\cdot (Sex == female)\n\\end{aligned}\n\\]\n\n\\(-0.425 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.425 lower for females compared to males\n\\(0.65 = e^{-0.425} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for females is 0.65 times the odds for males.\nThe odds of being a current e-cigarette user for females is 35% lower than the odds for males.\n\n\n\n\nNote: model does not consider other variables yet…i.e. Age"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#survey-weighted-logistic-regression",
+    "href": "content/lectures/17-cs02-analysis-slides.html#survey-weighted-logistic-regression",
+    "title": "17-cs02-analysis",
+    "section": "Survey-weighted logistic regression",
+    "text": "Survey-weighted logistic regression\n\ndat2015_survey_design <- dat2015 |>\n                          as_survey_design(strata = stratum,\n                                            ids = psu,\n                                            weight  = finwgt,\n                                            nest = TRUE)\n\n\ncurrEcigSex_svy <- survey::svyglm(ecig_current ~ Sex,\n                                  family = quasibinomial(link = 'logit'),\n                                  design = dat2015_survey_design)\ntidy(currEcigSex_svy)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -2.28     0.0683    -33.4  1.15e-42\n2 Sexmale        0.383    0.0700      5.48 7.52e- 7"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#survey-weighted-interpretation",
+    "href": "content/lectures/17-cs02-analysis-slides.html#survey-weighted-interpretation",
+    "title": "17-cs02-analysis",
+    "section": "Survey-weighted Interpretation",
+    "text": "Survey-weighted Interpretation\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -2.28     0.0683    -33.4  1.15e-42\n2 Sexmale        0.383    0.0700      5.48 7.52e- 7\n\n\n\n\n\\(-0.383 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.383 lower for females than for males, taking survey weights into account.\n\\(0.68 = e^{-0.383} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for females is 0.68 times the odds for males, taking survey weights into account.\nThe odds of being a current e-cigarette user for females is 32% lower than the odds for males, taking survey weights into account."
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#for-the-case-study",
+    "href": "content/lectures/17-cs02-analysis-slides.html#for-the-case-study",
+    "title": "17-cs02-analysis",
+    "section": "For the case study…",
+    "text": "For the case study…\nQ4: Is there a relationship between e-cigarette/vaping use and other tobacco use?\n❓ Your Turn: What would we likely model given what we’ve discussed so far?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis-slides.html#suggested-reading",
+    "href": "content/lectures/17-cs02-analysis-slides.html#suggested-reading",
+    "title": "17-cs02-analysis",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nCase Study from OCS\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html",
+    "href": "content/lectures/17-cs02-analysis.html",
+    "title": "17-cs02-analysis",
+    "section": "",
+    "text": "Q: I am wondering when can we get the feedback for cs01 since it can help us to make cs02 better.\nA: Great question! Grading is underway. We plan to finish Sunday night and release Monday of week 10, so that you can incorporate feedback for cs02.\n\n\nQ: Why is a video mentioned in assignments for the Final Project?\nA: All groups will have to do a presentation. This can be recorded (video) or presented live Thursday of finals week. See description here.\n\n\nQ: The most confusing part of the lecture was why did we use the histogram plot instead of a bar plot when plotting the variables for case study 2.\nA: Hmm….we used a bar plot and not a histogram when doing the plotting. For the skim outputs (if that’s what you’re asking), it will generate a histogram in line for any numeric type variables. If I’m misunderstanding your question, please do follow up!\n\n\n\n\n\nLecture Participation survey “due” after class\nLab08 Due tomorrow (CS02 EDA)\nCS02 due Monday of Finals week (3/20; repo + survey)\nFinal Project due Th of Finals week (3/23; repo + presentation + survey)\n\n\nNotes:\n\nCollaboration via git for group work, some options if you’re newer to git:\n\nremember: pull before you make changes; push when done\nwork in separate Rmd and combine\n\n\n\n\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\nlibrary(viridis)\nlibrary(srvyr)\n\n\n\n\n…will only work if you finished data set of notes (or open this week’s lab).\n\nload(\"data/wrangled/wrangled_data_vaping.rda\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#tobacco-use",
+    "href": "content/lectures/17-cs02-analysis.html#tobacco-use",
+    "title": "17-cs02-analysis",
+    "section": "Tobacco Use",
+    "text": "Tobacco Use\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  group_by(year) |>\n  summarize(\"Ever \\n (any lifetime use)\" = (mean(tobacco_ever, na.rm = TRUE) * 100),\n            \"Current \\n (any past-30-day use)\" = (mean(tobacco_current, na.rm = TRUE) * 100)) |>\n  pivot_longer(cols = -year, names_to = \"User\", values_to = \"Percentage of students\") |>\n  ggplot(aes(x = year, y = `Percentage of students`)) +\n  geom_line(aes(linetype = User)) +\n  geom_point(show.legend = FALSE, size = 2) +\n  # this allows us to choose what type of line we want for each line\n  scale_linetype_manual(values = c(1, 2), \n                        breaks = c(\"Ever \\n (any lifetime use)\", \n                                   \"Current \\n (any past-30-day use)\")) +\n  # this allows us to specify how the y-axis should appear\n  scale_y_continuous(breaks = seq(0, 70, by = 10),\n                     labels = seq(0, 70, by = 10),\n                     limits = c(0, 70)) +\n  # this adjusts the background style of the plot\n  theme_linedraw() +\n  labs(title = \"How has tobacco use varied over the years?\",\n       y = \"% of students\") + \n  # this moves the legend to the bottom of the plot and removes the x axis title\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(), \n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#e-cig-use",
+    "href": "content/lectures/17-cs02-analysis.html#e-cig-use",
+    "title": "17-cs02-analysis",
+    "section": "E-cig Use",
+    "text": "E-cig Use\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  group_by(year) |>\n  summarize(\"Ever \\n (any lifetime use)\" = (mean(ecig_ever, na.rm = TRUE) * 100),\n            \"Current \\n (any past-30-day use)\" = (mean(ecig_current, na.rm = TRUE) * 100)) |>\n  pivot_longer(cols = -year, names_to = \"User\", values_to = \"Percentage of students\") |>\n  ggplot(aes(x = year, y = `Percentage of students`)) +\n  geom_line(aes(linetype = User)) +\n  geom_point(show.legend = FALSE, size = 2) +\n  # this allows us to choose what type of line we want for each line\n  scale_linetype_manual(values = c(1, 2), \n                        breaks = c(\"Ever \\n (any lifetime use)\", \n                                   \"Current \\n (any past-30-day use)\")) +\n  # this allows us to specify how the y-axis should appear\n  scale_y_continuous(breaks = seq(0, 60, by = 10),\n                     labels = seq(0, 60, by = 10),\n                     limits = c(0, 60)) +\n  # this adjusts the background style of the plot\n  theme_linedraw() +\n  labs(title = \"How has e-cigarette use varied over the years?\",\n       y = \"% of students\") +\n  # this moves the legend to the bottom of the plot and removes the x axis title\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(),\n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#product-usage",
+    "href": "content/lectures/17-cs02-analysis.html#product-usage",
+    "title": "17-cs02-analysis",
+    "section": "Product Usage",
+    "text": "Product Usage\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nv_colors =  viridis(5)[1:4]  #specify color palatte\n\nnyts_data |>\n  group_by(Group, year, n) |>\n  summarize(group_count = n()) |>\n  mutate(\"Percentage of students\" = group_count / n * 100) |>\n  ggplot(aes(x = year, y = `Percentage of students`, color = Group)) +\n  geom_point(size = 2) +\n  geom_line() +\n  scale_color_manual(breaks = c(\"Neither\", \"Combination of products\",\n                                \"Only e-cigarettes\", \"Only other products\"),\n                     values = v_colors) +\n  theme_linedraw() +\n  labs(x = \"Year\") +\n  theme(text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#q1-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis.html#q1-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q1: What’s the answer?",
+    "text": "Q1: What’s the answer?\nHow has tobacco and e-cigarette/vaping use by American youths changed since 2015?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#e-cig-usage-by-sex",
+    "href": "content/lectures/17-cs02-analysis.html#e-cig-usage-by-sex",
+    "title": "17-cs02-analysis",
+    "section": "E-cig usage by Sex",
+    "text": "E-cig usage by Sex\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nv_colors =  viridis(6)[c(3, 5)]\n\nnyts_data |>\n  filter(!is.na(Sex)) |>\n  group_by(year, Sex) |>\n  summarize(\"Ever \\n (any lifetime use)\" = (mean(EELCIGT, na.rm = TRUE) * 100),\n            \"Current \\n (any past-30-day use)\" = (mean(CELCIGT, na.rm = TRUE) * 100)) |>\n  pivot_longer(cols = \"Ever \\n (any lifetime use)\":\"Current \\n (any past-30-day use)\",\n               names_to = \"User\",\n               values_to = \"Percentage of students\") |>\n  ggplot(aes(x = year, y = `Percentage of students`, color = Sex)) +\n  geom_line(aes(linetype = User)) +\n  geom_point(show.legend = FALSE, size = 2) +\n  scale_linetype_manual(values = c(2, 1)) +\n  scale_color_manual(values = v_colors) +\n  theme_linedraw() +\n  labs(title = \"How does e-cigarette usage compare between males and females?\",\n       subtitle = \"Current and ever users by sex\",\n       y = \"% of students\") +\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(),\n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#q2-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis.html#q2-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q2: What’s the answer?",
+    "text": "Q2: What’s the answer?\nHow does e-cigarette use compare between males and females?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#flavors",
+    "href": "content/lectures/17-cs02-analysis.html#flavors",
+    "title": "17-cs02-analysis",
+    "section": "Flavors",
+    "text": "Flavors\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  filter(year != 2015) |>\n  group_by(year) |>\n  summarize(Menthol = (mean(menthol) * 100),\n            `Clove or Spice` = (mean(clove_spice) * 100),\n            Fruit = (mean(fruit) * 100),\n            Chocolate = (mean(chocolate) * 100),\n            `Alcoholic Drink` = (mean(alcoholic_drink) * 100),\n            `Candy/Desserts/Sweets` = (mean(candy_dessert_sweets) * 100),\n            Other = (mean(other) * 100)) |>\n  pivot_longer(cols = -year, \n               names_to = \"Flavor\",\n               values_to = \"Percentage of students\") |>\n  rename(Year = year) |>\n  ggplot(aes(y = `Percentage of students`,\n             x = Year,\n             fill = reorder(Flavor, `Percentage of students`))) +\n  geom_bar(stat = \"identity\",\n           position = \"dodge\",\n           color = \"black\") +\n  scale_fill_viridis(discrete = TRUE) +\n  theme_linedraw() +\n  guides(fill = guide_legend(\"Flavor\")) +\n  labs(title = \"What flavors appear to be used the most frequently?\",\n       subtitle = \"Flavors of tobacco products used in the past 30 days\") + theme(text = element_text(size = 15))"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#q3-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis.html#q3-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q3: What’s the answer?",
+    "text": "Q3: What’s the answer?\nWhat vaping brands and flavors appear to be used the most frequently?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#current-ever",
+    "href": "content/lectures/17-cs02-analysis.html#current-ever",
+    "title": "17-cs02-analysis",
+    "section": "Current & Ever",
+    "text": "Current & Ever\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nv_colors =  viridis(6)[c(1, 4)]\n\nnyts_data |>\n  group_by(year) |>\n  summarize(\n    \"Cigarettes, Ever \\n (any lifetime use)\" = (mean(ECIGT, na.rm = TRUE) * 100),\n    \"E-cigarettes, Ever \\n (any lifetime use)\" = (mean(EELCIGT, na.rm = TRUE) * 100),\n    \"Cigarettes, Current \\n (any past-30-day use)\" = (mean(CCIGT, na.rm = TRUE) * 100),\n    \"E-cigarettes, Current \\n (any past-30-day use)\" = (mean(CELCIGT, na.rm = TRUE) * 100)\n  ) |>\n  pivot_longer(cols = -year,\n               names_to = \"Category\",\n               values_to = \"Percentage of students\") |>\n  separate(Category, into = c(\"Product\", \"User\"), sep = \", \") |>\n  ggplot(aes(\n    x = year,\n    y = `Percentage of students`,\n    color = Product,\n    linetype = User\n  )) +\n  geom_line() +\n  geom_point(show.legend = FALSE, size = 2) +\n  scale_linetype_manual(values = c(2, 1)) +\n  scale_color_manual(values = v_colors) +\n  theme_linedraw() +\n  labs(title = \"How does e-cigarette use compare to cigarette use?\",\n       subtitle = \"Current and ever users of e-cigarettes and cigarettes\",\n       y = \"% of students\") +\n  theme(legend.position = \"bottom\",\n        axis.title.x = element_blank(),\n        text = element_text(size = 15),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#q4-whats-the-answer",
+    "href": "content/lectures/17-cs02-analysis.html#q4-whats-the-answer",
+    "title": "17-cs02-analysis",
+    "section": "Q4: What’s the answer?",
+    "text": "Q4: What’s the answer?\nIs there a relationship between e-cigarette/vaping use and other tobacco use?\n❓ Your Turn: Given the results thus far, what’s your answer? Anything else you’d explore?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#survey-weighting",
+    "href": "content/lectures/17-cs02-analysis.html#survey-weighting",
+    "title": "17-cs02-analysis",
+    "section": "Survey Weighting",
+    "text": "Survey Weighting\n\nData come from a survey\nNot everyone who was sent a survey responded\nCould over/under-sample from particular groups\nSample may no longer be representative\n\n\n\nRequires: Survey weighting"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#survey-weight-calculation",
+    "href": "content/lectures/17-cs02-analysis.html#survey-weight-calculation",
+    "title": "17-cs02-analysis",
+    "section": "Survey Weight Calculation",
+    "text": "Survey Weight Calculation\n\\[\\frac{\\text{actual proportion of group in the population}}{\\text{ proportion of group in the respondents}}\\]\nNote: We do not need to calculate survey weights for our data; they were already supplied in the dataset, as described in the codebooks."
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#variables-included",
+    "href": "content/lectures/17-cs02-analysis.html#variables-included",
+    "title": "17-cs02-analysis",
+    "section": "Variables included",
+    "text": "Variables included\n\n\npsu: People are sampled within strata; ensure that the responses are representative of the population of interest. Thus, often people first think about ensuring that surveys are conducted in a variety of geographical areas. This is often called the primary sampling unit or PSU. In this survey, the county where the student’s school was located was used as the PSU.\nstratum: A categorical variable that indicates subsets of the data that include respondents from different PSUs. In our case, strata are determined by the predominant minority in the PSU (Non-Hispanic Black or Hispanic), whether the PSU is urban or non-urban, and what percent of the students in the PSU fall into the predominant minority group. PSUs are allocated across the 16 possible strata according to the sampling scheme. These strata values allow estimates based on the survey responses to be calculated using different strata allowing for improved precision of the response estimates.\nfinwgt: The survey weight which was calculated based on a variety of factors."
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#srvyr",
+    "href": "content/lectures/17-cs02-analysis.html#srvyr",
+    "title": "17-cs02-analysis",
+    "section": "srvyr",
+    "text": "srvyr\nsrvyr::as_survey_design(): create a survey object with a specified survey design. Includes information about how the survey was conducted that can be taken into account in the analysis.\n\n\nstrata - the variable(s) that defined strata in the data. (stratum)\nids - cluster ids within the data. (psu)\nweight - which variable(s) are the survey weights. (finwgt)\nnest = TRUE - forces cluster ids (in this case the PSU) to be nested within the strata\n\nNote: survey weights are specific to a single year of the survey result; will need different design objects for each year"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#function-surveymeana",
+    "href": "content/lectures/17-cs02-analysis.html#function-surveymeana",
+    "title": "17-cs02-analysis",
+    "section": "function: surveyMeanA()",
+    "text": "function: surveyMeanA()\n\nsurveyMeanA <- function(currYear) {\n  options(survey.lonely.psu = \"adjust\")\n  currYear |>\n    as_survey_design(strata = stratum,\n                     ids = psu,\n                     weight  = finwgt,\n                     nest = TRUE) |>\n    summarize(tobacco_ever = survey_mean(tobacco_ever,\n                                         vartype = \"ci\",\n                                         na.rm = TRUE),\n              tobacco_current = survey_mean(tobacco_current,\n                                            vartype = \"ci\",\n                                            na.rm = TRUE))  |>\n    mutate_all(\"*\", 100) |>\n    pivot_longer(everything(),\n                 names_to = \"Type\",\n                 values_to = \"Percentage of students\") |>\n    mutate(Estimate = case_when(str_detect(Type, \"_low\") ~ \"Lower\",\n                                str_detect(Type, \"_upp\") ~ \"Upper\",\n                                TRUE ~ \"Mean\"),\n           User = case_when(str_detect(Type, \"ever\") ~ \"Ever\",\n                            str_detect(Type, \"current\") ~ \"Current\",\n                            TRUE ~ \"Mean\"))}\n\n❓ What’s this accomplishing?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#tobacco-use-1",
+    "href": "content/lectures/17-cs02-analysis.html#tobacco-use-1",
+    "title": "17-cs02-analysis",
+    "section": "Tobacco Use",
+    "text": "Tobacco Use\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nnyts_data |>\n  group_by(year) |>\n  group_modify(~ surveyMeanA(.x)) |>\n  dplyr::select(-Type) |>\n  pivot_wider(names_from = Estimate,\n             values_from = `Percentage of students`) |>\n  ggplot(aes(x = year, y = Mean)) +\n  geom_line(aes(linetype = User)) +\n  geom_linerange(aes(ymin = Lower,\n                     ymax = Upper), \n                     linewidth = 1, \n              show.legend = FALSE) +\n  scale_linetype_manual(values = c(2, 1)) +\n  scale_y_continuous(breaks = seq(0, 70, by = 10),\n                     labels = seq(0, 70, by = 10),\n                     limits = c(0, 70)) +\n    theme_linedraw() +\n    labs(title = \"Tobacco product users more prevalent after 2017\",\n         y = \"% of students\") +\n    theme(legend.position = \"none\",\n          axis.title.x = element_blank(),\n          text = element_text(size = 15),\n          plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#logistic-regression",
+    "href": "content/lectures/17-cs02-analysis.html#logistic-regression",
+    "title": "17-cs02-analysis",
+    "section": "Logistic Regression",
+    "text": "Logistic Regression\n\\[logit(p)= log_e (\\frac{p}{1-p})= \\beta_0 + \\beta_1 X\\]\n\n\\(p\\) as the probability that a student respondent is a current e-cigarette user"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#model",
+    "href": "content/lectures/17-cs02-analysis.html#model",
+    "title": "17-cs02-analysis",
+    "section": "Model",
+    "text": "Model\n\ndat2015 <- nyts_data |>\n  filter(year == 2015, !is.na(Sex))\n\ncurrEcigSex <- logistic_reg() |>\n  set_engine(\"glm\") |>\n  fit(as.factor(ecig_current) ~ Sex, data = dat2015, family = \"binomial\")\n\n(currEcigSexTidy <- tidy(currEcigSex))\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -2.32     0.0377    -61.5  0       \n2 Sexmale        0.425    0.0490      8.66 4.73e-18\n\n\n\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -1.89 - 0.425 \\cdot (Sex == female)\n\\end{aligned}\n\\]"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#model-interpretation",
+    "href": "content/lectures/17-cs02-analysis.html#model-interpretation",
+    "title": "17-cs02-analysis",
+    "section": "Model Interpretation",
+    "text": "Model Interpretation\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -1.89 - 0.425 \\cdot (Sex == female)\n\\end{aligned}\n\\]\n\n\\(-0.425 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.425 lower for females compared to males\n\\(0.65 = e^{-0.425} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for females is 0.65 times the odds for males.\nThe odds of being a current e-cigarette user for females is 35% lower than the odds for males.\n\n\n\n\nNote: model does not consider other variables yet…i.e. Age"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#survey-weighted-logistic-regression",
+    "href": "content/lectures/17-cs02-analysis.html#survey-weighted-logistic-regression",
+    "title": "17-cs02-analysis",
+    "section": "Survey-weighted logistic regression",
+    "text": "Survey-weighted logistic regression\n\ndat2015_survey_design <- dat2015 |>\n                          as_survey_design(strata = stratum,\n                                            ids = psu,\n                                            weight  = finwgt,\n                                            nest = TRUE)\n\n\ncurrEcigSex_svy <- survey::svyglm(ecig_current ~ Sex,\n                                  family = quasibinomial(link = 'logit'),\n                                  design = dat2015_survey_design)\ntidy(currEcigSex_svy)\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -2.28     0.0683    -33.4  1.15e-42\n2 Sexmale        0.383    0.0700      5.48 7.52e- 7"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#survey-weighted-interpretation",
+    "href": "content/lectures/17-cs02-analysis.html#survey-weighted-interpretation",
+    "title": "17-cs02-analysis",
+    "section": "Survey-weighted Interpretation",
+    "text": "Survey-weighted Interpretation\n\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   -2.28     0.0683    -33.4  1.15e-42\n2 Sexmale        0.383    0.0700      5.48 7.52e- 7\n\n\n\n\n\\(-0.383 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.383 lower for females than for males, taking survey weights into account.\n\\(0.68 = e^{-0.383} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for females is 0.68 times the odds for males, taking survey weights into account.\nThe odds of being a current e-cigarette user for females is 32% lower than the odds for males, taking survey weights into account."
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#for-the-case-study",
+    "href": "content/lectures/17-cs02-analysis.html#for-the-case-study",
+    "title": "17-cs02-analysis",
+    "section": "For the case study…",
+    "text": "For the case study…\nQ4: Is there a relationship between e-cigarette/vaping use and other tobacco use?\n❓ Your Turn: What would we likely model given what we’ve discussed so far?"
+  },
+  {
+    "objectID": "content/lectures/17-cs02-analysis.html#suggested-reading",
+    "href": "content/lectures/17-cs02-analysis.html#suggested-reading",
+    "title": "17-cs02-analysis",
     "section": "Suggested Reading",
     "text": "Suggested Reading\n\nCase Study from OCS"
   },
@@ -4414,7 +4911,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2007, 1982, 1986, 2008, 2001, 1994, 1982, 19…\n$ STATE                     <chr> \"South Carolina\", \"Wisconsin\", \"Kentucky\", \"…\n$ Black_Male_15_to_19_years <dbl> 1.3360605, 0.2259944, 0.3777841, 0.2314658, …\n$ Black_Male_20_to_39_years <dbl> 3.7130944, 0.6522053, 1.1693897, 0.7158293, …\n$ Other_Male_15_to_19_years <dbl> 0.12933973, 0.06599873, 0.02546219, 0.214153…\n$ Other_Male_20_to_39_years <dbl> 0.4677877, 0.2201790, 0.1076788, 0.7418817, …\n$ White_Male_15_to_19_years <dbl> 2.329578, 4.280084, 3.786301, 3.309214, 2.85…\n$ White_Male_20_to_39_years <dbl> 9.151731, 15.368907, 15.100435, 12.062884, 1…\n$ Unemployment_rate         <dbl> 5.7, 10.5, 9.4, 3.3, 3.7, 5.1, 15.4, 8.8, 5.…\n$ Poverty_rate              <dbl> 14.1, 9.5, 17.7, 10.6, 8.9, 15.6, 16.2, 18.6…\n$ Viol_crime_count          <dbl> 34630, 9077, 12467, 5570, 30585, 39240, 5980…\n$ Population                <dbl> 4444110, 4728879, 3687821, 1796378, 6397634,…\n$ police_per_100k_lag       <dbl> 373.3256, 251.3704, 189.7326, 279.9522, 326.…\n$ RTC_LAW_YEAR              <dbl> 1997, 2012, 1997, 2007, Inf, 2004, 2001, 199…\n$ RTC_LAW                   <lgl> TRUE, FALSE, FALSE, TRUE, FALSE, FALSE, FALS…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 7.792336, 1.919482, 3.380587, 3.100684, 4.78…\n$ Viol_crime_rate_1k_log    <dbl> 2.0531407, 0.6520556, 1.2180494, 1.1316226, …\n$ Population_log            <dbl> 15.30709, 15.36920, 15.12055, 14.40128, 15.6…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2000, 1989, 1996, 1995, 1988, 1999, 2006, 19…\n$ STATE                     <chr> \"North Dakota\", \"Kentucky\", \"Florida\", \"Miss…\n$ Black_Male_15_to_19_years <dbl> 0.0437679, 0.3637464, 0.6871117, 1.8943893, …\n$ Black_Male_20_to_39_years <dbl> 0.1799001, 1.1552267, 2.2271226, 5.0746101, …\n$ Other_Male_15_to_19_years <dbl> 0.35201231, 0.02912473, 0.07697420, 0.046566…\n$ Other_Male_20_to_39_years <dbl> 0.9635169, 0.1212851, 0.3401490, 0.1684265, …\n$ White_Male_15_to_19_years <dbl> 3.940669, 3.655086, 2.342130, 2.293715, 3.11…\n$ White_Male_20_to_39_years <dbl> 12.866673, 14.588717, 11.249165, 9.212543, 1…\n$ Unemployment_rate         <dbl> 3.0, 6.4, 5.2, 6.2, 6.4, 4.0, 4.4, 5.5, 7.0,…\n$ Poverty_rate              <dbl> 10.4, 16.1, 14.2, 23.5, 17.3, 11.9, 12.8, 15…\n$ Viol_crime_count          <dbl> 523, 13302, 151350, 13560, 14179, 38111, 119…\n$ Population                <dbl> 642023, 3677287, 14426911, 2690788, 3167148,…\n$ police_per_100k_lag       <dbl> 250.7698, 195.1167, 437.2384, 267.7654, 251.…\n$ RTC_LAW_YEAR              <dbl> 1986, 1997, 1988, 1990, 1996, 1997, 2007, 19…\n$ RTC_LAW                   <lgl> TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, FALSE,…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 0.8146126, 3.6173407, 10.4908112, 5.0394160,…\n$ Viol_crime_rate_1k_log    <dbl> -0.2050427, 1.2857391, 2.3504998, 1.6172902,…\n$ Population_log            <dbl> 13.37238, 15.11769, 16.48461, 14.80534, 14.9…"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#wrangling-combining-lott",
@@ -4680,7 +5177,7 @@
     "href": "content/lectures/11-cs01-data.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1980, 1986, 2003, 1980, 1995, 1983, 2005, 20…\n$ STATE                     <chr> \"North Dakota\", \"Iowa\", \"Maine\", \"Iowa\", \"Al…\n$ Black_Male_15_to_19_years <dbl> 0.03101600, 0.08728751, 0.04737802, 0.088765…\n$ Black_Male_20_to_39_years <dbl> 0.15095470, 0.28489324, 0.15790122, 0.239885…\n$ Other_Male_15_to_19_years <dbl> 0.21925100, 0.05376223, 0.13624051, 0.036459…\n$ Other_Male_20_to_39_years <dbl> 0.4945753, 0.2079212, 0.3423617, 0.1312268, …\n$ White_Male_15_to_19_years <dbl> 4.742850, 3.812856, 3.523271, 4.648058, 3.03…\n$ White_Male_20_to_39_years <dbl> 15.99432, 15.31951, 11.68813, 14.88125, 13.1…\n$ Unemployment_rate         <dbl> 4.9, 6.8, 5.0, 6.0, 7.3, 8.7, 3.8, 4.6, 10.5…\n$ Poverty_rate              <dbl> 15.5, 12.9, 11.6, 10.8, 7.1, 16.0, 11.8, 11.…\n$ Viol_crime_count          <dbl> 352, 6703, 1422, 5826, 4656, 161489, 1387, 5…\n$ Population                <dbl> 654501, 2791923, 1306513, 2915562, 601345, 1…\n$ police_per_100k_lag       <dbl> 163.9417, 200.2204, 231.8385, 155.9562, 294.…\n$ RTC_LAW_YEAR              <dbl> 1986, 2011, 1986, 2011, 1995, Inf, 1985, 198…\n$ RTC_LAW                   <lgl> FALSE, FALSE, TRUE, FALSE, TRUE, FALSE, TRUE…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 0.5378143, 2.4008542, 1.0883933, 1.9982425, …\n$ Viol_crime_rate_1k_log    <dbl> -0.62024194, 0.87582458, 0.08470258, 0.69226…\n$ Population_log            <dbl> 13.39163, 14.84224, 14.08287, 14.88557, 13.3…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1997, 2000, 1989, 1996, 1998, 1987, 1998, 19…\n$ STATE                     <chr> \"Texas\", \"West Virginia\", \"Wisconsin\", \"Idah…\n$ Black_Male_15_to_19_years <dbl> 0.56499399, 0.14864243, 0.24416872, 0.031320…\n$ Black_Male_20_to_39_years <dbl> 2.0076591, 0.5170942, 0.7673050, 0.1198950, …\n$ Other_Male_15_to_19_years <dbl> 0.12894575, 0.06773579, 0.09060064, 0.113159…\n$ Other_Male_20_to_39_years <dbl> 0.5601013, 0.2163782, 0.3186260, 0.4224951, …\n$ White_Male_15_to_19_years <dbl> 3.327279, 3.362828, 3.366637, 4.479897, 4.48…\n$ White_Male_20_to_39_years <dbl> 12.72682, 12.41092, 15.08618, 13.48137, 13.2…\n$ Unemployment_rate         <dbl> 5.3, 5.5, 4.3, 5.3, 5.1, 8.4, 4.3, 6.8, 9.7,…\n$ Poverty_rate              <dbl> 16.7, 14.7, 8.4, 11.9, 13.0, 17.6, 16.6, 9.2…\n$ Viol_crime_count          <dbl> 117126, 5723, 10834, 3177, 3468, 105961, 269…\n$ Population                <dbl> 19355427, 1807021, 4856478, 1187706, 1230923…\n$ police_per_100k_lag       <dbl> 367.2458, 247.3131, 266.4688, 288.4552, 284.…\n$ RTC_LAW_YEAR              <dbl> 1996, 1990, 2012, 1990, 1990, 1996, 1995, In…\n$ RTC_LAW                   <lgl> TRUE, TRUE, FALSE, TRUE, TRUE, FALSE, TRUE, …\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 6.051326, 3.167091, 2.230835, 2.674904, 2.81…\n$ Viol_crime_rate_1k_log    <dbl> 1.8002774, 1.1528135, 0.8023759, 0.9839136, …\n$ Population_log            <dbl> 16.77848, 14.40719, 15.39582, 13.98753, 14.0…"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#wrangling-combining-lott",

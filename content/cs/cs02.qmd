@@ -1,0 +1,72 @@
+---
+title: "CS02: Vaping Behaviors in American Youth"
+date: "Due: March 20, 2023 (11:59 PM)"
+output: 
+  html: 
+    highlight: pygments
+    preview-links: auto
+    execute:
+      eval: false
+---
+
+This is your second case study report, so you get to incorporate the general feedback from cs01 and carry out another complete data science project! This report will include your analysis from top (the background and question) to bottom (your analysis, interpretation, and conclusions.)
+
+We'll be grading to see that you have: 1) all necessary code for each section of the project; 2) explanatory text that guides the reader from start to finish; 3) polished visualizations that allow the reader to both understand the data you're working with an your conclusions.
+
+This will be submitted and graded as a group. **One submission per group.**
+
+## Getting started
+
+Here are the steps for getting started:
+
+-   This will be completed in cs02 group repository that has been created for you and your group mates.
+-   Make any changes needed as outlined by the tasks you need to complete for the assignment
+-   Periodically knit and commit changes (for example, once per each new part)[^1]
+-   Push all your changes back to your GitHub repo
+-   This case study will be graded from GitHub.
+
+[^1]: Avoid waiting until the end to knit for the first time. It will be better/easier/less of a headache if you knit periodically and know it's all working as intended.
+
+Your final GitHub push prior to the deadline will be used for grading.
+
+### Imports
+
+You are allowed to import whichever packages you like for this case study report.
+
+## Case Study Report
+
+Your case study can be organized however you see best fit, but we'll be looking for the following *general* sections:
+
+-   Title
+-   Authors
+-   Background/Introduction
+-   Question(s)
+-   Data Introduction/Explanation
+-   Data Import
+-   Data Wrangling
+-   Exploratory Data Analysis
+-   Data Analysis
+-   Results
+-   Discussion of results
+-   Conclusion
+
+Now, you may want to combine some of these sections (i.e. include your results and discussion among your analysis code). That's *totally* allowed, but we'll be looking to see that your report includes sufficient information to understand what you did, why you did it, and what your results are.
+
+### Required Questions
+
+All groups will analyze the data and answer the four following questions in their report:
+
+1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+2. How does e-cigarette use compare between males and females?
+3. What vaping brands and flavors appear to be used the most frequently?
+4. Is there a relationship between e-cigarette/vaping use and other tobacco use?
+
+### Extending the Analysis
+
+In addition to getting the code presented in class working, adding explanatory text to your report, and generating polished visualizations, you and your group must "extend the analysis" presented in class in a meaningful way. Now "meaningful" is not a very-easily-measured term. A meaningful extension could be carrying out analysis to answer an additional sub-question beyond what was presented in class, or including a really extensive exploratory data analysis, including data from additional years, and/or or generating a really superb set of visualizations to convey your groups' results, or finding a related dataset and incorporating it into your case study. To determine whether your extension is "meaningful," you and your group should be able to answer "yes" to the question "Does our extension add something important to this report beyond what was presented in class?"
+
+This extension should be included/weaved into your report, meaning it should only be "separated out" as its own section if it makes most sense for the story you're telling.
+
+## Group Feedback
+
+There will be a form to submit upon submission of the case study to provide feedback about working with your group mates. This is meant to motivate not scare. Most groups work out really really well and everyone contributes to the best of their ability. However, if and when that doesn't happen, I want to be sure I'm aware of the circumstances and follow up as necessary. This form is "due" 24h after the case study, to give you time to reflect/complete your feedback after completing the case study itself.

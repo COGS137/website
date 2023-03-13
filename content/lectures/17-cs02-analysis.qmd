@@ -23,7 +23,7 @@ format:
       eval: true
 ---
 
-# CS02: Vaping Behaviors in American Youth (Data) {background-color="#92A86A"}
+# CS02: Vaping Behaviors in American Youth (Analysis) {background-color="#92A86A"}
 
 ## Q&A {.smaller}
 
@@ -259,7 +259,7 @@ nyts_data |>
 
 :::
 
-## Q2: What's the answer?
+?## Q2: What's the answer?
 
 How does e-cigarette use compare between males and females?
 

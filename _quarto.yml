@@ -179,6 +179,8 @@ website:
             href: content/cs/cs-example.qmd
           - text: "CS01"
             href: content/cs/cs01.qmd
+          - text: "CS02"
+            href: content/cs/cs02.qmd
       - section: "Final"
         contents:
           - text: "Final Project"

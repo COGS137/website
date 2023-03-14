@@ -30,7 +30,7 @@ format:
 > Q: I am wondering when can we get the feedback for cs01 since it can help us to make cs02 better.\
 > A: Great question! Grading is underway. We plan to finish Sunday night and release Monday of week 10, so that you can incorporate feedback for cs02.
 
-> Q: Why is a video mentioned in assignments for the Final Project? \
+> Q: Why is a video mentioned in assignments for the Final Project?\
 > A: All groups will have to do a presentation. This can be recorded (video) *or* presented live Thursday of finals week. See description [here](https://cogs137.github.io/website/content/final/final.html).
 
 > Q: The most confusing part of the lecture was why did we use the histogram plot instead of a bar plot when plotting the variables for case study 2.\
@@ -38,21 +38,20 @@ format:
 
 ## Course Announcements {.smaller}
 
-- Lecture Participation survey "due" after class
-- Lab08 Due tomorrow (CS02 EDA)
-- CS02 due Monday of Finals week (3/20; repo + survey)
-- Final Project due Th of Finals week (3/23; repo + presentation + survey)
+-   Lecture Participation survey "due" after class
+-   Lab08 Due tomorrow (CS02 EDA)
+-   CS02 due Monday of Finals week (3/20; repo + survey)
+-   Final Project due Th of Finals week (3/23; repo + presentation + survey)
 
 . . .
 
 Notes:
 
-- Collaboration via git for group work, some options if you're newer to `git`:
-  - remember: pull before you make changes; push when done
-  - work in separate Rmd and combine
+-   Collaboration via git for group work, some options if you're newer to `git`:
+    -   remember: pull before you make changes; push when done
+    -   work in separate Rmd and combine
 
 ## Agenda
-
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
@@ -75,28 +74,25 @@ library(srvyr)
 load("data/wrangled/wrangled_data_vaping.rda")
 ```
 
-
 # Questions {background-color="#92A86A"}
 
-1. How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
-2. How does e-cigarette use compare between males and females?
-3. What vaping brands and flavors appear to be used the most frequently?
-4. Is there a relationship between e-cigarette/vaping use and other tobacco use?
-
-
+1.  How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
+2.  How does e-cigarette use compare between males and females?
+3.  What vaping brands and flavors appear to be used the most frequently?
+4.  Is there a relationship between e-cigarette/vaping use and other tobacco use?
 
 # Q1: How has tobacco and e-cigarette/vaping use by American youths changed since 2015? {background-color="#92A86A"}
 
 ## Tobacco Use
-::: panel-tabset
 
+::: panel-tabset
 ### Plot
 
 ```{r ref.label="tobacco", echo = FALSE, out.width="100%"}
 
 ```
 
-### Code 
+### Code
 
 ```{r tobacco, fig.show = "hide"}
 nyts_data |>
@@ -125,14 +121,11 @@ nyts_data |>
         text = element_text(size = 15),
         plot.title.position = "plot")
 ```
-
-
 :::
 
 ## E-cig Use
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="e-cig", echo = FALSE, out.width="100%"}
@@ -168,21 +161,18 @@ nyts_data |>
         text = element_text(size = 15),
         plot.title.position = "plot")
 ```
-
-
 :::
 
 ## Product Usage
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="e-cig-only", echo = FALSE, out.width="100%"}
 
 ```
 
-### Code 
+### Code
 
 ```{r e-cig-only, fig.show = "hide"}
 v_colors =  viridis(5)[1:4]  #specify color palatte
@@ -203,31 +193,26 @@ nyts_data |>
         plot.title.position = "plot")
 
 ```
-
-
-
 :::
 
 ## Q1: What's the answer?
 
-How has tobacco and e-cigarette/vaping use by American youths changed since 2015? 
+How has tobacco and e-cigarette/vaping use by American youths changed since 2015?
 
 [`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]{style="background-color: #ADD8E6"}
-
-
 
 # Q2: How does e-cigarette use compare between males and females? {background-color="#92A86A"}
 
 ## E-cig usage by Sex
 
 ::: panel-tabset
-
 ### Plot
+
 ```{r ref.label="gender", echo = FALSE, out.width="90%"}
 
 ```
 
-### Code 
+### Code
 
 ```{r gender, fig.show = "hide"}
 v_colors =  viridis(6)[c(3, 5)]
@@ -254,9 +239,6 @@ nyts_data |>
         text = element_text(size = 15),
         plot.title.position = "plot")
 ```
-
-
-
 :::
 
 ?## Q2: What's the answer?
@@ -264,7 +246,6 @@ nyts_data |>
 How does e-cigarette use compare between males and females?
 
 [`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]{style="background-color: #ADD8E6"}
-
 
 # Q3: What vaping brands and flavors appear to be used the most frequently? {background-color="#92A86A"}
 
@@ -276,6 +257,7 @@ How does e-cigarette use compare between males and females?
 ```{r ref.label="flavor", echo = FALSE, out.width="100%"}
 
 ```
+
 ### Code
 
 ```{r flavor, fig.show = "hide"}
@@ -305,8 +287,6 @@ nyts_data |>
   labs(title = "What flavors appear to be used the most frequently?",
        subtitle = "Flavors of tobacco products used in the past 30 days") + theme(text = element_text(size = 15))
 ```
-
-
 :::
 
 ## Q3: What's the answer?
@@ -314,8 +294,6 @@ nyts_data |>
 What vaping brands and flavors appear to be used the most frequently?
 
 [`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]{style="background-color: #ADD8E6"}
-
-
 
 # Q4: Is there a relationship between e-cigarette/vaping use and other tobacco use? {background-color="#92A86A"}
 
@@ -328,7 +306,7 @@ What vaping brands and flavors appear to be used the most frequently?
 
 ```
 
-### Code 
+### Code
 
 ```{r use, fig.show = "hide"}
 v_colors =  viridis(6)[c(1, 4)]
@@ -364,9 +342,6 @@ nyts_data |>
         text = element_text(size = 15),
         plot.title.position = "plot")
 ```
-
-
-
 :::
 
 ## Q4: What's the answer?
@@ -374,7 +349,6 @@ nyts_data |>
 Is there a relationship between e-cigarette/vaping use and other tobacco use?
 
 [`r emo::ji("question")` **Your Turn**: Given the results thus far, what's your answer? Anything else you'd explore?]{style="background-color: #ADD8E6"}
-
 
 # Going Deeper: Modelling {background-color="#92A86A"}
 
@@ -385,7 +359,7 @@ Is there a relationship between e-cigarette/vaping use and other tobacco use?
 -   Could over/under-sample from particular groups
 -   Sample may no longer be representative
 
-. . . 
+. . .
 
 -   Requires: Survey weighting
 
@@ -395,11 +369,10 @@ $$\frac{\text{actual proportion of group in the population}}{\text{ proportion o
 
 Note: We do not need to calculate survey weights for our data; they were already supplied in the dataset, as described in the codebooks.
 
-
 ## Variables included {.smaller}
 
 ::: incremental
-1. `psu`: People are sampled within strata; ensure that the responses are representative of the population of interest. Thus, often people first think about ensuring that surveys are conducted in a variety of geographical areas. This is often called the **primary sampling unit** or **PSU**. In [this survey](https://web.sph.harvard.edu/mch-data-connect/results/national-youth-tobacco-survey-nyts/), the county where the student's school was located was used as the PSU.
+1.  `psu`: People are sampled within strata; ensure that the responses are representative of the population of interest. Thus, often people first think about ensuring that surveys are conducted in a variety of geographical areas. This is often called the **primary sampling unit** or **PSU**. In [this survey](https://web.sph.harvard.edu/mch-data-connect/results/national-youth-tobacco-survey-nyts/), the county where the student's school was located was used as the PSU.
 2.  `stratum`: A categorical variable that indicates subsets of the data that include respondents from different *PSUs*. In our case, strata are determined by the predominant minority in the PSU (Non-Hispanic Black or Hispanic), whether the PSU is urban or non-urban, and what percent of the students in the PSU fall into the predominant minority group. PSUs are allocated across the 16 possible strata according to the sampling scheme. These strata values allow estimates based on the survey responses to be calculated using different strata allowing for improved precision of the response estimates.
 3.  `finwgt`: The survey weight which was calculated based on a variety of factors.
 :::
@@ -410,15 +383,14 @@ Note: We do not need to calculate survey weights for our data; they were already
 
 . . .
 
-1. `strata` - the variable(s) that defined strata in the data. (`stratum`) 
-2. `ids` - cluster ids within the data. (`psu`) 
-3. `weight` - which variable(s) are the survey weights. (`finwgt`) 
-4. `nest = TRUE` - forces cluster ids (in this case the PSU) to be nested within the strata
+1.  `strata` - the variable(s) that defined strata in the data. (`stratum`)
+2.  `ids` - cluster ids within the data. (`psu`)
+3.  `weight` - which variable(s) are the survey weights. (`finwgt`)
+4.  `nest = TRUE` - forces cluster ids (in this case the PSU) to be nested within the strata
 
 Note: survey weights are specific to a single year of the survey result; will need different design objects for each year
 
-
-## function: `surveyMeanA()` 
+## function: `surveyMeanA()`
 
 ```{r}
 surveyMeanA <- function(currYear) {
@@ -451,14 +423,13 @@ surveyMeanA <- function(currYear) {
 ## Tobacco Use
 
 ::: panel-tabset
-
 ### Plot
 
 ```{r ref.label="weights", echo = FALSE, out.width="100%"}
 
 ```
 
-### Code 
+### Code
 
 ```{r weights, fig.show = "hide"}
 nyts_data |>
@@ -485,8 +456,6 @@ nyts_data |>
           text = element_text(size = 15),
           plot.title.position = "plot")
 ```
-
-
 :::
 
 ## Logistic Regression
@@ -494,7 +463,6 @@ nyts_data |>
 $$logit(p)= log_e (\frac{p}{1-p})= \beta_0 + \beta_1 X$$
 
 -   $p$ as the probability that a student respondent is a current e-cigarette user
-
 
 ## Model {.smaller}
 
@@ -515,7 +483,7 @@ $$
 \begin{aligned}
 log(odds \ of \ curr. \ e-cig \ use) = \\
 &\quad \beta_0 + \beta_1 \cdot Sex = \\
-&\quad -1.89 - 0.425 \cdot (Sex == female)
+&\quad -2.32 + 0.425 \cdot (Sex == male)
 \end{aligned}
 $$
 
@@ -525,18 +493,18 @@ $$
 \begin{aligned}
 log(odds \ of \ curr. \ e-cig \ use) = \\
 &\quad \beta_0 + \beta_1 \cdot Sex = \\
-&\quad -1.89 - 0.425 \cdot (Sex == female)
+&\quad -2.32 + 0.425 \cdot (Sex == male)
 \end{aligned}
 $$
 
--   $-0.425 = \beta_1 = \log(OR)$
--   The log odds of being a current e-cigarette user is 0.425 lower for females compared to males
--   $0.65 = e^{-0.425} = e^{\beta_1} = OR$
--   The odds of being a current e-cigarette user for females is 0.65 times the odds for males.
--   The odds of being a current e-cigarette user for females is 35% lower than the odds for males.
+-   $0.425 = \beta_1 = \log(OR)$
+-   The log odds of being a current e-cigarette user is 0.425 higher for males compared to females
+-   $1.53 = e^{0.425} = e^{\beta_1} = OR$
+-   The odds of being a current e-cigarette user for males is 1.53 times the odds for males.
+-   The odds of being a current e-cigarette user for males is 53% higher than the odds for females.
 
-|                                                               |
-|---------------------------------------------------------------|
+|                                                                |
+|----------------------------------------------------------------|
 | Note: model does not consider other variables yet...i.e. `Age` |
 
 ## Survey-weighted logistic regression
@@ -555,7 +523,6 @@ currEcigSex_svy <- survey::svyglm(ecig_current ~ Sex,
 tidy(currEcigSex_svy)
 ```
 
-
 ## Survey-weighted Interpretation
 
 ```{r, echo=FALSE}
@@ -563,11 +530,11 @@ tidy(currEcigSex_svy)
 ```
 
 ::: incremental
--   $-0.383 = \beta_1 = \log(OR)$
--   The log odds of being a current e-cigarette user is 0.383 lower for females than for males, taking survey weights into account.
--   $0.68 = e^{-0.383} = e^{\beta_1} = OR$
--   The odds of being a current e-cigarette user for females is 0.68 times the odds for males, taking survey weights into account.
--   The odds of being a current e-cigarette user for females is 32% lower than the odds for males, taking survey weights into account. 
+-   $0.383 = \beta_1 = \log(OR)$
+-   The log odds of being a current e-cigarette user is 0.383 higher for males than for females, taking survey weights into account.
+-   $1.47 = e^{0.383} = e^{\beta_1} = OR$
+-   The odds of being a current e-cigarette user for males is 1.47 times the odds for males, taking survey weights into account.
+-   The odds of being a current e-cigarette user for males is 47% higher than the odds for females, taking survey weights into account.
 :::
 
 ## For the case study...
@@ -575,8 +542,6 @@ tidy(currEcigSex_svy)
 Q4: Is there a relationship between e-cigarette/vaping use and other tobacco use?
 
 [`r emo::ji("question")` **Your Turn**: What would we likely model given what we've discussed so far?]{style="background-color: #ADD8E6"}
-
-
 
 ## Suggested Reading
 

@@ -160,8 +160,16 @@ nyts_data |>
 
 Student suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)
 
+- barplot between two genders; proportion of each (gender on x axis - proportion of use on y axis); doing the same across different tobacco use categories
+- want to capture year in some way (facet)
+- line plot (year on x-axis; measurement of use on y-axis (proportion), lines for Sex)
 ```{r}
-
+nyts_data |>
+  group_by(year, Sex) |>
+  # count things 
+  summarize(mean_ever = mean(ecig_ever, na.rm=TRUE)) |>
+  ggplot(aes(x=year, y=mean_ever, group=Sex, color=Sex)) +
+  geom_line()
 ```
 
 ## Brands
@@ -198,7 +206,14 @@ This one is more complicated b/c flavor data are across multiple columns...going
 Student suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, ...)
 
 ```{r}
-
+nyts_data |>
+    group_by(year) |>
+  # count things 
+  summarize(mean_ecig_ever = mean(ecig_ever, na.rm=TRUE),
+            mean_tobacco_ever = mean(tobacco_ever, na.rm=TRUE)) |>
+  pivot_longer(-year, names_to = "variable", values_to = "values") |>
+  ggplot(aes(x=year, y=values, group=variable, linetype=variable)) +
+  geom_line()
 ```
 
 

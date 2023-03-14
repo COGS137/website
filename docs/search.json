@@ -2377,7 +2377,7 @@
     "href": "content/lectures/16-cs02-eda-slides.html#e-cig-use-by-gender",
     "title": "16-cs02-eda",
     "section": "E-Cig use by gender",
-    "text": "E-Cig use by gender\nStudent suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)"
+    "text": "E-Cig use by gender\nStudent suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)\n\nbarplot between two genders; proportion of each (gender on x axis - proportion of use on y axis); doing the same across different tobacco use categories\nwant to capture year in some way (facet)\nline plot (year on x-axis; measurement of use on y-axis (proportion), lines for Sex)\n\n\nnyts_data |>\n  group_by(year, Sex) |>\n  # count things \n  summarize(mean_ever = mean(ecig_ever, na.rm=TRUE)) |>\n  ggplot(aes(x=year, y=mean_ever, group=Sex, color=Sex)) +\n  geom_line()"
   },
   {
     "objectID": "content/lectures/16-cs02-eda-slides.html#brands",
@@ -2398,7 +2398,7 @@
     "href": "content/lectures/16-cs02-eda-slides.html#tabacco-use-across-time",
     "title": "16-cs02-eda",
     "section": "Tabacco use across time",
-    "text": "Tabacco use across time\nStudent suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)"
+    "text": "Tabacco use across time\nStudent suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)\n\nnyts_data |>\n    group_by(year) |>\n  # count things \n  summarize(mean_ecig_ever = mean(ecig_ever, na.rm=TRUE),\n            mean_tobacco_ever = mean(tobacco_ever, na.rm=TRUE)) |>\n  pivot_longer(-year, names_to = \"variable\", values_to = \"values\") |>\n  ggplot(aes(x=year, y=values, group=variable, linetype=variable)) +\n  geom_line()"
   },
   {
     "objectID": "content/lectures/16-cs02-eda-slides.html#suggested-reading",
@@ -2468,7 +2468,7 @@
     "href": "content/lectures/16-cs02-eda.html#e-cig-use-by-gender",
     "title": "16-cs02-eda",
     "section": "E-Cig use by gender",
-    "text": "E-Cig use by gender\nStudent suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)"
+    "text": "E-Cig use by gender\nStudent suggestion: Relative proportion of e-cig use by gender (anecdote: spent cartridges in male br and not female in hs; hypothesis: male use higher than females, but want to see)\n\nbarplot between two genders; proportion of each (gender on x axis - proportion of use on y axis); doing the same across different tobacco use categories\nwant to capture year in some way (facet)\nline plot (year on x-axis; measurement of use on y-axis (proportion), lines for Sex)\n\n\nnyts_data |>\n  group_by(year, Sex) |>\n  # count things \n  summarize(mean_ever = mean(ecig_ever, na.rm=TRUE)) |>\n  ggplot(aes(x=year, y=mean_ever, group=Sex, color=Sex)) +\n  geom_line()"
   },
   {
     "objectID": "content/lectures/16-cs02-eda.html#brands",
@@ -2489,7 +2489,7 @@
     "href": "content/lectures/16-cs02-eda.html#tabacco-use-across-time",
     "title": "16-cs02-eda",
     "section": "Tabacco use across time",
-    "text": "Tabacco use across time\nStudent suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)"
+    "text": "Tabacco use across time\nStudent suggestion: year on the x-axis; y is frequency of use; some measurement of use (e-cig, tobacco, …)\n\nnyts_data |>\n    group_by(year) |>\n  # count things \n  summarize(mean_ecig_ever = mean(ecig_ever, na.rm=TRUE),\n            mean_tobacco_ever = mean(tobacco_ever, na.rm=TRUE)) |>\n  pivot_longer(-year, names_to = \"variable\", values_to = \"values\") |>\n  ggplot(aes(x=year, y=values, group=variable, linetype=variable)) +\n  geom_line()"
   },
   {
     "objectID": "content/lectures/16-cs02-eda.html#suggested-reading",
@@ -4925,7 +4925,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2001, 1994, 2003, 2001, 1999, 1981, 2000, 19…\n$ STATE                     <chr> \"District of Columbia\", \"Utah\", \"Hawaii\", \"C…\n$ Black_Male_15_to_19_years <dbl> 1.95977748, 0.04765763, 0.07321241, 0.169035…\n$ Black_Male_20_to_39_years <dbl> 7.6371966, 0.1841035, 0.5950506, 0.7395010, …\n$ Other_Male_15_to_19_years <dbl> 0.14081712, 0.17431295, 2.67976604, 0.240708…\n$ Other_Male_20_to_39_years <dbl> 1.0114812, 0.6581415, 9.3134019, 0.9478528, …\n$ White_Male_15_to_19_years <dbl> 1.0294097, 4.7864835, 0.7036704, 3.3505307, …\n$ White_Male_20_to_39_years <dbl> 8.206731, 14.534592, 4.648508, 14.326296, 11…\n$ Unemployment_rate         <dbl> 6.3, 3.8, 4.1, 3.8, 3.4, 5.3, 3.6, 7.2, 5.1,…\n$ Poverty_rate              <dbl> 18.2, 8.0, 9.3, 8.7, 10.4, 15.4, 12.1, 9.0, …\n$ Viol_crime_count          <dbl> 9195, 5810, 3400, 15492, 5534, 78560, 41319,…\n$ Population                <dbl> 574504, 1930436, 1251154, 4425687, 753538, 1…\n$ police_per_100k_lag       <dbl> 949.6888, 285.1169, 327.5376, 395.9837, 447.…\n$ RTC_LAW_YEAR              <dbl> Inf, 1995, Inf, 2003, Inf, 1996, 1990, Inf, …\n$ RTC_LAW                   <lgl> FALSE, FALSE, FALSE, FALSE, FALSE, FALSE, TR…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 16.0051105, 3.0096828, 2.7174912, 3.5004735,…\n$ Viol_crime_rate_1k_log    <dbl> 2.7729081, 1.1018347, 0.9997091, 1.2528982, …\n$ Population_log            <dbl> 13.26126, 14.47326, 14.03958, 15.30294, 13.5…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2000, 1990, 1996, 1989, 1989, 1985, 1988, 20…\n$ STATE                     <chr> \"Delaware\", \"New Mexico\", \"North Dakota\", \"S…\n$ Black_Male_15_to_19_years <dbl> 0.86269493, 0.09638583, 0.03624440, 1.450717…\n$ Black_Male_20_to_39_years <dbl> 2.8651798, 0.4164657, 0.1619331, 4.6129163, …\n$ Other_Male_15_to_19_years <dbl> 0.13873823, 0.47350771, 0.26848853, 0.042930…\n$ Other_Male_20_to_39_years <dbl> 0.6187903, 1.5973072, 0.8216433, 0.1587608, …\n$ White_Male_15_to_19_years <dbl> 2.575368, 3.278697, 3.889039, 2.648801, 3.24…\n$ White_Male_20_to_39_years <dbl> 10.667711, 13.804227, 13.812848, 11.787500, …\n$ Unemployment_rate         <dbl> 3.7, 6.6, 2.9, 4.6, 5.4, 4.6, 7.6, 4.2, 3.7,…\n$ Poverty_rate              <dbl> 8.4, 20.9, 11.0, 17.0, 11.2, 8.7, 21.6, 8.8,…\n$ Viol_crime_count          <dbl> 5363, 11821, 541, 28576, 14625, 36655, 10237…\n$ Population                <dbl> 786373, 1519933, 642858, 3456772, 2790579, 4…\n$ police_per_100k_lag       <dbl> 465.6823, 308.5662, 249.0441, 246.3859, 215.…\n$ RTC_LAW_YEAR              <dbl> Inf, 2004, 1986, 1997, 1990, Inf, 1996, 1996…\n$ RTC_LAW                   <lgl> FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FAL…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 6.8199188, 7.7773165, 0.8415544, 8.2666719, …\n$ Viol_crime_rate_1k_log    <dbl> 1.9198476, 2.0512114, -0.1725046, 2.1122320,…\n$ Population_log            <dbl> 13.57519, 14.23418, 13.37368, 15.05585, 14.8…"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#wrangling-combining-lott",
@@ -5191,7 +5191,7 @@
     "href": "content/lectures/11-cs01-data.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2007, 2005, 1995, 1981, 2010, 1981, 1989, 19…\n$ STATE                     <chr> \"Virginia\", \"North Carolina\", \"Virginia\", \"C…\n$ Black_Male_15_to_19_years <dbl> 0.8776158, 0.9672839, 0.7799567, 0.2023562, …\n$ Black_Male_20_to_39_years <dbl> 2.7554251, 2.9106623, 3.3252684, 0.7596921, …\n$ Other_Male_15_to_19_years <dbl> 0.2905948, 0.1997954, 0.1300483, 0.1009430, …\n$ Other_Male_20_to_39_years <dbl> 1.2695910, 0.7640424, 0.6235049, 0.3878550, …\n$ White_Male_15_to_19_years <dbl> 2.459954, 2.440621, 2.472448, 4.155321, 2.27…\n$ White_Male_20_to_39_years <dbl> 9.998697, 10.291328, 12.677387, 17.933038, 1…\n$ Unemployment_rate         <dbl> 3.0, 5.2, 4.5, 5.7, 7.9, 9.4, 3.8, 4.8, 9.6,…\n$ Poverty_rate              <dbl> 8.6, 13.1, 10.2, 9.6, 12.5, 9.0, 9.0, 9.2, 1…\n$ Viol_crime_count          <dbl> 21035, 40650, 23921, 15755, 4537, 2537, 4015…\n$ Population                <dbl> 7751000, 8705407, 6601392, 2977917, 713985, …\n$ police_per_100k_lag       <dbl> 312.3210, 371.5507, 346.6693, 265.7898, 278.…\n$ RTC_LAW_YEAR              <dbl> 1995, 1996, 1995, 2003, 1995, 1995, Inf, 200…\n$ RTC_LAW                   <lgl> TRUE, TRUE, TRUE, FALSE, TRUE, FALSE, FALSE,…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 2.713843, 4.669512, 3.623630, 5.290611, 6.35…\n$ Viol_crime_rate_1k_log    <dbl> 0.9983658, 1.5410545, 1.2874762, 1.6659337, …\n$ Population_log            <dbl> 15.86333, 15.97945, 15.70279, 14.90673, 13.4…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1980, 2007, 1997, 1990, 1990, 2007, 2008, 20…\n$ STATE                     <chr> \"Massachusetts\", \"West Virginia\", \"Alaska\", …\n$ Black_Male_15_to_19_years <dbl> 0.24498816, 0.15386696, 0.19282380, 1.227781…\n$ Black_Male_20_to_39_years <dbl> 0.6987286, 0.5797546, 0.7926471, 4.4400926, …\n$ Other_Male_15_to_19_years <dbl> 0.04964824, 0.08118636, 1.00665850, 0.064842…\n$ Other_Male_20_to_39_years <dbl> 0.2252959, 0.2876691, 2.7875686, 0.2858974, …\n$ White_Male_15_to_19_years <dbl> 4.470743, 3.151601, 3.239079, 2.631095, 2.71…\n$ White_Male_20_to_39_years <dbl> 14.83340, 11.75806, 12.00024, 12.27032, 12.8…\n$ Unemployment_rate         <dbl> 5.6, 4.6, 7.1, 5.5, 4.1, 4.2, 5.5, 11.0, 3.6…\n$ Poverty_rate              <dbl> 9.5, 14.8, 8.8, 15.8, 13.0, 11.7, 11.3, 13.0…\n$ Viol_crime_count          <dbl> 34444, 5016, 4270, 48996, 41332, 12730, 3013…\n$ Population                <dbl> 5748441, 1834052, 608846, 6506531, 6656987, …\n$ police_per_100k_lag       <dbl> 236.8642, 251.3560, 213.6829, 328.5314, 271.…\n$ RTC_LAW_YEAR              <dbl> Inf, 1990, 1995, 1990, 1996, 2007, Inf, Inf,…\n$ RTC_LAW                   <lgl> FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE,…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 5.991885, 2.734928, 7.013268, 7.530280, 6.20…\n$ Viol_crime_rate_1k_log    <dbl> 1.7904061, 1.0061051, 1.9478037, 2.0189322, …\n$ Population_log            <dbl> 15.56444, 14.42204, 13.31932, 15.68832, 15.7…"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#wrangling-combining-lott",
@@ -8405,6 +8405,153 @@
     "title": "01-intro-to-r",
     "section": "Recap",
     "text": "Recap\n\nAlways best to think of data as part of a tibble\n\nThis plays nicely with the tidyverse as well\nRows are observations, columns are variables\n\nWhat are the common variable types in R\n\nHow do I create a variable of each type?\nWhen would I use each one?\n\nDo I know how to determine the class/type of a variable?\nCan I explain dynamic typing?\nCan I operate on variables and values using…\n\narithmetic operators?\ncomparison operators?\n\nWhat are dataframes/tibbles? and why are they useful?\nWhat is the difference between installing and loading a package?\nWhat are the components of an R Markdown file?"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#course-announcements",
+    "href": "content/lectures/18-brainstorming-slides.html#course-announcements",
+    "title": "18-brainstorming",
+    "section": "Course Announcements",
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nCS02 due Monday of Finals week (repo due 3/20; survey due 3/21; instructions now on website)\nFinal Project due Th of Finals week (3/23; repo + presentation; survey due 3/24)\nPlease fill out your CAPEs (+0.5% to all grades if 85% of class completes)\n\n\nGot behind on grading:\n\nlab07 and lab08 scores posted\n\nsee website for lab07 answers\ndiscussing lab08 today\n\nhw03 now graded; feedback on GH (also discussing today)\nCS01 scores/feedback being released later today (discussing today)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#agenda",
+    "href": "content/lectures/18-brainstorming-slides.html#agenda",
+    "title": "18-brainstorming",
+    "section": "Agenda",
+    "text": "Agenda\n\nHW03 Review\nCS01 Storytelling Discussion\nLab08 Summary\nFinal Project Brainstorming/Q&A"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#part-i-wrangling",
+    "href": "content/lectures/18-brainstorming-slides.html#part-i-wrangling",
+    "title": "18-brainstorming",
+    "section": "Part I: Wrangling",
+    "text": "Part I: Wrangling\n\nrefactoring & getting all the variables of the specified type\npart of this class is retaining from one assignment to the next (lots of questions in logistic regression lab about type)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#part-ii-eda",
+    "href": "content/lectures/18-brainstorming-slides.html#part-ii-eda",
+    "title": "18-brainstorming",
+    "section": "Part II: EDA",
+    "text": "Part II: EDA\n\nIncluded Plots\nInterpreted Plots\n\n\n\nMost common mistakes:\n\nforgetting to include interpretation\nusing a barplot when displaying a continuous variable and a categorical variable (Q9)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#hw03-part-iii",
+    "href": "content/lectures/18-brainstorming-slides.html#hw03-part-iii",
+    "title": "18-brainstorming",
+    "section": "HW03: Part III",
+    "text": "HW03: Part III\n\nQ9-Q11: fit three different models, building up to a full model\nQ12: backward elimination to settle on a final model\nQ13: interpreting final model\nQ14: contextualizing full model to determine the best day for biking\n\n\n\nComments:\n\n(Q11) Think about what an interaction term actually means in the model\n\ni.e. what would it mean for a holiday and temperature to interact? what would it mean for weathersit and temperature to interact? Which of these makes better sense?\n\n(Q13) if interpreting a categorical variable, must include what you’re comparing against (the baseline)\n(Q14) Define “good”\n\n\n\n\n\nMost common mistakes:\n\nNot including an interaction term\nNot including season as a factor\nNot considering that all other variables must be held constant"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#cs01-scores-group-specific-feedback",
+    "href": "content/lectures/18-brainstorming-slides.html#cs01-scores-group-specific-feedback",
+    "title": "18-brainstorming",
+    "section": "CS01: Scores & Group-Specific feedback",
+    "text": "CS01: Scores & Group-Specific feedback\n\n\nDetailed feedback for each group will be shared as an issue on GH repo\nScores:\n\nclass median: 7.9/10 (min: 4.7; max: 9.85)\nif your score on canvas is higher than GH repo, you went above and beyond!\nif your score on canvas is lower than GH repo and you think that’s not fair/not reflective of your individual effort, chat with me (but don’t take it out on your teammates)\nYou may not love your score on this case study. Please take a look at the feedback and think about what we’ve said. Regrades are certainly allowed, but they’re not for cases of “we don’t like that we got a low score”"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#cs01-general-feedback",
+    "href": "content/lectures/18-brainstorming-slides.html#cs01-general-feedback",
+    "title": "18-brainstorming",
+    "section": "CS01: General Feedback",
+    "text": "CS01: General Feedback\n\n\nDidn’t provide necessary information from one section to the next\n\nStarted talking about the Lott/Donohue datasets without ever describing what those were\nStarted discussing dealing with multicollinearity, before identifying there was multicollinearity in the dataset\nStarted analyzing RTC data without ever describing what data you had or doing any EDA on it\n\nFailed to interpret/explain\n\nDisplaying results of skim or glimpse without guiding the viewer from\nAdded text to explain the what you did (i.e. Plotted poverty over time), but not the why or the what we learned\nDisplaying a plot without any text explanation\nModelling without explaining what question is being answered or interpreting the results in the context of the data"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#cs01-storytelling",
+    "href": "content/lectures/18-brainstorming-slides.html#cs01-storytelling",
+    "title": "18-brainstorming",
+    "section": "CS01: Storytelling",
+    "text": "CS01: Storytelling\n…so how do you make sure your case study tells a story/makes sense from start to finish? How did you all approach it?\n\nWe’re going to work through this document."
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#eda",
+    "href": "content/lectures/18-brainstorming-slides.html#eda",
+    "title": "18-brainstorming",
+    "section": "EDA",
+    "text": "EDA"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#brainstorming-1",
+    "href": "content/lectures/18-brainstorming-slides.html#brainstorming-1",
+    "title": "18-brainstorming",
+    "section": "Brainstorming",
+    "text": "Brainstorming\n\nDig deeper into:\n\nsex difference (i.e. Do females prefer flavored products?)\ngrade/age differences\nproduct preference changes over time\nflavors and use\nstratum/psu (regional) differences\n\n\n\n\nRequires additional data:\n\nHow flavors have been sold/marketed over time?\nWhat has happened since 2019?\nAre certain brands/flavors more addictive?\nWhy do we see these trends?\nEffects of use on grades/school attendance/GPA\nEffect of price on student use/popularity\nWhat are the policy implications?\nRelationship between vaping and mental health?\nEffects of tech development on use in young people\nRelationship with other substances (illicit drugs, alcohol, etc.)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming-slides.html#final-class-day",
+    "href": "content/lectures/18-brainstorming-slides.html#final-class-day",
+    "title": "18-brainstorming",
+    "section": "Final Class Day",
+    "text": "Final Class Day\n\nOpen it up for general Q&A\nDiscuss cool things in R that may help you for your final project or in the future\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html",
+    "href": "content/lectures/18-brainstorming.html",
+    "title": "18-brainstorming",
+    "section": "",
+    "text": "Lecture Participation survey “due” after class\nCS02 due Monday of Finals week (repo due 3/20; survey due 3/21; instructions now on website)\nFinal Project due Th of Finals week (3/23; repo + presentation; survey due 3/24)\nPlease fill out your CAPEs (+0.5% to all grades if 85% of class completes)\n\n\nGot behind on grading:\n\nlab07 and lab08 scores posted\n\nsee website for lab07 answers\ndiscussing lab08 today\n\nhw03 now graded; feedback on GH (also discussing today)\nCS01 scores/feedback being released later today (discussing today)\n\n\n\n\n\n\nHW03 Review\nCS01 Storytelling Discussion\nLab08 Summary\nFinal Project Brainstorming/Q&A"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#part-i-wrangling",
+    "href": "content/lectures/18-brainstorming.html#part-i-wrangling",
+    "title": "18-brainstorming",
+    "section": "Part I: Wrangling",
+    "text": "Part I: Wrangling\n\nrefactoring & getting all the variables of the specified type\npart of this class is retaining from one assignment to the next (lots of questions in logistic regression lab about type)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#part-ii-eda",
+    "href": "content/lectures/18-brainstorming.html#part-ii-eda",
+    "title": "18-brainstorming",
+    "section": "Part II: EDA",
+    "text": "Part II: EDA\n\nIncluded Plots\nInterpreted Plots\n\n\n\nMost common mistakes:\n\nforgetting to include interpretation\nusing a barplot when displaying a continuous variable and a categorical variable (Q9)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#hw03-part-iii",
+    "href": "content/lectures/18-brainstorming.html#hw03-part-iii",
+    "title": "18-brainstorming",
+    "section": "HW03: Part III",
+    "text": "HW03: Part III\n\nQ9-Q11: fit three different models, building up to a full model\nQ12: backward elimination to settle on a final model\nQ13: interpreting final model\nQ14: contextualizing full model to determine the best day for biking\n\n\n\nComments:\n\n(Q11) Think about what an interaction term actually means in the model\n\ni.e. what would it mean for a holiday and temperature to interact? what would it mean for weathersit and temperature to interact? Which of these makes better sense?\n\n(Q13) if interpreting a categorical variable, must include what you’re comparing against (the baseline)\n(Q14) Define “good”\n\n\n\n\n\nMost common mistakes:\n\nNot including an interaction term\nNot including season as a factor\nNot considering that all other variables must be held constant"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#cs01-scores-group-specific-feedback",
+    "href": "content/lectures/18-brainstorming.html#cs01-scores-group-specific-feedback",
+    "title": "18-brainstorming",
+    "section": "CS01: Scores & Group-Specific feedback",
+    "text": "CS01: Scores & Group-Specific feedback\n\n\nDetailed feedback for each group will be shared as an issue on GH repo\nScores:\n\nclass median: 7.9/10 (min: 4.7; max: 9.85)\nif your score on canvas is higher than GH repo, you went above and beyond!\nif your score on canvas is lower than GH repo and you think that’s not fair/not reflective of your individual effort, chat with me (but don’t take it out on your teammates)\nYou may not love your score on this case study. Please take a look at the feedback and think about what we’ve said. Regrades are certainly allowed, but they’re not for cases of “we don’t like that we got a low score”"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#cs01-general-feedback",
+    "href": "content/lectures/18-brainstorming.html#cs01-general-feedback",
+    "title": "18-brainstorming",
+    "section": "CS01: General Feedback",
+    "text": "CS01: General Feedback\n\n\nDidn’t provide necessary information from one section to the next\n\nStarted talking about the Lott/Donohue datasets without ever describing what those were\nStarted discussing dealing with multicollinearity, before identifying there was multicollinearity in the dataset\nStarted analyzing RTC data without ever describing what data you had or doing any EDA on it\n\nFailed to interpret/explain\n\nDisplaying results of skim or glimpse without guiding the viewer from\nAdded text to explain the what you did (i.e. Plotted poverty over time), but not the why or the what we learned\nDisplaying a plot without any text explanation\nModelling without explaining what question is being answered or interpreting the results in the context of the data"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#cs01-storytelling",
+    "href": "content/lectures/18-brainstorming.html#cs01-storytelling",
+    "title": "18-brainstorming",
+    "section": "CS01: Storytelling",
+    "text": "CS01: Storytelling\n…so how do you make sure your case study tells a story/makes sense from start to finish? How did you all approach it?\n\nWe’re going to work through this document."
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#eda",
+    "href": "content/lectures/18-brainstorming.html#eda",
+    "title": "18-brainstorming",
+    "section": "EDA",
+    "text": "EDA"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#brainstorming-1",
+    "href": "content/lectures/18-brainstorming.html#brainstorming-1",
+    "title": "18-brainstorming",
+    "section": "Brainstorming",
+    "text": "Brainstorming\n\nDig deeper into:\n\nsex difference (i.e. Do females prefer flavored products?)\ngrade/age differences\nproduct preference changes over time\nflavors and use\nstratum/psu (regional) differences\n\n\n\n\nRequires additional data:\n\nHow flavors have been sold/marketed over time?\nWhat has happened since 2019?\nAre certain brands/flavors more addictive?\nWhy do we see these trends?\nEffects of use on grades/school attendance/GPA\nEffect of price on student use/popularity\nWhat are the policy implications?\nRelationship between vaping and mental health?\nEffects of tech development on use in young people\nRelationship with other substances (illicit drugs, alcohol, etc.)"
+  },
+  {
+    "objectID": "content/lectures/18-brainstorming.html#final-class-day",
+    "href": "content/lectures/18-brainstorming.html#final-class-day",
+    "title": "18-brainstorming",
+    "section": "Final Class Day",
+    "text": "Final Class Day\n\nOpen it up for general Q&A\nDiscuss cool things in R that may help you for your final project or in the future"
   },
   {
     "objectID": "content/lectures/04-ggplot2-slides.html#qa",

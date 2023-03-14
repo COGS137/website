@@ -1,0 +1,178 @@
+---
+title: "18-brainstorming"
+author: "Professor Shannon Ellis"
+date: "2023-03-14"
+
+format:
+  html: 
+    output-file: 18-brainstorming.html
+    embed-resources: true
+  revealjs:
+    output-file: 18-brainstorming-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# Brainstorming {background-color="#92A86A"}
+
+
+## Course Announcements {.smaller}
+
+-   Lecture Participation survey "due" after class
+-   CS02 due Monday of Finals week (repo due 3/20; survey due 3/21; instructions now on website)
+-   Final Project due Th of Finals week (3/23; repo + presentation; survey due 3/24)
+- Please fill out your CAPEs (+0.5% to all grades if 85% of class completes)
+
+. . .
+
+Got behind on grading:
+
+- lab07 and lab08 scores posted
+  - see website for lab07 answers
+  - discussing lab08 today
+- hw03 now graded; feedback on GH (also discussing today)
+- CS01 scores/feedback being released later today (discussing today)
+
+
+## Agenda
+
+- HW03 Review
+- CS01 Storytelling Discussion
+- Lab08 Summary
+- Final Project Brainstorming/Q\&A
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+# HW03: Bike Rentals {background-color="#92A86A"}
+
+Linear regression
+
+## Part I: Wrangling
+
+- refactoring & getting all the variables of the specified type
+- part of this class is retaining from one assignment to the next (lots of questions in logistic regression lab about type)
+
+
+## Part II: EDA
+
+- Included Plots
+- Interpreted Plots
+
+. . .
+
+- Most common mistakes:
+  - forgetting to include interpretation
+  - using a barplot when displaying a continuous variable and a categorical variable (Q9)
+
+
+## HW03: Part III {.smaller}
+
+- Q9-Q11: fit three different models, building up to a full model
+- Q12: backward elimination to settle on a final model
+- Q13: interpreting final model
+- Q14: contextualizing full model to determine the best day for biking
+
+. . . 
+
+- Comments:
+  - (Q11) Think about what an interaction term *actually* means in the model
+    - i.e. what would it mean for a holiday and temperature to interact? what would it mean for `weathersit` and temperature to interact? Which of these makes better sense?
+  - (Q13) if interpreting a categorical variable, must include what you're comparing against (the baseline)
+  - (Q14) Define "good" 
+
+. . .
+
+- Most common mistakes: 
+  - Not including an interaction term
+  - Not including season as a factor
+  - Not considering that all other variables must be held constant
+
+# CS01 {background-color="#92A86A"}
+
+Right to Carry Laws & Violent Crime in the US
+
+## CS01: Scores & Group-Specific feedback {.smaller}
+
+::: incremental
+- Detailed feedback for each group will be shared as an issue on GH repo
+- Scores: 
+  - class median: 7.9/10 (min: 4.7; max: 9.85)
+  - if your score on canvas is higher than GH repo, you went above and beyond!
+  - if your score on canvas is lower than GH repo and you think that's not fair/not reflective of your individual effort, chat with me (but don't take it out on your teammates)
+  - You may not *love* your score on this case study. Please take a look at the feedback and think about what we've said. Regrades are certainly allowed, but they're not for cases of "we don't like that we got a low score"
+:::
+
+## CS01: General Feedback {.smaller}
+
+
+::: incremental
+- **Didn't provide necessary information from one section to the next**
+  - Started talking about the Lott/Donohue datasets without ever describing what those were
+  - Started discussing dealing with multicollinearity, before identifying there *was* multicollinearity in the dataset
+  - Started analyzing RTC data without ever describing what data you had or doing any EDA on it
+- **Failed to interpret/explain**
+  - Displaying results of `skim` or `glimpse` without guiding the viewer from 
+  - Added text to explain the *what* you did (i.e. Plotted poverty over time), but not the *why* or the *what we learned*
+  - Displaying a plot without any text explanation
+  - Modelling without explaining what question is being answered or interpreting the results in the context of the data
+:::
+
+## CS01: Storytelling
+
+...so how do you make sure your case study tells a story/makes sense from start to finish? How did you all approach it?
+
+. . .
+
+We're going to work through [this document](https://docs.google.com/document/d/1Iymlv4_uVM1vnjf7yO20YZtHIjLbhh3SHxYU4dP2jmA/edit?usp=sharing).
+
+# Lab08 {background-color="#92A86A"}
+
+EDA & Brainstorming for CS02
+
+## Brainstorming {.smaller}
+
+- Dig deeper into:
+  - sex difference (i.e. Do females prefer flavored products?)
+  - grade/age differences
+  - product preference changes over time
+  - flavors and use
+  - stratum/psu (regional) differences
+
+. . .
+
+- Requires additional data: 
+  - How flavors have been sold/marketed over time?
+  - What has happened since 2019?
+  - Are certain brands/flavors more addictive?
+  - *Why* do we see these trends?
+  - Effects of use on grades/school attendance/GPA
+  - Effect of price on student use/popularity
+  - What are the policy implications?
+  - Relationship between vaping and mental health?
+  - Effects of tech development on use in young people
+  - Relationship with other substances (illicit drugs, alcohol, etc.)
+
+# Final Project {background-color="#92A86A"}
+
+::: incremental
+- Who has a plan for what they're doing for the final project?
+- What questions do you have about the final project?
+:::
+
+## Final Class Day
+
+1. Open it up for general Q\&A
+2. Discuss cool things in R that may help you for your final project or in the future 
+
+

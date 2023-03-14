@@ -75,6 +75,8 @@ website:
             href: content/lectures/16-cs02-eda-slides.html 
           - text: "17-cs02-analysis"
             href: content/lectures/17-cs02-analysis-slides.html 
+          - text: "18-brainstorming"
+            href: content/lectures/18-brainstorming-slides.html 
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -113,6 +115,8 @@ website:
             href: content/lectures/16-cs02-eda.html  
           - text: "17-cs02-analysis"
             href: content/lectures/17-cs02-analysis.html 
+          - text: "18-brainstorming"
+            href: content/lectures/18-brainstorming.html 
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

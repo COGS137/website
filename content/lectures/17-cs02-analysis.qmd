@@ -500,7 +500,7 @@ $$
 -   $0.425 = \beta_1 = \log(OR)$
 -   The log odds of being a current e-cigarette user is 0.425 higher for males compared to females
 -   $1.53 = e^{0.425} = e^{\beta_1} = OR$
--   The odds of being a current e-cigarette user for males is 1.53 times the odds for males.
+-   The odds of being a current e-cigarette user for males is 1.53 times the odds for females.
 -   The odds of being a current e-cigarette user for males is 53% higher than the odds for females.
 
 |                                                                |

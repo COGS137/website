@@ -1806,6 +1806,216 @@
     "text": "Suggested Reading\n\nCase Study from OCS"
   },
   {
+    "objectID": "content/lectures/19-wrap-up-slides.html#course-announcements",
+    "href": "content/lectures/19-wrap-up-slides.html#course-announcements",
+    "title": "19-wrap-up",
+    "section": "Course Announcements",
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nCS02 due Monday of Finals week (repo due 3/20; survey due 3/21; instructions now on website)\nFinal Project due Th of Finals week (3/23; repo + presentation; survey due 3/24)\n\n\n\nPlease fill out your CAPEs (+0.5% to all grades if 85% of class completes; current: 25%)\nPost-course survey now available (link also on canvas; due Friday of Finals week; 11:59 PM for EC)\nCS02 for CS01 score option (details on campuswire)\nlab this Friday is like an additional open office hours; nothing to turn in\nOH Finals week…prof office hours days/times? (staff will not hold office hours)\nif your group wants to present in person on Thurs of finals week, please DM/email me with your group’s time availability that day"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#qa",
+    "href": "content/lectures/19-wrap-up-slides.html#qa",
+    "title": "19-wrap-up",
+    "section": "Q&A",
+    "text": "Q&A\nWhat questions do you have about data science, stats, R, jobs/internships, etc.?"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#next-steps-in-r",
+    "href": "content/lectures/19-wrap-up-slides.html#next-steps-in-r",
+    "title": "19-wrap-up",
+    "section": "Next Steps in R",
+    "text": "Next Steps in R\n\nInteractive Visualization\nPackage Development\nBooks, Slides, and Personal websites\nShiny Apps\n\n\nNote: Any packages described today ARE allowed to be used for the final project, if you’re going the technical presentation route."
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#packages",
+    "href": "content/lectures/19-wrap-up-slides.html#packages",
+    "title": "19-wrap-up",
+    "section": "Packages",
+    "text": "Packages\n\nlibrary(ggplot2)\nlibrary(plotly)\nlibrary(gganimate)\nlibrary(r2d3)\nlibrary(gapminder) # the dataset being used"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#the-data-gapminder",
+    "href": "content/lectures/19-wrap-up-slides.html#the-data-gapminder",
+    "title": "19-wrap-up",
+    "section": "The Data: Gapminder",
+    "text": "The Data: Gapminder\nThe gapminder visualization was made famous by Hans Rosling. The dataset used here includes life expectancy, population, and GDP across 142 countries and 5 continents from 1952-2007."
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#plotly",
+    "href": "content/lectures/19-wrap-up-slides.html#plotly",
+    "title": "19-wrap-up",
+    "section": "plotly",
+    "text": "plotly\n\nwrapper around ggplot plots: ggplotly()\nwhen it works, it works\nless control over specifics\n\n\nCodePlot\n\n\n\np <- gapminder |>\n  filter(year==1977) |>\n  ggplot(aes(gdpPercap, lifeExp, size = pop, color=continent)) +\n  geom_point() +\n  theme_bw()\n\np <- ggplotly(p)"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#plotly-1",
+    "href": "content/lectures/19-wrap-up-slides.html#plotly-1",
+    "title": "19-wrap-up",
+    "section": "plotly",
+    "text": "plotly\n\nCodePlot\n\n\n\ngg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +\n  geom_point() +\n  theme_bw()\n\ngg <- ggplotly(gg) |> \n  highlight(\"plotly_hover\")"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#gganimate",
+    "href": "content/lectures/19-wrap-up-slides.html#gganimate",
+    "title": "19-wrap-up",
+    "section": "gganimate",
+    "text": "gganimate\nExtends grammar of graphics for use in animation:\n\ntransition_*() defines how the data should be spread out and how it relates to itself across time.\nview_*() defines how the positional scales should change along the animation.\nshadow_*() defines how data from other points in time should be presented in the given point in time.\nenter_*()/exit_*() defines how new data should appear and how old data should disappear during the course of the animation.\nease_aes() defines how different aesthetics should be eased during transitions.\n\nSource: https://gganimate.com/\n\n\nmore control\nslower to render\ngenerates GIFs\n\n\n\nFor example…\n\ngg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +\n  geom_point() +\n  theme_bw() +\n  #gganimate specific bits\n  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +\n  transition_time(year) +\n  ease_aes('linear')"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#r2d3",
+    "href": "content/lectures/19-wrap-up-slides.html#r2d3",
+    "title": "19-wrap-up",
+    "section": "r2d3",
+    "text": "r2d3\n\nD3 is a javascript library for producing viz for HTML\nable to use custom D3 Visualizations within R\ncreate D3.js scripts\ncall them from RMarkdown/Shiny/etc.\nExample here"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#why-develop-an-r-package",
+    "href": "content/lectures/19-wrap-up-slides.html#why-develop-an-r-package",
+    "title": "19-wrap-up",
+    "section": "Why develop an R package?",
+    "text": "Why develop an R package?\n\nreproducibility\ninclude data + code\norganize a project\ntools needed: devtools and usethis\n\n\n\n\nBook: R Packages, by Jenny Bryan and Hadley Wickham\nBlogpost: Writing an R Package from Scratch, by Hilary Parker (Disclaimer: this is from 2014 and does not implement usethis)\nBlogpost: Your First Package in 1 hour, by Shannon Pileggi for R-Ladies Philly in 2020"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#books-bookdown",
+    "href": "content/lectures/19-wrap-up-slides.html#books-bookdown",
+    "title": "19-wrap-up",
+    "section": "Books: bookdown",
+    "text": "Books: bookdown\nAn R package by Yihui Xie to write online books, with the philosophy that it “should be technically easy to write a book, visually pleasant to view the book, fun to interact with the book, convenient to navigate through the book, straightforward for readers to contribute or leave feedback to the book author(s), and more importantly, authors should not always be distracted by typesetting details”\n\nbookdown: Authoring Books and Technical Documents with R Markdown, by Yihui Xie\nbookdown gallery\nExample: What they forgot to teach you about R, by Jenny Bryan and Jim Hester"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#slides-xaringan",
+    "href": "content/lectures/19-wrap-up-slides.html#slides-xaringan",
+    "title": "19-wrap-up",
+    "section": "Slides: xaringan",
+    "text": "Slides: xaringan\nAn RMarkdown extension (based on JS library remark.js) to generate slides from .Rmd documents.\n\nBook Chapter: xaringan Presentations\nSlide Show: Meet Xaringan, by Alison Hill"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#websites-blogdown",
+    "href": "content/lectures/19-wrap-up-slides.html#websites-blogdown",
+    "title": "19-wrap-up",
+    "section": "Websites: blogdown",
+    "text": "Websites: blogdown\nEnables personal website creation using R Markdown and Hugo (or Jekyll)\n\nBook: blogdown: Creating websites with R Markdown, by Yihui Xie, Amber Thomas, and Alison Presmanes Hill\nBlogpost Up & running with blogdown in 2021, by Alison Presmanes Hill\nSome examples: Alison Hill, Yihui, Prof"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#quarto",
+    "href": "content/lectures/19-wrap-up-slides.html#quarto",
+    "title": "19-wrap-up",
+    "section": "Quarto",
+    "text": "Quarto\n\nan open-source scientific and technical publishing system built on Pandoc\n\n\noutputs: HTML, PDF, MS Word, ePub, etc.\nlanguage-agnostic\nallows for multiple programming languages in a single document\nWebsite: Quarto\n\n\n\nClass notes, slides, and website for COGS 137 were all built utilizing quarto. Generating slides for technical presentation using quarto is an option for the final project."
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#other-package-suggestsions",
+    "href": "content/lectures/19-wrap-up-slides.html#other-package-suggestsions",
+    "title": "19-wrap-up",
+    "section": "Other Package Suggestsions",
+    "text": "Other Package Suggestsions\n\nDataviz: handful of packages that extend the functionality of ggplot2; Good Tables: gt, formattable, and reactable\nModelling: we only really used the tidymodels and broom packages, so the other packages in tidymodels are options\nThere are lots of packages for doing machine learning. caret is a precursor to tidymodels and good for this\nWebscraping: rvest\nSports: nwslR, baseballr, NFL\nA whole more curated here"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#shiny",
+    "href": "content/lectures/19-wrap-up-slides.html#shiny",
+    "title": "19-wrap-up",
+    "section": "Shiny",
+    "text": "Shiny\nShiny is an R package that allows you to build interactive web apps directly from R (initially developed by Winston Chang)\n\nWebsite: Shiny\nExamples: Freedom of the Press Index, COVID-19 Tracker, and recount\nHow-To: How To Build a Shiny app"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#your-turn-get-started-on-one-of-these",
+    "href": "content/lectures/19-wrap-up-slides.html#your-turn-get-started-on-one-of-these",
+    "title": "19-wrap-up",
+    "section": "Your Turn: Get started on one of these…",
+    "text": "Your Turn: Get started on one of these…\nAlways wanted a personal website? Get Started with blogdown! Have a data-centric app you want to share with the world? Shiny it up! Have slides that need to be created for a final project? Give xaringan a go! Have a visualization that needs animation? Make it move!"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html",
+    "href": "content/lectures/19-wrap-up.html",
+    "title": "19-wrap-up",
+    "section": "",
+    "text": "Lecture Participation survey “due” after class\nCS02 due Monday of Finals week (repo due 3/20; survey due 3/21; instructions now on website)\nFinal Project due Th of Finals week (3/23; repo + presentation; survey due 3/24)\n\n\n\nPlease fill out your CAPEs (+0.5% to all grades if 85% of class completes; current: 25%)\nPost-course survey now available (link also on canvas; due Friday of Finals week; 11:59 PM for EC)\nCS02 for CS01 score option (details on campuswire)\nlab this Friday is like an additional open office hours; nothing to turn in\nOH Finals week…prof office hours days/times? (staff will not hold office hours)\nif your group wants to present in person on Thurs of finals week, please DM/email me with your group’s time availability that day\n\n\n\n\n\nWhat questions do you have about data science, stats, R, jobs/internships, etc.?\n\n\n\n\nInteractive Visualization\nPackage Development\nBooks, Slides, and Personal websites\nShiny Apps\n\n\nNote: Any packages described today ARE allowed to be used for the final project, if you’re going the technical presentation route.\n\n\n\n\n\nlibrary(ggplot2)\nlibrary(plotly)\nlibrary(gganimate)\nlibrary(r2d3)\nlibrary(gapminder) # the dataset being used\n\n\n\n\nThe gapminder visualization was made famous by Hans Rosling. The dataset used here includes life expectancy, population, and GDP across 142 countries and 5 continents from 1952-2007."
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#plotly",
+    "href": "content/lectures/19-wrap-up.html#plotly",
+    "title": "19-wrap-up",
+    "section": "plotly",
+    "text": "plotly\n\nwrapper around ggplot plots: ggplotly()\nwhen it works, it works\nless control over specifics\n\n\nCodePlot\n\n\n\np <- gapminder |>\n  filter(year==1977) |>\n  ggplot(aes(gdpPercap, lifeExp, size = pop, color=continent)) +\n  geom_point() +\n  theme_bw()\n\np <- ggplotly(p)"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#plotly-1",
+    "href": "content/lectures/19-wrap-up.html#plotly-1",
+    "title": "19-wrap-up",
+    "section": "plotly",
+    "text": "plotly\n\nCodePlot\n\n\n\ngg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +\n  geom_point() +\n  theme_bw()\n\ngg <- ggplotly(gg) |> \n  highlight(\"plotly_hover\")"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#gganimate",
+    "href": "content/lectures/19-wrap-up.html#gganimate",
+    "title": "19-wrap-up",
+    "section": "gganimate",
+    "text": "gganimate\nExtends grammar of graphics for use in animation:\n\ntransition_*() defines how the data should be spread out and how it relates to itself across time.\nview_*() defines how the positional scales should change along the animation.\nshadow_*() defines how data from other points in time should be presented in the given point in time.\nenter_*()/exit_*() defines how new data should appear and how old data should disappear during the course of the animation.\nease_aes() defines how different aesthetics should be eased during transitions.\n\nSource: https://gganimate.com/\n\n\nmore control\nslower to render\ngenerates GIFs\n\n\n\nFor example…\n\ngg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +\n  geom_point() +\n  theme_bw() +\n  #gganimate specific bits\n  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +\n  transition_time(year) +\n  ease_aes('linear')"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#r2d3",
+    "href": "content/lectures/19-wrap-up.html#r2d3",
+    "title": "19-wrap-up",
+    "section": "r2d3",
+    "text": "r2d3\n\nD3 is a javascript library for producing viz for HTML\nable to use custom D3 Visualizations within R\ncreate D3.js scripts\ncall them from RMarkdown/Shiny/etc.\nExample here"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#why-develop-an-r-package",
+    "href": "content/lectures/19-wrap-up.html#why-develop-an-r-package",
+    "title": "19-wrap-up",
+    "section": "Why develop an R package?",
+    "text": "Why develop an R package?\n\nreproducibility\ninclude data + code\norganize a project\ntools needed: devtools and usethis\n\n\n\n\nBook: R Packages, by Jenny Bryan and Hadley Wickham\nBlogpost: Writing an R Package from Scratch, by Hilary Parker (Disclaimer: this is from 2014 and does not implement usethis)\nBlogpost: Your First Package in 1 hour, by Shannon Pileggi for R-Ladies Philly in 2020"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#books-bookdown",
+    "href": "content/lectures/19-wrap-up.html#books-bookdown",
+    "title": "19-wrap-up",
+    "section": "Books: bookdown",
+    "text": "Books: bookdown\nAn R package by Yihui Xie to write online books, with the philosophy that it “should be technically easy to write a book, visually pleasant to view the book, fun to interact with the book, convenient to navigate through the book, straightforward for readers to contribute or leave feedback to the book author(s), and more importantly, authors should not always be distracted by typesetting details”\n\nbookdown: Authoring Books and Technical Documents with R Markdown, by Yihui Xie\nbookdown gallery\nExample: What they forgot to teach you about R, by Jenny Bryan and Jim Hester"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#slides-xaringan",
+    "href": "content/lectures/19-wrap-up.html#slides-xaringan",
+    "title": "19-wrap-up",
+    "section": "Slides: xaringan",
+    "text": "Slides: xaringan\nAn RMarkdown extension (based on JS library remark.js) to generate slides from .Rmd documents.\n\nBook Chapter: xaringan Presentations\nSlide Show: Meet Xaringan, by Alison Hill"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#websites-blogdown",
+    "href": "content/lectures/19-wrap-up.html#websites-blogdown",
+    "title": "19-wrap-up",
+    "section": "Websites: blogdown",
+    "text": "Websites: blogdown\nEnables personal website creation using R Markdown and Hugo (or Jekyll)\n\nBook: blogdown: Creating websites with R Markdown, by Yihui Xie, Amber Thomas, and Alison Presmanes Hill\nBlogpost Up & running with blogdown in 2021, by Alison Presmanes Hill\nSome examples: Alison Hill, Yihui, Prof"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#quarto",
+    "href": "content/lectures/19-wrap-up.html#quarto",
+    "title": "19-wrap-up",
+    "section": "Quarto",
+    "text": "Quarto\n\nan open-source scientific and technical publishing system built on Pandoc\n\n\noutputs: HTML, PDF, MS Word, ePub, etc.\nlanguage-agnostic\nallows for multiple programming languages in a single document\nWebsite: Quarto\n\n\n\nClass notes, slides, and website for COGS 137 were all built utilizing quarto. Generating slides for technical presentation using quarto is an option for the final project."
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#other-package-suggestsions",
+    "href": "content/lectures/19-wrap-up.html#other-package-suggestsions",
+    "title": "19-wrap-up",
+    "section": "Other Package Suggestsions",
+    "text": "Other Package Suggestsions\n\nDataviz: handful of packages that extend the functionality of ggplot2; Good Tables: gt, formattable, and reactable\nModelling: we only really used the tidymodels and broom packages, so the other packages in tidymodels are options\nThere are lots of packages for doing machine learning. caret is a precursor to tidymodels and good for this\nWebscraping: rvest\nSports: nwslR, baseballr, NFL\nA whole more curated here"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#shiny",
+    "href": "content/lectures/19-wrap-up.html#shiny",
+    "title": "19-wrap-up",
+    "section": "Shiny",
+    "text": "Shiny\nShiny is an R package that allows you to build interactive web apps directly from R (initially developed by Winston Chang)\n\nWebsite: Shiny\nExamples: Freedom of the Press Index, COVID-19 Tracker, and recount\nHow-To: How To Build a Shiny app"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#your-turn-get-started-on-one-of-these",
+    "href": "content/lectures/19-wrap-up.html#your-turn-get-started-on-one-of-these",
+    "title": "19-wrap-up",
+    "section": "Your Turn: Get started on one of these…",
+    "text": "Your Turn: Get started on one of these…\nAlways wanted a personal website? Get Started with blogdown! Have a data-centric app you want to share with the world? Shiny it up! Have slides that need to be created for a final project? Give xaringan a go! Have a visualization that needs animation? Make it move!"
+  },
+  {
     "objectID": "content/lectures/10-mlr-slides.html#qa",
     "href": "content/lectures/10-mlr-slides.html#qa",
     "title": "10-mlr",
@@ -2657,7 +2867,7 @@
     "href": "content/lectures/17-cs02-analysis-slides.html#model-interpretation",
     "title": "17-cs02-analysis",
     "section": "Model Interpretation",
-    "text": "Model Interpretation\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -2.32 + 0.425 \\cdot (Sex == male)\n\\end{aligned}\n\\]\n\n\\(0.425 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.425 higher for males compared to females\n\\(1.53 = e^{0.425} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for males is 1.53 times the odds for males.\nThe odds of being a current e-cigarette user for males is 53% higher than the odds for females.\n\n\n\n\nNote: model does not consider other variables yet…i.e. Age"
+    "text": "Model Interpretation\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -2.32 + 0.425 \\cdot (Sex == male)\n\\end{aligned}\n\\]\n\n\\(0.425 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.425 higher for males compared to females\n\\(1.53 = e^{0.425} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for males is 1.53 times the odds for females.\nThe odds of being a current e-cigarette user for males is 53% higher than the odds for females.\n\n\n\n\nNote: model does not consider other variables yet…i.e. Age"
   },
   {
     "objectID": "content/lectures/17-cs02-analysis-slides.html#survey-weighted-logistic-regression",
@@ -2818,7 +3028,7 @@
     "href": "content/lectures/17-cs02-analysis.html#model-interpretation",
     "title": "17-cs02-analysis",
     "section": "Model Interpretation",
-    "text": "Model Interpretation\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -2.32 + 0.425 \\cdot (Sex == male)\n\\end{aligned}\n\\]\n\n\\(0.425 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.425 higher for males compared to females\n\\(1.53 = e^{0.425} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for males is 1.53 times the odds for males.\nThe odds of being a current e-cigarette user for males is 53% higher than the odds for females.\n\n\n\n\nNote: model does not consider other variables yet…i.e. Age"
+    "text": "Model Interpretation\n\\[\n\\begin{aligned}\nlog(odds \\ of \\ curr. \\ e-cig \\ use) = \\\\\n&\\quad \\beta_0 + \\beta_1 \\cdot Sex = \\\\\n&\\quad -2.32 + 0.425 \\cdot (Sex == male)\n\\end{aligned}\n\\]\n\n\\(0.425 = \\beta_1 = \\log(OR)\\)\nThe log odds of being a current e-cigarette user is 0.425 higher for males compared to females\n\\(1.53 = e^{0.425} = e^{\\beta_1} = OR\\)\nThe odds of being a current e-cigarette user for males is 1.53 times the odds for females.\nThe odds of being a current e-cigarette user for males is 53% higher than the odds for females.\n\n\n\n\nNote: model does not consider other variables yet…i.e. Age"
   },
   {
     "objectID": "content/lectures/17-cs02-analysis.html#survey-weighted-logistic-regression",
@@ -4925,7 +5135,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2000, 1990, 1996, 1989, 1989, 1985, 1988, 20…\n$ STATE                     <chr> \"Delaware\", \"New Mexico\", \"North Dakota\", \"S…\n$ Black_Male_15_to_19_years <dbl> 0.86269493, 0.09638583, 0.03624440, 1.450717…\n$ Black_Male_20_to_39_years <dbl> 2.8651798, 0.4164657, 0.1619331, 4.6129163, …\n$ Other_Male_15_to_19_years <dbl> 0.13873823, 0.47350771, 0.26848853, 0.042930…\n$ Other_Male_20_to_39_years <dbl> 0.6187903, 1.5973072, 0.8216433, 0.1587608, …\n$ White_Male_15_to_19_years <dbl> 2.575368, 3.278697, 3.889039, 2.648801, 3.24…\n$ White_Male_20_to_39_years <dbl> 10.667711, 13.804227, 13.812848, 11.787500, …\n$ Unemployment_rate         <dbl> 3.7, 6.6, 2.9, 4.6, 5.4, 4.6, 7.6, 4.2, 3.7,…\n$ Poverty_rate              <dbl> 8.4, 20.9, 11.0, 17.0, 11.2, 8.7, 21.6, 8.8,…\n$ Viol_crime_count          <dbl> 5363, 11821, 541, 28576, 14625, 36655, 10237…\n$ Population                <dbl> 786373, 1519933, 642858, 3456772, 2790579, 4…\n$ police_per_100k_lag       <dbl> 465.6823, 308.5662, 249.0441, 246.3859, 215.…\n$ RTC_LAW_YEAR              <dbl> Inf, 2004, 1986, 1997, 1990, Inf, 1996, 1996…\n$ RTC_LAW                   <lgl> FALSE, FALSE, TRUE, FALSE, FALSE, FALSE, FAL…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 6.8199188, 7.7773165, 0.8415544, 8.2666719, …\n$ Viol_crime_rate_1k_log    <dbl> 1.9198476, 2.0512114, -0.1725046, 2.1122320,…\n$ Population_log            <dbl> 13.57519, 14.23418, 13.37368, 15.05585, 14.8…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1998, 1983, 1993, 1995, 1998, 1992, 1997, 20…\n$ STATE                     <chr> \"Louisiana\", \"Minnesota\", \"North Carolina\", …\n$ Black_Male_15_to_19_years <dbl> 1.64655019, 0.07533541, 0.95314629, 0.610266…\n$ Black_Male_20_to_39_years <dbl> 4.3369355, 0.3212862, 3.4982235, 2.0854937, …\n$ Other_Male_15_to_19_years <dbl> 0.08366267, 0.10684589, 0.09560395, 0.086315…\n$ Other_Male_20_to_39_years <dbl> 0.2692104, 0.3461565, 0.4034020, 0.3577998, …\n$ White_Male_15_to_19_years <dbl> 2.5517345, 4.0447145, 2.4054857, 2.9736318, …\n$ White_Male_20_to_39_years <dbl> 9.281835, 16.177651, 12.478042, 12.624796, 1…\n$ Unemployment_rate         <dbl> 5.7, 8.0, 5.0, 5.3, 3.6, 3.3, 8.0, 5.7, 5.0,…\n$ Poverty_rate              <dbl> 19.1, 12.1, 14.4, 12.2, 9.0, 15.1, 21.8, 13.…\n$ Viol_crime_count          <dbl> 34057, 7909, 47178, 65680, 6599, 1383, 10708…\n$ Population                <dbl> 4362758, 4141479, 6947412, 9659871, 2100562,…\n$ police_per_100k_lag       <dbl> 458.4256, 184.0164, 332.7282, 304.7246, 365.…\n$ RTC_LAW_YEAR              <dbl> 1996, 2003, 1996, 2001, 1995, 1985, Inf, 199…\n$ RTC_LAW                   <lgl> TRUE, FALSE, FALSE, FALSE, TRUE, TRUE, FALSE…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 7.806301, 1.909704, 6.790730, 6.799263, 3.14…\n$ Viol_crime_rate_1k_log    <dbl> 2.0549312, 0.6469484, 1.9155585, 1.9168142, …\n$ Population_log            <dbl> 15.28861, 15.23656, 15.75388, 16.08349, 14.5…"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#wrangling-combining-lott",
@@ -5191,7 +5401,7 @@
     "href": "content/lectures/11-cs01-data.html#wrangling-combining-donohue",
     "title": "11-cs01-data",
     "section": "Wrangling: Combining! (Donohue)",
-    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 1980, 2007, 1997, 1990, 1990, 2007, 2008, 20…\n$ STATE                     <chr> \"Massachusetts\", \"West Virginia\", \"Alaska\", …\n$ Black_Male_15_to_19_years <dbl> 0.24498816, 0.15386696, 0.19282380, 1.227781…\n$ Black_Male_20_to_39_years <dbl> 0.6987286, 0.5797546, 0.7926471, 4.4400926, …\n$ Other_Male_15_to_19_years <dbl> 0.04964824, 0.08118636, 1.00665850, 0.064842…\n$ Other_Male_20_to_39_years <dbl> 0.2252959, 0.2876691, 2.7875686, 0.2858974, …\n$ White_Male_15_to_19_years <dbl> 4.470743, 3.151601, 3.239079, 2.631095, 2.71…\n$ White_Male_20_to_39_years <dbl> 14.83340, 11.75806, 12.00024, 12.27032, 12.8…\n$ Unemployment_rate         <dbl> 5.6, 4.6, 7.1, 5.5, 4.1, 4.2, 5.5, 11.0, 3.6…\n$ Poverty_rate              <dbl> 9.5, 14.8, 8.8, 15.8, 13.0, 11.7, 11.3, 13.0…\n$ Viol_crime_count          <dbl> 34444, 5016, 4270, 48996, 41332, 12730, 3013…\n$ Population                <dbl> 5748441, 1834052, 608846, 6506531, 6656987, …\n$ police_per_100k_lag       <dbl> 236.8642, 251.3560, 213.6829, 328.5314, 271.…\n$ RTC_LAW_YEAR              <dbl> Inf, 1990, 1995, 1990, 1996, 2007, Inf, Inf,…\n$ RTC_LAW                   <lgl> FALSE, TRUE, TRUE, TRUE, FALSE, TRUE, FALSE,…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 5.991885, 2.734928, 7.013268, 7.530280, 6.20…\n$ Viol_crime_rate_1k_log    <dbl> 1.7904061, 1.0061051, 1.9478037, 2.0189322, …\n$ Population_log            <dbl> 15.56444, 14.42204, 13.31932, 15.68832, 15.7…"
+    "text": "Wrangling: Combining! (Donohue)\n\n# combine after all that wrangling!\nDONOHUE_DF <- bind_rows(dem_DONOHUE,\n                        ue_rate_data,\n                        poverty_rate_data,\n                        crime_data,\n                        population_data,\n                        ps_data)\nDONOHUE_DF\n\n# A tibble: 20,247 × 4\n    YEAR STATE   VARIABLE                    VALUE\n   <dbl> <chr>   <chr>                       <dbl>\n 1  1977 Alabama Black_Male_15_to_19_years  1.55  \n 2  1977 Alabama Black_Male_20_to_39_years  3.04  \n 3  1977 Alabama Other_Male_15_to_19_years  0.0178\n 4  1977 Alabama Other_Male_20_to_39_years  0.0642\n 5  1977 Alabama White_Male_15_to_19_years  3.58  \n 6  1977 Alabama White_Male_20_to_39_years 11.1   \n 7  1977 Alaska  Black_Male_15_to_19_years  0.163 \n 8  1977 Alaska  Black_Male_20_to_39_years  0.968 \n 9  1977 Alaska  Other_Male_15_to_19_years  1.12  \n10  1977 Alaska  Other_Male_20_to_39_years  2.73  \n# … with 20,237 more rows\n\n# to wide format!\nDONOHUE_DF <- DONOHUE_DF |>\n  pivot_wider(names_from = \"VARIABLE\",\n              values_from = \"VALUE\")\n\n# add in RTC data!\nDONOHUE_DF <- DONOHUE_DF |>\n  left_join(RTC , by = c(\"STATE\")) |>\n  mutate(RTC_LAW = case_when(YEAR >= RTC_LAW_YEAR ~ TRUE,\n                              TRUE ~ FALSE)) |>\n drop_na() # drop rows with missing information\n\n# filter to only data where RTC laws were adopted between 1980-2010\n# have crime data pre- and post-adoption this way\nbaseline_year <- min(DONOHUE_DF$YEAR)\ncensoring_year <- max(DONOHUE_DF$YEAR)\n\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(TIME_0 = baseline_year,\n         TIME_INF = censoring_year) |>\n  filter(RTC_LAW_YEAR > TIME_0)\n\n# calculate violent crime rate; put population/crime on log scale\nDONOHUE_DF <- DONOHUE_DF |>\n  mutate(Viol_crime_rate_1k = (Viol_crime_count*1000)/Population,\n         Viol_crime_rate_1k_log = log(Viol_crime_rate_1k),\n         Population_log = log(Population))\n\nDONOHUE_DF |>\n  slice_sample(n = 10) |>\n  glimpse()\n\nRows: 10\nColumns: 20\n$ YEAR                      <dbl> 2002, 1987, 1983, 1988, 1990, 2004, 2003, 19…\n$ STATE                     <chr> \"Maine\", \"North Carolina\", \"Florida\", \"Maine…\n$ Black_Male_15_to_19_years <dbl> 0.04182228, 1.08986464, 0.70531766, 0.023092…\n$ Black_Male_20_to_39_years <dbl> 0.1403593, 3.6246057, 2.1122506, 0.1194501, …\n$ Other_Male_15_to_19_years <dbl> 0.12855335, 0.09510081, 0.04697715, 0.050006…\n$ Other_Male_20_to_39_years <dbl> 0.3274021, 0.3413947, 0.1962994, 0.1744403, …\n$ White_Male_15_to_19_years <dbl> 3.513920, 2.953669, 2.981932, 3.834365, 3.17…\n$ White_Male_20_to_39_years <dbl> 11.825519, 13.247355, 12.763626, 15.837106, …\n$ Unemployment_rate         <dbl> 4.3, 4.5, 8.5, 3.6, 5.5, 6.2, 7.2, 4.3, 6.0,…\n$ Poverty_rate              <dbl> 13.4, 13.8, 14.7, 13.2, 9.2, 12.3, 11.4, 11.…\n$ Viol_crime_count          <dbl> 1396, 31039, 88292, 1898, 14405, 69365, 5155…\n$ Population                <dbl> 1295960, 6403731, 10749908, 1203850, 2858547…\n$ police_per_100k_lag       <dbl> 231.1800, 241.7809, 329.9749, 216.1399, 218.…\n$ RTC_LAW_YEAR              <dbl> 1986, 1996, 1988, 1986, 1990, 2014, 2001, 20…\n$ RTC_LAW                   <lgl> TRUE, FALSE, FALSE, TRUE, TRUE, FALSE, TRUE,…\n$ TIME_0                    <dbl> 1980, 1980, 1980, 1980, 1980, 1980, 1980, 19…\n$ TIME_INF                  <dbl> 2010, 2010, 2010, 2010, 2010, 2010, 2010, 20…\n$ Viol_crime_rate_1k        <dbl> 1.077194, 4.847018, 8.213280, 1.576608, 5.03…\n$ Viol_crime_rate_1k_log    <dbl> 0.07435927, 1.57836369, 2.10575231, 0.455275…\n$ Population_log            <dbl> 14.07476, 15.67239, 16.19041, 14.00104, 14.8…"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#wrangling-combining-lott",
@@ -8463,13 +8673,6 @@
     "text": "CS01: Storytelling\n…so how do you make sure your case study tells a story/makes sense from start to finish? How did you all approach it?\n\nWe’re going to work through this document."
   },
   {
-    "objectID": "content/lectures/18-brainstorming-slides.html#eda",
-    "href": "content/lectures/18-brainstorming-slides.html#eda",
-    "title": "18-brainstorming",
-    "section": "EDA",
-    "text": "EDA"
-  },
-  {
     "objectID": "content/lectures/18-brainstorming-slides.html#brainstorming-1",
     "href": "content/lectures/18-brainstorming-slides.html#brainstorming-1",
     "title": "18-brainstorming",
@@ -8531,13 +8734,6 @@
     "title": "18-brainstorming",
     "section": "CS01: Storytelling",
     "text": "CS01: Storytelling\n…so how do you make sure your case study tells a story/makes sense from start to finish? How did you all approach it?\n\nWe’re going to work through this document."
-  },
-  {
-    "objectID": "content/lectures/18-brainstorming.html#eda",
-    "href": "content/lectures/18-brainstorming.html#eda",
-    "title": "18-brainstorming",
-    "section": "EDA",
-    "text": "EDA"
   },
   {
     "objectID": "content/lectures/18-brainstorming.html#brainstorming-1",
@@ -9126,5 +9322,47 @@
     "title": "COGS 137",
     "section": "",
     "text": "Week\nDate\nTitle\nType\n\n\n\n\n1\nTu Jan 10\nWelcome & Tooling\nLecture\n\n\n1\nTh Jan 12\nIntro to R\nLecture\n\n\n1\nFri Jan 13\nLab 01: Intro to R\nLab\n\n\n2\nTu Jan 17\nData Wrangling: dplyr\nLecture\n\n\n2\nTh Jan 19\nData Wrangling: tidyr\nLecture\n\n\n2\nFri Jan 20\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Jan 23\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Jan 24\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n3\nTh Jan 26\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nFri Jan 27\nLab 03: Data Visualization\nLab\n\n\n4\nTu Jan 31\nData Analysis & Modeling\nLecture\n\n\n4\nTh Feb 2\nLinear Models Review\nLecture\n\n\n4\nFri Feb 3\nLab 04: Modeling\nLab\n\n\n5\nMon Feb 6\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Feb 7\nEffective Communication\nLecture\n\n\n5\nTh Feb 9\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Feb 10\nLab used for midterm review\nLab\n\n\n6\nMon Feb 13\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Feb 14\nMultiple Linear Regression\nLecture\n\n\n6\nTh Feb 16\nCase Study 01: Right to Carry (day 1)\nLecture\n\n\n6\nFri Feb 17\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nTu Feb 21\nCase Study 01: Right to Carry (day 2)\nLecture\n\n\n7\nTh Feb 23\nCase Study 01: Right to Carry (day 3)\nLecture\n\n\n7\nFri Feb 24\nLab 06: CS01\nLab\n\n\n8\nMon Feb 27\nHW03 due (11:59 PM)\nHW\n\n\n8\nTu Feb 28\nLogistic Regression (day 1)\nLecture\n\n\n8\nTh Mar 2\nLogistic Regression (day 2)\nLecture\n\n\n8\nFri Mar 3\nLab 07: Logistic Regression\nLab\n\n\n9\nMon Mar 6\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Mar 7\nCase Study 02: Vaping (day 1)\nLecture\n\n\n9\nTh Mar 9\nCase Study 02: Vaping (day 2)\nLecture\n\n\n9\nFri Mar 10\nLab 08: CS02\nLab\n\n\n10\nMon Mar 13\nHW04 due (11:59 PM)\nHW\n\n\n10\nTu Mar 14\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Mar 16\nNext Steps\nLecture\n\n\n10\nFri Mar 17\nLab used for Final Project\nLab\n\n\nFinals\nMon Mar 20\nCS02 Due\nCase Study\n\n\nFinals\nTh Mar 23\nFinal Project Due (11:59 PM)\nLecture"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#cogs-137-where-weve-been",
+    "href": "content/lectures/19-wrap-up-slides.html#cogs-137-where-weve-been",
+    "title": "19-wrap-up",
+    "section": "COGS 137: Where We’ve Been",
+    "text": "COGS 137: Where We’ve Been\n\nR, RMarkdown & RStudio\nData Wrangling w/ the tidyverse\nDataviz w/ ggplot2\nCS01: MLR, Multicollinearity & Right to Carry\nCS02: Logistic Reression & Youth Vaping\nNext Steps in R: Shiny, bookdown, blogdown, plotly/gganimate"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#cogs-137-a-semi-new-course",
+    "href": "content/lectures/19-wrap-up-slides.html#cogs-137-a-semi-new-course",
+    "title": "19-wrap-up",
+    "section": "COGS 137: A Semi-New Course",
+    "text": "COGS 137: A Semi-New Course\nLots of thanks!\n\n\ncourse staff! (Shubham, & Christian - feedback, grading, labs, office hours, etc.)\nall of you (hard work, patience as I returned from parental leave and made more errors than ever…likely due to lack of sleep, flexibility, interest, feedback)\nMine Çetinkaya-Rundel, Open Case Studies Team, Posit (RStudio, quarto & tidyverse teams)\nSean Kross & Prof Drew Walker"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#cogs-137-where-weve-been",
+    "href": "content/lectures/19-wrap-up.html#cogs-137-where-weve-been",
+    "title": "19-wrap-up",
+    "section": "COGS 137: Where We’ve Been",
+    "text": "COGS 137: Where We’ve Been\n\nR, RMarkdown & RStudio\nData Wrangling w/ the tidyverse\nDataviz w/ ggplot2\nCS01: MLR, Multicollinearity & Right to Carry\nCS02: Logistic Reression & Youth Vaping\nNext Steps in R: Shiny, bookdown, blogdown, plotly/gganimate"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#cogs-137-a-semi-new-course",
+    "href": "content/lectures/19-wrap-up.html#cogs-137-a-semi-new-course",
+    "title": "19-wrap-up",
+    "section": "COGS 137: A Semi-New Course",
+    "text": "COGS 137: A Semi-New Course\nLots of thanks!\n\n\ncourse staff! (Shubham, & Christian - feedback, grading, labs, office hours, etc.)\nall of you (hard work, patience as I returned from parental leave and made more errors than ever…likely due to lack of sleep, flexibility, interest, feedback)\nMine Çetinkaya-Rundel, Open Case Studies Team, Posit (RStudio, quarto & tidyverse teams)\nSean Kross & Prof Drew Walker"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up-slides.html#section",
+    "href": "content/lectures/19-wrap-up-slides.html#section",
+    "title": "19-wrap-up",
+    "section": "",
+    "text": "Good Luck on Finals, Get Sleep, Be Safe, Drink Water, Take Care of Yourselves, & Have a Wonderful Spring Break!\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/19-wrap-up.html#section",
+    "href": "content/lectures/19-wrap-up.html#section",
+    "title": "19-wrap-up",
+    "section": "",
+    "text": "Good Luck on Finals, Get Sleep, Be Safe, Drink Water, Take Care of Yourselves, & Have a Wonderful Spring Break!"
   }
 ]

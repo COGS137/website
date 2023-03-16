@@ -77,6 +77,8 @@ website:
             href: content/lectures/17-cs02-analysis-slides.html 
           - text: "18-brainstorming"
             href: content/lectures/18-brainstorming-slides.html 
+          - text: "19-wrap-up"
+            href: content/lectures/19-wrap-up-slides.html 
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
@@ -117,6 +119,8 @@ website:
             href: content/lectures/17-cs02-analysis.html 
           - text: "18-brainstorming"
             href: content/lectures/18-brainstorming.html 
+          - text: "19-wrap-up"
+            href: content/lectures/19-wrap-up.html 
       - section: "Labs"
         contents:
           - text: "Lab01: Tooling and R"

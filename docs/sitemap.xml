@@ -1,23 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://cogs137.github.io/website/index.html</loc>
-    <lastmod>2023-09-22T16:57:14.240Z</lastmod>
-  </url>
-  <url>
-    <loc>https://cogs137.github.io/website/schedule.html</loc>
-    <lastmod>2023-09-22T16:57:13.391Z</lastmod>
+    <loc>https://cogs137.github.io/website/LICENSE.html</loc>
+    <lastmod>2023-09-22T17:38:16.964Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/00-welcome-slides.html</loc>
-    <lastmod>2023-09-18T21:46:04.655Z</lastmod>
+    <lastmod>2023-09-22T17:38:24.585Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/00-welcome.html</loc>
-    <lastmod>2023-09-22T16:57:13.000Z</lastmod>
+    <lastmod>2023-09-22T17:38:24.611Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cogs137.github.io/website/index.html</loc>
+    <lastmod>2023-09-22T17:38:25.275Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/policies.html</loc>
-    <lastmod>2023-09-22T17:01:19.554Z</lastmod>
+    <lastmod>2023-09-22T17:38:42.457Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cogs137.github.io/website/schedule.html</loc>
+    <lastmod>2023-09-22T17:38:41.008Z</lastmod>
   </url>
 </urlset>

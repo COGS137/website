@@ -279,7 +279,7 @@ Always wanted a personal website? Get Started with `blogdown`! Have a data-centr
 - Data Wrangling w/ the `tidyverse`
 - Dataviz w/ `ggplot2`
 - CS01: MLR, Multicollinearity & Right to Carry
-- CS02: Logistic Reression & Youth Vaping
+- CS02: Logistic Regression & Youth Vaping
 - Next Steps in R: `Shiny`, `bookdown`, `blogdown`, `plotly`/`gganimate`
 
 ## COGS 137: A Semi-New Course

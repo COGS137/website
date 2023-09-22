@@ -1,7 +1,7 @@
 ---
 title: "00-welcome"
 author: "Professor Shannon Ellis"
-date: "2023-01-10"
+date: "2023-09-28"
 
 format:
   html: 
@@ -66,16 +66,16 @@ While R has most/all of the functionality of **YFPL** (your favorite programming
 
 Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, and baking & cooking lover
 
-<i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>   Peterson Hall 104 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:20PM (Lab: Fri 1-1:50PM)
+<i class="fa fa-envelope"></i>   [sellis\@ucsd.edu](mailto:sellis@ucsd.edu) <br> <i class="fa fa-home"></i>   [shanellis.com](http://www.shanellis.com/) <br> <i class="fa fa-university"></i>  MOS 0204 <br> <i class="fa fa-calendar"></i>   Tu/Th 2-3:20PM (Lab: Fri 3-3:50PM)
 
 ## Who all is involved?
 
 |            |                                                |                  |               |                      |
-|------------|-----------------------|------------|------------|------------|
+|------------|------------------------------------------------|------------------|---------------|----------------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 | CSB 243              |
-| TA         | Shubham Kulkarni                               |                  | Time TBD      | Location TBD         |
-| IAs        | Christian Kim                                  |                  | Time TBD      | Location TBD         |
+| TA         | Kunal Rustagi                                  |                  | Time TBD      | Location TBD         |
+| IAs        | Shenova Davis                                  |                  | Time TBD      | Location TBD         |
 
 ## What is this course? {.scrollable}
 
@@ -187,22 +187,13 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
 
 ## A new-ish course! {.scrollable}
 
--   Offered once previously
+-   Offered twice previously
 -   If something doesn't make sense, tell me!
 -   If you've got feedback/suggestions, I'm all ears!
 
 . . .
 
-Differences since last iteration:
-
--   Less...pretty much everything
--   New website/lecture platform (quarto)
--   Tu/Th and not early in the morning
--   Group mates differ
--   Increased focus on communication
--   Multiple final project options
--   Slightly larger class & slightly smaller staff
--   I'm a mom & just coming back from parental leave
+AVOCADO
 
 ## How to get help {.scrollable}
 
@@ -214,12 +205,14 @@ Differences since last iteration:
 
 A few guidelines:
 
-    1. No duplicates.
-    2. Public posts are best.
-    3. Posts should include your question, what you've tried so far, & resources used.
-    4. Helping others is encouraged.
-    5. No assignment code in public posts.
-    6. We're not robots.
+```         
+1. No duplicates.
+2. Public posts are best.
+3. Posts should include your question, what you've tried so far, & resources used.
+4. Helping others is encouraged.
+5. No assignment code in public posts.
+6. We're not robots.
+```
 
 ## <img src="images/00/welcome_to_rstats_twitter.png" width="10%" align="left"/> The R Community
 
@@ -494,7 +487,7 @@ Instructions from [quarto](https://quarto.org/docs/presentations/revealjs/presen
 ## Who's in this class?
 
 ```{r data, message=FALSE, warning=FALSE, echo=TRUE, eval=TRUE}
-roster <- read_sheet('10_NsXld_swxoTL_01pCklRKR95OH5XoNlRzTl7L5XXs')
+roster <- read_sheet('10kG09t5Uvjy2zLt4sToHvveBRnqYXTwfaAhPpgEFr3s')
 
 ggplot(roster, aes(x = College)) +
   geom_bar() +
@@ -524,7 +517,7 @@ roster |>
 
 ```{r year}
 roster |>
-  ggplot(aes(fct_relevel(Level, "JR", "SR"))) +
+  ggplot(aes(fct_relevel(Level, "SO", "JR", "SR"))) +
   geom_bar() +
   labs(title = "COGS 137",
        x = "Level") +

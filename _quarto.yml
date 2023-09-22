@@ -5,6 +5,8 @@ project:
 website:
   title: "COGS 137"
   image: images/background.png
+  favicon: images/favicon.ico
+  site-url: "https://cogs137.github.io/website/"
   page-footer:
       left: "This page is built with [Quarto](https://quarto.org/)."
       background: "#92A86A"
@@ -41,158 +43,158 @@ website:
         contents:
           - text: "00-welcome"
             href: content/lectures/00-welcome-slides.html
-          - text: "01-intro-to-r"
-            href: content/lectures/01-intro-to-r-slides.html
-          - text: "02-dplyr"
-            href: content/lectures/02-dplyr-slides.html
-          - text: "03-tidyr"
-            href: content/lectures/03-tidyr-slides.html
-          - text: "04-ggplot2"
-            href: content/lectures/04-ggplot2-slides.html
-          - text: "05-viz"
-            href: content/lectures/05-viz-slides.html
-          - text: "06-analysis"
-            href: content/lectures/06-analysis-slides.html
-          - text: "07-linear-models"
-            href: content/lectures/07-linear-models-slides.html
-          - text: "08-effective-communication"
-            href: content/lectures/08-effective-communication-slides.html
-          - text: "09-projects"
-            href: content/lectures/09-projects-slides.html
-          - text: "10-mlr"
-            href: content/lectures/10-mlr-slides.html
-          - text: "11-cs01-data"
-            href: content/lectures/11-cs01-data-slides.html
-          - text: "12-cs01-eda"
-            href: content/lectures/12-cs01-eda-slides.html
-          - text: "13-cs01-analysis"
-            href: content/lectures/13-cs01-analysis-slides.html
-          - text: "14-logistic-regression"
-            href: content/lectures/14-logistic-regression-slides.html
-          - text: "15-cs02-data"
-            href: content/lectures/15-cs02-data-slides.html  
-          - text: "16-cs02-eda"
-            href: content/lectures/16-cs02-eda-slides.html 
-          - text: "17-cs02-analysis"
-            href: content/lectures/17-cs02-analysis-slides.html 
-          - text: "18-brainstorming"
-            href: content/lectures/18-brainstorming-slides.html 
-          - text: "19-wrap-up"
-            href: content/lectures/19-wrap-up-slides.html 
+          # - text: "01-intro-to-r"
+          #   href: content/lectures/01-intro-to-r-slides.html
+          # - text: "02-dplyr"
+          #   href: content/lectures/02-dplyr-slides.html
+          # - text: "03-tidyr"
+          #   href: content/lectures/03-tidyr-slides.html
+          # - text: "04-ggplot2"
+          #   href: content/lectures/04-ggplot2-slides.html
+          # - text: "05-viz"
+          #   href: content/lectures/05-viz-slides.html
+          # - text: "06-analysis"
+          #   href: content/lectures/06-analysis-slides.html
+          # - text: "07-linear-models"
+          #   href: content/lectures/07-linear-models-slides.html
+          # - text: "08-effective-communication"
+          #   href: content/lectures/08-effective-communication-slides.html
+          # - text: "09-projects"
+          #   href: content/lectures/09-projects-slides.html
+          # - text: "10-mlr"
+          #   href: content/lectures/10-mlr-slides.html
+          # - text: "11-cs01-data"
+          #   href: content/lectures/11-cs01-data-slides.html
+          # - text: "12-cs01-eda"
+          #   href: content/lectures/12-cs01-eda-slides.html
+          # - text: "13-cs01-analysis"
+          #   href: content/lectures/13-cs01-analysis-slides.html
+          # - text: "14-logistic-regression"
+          #   href: content/lectures/14-logistic-regression-slides.html
+          # - text: "15-cs02-data"
+          #   href: content/lectures/15-cs02-data-slides.html  
+          # - text: "16-cs02-eda"
+          #   href: content/lectures/16-cs02-eda-slides.html 
+          # - text: "17-cs02-analysis"
+          #   href: content/lectures/17-cs02-analysis-slides.html 
+          # - text: "18-brainstorming"
+          #   href: content/lectures/18-brainstorming-slides.html 
+          # - text: "19-wrap-up"
+          #   href: content/lectures/19-wrap-up-slides.html 
       - section: "Lecture Notes"
         contents:
           - text: "00-welcome"
             href: content/lectures/00-welcome.qmd
-          - text: "01-intro-to-r"
-            href: content/lectures/01-intro-to-r.qmd
-          - text: "02-dplyr"
-            href: content/lectures/02-dplyr.qmd
-          - text: "03-tidyr"
-            href: content/lectures/03-tidyr.qmd
-          - text: "04-ggplot2"
-            href: content/lectures/04-ggplot2.qmd
-          - text: "05-viz"
-            href: content/lectures/05-viz.qmd
-          - text: "06-analysis"
-            href: content/lectures/06-analysis.qmd
-          - text: "07-linear-models"
-            href: content/lectures/07-linear-models.html
-          - text: "08-effective-communication"
-            href: content/lectures/08-effective-communication.html
-          - text: "09-projects"
-            href: content/lectures/09-projects.html
-          - text: "10-mlr"
-            href: content/lectures/10-mlr.html
-          - text: "11-cs01-data"
-            href: content/lectures/11-cs01-data.html
-          - text: "12-cs01-eda"
-            href: content/lectures/12-cs01-eda.html
-          - text: "13-cs01-analysis"
-            href: content/lectures/13-cs01-analysis.html
-          - text: "14-logistic-regression"
-            href: content/lectures/14-logistic-regression.html
-          - text: "15-cs02-data"
-            href: content/lectures/15-cs02-data.html  
-          - text: "16-cs02-eda"
-            href: content/lectures/16-cs02-eda.html  
-          - text: "17-cs02-analysis"
-            href: content/lectures/17-cs02-analysis.html 
-          - text: "18-brainstorming"
-            href: content/lectures/18-brainstorming.html 
-          - text: "19-wrap-up"
-            href: content/lectures/19-wrap-up.html 
-      - section: "Labs"
-        contents:
-          - text: "Lab01: Tooling and R"
-            href: content/labs/01-lab-intro-r.qmd
-          - text: "Lab02: Wrangling"
-            href: content/labs/02-lab-wrangling.qmd
-          - text: "Lab03: Data Viz"
-            href: content/labs/03-lab-viz.qmd
-          - text: "Lab04: Modelling"
-            href: content/labs/04-lab-modelling.qmd
-          - text: "Lab05: MLR"
-            href: content/labs/05-lab-mlr.qmd
-          - text: "Lab06: CS01"
-            href: content/labs/06-lab-cs01.qmd
-          - text: "Lab07: Logistic Regression"
-            href: content/labs/07-lab-logistic-regression.qmd
-          - text: "Lab08: CS02"
-            href: content/labs/08-lab-cs02.qmd
-      - section: "Lab Slides"
-        contents:
-          - text: "Lab01"
-            href: content/labslides/01-lab-deck.html
-          - text: "Lab02"
-            href: content/labslides/02-lab-deck.html
-          - text: "Lab03"
-            href: content/labslides/03-lab-deck.html
-          - text: "Lab05"
-            href: content/labslides/05-lab-deck.html
-          - text: "Lab07"
-            href: content/labslides/07-lab-deck.html
-      - section: "Lab Answers"
-        contents:
-          - text: "Lab02: Wrangling (Ans)"
-            href: content/lab-ans/lab02-wrangling-ans.qmd
-          - text: "Lab03: Data Viz (Ans)"
-            href: content/lab-ans/lab03-viz-ans.qmd
-          - text: "Lab04: Modelling (Ans)"
-            href: content/lab-ans/lab04-modelling-ans.qmd
-          - text: "Lab05: MLR (Ans)"
-            href: content/lab-ans/lab05-mlr-ans.qmd
-          - text: "Lab07: Logistic Regression (Ans)"
-            href: content/lab-ans/lab07-logistic-regression-ans.qmd
-      - section: "Homework"
-        contents:
-          - text: "HW01"
-            href: content/hw/hw-01.qmd
-          - text: "HW02"
-            href: content/hw/hw-02.qmd
-          - text: "HW03"
-            href: content/hw/hw-03.qmd
-      - section: "Exam"
-        contents:
-          - text: "Practice Midterm"
-            href: content/exams/practice-exam.qmd
-          - text: "Practice Midterm (Ans)"
-            href: content/exams/practice-exam-ans.qmd
-          - text: "Midterm"
-            href: content/exams/midterm_wi23.qmd
-          - text: "Midterm (Ans)"
-            href: content/exams/midterm_wi23-ans.qmd
-      - section: "Case Studies"
-        contents:
-          - text: "CS: Example"
-            href: content/cs/cs-example.qmd
-          - text: "CS01"
-            href: content/cs/cs01.qmd
-          - text: "CS02"
-            href: content/cs/cs02.qmd
-      - section: "Final"
-        contents:
-          - text: "Final Project"
-            href: content/final/final.qmd
+          # - text: "01-intro-to-r"
+          #   href: content/lectures/01-intro-to-r.qmd
+          # - text: "02-dplyr"
+          #   href: content/lectures/02-dplyr.qmd
+          # - text: "03-tidyr"
+          #   href: content/lectures/03-tidyr.qmd
+          # - text: "04-ggplot2"
+          #   href: content/lectures/04-ggplot2.qmd
+          # - text: "05-viz"
+          #   href: content/lectures/05-viz.qmd
+          # - text: "06-analysis"
+          #   href: content/lectures/06-analysis.qmd
+          # - text: "07-linear-models"
+          #   href: content/lectures/07-linear-models.html
+          # - text: "08-effective-communication"
+          #   href: content/lectures/08-effective-communication.html
+          # - text: "09-projects"
+          #   href: content/lectures/09-projects.html
+          # - text: "10-mlr"
+          #   href: content/lectures/10-mlr.html
+          # - text: "11-cs01-data"
+          #   href: content/lectures/11-cs01-data.html
+          # - text: "12-cs01-eda"
+          #   href: content/lectures/12-cs01-eda.html
+          # - text: "13-cs01-analysis"
+          #   href: content/lectures/13-cs01-analysis.html
+          # - text: "14-logistic-regression"
+          #   href: content/lectures/14-logistic-regression.html
+          # - text: "15-cs02-data"
+          #   href: content/lectures/15-cs02-data.html  
+          # - text: "16-cs02-eda"
+          #   href: content/lectures/16-cs02-eda.html  
+          # - text: "17-cs02-analysis"
+          #   href: content/lectures/17-cs02-analysis.html 
+          # - text: "18-brainstorming"
+          #   href: content/lectures/18-brainstorming.html 
+          # - text: "19-wrap-up"
+          #   href: content/lectures/19-wrap-up.html 
+      # - section: "Labs"
+      #   contents:
+      #     - text: "Lab01: Tooling and R"
+      #       href: content/labs/01-lab-intro-r.qmd
+      #     - text: "Lab02: Wrangling"
+      #       href: content/labs/02-lab-wrangling.qmd
+      #     - text: "Lab03: Data Viz"
+      #       href: content/labs/03-lab-viz.qmd
+      #     - text: "Lab04: Modelling"
+      #       href: content/labs/04-lab-modelling.qmd
+      #     - text: "Lab05: MLR"
+      #       href: content/labs/05-lab-mlr.qmd
+      #     - text: "Lab06: CS01"
+      #       href: content/labs/06-lab-cs01.qmd
+      #     - text: "Lab07: Logistic Regression"
+      #       href: content/labs/07-lab-logistic-regression.qmd
+      #     - text: "Lab08: CS02"
+      #       href: content/labs/08-lab-cs02.qmd
+      # - section: "Lab Slides"
+      #   contents:
+      #     - text: "Lab01"
+      #       href: content/labslides/01-lab-deck.html
+      #     - text: "Lab02"
+      #       href: content/labslides/02-lab-deck.html
+      #     - text: "Lab03"
+      #       href: content/labslides/03-lab-deck.html
+      #     - text: "Lab05"
+      #       href: content/labslides/05-lab-deck.html
+      #     - text: "Lab07"
+      #       href: content/labslides/07-lab-deck.html
+      # - section: "Lab Answers"
+      #   contents:
+      #     - text: "Lab02: Wrangling (Ans)"
+      #       href: content/lab-ans/lab02-wrangling-ans.qmd
+      #     - text: "Lab03: Data Viz (Ans)"
+      #       href: content/lab-ans/lab03-viz-ans.qmd
+      #     - text: "Lab04: Modelling (Ans)"
+      #       href: content/lab-ans/lab04-modelling-ans.qmd
+      #     - text: "Lab05: MLR (Ans)"
+      #       href: content/lab-ans/lab05-mlr-ans.qmd
+      #     - text: "Lab07: Logistic Regression (Ans)"
+      #       href: content/lab-ans/lab07-logistic-regression-ans.qmd
+      # - section: "Homework"
+      #   contents:
+      #     - text: "HW01"
+      #       href: content/hw/hw-01.qmd
+      #     - text: "HW02"
+      #       href: content/hw/hw-02.qmd
+      #     - text: "HW03"
+      #       href: content/hw/hw-03.qmd
+      # - section: "Exam"
+      #   contents:
+      #     - text: "Practice Midterm"
+      #       href: content/exams/practice-exam.qmd
+      #     - text: "Practice Midterm (Ans)"
+      #       href: content/exams/practice-exam-ans.qmd
+      #     - text: "Midterm"
+      #       href: content/exams/midterm_wi23.qmd
+      #     - text: "Midterm (Ans)"
+      #       href: content/exams/midterm_wi23-ans.qmd
+      # - section: "Case Studies"
+      #   contents:
+      #     - text: "CS: Example"
+      #       href: content/cs/cs-example.qmd
+      #     - text: "CS01"
+      #       href: content/cs/cs01.qmd
+      #     - text: "CS02"
+      #       href: content/cs/cs02.qmd
+      # - section: "Final"
+      #   contents:
+      #     - text: "Final Project"
+      #       href: content/final/final.qmd
 format:
   html:
     theme: material

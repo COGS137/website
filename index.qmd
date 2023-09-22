@@ -12,8 +12,8 @@ Practical Data Science in R focuses on teaching students how to think rigorously
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-<font color="#ABC57D"><i class="fas fa-university fa-lg"></i></font> **Lecture**: Tu/Th 2-3:20 (Peterson Hall 104)\
-<font color="#ABC57D"><i class="fas fa-laptop fa-lg"></i></font> **Lab**: Fri 1-1:50 (Peterson Hall 104)
+<font color="#ABC57D"><i class="fas fa-university fa-lg"></i></font> **Lecture**: Tu/Th 2-3:20 (MOS 0204)\
+<font color="#ABC57D"><i class="fas fa-laptop fa-lg"></i></font> **Lab**: Fri 3-3:50 (Peterson Hall 102)
 
 ##### Instructional Staff & Office Hours
 
@@ -21,8 +21,8 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 |------------|------------------------------------------------|------------------|------------------|----------------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3          | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 PM | CSB 243              |
-| TA         | Shubham Kulkarni                               |                  | F 12-1PM         | CSB 114              |
-| IAs        | Christian Kim                                  |                  | Th 11AM-12PM     | CSB 114              |
+| TA         | Kunal Rustagi                                  |                  | TBD              | TBD                  |
+| IAs        | Shenova Davis                                  |                  | TBD              | TBD                  |
 
 ### Course Objectives
 

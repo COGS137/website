@@ -21,23 +21,21 @@ This is a draft and will be finalized during week 1 of the quarter.
 | 5      | Th Nov 2       | **Multiple Linear Regression**                                | **Lecture** |
 | 5      | Fri Nov 3      | Lab used for midterm review                                   | Lab         |
 | **6**  | **Mon Nov 6**  | <font color="#ABC57D">**MIDTERM EXAM (due 11:59 PM)** </font> | **Exam**    |
-| **6**  | **Tu Nov 7**   | **Case Study 01: Right to Carry (day 1)**                     | **Lecture** |
-| **6**  | **Th Nov 9**   | **Case Study 01: Right to Carry (day 2)**                     | **Lecture** |
+| **6**  | **Tu Nov 7**   | **Case Study 01 (day 1)**                                     | **Lecture** |
+| **6**  | **Th Nov 9**   | **Case Study 01 (day 2)**                                     | **Lecture** |
 | **6**  | **Fri Nov 10** | **Lab 05: Multiple Linear Regression**                        | **Lab**     |
-| 7      | Tu Nov 14      | Case Study 01: Right to Carry (day 3)                         | Lecture     |
+| 7      | Tu Nov 14      | Case Study 01 (day 3)                                         | Lecture     |
 | 7      | Th Nov 16      | Logistic Regression (day 1)                                   | Lecture     |
 | 7      | Fri Nov 17     | Lab 06: CS01                                                  | Lab         |
 | **8**  | **Mon Nov 20** | <font color="#ABC57D">HW03 due (11:59 PM)</font>              | **HW**      |
 | **8**  | **Tu Nov 21**  | **Logistic Regression (day 2)**                               | **Lecture** |
 | **8**  | **Th Nov 23**  | **No Class (Thanksgiving)**                                   | **\--**     |
-| **8**  | **Fri Nov 24** | **Lab 07: Logistic Regression**                               | **Lab**     |
 | 9      | Mon Nov 27     | <font color="#ABC57D">CS01 Due (11:59 PM)</font>              | Case Study  |
-| 9      | Tu Nov 28      | Case Study 02: Vaping (day 1)                                 | Lecture     |
-| 9      | Th Nov 30      | Case Study 02: Vaping (day 2)                                 | Lecture     |
-| 9      | Fri Dec 1      | Lab 08: CS02                                                  | Lab         |
-| **10** | **Mon Dec 4**  | <font color="#ABC57D">**HW04 due (11:59 PM)**</font>          | **HW**      |
+| 9      | Tu Nov 28      | Case Study 02 (day 1)                                         | Lecture     |
+| 9      | Th Nov 30      | Case Study 02 (day 2)                                         | Lecture     |
+| 9      | Fri Dec 1      | Lab 07: Logistic Regression & CS02                                              | Lab         |
+| **10** | **Mon Dec 4**  | <font color="#ABC57D">**CS02 Due**</font>                     | **Case Study**|
 | **10** | **Tu Dec 5**   | **Final Project Brainstorming**                               | **Lecture** |
 | **10** | **Th Dec 7**   | **Next Steps**                                                | **Lecture** |
-| **10** | **Fri Dec 8**  | **Lab used for Final Project**                                | **Lab**     |
-| Finals | Mon Dec 11     | <font color="#ABC57D">CS02 Due</font>                         | Case Study  |
-| Finals | Th Dec 14      | <font color="#ABC57D">Final Project Due (11:59 PM)</font>     | Lecture     |
+| **10** | **Fri Dec 8**  | **Lab 08: Final Project**                                | **Lab**     |
+| Finals | Tu Dec 12      | <font color="#ABC57D">Final Project Due (11:59 PM)</font>     | Project     |

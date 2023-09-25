@@ -71,7 +71,7 @@ Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, an
 ## Who all is involved?
 
 |            |                                                |                  |               |                      |
-|------------|------------------------------------------------|------------------|---------------|----------------------|
+|------------|------------------------|------------|------------|------------|
 | Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 | CSB 243              |
 | TA         | Kunal Rustagi                                  |                  | Time TBD      | Location TBD         |
@@ -113,9 +113,11 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
 ## The General Plan
 
 -   Weeks 1-4: Learn to program in the tidyverse in R
--   Weeks 5-10: Communication, Data Analysis, Statistics, & Case Studies
-    -   CS01: Right to Carry
-    -   CS02: Vaping Behaviors
+-   Weeks 5-10: Communication, Data Analysis, Statistics, & Case Studies (two Case Studies)
+
+. . .
+
+Note: This course is back-loaded. *But*, that's when group work happens.
 
 ## The Nitty Gritty {.scrollable}
 
@@ -151,8 +153,8 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
 
 **Lab & Office Hours**
 
--   My office hours begin week 1; TA/IA OH begin week 2
--   Lab will start this Fri (week 1)
+-   Office hours begin week 1
+-   Lab begins week 1 (next Friday)
 -   I will hang out after class today for questions/concerns from students
 
 ### Materials
@@ -166,7 +168,7 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
     -   datahub : completing assignments, labs, exams etc.
     -   Gradescope : submitting assignments
     -   Canvas : grades, course-specific links
-    -   Campuswire : Q&A
+    -   Piazza : Q&A
 :::
 
 ## Diversity & Inclusion:
@@ -193,13 +195,17 @@ Artwork by [\@allison_horst](https://github.com/allisonhorst/stats-illustrations
 
 . . .
 
-AVOCADO
+Changes since last iteration (based on feedback):
+- spread out second half
+- likely changing the heaviness of a case study
+- add in communication to public portion
+
 
 ## How to get help {.scrollable}
 
 -   Lab
 -   Office Hours
--   Campuswire
+-   Piazza
 
 . . .
 
@@ -236,16 +242,47 @@ The Internet is a great resource. - Cite your sources.
 
 . . .
 
-Teamwork is *not* allowed on your midterm. - It is open-notes and open-Google - You cannot discuss the questions on the exam with anyone.
+Teamwork is *not* allowed on your midterm. - It is open-notes and open-Google/ChatGPT - You cannot discuss the questions on the exam with anyone.
+
+## When To (Can I) Use ChatGPT/LLMs?
+
+For anything in this course.
+
+## How To Use ChatGPT/LLMs
+
+Probably never first or right away.
+
+. . .
+
+To learn: Think first. Try first. Then use external resources.
+
+. . .
+
+Always read/think about/understand the output.
+
+## What to Avoid
+
+- Over-reliance (thwarts learning)
+- Having to look *everything* up (wastes time)
+- Leaving tasks to the last minute (*can* lead to bad decisions/academic integrity issues)
+- Taking the output without thinking (thwarts learning; limits critical thinking practice)
+- Using it right away for brainstorming ideas (limits ideas generated)
+
+
+## What it could look like
+
+Imagine: You've been asked to carry out a number of wrangling operations on a dataset...
+
+Demo.
 
 ## Course components:
 
 ::: incremental
 -   <font color="#ABC57D">Labs (8)</font>: Individual submission; graded on effort
--   <font color="#ABC57D">Homework (4)</font>: Individual submission; graded on correctness
+-   <font color="#ABC57D">Homework (3)</font>: Individual submission; graded on correctness
 -   <font color="#ABC57D">Exam (1)</font>: Individual completion & submission, take-home midterm
 -   <font color="#ABC57D">Case Studies (2)</font>: Team submission, technical analysis report
--   <font color="#ABC57D">Final Project (1) </font>: Team submission, due Thurs of finals week
+-   <font color="#ABC57D">Final Project (1) </font>: Team submission, due Tues of finals week
 :::
 
 ## Grading
@@ -300,6 +337,8 @@ When working on "stuff" for this course, select the COGS 137 environment.
 
 -   Version control $\rightarrow$ Git / GitHub
 
+-   The Internet (Google/ChatGPT/etc.)
+
 ## R and RStudio {.scrollable}
 
 ::: panel-tabset
@@ -338,7 +377,7 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 ### R packages
 
 -   **Packages** are the fundamental units of reproducible R code. They include reusable R functions, the documentation that describes how to use them, and sample data [^1]
--   As of Jan 2023, there are \~18,979 R packages available on **CRAN** (the Comprehensive R Archive Network)[^2]
+-   As of Sept 2023, there are \~19,941 R packages available on **CRAN** (the Comprehensive R Archive Network)[^2]
 -   We're going to work with a small (but important) subset of these!
 :::
 
@@ -444,6 +483,25 @@ Concepts introduced:
 
 There is a bit more of GitHub that we'll use in this class, but for today this is enough.
 
+## Getting Help
+
+
+
+
+
+## Documentation
+
+Consider `ggplot2` (a package we'll learn a lot)
+
+::: incremental
+- Official documentation (CRAN): https://cran.r-project.org/web/packages/ggplot2/index.html
+- Code (Github): https://github.com/tidyverse/ggplot2
+- Documentation: https://ggplot2.tidyverse.org/reference/index.html
+- Specific Function: https://ggplot2.tidyverse.org/reference/geom_point.html
+:::
+
+Note: StackOverflow is still a helpful resource but ChatGPT/LLMs may be your go to and that's OK. Regardless, let's take a look
+
 ## Recap
 
 Can you answer these questions?
@@ -527,16 +585,18 @@ roster |>
 
 ## I'd like to know more!
 
-(*optional*) [Student Survey](https://docs.google.com/forms/d/e/1FAIpQLSeVpq52ojcNijOPGlukJ1vDhgtL9TE1axNcvtECkaOCn1g-kA/viewform?usp=sf_link) - complete by Monday at 11:59 PM for small amount of extra credit
+(*required*)[Student Survey](https://docs.google.com/forms/d/e/1FAIpQLSdSQwgythA0-ZJsjJ10POA1CljhiZ8GDp_z-Eei9zrDqESKtA/viewform?usp=sf_link) - complete by Tuesday at 11:59 PM.
+
+**This is required and completion will be used for CAA/#finaid.** **DO** complete this even if you're on the waitlist, please.
 
 . . .
 
-(*optional*) [Daily Post-Lecture Feedback](https://docs.google.com/forms/d/e/1FAIpQLSfPurJM6n1LBX6wqABBuCeO5e2tNpwQ9-QQxfId1vPPHbYhEg/viewform?usp=sf_link)
+(*optional*) [Daily Post-Lecture Feedback](https://docs.google.com/forms/d/e/1FAIpQLSfGjjBgBoOdfaGupBh60OgDHrkkFXlKpcuByTiF6vmehT5y7A/viewform?usp=sf_link)
 
 -   opportunity to reflect on learning
 -   opportunity to ask questions (I will read and answer these.)
 -   opportunity for extra credit on final project
 
 ::: aside
-Note: Links to both surveys are also on Canvas.
+Note: Links to both surveys are also on Canvas. I will *try* to remind you at the end of lecture, but I'll probably forget. Feel free to remind me/one another!
 :::

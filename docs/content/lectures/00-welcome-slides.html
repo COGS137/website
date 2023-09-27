@@ -309,6 +309,7 @@
     }
     .reveal .slide:not(.center) {
       height: 100%;
+      overflow-y: auto;
     }
     .reveal .slide.scrollable {
       overflow-y: auto;
@@ -544,7 +545,7 @@ Professor Shannon Ellis
 <p><strong>In-person, synchronous learning</strong></p>
 <ol type="1">
 <li>I will be teaching (so long as I’m healthy and have child care) in person.</li>
-<li>Lectures will be podcast.</li>
+<li>Lectures and lab will be podcast.</li>
 <li>Attendance will be incentivized using a daily participation survey.</li>
 <li>If you’re not feeling well, please stay home. I will do the same.</li>
 <li>Exam will be take-home.</li>
@@ -562,8 +563,16 @@ Professor Shannon Ellis
 <div id="tabset-1-4">
 <p><strong>Lab &amp; Office Hours</strong></p>
 <ul>
-<li>Office hours begin week 1</li>
-<li>Lab begins week 1 (next Friday)</li>
+<li><strong>Office hours</strong> begin week 1
+<ul>
+<li>Prof: Tu: 3:30-4:30 (drop-in); W 11-12 (10 min slots; appt.)</li>
+</ul></li>
+<li><strong>Lab</strong> begins week 1 (next Friday)
+<ul>
+<li>it’s <em>not</em> in a computer lab, so you’ll need to bring your own</li>
+<li>details about labs covered on Tues and in lab</li>
+<li>typically labs will be released Monday and due Friday</li>
+</ul></li>
 <li>I will hang out after class today for questions/concerns from students</li>
 </ul>
 </div>
@@ -606,7 +615,13 @@ Professor Shannon Ellis
 <li>If you’ve got feedback/suggestions, I’m all ears!</li>
 </ul>
 <div class="fragment">
-<p>Changes since last iteration (based on feedback): - spread out second half - likely changing the heaviness of a case study - add in communication to public portion</p>
+<p>Changes since last iteration (based on feedback):</p>
+<ul>
+<li>spread out second half</li>
+<li>likely changing the heaviness of a case study</li>
+<li>add in communication to public portion</li>
+<li>one fewer HW assignments</li>
+</ul>
 </div>
 </section>
 <section id="how-to-get-help" class="slide level2 scrollable">
@@ -617,7 +632,7 @@ Professor Shannon Ellis
 <li>Piazza</li>
 </ul>
 <div class="fragment">
-<p>A few guidelines:</p>
+<p>A few (Piazza) guidelines:</p>
 <pre><code>1. No duplicates.
 2. Public posts are best.
 3. Posts should include your question, what you've tried so far, &amp; resources used.
@@ -642,13 +657,17 @@ Professor Shannon Ellis
 <h2>Academic integrity</h2>
 <p>Don’t cheat.</p>
 <div class="fragment">
-<p>Teamwork is allowed, but you should be able to answer “Yes” to each of the following: - Can I explain each piece of code and each analysis carried out in what I’m submitting? - Could I reproduce this code/analysis on my own?</p>
+<p>Teamwork is allowed, but you should be able to answer “Yes” to each of the following:</p>
+<ul>
+<li>Can I explain each piece of code and each analysis carried out in what I’m submitting?</li>
+<li>Could I reproduce this code/analysis on my own?</li>
+</ul>
 </div>
 <div class="fragment">
-<p>The Internet is a great resource. - Cite your sources.</p>
+<p>The Internet is a great resource. Cite your sources.</p>
 </div>
 <div class="fragment">
-<p>Teamwork is <em>not</em> allowed on your midterm. - It is open-notes and open-Google/ChatGPT - You cannot discuss the questions on the exam with anyone.</p>
+<p>Teamwork is <em>not</em> allowed on your midterm. It is open-notes and open-Google/ChatGPT. You cannot discuss the questions on the exam with anyone.</p>
 </div>
 </section>
 <section id="when-to-can-i-use-chatgptllms" class="slide level2">
@@ -665,20 +684,17 @@ Professor Shannon Ellis
 <p>Always read/think about/understand the output.</p>
 </div>
 </section>
-<section id="what-to-avoid" class="slide level2">
-<h2>What to Avoid</h2>
+<section id="chatgpt-what-to-avoid" class="slide level2">
+<h2>ChatGPT: What to Avoid</h2>
+<div>
 <ul>
-<li>Over-reliance (thwarts learning)</li>
-<li>Having to look <em>everything</em> up (wastes time)</li>
-<li>Leaving tasks to the last minute (<em>can</em> lead to bad decisions/academic integrity issues)</li>
-<li>Taking the output without thinking (thwarts learning; limits critical thinking practice)</li>
-<li>Using it right away for brainstorming ideas (limits ideas generated)</li>
+<li class="fragment">Over-reliance (thwarts learning)</li>
+<li class="fragment">Having to look <em>everything</em> up (wastes time)</li>
+<li class="fragment">Leaving tasks to the last minute (<em>can</em> lead to bad decisions/academic integrity issues)</li>
+<li class="fragment">Taking the output without thinking (thwarts learning; limits critical thinking practice)</li>
+<li class="fragment">Using it right away for brainstorming ideas (limits ideas generated)</li>
 </ul>
-</section>
-<section id="what-it-could-look-like" class="slide level2">
-<h2>What it could look like</h2>
-<p>Imagine: You’ve been asked to carry out a number of wrangling operations on a dataset…</p>
-<p>Demo.</p>
+</div>
 </section>
 <section id="course-components" class="slide level2">
 <h2>Course components:</h2>
@@ -734,9 +750,7 @@ Professor Shannon Ellis
 <li><p>No late deadlines for labs, the exam, or the final project</p></li>
 </ul>
 <div class="fragment">
-<ul>
-<li>Note: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.</li>
-</ul>
+<p>Note: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.</p>
 </div>
 </section></section>
 <section>
@@ -752,12 +766,9 @@ Professor Shannon Ellis
 <div class="fragment">
 <p><strong>Launch Environment</strong></p>
 <p>When working on “stuff” for this course, select the COGS 137 environment.</p>
-<div class="quarto-figure quarto-figure-center">
-<figure>
-<p><img data-src="images/00/datahub.png"></p>
-<p></p><figcaption>datahub</figcaption><p></p>
-</figure>
-</div>
+<p><img data-src="images/00/datahub.png" alt="datahub"> . . .</p>
+<p>Q: Do I <em>have</em> to use datahub?</p>
+<p>A: Nope. You could download and install all the packages we use and complete the course locally! However, many packages have already been installed for you on datahub, so it will be a tiny bit more work up front…but you won’t be dependent on the internet/datahub!</p>
 </div>
 </section>
 <section id="toolkit" class="slide level2">
@@ -861,7 +872,7 @@ Professor Shannon Ellis
 <section id="how-will-we-use-r-markdown" class="slide level2">
 <h2>How will we use R Markdown?</h2>
 <ul>
-<li>Every lab / project / homework / notes / etc. is an R Markdown document</li>
+<li>Every lab / midterm / project / homework / notes / etc. is an R Markdown document</li>
 <li>You’ll always have a template R Markdown document to start with</li>
 <li>The amount of scaffolding in the template will decrease over the quarter</li>
 </ul>
@@ -873,7 +884,7 @@ Professor Shannon Ellis
 <li>The software we use to interface with R is RStudio</li>
 <li>But how do I get you the course materials that you can build on for your assignments?
 <ul>
-<li>Hint: I’m not going to email you documents, that would be a mess!</li>
+<li>I’m not going to email you documents, that would be a mess!</li>
 </ul></li>
 </ul>
 </section>
@@ -901,7 +912,7 @@ Professor Shannon Ellis
 <section id="git-and-github-tips" class="slide level2 scrollable">
 <h2>Git and GitHub tips</h2>
 <ul>
-<li>Git is a version control system – like “Track Changes” features from Microsoft Word on steroids. GitHub is the home for your Git-based projects on the internet – like DropBox but much, much better).</li>
+<li>Git is a version control system – like “Track Changes” feature Google Docs…but optimized for code. GitHub is the home for your Git-based projects on the internet – like Drive with additional features for code.</li>
 </ul>
 <div class="fragment">
 <ul>
@@ -927,22 +938,41 @@ Professor Shannon Ellis
 <li>Committing, Pushing and Pulling</li>
 </ul>
 <p>There is a bit more of GitHub that we’ll use in this class, but for today this is enough.</p>
-</section>
-<section id="getting-help" class="slide level2">
-<h2>Getting Help</h2>
+</section></section>
+<section>
+<section id="getting-help" class="title-slide slide level1 center">
+<h1>Getting Help</h1>
+<ul>
+<li>Trying things out</li>
+<li>Undersetanding Documentation</li>
+<li>Using ChatGPT/LLMs</li>
+</ul>
 </section>
 <section id="documentation" class="slide level2">
 <h2>Documentation</h2>
 <p>Consider <code>ggplot2</code> (a package we’ll learn a lot)</p>
 <div>
 <ul>
-<li class="fragment">Official documentation (CRAN): https://cran.r-project.org/web/packages/ggplot2/index.html</li>
-<li class="fragment">Code (Github): https://github.com/tidyverse/ggplot2</li>
-<li class="fragment">Documentation: https://ggplot2.tidyverse.org/reference/index.html</li>
-<li class="fragment">Specific Function: https://ggplot2.tidyverse.org/reference/geom_point.html</li>
+<li class="fragment">Official documentation (CRAN): <a href="">https://cran.r-project.org/web/packages/ggplot2/index.html</a></li>
+<li class="fragment">Code (Github): <a href="">https://github.com/tidyverse/ggplot2</a></li>
+<li class="fragment">Documentation: <a href="">https://ggplot2.tidyverse.org/reference/index.html</a></li>
+<li class="fragment">Specific Function: <a href="">https://ggplot2.tidyverse.org/reference/geom_point.html</a></li>
 </ul>
 </div>
-<p>Note: StackOverflow is still a helpful resource but ChatGPT/LLMs may be your go to and that’s OK. Regardless, let’s take a look</p>
+</section>
+<section id="chatgpt-what-it-could-look-like" class="slide level2">
+<h2>ChatGPT: What it could look like</h2>
+<p>Imagine: You’ve been asked to carry out a number of wrangling operations on a dataset and make a plot…</p>
+<center>
+[DEMO]
+</center>
+</section>
+<section id="additional-help" class="slide level2">
+<h2>Additional help</h2>
+<ul>
+<li>classmates</li>
+<li>course staff (OH, Piazza, class, lab)</li>
+</ul>
 </section>
 <section id="recap" class="slide level2">
 <h2>Recap</h2>
@@ -977,7 +1007,7 @@ Professor Shannon Ellis
 <section id="slides-to-pdf" class="slide level2">
 <h2>Slides to PDF</h2>
 <ol type="1">
-<li>Toggle into Print View using the E key (or using the Navigation Menu)</li>
+<li>Toggle into Print View using the Esc key (or using the Navigation Menu)</li>
 <li>Open the in-browser print dialog (CTRL/CMD+P).</li>
 <li>Change the <strong>Destination</strong> setting to Save as PDF.</li>
 <li>Change the <strong>Layout</strong> to Landscape.</li>

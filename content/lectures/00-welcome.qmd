@@ -14,6 +14,7 @@ format:
     logo: images/cogs137-logo-hex.png
     css: slides.css
     footer: <https://cogs137.github.io/website/>
+    scrollable: true
     execute:
      echo: true
      output: true
@@ -135,7 +136,7 @@ Note: This course is back-loaded. *But*, that's when group work happens.
 **In-person, synchronous learning**
 
 1.  I will be teaching (so long as I'm healthy and have child care) in person.
-2.  Lectures will be podcast.
+2.  Lectures and lab will be podcast.
 3.  Attendance will be incentivized using a daily participation survey.
 4.  If you're not feeling well, please stay home. I will do the same.
 5.  Exam will be take-home.
@@ -153,9 +154,13 @@ Note: This course is back-loaded. *But*, that's when group work happens.
 
 **Lab & Office Hours**
 
--   Office hours begin week 1
--   Lab begins week 1 (next Friday)
--   I will hang out after class today for questions/concerns from students
+- **Office hours** begin week 1
+  - Prof: Tu: 3:30-4:30 (drop-in); W 11-12 (10 min slots; appt.)
+- **Lab** begins week 1 (next Friday)
+  - it's *not* in a computer lab, so you'll need to bring your own
+  - details about labs covered on Tues and in lab
+  - typically labs will be released Monday and due Friday
+- I will hang out after class today for questions/concerns from students
 
 ### Materials
 
@@ -196,9 +201,11 @@ Note: This course is back-loaded. *But*, that's when group work happens.
 . . .
 
 Changes since last iteration (based on feedback):
+
 - spread out second half
 - likely changing the heaviness of a case study
 - add in communication to public portion
+- one fewer HW assignments
 
 
 ## How to get help {.scrollable}
@@ -209,7 +216,7 @@ Changes since last iteration (based on feedback):
 
 . . .
 
-A few guidelines:
+A few (Piazza) guidelines:
 
 ```         
 1. No duplicates.
@@ -234,15 +241,18 @@ Don't cheat.
 
 . . .
 
-Teamwork is allowed, but you should be able to answer "Yes" to each of the following: - Can I explain each piece of code and each analysis carried out in what I'm submitting? - Could I reproduce this code/analysis on my own?
+Teamwork is allowed, but you should be able to answer "Yes" to each of the following: 
+
+- Can I explain each piece of code and each analysis carried out in what I'm submitting? 
+- Could I reproduce this code/analysis on my own?
 
 . . .
 
-The Internet is a great resource. - Cite your sources.
+The Internet is a great resource. Cite your sources.
 
 . . .
 
-Teamwork is *not* allowed on your midterm. - It is open-notes and open-Google/ChatGPT - You cannot discuss the questions on the exam with anyone.
+Teamwork is *not* allowed on your midterm. It is open-notes and open-Google/ChatGPT. You cannot discuss the questions on the exam with anyone.
 
 ## When To (Can I) Use ChatGPT/LLMs?
 
@@ -260,20 +270,15 @@ To learn: Think first. Try first. Then use external resources.
 
 Always read/think about/understand the output.
 
-## What to Avoid
+## ChatGPT: What to Avoid
 
+::: incremental
 - Over-reliance (thwarts learning)
 - Having to look *everything* up (wastes time)
 - Leaving tasks to the last minute (*can* lead to bad decisions/academic integrity issues)
 - Taking the output without thinking (thwarts learning; limits critical thinking practice)
 - Using it right away for brainstorming ideas (limits ideas generated)
-
-
-## What it could look like
-
-Imagine: You've been asked to carry out a number of wrangling operations on a dataset...
-
-Demo.
+:::
 
 ## Course components:
 
@@ -307,7 +312,7 @@ Your final grade will be comprised of the following:
 
 . . .
 
--   Note: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.
+Note: Prof Ellis is a reasonable person; reach out to her if you have an extenuating circumstance at any point in the quarter.
 
 # Tooling {background-color="#92A86A"}
 
@@ -326,6 +331,11 @@ Website: <https://datahub.ucsd.edu/>
 When working on "stuff" for this course, select the COGS 137 environment.
 
 ![datahub](images/00/datahub.png)
+. . .
+
+Q: Do I *have* to use datahub?
+
+A: Nope. You could download and install all the packages we use and complete the course locally! However, many packages have already been installed for you on datahub, so it will be a tiny bit more work up front...but you won't be dependent on the internet/datahub!
 
 ## Toolkit
 
@@ -424,7 +434,7 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 
 ## How will we use R Markdown?
 
--   Every lab / project / homework / notes / etc. is an R Markdown document
+-   Every lab / midterm / project / homework / notes / etc. is an R Markdown document
 -   You'll always have a template R Markdown document to start with
 -   The amount of scaffolding in the template will decrease over the quarter
 
@@ -433,7 +443,7 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 -   The statistical programming language we'll use is R
 -   The software we use to interface with R is RStudio
 -   But how do I get you the course materials that you can build on for your assignments?
-    -   Hint: I'm not going to email you documents, that would be a mess!
+    -   I'm not going to email you documents, that would be a mess!
 
 ## Version control
 
@@ -457,7 +467,7 @@ with human readable messages
 
 ## Git and GitHub tips {.scrollable}
 
--   Git is a version control system -- like "Track Changes" features from Microsoft Word on steroids. GitHub is the home for your Git-based projects on the internet -- like DropBox but much, much better).
+-   Git is a version control system -- like "Track Changes" feature Google Docs...but optimized for code. GitHub is the home for your Git-based projects on the internet -- like Drive with additional features for code.
 
 . . .
 
@@ -483,10 +493,11 @@ Concepts introduced:
 
 There is a bit more of GitHub that we'll use in this class, but for today this is enough.
 
-## Getting Help
+# Getting Help
 
-
-
+- Trying things out
+- Undersetanding Documentation
+- Using ChatGPT/LLMs
 
 
 ## Documentation
@@ -494,13 +505,23 @@ There is a bit more of GitHub that we'll use in this class, but for today this i
 Consider `ggplot2` (a package we'll learn a lot)
 
 ::: incremental
-- Official documentation (CRAN): https://cran.r-project.org/web/packages/ggplot2/index.html
-- Code (Github): https://github.com/tidyverse/ggplot2
-- Documentation: https://ggplot2.tidyverse.org/reference/index.html
-- Specific Function: https://ggplot2.tidyverse.org/reference/geom_point.html
+- Official documentation (CRAN): [https://cran.r-project.org/web/packages/ggplot2/index.html]()
+- Code (Github): [https://github.com/tidyverse/ggplot2]()
+- Documentation: [https://ggplot2.tidyverse.org/reference/index.html]()
+- Specific Function: [https://ggplot2.tidyverse.org/reference/geom_point.html]()
 :::
 
-Note: StackOverflow is still a helpful resource but ChatGPT/LLMs may be your go to and that's OK. Regardless, let's take a look
+## ChatGPT: What it could look like
+
+Imagine: You've been asked to carry out a number of wrangling operations on a dataset and make a plot...
+
+<center>\[DEMO\]</center>
+
+## Additional help
+
+- classmates
+- course staff (OH, Piazza, class, lab)
+
 
 ## Recap
 
@@ -528,7 +549,7 @@ Can you answer these questions?
 
 ## Slides to PDF
 
-1.  Toggle into Print View using the E key (or using the Navigation Menu)
+1.  Toggle into Print View using the Esc key (or using the Navigation Menu)
 2.  Open the in-browser print dialog (CTRL/CMD+P).
 3.  Change the **Destination** setting to Save as PDF.
 4.  Change the **Layout** to Landscape.

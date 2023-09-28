@@ -73,7 +73,7 @@ Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, an
 
 |            |                                                |                  |               |                      |
 |------------|------------------------|------------|------------|------------|
-| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 2-3       | Virtual (see canvas) |
+| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11A-12P       | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 | CSB 243              |
 | TA         | Kunal Rustagi                                  |                  | Time TBD      | Location TBD         |
 | IAs        | Shenova Davis                                  |                  | Time TBD      | Location TBD         |
@@ -171,7 +171,6 @@ Note: This course is back-loaded. *But*, that's when group work happens.
     -   Website : schedule, policies, due dates, etc.
     -   GitHub : retrieving assignments, labs, exams, etc.
     -   datahub : completing assignments, labs, exams etc.
-    -   Gradescope : submitting assignments
     -   Canvas : grades, course-specific links
     -   Piazza : Q&A
 :::
@@ -331,7 +330,7 @@ Website: <https://datahub.ucsd.edu/>
 When working on "stuff" for this course, select the COGS 137 environment.
 
 ![datahub](images/00/datahub.png)
-. . .
+## Datahub Usage
 
 Q: Do I *have* to use datahub?
 
@@ -339,7 +338,7 @@ A: Nope. You could download and install all the packages we use and complete the
 
 ## Toolkit
 
-![toolkit](images/00/toolkit.png)
+![](images/00/toolkit.png)
 
 -   Scriptability $\rightarrow$ R
 

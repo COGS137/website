@@ -72,11 +72,17 @@ Shannon Ellis: Associate Teaching Professor, Mom & wife, volleyball-obsessed, an
 ## Who all is involved?
 
 |            |                                                |                  |               |                      |
-|------------|------------------------|------------|------------|------------|
-| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11A-12P       | Virtual (see canvas) |
+|-------------|-------------------|-------------|-------------|-------------|
+| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11A-12P   | Virtual (see canvas) |
 |            |                                                |                  | Th 12:50-1:50 | CSB 243              |
 | TA         | Kunal Rustagi                                  |                  | Time TBD      | Location TBD         |
 | IAs        | Shenova Davis                                  |                  | Time TBD      | Location TBD         |
+
+## Course Staff
+
+| Kunal Rustagi (TA)       | Shenova Davis (IA)         |
+|--------------------------|----------------------------|
+| ![](images/00/kunal.jpg) | ![](images/00/shenova.JPG) |
 
 ## What is this course? {.scrollable}
 
@@ -154,13 +160,13 @@ Note: This course is back-loaded. *But*, that's when group work happens.
 
 **Lab & Office Hours**
 
-- **Office hours** begin week 1
-  - Prof: Tu: 3:30-4:30 (drop-in); W 11-12 (10 min slots; appt.)
-- **Lab** begins week 1 (next Friday)
-  - it's *not* in a computer lab, so you'll need to bring your own
-  - details about labs covered on Tues and in lab
-  - typically labs will be released Monday and due Friday
-- I will hang out after class today for questions/concerns from students
+-   **Office hours** begin week 1
+    -   Prof: Tu: 3:30-4:30 (drop-in); W 11-12 (10 min slots; appt.)
+-   **Lab** begins week 1 (next Friday)
+    -   it's *not* in a computer lab, so you'll need to bring your own
+    -   details about labs covered on Tues and in lab
+    -   typically labs will be released Monday and due Friday
+-   I will hang out after class today for questions/concerns from students
 
 ### Materials
 
@@ -201,11 +207,10 @@ Note: This course is back-loaded. *But*, that's when group work happens.
 
 Changes since last iteration (based on feedback):
 
-- spread out second half
-- likely changing the heaviness of a case study
-- add in communication to public portion
-- one fewer HW assignments
-
+-   spread out second half
+-   likely changing the heaviness of a case study
+-   add in communication to public portion
+-   one fewer HW assignments
 
 ## How to get help {.scrollable}
 
@@ -240,10 +245,10 @@ Don't cheat.
 
 . . .
 
-Teamwork is allowed, but you should be able to answer "Yes" to each of the following: 
+Teamwork is allowed, but you should be able to answer "Yes" to each of the following:
 
-- Can I explain each piece of code and each analysis carried out in what I'm submitting? 
-- Could I reproduce this code/analysis on my own?
+-   Can I explain each piece of code and each analysis carried out in what I'm submitting?
+-   Could I reproduce this code/analysis on my own?
 
 . . .
 
@@ -272,11 +277,11 @@ Always read/think about/understand the output.
 ## ChatGPT: What to Avoid
 
 ::: incremental
-- Over-reliance (thwarts learning)
-- Having to look *everything* up (wastes time)
-- Leaving tasks to the last minute (*can* lead to bad decisions/academic integrity issues)
-- Taking the output without thinking (thwarts learning; limits critical thinking practice)
-- Using it right away for brainstorming ideas (limits ideas generated)
+-   Over-reliance (thwarts learning)
+-   Having to look *everything* up (wastes time)
+-   Leaving tasks to the last minute (*can* lead to bad decisions/academic integrity issues)
+-   Taking the output without thinking (thwarts learning; limits critical thinking practice)
+-   Using it right away for brainstorming ideas (limits ideas generated)
 :::
 
 ## Course components:
@@ -329,8 +334,7 @@ Website: <https://datahub.ucsd.edu/>
 
 When working on "stuff" for this course, select the COGS 137 environment.
 
-![datahub](images/00/datahub.png)
-## Datahub Usage
+![datahub](images/00/datahub.png) \## Datahub Usage
 
 Q: Do I *have* to use datahub?
 
@@ -494,20 +498,19 @@ There is a bit more of GitHub that we'll use in this class, but for today this i
 
 # Getting Help
 
-- Trying things out
-- Undersetanding Documentation
-- Using ChatGPT/LLMs
-
+-   Trying things out
+-   Undersetanding Documentation
+-   Using ChatGPT/LLMs
 
 ## Documentation
 
 Consider `ggplot2` (a package we'll learn a lot)
 
 ::: incremental
-- Official documentation (CRAN): [https://cran.r-project.org/web/packages/ggplot2/index.html]()
-- Code (Github): [https://github.com/tidyverse/ggplot2]()
-- Documentation: [https://ggplot2.tidyverse.org/reference/index.html]()
-- Specific Function: [https://ggplot2.tidyverse.org/reference/geom_point.html]()
+-   Official documentation (CRAN): [https://cran.r-project.org/web/packages/ggplot2/index.html]()
+-   Code (Github): [https://github.com/tidyverse/ggplot2]()
+-   Documentation: [https://ggplot2.tidyverse.org/reference/index.html]()
+-   Specific Function: [https://ggplot2.tidyverse.org/reference/geom_point.html]()
 :::
 
 ## ChatGPT: What it could look like
@@ -518,9 +521,8 @@ Imagine: You've been asked to carry out a number of wrangling operations on a da
 
 ## Additional help
 
-- classmates
-- course staff (OH, Piazza, class, lab)
-
+-   classmates
+-   course staff (OH, Piazza, class, lab)
 
 ## Recap
 

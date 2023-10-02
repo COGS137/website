@@ -143,10 +143,10 @@ website:
       #       href: content/labs/07-lab-logistic-regression.qmd
       #     - text: "Lab08: CS02"
       #       href: content/labs/08-lab-cs02.qmd
-      # - section: "Lab Slides"
-      #   contents:
-      #     - text: "Lab01"
-      #       href: content/labslides/01-lab-deck.html
+      - section: "Lab Slides"
+        contents:
+          - text: "Lab01"
+            href: content/labslides/01-lab-deck.html
       #     - text: "Lab02"
       #       href: content/labslides/02-lab-deck.html
       #     - text: "Lab03"

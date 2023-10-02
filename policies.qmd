@@ -1,5 +1,3 @@
-This is a draft and will be finalized during week 1 of the quarter.
-
 ### Class
 
 Class will include short lectures as well as interactive activities. The goal of lecture is to introduce the topics and information needed for the course. The goal of your time outside of lecture is to practice with topics that are introduced and deepen your understanding of material presented in class. Since so much of programming and statistical analysis is learned best by doing, we'll prioritize that throughout the course, both in and outside of the classroom.
@@ -92,23 +90,23 @@ Starting week 5, we will transition to a project-based course. This will allow u
 
 #### Final Project (20%)
 
-The final project will be completed in groups. There will be two different general final projects from which your group can choose, but the idea is that whichever you choose, you will be able to tackle it using and building upon the tools and techniques discussed in class. Briefly here, the two options will be: 1. Create a technical presentation on a statistics topic and/or an R package. 2. Carry out a data analysis. 3. Communicate your findings to a general audience.
+The final project will be completed in groups. There will be two different general final projects from which your group can choose, but the idea is that whichever you choose, you will be able to tackle it using and building upon the tools and techniques discussed in class. Briefly here, the two options will be: 1. Create a technical presentation on a statistics topic and/or an R package. 2. Carry out a data analysis.
 
-Each will require a written report and an oral presentation, but the specific requirements will differ between the two.
+Each will require a written technical report, a communication to a general audience, and an oral presentation, but the specific requirements will differ between the two.
 
-Final Projects will be due on Tues of finals week at 11:59 PM.
+Final Project groups will have to submit a proposal during week 8 (2%). Final projects (18%) will be due on Tues of finals week at 11:59 PM.
 
 ### Grading
 
 Your final grade will be comprised of the following:
 
-|                           |     |
-|---------------------------|-----|
-| Labs (8)                  | 16% |
-| Homework (3)              | 24% |
-| Midterm (1)               | 15% |
-| Case Study Projects\* (2) | 25% |
-| Final Project(\*) (1)     | 20% |
+|                                      |     |
+|--------------------------------------|-----|
+| Labs (8)                             | 16% |
+| Homework (3)                         | 24% |
+| Midterm (1)                          | 15% |
+| Case Study Projects\* (2)            | 25% |
+| Final Project\* (Proposal + Project) | 20% |
 
 \* indicates group submission
 

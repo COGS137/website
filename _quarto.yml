@@ -1,19 +1,21 @@
 project:
   type: website
   output-dir: docs
-  
+    
 website:
   title: "COGS 137"
   image: images/background.png
   favicon: images/favicon.ico
   site-url: "https://cogs137.github.io/website/"
+  site-path: "/website/"
   page-footer:
       left: "This page is built with [Quarto](https://quarto.org/)."
       background: "#92A86A"
       right:
       - text: "License"
         href: LICENSE.md
-        
+
+    
   navbar:
     background: "#92A86A"
     logo: "images/cogs137-logo-hex.png"
@@ -43,8 +45,8 @@ website:
         contents:
           - text: "00-welcome"
             href: content/lectures/00-welcome-slides.html
-          # - text: "01-intro-to-r"
-          #   href: content/lectures/01-intro-to-r-slides.html
+          - text: "01-intro-to-r"
+            href: content/lectures/01-intro-to-r-slides.html
           # - text: "02-dplyr"
           #   href: content/lectures/02-dplyr-slides.html
           # - text: "03-tidyr"
@@ -85,8 +87,8 @@ website:
         contents:
           - text: "00-welcome"
             href: content/lectures/00-welcome.qmd
-          # - text: "01-intro-to-r"
-          #   href: content/lectures/01-intro-to-r.qmd
+          - text: "01-intro-to-r"
+            href: content/lectures/01-intro-to-r.qmd
           # - text: "02-dplyr"
           #   href: content/lectures/02-dplyr.qmd
           # - text: "03-tidyr"
@@ -123,10 +125,10 @@ website:
           #   href: content/lectures/18-brainstorming.html 
           # - text: "19-wrap-up"
           #   href: content/lectures/19-wrap-up.html 
-      # - section: "Labs"
-      #   contents:
-      #     - text: "Lab01: Tooling and R"
-      #       href: content/labs/01-lab-intro-r.qmd
+      - section: "Labs"
+        contents:
+          - text: "Lab01: Tooling and R"
+            href: content/labs/01-lab-intro-r.qmd
       #     - text: "Lab02: Wrangling"
       #       href: content/labs/02-lab-wrangling.qmd
       #     - text: "Lab03: Data Viz"
@@ -200,6 +202,7 @@ format:
     theme: material
     css: styles.css
     toc: true
+    format-links: false
 
 # execute:
 #   freeze: true

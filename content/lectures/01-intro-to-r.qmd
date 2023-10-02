@@ -9,10 +9,10 @@ format:
   revealjs:
     output-file: 01-intro-to-r-slides.html
     slide-number: true
-    chalkboard: false 
+    chalkboard: false
     preview-links: auto
     logo: images/cogs137-logo-hex.png
-    css: slides.css
+    # css: slides.css
     scrollable: true
     footer: <https://cogs137.github.io/website/>
     execute:
@@ -69,6 +69,35 @@ And more!
 
 ## Q&A {.scrollable .smaller}
 
+Q: How are groups formed for the projects?
+A: I form them randomly for the two case studies and students get to choose their own groups for the final project.
+
+Q: I'm curious about what the workload would be like for the case studies.  
+A: We'll discuss this when the time comes in detail but for now, students are presented with *a lot* of the starter code for the case studies. You and your group mates have to get teh code running, add explanations, and "extend" the case study, meaning add something meaningful onto what was presented.
+
+Q: Will this course go into advanced topics in tidyverse?   
+A: We will certainly go beyond the basic `dplyr` verbs and cover multiple packages in the tidyverse, but we won't be able to cover everything.
+
+Q: Would it be possible to have access to the third Case Study just to work on our own time?  
+A: Yup! I'll you all in the direction of [OpenCaseStudies](https://www.opencasestudies.org/), which is a resource I'll be using for 1 of the 2 case studies this quarter, and that we used for all case studies previously.
+
+Q: How many homework assignments are there? Some slides said 3, some said 4.
+A: Apologies. There are 3. (There were previously 4 but I removed one. Slides have been updated.)
+
+Q: Could we just sit in for lectures? Can I keep watching lectures
+A: Yup - this would be fine, so long as everyone enrolled had a seat. And, the podcasts are open to anyone!
+
+Q: If we decide to do our projects and homework locally, how can we download/install the packages necessary for it?  
+A: This is covered in your first lab! 
+
+Q: I'm generally curious on how the language R is used in real world settings after college. What are its specific uses and what are the better ways to learn the language to maximize its utility. Also, how does this language differ from python in the data science realm.  
+A: Great question that we'll cover throughout the course. However, breifly here, R is most heavily used by individuals who do more statistics, who work in biology, psychology or economics, and/or who analyze data regularly.
+
+Q: What is the advantage of using R over other programming languages to do data science tasks? How much is R used for data science in the real world?  
+A: Within the tidyverse and in RStudio, the advantage is the cohesiveness of the tools - once you gain familiarity you can often intuit how to use another tool in the tidyverse. R is used for data science across *tons* of companies; however, across industries. its use is *not* as widespread as Python. 
+
+
+
 
 ## Course Announcements
 
@@ -79,7 +108,7 @@ And more!
 -   Lecture Participation survey "due" after class
 
 
-**Update**: Lab will be podcast but restricted to UCSD students and will not be archived.
+**Waitlist (Non)Update**: Staff are seeing what options there are. 
 
 ## Agenda
 
@@ -613,6 +642,10 @@ Concepts introduced:
 
 -   Knitting documents
 -   R Markdown and (some) R syntax
+
+## GitHub Setup
+
+See this week's lab...
 
 ## Giving the demo a go...
 

@@ -1,6 +1,6 @@
 ---
 title: "Lab 01 - Tooling"
-date: "2023-01-13"
+date: "2023-10-06"
 output: 
   html: 
     highlight: pygments
@@ -57,7 +57,7 @@ You are encouraged to ask one another questions and work together, but each indi
 Your email address is the address tied to your GitHub account and your name should be first and last name.
 :::
 
-Before we can get started we need to take care of some required housekeeping. Specifically, we need to configure your git so that RStudio can communicate with GitHub...and so you do not have to type in your username and password every time you want to communicate with GitHub from RStudio. These steps will be demo-ed during lab and you'll have time to walk through the steps!
+Before we can get started we need to take care of some required housekeeping (if you didn't complete it during class). Specifically, we need to configure your git so that RStudio can communicate with GitHub...and so you do not have to type in your username and password every time you want to communicate with GitHub from RStudio. These steps will be demo-ed during lab and you'll have time to walk through the steps!
 
 ::: callout-note
 If you aren't able to attend lab and get stuck here, there is a podcast recording from lecture on 9/29 from the COGS 137 Fa21 iteration where you can see these steps demo-ed.
@@ -177,9 +177,19 @@ Before we introduce the data, let's warm up a bit...
 
 In this lab we will work with two packages: `datasauRus` which contains the dataset, and `tidyverse` which is a collection of packages for doing data analysis in a "tidy" way.
 
-These packages have already been installed for you. However, if they had not, you would need to run `install.packages("tidyverse")` and `install.packages("datasauRus")` before proceeding. Note that package installation happens a single time. But, any time you want to *use* a package (after it's been installed), it has to be loaded, as we do below:
+`tidyverse` has already been installed for you, so it only needs to be loaded using `library`. (see below)
 
-If you'd like to run your code in the Console as well you'll also need to load the packages there. To do so, run the following in the console.
+However, `datasauRus` has not yet been installed. Run the following in your console to install this package:
+
+```{r eval = FALSE}
+install.packages("datasauRus")
+```
+
+:::aside
+Note that often packages will already be installed for you on datahub in this course, but we want you to know how to install them if you need to install one at any point. 
+:::
+
+Note that package installation happens a single time. But, any time you want to *use* a package (after it's been installed), it has to be loaded, as we do here:
 
 ```{r eval = FALSE}
 library(tidyverse) 

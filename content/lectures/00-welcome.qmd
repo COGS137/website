@@ -301,7 +301,7 @@ Your final grade will be comprised of the following:
 | Assignment (#)            | \% of grade |
 |---------------------------|-------------|
 | Labs (8)                  | 16%         |
-| Homework (4)              | 32%         |
+| Homework (3)              | 32%         |
 | Midterm (1)               | 15%         |
 | Case Study Projects\* (2) | 20%         |
 | Final project\* (1)       | 17%         |

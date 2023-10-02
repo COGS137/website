@@ -1286,5 +1286,47 @@
     "title": "01-intro-to-r",
     "section": "GitHub Setup",
     "text": "GitHub Setup\nSee this week’s lab…"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#agenda",
+    "href": "content/labslides/01-lab-deck.html#agenda",
+    "title": "Lab 01: Tooling",
+    "section": "Agenda",
+    "text": "Agenda\n\nLab structure: Lab structure overview.\nLab 01 intro and demos: Introduce the lab, and work through the first section as a class.\nOn your own: Work on the rest of the lab “on your own”, but feel free to check in with classmates as much as you like."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#lab-structure-1",
+    "href": "content/labslides/01-lab-deck.html#lab-structure-1",
+    "title": "Lab 01: Tooling",
+    "section": "Lab structure",
+    "text": "Lab structure\n\n5-10 minute introduction (a bit longer today)\nUse the remaining time to work through the lab exercises and fill out your lab report\n\nSubmit: on your own\nWorking: always allowed to work together\n\nLab instructions posted on the course website on the left panel under “Labs”\n\nLet’s go find today’s lab!"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#tips",
+    "href": "content/labslides/01-lab-deck.html#tips",
+    "title": "Lab 01: Tooling",
+    "section": "Tips",
+    "text": "Tips\n\nYou do not have to finish the lab in class; you have until midnight to submit. But, you might choose to get through portions that you think will be challenging (which initially might be the coding component) in class when staff can help you on the spot, and leave the narrative writing until later.\nDo not pressure each other to finish early; use the time wisely to really learn the material and produce a quality lab.\nWhen working with others, do not split up lab among classmates, work on it together in its entirety.\nSometimes you may not finish the entire lab…and that’s ok! When this happens or you’re unsure about what you turn in, be sure to go back and check your thoughts/work against the posted answer key."
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#goals",
+    "href": "content/labslides/01-lab-deck.html#goals",
+    "title": "Lab 01: Tooling",
+    "section": "Goals",
+    "text": "Goals\n\nIntroduce you to Git and GitHub: collaboration and version control system that we will be using throughout the course\n\nGit is a version control system – like “Track Changes” features from Microsoft Word/Google Docs on steroids\nGitHub is the home for your git-based projects on the internet\nConnect your RStudio on datahub to your GitHub account\n\nIntroduce you to R and RStudio:\n\nR is the name of the programming language itself\nRStudio is a convenient interface"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#getting-started-github-datahub",
+    "href": "content/labslides/01-lab-deck.html#getting-started-github-datahub",
+    "title": "Lab 01: Tooling",
+    "section": "Getting started: GitHub & datahub",
+    "text": "Getting started: GitHub & datahub\nFirst, put away computers, and watch me do it:\n\nDemo of the process\nSteps are spelled out in the “GitHub Housekeeping” portion of the lab"
+  },
+  {
+    "objectID": "content/labslides/01-lab-deck.html#getting-started-assignment-retrieval",
+    "href": "content/labslides/01-lab-deck.html#getting-started-assignment-retrieval",
+    "title": "Lab 01: Tooling",
+    "section": "Getting started: Assignment Retrieval",
+    "text": "Getting started: Assignment Retrieval\nFirst, put away computers, and watch me do it:\n\nClick on the assignment link on Canvas for today’s lab to create your GitHub repository (which we’ll refer to as “repo” going forward) for the lab. This repo contains a template you can build on to complete your lab.\nOn GitHub, accept the assignment. Click on the link to navigate to the repo.\nOn the repo, click the green “<> Code” button, ensure that “SSH” is selected, and then copy the URL.\nGo to datahub. and open RStudio. Go to File > New Project… and select to create a New Project from Version Control. On the following menu, select Git.\nCopy and paste the URL of your assignment repo into the “Repository URL” dialog box.\nHit Create Project.\n\nNow it’s your turn! Place a green sticky on your laptop when you’re done with this part (you can continue if you like). Place a pink sticky if you have questions."
   }
 ]

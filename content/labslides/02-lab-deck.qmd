@@ -1,0 +1,75 @@
+---
+title: "Lab 02: Wrangling"
+author: ""
+format:
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    footer: <https://cogs137.github.io/website/>
+    execute:
+      echo: true
+---
+
+# Lab 02: Wrangling {background-color="#0E3A53"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+```
+
+## Reminders
+
+-   Start with `library(tidyverse)` (includes `tidyr`, `readr`, `dplyr`, etc.)
+-   Clone using 'SSH' link from GitHub
+-   Knit to .html & push both .Rmd and .html to GitHub
+
+## Starting a new project
+
+-   Go to Canvas to find the link for today's lab: lab03-wi23.
+
+-   On GitHub, click on the green Clone or download button, select use SSH (this might already be selected by default, and if it is, you'll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.
+
+-   Go to RStudio on datahub. Create a New Project from Git Repo. You will need to click on the down arrow next to the New Project button to see this option.
+
+-   Copy and paste the URL of your assignment repo into the dialog box and hit OK.
+
+-   Open the .Rmd file with your template in it. Be sure to update the author to your name.
+
+## Agenda
+
+1.  **Lab 02 intro and demos:** Introduce the lab, and work through the first question as a class.
+2.  **On your own:** Work on the rest of the lab "on your own", but feel free to check in with classmates as much as you like.
+
+## `dplyr`: Review {.scrollable .smaller}
+
+**dplyr** provides a "Grammar of Data Manipulation" and is based on the concepts of functions as verbs that manipulate data frames.
+
+-   `filter`: pick rows matching criteria
+-   `slice`: pick rows using index(es)
+-   `select`: pick columns by name
+-   `pull`: grab a column as a vector
+-   `rename`: rename specific columns
+-   `arrange`: reorder rows
+-   `mutate`: add new variables
+-   `transmute`: create new data frame with variables
+-   `distinct`: filter for unique rows
+-   `sample_n` / `sample_frac`: randomly sample rows
+-   `summarize`: reduce variables to values
+-   ... (many more)
+
+## The Data {.smaller}
+
+```{r}
+storms |>
+  slice(1:20)
+```
+
+## The Data: Documentation
+
+From the console...
+
+```{r}
+?storms
+```

@@ -19,9 +19,9 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 |            |                                                |                  |                 |                      |
 |------------|------------------------------------------------|------------------|-----------------|----------------------|
-| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11-12       | Virtual (see canvas) |
+| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11-12       | Virtual (see Canvas) |
 |            |                                                |                  | Tu 3:30-4:30 PM | CSB 243              |
-| TA         | Kunal Rustagi                                  |                  | TBD             | TBD                  |
+| TA         | Kunal Rustagi                                  |                  | Th 1:30-2:30 PM | Zoom (see Canvas)    |
 | IA         | Shenova Davis                                  |                  | TBD             | TBD                  |
 
 ### Course Objectives

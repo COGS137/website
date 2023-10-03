@@ -69,7 +69,7 @@ And more!
 
 ## Q&A {.scrollable .smaller}
 
-Q: How are groups formed for the projects?
+Q: How are groups formed for the projects?  
 A: I form them randomly for the two case studies and students get to choose their own groups for the final project.
 
 Q: I'm curious about what the workload would be like for the case studies.  
@@ -81,10 +81,10 @@ A: We will certainly go beyond the basic `dplyr` verbs and cover multiple packag
 Q: Would it be possible to have access to the third Case Study just to work on our own time?  
 A: Yup! I'll you all in the direction of [OpenCaseStudies](https://www.opencasestudies.org/), which is a resource I'll be using for 1 of the 2 case studies this quarter, and that we used for all case studies previously.
 
-Q: How many homework assignments are there? Some slides said 3, some said 4.
+Q: How many homework assignments are there? Some slides said 3, some said 4.  
 A: Apologies. There are 3. (There were previously 4 but I removed one. Slides have been updated.)
 
-Q: Could we just sit in for lectures? Can I keep watching lectures
+Q: Could we just sit in for lectures? Can I keep watching lectures?  
 A: Yup - this would be fine, so long as everyone enrolled had a seat. And, the podcasts are open to anyone!
 
 Q: If we decide to do our projects and homework locally, how can we download/install the packages necessary for it?  
@@ -108,7 +108,7 @@ A: Within the tidyverse and in RStudio, the advantage is the cohesiveness of the
 -   Lecture Participation survey "due" after class
 
 
-**Waitlist (Non)Update**: Staff are seeing what options there are. 
+**Waitlist (Non)Update**: Staff are seeing what options there are. A few people got an email from Kasey Chiang (k4chiang@ucsd.edu) to drop and then enroll. This is legitimate. Follow those instructions.
 
 ## Agenda
 
@@ -646,6 +646,10 @@ Concepts introduced:
 ## GitHub Setup
 
 See this week's lab...
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
 
 ## Giving the demo a go...
 

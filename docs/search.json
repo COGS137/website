@@ -25,7 +25,7 @@
     "href": "content/labs/01-lab-intro-r.html#github-housekeeping",
     "title": "Lab 01 - Tooling",
     "section": "GitHub Housekeeping",
-    "text": "GitHub Housekeeping\n\n\n\n\n\n\nNote\n\n\n\nYour email address is the address tied to your GitHub account and your name should be first and last name.\n\n\nBefore we can get started we need to take care of some required housekeeping (if you didn’t complete it during class). Specifically, we need to configure your git so that RStudio can communicate with GitHub…and so you do not have to type in your username and password every time you want to communicate with GitHub from RStudio. These steps will be demo-ed during lab and you’ll have time to walk through the steps!\n\n\n\n\n\n\nNote\n\n\n\nIf you aren’t able to attend lab and get stuck here, there is a podcast recording from lecture on 9/29 from the COGS 137 Fa21 iteration where you can see these steps demo-ed.\n\n\n\nStep 1: Email and Username\nThe first step requires two pieces of information: your email address and your name.\nTo do so, follow these steps:\n\nGo to the Terminal pane\nType the following two lines of code, replacing the information in the quotation marks with your info:\n\n\ngit config --global user.email \"your email\"\ngit config --global user.name \"your name\"\n\nFor example, for me these are:\n\ngit config --global user.email \"sellis@ucsd.edu\"\ngit config --global user.name \"Shannon Ellis\"\n\nTo confirm that the changes have been implemented, run the following:\n\ngit config --global user.email\ngit config --global user.email\n\n\n\nStep 2: Generate ssh key\nIn the terminal, you’ll want to generate an ssh key by typing:\n\nssh-keygen\n\nAfter hitting enter/return to execute the above, you’ll press return/enter three times to bypass specifying a location and passphrase.\n\n\nStep 3: Copy your ssh key\nFrom the terminal type:\n\ncat ~/.ssh/id_rsa.pub\n\nYou’ll want to highlight and copy the full result of this command. It will start with ssh-rsa and end with something including dsmlp toward the end.\n\n\nStep 4: Let GitHub know your key\n\nIn your browser, navigate to https://github.com/settings/keys\nClick “New SSH Key”\nSet title to DSMLP\nPaste what you copied in step 3 into the “Key” box\nClick “Add SSH Key”\n\n\n\nStep 5: Finalize\nReturn to the terminal in RStudio and run the following command:\n\nssh git@github.com\n\nYou may see a message like `The authenticity of host … can’t be established`. You can type yes and hit return/enter after doing so if you do.\nYou’ll then see a message like You've successfully authenticated, but GitHub does not provide shell access. At this point, you’re all set!\nThis will be the only time you have to do this. From here on out, you’ll be able to “communicate” with GitHub from RStudio without typing your username/password."
+    "text": "GitHub Housekeeping\n\n\n\n\n\n\nNote\n\n\n\nYour email address is the address tied to your GitHub account and your name should be first and last name.\n\n\nBefore we can get started we need to take care of some required housekeeping (if you didn’t complete it during class). Specifically, we need to configure your git so that RStudio can communicate with GitHub…and so you do not have to type in your username and password every time you want to communicate with GitHub from RStudio. These steps will be demo-ed during lab and you’ll have time to walk through the steps!\n\n\n\n\n\n\nNote\n\n\n\nIf you aren’t able to attend lab and get stuck here, there is a podcast recording from lecture on 9/29 from the COGS 137 Fa21 iteration where you can see these steps demo-ed.\n\n\n\nStep 1: Email and Username\nThe first step requires two pieces of information: your email address and your name.\nTo do so, follow these steps:\n\nGo to the Terminal pane\nType the following two lines of code, replacing the information in the quotation marks with your info:\n\n\ngit config --global user.email \"your email\"\ngit config --global user.name \"your name\"\n\nFor example, for me these are:\n\ngit config --global user.email \"sellis@ucsd.edu\"\ngit config --global user.name \"Shannon Ellis\"\n\nTo confirm that the changes have been implemented, run the following:\n\ngit config --global user.email\ngit config --global user.name\n\n\n\nStep 2: Generate ssh key\nIn the terminal, you’ll want to generate an ssh key by typing:\n\nssh-keygen\n\nAfter hitting enter/return to execute the above, you’ll press return/enter three times to bypass specifying a location and passphrase.\n\n\nStep 3: Copy your ssh key\nFrom the terminal type:\n\ncat ~/.ssh/id_rsa.pub\n\nYou’ll want to highlight and copy the full result of this command. It will start with ssh-rsa and end with something including dsmlp toward the end.\n\n\nStep 4: Let GitHub know your key\n\nIn your browser, navigate to https://github.com/settings/keys\nClick “New SSH Key”\nSet title to DSMLP\nPaste what you copied in step 3 into the “Key” box\nClick “Add SSH Key”\n\n\n\nStep 5: Finalize\nReturn to the terminal in RStudio and run the following command:\n\nssh git@github.com\n\nYou may see a message like `The authenticity of host … can’t be established`. You can type yes and hit return/enter after doing so if you do.\nYou’ll then see a message like You've successfully authenticated, but GitHub does not provide shell access. At this point, you’re all set!\nThis will be the only time you have to do this. From here on out, you’ll be able to “communicate” with GitHub from RStudio without typing your username/password."
   },
   {
     "objectID": "content/labs/01-lab-intro-r.html#cloning-the-lab",
@@ -501,7 +501,7 @@
     "href": "content/lectures/00-welcome.html#grading",
     "title": "00-welcome",
     "section": "Grading",
-    "text": "Grading\nYour final grade will be comprised of the following:\n\n\n\nAssignment (#)\n% of grade\n\n\n\n\nLabs (8)\n16%\n\n\nHomework (4)\n32%\n\n\nMidterm (1)\n15%\n\n\nCase Study Projects* (2)\n20%\n\n\nFinal project* (1)\n17%\n\n\n\n* indicates group submission"
+    "text": "Grading\nYour final grade will be comprised of the following:\n\n\n\nAssignment (#)\n% of grade\n\n\n\n\nLabs (8)\n16%\n\n\nHomework (3)\n32%\n\n\nMidterm (1)\n15%\n\n\nCase Study Projects* (2)\n20%\n\n\nFinal project* (1)\n17%\n\n\n\n* indicates group submission"
   },
   {
     "objectID": "content/lectures/00-welcome.html#latemissed-work-policy",
@@ -676,7 +676,7 @@
     "href": "content/lectures/00-welcome.html#whos-in-this-class-2",
     "title": "00-welcome",
     "section": "Who’s in this class?",
-    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")"
+    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\nWarning: 1 unknown level in `f`: SO\n1 unknown level in `f`: SO"
   },
   {
     "objectID": "content/lectures/00-welcome.html#id-like-to-know-more",
@@ -991,7 +991,7 @@
     "href": "content/lectures/01-intro-to-r.html",
     "title": "01-intro-to-r",
     "section": "",
-    "text": "https://computingpaths.ucsd.edu/\n\n\n\n\n\n\n\n\n\n\nAPPLY NOW: Protect the environment and make social change\nCALPIRG Students is a student organization here that works to protect the environment, make college more affordable, and promote civic engagement. Last Fall we helped nearly 10,000 students register to vote in California and got the UCs to release new policy to phase out single-use plastics to protect our oceans! SIGN UP TO HELP NOW\nNow, we are working to tackle the biggest problem facing our generation - climate change. Coming off another record-setting summer of hot temperatures, it’s clear we need to take strong, swift action to reduce the impacts of climate change. That’s why we are building support from students across the state to call for 100% clean energy UC-wide - for cars, buses, buildings, lights, and more! Fill out this interest form to learn more!\nAs a volunteer or intern with CALPIRG you can:\nWork with the media and help organize events like a Solar-Powered Concert and climate week of action\nIncrease voting accessibility and voter turnout in elections\nBring down the cost of textbooks\nProtect wildlife like whales and sea otters in the Pacific\nAnd more!\n\n\n\n\nQ: How are groups formed for the projects?\nA: I form them randomly for the two case studies and students get to choose their own groups for the final project.\nQ: I’m curious about what the workload would be like for the case studies.\nA: We’ll discuss this when the time comes in detail but for now, students are presented with a lot of the starter code for the case studies. You and your group mates have to get teh code running, add explanations, and “extend” the case study, meaning add something meaningful onto what was presented.\nQ: Will this course go into advanced topics in tidyverse?\nA: We will certainly go beyond the basic dplyr verbs and cover multiple packages in the tidyverse, but we won’t be able to cover everything.\nQ: Would it be possible to have access to the third Case Study just to work on our own time?\nA: Yup! I’ll you all in the direction of OpenCaseStudies, which is a resource I’ll be using for 1 of the 2 case studies this quarter, and that we used for all case studies previously.\nQ: How many homework assignments are there? Some slides said 3, some said 4.\nA: Apologies. There are 3. (There were previously 4 but I removed one. Slides have been updated.)\nQ: Could we just sit in for lectures? Can I keep watching lectures A: Yup - this would be fine, so long as everyone enrolled had a seat. And, the podcasts are open to anyone!\nQ: If we decide to do our projects and homework locally, how can we download/install the packages necessary for it?\nA: This is covered in your first lab!\nQ: I’m generally curious on how the language R is used in real world settings after college. What are its specific uses and what are the better ways to learn the language to maximize its utility. Also, how does this language differ from python in the data science realm.\nA: Great question that we’ll cover throughout the course. However, breifly here, R is most heavily used by individuals who do more statistics, who work in biology, psychology or economics, and/or who analyze data regularly.\nQ: What is the advantage of using R over other programming languages to do data science tasks? How much is R used for data science in the real world?\nA: Within the tidyverse and in RStudio, the advantage is the cohesiveness of the tools - once you gain familiarity you can often intuit how to use another tool in the tidyverse. R is used for data science across tons of companies; however, across industries. its use is not as widespread as Python.\n\n\n\nDue Dates:\n\nStudent survey “due” today 11:59 PM\nLab 01 due Friday (11:59 PM)\nLecture Participation survey “due” after class\n\nWaitlist (Non)Update: Staff are seeing what options there are.\n\n\n\n\nVariables\nOperators\nData in R\nRMarkdown"
+    "text": "https://computingpaths.ucsd.edu/\n\n\n\n\n\n\n\n\n\n\nAPPLY NOW: Protect the environment and make social change\nCALPIRG Students is a student organization here that works to protect the environment, make college more affordable, and promote civic engagement. Last Fall we helped nearly 10,000 students register to vote in California and got the UCs to release new policy to phase out single-use plastics to protect our oceans! SIGN UP TO HELP NOW\nNow, we are working to tackle the biggest problem facing our generation - climate change. Coming off another record-setting summer of hot temperatures, it’s clear we need to take strong, swift action to reduce the impacts of climate change. That’s why we are building support from students across the state to call for 100% clean energy UC-wide - for cars, buses, buildings, lights, and more! Fill out this interest form to learn more!\nAs a volunteer or intern with CALPIRG you can:\nWork with the media and help organize events like a Solar-Powered Concert and climate week of action\nIncrease voting accessibility and voter turnout in elections\nBring down the cost of textbooks\nProtect wildlife like whales and sea otters in the Pacific\nAnd more!\n\n\n\n\nQ: How are groups formed for the projects?\nA: I form them randomly for the two case studies and students get to choose their own groups for the final project.\nQ: I’m curious about what the workload would be like for the case studies.\nA: We’ll discuss this when the time comes in detail but for now, students are presented with a lot of the starter code for the case studies. You and your group mates have to get teh code running, add explanations, and “extend” the case study, meaning add something meaningful onto what was presented.\nQ: Will this course go into advanced topics in tidyverse?\nA: We will certainly go beyond the basic dplyr verbs and cover multiple packages in the tidyverse, but we won’t be able to cover everything.\nQ: Would it be possible to have access to the third Case Study just to work on our own time?\nA: Yup! I’ll you all in the direction of OpenCaseStudies, which is a resource I’ll be using for 1 of the 2 case studies this quarter, and that we used for all case studies previously.\nQ: How many homework assignments are there? Some slides said 3, some said 4.\nA: Apologies. There are 3. (There were previously 4 but I removed one. Slides have been updated.)\nQ: Could we just sit in for lectures? Can I keep watching lectures?\nA: Yup - this would be fine, so long as everyone enrolled had a seat. And, the podcasts are open to anyone!\nQ: If we decide to do our projects and homework locally, how can we download/install the packages necessary for it?\nA: This is covered in your first lab!\nQ: I’m generally curious on how the language R is used in real world settings after college. What are its specific uses and what are the better ways to learn the language to maximize its utility. Also, how does this language differ from python in the data science realm.\nA: Great question that we’ll cover throughout the course. However, breifly here, R is most heavily used by individuals who do more statistics, who work in biology, psychology or economics, and/or who analyze data regularly.\nQ: What is the advantage of using R over other programming languages to do data science tasks? How much is R used for data science in the real world?\nA: Within the tidyverse and in RStudio, the advantage is the cohesiveness of the tools - once you gain familiarity you can often intuit how to use another tool in the tidyverse. R is used for data science across tons of companies; however, across industries. its use is not as widespread as Python.\n\n\n\nDue Dates:\n\nStudent survey “due” today 11:59 PM\nLab 01 due Friday (11:59 PM)\nLecture Participation survey “due” after class\n\nWaitlist (Non)Update: Staff are seeing what options there are. A few people got an email from Kasey Chiang (k4chiang@ucsd.edu) to drop and then enroll. This is legitimate. Follow those instructions.\n\n\n\n\nVariables\nOperators\nData in R\nRMarkdown"
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html#variables-assignment-1",
@@ -1187,7 +1187,7 @@
     "href": "content/lectures/01-intro-to-r.html#the-question",
     "title": "01-intro-to-r",
     "section": "The Question",
-    "text": "The Question\nHow many respondents have a below average number of cats?\n\nGiving it a first shot…\n\ncat_lovers |>\n  summarise(mean = mean(number_of_cats))\n\nWarning: There was 1 warning in `summarise()`.\nℹ In argument: `mean = mean(number_of_cats)`.\nCaused by warning in `mean.default()`:\n! argument is not numeric or logical: returning NA\n\n\n# A tibble: 1 × 1\n   mean\n  <dbl>\n1    NA\n\n\n\n\n💡 maybe there is missing data in the number_of_cats column!\nOh why will you still not work??!!\n\ncat_lovers |>\n  summarise(mean_cats = mean(number_of_cats, na.rm = TRUE))\n\nWarning: There was 1 warning in `summarise()`.\nℹ In argument: `mean_cats = mean(number_of_cats, na.rm = TRUE)`.\nCaused by warning in `mean.default()`:\n! argument is not numeric or logical: returning NA\n\n\n# A tibble: 1 × 1\n  mean_cats\n      <dbl>\n1        NA\n\n\n\n\n💡What is the type of the number_of_cats variable?"
+    "text": "The Question\nHow many respondents have a below average number of cats?\n\nGiving it a first shot…\n\ncat_lovers |>\n  summarise(mean = mean(number_of_cats))\n\n# A tibble: 1 × 1\n   mean\n  <dbl>\n1    NA\n\n\n\n\n💡 maybe there is missing data in the number_of_cats column!\nOh why will you still not work??!!\n\ncat_lovers |>\n  summarise(mean_cats = mean(number_of_cats, na.rm = TRUE))\n\n# A tibble: 1 × 1\n  mean_cats\n      <dbl>\n1        NA\n\n\n\n\n💡What is the type of the number_of_cats variable?"
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html#take-a-breath-and-look-at-your-data",
@@ -1208,7 +1208,7 @@
     "href": "content/lectures/01-intro-to-r.html#sometimes-you-need-to-babysit-your-respondents",
     "title": "01-intro-to-r",
     "section": "Sometimes you need to babysit your respondents",
-    "text": "Sometimes you need to babysit your respondents\n\ncat_lovers |>\n  mutate(number_of_cats = case_when(\n    name == \"Ginger Clark\" ~ 2,\n    name == \"Doug Bass\"    ~ 3,\n    TRUE                   ~ as.numeric(number_of_cats))) \n\nWarning: There was 1 warning in `mutate()`.\nℹ In argument: `number_of_cats = case_when(...)`.\nCaused by warning:\n! NAs introduced by coercion\n\n\n# A tibble: 60 × 3\n   name           number_of_cats handedness\n   <chr>                   <dbl> <chr>     \n 1 Bernice Warren              0 left      \n 2 Woodrow Stone               0 left      \n 3 Willie Bass                 1 left      \n 4 Tyrone Estrada              3 left      \n 5 Alex Daniels                3 left      \n 6 Jane Bates                  2 left      \n 7 Latoya Simpson              1 left      \n 8 Darin Woods                 1 left      \n 9 Agnes Cobb                  0 left      \n10 Tabitha Grant               0 left      \n# ℹ 50 more rows"
+    "text": "Sometimes you need to babysit your respondents\n\ncat_lovers |>\n  mutate(number_of_cats = case_when(\n    name == \"Ginger Clark\" ~ 2,\n    name == \"Doug Bass\"    ~ 3,\n    TRUE                   ~ as.numeric(number_of_cats))) \n\n# A tibble: 60 × 3\n   name           number_of_cats handedness\n   <chr>                   <dbl> <chr>     \n 1 Bernice Warren              0 left      \n 2 Woodrow Stone               0 left      \n 3 Willie Bass                 1 left      \n 4 Tyrone Estrada              3 left      \n 5 Alex Daniels                3 left      \n 6 Jane Bates                  2 left      \n 7 Latoya Simpson              1 left      \n 8 Darin Woods                 1 left      \n 9 Agnes Cobb                  0 left      \n10 Tabitha Grant               0 left      \n# ℹ 50 more rows"
   },
   {
     "objectID": "content/lectures/01-intro-to-r.html#always-respect-check-data-types",
@@ -1328,5 +1328,677 @@
     "title": "Lab 01: Tooling",
     "section": "Getting started: Assignment Retrieval",
     "text": "Getting started: Assignment Retrieval\nFirst, put away computers, and watch me do it:\n\nClick on the assignment link on Canvas for today’s lab to create your GitHub repository (which we’ll refer to as “repo” going forward) for the lab. This repo contains a template you can build on to complete your lab.\nOn GitHub, accept the assignment. Click on the link to navigate to the repo.\nOn the repo, click the green “<> Code” button, ensure that “SSH” is selected, and then copy the URL.\nGo to datahub. and open RStudio. Go to File > New Project… and select to create a New Project from Version Control. On the following menu, select Git.\nCopy and paste the URL of your assignment repo into the “Repository URL” dialog box.\nHit Create Project.\n\nNow it’s your turn! Place a green sticky on your laptop when you’re done with this part (you can continue if you like). Place a pink sticky if you have questions."
+  },
+  {
+    "objectID": "content/labslides/03-lab-deck.html",
+    "href": "content/labslides/03-lab-deck.html",
+    "title": "Lab 03: Exploring & Visualizing Data",
+    "section": "",
+    "text": "Tips:\n\nBriefly review a question regarding sorting.\nReview numeric vs categorical variable types.\n\nLab introduction:\n\nReview FiveThirtyEight article on college majors.\n\n\n\n\nLab instructions posted on the course website.\nThe Economic Guide To Picking A College Major by Ben Casselman\n\n\n\n\n\nStart with library(tidyverse) (includes tidyr, readr, dplyr, etc.)\nClone using ‘SSH’ link from GitHub\nKnit to .html & push both .Rmd and .html to GitHub\n\n\n\n\n\nBe ready to troubleshoot your document, since it will likely fail to knit on multiple occasions throughout the process. Read the error message carefully and take note of which line is preventing a successful knit.\nMake sure to keep track of your various chunks and to keep text and code in the right place.\nRemember that your R Markdown file is not aware of your project’s global environment and can only make use of variables, functions, etc. that you have loaded or defined in the document.\nRemind yourself how the pipe operator (|>) works.\nIf you’re unsure how a function works or what its arguments are, type ? in front of it and hit enter (?read_csv for instance). The “Help” tab will open and provide a summary of the function as well as some examples."
+  },
+  {
+    "objectID": "content/labslides/02-lab-deck.html",
+    "href": "content/labslides/02-lab-deck.html",
+    "title": "Lab 02: Wrangling",
+    "section": "",
+    "text": "Start with library(tidyverse) (includes tidyr, readr, dplyr, etc.)\nClone using ‘SSH’ link from GitHub\nKnit to .html & push both .Rmd and .html to GitHub\n\n\n\n\n\nGo to Canvas to find the link for today’s lab: lab03-wi23.\nOn GitHub, click on the green Clone or download button, select use SSH (this might already be selected by default, and if it is, you’ll see the text Clone with SSH). Click on the clipboard icon to copy the repo URL.\nGo to RStudio on datahub. Create a New Project from Git Repo. You will need to click on the down arrow next to the New Project button to see this option.\nCopy and paste the URL of your assignment repo into the dialog box and hit OK.\nOpen the .Rmd file with your template in it. Be sure to update the author to your name.\n\n\n\n\n\nLab 02 intro and demos: Introduce the lab, and work through the first question as a class.\nOn your own: Work on the rest of the lab “on your own”, but feel free to check in with classmates as much as you like.\n\n\n\n\ndplyr provides a “Grammar of Data Manipulation” and is based on the concepts of functions as verbs that manipulate data frames.\n\nfilter: pick rows matching criteria\nslice: pick rows using index(es)\nselect: pick columns by name\npull: grab a column as a vector\nrename: rename specific columns\narrange: reorder rows\nmutate: add new variables\ntransmute: create new data frame with variables\ndistinct: filter for unique rows\nsample_n / sample_frac: randomly sample rows\nsummarize: reduce variables to values\n… (many more)\n\n\n\n\n\nstorms |>\n  slice(1:20)\n\n# A tibble: 20 × 13\n   name   year month   day  hour   lat  long status      category  wind pressure\n   <chr> <dbl> <dbl> <int> <dbl> <dbl> <dbl> <fct>          <dbl> <int>    <int>\n 1 Amy    1975     6    27     0  27.5 -79   tropical d…       NA    25     1013\n 2 Amy    1975     6    27     6  28.5 -79   tropical d…       NA    25     1013\n 3 Amy    1975     6    27    12  29.5 -79   tropical d…       NA    25     1013\n 4 Amy    1975     6    27    18  30.5 -79   tropical d…       NA    25     1013\n 5 Amy    1975     6    28     0  31.5 -78.8 tropical d…       NA    25     1012\n 6 Amy    1975     6    28     6  32.4 -78.7 tropical d…       NA    25     1012\n 7 Amy    1975     6    28    12  33.3 -78   tropical d…       NA    25     1011\n 8 Amy    1975     6    28    18  34   -77   tropical d…       NA    30     1006\n 9 Amy    1975     6    29     0  34.4 -75.8 tropical s…       NA    35     1004\n10 Amy    1975     6    29     6  34   -74.8 tropical s…       NA    40     1002\n11 Amy    1975     6    29    12  33.8 -73.8 tropical s…       NA    45     1000\n12 Amy    1975     6    29    18  33.8 -72.8 tropical s…       NA    50      998\n13 Amy    1975     6    30     0  34.3 -71.6 tropical s…       NA    50      998\n14 Amy    1975     6    30     6  35.6 -70.8 tropical s…       NA    55      998\n15 Amy    1975     6    30    12  35.9 -70.5 tropical s…       NA    60      987\n16 Amy    1975     6    30    18  36.2 -70.2 tropical s…       NA    60      987\n17 Amy    1975     7     1     0  36.2 -69.8 tropical s…       NA    60      984\n18 Amy    1975     7     1     6  36.2 -69.4 tropical s…       NA    60      984\n19 Amy    1975     7     1    12  36.2 -68.3 tropical s…       NA    60      984\n20 Amy    1975     7     1    18  36.7 -67.2 tropical s…       NA    60      984\n# ℹ 2 more variables: tropicalstorm_force_diameter <int>,\n#   hurricane_force_diameter <int>\n\n\n\n\n\nFrom the console…\n\n?storms"
+  },
+  {
+    "objectID": "content/labslides/05-lab-deck.html",
+    "href": "content/labslides/05-lab-deck.html",
+    "title": "Lab 05: Modelling course evals (Pt. 2)",
+    "section": "",
+    "text": "Documentation\nLab 05: Modelling course evaluations\nGetting started with lab\n\nReminder to complete mid-course survey\n\n\n\nDemo on how to utilize/read/understand R Documentation\n\n\n\n“Beauty in the classroom: instructors’ pulchritude and putative pedagogical productivity”\nDaniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005. http://www.sciencedirect.com/science/article/pii/S0272775704001165\n\n\n\n\nThis is an extension of lab04. It may be worth briefly looking over that lab and/or the answer key to get that fresh in your mind prior to beginning this lab.\nThere are three parts. Ideally, you’d get through Exercise 12. We’ll be looking to see you’ve fit and interpreted models with multiple predictors."
+  },
+  {
+    "objectID": "content/labslides/07-lab-deck.html",
+    "href": "content/labslides/07-lab-deck.html",
+    "title": "Lab 07: Logistic Regression",
+    "section": "",
+    "text": "Lab 07: Modelling resumes\nGetting started with lab\n\n\n\n\n“Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination.”\nBertrand, Marianne, and Sendhil Mullainathan. 2003. https://doi.org/10.3386/w9873.\n\n\n\nGoal: understand the influence of race and gender on job application callback rates\n\n\n\n\nTwo cities: Boston and Chicago\nTime: several months in 2001 and 2002\n\n\n\n\n\nResearchers generated resumes, randomizing years of experience and education details\nThen: randomly assigned a name to the resume that would communicate the applicant’s gender and race\n\n\nthey tested these names and removed those that did not suggest gender and race consistently\ni.e. Lakisha was a name that their survey indicated would be interpreted as a black woman, while Greg was a name that would generally be interpreted to be associated with a white male.”\n\n\n\n\n\n\n\nStart with full model (including all candidate explanatory variables and all candidate interactions)\nRemove one variable at a time, and select the model with the lowest AIC\nContinue until AIC does not decrease\n\n\n\nYou do NOT have to include every model in your lab…just the final one you settle on.\n\n\n\n\n\n\nThere are three parts. We’ll be grading to see that you’ve done some EDA and have fit and interpreted at least two models (single and multiple predictors model)\nIt’s OK if you don’t get to backwards elimination"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#qa",
+    "href": "content/lectures/02-dplyr-slides.html#qa",
+    "title": "02-dplyr",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: How many people are in a group for case studies and final project?\nA: 3-4\n\n\nQ: How to turn in assignments\nA: We’ll discuss this today!\n\n\nQ: Why don’t we have uniform keyboard-shortcut (like run code, new cell) for both R and Python and other coding environment?\nA: Lack of communication? Preferences of developers? I think we’ll get there…\n\n\nQ: Wasn’t clear about the ‘single quotes’ vs “double quotes” thing\nA: When creating a string, or any time you need to use quotes in R, single and double quotes are interchangeable. R doesn’t care which you use. However, your code will be stylistically better if you consistently use one.\n\n\nQ: What are useful libraries that we can use to analyze data?\nA: We’ll be discussing lots, but the tidyverse packages (the first of which we’ll discuss is dplyr) is a great place to start. There are also different packages for basically every statistical analysis out there\n\n\nQ: Is there any way to prevent coercion? / I was wondering if you can types cast a variable when concatenation\nA: Yup. You can explicitly state as._____() when creating a variable (i.e. as.character()) and when reading in data you can specify. You’ll find that R does a pretty good job at guessing, but we can always fix to what we want after the fact.\n\n\nQ: What is the difference between mylist[1] and mylist[[1]]? It looked like class(mylist[1]) returned list and class(mylist[[1]]) returned the class of the element.\nA: Double brackets returns the element directly. Single bracket (for lists) always returns a list.\n\n\nQ: I’m curious about how to handle dataframes in R\nA: Excellent - we’ll start this discussion today and continue throughout the quarter!"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#course-announcements",
+    "href": "content/lectures/02-dplyr-slides.html#course-announcements",
+    "title": "02-dplyr",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\n\nLab 01 due tomorrow (Friday; 11:59 PM)\nStudent survey open until next Thursday\nHW01 and Lab02 will both be released Monday\nLecture Participation survey “due” after class"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#suggested-reading",
+    "href": "content/lectures/02-dplyr-slides.html#suggested-reading",
+    "title": "02-dplyr",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\nR4DS:\n\nChapter 5: Data Transformation\nChapter 15: Factors"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#agenda",
+    "href": "content/lectures/02-dplyr-slides.html#agenda",
+    "title": "02-dplyr",
+    "section": "Agenda",
+    "text": "Agenda\n\ndplyr\n\nphilosophy\npipes\ncommon operations"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#philosophy",
+    "href": "content/lectures/02-dplyr-slides.html#philosophy",
+    "title": "02-dplyr",
+    "section": "Philosophy",
+    "text": "Philosophy\n\ndplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges\n\n\n\nSource: dplyr.tidyverse.org"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#the-pipe-in-baser",
+    "href": "content/lectures/02-dplyr-slides.html#the-pipe-in-baser",
+    "title": "02-dplyr",
+    "section": "The pipe in baseR",
+    "text": "The pipe in baseR\n\n\n\n\n|> should be read as “and then”\nfor example “Wake up |> brush teeth” would be read as “wake up and then brush teeth”"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#where-does-the-name-come-from",
+    "href": "content/lectures/02-dplyr-slides.html#where-does-the-name-come-from",
+    "title": "02-dplyr",
+    "section": "Where does the name come from?",
+    "text": "Where does the name come from?\nThe pipe operator was first implemented in the package magrittr.\n\n\n\n\n\n\n\nYou will see this frequently in code online. It’s equivalent to |>."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#review-how-does-a-pipe-work",
+    "href": "content/lectures/02-dplyr-slides.html#review-how-does-a-pipe-work",
+    "title": "02-dplyr",
+    "section": "Review: How does a pipe work?",
+    "text": "Review: How does a pipe work?\n\nYou can think about the following sequence of actions - find key, unlock car, start car, drive to school, park.\n\n\n\nExpressed as a set of nested functions in R pseudocode this would look like:\n\n\npark(drive(start_car(find(\"keys\")), to = \"campus\"))\n\n\n\n\nWriting it out using pipes give it a more natural (and easier to read) structure:\n\n\nfind(\"keys\") |>\n  start_car() |>\n  drive(to = \"campus\") |>\n  park()"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#nc-dot-fatal-crashes-in-north-carolina",
+    "href": "content/lectures/02-dplyr-slides.html#nc-dot-fatal-crashes-in-north-carolina",
+    "title": "02-dplyr",
+    "section": "NC DOT Fatal Crashes in North Carolina",
+    "text": "NC DOT Fatal Crashes in North Carolina\nFrom OpenDurham’s Data Portal\n\nbike <- read_csv2(\"https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv\", \n                  na = c(\"NA\", \"\", \".\"))"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#variables",
+    "href": "content/lectures/02-dplyr-slides.html#variables",
+    "title": "02-dplyr",
+    "section": "Variables",
+    "text": "Variables\nView the names of variables via\n\nnames(bike)\n\n [1] \"FID\"        \"OBJECTID\"   \"AmbulanceR\" \"BikeAge_Gr\" \"Bike_Age\"  \n [6] \"Bike_Alc_D\" \"Bike_Dir\"   \"Bike_Injur\" \"Bike_Pos\"   \"Bike_Race\" \n[11] \"Bike_Sex\"   \"City\"       \"County\"     \"CrashAlcoh\" \"CrashDay\"  \n[16] \"Crash_Date\" \"Crash_Grp\"  \"Crash_Hour\" \"Crash_Loc\"  \"Crash_Mont\"\n[21] \"Crash_Time\" \"Crash_Type\" \"Crash_Ty_1\" \"Crash_Year\" \"Crsh_Sevri\"\n[26] \"Developmen\" \"DrvrAge_Gr\" \"Drvr_Age\"   \"Drvr_Alc_D\" \"Drvr_EstSp\"\n[31] \"Drvr_Injur\" \"Drvr_Race\"  \"Drvr_Sex\"   \"Drvr_VehTy\" \"ExcsSpdInd\"\n[36] \"Hit_Run\"    \"Light_Cond\" \"Locality\"   \"Num_Lanes\"  \"Num_Units\" \n[41] \"Rd_Charact\" \"Rd_Class\"   \"Rd_Conditi\" \"Rd_Config\"  \"Rd_Defects\"\n[46] \"Rd_Feature\" \"Rd_Surface\" \"Region\"     \"Rural_Urba\" \"Speed_Limi\"\n[51] \"Traff_Cntr\" \"Weather\"    \"Workzone_I\" \"Location\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#viewing-your-data",
+    "href": "content/lectures/02-dplyr-slides.html#viewing-your-data",
+    "title": "02-dplyr",
+    "section": "Viewing your data",
+    "text": "Viewing your data\n\nIn the Environment, click on the name of the data frame to view it in the data viewer (or use the View function)\nUse the glimpse function to take a peek\n\n\nglimpse(bike)\n\nRows: 5,716\nColumns: 54\n$ FID        <dbl> 18, 29, 33, 35, 49, 53, 56, 60, 63, 66, 72, 75, 82, 84, 85,…\n$ OBJECTID   <dbl> 19, 30, 34, 36, 50, 54, 57, 61, 64, 67, 73, 76, 83, 85, 86,…\n$ AmbulanceR <chr> \"No\", \"Yes\", \"No\", \"Yes\", \"No\", \"Yes\", \"Yes\", \"No\", \"Yes\", …\n$ BikeAge_Gr <chr> NA, \"50-59\", NA, \"16-19\", NA, \"50-59\", \"16-19\", \"40-49\", \"1…\n$ Bike_Age   <dbl> 6, 51, 10, 17, 6, 52, 18, 40, 6, 7, 45, 30, 17, 20, 14, 15,…\n$ Bike_Alc_D <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ Bike_Dir   <chr> \"Not Applicable\", \"With Traffic\", \"With Traffic\", NA, \"Faci…\n$ Bike_Injur <chr> \"C: Possible Injury\", \"C: Possible Injury\", \"Injury\", \"B: E…\n$ Bike_Pos   <chr> \"Driveway / Alley\", \"Travel Lane\", \"Travel Lane\", \"Travel L…\n$ Bike_Race  <chr> \"Black\", \"Black\", \"Black\", \"White\", \"Black\", \"White\", \"Blac…\n$ Bike_Sex   <chr> \"Female\", \"Male\", \"Male\", \"Male\", \"Male\", \"Male\", \"Female\",…\n$ City       <chr> \"Durham\", \"Greenville\", \"Farmville\", \"Charlotte\", \"Charlott…\n$ County     <chr> \"Durham\", \"Pitt\", \"Pitt\", \"Mecklenburg\", \"Mecklenburg\", \"Du…\n$ CrashAlcoh <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ CrashDay   <chr> \"01-01-06\", \"01-01-02\", \"01-01-07\", \"01-01-05\", NA, NA, NA,…\n$ Crash_Date <date> 2007-01-06, 2007-01-09, 2007-01-14, 2007-01-12, 2007-01-15…\n$ Crash_Grp  <chr> \"Bicyclist Failed to Yield - Midblock\", \"Crossing Paths - O…\n$ Crash_Hour <dbl> 13, 23, 16, 19, 12, 20, 19, 14, 16, 0, 17, 18, 14, 17, 19, …\n$ Crash_Loc  <chr> \"Non-Intersection\", \"Intersection-Related\", \"Intersection\",…\n$ Crash_Mont <chr> NA, NA, NA, NA, NA, \"01-04-01\", \"01-04-01\", NA, \"01-02-01\",…\n$ Crash_Time <dttm> 0001-01-01 13:17:58, 0001-01-01 23:08:58, 0001-01-01 16:44…\n$ Crash_Type <chr> \"Bicyclist Ride Out - Residential Driveway\", \"Crossing Path…\n$ Crash_Ty_1 <dbl> 353311, 211180, 111144, 119139, 112114, 311231, 119144, 132…\n$ Crash_Year <dbl> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007,…\n$ Crsh_Sevri <chr> \"C: Possible Injury\", \"C: Possible Injury\", \"O: No Injury\",…\n$ Developmen <chr> \"Residential\", \"Commercial\", \"Residential\", \"Residential\", …\n$ DrvrAge_Gr <chr> \"60-69\", \"30-39\", \"50-59\", \"30-39\", NA, \"20-24\", \"40-49\", N…\n$ Drvr_Age   <dbl> 66, 34, 52, 33, NA, 20, 40, NA, 17, 51, NA, 64, 50, 66, 30,…\n$ Drvr_Alc_D <chr> \"No\", \"No\", \"No\", \"No\", \"Missing\", \"No\", \"No\", \"Missing\", \"…\n$ Drvr_EstSp <chr> \"11-15 mph\", \"0-5 mph\", \"21-25 mph\", \"46-50 mph\", \"16-20 mp…\n$ Drvr_Injur <chr> \"O: No Injury\", \"O: No Injury\", \"O: No Injury\", \"O: No Inju…\n$ Drvr_Race  <chr> \"Black\", \"Black\", \"White\", \"White\", \"/Missing\", \"White\", \"B…\n$ Drvr_Sex   <chr> \"Male\", \"Male\", \"Female\", \"Female\", NA, \"Female\", \"Male\", N…\n$ Drvr_VehTy <chr> \"Pickup\", \"Passenger Car\", \"Passenger Car\", \"Sport Utility\"…\n$ ExcsSpdInd <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ Hit_Run    <chr> \"No\", \"No\", \"No\", \"No\", \"Yes\", \"No\", \"No\", \"Yes\", \"No\", \"No…\n$ Light_Cond <chr> \"Daylight\", \"Dark - Lighted Roadway\", \"Daylight\", \"Dark - R…\n$ Locality   <chr> \"Mixed (30% To 70% Developed)\", \"Urban (>70% Developed)\", \"…\n$ Num_Lanes  <chr> \"2 lanes\", \"5 lanes\", \"2 lanes\", \"4 lanes\", \"2 lanes\", \"4 l…\n$ Num_Units  <dbl> 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…\n$ Rd_Charact <chr> \"Straight - Level\", \"Straight - Level\", \"Straight - Level\",…\n$ Rd_Class   <chr> \"Local Street\", \"Local Street\", \"Local Street\", \"NC Route\",…\n$ Rd_Conditi <chr> \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dr…\n$ Rd_Config  <chr> \"Two-Way, Not Divided\", \"Two-Way, Divided, Unprotected Medi…\n$ Rd_Defects <chr> \"None\", \"None\", \"None\", \"None\", \"None\", \"None\", \"None\", \"No…\n$ Rd_Feature <chr> \"No Special Feature\", \"Four-Way Intersection\", \"Four-Way In…\n$ Rd_Surface <chr> \"Smooth Asphalt\", \"Smooth Asphalt\", \"Smooth Asphalt\", \"Smoo…\n$ Region     <chr> \"Piedmont\", \"Coastal\", \"Coastal\", \"Piedmont\", \"Piedmont\", \"…\n$ Rural_Urba <chr> \"Urban\", \"Urban\", \"Rural\", \"Urban\", \"Urban\", \"Urban\", \"Urba…\n$ Speed_Limi <chr> \"20 - 25  MPH\", \"40 - 45  MPH\", \"30 - 35  MPH\", \"40 - 45  M…\n$ Traff_Cntr <chr> \"No Control Present\", \"Stop And Go Signal\", \"Stop Sign\", \"S…\n$ Weather    <chr> \"Clear\", \"Clear\", \"Clear\", \"Cloudy\", \"Clear\", \"Clear\", \"Cle…\n$ Workzone_I <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ Location   <chr> \"36.002743, -78.8785\", \"35.612984, -77.39265\", \"35.595676, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#a-grammar-of-data-manipulation",
+    "href": "content/lectures/02-dplyr-slides.html#a-grammar-of-data-manipulation",
+    "title": "02-dplyr",
+    "section": "A Grammar of Data Manipulation",
+    "text": "A Grammar of Data Manipulation\ndplyr is based on the concepts of functions as verbs that manipulate data frames.\nSingle data frame functions / verbs:\n\nfilter: pick rows matching criteria\nslice: pick rows using index(es)\nselect: pick columns by name\npull: grab a column as a vector\nrename: rename specific columns\narrange: reorder rows\nmutate: add new variables\ntransmute: create new data frame with variables\ndistinct: filter for unique rows\nsample_n / sample_frac: randomly sample rows\nsummarize: reduce variables to values\n… (many more)"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#dplyr-rules-for-functions",
+    "href": "content/lectures/02-dplyr-slides.html#dplyr-rules-for-functions",
+    "title": "02-dplyr",
+    "section": "dplyr rules for functions",
+    "text": "dplyr rules for functions\n\nFirst argument is always a data frame\nSubsequent arguments say what to do with that data frame\nAlways return a data frame\nDo not modify in place\nPerformance via lazy evaluation"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#filter-rows-with-filter",
+    "href": "content/lectures/02-dplyr-slides.html#filter-rows-with-filter",
+    "title": "02-dplyr",
+    "section": "Filter rows with filter",
+    "text": "Filter rows with filter\n\nSelect a subset of rows in a data frame.\nEasily filter for many conditions at once."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#filter",
+    "href": "content/lectures/02-dplyr-slides.html#filter",
+    "title": "02-dplyr",
+    "section": "filter",
+    "text": "filter\nfor crashes in Durham County\n\nbike |>\n  filter(County == \"Durham\")\n\n# A tibble: 253 × 54\n     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur\n   <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>     \n 1    18       19 No         <NA>              6 No         Not Appl… C: Possib…\n 2    53       54 Yes        50-59            52 No         With Tra… A: Disabl…\n 3    56       57 Yes        16-19            18 No         <NA>      C: Possib…\n 4   209      210 No         16-19            16 No         Facing T… C: Possib…\n 5   228      229 Yes        40-49            40 No         With Tra… B: Eviden…\n 6   620      621 Yes        50-59            55 No         With Tra… B: Eviden…\n 7   667      668 Yes        60-69            61 No         Not Appl… B: Eviden…\n 8   458      459 Yes        60-69            62 No         With Tra… B: Eviden…\n 9   576      577 No         40-49            49 No         With Tra… C: Possib…\n10   618      619 No         20-24            23 No         With Tra… C: Possib…\n# ℹ 243 more rows\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#filter-1",
+    "href": "content/lectures/02-dplyr-slides.html#filter-1",
+    "title": "02-dplyr",
+    "section": "filter",
+    "text": "filter\nfor crashes in Durham County where biker was < 10 yrs old\n\nbike |>\n  filter(County == \"Durham\", Bike_Age < 10)\n\n# A tibble: 20 × 54\n     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur\n   <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>     \n 1    18       19 No         <NA>              6 No         Not Appl… C: Possib…\n 2    47       48 No         10-Jun            9 No         Not Appl… O: No Inj…\n 3   124      125 Yes        10-Jun            8 No         With Tra… C: Possib…\n 4   531      532 Yes        10-Jun            7 No         With Tra… C: Possib…\n 5   704      705 Yes        10-Jun            9 No         Not Appl… C: Possib…\n 6    42       43 No         10-Jun            8 No         With Tra… O: No Inj…\n 7   392      393 Yes        0-5               2 No         Not Appl… B: Eviden…\n 8   941      942 No         10-Jun            9 No         With Tra… C: Possib…\n 9   436      437 Yes        10-Jun            6 No         Not Appl… O: No Inj…\n10   160      161 Yes        10-Jun            7 No         With Tra… C: Possib…\n11   273      274 Yes        10-Jun            7 No         Facing T… C: Possib…\n12    78       79 Yes        10-Jun            7 No         With Tra… C: Possib…\n13   422      423 No         10-Jun            9 No         Not Appl… O: No Inj…\n14   570      571 No         <NA>              0 Missing    Not Appl… Injury    \n15   683      684 Yes        10-Jun            8 No         Not Appl… C: Possib…\n16    62       63 Yes        10-Jun            7 No         With Tra… C: Possib…\n17   248      249 No         0-5               4 No         Not Appl… O: No Inj…\n18   306      307 Yes        10-Jun            8 No         With Tra… C: Possib…\n19   231      232 Yes        10-Jun            8 No         With Tra… C: Possib…\n20   361      362 Yes        10-Jun            9 No         With Tra… B: Eviden…\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>,\n#   Drvr_Race <chr>, Drvr_Sex <chr>, Drvr_VehTy <chr>, ExcsSpdInd <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#aside-real-data-is-messy",
+    "href": "content/lectures/02-dplyr-slides.html#aside-real-data-is-messy",
+    "title": "02-dplyr",
+    "section": "Aside: real data is messy!",
+    "text": "Aside: real data is messy!\n   What in the world does a BikeAge_gr of 10-Jun or 15-Nov mean?\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(crash_count = n())\n\n# A tibble: 13 × 2\n   BikeAge_Gr crash_count\n   <chr>            <int>\n 1 0-5                 60\n 2 10-Jun             421\n 3 15-Nov             747\n 4 16-19              605\n 5 20-24              680\n 6 25-29              430\n 7 30-39              658\n 8 40-49              920\n 9 50-59              739\n10 60-69              274\n11 70                  12\n12 70+                 58\n13 <NA>               112"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#careful-data-scientists-clean-up-their-data-first",
+    "href": "content/lectures/02-dplyr-slides.html#careful-data-scientists-clean-up-their-data-first",
+    "title": "02-dplyr",
+    "section": "Careful data scientists clean up their data first!",
+    "text": "Careful data scientists clean up their data first!\n\nWe’re going to need to do some text parsing to clean up these data\n\n10-Jun should be 6-10\n15-Nov should be 11-15"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#correct-and-overwrite-mutate",
+    "href": "content/lectures/02-dplyr-slides.html#correct-and-overwrite-mutate",
+    "title": "02-dplyr",
+    "section": "Correct and overwrite mutate",
+    "text": "Correct and overwrite mutate\n\nRemember we want to do the following in the BikeAge_Gr variable\n\n10-Jun should be 6-10\n15-Nov should be 11-15\n\n\n\nbike <- bike |>\n  mutate(\n    BikeAge_Gr = case_when(\n      BikeAge_Gr == \"10-Jun\" ~ \"6-10\",\n      BikeAge_Gr == \"15-Nov\" ~ \"11-15\",\n      TRUE                   ~ BikeAge_Gr     # everything else\n    )\n  )\n\n\nNote that we’re overwriting existing data and columns, so be careful!\n\nBut remember, it’s easy to revert if you make a mistake since we didn’t touch the raw data, we can always reload it and start over"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#check-before-you-move-on",
+    "href": "content/lectures/02-dplyr-slides.html#check-before-you-move-on",
+    "title": "02-dplyr",
+    "section": "Check before you move on",
+    "text": "Check before you move on\nAlways check your changes and confirm code did what you wanted it to do\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(count = n())\n\n# A tibble: 13 × 2\n   BikeAge_Gr count\n   <chr>      <int>\n 1 0-5           60\n 2 11-15        747\n 3 16-19        605\n 4 20-24        680\n 5 25-29        430\n 6 30-39        658\n 7 40-49        920\n 8 50-59        739\n 9 6-10         421\n10 60-69        274\n11 70            12\n12 70+           58\n13 <NA>         112"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#mutate-to-add-new-variables",
+    "href": "content/lectures/02-dplyr-slides.html#mutate-to-add-new-variables",
+    "title": "02-dplyr",
+    "section": "mutate to add new variables",
+    "text": "mutate to add new variables\n   How is the new alcohol variable determined?\n\nbike |>\n  mutate(alcohol = case_when(\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"No\"      ~ \"No\",\n    Bike_Alc_D == \"Yes\" | Drvr_Alc_D == \"Yes\"    ~ \"Yes\",\n    Bike_Alc_D == \"Missing\" & Drvr_Alc_D == \"No\" ~ \"Missing\",\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"Missing\" ~ \"Missing\"\n  ))"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#save-when-you-mutate",
+    "href": "content/lectures/02-dplyr-slides.html#save-when-you-mutate",
+    "title": "02-dplyr",
+    "section": "“Save” when you mutate",
+    "text": "“Save” when you mutate\nMost often when you define a new variable with mutate you’ll also want to save the resulting data frame, often by writing over the original data frame.\n\nbike <- bike |>\n  mutate(alcohol = case_when(\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"No\"      ~ \"No\",\n    Bike_Alc_D == \"Yes\" | Drvr_Alc_D == \"Yes\"    ~ \"Yes\",\n    Bike_Alc_D == \"Missing\" & Drvr_Alc_D == \"No\" ~ \"Missing\",\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"Missing\" ~ \"Missing\"\n  ))"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#transmute-to-create-a-new-dataset",
+    "href": "content/lectures/02-dplyr-slides.html#transmute-to-create-a-new-dataset",
+    "title": "02-dplyr",
+    "section": "transmute to create a new dataset",
+    "text": "transmute to create a new dataset\nYou’ll use this much less often than mutate but when you need it, you need it.\n\nbike |> \n  transmute(ID = paste(FID, OBJECTID, sep = \"-\"))\n\n# A tibble: 5,716 × 1\n   ID   \n   <chr>\n 1 18-19\n 2 29-30\n 3 33-34\n 4 35-36\n 5 49-50\n 6 53-54\n 7 56-57\n 8 60-61\n 9 63-64\n10 66-67\n# ℹ 5,706 more rows"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#mutate-vs.-transmute",
+    "href": "content/lectures/02-dplyr-slides.html#mutate-vs.-transmute",
+    "title": "02-dplyr",
+    "section": "mutate vs. transmute",
+    "text": "mutate vs. transmute\n\nmutate adds new and keeps original\ntransmute adds new; drops existing"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#your-turn",
+    "href": "content/lectures/02-dplyr-slides.html#your-turn",
+    "title": "02-dplyr",
+    "section": "Your Turn",
+    "text": "Your Turn\nHow many accidents in our dataset required an ambulance ride (AmbulanceR) and had the Crash_Type “Bicyclist Lost Control - Mechanical Problems”?\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#slice-for-certain-row-numbers",
+    "href": "content/lectures/02-dplyr-slides.html#slice-for-certain-row-numbers",
+    "title": "02-dplyr",
+    "section": "slice for certain row numbers",
+    "text": "slice for certain row numbers\nFirst five\n\nbike |>\n  slice(1:5)\n\n# A tibble: 5 × 54\n    FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir   Bike_Injur\n  <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>      <chr>     \n1    18       19 No         <NA>              6 No         Not Appli… C: Possib…\n2    29       30 Yes        50-59            51 No         With Traf… C: Possib…\n3    33       34 No         <NA>             10 No         With Traf… Injury    \n4    35       36 Yes        16-19            17 No         <NA>       B: Eviden…\n5    49       50 No         <NA>              6 No         Facing Tr… O: No Inj…\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>,\n#   Drvr_Race <chr>, Drvr_Sex <chr>, Drvr_VehTy <chr>, ExcsSpdInd <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#slice-for-certain-row-numbers-1",
+    "href": "content/lectures/02-dplyr-slides.html#slice-for-certain-row-numbers-1",
+    "title": "02-dplyr",
+    "section": "slice for certain row numbers",
+    "text": "slice for certain row numbers\nLast five\n\nlast_row <- nrow(bike)\nbike |>\n  slice((last_row - 4):last_row)\n\n# A tibble: 5 × 54\n    FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir   Bike_Injur\n  <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>      <chr>     \n1   460      461 Yes        6-10              7 No         Not Appli… C: Possib…\n2   474      475 Yes        50-59            50 No         With Traf… B: Eviden…\n3   479      480 Yes        16-19            16 No         Not Appli… C: Possib…\n4   487      488 No         40-49            47 Yes        With Traf… C: Possib…\n5   488      489 Yes        30-39            35 No         Facing Tr… C: Possib…\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>,\n#   Drvr_Race <chr>, Drvr_Sex <chr>, Drvr_VehTy <chr>, ExcsSpdInd <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#select-to-keep-only-the-variables-you-mention",
+    "href": "content/lectures/02-dplyr-slides.html#select-to-keep-only-the-variables-you-mention",
+    "title": "02-dplyr",
+    "section": "select to keep only the variables you mention",
+    "text": "select to keep only the variables you mention\n\nbike |>\n  select(Crash_Loc, Hit_Run) |>\n  table()\n\n                      Hit_Run\nCrash_Loc                No  Yes\n  Intersection         2223  275\n  Intersection-Related  252   42\n  Location                3    7\n  Non-Intersection     2213  462\n  Non-Roadway           205   30"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#or-select-to-exclude-variables",
+    "href": "content/lectures/02-dplyr-slides.html#or-select-to-exclude-variables",
+    "title": "02-dplyr",
+    "section": "or select to exclude variables",
+    "text": "or select to exclude variables\n\nbike |>\n  select(-OBJECTID)\n\n# A tibble: 5,716 × 53\n     FID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur Bike_Pos\n   <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>      <chr>   \n 1    18 No         <NA>              6 No         Not Appl… C: Possib… Drivewa…\n 2    29 Yes        50-59            51 No         With Tra… C: Possib… Travel …\n 3    33 No         <NA>             10 No         With Tra… Injury     Travel …\n 4    35 Yes        16-19            17 No         <NA>      B: Eviden… Travel …\n 5    49 No         <NA>              6 No         Facing T… O: No Inj… Travel …\n 6    53 Yes        50-59            52 No         With Tra… A: Disabl… Travel …\n 7    56 Yes        16-19            18 No         <NA>      C: Possib… Travel …\n 8    60 No         40-49            40 No         Facing T… B: Eviden… Sidewal…\n 9    63 Yes        6-10              6 No         Facing T… B: Eviden… Travel …\n10    66 Yes        6-10              7 No         <NA>      B: Eviden… Non-Roa…\n# ℹ 5,706 more rows\n# ℹ 45 more variables: Bike_Race <chr>, Bike_Sex <chr>, City <chr>,\n#   County <chr>, CrashAlcoh <chr>, CrashDay <chr>, Crash_Date <date>,\n#   Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>, Crash_Mont <chr>,\n#   Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>, Crash_Year <dbl>,\n#   Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>, Drvr_Age <dbl>,\n#   Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>, Drvr_Race <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#or-select-a-range-of-variables",
+    "href": "content/lectures/02-dplyr-slides.html#or-select-a-range-of-variables",
+    "title": "02-dplyr",
+    "section": "or select a range of variables",
+    "text": "or select a range of variables\n\nbike |>\n  select(OBJECTID:Bike_Injur)\n\n# A tibble: 5,716 × 7\n   OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir       Bike_Injur \n      <dbl> <chr>      <chr>         <dbl> <chr>      <chr>          <chr>      \n 1       19 No         <NA>              6 No         Not Applicable C: Possibl…\n 2       30 Yes        50-59            51 No         With Traffic   C: Possibl…\n 3       34 No         <NA>             10 No         With Traffic   Injury     \n 4       36 Yes        16-19            17 No         <NA>           B: Evident…\n 5       50 No         <NA>              6 No         Facing Traffic O: No Inju…\n 6       54 Yes        50-59            52 No         With Traffic   A: Disabli…\n 7       57 Yes        16-19            18 No         <NA>           C: Possibl…\n 8       61 No         40-49            40 No         Facing Traffic B: Evident…\n 9       64 Yes        6-10              6 No         Facing Traffic B: Evident…\n10       67 Yes        6-10              7 No         <NA>           B: Evident…\n# ℹ 5,706 more rows"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#pull-to-extract-a-column-as-a-vector",
+    "href": "content/lectures/02-dplyr-slides.html#pull-to-extract-a-column-as-a-vector",
+    "title": "02-dplyr",
+    "section": "pull to extract a column as a vector",
+    "text": "pull to extract a column as a vector\n\nbike |>\n  slice(1:6) |>\n  pull(Location)\n\n[1] \"36.002743, -78.8785\"  \"35.612984, -77.39265\" \"35.595676, -77.59074\"\n[4] \"35.076767, -80.7728\"  \"35.19999, -80.75713\"  \"35.966644, -78.96749\"\n\n\n\nbike |>\n  slice(1:6) |>\n  select(Location)\n\n# A tibble: 6 × 1\n  Location            \n  <chr>               \n1 36.002743, -78.8785 \n2 35.612984, -77.39265\n3 35.595676, -77.59074\n4 35.076767, -80.7728 \n5 35.19999, -80.75713 \n6 35.966644, -78.96749"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#the-two-pulls-in-your-lives",
+    "href": "content/lectures/02-dplyr-slides.html#the-two-pulls-in-your-lives",
+    "title": "02-dplyr",
+    "section": "The two pulls in your lives",
+    "text": "The two pulls in your lives\n\n\n\n\n\n\n\n\nDon’t get pull happy when wrangling data! Only extract out variables if you truly need to, otherwise keep in data frame.\nBut always ⬇️ Pull before starting your work when collaborating on GitHub."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#rename-specific-columns",
+    "href": "content/lectures/02-dplyr-slides.html#rename-specific-columns",
+    "title": "02-dplyr",
+    "section": "rename specific columns",
+    "text": "rename specific columns\nUseful for correcting typos, and renaming to make variable names shorter and/or more informative\n\nOriginal names:\n\n\nnames(bike)\n\n [1] \"FID\"        \"OBJECTID\"   \"AmbulanceR\" \"BikeAge_Gr\" \"Bike_Age\"  \n [6] \"Bike_Alc_D\" \"Bike_Dir\"   \"Bike_Injur\" \"Bike_Pos\"   \"Bike_Race\" \n[11] \"Bike_Sex\"   \"City\"       \"County\"     \"CrashAlcoh\" \"CrashDay\"  \n[16] \"Crash_Date\" \"Crash_Grp\"  \"Crash_Hour\" \"Crash_Loc\"  \"Crash_Mont\"\n[21] \"Crash_Time\" \"Crash_Type\" \"Crash_Ty_1\" \"Crash_Year\" \"Crsh_Sevri\"\n[26] \"Developmen\" \"DrvrAge_Gr\" \"Drvr_Age\"   \"Drvr_Alc_D\" \"Drvr_EstSp\"\n[31] \"Drvr_Injur\" \"Drvr_Race\"  \"Drvr_Sex\"   \"Drvr_VehTy\" \"ExcsSpdInd\"\n[36] \"Hit_Run\"    \"Light_Cond\" \"Locality\"   \"Num_Lanes\"  \"Num_Units\" \n[41] \"Rd_Charact\" \"Rd_Class\"   \"Rd_Conditi\" \"Rd_Config\"  \"Rd_Defects\"\n[46] \"Rd_Feature\" \"Rd_Surface\" \"Region\"     \"Rural_Urba\" \"Speed_Limi\"\n[51] \"Traff_Cntr\" \"Weather\"    \"Workzone_I\" \"Location\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#rename-specific-columns-1",
+    "href": "content/lectures/02-dplyr-slides.html#rename-specific-columns-1",
+    "title": "02-dplyr",
+    "section": "rename specific columns",
+    "text": "rename specific columns\n\nRename Speed_Limi to Speed_Limit:\n\n\nbike <- bike |>\n  rename(Speed_Limit = Speed_Limi)"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#check-before-you-move-on-1",
+    "href": "content/lectures/02-dplyr-slides.html#check-before-you-move-on-1",
+    "title": "02-dplyr",
+    "section": "Check before you move on",
+    "text": "Check before you move on\nAlways check your changes and confirm code did what you wanted it to do\n\nnames(bike)\n\n [1] \"FID\"         \"OBJECTID\"    \"AmbulanceR\"  \"BikeAge_Gr\"  \"Bike_Age\"   \n [6] \"Bike_Alc_D\"  \"Bike_Dir\"    \"Bike_Injur\"  \"Bike_Pos\"    \"Bike_Race\"  \n[11] \"Bike_Sex\"    \"City\"        \"County\"      \"CrashAlcoh\"  \"CrashDay\"   \n[16] \"Crash_Date\"  \"Crash_Grp\"   \"Crash_Hour\"  \"Crash_Loc\"   \"Crash_Mont\" \n[21] \"Crash_Time\"  \"Crash_Type\"  \"Crash_Ty_1\"  \"Crash_Year\"  \"Crsh_Sevri\" \n[26] \"Developmen\"  \"DrvrAge_Gr\"  \"Drvr_Age\"    \"Drvr_Alc_D\"  \"Drvr_EstSp\" \n[31] \"Drvr_Injur\"  \"Drvr_Race\"   \"Drvr_Sex\"    \"Drvr_VehTy\"  \"ExcsSpdInd\" \n[36] \"Hit_Run\"     \"Light_Cond\"  \"Locality\"    \"Num_Lanes\"   \"Num_Units\"  \n[41] \"Rd_Charact\"  \"Rd_Class\"    \"Rd_Conditi\"  \"Rd_Config\"   \"Rd_Defects\" \n[46] \"Rd_Feature\"  \"Rd_Surface\"  \"Region\"      \"Rural_Urba\"  \"Speed_Limit\"\n[51] \"Traff_Cntr\"  \"Weather\"     \"Workzone_I\"  \"Location\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#your-turn-1",
+    "href": "content/lectures/02-dplyr-slides.html#your-turn-1",
+    "title": "02-dplyr",
+    "section": "Your Turn",
+    "text": "Your Turn\nYour boss in Cumberland County gets overwhelmed by data easily, but he wants some data from you. He wants all bike accidents from his County, but he only wants to know the road’s speed limit, the age of the biker, and to know if alcohol was involved. If you have time, mine as well make the column names very clear to your boss while you’re at it…\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#summarize-to-reduce-variables-to-values",
+    "href": "content/lectures/02-dplyr-slides.html#summarize-to-reduce-variables-to-values",
+    "title": "02-dplyr",
+    "section": "summarize to reduce variables to values",
+    "text": "summarize to reduce variables to values\nThe values are summarized in a data frame\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(crash_count = n())\n\n# A tibble: 13 × 2\n   BikeAge_Gr crash_count\n   <chr>            <int>\n 1 0-5                 60\n 2 11-15              747\n 3 16-19              605\n 4 20-24              680\n 5 25-29              430\n 6 30-39              658\n 7 40-49              920\n 8 50-59              739\n 9 6-10               421\n10 60-69              274\n11 70                  12\n12 70+                 58\n13 <NA>               112"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#and-arrange-to-order-rows",
+    "href": "content/lectures/02-dplyr-slides.html#and-arrange-to-order-rows",
+    "title": "02-dplyr",
+    "section": "and arrange to order rows",
+    "text": "and arrange to order rows\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(crash_count = n()) |>\n  arrange(desc(crash_count))\n\n# A tibble: 13 × 2\n   BikeAge_Gr crash_count\n   <chr>            <int>\n 1 40-49              920\n 2 11-15              747\n 3 50-59              739\n 4 20-24              680\n 5 30-39              658\n 6 16-19              605\n 7 25-29              430\n 8 6-10               421\n 9 60-69              274\n10 <NA>               112\n11 0-5                 60\n12 70+                 58\n13 70                  12"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#count-to-group-by-then-count",
+    "href": "content/lectures/02-dplyr-slides.html#count-to-group-by-then-count",
+    "title": "02-dplyr",
+    "section": "count to group by then count",
+    "text": "count to group by then count\n\nbike |>\n  count(BikeAge_Gr)\n\n# A tibble: 13 × 2\n   BikeAge_Gr     n\n   <chr>      <int>\n 1 0-5           60\n 2 11-15        747\n 3 16-19        605\n 4 20-24        680\n 5 25-29        430\n 6 30-39        658\n 7 40-49        920\n 8 50-59        739\n 9 6-10         421\n10 60-69        274\n11 70            12\n12 70+           58\n13 <NA>         112\n\n\n   If you wanted to arrange these in ascending order what would you add to the pipe?"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#select-rows-with-sample_n-or-sample_frac",
+    "href": "content/lectures/02-dplyr-slides.html#select-rows-with-sample_n-or-sample_frac",
+    "title": "02-dplyr",
+    "section": "Select rows with sample_n or sample_frac",
+    "text": "Select rows with sample_n or sample_frac\n\nsample_n: randomly sample 5 observations\n\n\nbike_n5 <- bike |>\n  sample_n(5, replace = FALSE)\n\ndim(bike_n5)\n\n[1]  5 54\n\n\n\nsample_frac: randomly sample 20% of observations\n\n\nbike_perc20 <- bike |>\n  sample_frac(0.2, replace = FALSE)\n\ndim(bike_perc20)\n\n[1] 1143   54"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#distinct-to-filter-for-unique-rows",
+    "href": "content/lectures/02-dplyr-slides.html#distinct-to-filter-for-unique-rows",
+    "title": "02-dplyr",
+    "section": "distinct to filter for unique rows",
+    "text": "distinct to filter for unique rows\n\nbike |> \n  select(County, City) |> \n  distinct() |> \n  arrange(County, City)\n\n# A tibble: 360 × 2\n   County    City              \n   <chr>     <chr>             \n 1 Alamance  Alamance          \n 2 Alamance  Burlington        \n 3 Alamance  Elon College      \n 4 Alamance  Gibsonville       \n 5 Alamance  Graham            \n 6 Alamance  Green Level       \n 7 Alamance  Mebane            \n 8 Alamance  None - Rural Crash\n 9 Alexander None - Rural Crash\n10 Alleghany None - Rural Crash\n# ℹ 350 more rows"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#distinct-has-a-.keep_all-parameter",
+    "href": "content/lectures/02-dplyr-slides.html#distinct-has-a-.keep_all-parameter",
+    "title": "02-dplyr",
+    "section": "distinct has a .keep_all parameter",
+    "text": "distinct has a .keep_all parameter\n\nbike |> \n  distinct(County, City, .keep_all = TRUE) |> \n  arrange(County, City)\n\n# A tibble: 360 × 54\n     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur\n   <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>     \n 1   524      525 Yes        11-15            12 No         <NA>      B: Eviden…\n 2    84       85 Yes        20-24            20 No         With Tra… B: Eviden…\n 3   571      572 Yes        16-19            16 No         Not Appl… B: Eviden…\n 4   509      510 Yes        40-49            43 Yes        With Tra… K: Killed \n 5   855      856 Yes        30-39            30 No         With Tra… A: Disabl…\n 6     5        6 Yes        40-49            44 Yes        With Tra… C: Possib…\n 7   163      164 Yes        30-39            35 No         Not Appl… C: Possib…\n 8    96       97 Yes        30-39            36 No         With Tra… C: Possib…\n 9    46       47 Yes        50-59            53 No         With Tra… B: Eviden…\n10   485      486 Yes        60-69            62 No         With Tra… C: Possib…\n# ℹ 350 more rows\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#factors-1",
+    "href": "content/lectures/02-dplyr-slides.html#factors-1",
+    "title": "02-dplyr",
+    "section": "Factors",
+    "text": "Factors\nFactor objects are how R stores data for categorical variables (fixed numbers of discrete values).\n\n(x = factor(c(\"BS\", \"MS\", \"PhD\", \"MS\")))\n\n[1] BS  MS  PhD MS \nLevels: BS MS PhD\n\n\n\nglimpse(x)\n\n Factor w/ 3 levels \"BS\",\"MS\",\"PhD\": 1 2 3 2\n\n\n\ntypeof(x)\n\n[1] \"integer\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#returning-to-cat-lovers",
+    "href": "content/lectures/02-dplyr-slides.html#returning-to-cat-lovers",
+    "title": "02-dplyr",
+    "section": "Returning to: Cat lovers",
+    "text": "Returning to: Cat lovers\nReading in the cat-lovers data…\n\ncat_lovers <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/cat-lovers.csv\")"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#read-data-in-as-character-strings",
+    "href": "content/lectures/02-dplyr-slides.html#read-data-in-as-character-strings",
+    "title": "02-dplyr",
+    "section": "Read data in as character strings",
+    "text": "Read data in as character strings\n\nglimpse(cat_lovers)\n\nRows: 60\nColumns: 3\n$ name           <chr> \"Bernice Warren\", \"Woodrow Stone\", \"Willie Bass\", \"Tyro…\n$ number_of_cats <chr> \"0\", \"0\", \"1\", \"3\", \"3\", \"2\", \"1\", \"1\", \"0\", \"0\", \"0\", …\n$ handedness     <chr> \"left\", \"left\", \"left\", \"left\", \"left\", \"left\", \"left\",…"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#but-coerce-when-plotting",
+    "href": "content/lectures/02-dplyr-slides.html#but-coerce-when-plotting",
+    "title": "02-dplyr",
+    "section": "But coerce when plotting",
+    "text": "But coerce when plotting\n\nggplot(cat_lovers, mapping = aes(x = handedness)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#use-forcats-to-manipulate-factors",
+    "href": "content/lectures/02-dplyr-slides.html#use-forcats-to-manipulate-factors",
+    "title": "02-dplyr",
+    "section": "Use forcats to manipulate factors",
+    "text": "Use forcats to manipulate factors\n\ncat_lovers <- cat_lovers |>\n  mutate(handedness = fct_relevel(handedness, \n                                  \"right\", \"left\", \"ambidextrous\"))\n\n\nggplot(cat_lovers, mapping = aes(x = handedness)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr-slides.html#forcats-functionality",
+    "href": "content/lectures/02-dplyr-slides.html#forcats-functionality",
+    "title": "02-dplyr",
+    "section": "forcats functionality ",
+    "text": "forcats functionality \n\nR uses factors to handle categorical variables, variables that have a fixed and known set of possible values. Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors.\nfactors are still useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The goal of the forcats package is to provide a suite of useful tools that solve common problems with factors.\n\n\n\nSource: forcats.tidyverse.org"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html",
+    "href": "content/lectures/02-dplyr.html",
+    "title": "02-dplyr",
+    "section": "",
+    "text": "Q: How many people are in a group for case studies and final project?\nA: 3-4\n\n\nQ: How to turn in assignments\nA: We’ll discuss this today!\n\n\nQ: Why don’t we have uniform keyboard-shortcut (like run code, new cell) for both R and Python and other coding environment?\nA: Lack of communication? Preferences of developers? I think we’ll get there…\n\n\nQ: Wasn’t clear about the ‘single quotes’ vs “double quotes” thing\nA: When creating a string, or any time you need to use quotes in R, single and double quotes are interchangeable. R doesn’t care which you use. However, your code will be stylistically better if you consistently use one.\n\n\nQ: What are useful libraries that we can use to analyze data?\nA: We’ll be discussing lots, but the tidyverse packages (the first of which we’ll discuss is dplyr) is a great place to start. There are also different packages for basically every statistical analysis out there\n\n\nQ: Is there any way to prevent coercion? / I was wondering if you can types cast a variable when concatenation\nA: Yup. You can explicitly state as._____() when creating a variable (i.e. as.character()) and when reading in data you can specify. You’ll find that R does a pretty good job at guessing, but we can always fix to what we want after the fact.\n\n\nQ: What is the difference between mylist[1] and mylist[[1]]? It looked like class(mylist[1]) returned list and class(mylist[[1]]) returned the class of the element.\nA: Double brackets returns the element directly. Single bracket (for lists) always returns a list.\n\n\nQ: I’m curious about how to handle dataframes in R\nA: Excellent - we’ll start this discussion today and continue throughout the quarter!\n\n\n\n\nDue Dates:\n\nLab 01 due tomorrow (Friday; 11:59 PM)\nStudent survey open until next Thursday\nHW01 and Lab02 will both be released Monday\nLecture Participation survey “due” after class\n\n\n\n\nR4DS:\n\nChapter 5: Data Transformation\nChapter 15: Factors\n\n\n\n\n\ndplyr\n\nphilosophy\npipes\ncommon operations\n\n\n\n\n\n\ndplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges\n\n\n\nSource: dplyr.tidyverse.org"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#the-pipe-in-baser",
+    "href": "content/lectures/02-dplyr.html#the-pipe-in-baser",
+    "title": "02-dplyr",
+    "section": "The pipe in baseR",
+    "text": "The pipe in baseR\n\n\n\n\n|> should be read as “and then”\nfor example “Wake up |> brush teeth” would be read as “wake up and then brush teeth”"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#where-does-the-name-come-from",
+    "href": "content/lectures/02-dplyr.html#where-does-the-name-come-from",
+    "title": "02-dplyr",
+    "section": "Where does the name come from?",
+    "text": "Where does the name come from?\nThe pipe operator was first implemented in the package magrittr.\n\n\n\n\n\n\n\nYou will see this frequently in code online. It’s equivalent to |>."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#review-how-does-a-pipe-work",
+    "href": "content/lectures/02-dplyr.html#review-how-does-a-pipe-work",
+    "title": "02-dplyr",
+    "section": "Review: How does a pipe work?",
+    "text": "Review: How does a pipe work?\n\nYou can think about the following sequence of actions - find key, unlock car, start car, drive to school, park.\n\n\n\nExpressed as a set of nested functions in R pseudocode this would look like:\n\n\npark(drive(start_car(find(\"keys\")), to = \"campus\"))\n\n\n\n\nWriting it out using pipes give it a more natural (and easier to read) structure:\n\n\nfind(\"keys\") |>\n  start_car() |>\n  drive(to = \"campus\") |>\n  park()"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#nc-dot-fatal-crashes-in-north-carolina",
+    "href": "content/lectures/02-dplyr.html#nc-dot-fatal-crashes-in-north-carolina",
+    "title": "02-dplyr",
+    "section": "NC DOT Fatal Crashes in North Carolina",
+    "text": "NC DOT Fatal Crashes in North Carolina\nFrom OpenDurham’s Data Portal\n\nbike <- read_csv2(\"https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv\", \n                  na = c(\"NA\", \"\", \".\"))"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#variables",
+    "href": "content/lectures/02-dplyr.html#variables",
+    "title": "02-dplyr",
+    "section": "Variables",
+    "text": "Variables\nView the names of variables via\n\nnames(bike)\n\n [1] \"FID\"        \"OBJECTID\"   \"AmbulanceR\" \"BikeAge_Gr\" \"Bike_Age\"  \n [6] \"Bike_Alc_D\" \"Bike_Dir\"   \"Bike_Injur\" \"Bike_Pos\"   \"Bike_Race\" \n[11] \"Bike_Sex\"   \"City\"       \"County\"     \"CrashAlcoh\" \"CrashDay\"  \n[16] \"Crash_Date\" \"Crash_Grp\"  \"Crash_Hour\" \"Crash_Loc\"  \"Crash_Mont\"\n[21] \"Crash_Time\" \"Crash_Type\" \"Crash_Ty_1\" \"Crash_Year\" \"Crsh_Sevri\"\n[26] \"Developmen\" \"DrvrAge_Gr\" \"Drvr_Age\"   \"Drvr_Alc_D\" \"Drvr_EstSp\"\n[31] \"Drvr_Injur\" \"Drvr_Race\"  \"Drvr_Sex\"   \"Drvr_VehTy\" \"ExcsSpdInd\"\n[36] \"Hit_Run\"    \"Light_Cond\" \"Locality\"   \"Num_Lanes\"  \"Num_Units\" \n[41] \"Rd_Charact\" \"Rd_Class\"   \"Rd_Conditi\" \"Rd_Config\"  \"Rd_Defects\"\n[46] \"Rd_Feature\" \"Rd_Surface\" \"Region\"     \"Rural_Urba\" \"Speed_Limi\"\n[51] \"Traff_Cntr\" \"Weather\"    \"Workzone_I\" \"Location\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#viewing-your-data",
+    "href": "content/lectures/02-dplyr.html#viewing-your-data",
+    "title": "02-dplyr",
+    "section": "Viewing your data",
+    "text": "Viewing your data\n\nIn the Environment, click on the name of the data frame to view it in the data viewer (or use the View function)\nUse the glimpse function to take a peek\n\n\nglimpse(bike)\n\nRows: 5,716\nColumns: 54\n$ FID        <dbl> 18, 29, 33, 35, 49, 53, 56, 60, 63, 66, 72, 75, 82, 84, 85,…\n$ OBJECTID   <dbl> 19, 30, 34, 36, 50, 54, 57, 61, 64, 67, 73, 76, 83, 85, 86,…\n$ AmbulanceR <chr> \"No\", \"Yes\", \"No\", \"Yes\", \"No\", \"Yes\", \"Yes\", \"No\", \"Yes\", …\n$ BikeAge_Gr <chr> NA, \"50-59\", NA, \"16-19\", NA, \"50-59\", \"16-19\", \"40-49\", \"1…\n$ Bike_Age   <dbl> 6, 51, 10, 17, 6, 52, 18, 40, 6, 7, 45, 30, 17, 20, 14, 15,…\n$ Bike_Alc_D <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ Bike_Dir   <chr> \"Not Applicable\", \"With Traffic\", \"With Traffic\", NA, \"Faci…\n$ Bike_Injur <chr> \"C: Possible Injury\", \"C: Possible Injury\", \"Injury\", \"B: E…\n$ Bike_Pos   <chr> \"Driveway / Alley\", \"Travel Lane\", \"Travel Lane\", \"Travel L…\n$ Bike_Race  <chr> \"Black\", \"Black\", \"Black\", \"White\", \"Black\", \"White\", \"Blac…\n$ Bike_Sex   <chr> \"Female\", \"Male\", \"Male\", \"Male\", \"Male\", \"Male\", \"Female\",…\n$ City       <chr> \"Durham\", \"Greenville\", \"Farmville\", \"Charlotte\", \"Charlott…\n$ County     <chr> \"Durham\", \"Pitt\", \"Pitt\", \"Mecklenburg\", \"Mecklenburg\", \"Du…\n$ CrashAlcoh <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ CrashDay   <chr> \"01-01-06\", \"01-01-02\", \"01-01-07\", \"01-01-05\", NA, NA, NA,…\n$ Crash_Date <date> 2007-01-06, 2007-01-09, 2007-01-14, 2007-01-12, 2007-01-15…\n$ Crash_Grp  <chr> \"Bicyclist Failed to Yield - Midblock\", \"Crossing Paths - O…\n$ Crash_Hour <dbl> 13, 23, 16, 19, 12, 20, 19, 14, 16, 0, 17, 18, 14, 17, 19, …\n$ Crash_Loc  <chr> \"Non-Intersection\", \"Intersection-Related\", \"Intersection\",…\n$ Crash_Mont <chr> NA, NA, NA, NA, NA, \"01-04-01\", \"01-04-01\", NA, \"01-02-01\",…\n$ Crash_Time <dttm> 0001-01-01 13:17:58, 0001-01-01 23:08:58, 0001-01-01 16:44…\n$ Crash_Type <chr> \"Bicyclist Ride Out - Residential Driveway\", \"Crossing Path…\n$ Crash_Ty_1 <dbl> 353311, 211180, 111144, 119139, 112114, 311231, 119144, 132…\n$ Crash_Year <dbl> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007,…\n$ Crsh_Sevri <chr> \"C: Possible Injury\", \"C: Possible Injury\", \"O: No Injury\",…\n$ Developmen <chr> \"Residential\", \"Commercial\", \"Residential\", \"Residential\", …\n$ DrvrAge_Gr <chr> \"60-69\", \"30-39\", \"50-59\", \"30-39\", NA, \"20-24\", \"40-49\", N…\n$ Drvr_Age   <dbl> 66, 34, 52, 33, NA, 20, 40, NA, 17, 51, NA, 64, 50, 66, 30,…\n$ Drvr_Alc_D <chr> \"No\", \"No\", \"No\", \"No\", \"Missing\", \"No\", \"No\", \"Missing\", \"…\n$ Drvr_EstSp <chr> \"11-15 mph\", \"0-5 mph\", \"21-25 mph\", \"46-50 mph\", \"16-20 mp…\n$ Drvr_Injur <chr> \"O: No Injury\", \"O: No Injury\", \"O: No Injury\", \"O: No Inju…\n$ Drvr_Race  <chr> \"Black\", \"Black\", \"White\", \"White\", \"/Missing\", \"White\", \"B…\n$ Drvr_Sex   <chr> \"Male\", \"Male\", \"Female\", \"Female\", NA, \"Female\", \"Male\", N…\n$ Drvr_VehTy <chr> \"Pickup\", \"Passenger Car\", \"Passenger Car\", \"Sport Utility\"…\n$ ExcsSpdInd <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ Hit_Run    <chr> \"No\", \"No\", \"No\", \"No\", \"Yes\", \"No\", \"No\", \"Yes\", \"No\", \"No…\n$ Light_Cond <chr> \"Daylight\", \"Dark - Lighted Roadway\", \"Daylight\", \"Dark - R…\n$ Locality   <chr> \"Mixed (30% To 70% Developed)\", \"Urban (>70% Developed)\", \"…\n$ Num_Lanes  <chr> \"2 lanes\", \"5 lanes\", \"2 lanes\", \"4 lanes\", \"2 lanes\", \"4 l…\n$ Num_Units  <dbl> 2, 2, 2, 3, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2, 2,…\n$ Rd_Charact <chr> \"Straight - Level\", \"Straight - Level\", \"Straight - Level\",…\n$ Rd_Class   <chr> \"Local Street\", \"Local Street\", \"Local Street\", \"NC Route\",…\n$ Rd_Conditi <chr> \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dry\", \"Dr…\n$ Rd_Config  <chr> \"Two-Way, Not Divided\", \"Two-Way, Divided, Unprotected Medi…\n$ Rd_Defects <chr> \"None\", \"None\", \"None\", \"None\", \"None\", \"None\", \"None\", \"No…\n$ Rd_Feature <chr> \"No Special Feature\", \"Four-Way Intersection\", \"Four-Way In…\n$ Rd_Surface <chr> \"Smooth Asphalt\", \"Smooth Asphalt\", \"Smooth Asphalt\", \"Smoo…\n$ Region     <chr> \"Piedmont\", \"Coastal\", \"Coastal\", \"Piedmont\", \"Piedmont\", \"…\n$ Rural_Urba <chr> \"Urban\", \"Urban\", \"Rural\", \"Urban\", \"Urban\", \"Urban\", \"Urba…\n$ Speed_Limi <chr> \"20 - 25  MPH\", \"40 - 45  MPH\", \"30 - 35  MPH\", \"40 - 45  M…\n$ Traff_Cntr <chr> \"No Control Present\", \"Stop And Go Signal\", \"Stop Sign\", \"S…\n$ Weather    <chr> \"Clear\", \"Clear\", \"Clear\", \"Cloudy\", \"Clear\", \"Clear\", \"Cle…\n$ Workzone_I <chr> \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\", \"No\",…\n$ Location   <chr> \"36.002743, -78.8785\", \"35.612984, -77.39265\", \"35.595676, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#a-grammar-of-data-manipulation",
+    "href": "content/lectures/02-dplyr.html#a-grammar-of-data-manipulation",
+    "title": "02-dplyr",
+    "section": "A Grammar of Data Manipulation",
+    "text": "A Grammar of Data Manipulation\ndplyr is based on the concepts of functions as verbs that manipulate data frames.\nSingle data frame functions / verbs:\n\nfilter: pick rows matching criteria\nslice: pick rows using index(es)\nselect: pick columns by name\npull: grab a column as a vector\nrename: rename specific columns\narrange: reorder rows\nmutate: add new variables\ntransmute: create new data frame with variables\ndistinct: filter for unique rows\nsample_n / sample_frac: randomly sample rows\nsummarize: reduce variables to values\n… (many more)"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#dplyr-rules-for-functions",
+    "href": "content/lectures/02-dplyr.html#dplyr-rules-for-functions",
+    "title": "02-dplyr",
+    "section": "dplyr rules for functions",
+    "text": "dplyr rules for functions\n\nFirst argument is always a data frame\nSubsequent arguments say what to do with that data frame\nAlways return a data frame\nDo not modify in place\nPerformance via lazy evaluation"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#filter-rows-with-filter",
+    "href": "content/lectures/02-dplyr.html#filter-rows-with-filter",
+    "title": "02-dplyr",
+    "section": "Filter rows with filter",
+    "text": "Filter rows with filter\n\nSelect a subset of rows in a data frame.\nEasily filter for many conditions at once."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#filter",
+    "href": "content/lectures/02-dplyr.html#filter",
+    "title": "02-dplyr",
+    "section": "filter",
+    "text": "filter\nfor crashes in Durham County\n\nbike |>\n  filter(County == \"Durham\")\n\n# A tibble: 253 × 54\n     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur\n   <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>     \n 1    18       19 No         <NA>              6 No         Not Appl… C: Possib…\n 2    53       54 Yes        50-59            52 No         With Tra… A: Disabl…\n 3    56       57 Yes        16-19            18 No         <NA>      C: Possib…\n 4   209      210 No         16-19            16 No         Facing T… C: Possib…\n 5   228      229 Yes        40-49            40 No         With Tra… B: Eviden…\n 6   620      621 Yes        50-59            55 No         With Tra… B: Eviden…\n 7   667      668 Yes        60-69            61 No         Not Appl… B: Eviden…\n 8   458      459 Yes        60-69            62 No         With Tra… B: Eviden…\n 9   576      577 No         40-49            49 No         With Tra… C: Possib…\n10   618      619 No         20-24            23 No         With Tra… C: Possib…\n# ℹ 243 more rows\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#filter-1",
+    "href": "content/lectures/02-dplyr.html#filter-1",
+    "title": "02-dplyr",
+    "section": "filter",
+    "text": "filter\nfor crashes in Durham County where biker was < 10 yrs old\n\nbike |>\n  filter(County == \"Durham\", Bike_Age < 10)\n\n# A tibble: 20 × 54\n     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur\n   <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>     \n 1    18       19 No         <NA>              6 No         Not Appl… C: Possib…\n 2    47       48 No         10-Jun            9 No         Not Appl… O: No Inj…\n 3   124      125 Yes        10-Jun            8 No         With Tra… C: Possib…\n 4   531      532 Yes        10-Jun            7 No         With Tra… C: Possib…\n 5   704      705 Yes        10-Jun            9 No         Not Appl… C: Possib…\n 6    42       43 No         10-Jun            8 No         With Tra… O: No Inj…\n 7   392      393 Yes        0-5               2 No         Not Appl… B: Eviden…\n 8   941      942 No         10-Jun            9 No         With Tra… C: Possib…\n 9   436      437 Yes        10-Jun            6 No         Not Appl… O: No Inj…\n10   160      161 Yes        10-Jun            7 No         With Tra… C: Possib…\n11   273      274 Yes        10-Jun            7 No         Facing T… C: Possib…\n12    78       79 Yes        10-Jun            7 No         With Tra… C: Possib…\n13   422      423 No         10-Jun            9 No         Not Appl… O: No Inj…\n14   570      571 No         <NA>              0 Missing    Not Appl… Injury    \n15   683      684 Yes        10-Jun            8 No         Not Appl… C: Possib…\n16    62       63 Yes        10-Jun            7 No         With Tra… C: Possib…\n17   248      249 No         0-5               4 No         Not Appl… O: No Inj…\n18   306      307 Yes        10-Jun            8 No         With Tra… C: Possib…\n19   231      232 Yes        10-Jun            8 No         With Tra… C: Possib…\n20   361      362 Yes        10-Jun            9 No         With Tra… B: Eviden…\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>,\n#   Drvr_Race <chr>, Drvr_Sex <chr>, Drvr_VehTy <chr>, ExcsSpdInd <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#aside-real-data-is-messy",
+    "href": "content/lectures/02-dplyr.html#aside-real-data-is-messy",
+    "title": "02-dplyr",
+    "section": "Aside: real data is messy!",
+    "text": "Aside: real data is messy!\n   What in the world does a BikeAge_gr of 10-Jun or 15-Nov mean?\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(crash_count = n())\n\n# A tibble: 13 × 2\n   BikeAge_Gr crash_count\n   <chr>            <int>\n 1 0-5                 60\n 2 10-Jun             421\n 3 15-Nov             747\n 4 16-19              605\n 5 20-24              680\n 6 25-29              430\n 7 30-39              658\n 8 40-49              920\n 9 50-59              739\n10 60-69              274\n11 70                  12\n12 70+                 58\n13 <NA>               112"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#careful-data-scientists-clean-up-their-data-first",
+    "href": "content/lectures/02-dplyr.html#careful-data-scientists-clean-up-their-data-first",
+    "title": "02-dplyr",
+    "section": "Careful data scientists clean up their data first!",
+    "text": "Careful data scientists clean up their data first!\n\nWe’re going to need to do some text parsing to clean up these data\n\n10-Jun should be 6-10\n15-Nov should be 11-15"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#correct-and-overwrite-mutate",
+    "href": "content/lectures/02-dplyr.html#correct-and-overwrite-mutate",
+    "title": "02-dplyr",
+    "section": "Correct and overwrite mutate",
+    "text": "Correct and overwrite mutate\n\nRemember we want to do the following in the BikeAge_Gr variable\n\n10-Jun should be 6-10\n15-Nov should be 11-15\n\n\n\nbike <- bike |>\n  mutate(\n    BikeAge_Gr = case_when(\n      BikeAge_Gr == \"10-Jun\" ~ \"6-10\",\n      BikeAge_Gr == \"15-Nov\" ~ \"11-15\",\n      TRUE                   ~ BikeAge_Gr     # everything else\n    )\n  )\n\n\nNote that we’re overwriting existing data and columns, so be careful!\n\nBut remember, it’s easy to revert if you make a mistake since we didn’t touch the raw data, we can always reload it and start over"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#check-before-you-move-on",
+    "href": "content/lectures/02-dplyr.html#check-before-you-move-on",
+    "title": "02-dplyr",
+    "section": "Check before you move on",
+    "text": "Check before you move on\nAlways check your changes and confirm code did what you wanted it to do\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(count = n())\n\n# A tibble: 13 × 2\n   BikeAge_Gr count\n   <chr>      <int>\n 1 0-5           60\n 2 11-15        747\n 3 16-19        605\n 4 20-24        680\n 5 25-29        430\n 6 30-39        658\n 7 40-49        920\n 8 50-59        739\n 9 6-10         421\n10 60-69        274\n11 70            12\n12 70+           58\n13 <NA>         112"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#mutate-to-add-new-variables",
+    "href": "content/lectures/02-dplyr.html#mutate-to-add-new-variables",
+    "title": "02-dplyr",
+    "section": "mutate to add new variables",
+    "text": "mutate to add new variables\n   How is the new alcohol variable determined?\n\nbike |>\n  mutate(alcohol = case_when(\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"No\"      ~ \"No\",\n    Bike_Alc_D == \"Yes\" | Drvr_Alc_D == \"Yes\"    ~ \"Yes\",\n    Bike_Alc_D == \"Missing\" & Drvr_Alc_D == \"No\" ~ \"Missing\",\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"Missing\" ~ \"Missing\"\n  ))"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#save-when-you-mutate",
+    "href": "content/lectures/02-dplyr.html#save-when-you-mutate",
+    "title": "02-dplyr",
+    "section": "“Save” when you mutate",
+    "text": "“Save” when you mutate\nMost often when you define a new variable with mutate you’ll also want to save the resulting data frame, often by writing over the original data frame.\n\nbike <- bike |>\n  mutate(alcohol = case_when(\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"No\"      ~ \"No\",\n    Bike_Alc_D == \"Yes\" | Drvr_Alc_D == \"Yes\"    ~ \"Yes\",\n    Bike_Alc_D == \"Missing\" & Drvr_Alc_D == \"No\" ~ \"Missing\",\n    Bike_Alc_D == \"No\" & Drvr_Alc_D == \"Missing\" ~ \"Missing\"\n  ))"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#transmute-to-create-a-new-dataset",
+    "href": "content/lectures/02-dplyr.html#transmute-to-create-a-new-dataset",
+    "title": "02-dplyr",
+    "section": "transmute to create a new dataset",
+    "text": "transmute to create a new dataset\nYou’ll use this much less often than mutate but when you need it, you need it.\n\nbike |> \n  transmute(ID = paste(FID, OBJECTID, sep = \"-\"))\n\n# A tibble: 5,716 × 1\n   ID   \n   <chr>\n 1 18-19\n 2 29-30\n 3 33-34\n 4 35-36\n 5 49-50\n 6 53-54\n 7 56-57\n 8 60-61\n 9 63-64\n10 66-67\n# ℹ 5,706 more rows"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#mutate-vs.-transmute",
+    "href": "content/lectures/02-dplyr.html#mutate-vs.-transmute",
+    "title": "02-dplyr",
+    "section": "mutate vs. transmute",
+    "text": "mutate vs. transmute\n\nmutate adds new and keeps original\ntransmute adds new; drops existing"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#your-turn",
+    "href": "content/lectures/02-dplyr.html#your-turn",
+    "title": "02-dplyr",
+    "section": "Your Turn",
+    "text": "Your Turn\nHow many accidents in our dataset required an ambulance ride (AmbulanceR) and had the Crash_Type “Bicyclist Lost Control - Mechanical Problems”?\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#slice-for-certain-row-numbers",
+    "href": "content/lectures/02-dplyr.html#slice-for-certain-row-numbers",
+    "title": "02-dplyr",
+    "section": "slice for certain row numbers",
+    "text": "slice for certain row numbers\nFirst five\n\nbike |>\n  slice(1:5)\n\n# A tibble: 5 × 54\n    FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir   Bike_Injur\n  <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>      <chr>     \n1    18       19 No         <NA>              6 No         Not Appli… C: Possib…\n2    29       30 Yes        50-59            51 No         With Traf… C: Possib…\n3    33       34 No         <NA>             10 No         With Traf… Injury    \n4    35       36 Yes        16-19            17 No         <NA>       B: Eviden…\n5    49       50 No         <NA>              6 No         Facing Tr… O: No Inj…\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>,\n#   Drvr_Race <chr>, Drvr_Sex <chr>, Drvr_VehTy <chr>, ExcsSpdInd <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#slice-for-certain-row-numbers-1",
+    "href": "content/lectures/02-dplyr.html#slice-for-certain-row-numbers-1",
+    "title": "02-dplyr",
+    "section": "slice for certain row numbers",
+    "text": "slice for certain row numbers\nLast five\n\nlast_row <- nrow(bike)\nbike |>\n  slice((last_row - 4):last_row)\n\n# A tibble: 5 × 54\n    FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir   Bike_Injur\n  <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>      <chr>     \n1   460      461 Yes        6-10              7 No         Not Appli… C: Possib…\n2   474      475 Yes        50-59            50 No         With Traf… B: Eviden…\n3   479      480 Yes        16-19            16 No         Not Appli… C: Possib…\n4   487      488 No         40-49            47 Yes        With Traf… C: Possib…\n5   488      489 Yes        30-39            35 No         Facing Tr… C: Possib…\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>,\n#   Drvr_Race <chr>, Drvr_Sex <chr>, Drvr_VehTy <chr>, ExcsSpdInd <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#select-to-keep-only-the-variables-you-mention",
+    "href": "content/lectures/02-dplyr.html#select-to-keep-only-the-variables-you-mention",
+    "title": "02-dplyr",
+    "section": "select to keep only the variables you mention",
+    "text": "select to keep only the variables you mention\n\nbike |>\n  select(Crash_Loc, Hit_Run) |>\n  table()\n\n                      Hit_Run\nCrash_Loc                No  Yes\n  Intersection         2223  275\n  Intersection-Related  252   42\n  Location                3    7\n  Non-Intersection     2213  462\n  Non-Roadway           205   30"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#or-select-to-exclude-variables",
+    "href": "content/lectures/02-dplyr.html#or-select-to-exclude-variables",
+    "title": "02-dplyr",
+    "section": "or select to exclude variables",
+    "text": "or select to exclude variables\n\nbike |>\n  select(-OBJECTID)\n\n# A tibble: 5,716 × 53\n     FID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur Bike_Pos\n   <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>      <chr>   \n 1    18 No         <NA>              6 No         Not Appl… C: Possib… Drivewa…\n 2    29 Yes        50-59            51 No         With Tra… C: Possib… Travel …\n 3    33 No         <NA>             10 No         With Tra… Injury     Travel …\n 4    35 Yes        16-19            17 No         <NA>      B: Eviden… Travel …\n 5    49 No         <NA>              6 No         Facing T… O: No Inj… Travel …\n 6    53 Yes        50-59            52 No         With Tra… A: Disabl… Travel …\n 7    56 Yes        16-19            18 No         <NA>      C: Possib… Travel …\n 8    60 No         40-49            40 No         Facing T… B: Eviden… Sidewal…\n 9    63 Yes        6-10              6 No         Facing T… B: Eviden… Travel …\n10    66 Yes        6-10              7 No         <NA>      B: Eviden… Non-Roa…\n# ℹ 5,706 more rows\n# ℹ 45 more variables: Bike_Race <chr>, Bike_Sex <chr>, City <chr>,\n#   County <chr>, CrashAlcoh <chr>, CrashDay <chr>, Crash_Date <date>,\n#   Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>, Crash_Mont <chr>,\n#   Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>, Crash_Year <dbl>,\n#   Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>, Drvr_Age <dbl>,\n#   Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>, Drvr_Race <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#or-select-a-range-of-variables",
+    "href": "content/lectures/02-dplyr.html#or-select-a-range-of-variables",
+    "title": "02-dplyr",
+    "section": "or select a range of variables",
+    "text": "or select a range of variables\n\nbike |>\n  select(OBJECTID:Bike_Injur)\n\n# A tibble: 5,716 × 7\n   OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir       Bike_Injur \n      <dbl> <chr>      <chr>         <dbl> <chr>      <chr>          <chr>      \n 1       19 No         <NA>              6 No         Not Applicable C: Possibl…\n 2       30 Yes        50-59            51 No         With Traffic   C: Possibl…\n 3       34 No         <NA>             10 No         With Traffic   Injury     \n 4       36 Yes        16-19            17 No         <NA>           B: Evident…\n 5       50 No         <NA>              6 No         Facing Traffic O: No Inju…\n 6       54 Yes        50-59            52 No         With Traffic   A: Disabli…\n 7       57 Yes        16-19            18 No         <NA>           C: Possibl…\n 8       61 No         40-49            40 No         Facing Traffic B: Evident…\n 9       64 Yes        6-10              6 No         Facing Traffic B: Evident…\n10       67 Yes        6-10              7 No         <NA>           B: Evident…\n# ℹ 5,706 more rows"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#pull-to-extract-a-column-as-a-vector",
+    "href": "content/lectures/02-dplyr.html#pull-to-extract-a-column-as-a-vector",
+    "title": "02-dplyr",
+    "section": "pull to extract a column as a vector",
+    "text": "pull to extract a column as a vector\n\nbike |>\n  slice(1:6) |>\n  pull(Location)\n\n[1] \"36.002743, -78.8785\"  \"35.612984, -77.39265\" \"35.595676, -77.59074\"\n[4] \"35.076767, -80.7728\"  \"35.19999, -80.75713\"  \"35.966644, -78.96749\"\n\n\n\nbike |>\n  slice(1:6) |>\n  select(Location)\n\n# A tibble: 6 × 1\n  Location            \n  <chr>               \n1 36.002743, -78.8785 \n2 35.612984, -77.39265\n3 35.595676, -77.59074\n4 35.076767, -80.7728 \n5 35.19999, -80.75713 \n6 35.966644, -78.96749"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#the-two-pulls-in-your-lives",
+    "href": "content/lectures/02-dplyr.html#the-two-pulls-in-your-lives",
+    "title": "02-dplyr",
+    "section": "The two pulls in your lives",
+    "text": "The two pulls in your lives\n\n\n\n\n\n\n\n\nDon’t get pull happy when wrangling data! Only extract out variables if you truly need to, otherwise keep in data frame.\nBut always ⬇️ Pull before starting your work when collaborating on GitHub."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#rename-specific-columns",
+    "href": "content/lectures/02-dplyr.html#rename-specific-columns",
+    "title": "02-dplyr",
+    "section": "rename specific columns",
+    "text": "rename specific columns\nUseful for correcting typos, and renaming to make variable names shorter and/or more informative\n\nOriginal names:\n\n\nnames(bike)\n\n [1] \"FID\"        \"OBJECTID\"   \"AmbulanceR\" \"BikeAge_Gr\" \"Bike_Age\"  \n [6] \"Bike_Alc_D\" \"Bike_Dir\"   \"Bike_Injur\" \"Bike_Pos\"   \"Bike_Race\" \n[11] \"Bike_Sex\"   \"City\"       \"County\"     \"CrashAlcoh\" \"CrashDay\"  \n[16] \"Crash_Date\" \"Crash_Grp\"  \"Crash_Hour\" \"Crash_Loc\"  \"Crash_Mont\"\n[21] \"Crash_Time\" \"Crash_Type\" \"Crash_Ty_1\" \"Crash_Year\" \"Crsh_Sevri\"\n[26] \"Developmen\" \"DrvrAge_Gr\" \"Drvr_Age\"   \"Drvr_Alc_D\" \"Drvr_EstSp\"\n[31] \"Drvr_Injur\" \"Drvr_Race\"  \"Drvr_Sex\"   \"Drvr_VehTy\" \"ExcsSpdInd\"\n[36] \"Hit_Run\"    \"Light_Cond\" \"Locality\"   \"Num_Lanes\"  \"Num_Units\" \n[41] \"Rd_Charact\" \"Rd_Class\"   \"Rd_Conditi\" \"Rd_Config\"  \"Rd_Defects\"\n[46] \"Rd_Feature\" \"Rd_Surface\" \"Region\"     \"Rural_Urba\" \"Speed_Limi\"\n[51] \"Traff_Cntr\" \"Weather\"    \"Workzone_I\" \"Location\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#rename-specific-columns-1",
+    "href": "content/lectures/02-dplyr.html#rename-specific-columns-1",
+    "title": "02-dplyr",
+    "section": "rename specific columns",
+    "text": "rename specific columns\n\nRename Speed_Limi to Speed_Limit:\n\n\nbike <- bike |>\n  rename(Speed_Limit = Speed_Limi)"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#check-before-you-move-on-1",
+    "href": "content/lectures/02-dplyr.html#check-before-you-move-on-1",
+    "title": "02-dplyr",
+    "section": "Check before you move on",
+    "text": "Check before you move on\nAlways check your changes and confirm code did what you wanted it to do\n\nnames(bike)\n\n [1] \"FID\"         \"OBJECTID\"    \"AmbulanceR\"  \"BikeAge_Gr\"  \"Bike_Age\"   \n [6] \"Bike_Alc_D\"  \"Bike_Dir\"    \"Bike_Injur\"  \"Bike_Pos\"    \"Bike_Race\"  \n[11] \"Bike_Sex\"    \"City\"        \"County\"      \"CrashAlcoh\"  \"CrashDay\"   \n[16] \"Crash_Date\"  \"Crash_Grp\"   \"Crash_Hour\"  \"Crash_Loc\"   \"Crash_Mont\" \n[21] \"Crash_Time\"  \"Crash_Type\"  \"Crash_Ty_1\"  \"Crash_Year\"  \"Crsh_Sevri\" \n[26] \"Developmen\"  \"DrvrAge_Gr\"  \"Drvr_Age\"    \"Drvr_Alc_D\"  \"Drvr_EstSp\" \n[31] \"Drvr_Injur\"  \"Drvr_Race\"   \"Drvr_Sex\"    \"Drvr_VehTy\"  \"ExcsSpdInd\" \n[36] \"Hit_Run\"     \"Light_Cond\"  \"Locality\"    \"Num_Lanes\"   \"Num_Units\"  \n[41] \"Rd_Charact\"  \"Rd_Class\"    \"Rd_Conditi\"  \"Rd_Config\"   \"Rd_Defects\" \n[46] \"Rd_Feature\"  \"Rd_Surface\"  \"Region\"      \"Rural_Urba\"  \"Speed_Limit\"\n[51] \"Traff_Cntr\"  \"Weather\"     \"Workzone_I\"  \"Location\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#your-turn-1",
+    "href": "content/lectures/02-dplyr.html#your-turn-1",
+    "title": "02-dplyr",
+    "section": "Your Turn",
+    "text": "Your Turn\nYour boss in Cumberland County gets overwhelmed by data easily, but he wants some data from you. He wants all bike accidents from his County, but he only wants to know the road’s speed limit, the age of the biker, and to know if alcohol was involved. If you have time, mine as well make the column names very clear to your boss while you’re at it…\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#summarize-to-reduce-variables-to-values",
+    "href": "content/lectures/02-dplyr.html#summarize-to-reduce-variables-to-values",
+    "title": "02-dplyr",
+    "section": "summarize to reduce variables to values",
+    "text": "summarize to reduce variables to values\nThe values are summarized in a data frame\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(crash_count = n())\n\n# A tibble: 13 × 2\n   BikeAge_Gr crash_count\n   <chr>            <int>\n 1 0-5                 60\n 2 11-15              747\n 3 16-19              605\n 4 20-24              680\n 5 25-29              430\n 6 30-39              658\n 7 40-49              920\n 8 50-59              739\n 9 6-10               421\n10 60-69              274\n11 70                  12\n12 70+                 58\n13 <NA>               112"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#and-arrange-to-order-rows",
+    "href": "content/lectures/02-dplyr.html#and-arrange-to-order-rows",
+    "title": "02-dplyr",
+    "section": "and arrange to order rows",
+    "text": "and arrange to order rows\n\nbike |>\n  group_by(BikeAge_Gr) |>\n  summarize(crash_count = n()) |>\n  arrange(desc(crash_count))\n\n# A tibble: 13 × 2\n   BikeAge_Gr crash_count\n   <chr>            <int>\n 1 40-49              920\n 2 11-15              747\n 3 50-59              739\n 4 20-24              680\n 5 30-39              658\n 6 16-19              605\n 7 25-29              430\n 8 6-10               421\n 9 60-69              274\n10 <NA>               112\n11 0-5                 60\n12 70+                 58\n13 70                  12"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#count-to-group-by-then-count",
+    "href": "content/lectures/02-dplyr.html#count-to-group-by-then-count",
+    "title": "02-dplyr",
+    "section": "count to group by then count",
+    "text": "count to group by then count\n\nbike |>\n  count(BikeAge_Gr)\n\n# A tibble: 13 × 2\n   BikeAge_Gr     n\n   <chr>      <int>\n 1 0-5           60\n 2 11-15        747\n 3 16-19        605\n 4 20-24        680\n 5 25-29        430\n 6 30-39        658\n 7 40-49        920\n 8 50-59        739\n 9 6-10         421\n10 60-69        274\n11 70            12\n12 70+           58\n13 <NA>         112\n\n\n   If you wanted to arrange these in ascending order what would you add to the pipe?"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#select-rows-with-sample_n-or-sample_frac",
+    "href": "content/lectures/02-dplyr.html#select-rows-with-sample_n-or-sample_frac",
+    "title": "02-dplyr",
+    "section": "Select rows with sample_n or sample_frac",
+    "text": "Select rows with sample_n or sample_frac\n\nsample_n: randomly sample 5 observations\n\n\nbike_n5 <- bike |>\n  sample_n(5, replace = FALSE)\n\ndim(bike_n5)\n\n[1]  5 54\n\n\n\nsample_frac: randomly sample 20% of observations\n\n\nbike_perc20 <- bike |>\n  sample_frac(0.2, replace = FALSE)\n\ndim(bike_perc20)\n\n[1] 1143   54"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#distinct-to-filter-for-unique-rows",
+    "href": "content/lectures/02-dplyr.html#distinct-to-filter-for-unique-rows",
+    "title": "02-dplyr",
+    "section": "distinct to filter for unique rows",
+    "text": "distinct to filter for unique rows\n\nbike |> \n  select(County, City) |> \n  distinct() |> \n  arrange(County, City)\n\n# A tibble: 360 × 2\n   County    City              \n   <chr>     <chr>             \n 1 Alamance  Alamance          \n 2 Alamance  Burlington        \n 3 Alamance  Elon College      \n 4 Alamance  Gibsonville       \n 5 Alamance  Graham            \n 6 Alamance  Green Level       \n 7 Alamance  Mebane            \n 8 Alamance  None - Rural Crash\n 9 Alexander None - Rural Crash\n10 Alleghany None - Rural Crash\n# ℹ 350 more rows"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#distinct-has-a-.keep_all-parameter",
+    "href": "content/lectures/02-dplyr.html#distinct-has-a-.keep_all-parameter",
+    "title": "02-dplyr",
+    "section": "distinct has a .keep_all parameter",
+    "text": "distinct has a .keep_all parameter\n\nbike |> \n  distinct(County, City, .keep_all = TRUE) |> \n  arrange(County, City)\n\n# A tibble: 360 × 54\n     FID OBJECTID AmbulanceR BikeAge_Gr Bike_Age Bike_Alc_D Bike_Dir  Bike_Injur\n   <dbl>    <dbl> <chr>      <chr>         <dbl> <chr>      <chr>     <chr>     \n 1   524      525 Yes        11-15            12 No         <NA>      B: Eviden…\n 2    84       85 Yes        20-24            20 No         With Tra… B: Eviden…\n 3   571      572 Yes        16-19            16 No         Not Appl… B: Eviden…\n 4   509      510 Yes        40-49            43 Yes        With Tra… K: Killed \n 5   855      856 Yes        30-39            30 No         With Tra… A: Disabl…\n 6     5        6 Yes        40-49            44 Yes        With Tra… C: Possib…\n 7   163      164 Yes        30-39            35 No         Not Appl… C: Possib…\n 8    96       97 Yes        30-39            36 No         With Tra… C: Possib…\n 9    46       47 Yes        50-59            53 No         With Tra… B: Eviden…\n10   485      486 Yes        60-69            62 No         With Tra… C: Possib…\n# ℹ 350 more rows\n# ℹ 46 more variables: Bike_Pos <chr>, Bike_Race <chr>, Bike_Sex <chr>,\n#   City <chr>, County <chr>, CrashAlcoh <chr>, CrashDay <chr>,\n#   Crash_Date <date>, Crash_Grp <chr>, Crash_Hour <dbl>, Crash_Loc <chr>,\n#   Crash_Mont <chr>, Crash_Time <dttm>, Crash_Type <chr>, Crash_Ty_1 <dbl>,\n#   Crash_Year <dbl>, Crsh_Sevri <chr>, Developmen <chr>, DrvrAge_Gr <chr>,\n#   Drvr_Age <dbl>, Drvr_Alc_D <chr>, Drvr_EstSp <chr>, Drvr_Injur <chr>, …"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#factors-1",
+    "href": "content/lectures/02-dplyr.html#factors-1",
+    "title": "02-dplyr",
+    "section": "Factors",
+    "text": "Factors\nFactor objects are how R stores data for categorical variables (fixed numbers of discrete values).\n\n(x = factor(c(\"BS\", \"MS\", \"PhD\", \"MS\")))\n\n[1] BS  MS  PhD MS \nLevels: BS MS PhD\n\n\n\nglimpse(x)\n\n Factor w/ 3 levels \"BS\",\"MS\",\"PhD\": 1 2 3 2\n\n\n\ntypeof(x)\n\n[1] \"integer\""
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#returning-to-cat-lovers",
+    "href": "content/lectures/02-dplyr.html#returning-to-cat-lovers",
+    "title": "02-dplyr",
+    "section": "Returning to: Cat lovers",
+    "text": "Returning to: Cat lovers\nReading in the cat-lovers data…\n\ncat_lovers <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/cat-lovers.csv\")"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#read-data-in-as-character-strings",
+    "href": "content/lectures/02-dplyr.html#read-data-in-as-character-strings",
+    "title": "02-dplyr",
+    "section": "Read data in as character strings",
+    "text": "Read data in as character strings\n\nglimpse(cat_lovers)\n\nRows: 60\nColumns: 3\n$ name           <chr> \"Bernice Warren\", \"Woodrow Stone\", \"Willie Bass\", \"Tyro…\n$ number_of_cats <chr> \"0\", \"0\", \"1\", \"3\", \"3\", \"2\", \"1\", \"1\", \"0\", \"0\", \"0\", …\n$ handedness     <chr> \"left\", \"left\", \"left\", \"left\", \"left\", \"left\", \"left\",…"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#but-coerce-when-plotting",
+    "href": "content/lectures/02-dplyr.html#but-coerce-when-plotting",
+    "title": "02-dplyr",
+    "section": "But coerce when plotting",
+    "text": "But coerce when plotting\n\nggplot(cat_lovers, mapping = aes(x = handedness)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#use-forcats-to-manipulate-factors",
+    "href": "content/lectures/02-dplyr.html#use-forcats-to-manipulate-factors",
+    "title": "02-dplyr",
+    "section": "Use forcats to manipulate factors",
+    "text": "Use forcats to manipulate factors\n\ncat_lovers <- cat_lovers |>\n  mutate(handedness = fct_relevel(handedness, \n                                  \"right\", \"left\", \"ambidextrous\"))\n\n\nggplot(cat_lovers, mapping = aes(x = handedness)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/02-dplyr.html#forcats-functionality",
+    "href": "content/lectures/02-dplyr.html#forcats-functionality",
+    "title": "02-dplyr",
+    "section": "forcats functionality ",
+    "text": "forcats functionality \n\nR uses factors to handle categorical variables, variables that have a fixed and known set of possible values. Historically, factors were much easier to work with than character vectors, so many base R functions automatically convert character vectors to factors.\nfactors are still useful when you have true categorical data, and when you want to override the ordering of character vectors to improve display. The goal of the forcats package is to provide a suite of useful tools that solve common problems with factors.\n\n\n\nSource: forcats.tidyverse.org"
   }
 ]

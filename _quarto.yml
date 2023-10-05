@@ -47,8 +47,8 @@ website:
             href: content/lectures/00-welcome-slides.html
           - text: "01-intro-to-r"
             href: content/lectures/01-intro-to-r-slides.html
-          # - text: "02-dplyr"
-          #   href: content/lectures/02-dplyr-slides.html
+          - text: "02-dplyr"
+            href: content/lectures/02-dplyr-slides.html
           # - text: "03-tidyr"
           #   href: content/lectures/03-tidyr-slides.html
           # - text: "04-ggplot2"
@@ -89,8 +89,8 @@ website:
             href: content/lectures/00-welcome.qmd
           - text: "01-intro-to-r"
             href: content/lectures/01-intro-to-r.qmd
-          # - text: "02-dplyr"
-          #   href: content/lectures/02-dplyr.qmd
+          - text: "02-dplyr"
+            href: content/lectures/02-dplyr.qmd
           # - text: "03-tidyr"
           #   href: content/lectures/03-tidyr.qmd
           # - text: "04-ggplot2"

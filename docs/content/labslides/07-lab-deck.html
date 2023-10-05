@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="">
 
-<title>COGS 137 – schedule</title>
+<title>COGS 137 - Lab 07: Logistic Regression</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -23,23 +24,23 @@ ul.task-list li input[type="checkbox"] {
 </style>
 
 
-<script src="site_libs/quarto-nav/quarto-nav.js"></script>
-<script src="site_libs/quarto-nav/headroom.min.js"></script>
-<script src="site_libs/clipboard/clipboard.min.js"></script>
-<script src="site_libs/quarto-search/autocomplete.umd.js"></script>
-<script src="site_libs/quarto-search/fuse.min.js"></script>
-<script src="site_libs/quarto-search/quarto-search.js"></script>
-<meta name="quarto:offset" content="./">
-<link href="./images/favicon.ico" rel="icon">
-<script src="site_libs/quarto-html/quarto.js"></script>
-<script src="site_libs/quarto-html/popper.min.js"></script>
-<script src="site_libs/quarto-html/tippy.umd.min.js"></script>
-<script src="site_libs/quarto-html/anchor.min.js"></script>
-<link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
-<script src="site_libs/bootstrap/bootstrap.min.js"></script>
-<link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -61,7 +62,7 @@ ul.task-list li input[type="checkbox"] {
 }</script>
 
 
-<link rel="stylesheet" href="styles.css">
+<link rel="stylesheet" href="../../styles.css">
 </head>
 
 <body class="nav-sidebar docked nav-fixed">
@@ -71,10 +72,10 @@ ul.task-list li input[type="checkbox"] {
     <nav class="navbar navbar-expand-lg navbar-dark ">
       <div class="navbar-container container-fluid">
       <div class="navbar-brand-container">
-    <a href="./index.html" class="navbar-brand navbar-brand-logo">
-    <img src="./images/cogs137-logo-hex.png" alt="" class="navbar-logo">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/cogs137-logo-hex.png" alt="" class="navbar-logo">
     </a>
-    <a class="navbar-brand" href="./index.html">
+    <a class="navbar-brand" href="../../index.html">
     <span class="navbar-title">COGS 137</span>
     </a>
   </div>
@@ -84,15 +85,15 @@ ul.task-list li input[type="checkbox"] {
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="./index.html" rel="" target="">
+    <a class="nav-link" href="../../index.html" rel="" target="">
  <span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link active" href="./schedule.html" rel="" target="" aria-current="page">
+    <a class="nav-link" href="../../schedule.html" rel="" target="">
  <span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="./policies.html" rel="" target="">
+    <a class="nav-link" href="../../policies.html" rel="" target="">
  <span class="menu-text">Policies</span></a>
   </li>  
 </ul>
@@ -114,7 +115,7 @@ ul.task-list li input[type="checkbox"] {
     </nav>
   <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
     <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title"></h1>
+      <h1 class="quarto-secondary-nav-title">Lab 07: Logistic Regression</h1>
       <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
         <i class="bi bi-chevron-right"></i>
       </button>
@@ -142,12 +143,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  <a href="../../content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
   </div>
 </li>
       </ul>
@@ -162,12 +163,12 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome</a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  <a href="../../content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
   </div>
 </li>
       </ul>
@@ -182,7 +183,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link">Lab01: Tooling and R</a>
+  <a href="../../content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link">Lab01: Tooling and R</a>
   </div>
 </li>
       </ul>
@@ -197,7 +198,7 @@ ul.task-list li input[type="checkbox"] {
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">Lab01</a>
+  <a href="../../content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">Lab01</a>
   </div>
 </li>
       </ul>
@@ -207,263 +208,142 @@ ul.task-list li input[type="checkbox"] {
 </nav>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
-        
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#lab-07-logistic-regression" id="toc-lab-07-logistic-regression" class="nav-link active" data-scroll-target="#lab-07-logistic-regression">Lab 07: Logistic Regression</a>
+  <ul class="collapse">
+  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
+  <li><a href="#data-come-from" id="toc-data-come-from" class="nav-link" data-scroll-target="#data-come-from">Data come from…</a></li>
+  <li><a href="#study" id="toc-study" class="nav-link" data-scroll-target="#study">Study</a></li>
+  <li><a href="#backwards-elimination-logistic-regression" id="toc-backwards-elimination-logistic-regression" class="nav-link" data-scroll-target="#backwards-elimination-logistic-regression">Backwards elimination (Logistic Regression)</a></li>
+  <li><a href="#a-note-on-this-lab" id="toc-a-note-on-this-lab" class="nav-link" data-scroll-target="#a-note-on-this-lab">A note on this lab</a></li>
+  </ul></li>
+  </ul>
+</nav>
     </div>
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">Lab 07: Logistic Regression</h1>
+</div>
 
 
-<table class="table">
-<colgroup>
-<col style="width: 7%">
-<col style="width: 15%">
-<col style="width: 61%">
-<col style="width: 15%">
-</colgroup>
-<thead>
-<tr class="header">
-<th>Week</th>
-<th>Date</th>
-<th>Title</th>
-<th>Type</th>
-</tr>
-</thead>
-<tbody>
-<tr class="odd">
-<td><strong>0</strong></td>
-<td><strong>Th Sep 28</strong></td>
-<td><strong>Welcome &amp; Tooling</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>Tu Oct 3</td>
-<td>Intro to R</td>
-<td>Lecture</td>
-</tr>
-<tr class="odd">
-<td>1</td>
-<td>Th Oct 5</td>
-<td>Data Wrangling: <code>dplyr</code></td>
-<td>Lecture</td>
-</tr>
-<tr class="even">
-<td>1</td>
-<td>Fri Oct 6</td>
-<td>Lab 01: Intro to R</td>
-<td>Lab</td>
-</tr>
-<tr class="odd">
-<td><strong>2</strong></td>
-<td><strong>Tu Oct 10</strong></td>
-<td><strong>Data Wrangling: <code>tidyr</code></strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="even">
-<td><strong>2</strong></td>
-<td><strong>Th Oct 12</strong></td>
-<td><strong>Data Visualization: <code>ggplot2</code> (day 1)</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>2</strong></td>
-<td><strong>Fri Oct 13</strong></td>
-<td><strong>Lab 02: Data Wrangling</strong></td>
-<td><strong>Lab</strong></td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td>Mon Oct 16</td>
-<td><font color="#ABC57D">HW01 due (11:59 PM)</font></td>
-<td>HW</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Tu Oct 17</td>
-<td>Data Visualization: <code>ggplot2</code> (day 2)</td>
-<td>Lecture</td>
-</tr>
-<tr class="even">
-<td>3</td>
-<td>Th Oct 19</td>
-<td>Data Analysis &amp; Modeling</td>
-<td>Lecture</td>
-</tr>
-<tr class="odd">
-<td>3</td>
-<td>Fri Oct 20</td>
-<td>Lab 03: Data Visualization</td>
-<td>Lab</td>
-</tr>
-<tr class="even">
-<td><strong>4</strong></td>
-<td><strong>Tu Oct 24</strong></td>
-<td><strong>Linear Models Review</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>4</strong></td>
-<td><strong>Th Oct 26</strong></td>
-<td><strong>Effective Communication</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="even">
-<td><strong>4</strong></td>
-<td><strong>Fri Oct 27</strong></td>
-<td><strong>Lab 04: Modeling</strong></td>
-<td><strong>Lab</strong></td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Mon Oct 30</td>
-<td><font color="#ABC57D">HW02 due (11:59 PM)</font></td>
-<td>HW</td>
-</tr>
-<tr class="even">
-<td>5</td>
-<td>Tu Oct 31</td>
-<td>Case Study &amp; Final Project Info</td>
-<td>Lecture</td>
-</tr>
-<tr class="odd">
-<td>5</td>
-<td>Th Nov 2</td>
-<td><strong>Multiple Linear Regression</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="even">
-<td>5</td>
-<td>Fri Nov 3</td>
-<td>Lab used for midterm review</td>
-<td>Lab</td>
-</tr>
-<tr class="odd">
-<td><strong>6</strong></td>
-<td><strong>Mon Nov 6</strong></td>
-<td><font color="#ABC57D"><strong>MIDTERM EXAM (due 11:59 PM)</strong> </font></td>
-<td><strong>Exam</strong></td>
-</tr>
-<tr class="even">
-<td><strong>6</strong></td>
-<td><strong>Tu Nov 7</strong></td>
-<td><strong>Case Study 01: THC Biomarkers (day 1)</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>6</strong></td>
-<td><strong>Th Nov 9</strong></td>
-<td><strong>Case Study 01: THC Biomarkers (day 2)</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="even">
-<td><strong>6</strong></td>
-<td><strong>Fri Nov 10</strong></td>
-<td><strong>Lab 05: Multiple Linear Regression</strong></td>
-<td><strong>Lab</strong></td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Tu Nov 14</td>
-<td>Case Study 01: THC Biomarkers (day 3)</td>
-<td>Lecture</td>
-</tr>
-<tr class="even">
-<td>7</td>
-<td>Th Nov 16</td>
-<td>Logistic Regression</td>
-<td>Lecture</td>
-</tr>
-<tr class="odd">
-<td>7</td>
-<td>Fri Nov 17</td>
-<td>Lab 06: CS01</td>
-<td>Lab</td>
-</tr>
-<tr class="even">
-<td><strong>8</strong></td>
-<td><strong>Mon Nov 20</strong></td>
-<td><font color="#ABC57D">HW03 due (11:59 PM)</font></td>
-<td><strong>HW</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>8</strong></td>
-<td><strong>Mon Nov 20</strong></td>
-<td><font color="#ABC57D">Final Project Proposal Due</font></td>
-<td><strong>Project</strong></td>
-</tr>
-<tr class="even">
-<td><strong>8</strong></td>
-<td><strong>Tu Nov 21</strong></td>
-<td><strong>Case Study 02: Vaping Behaviors (day 1)</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>8</strong></td>
-<td><strong>Th Nov 23</strong></td>
-<td><strong>No Class (Thanksgiving)</strong></td>
-<td><strong>--</strong></td>
-</tr>
-<tr class="even">
-<td>9</td>
-<td>Mon Nov 27</td>
-<td><font color="#ABC57D">CS01 Due (11:59 PM)</font></td>
-<td>Case Study</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Tu Nov 28</td>
-<td>Case Study 02: Vaping Behaviors (day 2)</td>
-<td>Lecture</td>
-</tr>
-<tr class="even">
-<td>9</td>
-<td>Th Nov 30</td>
-<td>Case Study 02: Vaping Behaviors (day 3)</td>
-<td>Lecture</td>
-</tr>
-<tr class="odd">
-<td>9</td>
-<td>Fri Dec 1</td>
-<td>Lab 07: Logistic Regression &amp; CS02</td>
-<td>Lab</td>
-</tr>
-<tr class="even">
-<td><strong>10</strong></td>
-<td><strong>Mon Dec 4</strong></td>
-<td><font color="#ABC57D"><strong>CS02 Due</strong></font></td>
-<td><strong>Case Study</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>10</strong></td>
-<td><strong>Tu Dec 5</strong></td>
-<td><strong>Final Project Brainstorming</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="even">
-<td><strong>10</strong></td>
-<td><strong>Th Dec 7</strong></td>
-<td><strong>Next Steps</strong></td>
-<td><strong>Lecture</strong></td>
-</tr>
-<tr class="odd">
-<td><strong>10</strong></td>
-<td><strong>Fri Dec 8</strong></td>
-<td><strong>Lab 08: Final Project</strong></td>
-<td><strong>Lab</strong></td>
-</tr>
-<tr class="even">
-<td>Finals</td>
-<td>Tu Dec 12</td>
-<td><font color="#ABC57D">Final Project Due (11:59 PM)</font></td>
-<td>Project</td>
-</tr>
-</tbody>
-</table>
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="lab-07-logistic-regression" class="level1" data-background-color="#0E3A53">
+<h1 data-background-color="#0E3A53">Lab 07: Logistic Regression</h1>
+<section id="agenda" class="level2">
+<h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
+<ol type="1">
+<li>Lab 07: Modelling resumes</li>
+<li>Getting started with lab</li>
+</ol>
+</section>
+<section id="data-come-from" class="level2">
+<h2 class="anchored" data-anchor-id="data-come-from">Data come from…</h2>
+<p>“Are Emily and Greg More Employable than Lakisha and Jamal? A Field Experiment on Labor Market Discrimination.”</p>
+<p>Bertrand, Marianne, and Sendhil Mullainathan. 2003. <a href="https://doi.org/10.3386/w9873">https://doi.org/10.3386/w9873</a>.</p>
+</section>
+<section id="study" class="level2">
+<h2 class="anchored" data-anchor-id="study">Study</h2>
+<p>Goal: understand the influence of race and gender on job application callback rates</p>
+<div class="incremental">
+<section id="specs" class="level4">
+<h4 class="anchored" data-anchor-id="specs">Specs:</h4>
+<ul>
+<li>Two cities: Boston and Chicago</li>
+<li>Time: several months in 2001 and 2002</li>
+</ul>
+</section>
+<section id="plan" class="level4">
+<h4 class="anchored" data-anchor-id="plan">Plan:</h4>
+<ol type="1">
+<li>Researchers generated resumes, randomizing years of experience and education details</li>
+<li>Then: randomly assigned a name to the resume that would communicate the applicant’s gender and race</li>
+</ol>
+<ul>
+<li>they tested these names and removed those that did not suggest gender and race consistently</li>
+<li>i.e.&nbsp;Lakisha was a name that their survey indicated would be interpreted as a black woman, while Greg was a name that would generally be interpreted to be associated with a white male.”</li>
+</ul>
+</section>
+</div>
+</section>
+<section id="backwards-elimination-logistic-regression" class="level2">
+<h2 class="anchored" data-anchor-id="backwards-elimination-logistic-regression">Backwards elimination (Logistic Regression)</h2>
+<ul>
+<li><p>Start with <strong>full</strong> model (including all candidate explanatory variables and all candidate interactions)</p></li>
+<li><p>Remove one variable at a time, and select the model with the <em>lowest</em> AIC</p></li>
+<li><p>Continue until AIC does not decrease</p></li>
+</ul>
+<div class="incremental">
+<ul>
+<li>You do NOT have to include every model in your lab…just the final one you settle on.</li>
+</ul>
+</div>
+</section>
+<section id="a-note-on-this-lab" class="level2">
+<h2 class="anchored" data-anchor-id="a-note-on-this-lab">A note on this lab</h2>
+<ul>
+<li>There are three parts. We’ll be grading to see that you’ve done <em>some</em> EDA and have fit and interpreted at least two models (single and multiple predictors model)</li>
+<li>It’s OK if you don’t get to backwards elimination</li>
+</ul>
 
 
+</section>
+</section>
 
 </main> <!-- /main -->
+
+<script>
+  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
+  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
+  // slide changes (different for each slide format).
+  (function () {
+    // dispatch for htmlwidgets
+    function fireSlideEnter() {
+      const event = window.document.createEvent("Event");
+      event.initEvent("slideenter", true, true);
+      window.document.dispatchEvent(event);
+    }
+
+    function fireSlideChanged(previousSlide, currentSlide) {
+      fireSlideEnter();
+
+      // dispatch for shiny
+      if (window.jQuery) {
+        if (previousSlide) {
+          window.jQuery(previousSlide).trigger("hidden");
+        }
+        if (currentSlide) {
+          window.jQuery(currentSlide).trigger("shown");
+        }
+      }
+    }
+
+    // hookup for slidy
+    if (window.w3c_slidy) {
+      window.w3c_slidy.add_observer(function (slide_num) {
+        // slide_num starts at position 1
+        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
+      });
+    }
+
+  })();
+</script>
+
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {
@@ -690,7 +570,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="./LICENSE.html">License</a>
+    <a class="nav-link" href="../../LICENSE.html">License</a>
   </li>  
 </ul>
     </div>

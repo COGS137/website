@@ -88,7 +88,7 @@ To confirm that the changes have been implemented, run the following:
 
 ```{bash eval=FALSE}
 git config --global user.email
-git config --global user.email
+git config --global user.name
 ```
 
 ### Step 2: Generate ssh key

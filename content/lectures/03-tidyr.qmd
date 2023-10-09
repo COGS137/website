@@ -1,0 +1,372 @@
+---
+title: "03-tidyr"
+author: "Professor Shannon Ellis"
+date: "2023-10-10"
+
+format:
+  html: 
+    output-file: 03-tidyr.html
+  revealjs:
+    output-file: 03-tidyr-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    execute:
+     eval: true
+     echo: true
+     output: true
+---
+
+# Tidy Data with `tidyr` {background-color="#92A86A"}
+
+```{r echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+library(DT)
+
+# Set dpi and height for images
+knitr::opts_chunk$set(fig.height = 2.65, dpi = 300, echo=TRUE) 
+htmltools::tagList(rmarkdown::html_dependency_font_awesome())
+```
+
+## [ad] Data Science Student Society
+
+Join DS3 at their Fall General Body Meeting to learn more about the events they're offering this quarter, open board positions for the year, and free food! It will be happening on Wednesday (10/11) from 6-8pm, at PC Ballroom West
+
+![](images/03/DS3.png)
+
+## Q&A {.smaller}
+
+> Q: Is it possible to integrate to github using other systems than datahub? Datahub has already been spotty for me in this course and is notorious for slumping at critical pts in the quarter.  
+> A: Yup. The same steps can be carried out by [downloading RStudio](https://posit.co/download/rstudio-desktop/) onto your computer and connecting it with GitHub.
+
+> Q: Should we write in the console or in the rmd file first when writing code?  
+> A: Great question! I'd suggest starting in the Rmd file and editing there. That way you don't have to copy+paste once you get it right. It's already there.
+
+> Q: How do you take notes for coding classes? I know there are lecture notes available, but how would you recommend taking notes for this class?  
+> A: I would recommend opening a blank Rmd each day for class and saving it with the lecture number. I'd keep notes and things I tried in that file. But, I wouldn't copy+paste everything, since the other lecture notes are available. 
+
+## Course Announcements {.scrollable .smaller}
+
+**Due Dates**:
+
+-   **Lab 02** due Friday
+-   **HW01** now available; due Monday (10/16; 11:59 PM)
+-   Lecture Participation survey open until Thursday
+
+. . .
+
+**Notes**:
+
+-   Datahub: Launch RStudio (possible solution?)
+-   Staff office hours updated (see Canvas or website)
+
+## Student Comment {.smaller}
+
+> I have been struggling to grasp the material in the course. It feels like we are diving into the content in the labs, but I don't even feel like I truly understand what I'm doing. It often seems like I'm just copying and pasting code from the website without a clear understanding of the bigger picture. I'm particularly stuck because I feel like I don't have a solid grasp of the fundamental concepts of coding in R; it feels so new. I understand that the pace of the course may be challenging, but I think a bit more stronger focus on the foundational aspects of coding in R would greatly benefit students like me who are struggling with the content. I'm looking forward to the course and I hope I can grasp the content as we go through the next week. I'm concerned about learning the material and also how that may affect my grade.
+
+. . . 
+
+Let's see how y'all feel in a week. The first week can be *a lot* in this course. Often, students feel a lot more comfortable come week 3. 
+
+## Student Survey
+
+-   89% know Python; 15% know R; most (but not all!) have programmed before
+-   64% feel confident about effective data science communication
+-   Reasons for taking course: learn R, add to resume, analyze data, improve data science skills
+
+. . .
+
+My favorite boring facts:
+
+-   I was actually born on my birthday
+-   i don't like to eat eggs but my roommate loves them
+-   I like to have a midday nap.
+-   I can raise my eyebrows really well
+-   I eat peanut butter straight from the jar
+-   i have a jack russell terrier.. named jack (we weren't feeling creative)
+
+## Suggested Reading
+
+R4DS:
+
+-   Chapter 12: [Tidy Data](https://r4ds.had.co.nz/tidy-data.html)
+-   Chapter 13: [Relational Data](https://r4ds.had.co.nz/relational-data.html)
+
+## Tidy Data
+
+The opinionated `tidyverse` is named as such b/c it assumes/necessitates your data be "tidy".
+
+. . .
+
+> Tidy datasets are all alike, but every messy dataset is messy in its own way. ---- Hadley Wickham
+
+. . .
+
+1.  Each variable must have its own column.
+2.  Each observation must have its own row.
+3.  Each value must have its own cell.
+
+::: aside
+Source: https://r4ds.had.co.nz/tidy-data.html
+:::
+
+## Tidy or not? {.scrollable .smaller}
+
+[`r emo::ji("question")` Given the rules discussed, is the `cat_lovers` dataset tidy?]{style="background-color: #ADD8E6"}
+
+```{r}
+cat_lovers <- read_csv("https://raw.githubusercontent.com/COGS137/datasets/main/cat-lovers.csv")
+cat_lovers |> datatable()
+```
+
+. . .
+
+[`r emo::ji("question")` Given the rules discussed, is the `bike` dataset tidy?]{style="background-color: #ADD8E6"}
+
+```{r}
+bike <- read_csv2("https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv", 
+                  na = c("NA", "", "."))
+bike |> datatable()
+```
+
+## Summary tables {.scrollable .smaller}
+
+[`r emo::ji("question")` Which is a dataset? Which is a summary table?]{style="background-color: #ADD8E6"}
+
+::: columns
+::: {.column width="50%"}
+```{r, echo=FALSE}
+starwars |>
+  select(name, height, mass) |>
+  datatable(options = list(dom = "pt", pageLength = 8))
+```
+:::
+
+::: {.column width="50%"}
+```{r, echo=FALSE}
+starwars |>
+  count(homeworld, gender) |>
+  spread(gender, n) |>
+  datatable(options = list(dom = "pt", pageLength = 8))
+```
+:::
+:::
+
+## Your Turn
+
+There are four representations of the same data/information provided in the `tidyr` packages: `table1`, `table2`, `table3`, and the combination of `table4a` and `table4b`. Given what we've discussed, which is the best (tidiest) way to represent these data?
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::
+
+## Common issues
+
+-   One variable might be spread across multiple columns.
+-   One observation might be scattered across multiple rows.
+
+. . .
+
+Solution: pivoting!
+
+## Pivoting {.scrollable}
+
+::: panel-tabset
+### `pivot_longer`
+
+For when some of the column names are not names of variables, but values of a variable...
+
+```{r}
+table4a
+```
+
+```{r}
+table4a |> 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+```
+
+[`r emo::ji("question")` Why are there backticks around the years? (Note: we have not discussed this yet)]{style="background-color: #ADD8E6"}
+
+### `pivot_wider`
+
+For when an observation is scattered across multiple rows...
+
+```{r}
+table2
+```
+
+```{r}
+table2 |>
+    pivot_wider(names_from = type, values_from = count)
+```
+
+[`r emo::ji("question")` Why aren't there quotes around column names here...but there were in `pivot_longer`? (Note: we have not discussed this yet.)]{style="background-color: #ADD8E6"}
+
+### long vs. wide
+
+-   **wide** data contains values that do not repeat in the first column.
+-   **long** format contains values that do repeat in the first column.
+
+Both are good/helpful! We'll return to this idea and discuss more during dataviz next week.
+
+Briefly:
+
+-   wide data: analysis
+-   long data: plotting
+:::
+
+## Separating & Uniting {.scrollable}
+
+::: panel-tabset
+### `separate`
+
+For when multiple pieces of information are stored in a single column...
+
+```{r}
+table3
+```
+
+```{r}
+table3 |> 
+  separate(rate, into = c("cases", "population"))
+```
+
+...but...but...cases and population should be numeric...
+
+```{r}
+table3 |> 
+  separate(rate, into = c("cases", "population"), convert = TRUE)
+```
+
+### `unite`
+
+Unite is the opposite...it combines data stored across multiple columns.
+
+The general syntax is:
+
+```{r, eval=FALSE}
+df |>
+  unite(new_col, first_col, second_col)
+```
+:::
+
+## Joins {.scrollable}
+
+If we look at `table4a`, it's missing the population information. That's stored in a separate table...`table4b`
+
+```{r}
+table4b
+```
+
+...which is also in the "wide" format
+
+. . .
+
+...so we pivot both tables longer
+
+```{r}
+tidy4a <- table4a |> 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "cases")
+
+tidy4b <- table4b |> 
+  pivot_longer(c(`1999`, `2000`), names_to = "year", values_to = "population")
+
+tidy4b
+```
+
+. . .
+
+...but how do we get them into a single tidy dataset?
+
+. . .
+
+A join!
+
+```{r}
+left_join(tidy4a, tidy4b)
+```
+
+::: aside
+Source: [R4DS](https://r4ds.had.co.nz/relational-data.html)
+:::
+
+## The Data: `nycflights13` {.smaller}
+
+```{r}
+library(nycflights13)
+```
+
+-   `airlines` : links airline to two letter code
+-   `airports` : ID'ed by FAA code
+-   `planes` : ID'ed by tailnum
+-   `airport` : weather each hour; id'ed by two letter airport code
+
+. . .
+
+![Image Source: [https://r4ds.had.co.nz/relational-data.html)](https://r4ds.had.co.nz/relational-data.html)](images/03/relational-nycflights.png)
+
+. . .
+
+-   `flights` connects to `planes` via a single variable, `tailnum`.
+
+-   `flights` connects to `airlines` through the `carrier` variable.
+
+-   `flights` connects to `airports` in two ways: via the `origin` and `dest` variables.
+
+-   `flights` connects to `weather` via `origin` (the location), and `year`, `month`, `day` and `hour` (the time).
+
+## Mutating Joins
+
+**mutating joins** - add new variables to a data frame from matching observations in another
+
+. . .
+
+For simplicity, we'll work with only a handful of columns...
+
+```{r}
+flights |> 
+  select(year:day, hour, tailnum, carrier) |> 
+  left_join(airlines, by = "carrier")
+```
+
+There is now a new column `name`...coming from the `airlines` data frame.
+
+. . .
+
+**`left_join`**:
+
+-   keeps all rows in first df (here: `flights`)
+-   adds all matching information from second df (here: `airlines`); adds NAs for any observations not in `airlines`
+
+. . .
+
+Other joins:
+
+**`right_join`**: keeps all observations in second df **`full_join`**: keeps all observations in either df
+
+. . .
+
+![Image Source: <https://r4ds.had.co.nz/relational-data.html>](images/03/join-outer.png)
+
+. . .
+
+**`inner_join`**:
+
+-   takes only rows in *both* dfs
+
+![Image Source: <https://r4ds.had.co.nz/relational-data.html>](images/03/join-inner.png)
+
+# Recap {background-color="#92A86A"}
+
+-   Do you understand what constitutes tidy data?
+-   Can you identify what needs to be done to take a dataset from untidy to tidy?
+-   What is the difference been long data and wide data?
+-   Can I take long data to wide data? And wide to long?
+-   Can I carry out mutating joins on data?
+
+

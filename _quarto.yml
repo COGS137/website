@@ -49,8 +49,8 @@ website:
             href: content/lectures/01-intro-to-r-slides.html
           - text: "02-dplyr"
             href: content/lectures/02-dplyr-slides.html
-          # - text: "03-tidyr"
-          #   href: content/lectures/03-tidyr-slides.html
+          - text: "03-tidyr"
+            href: content/lectures/03-tidyr-slides.html
           # - text: "04-ggplot2"
           #   href: content/lectures/04-ggplot2-slides.html
           # - text: "05-viz"
@@ -91,8 +91,8 @@ website:
             href: content/lectures/01-intro-to-r.qmd
           - text: "02-dplyr"
             href: content/lectures/02-dplyr.qmd
-          # - text: "03-tidyr"
-          #   href: content/lectures/03-tidyr.qmd
+          - text: "03-tidyr"
+            href: content/lectures/03-tidyr.qmd
           # - text: "04-ggplot2"
           #   href: content/lectures/04-ggplot2.qmd
           # - text: "05-viz"
@@ -129,8 +129,8 @@ website:
         contents:
           - text: "Lab01: Tooling and R"
             href: content/labs/01-lab-intro-r.qmd
-      #     - text: "Lab02: Wrangling"
-      #       href: content/labs/02-lab-wrangling.qmd
+          - text: "Lab02: Wrangling"
+            href: content/labs/02-lab-wrangling.qmd
       #     - text: "Lab03: Data Viz"
       #       href: content/labs/03-lab-viz.qmd
       #     - text: "Lab04: Modelling"
@@ -147,8 +147,8 @@ website:
         contents:
           - text: "Lab01"
             href: content/labslides/01-lab-deck.html
-      #     - text: "Lab02"
-      #       href: content/labslides/02-lab-deck.html
+          - text: "Lab02"
+            href: content/labslides/02-lab-deck.html
       #     - text: "Lab03"
       #       href: content/labslides/03-lab-deck.html
       #     - text: "Lab05"
@@ -167,10 +167,10 @@ website:
       #       href: content/lab-ans/lab05-mlr-ans.qmd
       #     - text: "Lab07: Logistic Regression (Ans)"
       #       href: content/lab-ans/lab07-logistic-regression-ans.qmd
-      # - section: "Homework"
-      #   contents:
-      #     - text: "HW01"
-      #       href: content/hw/hw-01.qmd
+      - section: "Homework"
+        contents:
+          - text: "HW01"
+            href: content/hw/hw-01.qmd
       #     - text: "HW02"
       #       href: content/hw/hw-02.qmd
       #     - text: "HW03"

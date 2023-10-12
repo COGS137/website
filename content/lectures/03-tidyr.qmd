@@ -62,6 +62,7 @@ Join DS3 at their Fall General Body Meeting to learn more about the events they'
 
 **Notes**:
 
+-   Lab01 scores and feedback posted
 -   Datahub: Launch RStudio (possible solution?)
 -   Staff office hours updated (see Canvas or website)
 

@@ -51,8 +51,8 @@ website:
             href: content/lectures/02-dplyr-slides.html
           - text: "03-tidyr"
             href: content/lectures/03-tidyr-slides.html
-          # - text: "04-ggplot2"
-          #   href: content/lectures/04-ggplot2-slides.html
+          - text: "04-ggplot2"
+            href: content/lectures/04-ggplot2-slides.html
           # - text: "05-viz"
           #   href: content/lectures/05-viz-slides.html
           # - text: "06-analysis"
@@ -93,8 +93,8 @@ website:
             href: content/lectures/02-dplyr.qmd
           - text: "03-tidyr"
             href: content/lectures/03-tidyr.qmd
-          # - text: "04-ggplot2"
-          #   href: content/lectures/04-ggplot2.qmd
+          - text: "04-ggplot2"
+            href: content/lectures/04-ggplot2.qmd
           # - text: "05-viz"
           #   href: content/lectures/05-viz.qmd
           # - text: "06-analysis"

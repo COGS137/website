@@ -7,7 +7,7 @@ format:
     slide-number: true
     chalkboard: false 
     preview-links: auto
-    logo: images/cogs137-logo-hex.png
+    logo: img/cogs137-logo-hex.png
     footer: <https://cogs137.github.io/website/>
     execute:
       echo: true

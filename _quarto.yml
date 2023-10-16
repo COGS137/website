@@ -53,8 +53,8 @@ website:
             href: content/lectures/03-tidyr-slides.html
           - text: "04-ggplot2"
             href: content/lectures/04-ggplot2-slides.html
-          # - text: "05-viz"
-          #   href: content/lectures/05-viz-slides.html
+          - text: "05-viz"
+            href: content/lectures/05-viz-slides.html
           # - text: "06-analysis"
           #   href: content/lectures/06-analysis-slides.html
           # - text: "07-linear-models"
@@ -95,8 +95,8 @@ website:
             href: content/lectures/03-tidyr.qmd
           - text: "04-ggplot2"
             href: content/lectures/04-ggplot2.qmd
-          # - text: "05-viz"
-          #   href: content/lectures/05-viz.qmd
+          - text: "05-viz"
+            href: content/lectures/05-viz.qmd
           # - text: "06-analysis"
           #   href: content/lectures/06-analysis.qmd
           # - text: "07-linear-models"
@@ -131,8 +131,8 @@ website:
             href: content/labs/01-lab-intro-r.qmd
           - text: "Lab02: Wrangling"
             href: content/labs/02-lab-wrangling.qmd
-      #     - text: "Lab03: Data Viz"
-      #       href: content/labs/03-lab-viz.qmd
+          - text: "Lab03: Data Viz"
+            href: content/labs/03-lab-viz.qmd
       #     - text: "Lab04: Modelling"
       #       href: content/labs/04-lab-modelling.qmd
       #     - text: "Lab05: MLR"
@@ -149,16 +149,16 @@ website:
             href: content/labslides/01-lab-deck.html
           - text: "Lab02"
             href: content/labslides/02-lab-deck.html
-      #     - text: "Lab03"
-      #       href: content/labslides/03-lab-deck.html
+          - text: "Lab03"
+            href: content/labslides/03-lab-deck.html
       #     - text: "Lab05"
       #       href: content/labslides/05-lab-deck.html
       #     - text: "Lab07"
       #       href: content/labslides/07-lab-deck.html
-      # - section: "Lab Answers"
-      #   contents:
-      #     - text: "Lab02: Wrangling (Ans)"
-      #       href: content/lab-ans/lab02-wrangling-ans.qmd
+      - section: "Lab Answers"
+        contents:
+          - text: "Lab02: Wrangling (Ans)"
+            href: content/lab-ans/lab02-wrangling-ans.qmd
       #     - text: "Lab03: Data Viz (Ans)"
       #       href: content/lab-ans/lab03-viz-ans.qmd
       #     - text: "Lab04: Modelling (Ans)"
@@ -171,8 +171,8 @@ website:
         contents:
           - text: "HW01"
             href: content/hw/hw-01.qmd
-      #     - text: "HW02"
-      #       href: content/hw/hw-02.qmd
+          - text: "HW02"
+            href: content/hw/hw-02.qmd
       #     - text: "HW03"
       #       href: content/hw/hw-03.qmd
       # - section: "Exam"
@@ -204,8 +204,8 @@ format:
     toc: true
     format-links: false
 
-# execute:
-#   freeze: true
+execute:
+  freeze: true
 
 editor: visual
 

@@ -6,6 +6,9 @@ date: "2023-10-05"
 format:
   html: 
     output-file: 02-dplyr.html
+    embed-resources: true
+    execute:
+      freeze: true
   revealjs:
     output-file: 02-dplyr-slides.html
     slide-number: true
@@ -15,10 +18,11 @@ format:
     css: slides.css
     footer: <https://cogs137.github.io/website/>
     scrollable: true
+    embed-resources: true
     execute:
-     eval: true
-     echo: true
-     output: true
+      echo: true
+      eval: true
+      freeze: true
 ---
 
 # Data Manipulation with `dplyr` {background-color="#92A86A"}
@@ -35,28 +39,28 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ## Q&A {.scrollable .smaller}
 
-> Q: How many people are in a group for case studies and final project?   
+> Q: How many people are in a group for case studies and final project?\
 > A: 3-4
 
-> Q: How to turn in assignments  
+> Q: How to turn in assignments\
 > A: We'll discuss this today!
 
-> Q: Why don't we have uniform keyboard-shortcut (like run code, new cell) for both R and Python and other coding environment?  
+> Q: Why don't we have uniform keyboard-shortcut (like run code, new cell) for both R and Python and other coding environment?\
 > A: Lack of communication? Preferences of developers? I think we'll get there...
 
-> Q: Wasn't clear about the 'single quotes' vs "double quotes" thing    
+> Q: Wasn't clear about the 'single quotes' vs "double quotes" thing\
 > A: When creating a string, or any time you need to use quotes in R, single and double quotes are interchangeable. R doesn't care which you use. However, your code will be stylistically better if you consistently use one.
 
-> Q: What are useful libraries that we can use to analyze data?   
+> Q: What are useful libraries that we can use to analyze data?\
 > A: We'll be discussing lots, but the tidyverse packages (the first of which we'll discuss is dplyr) is a great place to start. There are also different packages for basically every statistical analysis out there
 
-> Q: Is there any way to prevent coercion? / I was wondering if you can types cast a variable when concatenation   
+> Q: Is there any way to prevent coercion? / I was wondering if you can types cast a variable when concatenation\
 > A: Yup. You can explicitly state `as._____()` when creating a variable (i.e. `as.character()`) and when reading in data you can specify. You'll find that R does a pretty good job at guessing, but we can always fix to what we want after the fact.
 
-> Q: What is the difference between mylist\[1\] and mylist\[\[1\]\]? It looked like class(mylist\[1\]) returned list and class(mylist\[\[1\]\]) returned the class of the element.  
+> Q: What is the difference between mylist\[1\] and mylist\[\[1\]\]? It looked like class(mylist\[1\]) returned list and class(mylist\[\[1\]\]) returned the class of the element.\
 > A: Double brackets returns the element directly. Single bracket (for lists) always returns a list.
 
-> Q: I'm curious about how to handle dataframes in R  
+> Q: I'm curious about how to handle dataframes in R\
 > A: Excellent - we'll start this discussion today and continue throughout the quarter!
 
 ## Course Announcements
@@ -89,7 +93,6 @@ R4DS:
 ::: aside
 Source: [dplyr.tidyverse.org](https://dplyr.tidyverse.org/)
 :::
-
 
 # Pipes {background-color="#92A86A"}
 

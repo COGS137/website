@@ -7,18 +7,13 @@ format:
     slide-number: true
     chalkboard: false 
     preview-links: auto
-    logo: images/cogs137-logo-hex.png
+    logo: img/cogs137-logo-hex.png
     footer: <https://cogs137.github.io/website/>
     execute:
       echo: true
 ---
 
 # Lab 03: Exploring & Visualizing Data {background-color="#0E3A53"}
-
-```{r echo=FALSE, message=FALSE, warning=FALSE}
-library(tidyverse)
-library(rvest)
-```
 
 ## Agenda
 
@@ -58,7 +53,3 @@ Review FiveThirtyEight article on college majors.
 ```{r echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 ```
-
-# Demo {background-color="#0E3A53"}
-
-Slides used are [here](https://cogs137.github.io/website/content/labslides/03_slides.pdf)

@@ -6,7 +6,8 @@ date: "2023-10-12"
 format:
   html: 
     output-file: 04-ggplot2.html
-    embed-resources: true
+    execute:
+      freeze: true
   revealjs:
     output-file: 04-ggplot2-slides.html
     slide-number: true
@@ -20,6 +21,7 @@ format:
     execute:
       echo: true
       eval: true
+      freeze: true
 ---
 
 # Data Visualization with `ggplot2` `r emo::ji("heart")` `r emo::ji("penguin")` {background-color="#92A86A"}
@@ -37,19 +39,19 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ## Q&A {.smaller}
 
-> Q: What is the difference between pull and select? \
+> Q: What is the difference between pull and select?\
 > A: `select` specifies which columns to display in your resulting dataframe. `pull` extracts the values from a column and stores them in a vector (not a dataframe)
 
-> Q: I am a bit confused on factors and what levels mean. \
+> Q: I am a bit confused on factors and what levels mean.\
 > A: Factors store categorical information. The levels of a factor are all the possible *unique* values in a variable.
 
 > Q: how similar is R to numpy/which scenarios are each used in the industry?\
 > A: Basically, anything data science-y you can do in R, you can also do in python. R has linear algebra/working with matrices built directly into its base installation, so no additional package would be need for numpy-like operations. And, `dplyr` does very similar things to `pandas`, but with a more readable and consistent syntax overall.
 
-> Q: would we ever load just dplyr instead of the entire tidyverse package? is there a big difference? \
+> Q: would we ever load just dplyr instead of the entire tidyverse package? is there a big difference?\
 > A: We'll always just load `tidyverse`. The difference is that the `tidyverse` is quite big, so if you ever wanted to just use `dplyr` functions, you could load just that. This matters more in development where you're trying to minimize external dependencies and make code run as fast as possible. For our purposes, there's no real need to only load dplyr
 
-> Q: I found the demos to be the most confusing part, because it's very different understanding slides and applying that to actual coding. Personally, I would prefer if the lecture content were put into recordings, or just uploaded earlier so we could learn it on our own, and then have classes be more focused on data science best practices, applications, etc. \
+> Q: I found the demos to be the most confusing part, because it's very different understanding slides and applying that to actual coding. Personally, I would prefer if the lecture content were put into recordings, or just uploaded earlier so we could learn it on our own, and then have classes be more focused on data science best practices, applications, etc.\
 > A: I do really like this idea and would love to run this like this in the. I'm curious what y'all think of this and will add a question like this to the post-course survey to get students' thoughts.
 
 ## Course Announcements
@@ -656,4 +658,3 @@ Put a <font color="#32cb31">green</font> sticky on the front of your computer wh
 -   Can I alter the aesthetics of a basic plot? (color, shape, size, transparency)
 -   Am I able to facet a plot to generate a grid of figures
 -   Can I describe what a `geom` is and do I know the basic plots available?
-

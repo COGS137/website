@@ -17,12 +17,12 @@ htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 
 ##### Instructional Staff & Office Hours
 
-|            |                                                |                  |                 |                            |
+|            |                                                |                  |                 |                                                      |
 |---------------|---------------|---------------|---------------|---------------|
-| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11-12       | Zoom by appt. (see Canvas) |
-|            |                                                |                  | Tu 3:30-4:30 PM | CSB 243                    |
-| TA         | Kunal Rustagi                                  |                  | Th 3:45-4:45 PM | Zoom (see Canvas)          |
-| IA         | Shenova Davis                                  |                  | TBD             | TBD                        |
+| Instructor | [**Shannon Ellis**](http://www.shanellis.com/) | sellis\@ucsd.edu | Wed 11-12       | Zoom by appt. (see Canvas)                           |
+|            |                                                |                  | Tu 3:30-4:30 PM | outside MOS 0204 (tables along back of the building) |
+| TA         | Kunal Rustagi                                  |                  | Th 3:45-4:45 PM | Zoom (see Canvas)                                    |
+| IA         | Shenova Davis                                  |                  | TBD             | TBD                                                  |
 
 ### Course Objectives
 

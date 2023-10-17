@@ -44,7 +44,10 @@ Note: a handful of comments on needing more time on joins & pivots...which makes
 
 **Course Announcements**:
 
+-   HW01 can be submitted by tonight for full credit (datahub issues)
+-   Lab02 Ans Posted
 -   HW02 Now Available
+-   My OH will now be at the tables along the back of this building
 
 ## Suggested Reading
 

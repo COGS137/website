@@ -1085,6 +1085,566 @@
     "text": "I’d like to know more!\n(required)Student Survey - complete by Tuesday at 11:59 PM.\nThis is required and completion will be used for CAA/#finaid. DO complete this even if you’re on the waitlist, please.\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\nNote: Links to both surveys are also on Canvas. I will try to remind you at the end of lecture, but I’ll probably forget. Feel free to remind me/one another!"
   },
   {
+    "objectID": "content/lectures/06-analysis-slides.html#qa",
+    "href": "content/lectures/06-analysis-slides.html#qa",
+    "title": "06-analysis",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: I was most confused about the differences between facet_wrap and facet_grid. I didn’t understand what made them so different\nA: You’re right that they’re very similar and can even at times be used/coerced to do what the other does. Basically, if you want a 2D comparison (variable1 x variable2), facet_grid. If you just want to break down the plots by a single variable, facet_wrap.\n\n\nQ: Will future HW assignments also include things that were not explicitly covered in class? For example, HW1 which was due last night, included concepts and materials that were just covered today.\nA: Nope. That was my fault. We were behind where I intended to be. This will not be an issue going forward.\n\n\nQ: can we plot data from 2 separate data frames somehow?\nA: Not typically in ggplot2. Instead, data would have to be wrangled into the tidy format (single dataset) first.\n\n\nQ: does filling= mean seperate and color by the value passed in, and we don’t need to assign color again? What if we don’t want color?\nA: Fill indicates how to fill the plot with color. If you don’t want color, you wouldn’t use fill\n\n\nQ: How we would do the second suggestion in how to visualize the brexit data differently?\nA: We’ll do this together today!\n\n\nQ: for datasets that are included in a library (like penguins one), could we read it into a df to see it in the environment? or is that redundant and we should only view it, use functions to see var names, etc\nA: That would be ok!\n\n\nQ: I was wondering where I can find all available themes.\nA: https://ggplot2.tidyverse.org/reference/ggtheme.html\n\n\nQ: I have heard about plotly before. I was wondering what will be its difference between this and ggplot?\nA: There is a ggplotly package! Plotly enables interaction on top of ggplot2 packages"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#course-announcements",
+    "href": "content/lectures/06-analysis-slides.html#course-announcements",
+    "title": "06-analysis",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\n\nLab 03 due Friday (11:59 PM)\nLecture Participation survey “due” after class\n\n\nNotes:\n\nHow To: Chunk output in console\n\n\n\n\nCase Studies Discussion\n\nBiomarkers of recent marijuana usage (Linear Regression)\nVaping in American Youth (Logistic Regression)\nRight-to-Carry Laws Effect on Violent Crime (Multiple Linear Regression)\nPredicting Annual Air Pollution (Machine Learning)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#ad-css-masters",
+    "href": "content/lectures/06-analysis-slides.html#ad-css-masters",
+    "title": "06-analysis",
+    "section": "[ad] CSS Masters",
+    "text": "[ad] CSS Masters"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#agenda",
+    "href": "content/lectures/06-analysis-slides.html#agenda",
+    "title": "06-analysis",
+    "section": "Agenda",
+    "text": "Agenda\n\nDiscuss Exploratory Data Analysis (EDA)\nIntroduce modelling as a concept\nPaintings example\n\nEDA\nModelling (Linear)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#suggested-reading",
+    "href": "content/lectures/06-analysis-slides.html#suggested-reading",
+    "title": "06-analysis",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nIntroduction to Modern Statistics Chapter 4: Exploring Categorical Data\nIntroduction to Modern Statistics Chapter 5: Exploring Numerical Data\nR4DS Chapter 22: Introduction to Modelling\nR4DS Chapter 23: Model Basics\nR4DS Chapter 24: Model Building"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#what-is-eda",
+    "href": "content/lectures/06-analysis-slides.html#what-is-eda",
+    "title": "06-analysis",
+    "section": "What is EDA?",
+    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.\nOften, this is visual….but the visuals do not have to be perfect. (Save that for communication)\nCalculating summary statistics is also part of EDA.\n\n\n\nData tidying/wrangling/manipulation/transformation typically happens before this stage of the analysis.\n\n\n\nThe Goal: KNOW YOUR DATA!"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#consider-no.-of-variables-involved",
+    "href": "content/lectures/06-analysis-slides.html#consider-no.-of-variables-involved",
+    "title": "06-analysis",
+    "section": "Consider: No. of variables involved",
+    "text": "Consider: No. of variables involved\n\nUnivariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#consider-types-of-variables",
+    "href": "content/lectures/06-analysis-slides.html#consider-types-of-variables",
+    "title": "06-analysis",
+    "section": "Consider: Types of variables",
+    "text": "Consider: Types of variables\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#data-visualization",
+    "href": "content/lectures/06-analysis-slides.html#data-visualization",
+    "title": "06-analysis",
+    "section": "Data visualization",
+    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey\n\n\nData visualization is the creation and study of the visual representation of data.\nThere are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (ggplot2 is what we’ll continue to use).\nEDA will involve making plots/visualizing your data"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#paris-paintings",
+    "href": "content/lectures/06-analysis-slides.html#paris-paintings",
+    "title": "06-analysis",
+    "section": "Paris Paintings",
+    "text": "Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\"))\n\n\nSource: Printed catalogs of 28 auction sales in Paris, 1764 - 1780\nData curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues\n3393 paintings, their prices, and descriptive details from sales catalogues over 60 variables"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#auctions-today",
+    "href": "content/lectures/06-analysis-slides.html#auctions-today",
+    "title": "06-analysis",
+    "section": "Auctions today",
+    "text": "Auctions today\n\n\n\n\n\n\n\nSource: Sothebys"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#auctions-back-in-the-day",
+    "href": "content/lectures/06-analysis-slides.html#auctions-back-in-the-day",
+    "title": "06-analysis",
+    "section": "Auctions back in the day",
+    "text": "Auctions back in the day\n\nSource: Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#paris-auction-market",
+    "href": "content/lectures/06-analysis-slides.html#paris-auction-market",
+    "title": "06-analysis",
+    "section": "Paris auction market",
+    "text": "Paris auction market"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#depart-pour-la-chasse",
+    "href": "content/lectures/06-analysis-slides.html#depart-pour-la-chasse",
+    "title": "06-analysis",
+    "section": "Depart pour la chasse",
+    "text": "Depart pour la chasse"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#auction-catalogue-text",
+    "href": "content/lectures/06-analysis-slides.html#auction-catalogue-text",
+    "title": "06-analysis",
+    "section": "Auction catalogue text",
+    "text": "Auction catalogue text\n\n\n\n\nTwo paintings very rich in composition, of a beautiful execution, and whose merit is very remarkable, each 17 inches 3 lines high, 23 inches wide; the first, painted on wood, comes from the Cabinet of Madame la Comtesse de Verrue; it represents a departure for the hunt: it shows in the front a child on a white horse, a man who gives the horn to gather the dogs, a falconer and other figures nicely distributed across the width of the painting; two horses drinking from a fountain; on the right in the corner a lovely country house topped by a terrace, on which people are at the table, others who play instruments; trees and fabriques pleasantly enrich the background."
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#depart-pour-la-chasse-as-data",
+    "href": "content/lectures/06-analysis-slides.html#depart-pour-la-chasse-as-data",
+    "title": "06-analysis",
+    "section": "Depart pour la chasse as Data",
+    "text": "Depart pour la chasse as Data"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#section",
+    "href": "content/lectures/06-analysis-slides.html#section",
+    "title": "06-analysis",
+    "section": "",
+    "text": "pp |>\n  filter(name == \"R1777-89a\") |>\n  glimpse()\n\nRows: 1\nColumns: 61\n$ name              <chr> \"R1777-89a\"\n$ sale              <chr> \"R1777\"\n$ lot               <chr> \"89\"\n$ position          <dbl> 0.3755274\n$ dealer            <chr> \"R\"\n$ year              <dbl> 1777\n$ origin_author     <chr> \"D/FL\"\n$ origin_cat        <chr> \"D/FL\"\n$ school_pntg       <chr> \"D/FL\"\n$ diff_origin       <dbl> 0\n$ logprice          <dbl> 8.575462\n$ price             <dbl> 5300\n$ count             <dbl> 1\n$ subject           <chr> \"D\\x8epart pour la chasse\"\n$ authorstandard    <chr> \"Wouwerman, Philips\"\n$ artistliving      <dbl> 0\n$ authorstyle       <chr> NA\n$ author            <chr> \"Philippe Wouwermans\"\n$ winningbidder     <chr> \"Langlier, Jacques for Poullain, Antoine\"\n$ winningbiddertype <chr> \"DC\"\n$ endbuyer          <chr> \"C\"\n$ Interm            <dbl> 1\n$ type_intermed     <chr> \"D\"\n$ Height_in         <dbl> 17.25\n$ Width_in          <dbl> 23\n$ Surface_Rect      <dbl> 396.75\n$ Diam_in           <dbl> NA\n$ Surface_Rnd       <dbl> NA\n$ Shape             <chr> \"squ_rect\"\n$ Surface           <dbl> 396.75\n$ material          <chr> \"bois\"\n$ mat               <chr> \"b\"\n$ materialCat       <chr> \"wood\"\n$ quantity          <dbl> 1\n$ nfigures          <dbl> 0\n$ engraved          <dbl> 0\n$ original          <dbl> 0\n$ prevcoll          <dbl> 1\n$ othartist         <dbl> 0\n$ paired            <dbl> 1\n$ figures           <dbl> 0\n$ finished          <dbl> 0\n$ lrgfont           <dbl> 0\n$ relig             <dbl> 0\n$ landsALL          <dbl> 1\n$ lands_sc          <dbl> 0\n$ lands_elem        <dbl> 1\n$ lands_figs        <dbl> 1\n$ lands_ment        <dbl> 0\n$ arch              <dbl> 1\n$ mytho             <dbl> 0\n$ peasant           <dbl> 0\n$ othgenre          <dbl> 0\n$ singlefig         <dbl> 0\n$ portrait          <dbl> 0\n$ still_life        <dbl> 0\n$ discauth          <dbl> 0\n$ history           <dbl> 0\n$ allegory          <dbl> 0\n$ pastorale         <dbl> 0\n$ other             <dbl> 0"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#visualizing-numerical-data",
+    "href": "content/lectures/06-analysis-slides.html#visualizing-numerical-data",
+    "title": "06-analysis",
+    "section": "Visualizing numerical data",
+    "text": "Visualizing numerical data\nDescribing shapes of numerical distributions\n\nshape:\n\nskewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)\nmodality: unimodal, bimodal, multimodal, uniform\n\ncenter: mean (mean), median (median), mode (not always useful)\nspread: range (range), standard deviation (sd), inter-quartile range (IQR)\nunusual observations"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#histograms",
+    "href": "content/lectures/06-analysis-slides.html#histograms",
+    "title": "06-analysis",
+    "section": "Histograms",
+    "text": "Histograms\n\nHeightsWidthsPrices\n\n\n\nggplot(data = pp, aes(x = Height_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Height, in inches\", y = NULL)\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Width, in inches\", y = NULL)\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = price)) +\n  geom_histogram(binwidth = 100) +\n  labs(x = \"Price\", y = NULL)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#density-plots",
+    "href": "content/lectures/06-analysis-slides.html#density-plots",
+    "title": "06-analysis",
+    "section": "Density plots",
+    "text": "Density plots\n\nggplot(data = pp, mapping = aes(x = Height_in)) +\n  geom_density()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#side-by-side-box-plots",
+    "href": "content/lectures/06-analysis-slides.html#side-by-side-box-plots",
+    "title": "06-analysis",
+    "section": "Side-by-side box plots",
+    "text": "Side-by-side box plots\n\nggplot(data = pp, mapping = aes(y = Height_in, x = as.factor(landsALL))) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#visualizing-categorical-data",
+    "href": "content/lectures/06-analysis-slides.html#visualizing-categorical-data",
+    "title": "06-analysis",
+    "section": "Visualizing categorical data",
+    "text": "Visualizing categorical data\n\ncount/proportion of values\nunusual observations"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#bar-plots",
+    "href": "content/lectures/06-analysis-slides.html#bar-plots",
+    "title": "06-analysis",
+    "section": "Bar plots",
+    "text": "Bar plots\n\nggplot(data = pp, mapping = aes(x = as.factor(landsALL))) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#segmented-bar-plots-counts",
+    "href": "content/lectures/06-analysis-slides.html#segmented-bar-plots-counts",
+    "title": "06-analysis",
+    "section": "Segmented bar plots, counts",
+    "text": "Segmented bar plots, counts\n\nggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#segmented-bar-plots-proportions",
+    "href": "content/lectures/06-analysis-slides.html#segmented-bar-plots-proportions",
+    "title": "06-analysis",
+    "section": "Segmented bar plots, proportions",
+    "text": "Segmented bar plots, proportions\n\nggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +\n  geom_bar(position = \"fill\") +\n  labs(y = \"proportion\")"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#your-turn",
+    "href": "content/lectures/06-analysis-slides.html#your-turn",
+    "title": "06-analysis",
+    "section": "Your Turn",
+    "text": "Your Turn\n❓ Which of the previous two bar plots is a more useful representation for visualizing the relationship between landscape and painting material?\n\n❓ What else would you want to do/know to complete EDA?\n\n\n🧠 Try to answer at least one thing you’d want to know from the dataset.\n\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#modelling-1",
+    "href": "content/lectures/06-analysis-slides.html#modelling-1",
+    "title": "06-analysis",
+    "section": "Modelling",
+    "text": "Modelling\n\nUse models to explain the relationship between variables and to make predictions\nFor now we focus on linear models (but remember there are other types of models too!)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#packages",
+    "href": "content/lectures/06-analysis-slides.html#packages",
+    "title": "06-analysis",
+    "section": "Packages",
+    "text": "Packages\n\n\n\n\n\n\nYou’re familiar with the tidyverse:\n\n\nlibrary(tidyverse)\n\n\nThe broom package takes the messy output of built-in functions in R, such as lm, and turns them into tidy data frames.\n\n\nlibrary(broom)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#modelling-the-relationship-between-variables",
+    "href": "content/lectures/06-analysis-slides.html#modelling-the-relationship-between-variables",
+    "title": "06-analysis",
+    "section": "Modelling the relationship between variables",
+    "text": "Modelling the relationship between variables\nEDA: Prices\n❗ Describe the distribution of prices of paintings.\n\nggplot(data = pp, aes(x = price)) +\n  geom_histogram(binwidth = 1000)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#models-as-functions",
+    "href": "content/lectures/06-analysis-slides.html#models-as-functions",
+    "title": "06-analysis",
+    "section": "Models as functions",
+    "text": "Models as functions\n\nWe can represent relationships between variables using functions\nA function is a mathematical concept: the relationship between an output and one or more inputs.\n\nPlug in the inputs and receive back the output\nExample: the formula \\(y = 3x + 7\\) is a function with input \\(x\\) and output \\(y\\), when \\(x\\) is \\(5\\), the output \\(y\\) is \\(22\\)\n\n\ny = 3 * 5 + 7 = 22"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#height-as-a-function-of-width",
+    "href": "content/lectures/06-analysis-slides.html#height-as-a-function-of-width",
+    "title": "06-analysis",
+    "section": "Height as a function of width",
+    "text": "Height as a function of width\n❗ Describe the relationship between height and width of paintings."
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#visualizing-the-linear-model",
+    "href": "content/lectures/06-analysis-slides.html#visualizing-the-linear-model",
+    "title": "06-analysis",
+    "section": "Visualizing the linear model",
+    "text": "Visualizing the linear model\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") # lm for linear model"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#visualizing-the-linear-model-1",
+    "href": "content/lectures/06-analysis-slides.html#visualizing-the-linear-model-1",
+    "title": "06-analysis",
+    "section": "Visualizing the linear model",
+    "text": "Visualizing the linear model\n… without the measure of uncertainty around the line\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) # lm for linear model"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#visualizing-the-linear-model-2",
+    "href": "content/lectures/06-analysis-slides.html#visualizing-the-linear-model-2",
+    "title": "06-analysis",
+    "section": "Visualizing the linear model",
+    "text": "Visualizing the linear model\n… with different cosmetic choices for the line\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE, \n              col = \"pink\",      # color\n              lty = 2,           # line type\n              linewidth = 3)     # line weight"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#vocabulary",
+    "href": "content/lectures/06-analysis-slides.html#vocabulary",
+    "title": "06-analysis",
+    "section": "Vocabulary",
+    "text": "Vocabulary\n\nResponse variable: Variable whose behavior or variation you are trying to understand, on the y-axis (dependent variable)\n\n\n\nExplanatory variables: Other variables that you want to use to explain the variation in the response, on the x-axis (independent variables)\n\n\n\n\nPredicted value: Output of the function model function\n\nThe model function gives the typical value of the response variable conditioning on the explanatory variables\n\n\n\n\n\nResiduals: Show how far each case is from its model value\n\nResidual = Observed value - Predicted value\nTells how far above/below the model function each case is"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#residuals",
+    "href": "content/lectures/06-analysis-slides.html#residuals",
+    "title": "06-analysis",
+    "section": "Residuals",
+    "text": "Residuals\n❓ What does a negative residual mean? Which paintings on the plot have have negative residuals?"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#section-1",
+    "href": "content/lectures/06-analysis-slides.html#section-1",
+    "title": "06-analysis",
+    "section": "",
+    "text": "The plot below displays the relationship between height and width of paintings. It uses a lower alpha level for the points than the previous plots we looked at.\n\n❓ What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#landscape-paintings",
+    "href": "content/lectures/06-analysis-slides.html#landscape-paintings",
+    "title": "06-analysis",
+    "section": "Landscape paintings",
+    "text": "Landscape paintings\n\nLandscape painting is the depiction in art of landscapes – natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view – with its elements arranged into a coherent composition.1\n\nLandscape paintings tend to be wider than longer.\n\nPortrait painting is a genre in painting, where the intent is to depict a human subject.2\n\nPortrait paintings tend to be longer than wider.\n\n\nSource: Wikipedia, Landscape paintingSource: Wikipedia, Portait painting"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#multiple-explanatory-variables",
+    "href": "content/lectures/06-analysis-slides.html#multiple-explanatory-variables",
+    "title": "06-analysis",
+    "section": "Multiple explanatory variables",
+    "text": "Multiple explanatory variables\n❓ How, if at all, does the relationship between width and height of paintings vary by whether or not they have any landscape elements?\n\nggplot(data = pp, aes(x = Width_in, y = Height_in, \n                      color = factor(landsALL))) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(color = \"landscape\")"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#models---upsides-and-downsides",
+    "href": "content/lectures/06-analysis-slides.html#models---upsides-and-downsides",
+    "title": "06-analysis",
+    "section": "Models - upsides and downsides",
+    "text": "Models - upsides and downsides\n\nModels can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modelling over simple visual inspection of data.\n\n\n\nThere is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted."
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#variation-around-the-model",
+    "href": "content/lectures/06-analysis-slides.html#variation-around-the-model",
+    "title": "06-analysis",
+    "section": "Variation around the model…",
+    "text": "Variation around the model…\nis just as important as the model, if not more!\n\nStatistics is the explanation of variation in the context of what remains unexplained.\n\n\n\nThe scatter suggests that there might be other factors that account for large parts of painting-to-painting variability, or perhaps just that randomness plays a big role.\nAdding more explanatory variables to a model can sometimes usefully reduce the size of the scatter around the model. (We’ll talk more about this later.)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis-slides.html#how-do-we-use-models",
+    "href": "content/lectures/06-analysis-slides.html#how-do-we-use-models",
+    "title": "06-analysis",
+    "section": "How do we use models?",
+    "text": "How do we use models?\n\nExplanation: Characterize the relationship between \\(y\\) and \\(x\\) via slopes for numerical explanatory variables or differences for categorical explanatory variables (Inference)\nPrediction: Plug in \\(x\\), get the predicted \\(y\\) (Machine Learning)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html",
+    "href": "content/lectures/06-analysis.html",
+    "title": "06-analysis",
+    "section": "",
+    "text": "Q: I was most confused about the differences between facet_wrap and facet_grid. I didn’t understand what made them so different\nA: You’re right that they’re very similar and can even at times be used/coerced to do what the other does. Basically, if you want a 2D comparison (variable1 x variable2), facet_grid. If you just want to break down the plots by a single variable, facet_wrap.\n\n\nQ: Will future HW assignments also include things that were not explicitly covered in class? For example, HW1 which was due last night, included concepts and materials that were just covered today.\nA: Nope. That was my fault. We were behind where I intended to be. This will not be an issue going forward.\n\n\nQ: can we plot data from 2 separate data frames somehow?\nA: Not typically in ggplot2. Instead, data would have to be wrangled into the tidy format (single dataset) first.\n\n\nQ: does filling= mean seperate and color by the value passed in, and we don’t need to assign color again? What if we don’t want color?\nA: Fill indicates how to fill the plot with color. If you don’t want color, you wouldn’t use fill\n\n\nQ: How we would do the second suggestion in how to visualize the brexit data differently?\nA: We’ll do this together today!\n\n\nQ: for datasets that are included in a library (like penguins one), could we read it into a df to see it in the environment? or is that redundant and we should only view it, use functions to see var names, etc\nA: That would be ok!\n\n\nQ: I was wondering where I can find all available themes.\nA: https://ggplot2.tidyverse.org/reference/ggtheme.html\n\n\nQ: I have heard about plotly before. I was wondering what will be its difference between this and ggplot?\nA: There is a ggplotly package! Plotly enables interaction on top of ggplot2 packages\n\n\n\n\nDue Dates:\n\nLab 03 due Friday (11:59 PM)\nLecture Participation survey “due” after class\n\n\nNotes:\n\nHow To: Chunk output in console\n\n\n\n\nCase Studies Discussion\n\nBiomarkers of recent marijuana usage (Linear Regression)\nVaping in American Youth (Logistic Regression)\nRight-to-Carry Laws Effect on Violent Crime (Multiple Linear Regression)\nPredicting Annual Air Pollution (Machine Learning)\n\n\n\n\n\n\n\n\n\n\n\nDiscuss Exploratory Data Analysis (EDA)\nIntroduce modelling as a concept\nPaintings example\n\nEDA\nModelling (Linear)\n\n\n\n\n\n\nIntroduction to Modern Statistics Chapter 4: Exploring Categorical Data\nIntroduction to Modern Statistics Chapter 5: Exploring Numerical Data\nR4DS Chapter 22: Introduction to Modelling\nR4DS Chapter 23: Model Basics\nR4DS Chapter 24: Model Building"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#what-is-eda",
+    "href": "content/lectures/06-analysis.html#what-is-eda",
+    "title": "06-analysis",
+    "section": "What is EDA?",
+    "text": "What is EDA?\n\nExploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.\nOften, this is visual….but the visuals do not have to be perfect. (Save that for communication)\nCalculating summary statistics is also part of EDA.\n\n\n\nData tidying/wrangling/manipulation/transformation typically happens before this stage of the analysis.\n\n\n\nThe Goal: KNOW YOUR DATA!"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#consider-no.-of-variables-involved",
+    "href": "content/lectures/06-analysis.html#consider-no.-of-variables-involved",
+    "title": "06-analysis",
+    "section": "Consider: No. of variables involved",
+    "text": "Consider: No. of variables involved\n\nUnivariate data analysis - distribution of single variable\nBivariate data analysis - relationship between two variables\nMultivariate data analysis - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#consider-types-of-variables",
+    "href": "content/lectures/06-analysis.html#consider-types-of-variables",
+    "title": "06-analysis",
+    "section": "Consider: Types of variables",
+    "text": "Consider: Types of variables\n\nNumerical variables can be classified as continuous or discrete based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.\nIf the variable is categorical, we can determine if it is ordinal based on whether or not the levels have a natural ordering."
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#data-visualization",
+    "href": "content/lectures/06-analysis.html#data-visualization",
+    "title": "06-analysis",
+    "section": "Data visualization",
+    "text": "Data visualization\n\n“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey\n\n\nData visualization is the creation and study of the visual representation of data.\nThere are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (ggplot2 is what we’ll continue to use).\nEDA will involve making plots/visualizing your data"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#paris-paintings",
+    "href": "content/lectures/06-analysis.html#paris-paintings",
+    "title": "06-analysis",
+    "section": "Paris Paintings",
+    "text": "Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\"))\n\n\nSource: Printed catalogs of 28 auction sales in Paris, 1764 - 1780\nData curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues\n3393 paintings, their prices, and descriptive details from sales catalogues over 60 variables"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#auctions-today",
+    "href": "content/lectures/06-analysis.html#auctions-today",
+    "title": "06-analysis",
+    "section": "Auctions today",
+    "text": "Auctions today\n\n\n\n\n\n\n\nSource: Sothebys"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#auctions-back-in-the-day",
+    "href": "content/lectures/06-analysis.html#auctions-back-in-the-day",
+    "title": "06-analysis",
+    "section": "Auctions back in the day",
+    "text": "Auctions back in the day\n\n\n\n\n\nSource: Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#paris-auction-market",
+    "href": "content/lectures/06-analysis.html#paris-auction-market",
+    "title": "06-analysis",
+    "section": "Paris auction market",
+    "text": "Paris auction market"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#depart-pour-la-chasse",
+    "href": "content/lectures/06-analysis.html#depart-pour-la-chasse",
+    "title": "06-analysis",
+    "section": "Depart pour la chasse",
+    "text": "Depart pour la chasse"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#auction-catalogue-text",
+    "href": "content/lectures/06-analysis.html#auction-catalogue-text",
+    "title": "06-analysis",
+    "section": "Auction catalogue text",
+    "text": "Auction catalogue text\n\n\n\n\nTwo paintings very rich in composition, of a beautiful execution, and whose merit is very remarkable, each 17 inches 3 lines high, 23 inches wide; the first, painted on wood, comes from the Cabinet of Madame la Comtesse de Verrue; it represents a departure for the hunt: it shows in the front a child on a white horse, a man who gives the horn to gather the dogs, a falconer and other figures nicely distributed across the width of the painting; two horses drinking from a fountain; on the right in the corner a lovely country house topped by a terrace, on which people are at the table, others who play instruments; trees and fabriques pleasantly enrich the background."
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#depart-pour-la-chasse-as-data",
+    "href": "content/lectures/06-analysis.html#depart-pour-la-chasse-as-data",
+    "title": "06-analysis",
+    "section": "Depart pour la chasse as Data",
+    "text": "Depart pour la chasse as Data"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#section",
+    "href": "content/lectures/06-analysis.html#section",
+    "title": "06-analysis",
+    "section": "",
+    "text": "pp |>\n  filter(name == \"R1777-89a\") |>\n  glimpse()\n\nRows: 1\nColumns: 61\n$ name              <chr> \"R1777-89a\"\n$ sale              <chr> \"R1777\"\n$ lot               <chr> \"89\"\n$ position          <dbl> 0.3755274\n$ dealer            <chr> \"R\"\n$ year              <dbl> 1777\n$ origin_author     <chr> \"D/FL\"\n$ origin_cat        <chr> \"D/FL\"\n$ school_pntg       <chr> \"D/FL\"\n$ diff_origin       <dbl> 0\n$ logprice          <dbl> 8.575462\n$ price             <dbl> 5300\n$ count             <dbl> 1\n$ subject           <chr> \"D\\x8epart pour la chasse\"\n$ authorstandard    <chr> \"Wouwerman, Philips\"\n$ artistliving      <dbl> 0\n$ authorstyle       <chr> NA\n$ author            <chr> \"Philippe Wouwermans\"\n$ winningbidder     <chr> \"Langlier, Jacques for Poullain, Antoine\"\n$ winningbiddertype <chr> \"DC\"\n$ endbuyer          <chr> \"C\"\n$ Interm            <dbl> 1\n$ type_intermed     <chr> \"D\"\n$ Height_in         <dbl> 17.25\n$ Width_in          <dbl> 23\n$ Surface_Rect      <dbl> 396.75\n$ Diam_in           <dbl> NA\n$ Surface_Rnd       <dbl> NA\n$ Shape             <chr> \"squ_rect\"\n$ Surface           <dbl> 396.75\n$ material          <chr> \"bois\"\n$ mat               <chr> \"b\"\n$ materialCat       <chr> \"wood\"\n$ quantity          <dbl> 1\n$ nfigures          <dbl> 0\n$ engraved          <dbl> 0\n$ original          <dbl> 0\n$ prevcoll          <dbl> 1\n$ othartist         <dbl> 0\n$ paired            <dbl> 1\n$ figures           <dbl> 0\n$ finished          <dbl> 0\n$ lrgfont           <dbl> 0\n$ relig             <dbl> 0\n$ landsALL          <dbl> 1\n$ lands_sc          <dbl> 0\n$ lands_elem        <dbl> 1\n$ lands_figs        <dbl> 1\n$ lands_ment        <dbl> 0\n$ arch              <dbl> 1\n$ mytho             <dbl> 0\n$ peasant           <dbl> 0\n$ othgenre          <dbl> 0\n$ singlefig         <dbl> 0\n$ portrait          <dbl> 0\n$ still_life        <dbl> 0\n$ discauth          <dbl> 0\n$ history           <dbl> 0\n$ allegory          <dbl> 0\n$ pastorale         <dbl> 0\n$ other             <dbl> 0"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#visualizing-numerical-data",
+    "href": "content/lectures/06-analysis.html#visualizing-numerical-data",
+    "title": "06-analysis",
+    "section": "Visualizing numerical data",
+    "text": "Visualizing numerical data\nDescribing shapes of numerical distributions\n\nshape:\n\nskewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)\nmodality: unimodal, bimodal, multimodal, uniform\n\ncenter: mean (mean), median (median), mode (not always useful)\nspread: range (range), standard deviation (sd), inter-quartile range (IQR)\nunusual observations"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#histograms",
+    "href": "content/lectures/06-analysis.html#histograms",
+    "title": "06-analysis",
+    "section": "Histograms",
+    "text": "Histograms\n\nHeightsWidthsPrices\n\n\n\nggplot(data = pp, aes(x = Height_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Height, in inches\", y = NULL)\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = Width_in)) +\n  geom_histogram(binwidth = 5) +\n  labs(x = \"Width, in inches\", y = NULL)\n\n\n\n\n\n\n\nggplot(data = pp, aes(x = price)) +\n  geom_histogram(binwidth = 100) +\n  labs(x = \"Price\", y = NULL)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#density-plots",
+    "href": "content/lectures/06-analysis.html#density-plots",
+    "title": "06-analysis",
+    "section": "Density plots",
+    "text": "Density plots\n\nggplot(data = pp, mapping = aes(x = Height_in)) +\n  geom_density()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#side-by-side-box-plots",
+    "href": "content/lectures/06-analysis.html#side-by-side-box-plots",
+    "title": "06-analysis",
+    "section": "Side-by-side box plots",
+    "text": "Side-by-side box plots\n\nggplot(data = pp, mapping = aes(y = Height_in, x = as.factor(landsALL))) +\n  geom_boxplot()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#visualizing-categorical-data",
+    "href": "content/lectures/06-analysis.html#visualizing-categorical-data",
+    "title": "06-analysis",
+    "section": "Visualizing categorical data",
+    "text": "Visualizing categorical data\n\ncount/proportion of values\nunusual observations"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#bar-plots",
+    "href": "content/lectures/06-analysis.html#bar-plots",
+    "title": "06-analysis",
+    "section": "Bar plots",
+    "text": "Bar plots\n\nggplot(data = pp, mapping = aes(x = as.factor(landsALL))) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#segmented-bar-plots-counts",
+    "href": "content/lectures/06-analysis.html#segmented-bar-plots-counts",
+    "title": "06-analysis",
+    "section": "Segmented bar plots, counts",
+    "text": "Segmented bar plots, counts\n\nggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +\n  geom_bar()"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#segmented-bar-plots-proportions",
+    "href": "content/lectures/06-analysis.html#segmented-bar-plots-proportions",
+    "title": "06-analysis",
+    "section": "Segmented bar plots, proportions",
+    "text": "Segmented bar plots, proportions\n\nggplot(data = pp, mapping = aes(x = as.factor(landsALL), fill = materialCat)) +\n  geom_bar(position = \"fill\") +\n  labs(y = \"proportion\")"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#your-turn",
+    "href": "content/lectures/06-analysis.html#your-turn",
+    "title": "06-analysis",
+    "section": "Your Turn",
+    "text": "Your Turn\n❓ Which of the previous two bar plots is a more useful representation for visualizing the relationship between landscape and painting material?\n\n❓ What else would you want to do/know to complete EDA?\n\n\n🧠 Try to answer at least one thing you’d want to know from the dataset.\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question."
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#modelling-1",
+    "href": "content/lectures/06-analysis.html#modelling-1",
+    "title": "06-analysis",
+    "section": "Modelling",
+    "text": "Modelling\n\nUse models to explain the relationship between variables and to make predictions\nFor now we focus on linear models (but remember there are other types of models too!)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#packages",
+    "href": "content/lectures/06-analysis.html#packages",
+    "title": "06-analysis",
+    "section": "Packages",
+    "text": "Packages\n\n\n\n\n\n\nYou’re familiar with the tidyverse:\n\n\nlibrary(tidyverse)\n\n\nThe broom package takes the messy output of built-in functions in R, such as lm, and turns them into tidy data frames.\n\n\nlibrary(broom)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#modelling-the-relationship-between-variables",
+    "href": "content/lectures/06-analysis.html#modelling-the-relationship-between-variables",
+    "title": "06-analysis",
+    "section": "Modelling the relationship between variables",
+    "text": "Modelling the relationship between variables\nEDA: Prices\n❗ Describe the distribution of prices of paintings.\n\nggplot(data = pp, aes(x = price)) +\n  geom_histogram(binwidth = 1000)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#models-as-functions",
+    "href": "content/lectures/06-analysis.html#models-as-functions",
+    "title": "06-analysis",
+    "section": "Models as functions",
+    "text": "Models as functions\n\nWe can represent relationships between variables using functions\nA function is a mathematical concept: the relationship between an output and one or more inputs.\n\nPlug in the inputs and receive back the output\nExample: the formula \\(y = 3x + 7\\) is a function with input \\(x\\) and output \\(y\\), when \\(x\\) is \\(5\\), the output \\(y\\) is \\(22\\)\n\n\ny = 3 * 5 + 7 = 22"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#height-as-a-function-of-width",
+    "href": "content/lectures/06-analysis.html#height-as-a-function-of-width",
+    "title": "06-analysis",
+    "section": "Height as a function of width",
+    "text": "Height as a function of width\n❗ Describe the relationship between height and width of paintings."
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#visualizing-the-linear-model",
+    "href": "content/lectures/06-analysis.html#visualizing-the-linear-model",
+    "title": "06-analysis",
+    "section": "Visualizing the linear model",
+    "text": "Visualizing the linear model\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\") # lm for linear model"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#visualizing-the-linear-model-1",
+    "href": "content/lectures/06-analysis.html#visualizing-the-linear-model-1",
+    "title": "06-analysis",
+    "section": "Visualizing the linear model",
+    "text": "Visualizing the linear model\n… without the measure of uncertainty around the line\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE) # lm for linear model"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#visualizing-the-linear-model-2",
+    "href": "content/lectures/06-analysis.html#visualizing-the-linear-model-2",
+    "title": "06-analysis",
+    "section": "Visualizing the linear model",
+    "text": "Visualizing the linear model\n… with different cosmetic choices for the line\n\nggplot(data = pp, aes(x = Width_in, y = Height_in)) +\n  geom_point() +\n  geom_smooth(method = \"lm\", se = FALSE, \n              col = \"pink\",      # color\n              lty = 2,           # line type\n              linewidth = 3)     # line weight"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#vocabulary",
+    "href": "content/lectures/06-analysis.html#vocabulary",
+    "title": "06-analysis",
+    "section": "Vocabulary",
+    "text": "Vocabulary\n\nResponse variable: Variable whose behavior or variation you are trying to understand, on the y-axis (dependent variable)\n\n\n\nExplanatory variables: Other variables that you want to use to explain the variation in the response, on the x-axis (independent variables)\n\n\n\n\nPredicted value: Output of the function model function\n\nThe model function gives the typical value of the response variable conditioning on the explanatory variables\n\n\n\n\n\nResiduals: Show how far each case is from its model value\n\nResidual = Observed value - Predicted value\nTells how far above/below the model function each case is"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#residuals",
+    "href": "content/lectures/06-analysis.html#residuals",
+    "title": "06-analysis",
+    "section": "Residuals",
+    "text": "Residuals\n❓ What does a negative residual mean? Which paintings on the plot have have negative residuals?"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#section-1",
+    "href": "content/lectures/06-analysis.html#section-1",
+    "title": "06-analysis",
+    "section": "",
+    "text": "The plot below displays the relationship between height and width of paintings. It uses a lower alpha level for the points than the previous plots we looked at.\n\n\n\n\n\n❓ What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#landscape-paintings",
+    "href": "content/lectures/06-analysis.html#landscape-paintings",
+    "title": "06-analysis",
+    "section": "Landscape paintings",
+    "text": "Landscape paintings\n\nLandscape painting is the depiction in art of landscapes – natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view – with its elements arranged into a coherent composition.1\n\nLandscape paintings tend to be wider than longer.\n\nPortrait painting is a genre in painting, where the intent is to depict a human subject.2\n\nPortrait paintings tend to be longer than wider."
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#multiple-explanatory-variables",
+    "href": "content/lectures/06-analysis.html#multiple-explanatory-variables",
+    "title": "06-analysis",
+    "section": "Multiple explanatory variables",
+    "text": "Multiple explanatory variables\n❓ How, if at all, does the relationship between width and height of paintings vary by whether or not they have any landscape elements?\n\nggplot(data = pp, aes(x = Width_in, y = Height_in, \n                      color = factor(landsALL))) +\n  geom_point(alpha = 0.4) +\n  geom_smooth(method = \"lm\", se = FALSE) +\n  labs(color = \"landscape\")"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#models---upsides-and-downsides",
+    "href": "content/lectures/06-analysis.html#models---upsides-and-downsides",
+    "title": "06-analysis",
+    "section": "Models - upsides and downsides",
+    "text": "Models - upsides and downsides\n\nModels can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modelling over simple visual inspection of data.\n\n\n\nThere is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted."
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#variation-around-the-model",
+    "href": "content/lectures/06-analysis.html#variation-around-the-model",
+    "title": "06-analysis",
+    "section": "Variation around the model…",
+    "text": "Variation around the model…\nis just as important as the model, if not more!\n\nStatistics is the explanation of variation in the context of what remains unexplained.\n\n\n\nThe scatter suggests that there might be other factors that account for large parts of painting-to-painting variability, or perhaps just that randomness plays a big role.\nAdding more explanatory variables to a model can sometimes usefully reduce the size of the scatter around the model. (We’ll talk more about this later.)"
+  },
+  {
+    "objectID": "content/lectures/06-analysis.html#how-do-we-use-models",
+    "href": "content/lectures/06-analysis.html#how-do-we-use-models",
+    "title": "06-analysis",
+    "section": "How do we use models?",
+    "text": "How do we use models?\n\nExplanation: Characterize the relationship between \\(y\\) and \\(x\\) via slopes for numerical explanatory variables or differences for categorical explanatory variables (Inference)\nPrediction: Plug in \\(x\\), get the predicted \\(y\\) (Machine Learning)"
+  },
+  {
     "objectID": "content/lectures/05-viz-slides.html#qa",
     "href": "content/lectures/05-viz-slides.html#qa",
     "title": "05-viz",

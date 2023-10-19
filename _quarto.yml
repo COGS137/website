@@ -55,8 +55,8 @@ website:
             href: content/lectures/04-ggplot2-slides.html
           - text: "05-viz"
             href: content/lectures/05-viz-slides.html
-          # - text: "06-analysis"
-          #   href: content/lectures/06-analysis-slides.html
+          - text: "06-analysis"
+            href: content/lectures/06-analysis-slides.html
           # - text: "07-linear-models"
           #   href: content/lectures/07-linear-models-slides.html
           # - text: "08-effective-communication"
@@ -97,8 +97,8 @@ website:
             href: content/lectures/04-ggplot2.qmd
           - text: "05-viz"
             href: content/lectures/05-viz.qmd
-          # - text: "06-analysis"
-          #   href: content/lectures/06-analysis.qmd
+          - text: "06-analysis"
+            href: content/lectures/06-analysis.qmd
           # - text: "07-linear-models"
           #   href: content/lectures/07-linear-models.html
           # - text: "08-effective-communication"

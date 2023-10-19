@@ -1,0 +1,1342 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.146">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+<meta name="author" content="Professor Shannon Ellis">
+<meta name="dcterms.date" content="2023-10-19">
+
+<title>COGS 137 - 06-analysis</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+  <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed slimcontent">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/cogs137-logo-hex.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">COGS 137</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../policies.html" rel="" target="">
+ <span class="menu-text">Policies</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/COGS137" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://datahub.ucsd.edu/" rel="" target=""><i class="bi bi-cloud-fill" role="img" aria-label="Datahub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">06-analysis</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lecture Slides</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/02-dplyr-slides.html" class="sidebar-item-text sidebar-link">02-dplyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/03-tidyr-slides.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/04-ggplot2-slides.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/05-viz-slides.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Lecture Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/02-dplyr.html" class="sidebar-item-text sidebar-link">02-dplyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/03-tidyr.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/04-ggplot2.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/05-viz.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link active">06-analysis</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Labs</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link">Lab01: Tooling and R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/02-lab-wrangling.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/03-lab-viz.html" class="sidebar-item-text sidebar-link">Lab03: Data Viz</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Lab Slides</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">Lab01</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/02-lab-deck.html" class="sidebar-item-text sidebar-link">Lab02</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/03-lab-deck.html" class="sidebar-item-text sidebar-link">Lab03</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Lab Answers</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lab-ans/lab02-wrangling-ans.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling (Ans)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Homework</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hw/hw-01.html" class="sidebar-item-text sidebar-link">HW01</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hw/hw-02.html" class="sidebar-item-text sidebar-link">HW02</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#intro-to-data-analysis" id="toc-intro-to-data-analysis" class="nav-link active" data-scroll-target="#intro-to-data-analysis">Intro to Data Analysis</a>
+  <ul class="collapse">
+  <li><a href="#qa" id="toc-qa" class="nav-link" data-scroll-target="#qa">Q&amp;A</a></li>
+  <li><a href="#course-announcements" id="toc-course-announcements" class="nav-link" data-scroll-target="#course-announcements">Course Announcements</a></li>
+  <li><a href="#ad-css-masters" id="toc-ad-css-masters" class="nav-link" data-scroll-target="#ad-css-masters">[ad] CSS Masters</a></li>
+  <li><a href="#agenda" id="toc-agenda" class="nav-link" data-scroll-target="#agenda">Agenda</a></li>
+  <li><a href="#suggested-reading" id="toc-suggested-reading" class="nav-link" data-scroll-target="#suggested-reading">Suggested Reading</a></li>
+  </ul></li>
+  <li><a href="#exploratory-data-analysis-eda" id="toc-exploratory-data-analysis-eda" class="nav-link" data-scroll-target="#exploratory-data-analysis-eda">Exploratory Data Analysis (EDA)</a>
+  <ul class="collapse">
+  <li><a href="#what-is-eda" id="toc-what-is-eda" class="nav-link" data-scroll-target="#what-is-eda">What is EDA?</a></li>
+  <li><a href="#consider-no.-of-variables-involved" id="toc-consider-no.-of-variables-involved" class="nav-link" data-scroll-target="#consider-no.-of-variables-involved">Consider: No.&nbsp;of variables involved</a></li>
+  <li><a href="#consider-types-of-variables" id="toc-consider-types-of-variables" class="nav-link" data-scroll-target="#consider-types-of-variables">Consider: Types of variables</a></li>
+  <li><a href="#data-visualization" id="toc-data-visualization" class="nav-link" data-scroll-target="#data-visualization">Data visualization</a></li>
+  </ul></li>
+  <li><a href="#data-paris-paintings" id="toc-data-paris-paintings" class="nav-link" data-scroll-target="#data-paris-paintings">Data: Paris Paintings</a>
+  <ul class="collapse">
+  <li><a href="#paris-paintings" id="toc-paris-paintings" class="nav-link" data-scroll-target="#paris-paintings">Paris Paintings</a></li>
+  <li><a href="#auctions-today" id="toc-auctions-today" class="nav-link" data-scroll-target="#auctions-today">Auctions today</a></li>
+  <li><a href="#auctions-back-in-the-day" id="toc-auctions-back-in-the-day" class="nav-link" data-scroll-target="#auctions-back-in-the-day">Auctions back in the day</a></li>
+  <li><a href="#paris-auction-market" id="toc-paris-auction-market" class="nav-link" data-scroll-target="#paris-auction-market">Paris auction market</a></li>
+  <li><a href="#depart-pour-la-chasse" id="toc-depart-pour-la-chasse" class="nav-link" data-scroll-target="#depart-pour-la-chasse">Depart pour la chasse</a></li>
+  <li><a href="#auction-catalogue-text" id="toc-auction-catalogue-text" class="nav-link" data-scroll-target="#auction-catalogue-text">Auction catalogue text</a></li>
+  <li><a href="#depart-pour-la-chasse-as-data" id="toc-depart-pour-la-chasse-as-data" class="nav-link" data-scroll-target="#depart-pour-la-chasse-as-data">Depart pour la chasse as Data</a></li>
+  <li><a href="#section" id="toc-section" class="nav-link" data-scroll-target="#section"></a></li>
+  </ul></li>
+  <li><a href="#eda-paris-paintings" id="toc-eda-paris-paintings" class="nav-link" data-scroll-target="#eda-paris-paintings">EDA: Paris Paintings</a>
+  <ul class="collapse">
+  <li><a href="#visualizing-numerical-data" id="toc-visualizing-numerical-data" class="nav-link" data-scroll-target="#visualizing-numerical-data">Visualizing numerical data</a></li>
+  <li><a href="#histograms" id="toc-histograms" class="nav-link" data-scroll-target="#histograms">Histograms</a></li>
+  <li><a href="#density-plots" id="toc-density-plots" class="nav-link" data-scroll-target="#density-plots">Density plots</a></li>
+  <li><a href="#side-by-side-box-plots" id="toc-side-by-side-box-plots" class="nav-link" data-scroll-target="#side-by-side-box-plots">Side-by-side box plots</a></li>
+  <li><a href="#visualizing-categorical-data" id="toc-visualizing-categorical-data" class="nav-link" data-scroll-target="#visualizing-categorical-data">Visualizing categorical data</a></li>
+  <li><a href="#bar-plots" id="toc-bar-plots" class="nav-link" data-scroll-target="#bar-plots">Bar plots</a></li>
+  <li><a href="#segmented-bar-plots-counts" id="toc-segmented-bar-plots-counts" class="nav-link" data-scroll-target="#segmented-bar-plots-counts">Segmented bar plots, counts</a></li>
+  <li><a href="#segmented-bar-plots-proportions" id="toc-segmented-bar-plots-proportions" class="nav-link" data-scroll-target="#segmented-bar-plots-proportions">Segmented bar plots, proportions</a></li>
+  <li><a href="#your-turn" id="toc-your-turn" class="nav-link" data-scroll-target="#your-turn">Your Turn</a></li>
+  </ul></li>
+  <li><a href="#modelling" id="toc-modelling" class="nav-link" data-scroll-target="#modelling">Modelling</a>
+  <ul class="collapse">
+  <li><a href="#modelling-1" id="toc-modelling-1" class="nav-link" data-scroll-target="#modelling-1">Modelling</a></li>
+  <li><a href="#packages" id="toc-packages" class="nav-link" data-scroll-target="#packages">Packages</a></li>
+  <li><a href="#modelling-the-relationship-between-variables" id="toc-modelling-the-relationship-between-variables" class="nav-link" data-scroll-target="#modelling-the-relationship-between-variables">Modelling the relationship between variables</a></li>
+  <li><a href="#models-as-functions" id="toc-models-as-functions" class="nav-link" data-scroll-target="#models-as-functions">Models as functions</a></li>
+  <li><a href="#height-as-a-function-of-width" id="toc-height-as-a-function-of-width" class="nav-link" data-scroll-target="#height-as-a-function-of-width">Height as a function of width</a></li>
+  <li><a href="#visualizing-the-linear-model" id="toc-visualizing-the-linear-model" class="nav-link" data-scroll-target="#visualizing-the-linear-model">Visualizing the linear model</a></li>
+  <li><a href="#visualizing-the-linear-model-1" id="toc-visualizing-the-linear-model-1" class="nav-link" data-scroll-target="#visualizing-the-linear-model-1">Visualizing the linear model</a></li>
+  <li><a href="#visualizing-the-linear-model-2" id="toc-visualizing-the-linear-model-2" class="nav-link" data-scroll-target="#visualizing-the-linear-model-2">Visualizing the linear model</a></li>
+  <li><a href="#vocabulary" id="toc-vocabulary" class="nav-link" data-scroll-target="#vocabulary">Vocabulary</a></li>
+  <li><a href="#residuals" id="toc-residuals" class="nav-link" data-scroll-target="#residuals">Residuals</a></li>
+  <li><a href="#section-1" id="toc-section-1" class="nav-link" data-scroll-target="#section-1"></a></li>
+  <li><a href="#landscape-paintings" id="toc-landscape-paintings" class="nav-link" data-scroll-target="#landscape-paintings">Landscape paintings</a></li>
+  <li><a href="#multiple-explanatory-variables" id="toc-multiple-explanatory-variables" class="nav-link" data-scroll-target="#multiple-explanatory-variables">Multiple explanatory variables</a></li>
+  <li><a href="#models---upsides-and-downsides" id="toc-models---upsides-and-downsides" class="nav-link" data-scroll-target="#models---upsides-and-downsides">Models - upsides and downsides</a></li>
+  <li><a href="#variation-around-the-model" id="toc-variation-around-the-model" class="nav-link" data-scroll-target="#variation-around-the-model">Variation around the model…</a></li>
+  <li><a href="#how-do-we-use-models" id="toc-how-do-we-use-models" class="nav-link" data-scroll-target="#how-do-we-use-models">How do we use models?</a></li>
+  </ul></li>
+  <li><a href="#recap" id="toc-recap" class="nav-link" data-scroll-target="#recap">Recap</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content page-columns page-full" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">06-analysis</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Professor Shannon Ellis </p>
+          </div>
+  </div>
+    
+    <div>
+    <div class="quarto-title-meta-heading">Published</div>
+    <div class="quarto-title-meta-contents">
+      <p class="date">October 19, 2023</p>
+    </div>
+  </div>
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="intro-to-data-analysis" class="level1" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">Intro to Data Analysis</h1>
+<section id="qa" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="qa">Q&amp;A</h2>
+<blockquote class="blockquote">
+<p>Q: I was most confused about the differences between facet_wrap and facet_grid. I didn’t understand what made them so different<br>
+A: You’re right that they’re very similar and can even at times be used/coerced to do what the other does. Basically, if you want a 2D comparison (variable1 x variable2), <code>facet_grid</code>. If you just want to break down the plots by a single variable, <code>facet_wrap</code>.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: Will future HW assignments also include things that were not explicitly covered in class? For example, HW1 which was due last night, included concepts and materials that were just covered today.<br>
+A: Nope. That was my fault. We were behind where I intended to be. This will not be an issue going forward.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: can we plot data from 2 separate data frames somehow?<br>
+A: Not typically in <code>ggplot2</code>. Instead, data would have to be wrangled into the tidy format (single dataset) first.</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: does filling= mean seperate and color by the value passed in, and we don’t need to assign color again? What if we don’t want color?<br>
+A: Fill indicates how to fill the plot with color. If you don’t want color, you wouldn’t use fill</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: How we would do the second suggestion in how to visualize the brexit data differently?<br>
+A: We’ll do this together today!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: for datasets that are included in a library (like penguins one), could we read it into a df to see it in the environment? or is that redundant and we should only view it, use functions to see var names, etc<br>
+A: That would be ok!</p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: I was wondering where I can find all available themes.<br>
+A: <a href="">https://ggplot2.tidyverse.org/reference/ggtheme.html</a></p>
+</blockquote>
+<blockquote class="blockquote">
+<p>Q: I have heard about plotly before. I was wondering what will be its difference between this and ggplot?<br>
+A: There is a ggplotly package! Plotly enables interaction on top of <code>ggplot2</code> packages</p>
+</blockquote>
+</section>
+<section id="course-announcements" class="level2">
+<h2 class="anchored" data-anchor-id="course-announcements">Course Announcements</h2>
+<p><strong>Due Dates</strong>:</p>
+<ul>
+<li><strong>Lab 03</strong> due Friday (11:59 PM)</li>
+<li>Lecture Participation survey “due” after class</li>
+</ul>
+<div class="incremental">
+<p><strong>Notes</strong>:</p>
+<ul>
+<li>How To: Chunk output in console</li>
+</ul>
+</div>
+<div class="incremental">
+<ul>
+<li>Case Studies Discussion
+<ul>
+<li>Biomarkers of recent marijuana usage (Linear Regression)</li>
+<li>Vaping in American Youth (Logistic Regression)</li>
+<li>Right-to-Carry Laws Effect on Violent Crime (Multiple Linear Regression)</li>
+<li>Predicting Annual Air Pollution (Machine Learning)</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="ad-css-masters" class="level2">
+<h2 class="anchored" data-anchor-id="ad-css-masters">[ad] CSS Masters</h2>
+<p><img src="images/06/CSS.png" class="img-fluid"></p>
+</section>
+<section id="agenda" class="level2">
+<h2 class="anchored" data-anchor-id="agenda">Agenda</h2>
+<ul>
+<li>Discuss Exploratory Data Analysis (EDA)</li>
+<li>Introduce modelling as a concept</li>
+<li>Paintings example
+<ul>
+<li>EDA</li>
+<li>Modelling (Linear)</li>
+</ul></li>
+</ul>
+</section>
+<section id="suggested-reading" class="level2">
+<h2 class="anchored" data-anchor-id="suggested-reading">Suggested Reading</h2>
+<ul>
+<li><p>Introduction to Modern Statistics Chapter 4: <a href="https://openintro-ims.netlify.app/explore-categorical.html">Exploring Categorical Data</a></p></li>
+<li><p>Introduction to Modern Statistics Chapter 5: <a href="https://openintro-ims.netlify.app/explore-numerical.html">Exploring Numerical Data</a></p></li>
+<li><p>R4DS Chapter 22: <a href="https://r4ds.had.co.nz/model-intro.html">Introduction to Modelling</a></p></li>
+<li><p>R4DS Chapter 23: <a href="https://r4ds.had.co.nz/model-basics.html">Model Basics</a></p></li>
+<li><p>R4DS Chapter 24: <a href="https://r4ds.had.co.nz/model-building.html">Model Building</a></p></li>
+</ul>
+</section>
+</section>
+<section id="exploratory-data-analysis-eda" class="level1" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">Exploratory Data Analysis (EDA)</h1>
+<section id="what-is-eda" class="level2">
+<h2 class="anchored" data-anchor-id="what-is-eda">What is EDA?</h2>
+<ul>
+<li><p>Exploratory data analysis (EDA) is an aproach to analyzing data sets to summarize and understand its main characteristics.</p></li>
+<li><p>Often, this is visual….but the visuals do not have to be <em>perfect</em>. (Save that for communication)</p></li>
+<li><p>Calculating summary statistics is also part of EDA.</p></li>
+</ul>
+<div class="incremental">
+<ul>
+<li>Data tidying/wrangling/manipulation/transformation typically happens before this stage of the analysis.</li>
+</ul>
+</div>
+<div class="incremental">
+<p>The Goal: <em>KNOW</em> YOUR DATA!</p>
+</div>
+</section>
+<section id="consider-no.-of-variables-involved" class="level2">
+<h2 class="anchored" data-anchor-id="consider-no.-of-variables-involved">Consider: No.&nbsp;of variables involved</h2>
+<ul>
+<li><p><strong>Univariate data analysis</strong> - distribution of single variable</p></li>
+<li><p><strong>Bivariate data analysis</strong> - relationship between two variables</p></li>
+<li><p><strong>Multivariate data analysis</strong> - relationship between many variables at once, usually focusing on the relationship between two while conditioning for others</p></li>
+</ul>
+<hr>
+</section>
+<section id="consider-types-of-variables" class="level2">
+<h2 class="anchored" data-anchor-id="consider-types-of-variables">Consider: Types of variables</h2>
+<ul>
+<li><p><strong>Numerical variables</strong> can be classified as <strong>continuous</strong> or <strong>discrete</strong> based on whether or not the variable can take on an infinite number of values or only non-negative whole numbers, respectively.</p></li>
+<li><p>If the variable is <strong>categorical</strong>, we can determine if it is <strong>ordinal</strong> based on whether or not the levels have a natural ordering.</p></li>
+</ul>
+</section>
+<section id="data-visualization" class="level2">
+<h2 class="anchored" data-anchor-id="data-visualization">Data visualization</h2>
+<blockquote class="blockquote">
+<p><em>“The simple graph has brought more information to the data analyst’s mind than any other device.” — John Tukey</em></p>
+</blockquote>
+<ul>
+<li><p>Data visualization is the creation and study of the visual representation of data.</p></li>
+<li><p>There are many tools for visualizing data (R is one of them), and many approaches/systems within R for making data visualizations (<strong><code>ggplot2</code></strong> is what we’ll continue to use).</p></li>
+<li><p>EDA will involve making plots/visualizing your data</p></li>
+</ul>
+</section>
+</section>
+<section id="data-paris-paintings" class="level1 page-columns page-full" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">Data: Paris Paintings</h1>
+<section id="paris-paintings" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="paris-paintings">Paris Paintings</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a>pp <span class="ot">&lt;-</span> <span class="fu">read_csv</span>(<span class="st">"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv"</span>, </span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a>               <span class="at">na =</span> <span class="fu">c</span>(<span class="st">"n/a"</span>, <span class="st">""</span>, <span class="st">"NA"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>Source: Printed catalogs of 28 auction sales in Paris, 1764 - 1780</li>
+<li>Data curators Sandra van Ginhoven and Hilary Coe Cronheim (who were PhD students in the Duke Art, Law, and Markets Initiative at the time of putting together this dataset) translated and tabulated the catalogues</li>
+<li>3393 paintings, their prices, and descriptive details from sales catalogues over 60 variables</li>
+</ul>
+</section>
+<section id="auctions-today" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="auctions-today">Auctions today</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/06/auction-video.png" class="img-fluid" style="width:80.0%"></p>
+</div>
+</div>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Source: <a href="http://www.sothebys.com/en/news-video/videos/2014/07/Old-master-british-paintings-evening-sale-soars-over-estimate.html">Sothebys</a></p>
+</div></div></section>
+<section id="auctions-back-in-the-day" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="auctions-back-in-the-day">Auctions back in the day</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/06/old-auction.png" class="img-fluid" style="width:75.0%"></p>
+</div>
+</div>
+<p>Source: Pierre-Antoine de Machy, Public Sale at the Hôtel Bullion, Musée Carnavalet, Paris (18th century)</p>
+</section>
+<section id="paris-auction-market" class="level2">
+<h2 class="anchored" data-anchor-id="paris-auction-market">Paris auction market</h2>
+<p><img src="images/06/auction-trend-paris.png" class="img-fluid"></p>
+</section>
+<section id="depart-pour-la-chasse" class="level2">
+<h2 class="anchored" data-anchor-id="depart-pour-la-chasse">Depart pour la chasse</h2>
+<p><img src="images/06/depart-pour-la-chasse.png" class="img-fluid"></p>
+</section>
+<section id="auction-catalogue-text" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="auction-catalogue-text">Auction catalogue text</h2>
+<div class="columns">
+<div class="column" style="width:50%;">
+<p><img src="images/06/auction-catalogue.png" class="img-fluid"></p>
+</div><div class="column" style="width:50%;">
+<p>Two paintings very rich in composition, of a beautiful execution, and whose merit is very remarkable, each 17 inches 3 lines high, 23 inches wide; the first, painted on wood, comes from the Cabinet of Madame la Comtesse de Verrue; it represents a departure for the hunt: it shows in the front a child on a white horse, a man who gives the horn to gather the dogs, a falconer and other figures nicely distributed across the width of the painting; two horses drinking from a fountain; on the right in the corner a lovely country house topped by a terrace, on which people are at the table, others who play instruments; trees and fabriques pleasantly enrich the background.</p>
+</div>
+</div>
+</section>
+<section id="depart-pour-la-chasse-as-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="depart-pour-la-chasse-as-data">Depart pour la chasse as Data</h2>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="images/06/painting1.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="images/06/painting2.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+<div class="cell-output-display">
+<p><img src="images/06/painting3.png" class="img-fluid" style="width:90.0%"></p>
+</div>
+</div>
+</section>
+<section id="section" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="section"></h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a>pp <span class="sc">|&gt;</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(name <span class="sc">==</span> <span class="st">"R1777-89a"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">glimpse</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>Rows: 1
+Columns: 61
+$ name              &lt;chr&gt; "R1777-89a"
+$ sale              &lt;chr&gt; "R1777"
+$ lot               &lt;chr&gt; "89"
+$ position          &lt;dbl&gt; 0.3755274
+$ dealer            &lt;chr&gt; "R"
+$ year              &lt;dbl&gt; 1777
+$ origin_author     &lt;chr&gt; "D/FL"
+$ origin_cat        &lt;chr&gt; "D/FL"
+$ school_pntg       &lt;chr&gt; "D/FL"
+$ diff_origin       &lt;dbl&gt; 0
+$ logprice          &lt;dbl&gt; 8.575462
+$ price             &lt;dbl&gt; 5300
+$ count             &lt;dbl&gt; 1
+$ subject           &lt;chr&gt; "D\x8epart pour la chasse"
+$ authorstandard    &lt;chr&gt; "Wouwerman, Philips"
+$ artistliving      &lt;dbl&gt; 0
+$ authorstyle       &lt;chr&gt; NA
+$ author            &lt;chr&gt; "Philippe Wouwermans"
+$ winningbidder     &lt;chr&gt; "Langlier, Jacques for Poullain, Antoine"
+$ winningbiddertype &lt;chr&gt; "DC"
+$ endbuyer          &lt;chr&gt; "C"
+$ Interm            &lt;dbl&gt; 1
+$ type_intermed     &lt;chr&gt; "D"
+$ Height_in         &lt;dbl&gt; 17.25
+$ Width_in          &lt;dbl&gt; 23
+$ Surface_Rect      &lt;dbl&gt; 396.75
+$ Diam_in           &lt;dbl&gt; NA
+$ Surface_Rnd       &lt;dbl&gt; NA
+$ Shape             &lt;chr&gt; "squ_rect"
+$ Surface           &lt;dbl&gt; 396.75
+$ material          &lt;chr&gt; "bois"
+$ mat               &lt;chr&gt; "b"
+$ materialCat       &lt;chr&gt; "wood"
+$ quantity          &lt;dbl&gt; 1
+$ nfigures          &lt;dbl&gt; 0
+$ engraved          &lt;dbl&gt; 0
+$ original          &lt;dbl&gt; 0
+$ prevcoll          &lt;dbl&gt; 1
+$ othartist         &lt;dbl&gt; 0
+$ paired            &lt;dbl&gt; 1
+$ figures           &lt;dbl&gt; 0
+$ finished          &lt;dbl&gt; 0
+$ lrgfont           &lt;dbl&gt; 0
+$ relig             &lt;dbl&gt; 0
+$ landsALL          &lt;dbl&gt; 1
+$ lands_sc          &lt;dbl&gt; 0
+$ lands_elem        &lt;dbl&gt; 1
+$ lands_figs        &lt;dbl&gt; 1
+$ lands_ment        &lt;dbl&gt; 0
+$ arch              &lt;dbl&gt; 1
+$ mytho             &lt;dbl&gt; 0
+$ peasant           &lt;dbl&gt; 0
+$ othgenre          &lt;dbl&gt; 0
+$ singlefig         &lt;dbl&gt; 0
+$ portrait          &lt;dbl&gt; 0
+$ still_life        &lt;dbl&gt; 0
+$ discauth          &lt;dbl&gt; 0
+$ history           &lt;dbl&gt; 0
+$ allegory          &lt;dbl&gt; 0
+$ pastorale         &lt;dbl&gt; 0
+$ other             &lt;dbl&gt; 0</code></pre>
+</div>
+</div>
+</section>
+</section>
+<section id="eda-paris-paintings" class="level1 page-columns page-full" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">EDA: Paris Paintings</h1>
+<section id="visualizing-numerical-data" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="visualizing-numerical-data">Visualizing numerical data</h2>
+<p><strong>Describing shapes of numerical distributions</strong></p>
+<ul>
+<li>shape:
+<ul>
+<li>skewness: right-skewed, left-skewed, symmetric (skew is to the side of the longer tail)</li>
+<li>modality: unimodal, bimodal, multimodal, uniform</li>
+</ul></li>
+<li>center: mean (<code>mean</code>), median (<code>median</code>), mode (not always useful)</li>
+<li>spread: range (<code>range</code>), standard deviation (<code>sd</code>), inter-quartile range (<code>IQR</code>)</li>
+<li>unusual observations</li>
+</ul>
+</section>
+<section id="histograms" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="histograms">Histograms</h2>
+<div class="panel-tabset">
+<ul class="nav nav-tabs" role="tablist"><li class="nav-item" role="presentation"><a class="nav-link active" id="tabset-1-1-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-1" role="tab" aria-controls="tabset-1-1" aria-selected="true" aria-current="page">Heights</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-2-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-2" role="tab" aria-controls="tabset-1-2" aria-selected="false">Widths</a></li><li class="nav-item" role="presentation"><a class="nav-link" id="tabset-1-3-tab" data-bs-toggle="tab" data-bs-target="#tabset-1-3" role="tab" aria-controls="tabset-1-3" aria-selected="false">Prices</a></li></ul>
+<div class="tab-content">
+<div id="tabset-1-1" class="tab-pane active" role="tabpanel" aria-labelledby="tabset-1-1-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Height, in inches"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-2" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-2-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in)) <span class="sc">+</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Width, in inches"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</div>
+<div id="tabset-1-3" class="tab-pane" role="tabpanel" aria-labelledby="tabset-1-3-tab">
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Price"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</section>
+<section id="density-plots" class="level2">
+<h2 class="anchored" data-anchor-id="density-plots">Density plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="side-by-side-box-plots" class="level2">
+<h2 class="anchored" data-anchor-id="side-by-side-box-plots">Side-by-side box plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Height_in, <span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-categorical-data" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-categorical-data">Visualizing categorical data</h2>
+<ul>
+<li>count/proportion of values</li>
+<li>unusual observations</li>
+</ul>
+</section>
+<section id="bar-plots" class="level2">
+<h2 class="anchored" data-anchor-id="bar-plots">Bar plots</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="segmented-bar-plots-counts" class="level2">
+<h2 class="anchored" data-anchor-id="segmented-bar-plots-counts">Segmented bar plots, counts</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="segmented-bar-plots-proportions" class="level2">
+<h2 class="anchored" data-anchor-id="segmented-bar-plots-proportions">Segmented bar plots, proportions</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="your-turn" class="level2 page-columns page-full">
+<h2 class="anchored" data-anchor-id="your-turn">Your Turn</h2>
+<p><span style="background-color: #ADD8E6">❓ Which of the previous two bar plots is a more useful representation for visualizing the relationship between landscape and painting material?</span></p>
+<div class="incremental">
+<p><span style="background-color: #ADD8E6">❓ What else would you want to do/know to complete EDA?</span></p>
+</div>
+<div class="incremental page-columns page-full">
+<p><span style="background-color: #ADD8E6">🧠 Try to answer at least one thing you’d want to know from the dataset.</span></p>
+
+<div class="no-row-height column-margin column-container"><div class="">
+<p>Put a <font color="#32cb31">green</font> sticky on the front of your computer when you’re done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.</p>
+</div></div></div>
+</section>
+</section>
+<section id="modelling" class="level1" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">Modelling</h1>
+<section id="modelling-1" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-1">Modelling</h2>
+<ul>
+<li><p>Use models to explain the relationship between variables and to make predictions</p></li>
+<li><p>For now we focus on <strong>linear</strong> models (but remember there are other types of models too!)</p></li>
+</ul>
+</section>
+<section id="packages" class="level2">
+<h2 class="anchored" data-anchor-id="packages">Packages</h2>
+<div class="columns">
+<div class="column" style="width:30%;">
+<p><img src="images/06/tidyverse.png" class="img-fluid"></p>
+<p><img src="images/06/broom.png" class="img-fluid"></p>
+</div><div class="column" style="width:70%;">
+<ul>
+<li>You’re familiar with the tidyverse:</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<ul>
+<li>The broom package takes the messy output of built-in functions in R, such as <code>lm</code>, and turns them into tidy data frames.</li>
+</ul>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</div>
+</div>
+</section>
+<section id="modelling-the-relationship-between-variables" class="level2">
+<h2 class="anchored" data-anchor-id="modelling-the-relationship-between-variables">Modelling the relationship between variables</h2>
+<p><strong>EDA: Prices</strong></p>
+<p><span style="background-color: #ADD8E6">❗ Describe the distribution of prices of paintings.</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="models-as-functions" class="level2">
+<h2 class="anchored" data-anchor-id="models-as-functions">Models as functions</h2>
+<ul>
+<li><p>We can represent relationships between variables using <strong>functions</strong></p></li>
+<li><p>A function is a mathematical concept: the relationship between an output and one or more inputs.</p>
+<ul>
+<li>Plug in the inputs and receive back the output</li>
+<li>Example: the formula <span class="math inline">\(y = 3x + 7\)</span> is a function with input <span class="math inline">\(x\)</span> and output <span class="math inline">\(y\)</span>, when <span class="math inline">\(x\)</span> is <span class="math inline">\(5\)</span>, the output <span class="math inline">\(y\)</span> is <span class="math inline">\(22\)</span></li>
+</ul>
+<!-- -->
+<pre><code>y = 3 * 5 + 7 = 22</code></pre></li>
+</ul>
+</section>
+<section id="height-as-a-function-of-width" class="level2">
+<h2 class="anchored" data-anchor-id="height-as-a-function-of-width">Height as a function of width</h2>
+<p><span style="background-color: #ADD8E6">❗ Describe the relationship between height and width of paintings.</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-the-linear-model" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-the-linear-model">Visualizing the linear model</h2>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-the-linear-model-1" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-the-linear-model-1">Visualizing the linear model</h2>
+<p>… without the measure of uncertainty around the line</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="1500"></p>
+</div>
+</div>
+</section>
+<section id="visualizing-the-linear-model-2" class="level2">
+<h2 class="anchored" data-anchor-id="visualizing-the-linear-model-2">Visualizing the linear model</h2>
+<p>… with different cosmetic choices for the line</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in)) <span class="sc">+</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
+<span id="cb18-3"><a href="#cb18-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>, </span>
+<span id="cb18-4"><a href="#cb18-4" aria-hidden="true" tabindex="-1"></a>              <span class="at">col =</span> <span class="st">"pink"</span>,      <span class="co"># color</span></span>
+<span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">lty =</span> <span class="dv">2</span>,           <span class="co"># line type</span></span>
+<span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">3</span>)     <span class="co"># line weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="1500"></p>
+</div>
+</div>
+</section>
+<section id="vocabulary" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="vocabulary">Vocabulary</h2>
+<ul>
+<li><strong>Response variable:</strong> Variable whose behavior or variation you are trying to understand, on the y-axis (dependent variable)</li>
+</ul>
+<div class="incremental">
+<ul>
+<li><strong>Explanatory variables:</strong> Other variables that you want to use to explain the variation in the response, on the x-axis (independent variables)</li>
+</ul>
+</div>
+<div class="incremental">
+<ul>
+<li><strong>Predicted value:</strong> Output of the function <strong>model function</strong>
+<ul>
+<li>The model function gives the typical value of the response variable <em>conditioning</em> on the explanatory variables</li>
+</ul></li>
+</ul>
+</div>
+<div class="incremental">
+<ul>
+<li><strong>Residuals:</strong> Show how far each case is from its model value
+<ul>
+<li>Residual = Observed value - Predicted value</li>
+<li>Tells how far above/below the model function each case is</li>
+</ul></li>
+</ul>
+</div>
+</section>
+<section id="residuals" class="level2">
+<h2 class="anchored" data-anchor-id="residuals">Residuals</h2>
+<p><span style="background-color: #ADD8E6">❓ What does a negative residual mean? Which paintings on the plot have have negative residuals?</span></p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="section-1" class="level2">
+<h2 class="anchored" data-anchor-id="section-1"></h2>
+<p>The plot below displays the relationship between height and width of paintings. It uses a lower alpha level for the points than the previous plots we looked at.</p>
+<div class="cell">
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+<p><span style="background-color: #ADD8E6">❓ What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?</span></p>
+</section>
+<section id="landscape-paintings" class="level2">
+<h2 class="anchored" data-anchor-id="landscape-paintings">Landscape paintings</h2>
+<ul>
+<li>Landscape painting is the depiction in art of landscapes – natural scenery such as mountains, valleys, trees, rivers, and forests, especially where the main subject is a wide view – with its elements arranged into a coherent composition.<a href="#fn1" class="footnote-ref" id="fnref1" role="doc-noteref"><sup>1</sup></a>
+<ul>
+<li>Landscape paintings tend to be wider than longer.</li>
+</ul></li>
+<li>Portrait painting is a genre in painting, where the intent is to depict a human subject.<a href="#fn2" class="footnote-ref" id="fnref2" role="doc-noteref"><sup>2</sup></a>
+<ul>
+<li>Portrait paintings tend to be longer than wider.</li>
+</ul></li>
+</ul>
+</section>
+<section id="multiple-explanatory-variables" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="multiple-explanatory-variables">Multiple explanatory variables</h2>
+<p><span style="background-color: #ADD8E6">❓ How, if at all, does the relationship between width and height of paintings vary by whether or not they have any landscape elements?</span></p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> Width_in, <span class="at">y =</span> Height_in, </span>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>                      <span class="at">color =</span> <span class="fu">factor</span>(landsALL))) <span class="sc">+</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">alpha =</span> <span class="fl">0.4</span>) <span class="sc">+</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"landscape"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="2100"></p>
+</div>
+</div>
+</section>
+<section id="models---upsides-and-downsides" class="level2">
+<h2 class="anchored" data-anchor-id="models---upsides-and-downsides">Models - upsides and downsides</h2>
+<ul>
+<li>Models can sometimes reveal patterns that are not evident in a graph of the data. This is a great advantage of modelling over simple visual inspection of data.</li>
+</ul>
+<div class="incremental">
+<ul>
+<li>There is a real risk, however, that a model is imposing structure that is not really there on the scatter of data, just as people imagine animal shapes in the stars. A skeptical approach is always warranted.</li>
+</ul>
+</div>
+</section>
+<section id="variation-around-the-model" class="level2 smaller">
+<h2 class="smaller anchored" data-anchor-id="variation-around-the-model">Variation around the model…</h2>
+<p>is just as important as the model, if not more!</p>
+<div class="incremental">
+<p><em>Statistics is the explanation of variation in the context of what remains unexplained.</em></p>
+</div>
+<div class="incremental">
+<ul>
+<li><p>The scatter suggests that there might be other factors that account for large parts of painting-to-painting variability, or perhaps just that randomness plays a big role.</p></li>
+<li><p>Adding more explanatory variables to a model can sometimes usefully reduce the size of the scatter around the model. (We’ll talk more about this later.)</p></li>
+</ul>
+</div>
+</section>
+<section id="how-do-we-use-models" class="level2">
+<h2 class="anchored" data-anchor-id="how-do-we-use-models">How do we use models?</h2>
+<ol type="1">
+<li><p><strong>Explanation</strong>: Characterize the relationship between <span class="math inline">\(y\)</span> and <span class="math inline">\(x\)</span> via <em>slopes</em> for numerical explanatory variables or <em>differences</em> for categorical explanatory variables (Inference)</p></li>
+<li><p><strong>Prediction</strong>: Plug in <span class="math inline">\(x\)</span>, get the predicted <span class="math inline">\(y\)</span> (Machine Learning)</p></li>
+</ol>
+</section>
+</section>
+<section id="recap" class="level1" data-background-color="#92A86A">
+<h1 data-background-color="#92A86A">Recap</h1>
+<ul>
+<li>Do I understand the goals of EDA?</li>
+<li>Can I carry out EDA on a given dataset?</li>
+<li>Can I describe modelling as a concept?</li>
+</ul>
+
+
+</section>
+
+
+<div id="quarto-appendix" class="default"><section id="footnotes" class="footnotes footnotes-end-of-document" role="doc-endnotes"><h2 class="anchored quarto-appendix-heading">Footnotes</h2>
+
+<ol>
+<li id="fn1"><p>Source: Wikipedia, <a href="https://en.wikipedia.org/wiki/Landscape_painting">Landscape painting</a><a href="#fnref1" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+<li id="fn2"><p>Source: Wikipedia, <a href="https://en.wikipedia.org/wiki/Portrait_painting">Portait painting</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
+</ol>
+</section></div></main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../LICENSE.html">License</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -37,7 +37,7 @@ storms |>
 
 There are `r n_unique` unique hurricanes.
 
-(Note that we need to group by name *and* year, as certain storms have the same name...in different years.)
+(Note that we need to group by name *and* year, as certain storms have the same name...in different years. There might still be instances where the same storm is double-counted if it extends from December into January.)
 
 ### Exercise 2
 

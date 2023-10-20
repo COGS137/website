@@ -13,6 +13,10 @@ output:
 library(tidyverse) 
 ```
 
+::: callout-warning
+Your numbers/output may differ based on the version of the storms dataset that you have/used to complete. The logic will follow what you see here. This is expected behavior.
+:::
+
 ### Exercise 1
 
 How many *unique* *hurricanes* are included in this dataset?
@@ -37,7 +41,7 @@ storms |>
 
 There are `r n_unique` unique hurricanes.
 
-(Note that we need to group by name *and* year, as certain storms have the same name...in different years. There might still be instances where the same storm is double-counted if it extends from December into January.)
+(Note that we need to group by name \*and\* year, as certain storms have the same name\...in different years. There might still be instances where the same storm is double-counted if it extends from December into January, which if you accounted for, excellent work!)
 
 ### Exercise 2
 

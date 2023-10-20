@@ -499,8 +499,8 @@ Important
 <p>The description of the variables, i.e.&nbsp;the <strong>codebook</strong>, is given below.</p>
 <table class="table">
 <colgroup>
-<col style="width: 30%">
-<col style="width: 69%">
+<col style="width: 31%">
+<col style="width: 68%">
 </colgroup>
 <thead>
 <tr class="header">
@@ -684,16 +684,10 @@ Important
 <section id="exercise-5" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-5">Exercise 5</h3>
 <p>Based on the shape of the histogram you created in the previous exercise, determine which of these summary statistics is useful for describing the distribution. Write up your description (remember shape, center, spread, any unusual observations) and include the summary statistic output as well.</p>
-<p>Next, we facet the plot by major category.</p>
-<div class="cell">
-<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> college_recent_grads, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> median)) <span class="sc">+</span></span>
-<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>() <span class="sc">+</span></span>
-<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>( <span class="sc">~</span> major_category, <span class="at">ncol =</span> <span class="dv">4</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
-</div>
 </section>
 <section id="exercise-6" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-6">Exercise 6</h3>
-<p>Plot the distribution of <code>median</code> income using a histogram, faceted by <code>major_category</code>. Use the <code>binwidth</code> you chose in the earlier exercise.</p>
+<p>Now, plot the distribution of <code>median</code> income using a histogram, faceted by <code>major_category</code>. Use the <code>binwidth</code> you chose in the earlier exercise.</p>
 <p>Now that we’ve seen the shapes of the distributions of median incomes for each major category, we should have a better idea for which summary statistic to use to quantify the typical median income.</p>
 </section>
 <section id="exercise-7" class="level3">
@@ -710,16 +704,16 @@ Important
 <p>One of the sections of the <a href="https://fivethirtyeight.com/features/the-economic-guide-to-picking-a-college-major/">FiveThirtyEight story</a> is “All STEM fields aren’t the same”. Let’s see if this is true.</p>
 <p>First, let’s create a new vector called <code>stem_categories</code> that lists the major categories that are considered STEM fields.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>stem_categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Biology &amp; Life Science"</span>,</span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Computers &amp; Mathematics"</span>,</span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Engineering"</span>,</span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Physical Sciences"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a>stem_categories <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">"Biology &amp; Life Science"</span>,</span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Computers &amp; Mathematics"</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Engineering"</span>,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>                     <span class="st">"Physical Sciences"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Then, we can use this to create a new variable in our data frame indicating whether a major is STEM or not.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>college_recent_grads <span class="ot">&lt;-</span> college_recent_grads <span class="sc">|&gt;</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">major_type =</span> <span class="fu">case_when</span>(major_category <span class="sc">%in%</span> stem_categories <span class="sc">~</span> <span class="st">"stem"</span>,</span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"not stem"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a>college_recent_grads <span class="ot">&lt;-</span> college_recent_grads <span class="sc">|&gt;</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">major_type =</span> <span class="fu">case_when</span>(major_category <span class="sc">%in%</span> stem_categories <span class="sc">~</span> <span class="st">"stem"</span>,</span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>                                <span class="cn">TRUE</span> <span class="sc">~</span> <span class="st">"not stem"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <p>Let’s unpack this: with <code>mutate</code> we create a new variable called <code>major_type</code>, which is defined as <code>"stem"</code> if the <code>major_category</code> is in the vector called <code>stem_categories</code> we created earlier, and as <code>"not stem"</code> otherwise.</p>
 <p><code>%in%</code> is a <strong>logical operator</strong>. Other logical operators that are commonly used are</p>
@@ -775,11 +769,11 @@ Important
 </table>
 <p>We can use the logical operators to also <code>filter</code> our data for STEM majors whose median earnings is less than median for all majors’s median earnings, which we found to be $36,000 earlier.</p>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>college_recent_grads <span class="sc">|&gt;</span></span>
-<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
-<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>    major_type <span class="sc">==</span> <span class="st">"stem"</span>,</span>
-<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>    median <span class="sc">&lt;</span> <span class="dv">36000</span></span>
-<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a>college_recent_grads <span class="sc">|&gt;</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(</span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>    major_type <span class="sc">==</span> <span class="st">"stem"</span>,</span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>    median <span class="sc">&lt;</span> <span class="dv">36000</span></span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 <section id="exercise-9" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-9">Exercise 9</h3>

@@ -77,7 +77,7 @@ glimpse(college_recent_grads)
 The description of the variables, i.e. the **codebook**, is given below.
 
 | Header                         | Description                                                                |
-|:---------------------|:-------------------------------------------------|
+|:----------------------|:------------------------------------------------|
 | `rank`                         | Rank by median earnings                                                    |
 | `major_code`                   | Major code, FO1DP in ACS PUMS                                              |
 | `major`                        | Major description                                                          |
@@ -214,17 +214,9 @@ college_recent_grads |>
 
 Based on the shape of the histogram you created in the previous exercise, determine which of these summary statistics is useful for describing the distribution. Write up your description (remember shape, center, spread, any unusual observations) and include the summary statistic output as well.
 
-Next, we facet the plot by major category.
-
-```{r}
-ggplot(data = college_recent_grads, mapping = aes(x = median)) +
-  geom_histogram() +
-  facet_wrap( ~ major_category, ncol = 4)
-```
-
 ### Exercise 6
 
-Plot the distribution of `median` income using a histogram, faceted by `major_category`. Use the `binwidth` you chose in the earlier exercise.
+Now, plot the distribution of `median` income using a histogram, faceted by `major_category`. Use the `binwidth` you chose in the earlier exercise.
 
 Now that we've seen the shapes of the distributions of median incomes for each major category, we should have a better idea for which summary statistic to use to quantify the typical median income.
 

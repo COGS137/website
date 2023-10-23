@@ -133,8 +133,8 @@ website:
             href: content/labs/02-lab-wrangling.qmd
           - text: "Lab03: Data Viz"
             href: content/labs/03-lab-viz.qmd
-      #     - text: "Lab04: Modelling"
-      #       href: content/labs/04-lab-modelling.qmd
+          - text: "Lab04: Modelling"
+            href: content/labs/04-lab-modelling.qmd
       #     - text: "Lab05: MLR"
       #       href: content/labs/05-lab-mlr.qmd
       #     - text: "Lab06: CS01"
@@ -151,6 +151,8 @@ website:
             href: content/labslides/02-lab-deck.html
           - text: "Lab03"
             href: content/labslides/03-lab-deck.html
+          - text: "Lab04"
+            href: content/labslides/04-lab-deck.html
       #     - text: "Lab05"
       #       href: content/labslides/05-lab-deck.html
       #     - text: "Lab07"
@@ -159,8 +161,8 @@ website:
         contents:
           - text: "Lab02: Wrangling (Ans)"
             href: content/lab-ans/lab02-wrangling-ans.qmd
-      #     - text: "Lab03: Data Viz (Ans)"
-      #       href: content/lab-ans/lab03-viz-ans.qmd
+          - text: "Lab03: Data Viz (Ans)"
+            href: content/lab-ans/lab03-viz-ans.qmd
       #     - text: "Lab04: Modelling (Ans)"
       #       href: content/lab-ans/lab04-modelling-ans.qmd
       #     - text: "Lab05: MLR (Ans)"

@@ -56,6 +56,76 @@
     "text": "What types of majors do women tend to major in?\n\nExercise 10\nCreate a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. Describe the association between these three variables."
   },
   {
+    "objectID": "content/labs/04-lab-modelling.html",
+    "href": "content/labs/04-lab-modelling.html",
+    "title": "Lab 04 - Data Modelling course evaluations, Pt 1",
+    "section": "",
+    "text": "Many college courses conclude by giving students the opportunity to evaluate the course and the instructor anonymously. However, the use of these student evaluations as an indicator of course quality and teaching effectiveness is often criticized because these measures may reflect the influence of non-teaching related characteristics, such as the physical appearance of the instructor. The article titled, “Beauty in the classroom: instructors’ pulchritude and putative pedagogical productivity” (Hamermesh and Parker, 2005) found that instructors who are viewed to be better looking receive higher instructional ratings.\n\n\nDaniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005, Pages 369-376, ISSN 0272-7757, 10.1016/j.econedurev.2004.07.013. link.\nFor this assignment you will analyze the data from this study in order to learn what goes into a positive professor evaluation.\nThe data were gathered from end of semester student evaluations for a large sample of professors from the University of Texas at Austin. In addition, six students rated the professors’ physical appearance. (This is a slightly modified version of the original data set that was released as part of the replication data for Data Analysis Using Regression and Multilevel/Hierarchical Models (Gelman and Hill, 2007).) The result is a data frame where each row contains a different course and columns represent variables about the courses and professors.\n\n\n\n\n\n\nImportant\n\n\n\nThis lab is maybe longer than what you’ll be able to complete in an hour. We will be looking to see that you minimally ran and interpreted at least a single model (completed Part 3). If you’re able to finish the whole thing, awesome! If not, that’s OK."
+  },
+  {
+    "objectID": "content/labs/04-lab-modelling.html#codebook",
+    "href": "content/labs/04-lab-modelling.html#codebook",
+    "title": "Lab 04 - Data Modelling course evaluations, Pt 1",
+    "section": "Codebook",
+    "text": "Codebook\n\n\n\n\n\n\n\nVariable name\nDescription\n\n\n\n\nscore\nAverage professor evaluation score: (1) very unsatisfactory - (5) excellent\n\n\nrank\nRank of professor: teaching, tenure track, tenure\n\n\nethnicity\nEthnicity of professor: not minority, minority\n\n\ngender\nGender of professor: female, male\n\n\nlanguage\nLanguage of school where professor received education: english or non-english\n\n\nage\nAge of professor\n\n\ncls_perc_eval\nPercent of students in class who completed evaluation\n\n\ncls_did_eval\nNumber of students in class who completed evaluation\n\n\ncls_students\nTotal number of students in class\n\n\ncls_level\nClass level: lower, upper\n\n\ncls_profs\nNumber of professors teaching sections in course in sample: single, multiple\n\n\ncls_credits\nNumber of credits of class: one credit (lab, PE, etc.), multi credit\n\n\nbty_f1lower\nBeauty rating of professor from lower level female: (1) lowest - (10) highest\n\n\nbty_f1upper\nBeauty rating of professor from upper level female: (1) lowest - (10) highest\n\n\nbty_f2upper\nBeauty rating of professor from upper level female: (1) lowest - (10) highest\n\n\nbty_m1lower\nBeauty rating of professor from lower level male: (1) lowest - (10) highest\n\n\nbty_m1upper\nBeauty rating of professor from upper level male: (1) lowest - (10) highest\n\n\nbty_m2upper\nBeauty rating of professor from upper level male: (1) lowest - (10) highest"
+  },
+  {
+    "objectID": "content/labs/04-lab-modelling.html#part-1-data-manipulation",
+    "href": "content/labs/04-lab-modelling.html#part-1-data-manipulation",
+    "title": "Lab 04 - Data Modelling course evaluations, Pt 1",
+    "section": "Part 1: Data Manipulation",
+    "text": "Part 1: Data Manipulation\n\n\nThe rowwise function is useful for applying mathematical operations to each row.\n\nExercise 1\nCreate a new variable called bty_avg that is the average attractiveness score of the six students for each professor (bty_f1lower through bty_m2upper). Add this new variable to the evals data frame. Do this in one pipe, using the rowwise function. Since rowwise is new to you, incomplete code is given below to guide you in the right direction, however you will need to fill in the blanks.\n\n___ <- evals |>\n  rowwise() |>\n  ___(bty_avg = mean( c( ___ ) )) |>\n  ungroup()\n\nNote that we end the pipeline with ungroup() to remove the effect of the rowwise function from earlier in the pipeline. The rowwise function works a lot like group_by, except it groups the data frame one row at a time so that any operations applied to the data frame is done once per each row. This is helpful for finding the mean beauty score for each row. However in the remainder of the analysis we don’t want to, say, calculate summary statistics for each row, or fit a model for each row. Hence we need to undo the effect of rowwise, which we can do with ungroup."
+  },
+  {
+    "objectID": "content/labs/04-lab-modelling.html#part-2-exploratory-data-analysis",
+    "href": "content/labs/04-lab-modelling.html#part-2-exploratory-data-analysis",
+    "title": "Lab 04 - Data Modelling course evaluations, Pt 1",
+    "section": "Part 2: Exploratory Data Analysis",
+    "text": "Part 2: Exploratory Data Analysis\n\nExercise 2\nVisualize the distribution of score. Is the distribution skewed? What does that tell you about how students rate courses? Is this what you expected to see? Why, or why not? Include any summary statistics and visualizations you use in your response.\n\n\nExercise 3\nVisualize and describe the relationship between score and the new variable you created, bty_avg.\n\n\nHint: See the help page for the function at http://ggplot2.tidyverse.org/reference/index.html.\n\n\nExercise 4\nReplot the scatterplot from Exercise 3, but this time use\ngeom_jitter()? What does “jitter” mean? What was misleading about the initial scatterplot?"
+  },
+  {
+    "objectID": "content/labs/04-lab-modelling.html#part-3-linear-regression-with-a-numerical-predictor",
+    "href": "content/labs/04-lab-modelling.html#part-3-linear-regression-with-a-numerical-predictor",
+    "title": "Lab 04 - Data Modelling course evaluations, Pt 1",
+    "section": "Part 3: Linear regression with a numerical predictor",
+    "text": "Part 3: Linear regression with a numerical predictor\n\n\nLinear model is in the form \\(\\hat{y} = b_0 + b_1 x\\).\n\nExercise 5\nLet’s see if the apparent trend in the plot is something more than natural variation. Fit a linear model called m_bty to predict average professor evaluation score by average beauty rating (bty_avg). Based on the regression output, write the linear model.\n\n\nExercise 6\nReplot your visualization from Exercise 3, and add the regression line to this plot in orange color. Turn off the shading for the uncertainty of the line.\n\n\nExercise 7\nInterpret the slope of the linear model in context of the data.\n\n\nExercise 8\nInterpret the intercept of the linear model in context of the data. Comment on whether or not the intercept makes sense in this context.\n\n\nExercise 9\nDetermine the \\(R^2\\) of the model and interpret it in context of the data."
+  },
+  {
+    "objectID": "content/labs/04-lab-modelling.html#part-4-linear-regression-with-a-categorical-predictor",
+    "href": "content/labs/04-lab-modelling.html#part-4-linear-regression-with-a-categorical-predictor",
+    "title": "Lab 04 - Data Modelling course evaluations, Pt 1",
+    "section": "Part 4: Linear regression with a categorical predictor",
+    "text": "Part 4: Linear regression with a categorical predictor\n\nExercise 10\nFit a new linear model called m_gen to predict average professor evaluation score based on gender of the professor. Based on the regression output, write the linear model and interpret the slope and intercept in context of the data.\n\n\nExercise 11\nWhat is the equation of the line corresponding to male professors? What is it for female professors?\n\n\nExercise 12\nFit a new linear model called m_rank to predict average professor evaluation score based on rank of the professor. Based on the regression output, write the linear model and interpret the slopes and intercept in context of the data.\n\n\nSee the course slides on using the forcats package for changing the order of levels.\n\n\nExercise 3\nCreate a new variable called rank_relevel where \"tenure track\" is the baseline level.\n\n\nExercise 14\nFit a new linear model called m_rank_relevel to predict average professor evaluation score based on rank_relevel of the professor. This is the new (releveled) variable you created in Exercise 13. Based on the regression output, write the linear model and interpret the slopes and intercept in context of the data. Also determine and interpret the \\(R^2\\) of the model.\n\n\nExercise 15\nCreate another new variable called tenure_eligible that labels \"teaching\" faculty as \"no\" and labels \"tenure track\" and \"tenured\" faculty as \"yes\".\n\n\nExercise 16\nFit a new linear model called m_tenure_eligible to predict average professor evaluation score based on tenure_eligibleness of the professor. This is the new (regrouped) variable you created in Exercise 15. Based on the regression output, write the linear model and interpret the slopes and intercept in context of the data. Also determine and interpret the \\(R^2\\) of the model."
+  },
+  {
+    "objectID": "content/labs/05-lab-mlr.html",
+    "href": "content/labs/05-lab-mlr.html",
+    "title": "Lab 05 - Modelling course evaluations, Pt 2",
+    "section": "",
+    "text": "In this lab we revisit the professor evaluations data we modeled in an earlier lab. In the modelling lab we modeled evaluation scores using a single predictor at a time. However, this time we use multiple predictors to model evaluation scores.\nIf you don’t remember the data, review the modelling lab’s introduction before continuing to the exercises."
+  },
+  {
+    "objectID": "content/labs/05-lab-mlr.html#part-1-simple-linear-regression",
+    "href": "content/labs/05-lab-mlr.html#part-1-simple-linear-regression",
+    "title": "Lab 05 - Modelling course evaluations, Pt 2",
+    "section": "Part 1: Simple linear regression",
+    "text": "Part 1: Simple linear regression\n\nExercise 2\n[Review from linear regression lab] Fit a linear model (one you have fit before): m_bty, predicting average professor evaluation score based on average beauty rating (bty_avg) only. Write the linear model, and note the \\(R^2\\) and the adjusted \\(R^2\\)."
+  },
+  {
+    "objectID": "content/labs/05-lab-mlr.html#part-2-multiple-linear-regression",
+    "href": "content/labs/05-lab-mlr.html#part-2-multiple-linear-regression",
+    "title": "Lab 05 - Modelling course evaluations, Pt 2",
+    "section": "Part 2: Multiple linear regression",
+    "text": "Part 2: Multiple linear regression\n\nExercise 3\nFit a linear model: m_bty_gen, predicting average professor evaluation score based on average beauty rating (bty_avg) and gender. Write the linear model, and note the \\(R^2\\) and the adjusted \\(R^2\\).\n\n\nExercise 4\nInterpret the slopes and intercept of m_bty_gen in context of the data.\n\n\nExercise 5\nWhat percent of the variability in score is explained by the model m_bty_gen.\n\n\nExercise 6\nWhat is the equation of the line corresponding to just male professors?\n\n\nExercise 7\nFor two professors who received the same beauty rating, which gender tends to have the higher course evaluation score?\n\n\nExercise 8\nHow do the adjusted \\(R^2\\) values of m_bty_gen and m_bty compare? What does this tell us about how useful gender is in explaining the variability in evaluation scores when we already have information on the beauty score of the professor.\n\n\nExercise 9\nCompare the slopes of bty_avg under the two models (m_bty and m_bty_gen). Has the addition of gender to the model changed the parameter estimate (slope) for bty_avg?\n\n\nExercise 10\nCreate a new model called m_bty_rank with gender removed and rank added in. Write the equation of the linear model and interpret the slopes and intercept in context of the data."
+  },
+  {
+    "objectID": "content/labs/05-lab-mlr.html#part-3-the-search-for-the-best-model",
+    "href": "content/labs/05-lab-mlr.html#part-3-the-search-for-the-best-model",
+    "title": "Lab 05 - Modelling course evaluations, Pt 2",
+    "section": "Part 3: The search for the best model",
+    "text": "Part 3: The search for the best model\nGoing forward, only consider the following variables as potential predictors: rank, ethnicity, gender, language, age, cls_perc_eval, cls_did_eval, cls_students, cls_level, cls_profs, cls_credits, bty_avg.\n\nExercise 11\nWhich variable, on its own, would you expect to be the worst predictor of evaluation scores? Why? Hint: Think about which variable would you expect to not have any association with the professor’s score.\n\n\nExercise 12\nCheck your suspicions from the previous exercise. Include the model output for that variable in your response.\n\n\nExercise 13\nSuppose you wanted to fit a full model with the variables listed above. If you are already going to include cls_perc_eval and cls_students, which variable should you not include as an additional predictor? Why?\n\n\nExercise 14\nFit a full model with all predictors listed above (except for the one you decided to exclude) in the previous question.\n\n\nExercise 15\nUsing backward-selection (meaning fit all predictors and remove those that are not needed in the model) with adjusted R-squared as the selection criterion, determine the best model. You do not need to show all steps in your answer, just the output for the final model. Also, write out the linear model for predicting score based on the final model you settle on.\n\n\nExercise 16\nInterpret the slopes of one numerical and one categorical predictor based on your final model.\n\n\nExercise 17\nBased on your final model, describe the characteristics of a professor and course at University of Texas at Austin that would be associated with a high evaluation score.\n\n\nExercise 18\nWould you be comfortable generalizing your conclusions to apply to professors generally (at any university)? Why or why not?"
+  },
+  {
     "objectID": "content/labs/02-lab-wrangling.html",
     "href": "content/labs/02-lab-wrangling.html",
     "title": "Lab 02 - Tooling",
@@ -180,6 +250,48 @@
     "title": "HW 02 - Data Visualization",
     "section": "Submission",
     "text": "Submission\nBe sure to knit your file to HTML, look at the output HTML file to make sure everything looks as you expected, and then commit and push your final changes to GitHub. We will be grading from the HTML file. Before you wrap up the assignment, make sure all documents are updated on your GitHub repo."
+  },
+  {
+    "objectID": "content/labslides/04-lab-deck.html#agenda",
+    "href": "content/labslides/04-lab-deck.html#agenda",
+    "title": "Lab 04: Modelling course evals (Pt. 1)",
+    "section": "Agenda",
+    "text": "Agenda\n\nLab 04: Modelling course evaluations\nGetting started with lab"
+  },
+  {
+    "objectID": "content/labslides/04-lab-deck.html#lab-06-modelling-course-evaluations",
+    "href": "content/labslides/04-lab-deck.html#lab-06-modelling-course-evaluations",
+    "title": "Lab 04: Modelling course evals (Pt. 1)",
+    "section": "Lab 06: Modelling course evaluations",
+    "text": "Lab 06: Modelling course evaluations\n\nMany college courses give students the opportunity to evaluate the course and the instructor anonymously\nThe use of these student evaluations as an indicator of course quality and teaching effectiveness is often criticized because these measures may reflect the influence of non-teaching related characteristics, e.g. the physical appearance of the instructor"
+  },
+  {
+    "objectID": "content/labslides/04-lab-deck.html#youve-all-seen-something-like-this",
+    "href": "content/labslides/04-lab-deck.html#youve-all-seen-something-like-this",
+    "title": "Lab 04: Modelling course evals (Pt. 1)",
+    "section": "You’ve all seen something like this…",
+    "text": "You’ve all seen something like this…"
+  },
+  {
+    "objectID": "content/labslides/04-lab-deck.html#and-then-theres-also-this",
+    "href": "content/labslides/04-lab-deck.html#and-then-theres-also-this",
+    "title": "Lab 04: Modelling course evals (Pt. 1)",
+    "section": "and then there’s also this",
+    "text": "and then there’s also this"
+  },
+  {
+    "objectID": "content/labslides/04-lab-deck.html#data-comes-from",
+    "href": "content/labslides/04-lab-deck.html#data-comes-from",
+    "title": "Lab 04: Modelling course evals (Pt. 1)",
+    "section": "Data comes from…",
+    "text": "Data comes from…\n“Beauty in the classroom: instructors’ pulchritude and putative pedagogical productivity”\nDaniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005. http://www.sciencedirect.com/science/article/pii/S0272775704001165"
+  },
+  {
+    "objectID": "content/labslides/04-lab-deck.html#some-new-challenges-in-this-lab",
+    "href": "content/labslides/04-lab-deck.html#some-new-challenges-in-this-lab",
+    "title": "Lab 04: Modelling course evals (Pt. 1)",
+    "section": "Some new challenges in this lab",
+    "text": "Some new challenges in this lab\n\nThere isn’t much code on the lab instructions, you might need to refer to course slides to put the pieces together, however most of the time\n\nyou’ll be visualizing with ggplot,\nfitting a model with lm,\nand viewing some model statistics with glance\n\nInterpretation in the context of the data matters\n\nNumbers need context: saying (for example) “the \\(\\beta_1\\) is 5” isn’t enough; what does that mean? In particular, what does that mean for these data and for this question\n\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
   {
     "objectID": "content/labslides/03-lab-deck.html#agenda",
@@ -355,6 +467,48 @@
     "title": "Lab 01: Tooling",
     "section": "Getting started: Assignment Retrieval",
     "text": "Getting started: Assignment Retrieval\nFirst, put away computers, and watch me do it:\n\nClick on the assignment link on Canvas for today’s lab to create your GitHub repository (which we’ll refer to as “repo” going forward) for the lab. This repo contains a template you can build on to complete your lab.\nOn GitHub, accept the assignment. Click on the link to navigate to the repo.\nOn the repo, click the green “<> Code” button, ensure that “SSH” is selected, and then copy the URL.\nGo to datahub. and open RStudio. Go to File > New Project… and select to create a New Project from Version Control. On the following menu, select Git.\nCopy and paste the URL of your assignment repo into the “Repository URL” dialog box.\nHit Create Project.\n\nNow it’s your turn! Place a green sticky on your laptop when you’re done with this part (you can continue if you like). Place a pink sticky if you have questions."
+  },
+  {
+    "objectID": "content/lab-ans/lab03-viz-ans.html",
+    "href": "content/lab-ans/lab03-viz-ans.html",
+    "title": "Lab 03 - Data Visualization (Ans)",
+    "section": "",
+    "text": "library(tidyverse)"
+  },
+  {
+    "objectID": "content/lab-ans/lab03-viz-ans.html#which-major-has-the-lowest-unemployment-rate",
+    "href": "content/lab-ans/lab03-viz-ans.html#which-major-has-the-lowest-unemployment-rate",
+    "title": "Lab 03 - Data Visualization (Ans)",
+    "section": "Which major has the lowest unemployment rate?",
+    "text": "Which major has the lowest unemployment rate?\n\ncollege_recent_grads |>\n  arrange(unemployment_rate) |>\n  select(rank, major, unemployment_rate)\n\n# A tibble: 173 × 3\n    rank major                                      unemployment_rate\n   <dbl> <chr>                                                  <dbl>\n 1    53 Mathematics And Computer Science                     0      \n 2    74 Military Technologies                                0      \n 3    84 Botany                                               0      \n 4   113 Soil Science                                         0      \n 5   121 Educational Administration And Supervision           0      \n 6    15 Engineering Mechanics Physics And Science            0.00633\n 7    20 Court Reporting                                      0.0117 \n 8   120 Mathematics Teacher Education                        0.0162 \n 9     1 Petroleum Engineering                                0.0184 \n10    65 General Agriculture                                  0.0196 \n# ℹ 163 more rows\n\n\nDisplay only 4 decimal places using mutate and round:\n\ncollege_recent_grads |>\n  arrange(unemployment_rate) |>\n  select(rank, major, unemployment_rate) |>\n  mutate(unemployment_rate = round(unemployment_rate, digits = 4))\n\n# A tibble: 173 × 3\n    rank major                                      unemployment_rate\n   <dbl> <chr>                                                  <dbl>\n 1    53 Mathematics And Computer Science                      0     \n 2    74 Military Technologies                                 0     \n 3    84 Botany                                                0     \n 4   113 Soil Science                                          0     \n 5   121 Educational Administration And Supervision            0     \n 6    15 Engineering Mechanics Physics And Science             0.0063\n 7    20 Court Reporting                                       0.0117\n 8   120 Mathematics Teacher Education                         0.0162\n 9     1 Petroleum Engineering                                 0.0184\n10    65 General Agriculture                                   0.0196\n# ℹ 163 more rows\n\n\nDisplay 2 scientific digits using options:\n\noptions(digits = 2)\n\n\nExercise 1\nWhich of these options, changing the input data or altering the number of digits displayed without touching the input data, is the better option? Explain your reasoning. Then, implement the option you chose.\nI prefer the options approach because it will enforce consistency each time we display variables, without having to make the call to round each time (without changing the underlying data)."
+  },
+  {
+    "objectID": "content/lab-ans/lab03-viz-ans.html#which-major-has-the-highest-percentage-of-women",
+    "href": "content/lab-ans/lab03-viz-ans.html#which-major-has-the-highest-percentage-of-women",
+    "title": "Lab 03 - Data Visualization (Ans)",
+    "section": "Which major has the highest percentage of women?",
+    "text": "Which major has the highest percentage of women?\n\nExercise 2\nUsing what you’ve learned so far, arrange the data in descending order with respect to proportion of women in a major, and display only the major, the total number of people with major, and proportion of women. Show only the top 3 majors by adding head(3) at the end of the pipeline.\nThe sharewomen column lists the proportion of women in each major. So we can arrange our data in descending order using desc(sharewomen), then select the columns we want: major, total, and sharewomen. We then just display the top 3 majors using head(3).\n\ncollege_recent_grads |>\n  arrange(desc(sharewomen)) |>\n  select(major, total, sharewomen) |>\n  head(3)\n\n# A tibble: 3 × 3\n  major                                         total sharewomen\n  <chr>                                         <dbl>      <dbl>\n1 Early Childhood Education                     37589      0.969\n2 Communication Disorders Sciences And Services 38279      0.968\n3 Medical Assisting Services                    11123      0.928"
+  },
+  {
+    "objectID": "content/lab-ans/lab03-viz-ans.html#how-do-the-distributions-of-median-income-compare-across-major-categories",
+    "href": "content/lab-ans/lab03-viz-ans.html#how-do-the-distributions-of-median-income-compare-across-major-categories",
+    "title": "Lab 03 - Data Visualization (Ans)",
+    "section": "How do the distributions of median income compare across major categories?",
+    "text": "How do the distributions of median income compare across major categories?\n\nExercise 3\nWhy do we often choose the median, rather than the mean, to describe the typical income of a group of people?\nThe mean is more affected by the presence of outliers and by the skew of the distribution. Thus, the presence of a single person with very high income can increase the mean substantively, such that it’s no longer a good impression of the overall distribution. In contrast, the median (or the “middle number”) tells us the income exactly in the middle of the distribution.\n\n\nExercise 4\nTry binwidths of $1000 and $5000 and choose one. Explain your reasoning for your choice. Note that the binwidth is an argument for the geom_histogram function. So to specify a binwidth of $1000, you would use geom_histogram(binwidth = 1000).\n\nggplot(data = college_recent_grads, mapping = aes(x = median)) +\n  geom_histogram(binwidth=5000)\n\n\n\n\nI ended up choosing binwidth=5000. When binwidth=1000, there were too many small differences in income that were thus not grouped together, and it was harder to see the overall shape of the distribution.\nWe can also calculate summary statistics for this distribution using the summarise function:\n\ncollege_recent_grads |>\n  summarise(min = min(median), max = max(median),\n            mean = mean(median), med = median(median),\n            sd = sd(median), \n            q1 = quantile(median, probs = 0.25),\n            q3 = quantile(median, probs = 0.75))\n\n# A tibble: 1 × 7\n    min    max   mean   med     sd    q1    q3\n  <dbl>  <dbl>  <dbl> <dbl>  <dbl> <dbl> <dbl>\n1 22000 110000 40151. 36000 11470. 33000 45000\n\n\n\n\nExercise 5\nBased on the shape of the histogram you created in the previous exercise, determine which of these summary statistics is useful for describing the distribution. Write up your description (remember shape, center, spread, any unusual observations) and include the summary statistic output as well.\nThe underlying distribution of median incomes is somewhat right-skewed, with at least 1-2 majors making a lot of money. Because of this, I’m going to use the median median income.\nIt would be probably be fine to use the mean median income as well—judging by the distribution of median incomes in each major_category, which are relatively normal-ish.\n\n\nExercise 6\nPlot the distribution of median income using a histogram, faceted by major_category. Use the binwidth you chose in the earlier exercise.\n\nggplot(data = college_recent_grads, mapping = aes(x = median)) +\n  geom_histogram(binwidth = 5000) +\n  facet_wrap( ~ major_category, ncol = 4)\n\n\n\n\n\n\nExercise 7\nWhich major category has the highest typical (you’ll need to decide what this means) median income? Use the partial code below, filling it in with the appropriate statistic and function. Also note that we are looking for the highest statistic, so make sure to arrange in the correct direction.\n\ncollege_recent_grads |>\n  group_by(major_category) |>\n  summarise(median = median(median)) |>\n  arrange(desc(median))\n\n# A tibble: 16 × 2\n   major_category                      median\n   <chr>                                <dbl>\n 1 Engineering                          57000\n 2 Computers & Mathematics              45000\n 3 Business                             40000\n 4 Physical Sciences                    39500\n 5 Social Science                       38000\n 6 Biology & Life Science               36300\n 7 Law & Public Policy                  36000\n 8 Agriculture & Natural Resources      35000\n 9 Communications & Journalism          35000\n10 Health                               35000\n11 Industrial Arts & Consumer Services  35000\n12 Interdisciplinary                    35000\n13 Education                            32750\n14 Humanities & Liberal Arts            32000\n15 Arts                                 30750\n16 Psychology & Social Work             30000\n\n\nEngineering.\n\n\nExercise 8\nWhich major category is the least popular in this sample? To answer this question we use a new function called count, which first groups the data and then counts the number of observations in each category (see below). Add to the pipeline appropriately to arrange the results so that the major with the lowest observations is on top.\n\ncollege_recent_grads |>\n  count(major_category) |>\n  arrange(desc(-n))\n\n# A tibble: 16 × 2\n   major_category                          n\n   <chr>                               <int>\n 1 Interdisciplinary                       1\n 2 Communications & Journalism             4\n 3 Law & Public Policy                     5\n 4 Industrial Arts & Consumer Services     7\n 5 Arts                                    8\n 6 Psychology & Social Work                9\n 7 Social Science                          9\n 8 Agriculture & Natural Resources        10\n 9 Physical Sciences                      10\n10 Computers & Mathematics                11\n11 Health                                 12\n12 Business                               13\n13 Biology & Life Science                 14\n14 Humanities & Liberal Arts              15\n15 Education                              16\n16 Engineering                            29"
+  },
+  {
+    "objectID": "content/lab-ans/lab03-viz-ans.html#all-stem-fields-arent-the-same",
+    "href": "content/lab-ans/lab03-viz-ans.html#all-stem-fields-arent-the-same",
+    "title": "Lab 03 - Data Visualization (Ans)",
+    "section": "All STEM fields aren’t the same",
+    "text": "All STEM fields aren’t the same\nFirst, let’s create a new vector called stem_categories that lists the major categories that are considered STEM fields.\n\nstem_categories <- c(\"Biology & Life Science\",\n                     \"Computers & Mathematics\",\n                     \"Engineering\",\n                     \"Physical Sciences\")\n\nThen, we can use this to create a new variable in our data frame indicating whether a major is STEM or not.\n\ncollege_recent_grads <- college_recent_grads |>\n  mutate(major_type = case_when(\n    major_category %in% stem_categories ~ \"stem\",\n    TRUE ~ \"not stem\"\n  ))\n\nWe can use the logical operators to also filter our data for STEM majors whose median earnings is less than median for all majors’s median earnings, which we found to be $36,000 earlier.\n\ncollege_recent_grads |>\n  filter(\n    major_type == \"stem\",\n    median < median(college_recent_grads$median)\n  )\n\n# A tibble: 10 × 22\n    rank major_code major        major_category  total sample_size    men  women\n   <dbl>      <dbl> <chr>        <chr>           <dbl>       <dbl>  <dbl>  <dbl>\n 1    93       1301 Environment… Biology & Lif…  25965         225  10787  15178\n 2    98       5098 Multi-Disci… Physical Scie…  62052         427  27015  35037\n 3   102       3608 Physiology   Biology & Lif…  22060          99   8422  13638\n 4   106       2001 Communicati… Computers & M…  18035         208  11431   6604\n 5   109       3611 Neuroscience Biology & Lif…  13663          53   4944   8719\n 6   111       5002 Atmospheric… Physical Scie…   4043          32   2744   1299\n 7   123       3699 Miscellaneo… Biology & Lif…  10706          63   4747   5959\n 8   124       3600 Biology      Biology & Lif… 280709        1370 111762 168947\n 9   133       3604 Ecology      Biology & Lif…   9154          86   3878   5276\n10   169       3609 Zoology      Biology & Lif…   8409          47   3050   5359\n# ℹ 14 more variables: sharewomen <dbl>, employed <dbl>,\n#   employed_fulltime <dbl>, employed_parttime <dbl>,\n#   employed_fulltime_yearround <dbl>, unemployed <dbl>,\n#   unemployment_rate <dbl>, p25th <dbl>, median <dbl>, p75th <dbl>,\n#   college_jobs <dbl>, non_college_jobs <dbl>, low_wage_jobs <dbl>,\n#   major_type <chr>\n\n\n\nExercise 9\nWhich STEM majors have median salaries equal to or less than the median for all majors’s median earnings? Your output should only show the major name and median, 25th percentile, and 75th percentile earning for that major as and should be sorted such that the major with the highest median earning is on top.\n\ncollege_recent_grads |>\n  filter(\n    major_type == \"stem\",\n    median < median(college_recent_grads$median)\n  ) |>\n  select(major, median, p25th, p75th) |>\n  arrange(desc(median))\n\n# A tibble: 10 × 4\n   major                                 median p25th p75th\n   <chr>                                  <dbl> <dbl> <dbl>\n 1 Environmental Science                  35600 25000 40200\n 2 Multi-Disciplinary Or General Science  35000 24000 50000\n 3 Physiology                             35000 20000 50000\n 4 Communication Technologies             35000 25000 45000\n 5 Neuroscience                           35000 30000 44000\n 6 Atmospheric Sciences And Meteorology   35000 28000 50000\n 7 Miscellaneous Biology                  33500 23000 48000\n 8 Biology                                33400 24000 45000\n 9 Ecology                                33000 23000 42000\n10 Zoology                                26000 20000 39000"
+  },
+  {
+    "objectID": "content/lab-ans/lab03-viz-ans.html#what-types-of-majors-do-women-tend-to-major-in",
+    "href": "content/lab-ans/lab03-viz-ans.html#what-types-of-majors-do-women-tend-to-major-in",
+    "title": "Lab 03 - Data Visualization (Ans)",
+    "section": "What types of majors do women tend to major in?",
+    "text": "What types of majors do women tend to major in?\n\nExercise 10\nCreate a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. Describe the association between these three variables.\n\ncollege_recent_grads |>\n  drop_na(sharewomen) |> ## This will drop rows for which sharewomen has NA value\n  ggplot(aes(x = median,\n             y = sharewomen,\n             color = major_type)) +\n  geom_point(alpha = .6) +\n  labs(x = \"Median income for major\",\n       y = \"Share of women in major\",\n       color = \"STEM major?\")\n\n\n\n\nIn general, there appears to be a negative relationship between median income and the proportion of women (sharewomen) in a major. Both variables are also correlated with major_type: stem majors tend to have a lower proportion of women (and lower median income), while not stem majors have a higher proportion (and higher median income).\n(Note that the negative relationship with median income is somewhat clearer if log(median) is used instead.)"
   },
   {
     "objectID": "content/lab-ans/lab02-wrangling-ans.html",
@@ -1083,6 +1237,1049 @@
     "title": "00-welcome",
     "section": "I’d like to know more!",
     "text": "I’d like to know more!\n(required)Student Survey - complete by Tuesday at 11:59 PM.\nThis is required and completion will be used for CAA/#finaid. DO complete this even if you’re on the waitlist, please.\n\n(optional) Daily Post-Lecture Feedback\n\nopportunity to reflect on learning\nopportunity to ask questions (I will read and answer these.)\nopportunity for extra credit on final project\n\n\n\n\n\nNote: Links to both surveys are also on Canvas. I will try to remind you at the end of lecture, but I’ll probably forget. Feel free to remind me/one another!"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#qa",
+    "href": "content/lectures/07-linear-models-slides.html#qa",
+    "title": "07-linear-models",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: Do you recommend review some statistics before attending lectures?\nA: This is very much up to you. It certainly wouldn’t hurt! There will be readings connected to each lecture; these are a great place to start. It can be helpful to work through these readings and the exercises either before or after lecture!\n\n\nQ: I am still not quite sure how to do HW part 2 and 3, do we download data into the folder, read the file, and plot it?\nA: Yup! That’s one approach. The other approach (if the data are not available for download) would be to create the dataset on your own, estimating the values as best you can from the plot and creating a dataframe/tibble containing that information directly in your code (similar to what you did in HW01)….and then plot from there."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#course-announcements",
+    "href": "content/lectures/07-linear-models-slides.html#course-announcements",
+    "title": "07-linear-models",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nDue Dates:\n\nLab 04 due tomorrow (2/3; 11:59 PM)\nLecture Participation survey “due” after class\nHW02 due Monday (2/6; 11:59 PM)\n\n\n\nMidterm Exam\n\npractice exam(s) will be released tomorrow; answers posted next week\nwill cover material through “Effective Communication”\nwill be released/posted next Friday after lab\nwill be due Monday Feb 13th at 11:59 PM\nwill be an Rmd document and submitted via GitHub (like everything so far)\nwill be commpleted individually (open Notes; open Google)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#agenda",
+    "href": "content/lectures/07-linear-models-slides.html#agenda",
+    "title": "07-linear-models",
+    "section": "Agenda",
+    "text": "Agenda\n\nLinear Models\n\nQuantitative Predictor\nCategorical Predictor (2 & >2 levels)\nresiduals\ndata transformations"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#data-paris-paintings",
+    "href": "content/lectures/07-linear-models-slides.html#data-paris-paintings",
+    "title": "07-linear-models",
+    "section": "Data: Paris Paintings",
+    "text": "Data: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\"))\n\n\nNumber of observations: 3393\nNumber of variables: 61"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#goal-predict-height-from-width",
+    "href": "content/lectures/07-linear-models-slides.html#goal-predict-height-from-width",
+    "title": "07-linear-models",
+    "section": "Goal: Predict height from width",
+    "text": "Goal: Predict height from width\n\\[\\widehat{height}_{i} = \\beta_0 + \\beta_1 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#tidymodels-1",
+    "href": "content/lectures/07-linear-models-slides.html#tidymodels-1",
+    "title": "07-linear-models",
+    "section": "tidymodels",
+    "text": "tidymodels\n\nNOT a core tidyverse package\nfollows the structure of a tidyverse package\n\n\n\n# should already be installed for you on datahub\nlibrary(tidymodels)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#step-1-specify-model",
+    "href": "content/lectures/07-linear-models-slides.html#step-1-specify-model",
+    "title": "07-linear-models",
+    "section": "Step 1: Specify model",
+    "text": "Step 1: Specify model\n\nlinear_reg()\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#step-2-set-model-fitting-engine",
+    "href": "content/lectures/07-linear-models-slides.html#step-2-set-model-fitting-engine",
+    "title": "07-linear-models",
+    "section": "Step 2: Set model fitting engine",
+    "text": "Step 2: Set model fitting engine\n\nlinear_reg() |>\n  set_engine(\"lm\") # lm: linear model\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#step-3-fit-model-estimate-parameters",
+    "href": "content/lectures/07-linear-models-slides.html#step-3-fit-model-estimate-parameters",
+    "title": "07-linear-models",
+    "section": "Step 3: Fit model & estimate parameters",
+    "text": "Step 3: Fit model & estimate parameters\n… using formula syntax\n\nlinear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ Width_in, data = pp)\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#a-closer-look-at-model-output",
+    "href": "content/lectures/07-linear-models-slides.html#a-closer-look-at-model-output",
+    "title": "07-linear-models",
+    "section": "A closer look at model output",
+    "text": "A closer look at model output\n\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808  \n\n\n\\[\\widehat{height}_{i} = 3.6214 + 0.7808 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#a-tidy-look-at-model-output",
+    "href": "content/lectures/07-linear-models-slides.html#a-tidy-look-at-model-output",
+    "title": "07-linear-models",
+    "section": "A tidy look at model output",
+    "text": "A tidy look at model output\n\nlinear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ Width_in, data = pp) |>\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)    3.62    0.254        14.3 8.82e-45\n2 Width_in       0.781   0.00950      82.1 0       \n\n\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#slope-and-intercept",
+    "href": "content/lectures/07-linear-models-slides.html#slope-and-intercept",
+    "title": "07-linear-models",
+    "section": "Slope and intercept",
+    "text": "Slope and intercept\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]\n\n\nSlope: For each additional inch the painting is wider, the height is expected to be higher, on average, by 0.781 inches.\n\n\n\n\nIntercept: Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this make sense?)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#correlation-does-not-imply-causation",
+    "href": "content/lectures/07-linear-models-slides.html#correlation-does-not-imply-causation",
+    "title": "07-linear-models",
+    "section": "Correlation does not imply causation",
+    "text": "Correlation does not imply causation\nRemember this when interpreting model coefficients\n\n\n\n\n\n\n\nSource: XKCD, Cell phones"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#linear-model-with-a-single-predictor",
+    "href": "content/lectures/07-linear-models-slides.html#linear-model-with-a-single-predictor",
+    "title": "07-linear-models",
+    "section": "Linear model with a single predictor",
+    "text": "Linear model with a single predictor\n\nWe’re interested in \\(\\beta_0\\) (population parameter for the intercept) and \\(\\beta_1\\) (population parameter for the slope) in the following model:\n\n\\[\\hat{y}_{i} = \\beta_0 + \\beta_1~x_{i}\\]\n\n\nTough luck, you can’t have them…\n\n\n\n\nSo we use sample statistics to estimate them:\n\n\\[\\hat{y}_{i} = b_0 + b_1~x_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#least-squares-regression",
+    "href": "content/lectures/07-linear-models-slides.html#least-squares-regression",
+    "title": "07-linear-models",
+    "section": "Least squares regression",
+    "text": "Least squares regression\n\nThe regression line minimizes the sum of squared residuals.\n\n\n\nIf \\(e_i = y_i - \\hat{y}_i\\), then, the regression line minimizes \\(\\sum_{i = 1}^n e_i^2\\)."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#visualizing-residuals",
+    "href": "content/lectures/07-linear-models-slides.html#visualizing-residuals",
+    "title": "07-linear-models",
+    "section": "Visualizing residuals",
+    "text": "Visualizing residuals"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#visualizing-residuals-cont.",
+    "href": "content/lectures/07-linear-models-slides.html#visualizing-residuals-cont.",
+    "title": "07-linear-models",
+    "section": "Visualizing residuals (cont.)",
+    "text": "Visualizing residuals (cont.)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#visualizing-residuals-cont.-1",
+    "href": "content/lectures/07-linear-models-slides.html#visualizing-residuals-cont.-1",
+    "title": "07-linear-models",
+    "section": "Visualizing residuals (cont.)",
+    "text": "Visualizing residuals (cont.)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#properties-of-least-squares-regression",
+    "href": "content/lectures/07-linear-models-slides.html#properties-of-least-squares-regression",
+    "title": "07-linear-models",
+    "section": "Properties of least squares regression",
+    "text": "Properties of least squares regression\n\nThe regression line goes through the center of mass point, the coordinates corresponding to average \\(x\\) and average \\(y\\), \\((\\bar{x}, \\bar{y})\\):\n\n\\[\\bar{y} = b_0 + b_1 \\bar{x} ~ \\rightarrow ~ b_0 = \\bar{y} - b_1 \\bar{x}\\]\n\n\nThe slope has the same sign as the correlation coefficient: \\(b_1 = r \\frac{s_y}{s_x}\\)\n\n\n\n\nThe sum of the residuals is zero: \\(\\sum_{i = 1}^n e_i = 0\\)\n\n\n\n\nThe residuals and \\(x\\) values are uncorrelated"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#categorical-predictor-with-2-levels",
+    "href": "content/lectures/07-linear-models-slides.html#categorical-predictor-with-2-levels",
+    "title": "07-linear-models",
+    "section": "Categorical predictor with 2 levels",
+    "text": "Categorical predictor with 2 levels\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in landsALL\n   <chr>         <dbl>    <dbl>\n 1 L1764-2          37        0\n 2 L1764-3          18        0\n 3 L1764-4          13        1\n 4 L1764-5a         14        1\n 5 L1764-5b         14        1\n 6 L1764-6           7        0\n 7 L1764-7a          6        0\n 8 L1764-7b          6        0\n 9 L1764-8          15        0\n10 L1764-9a          9        0\n11 L1764-9b          9        0\n12 L1764-10a        16        1\n13 L1764-10b        16        1\n14 L1764-10c        16        1\n15 L1764-11         20        0\n16 L1764-12a        14        1\n17 L1764-12b        14        1\n18 L1764-13a        15        1\n19 L1764-13b        15        1\n20 L1764-14         37        0\n# ℹ 3,373 more rows\n\n\n\n\nlandsALL = 0: No landscape features\nlandsALL = 1: Some landscape features"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#height-landscape-features",
+    "href": "content/lectures/07-linear-models-slides.html#height-landscape-features",
+    "title": "07-linear-models",
+    "section": "Height & landscape features",
+    "text": "Height & landscape features\n\nm_ht_lands <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ factor(landsALL), data = pp)\n\nm_ht_lands |> tidy()\n\n# A tibble: 2 × 5\n  term              estimate std.error statistic  p.value\n  <chr>                <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)          22.7      0.328      69.1 0       \n2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#height-landscape-features-1",
+    "href": "content/lectures/07-linear-models-slides.html#height-landscape-features-1",
+    "title": "07-linear-models",
+    "section": "Height & landscape features",
+    "text": "Height & landscape features\n\\[\\widehat{Height_{in}} = 22.7 - 5.645~landsALL\\]\n\nSlope: Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features\n\nCompares baseline level (landsALL = 0) to the other level (landsALL = 1)\n\nIntercept: Paintings that don’t have landscape features are expected, on average, to be 22.7 inches tall"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#categorical-predictor-with-2-levels-1",
+    "href": "content/lectures/07-linear-models-slides.html#categorical-predictor-with-2-levels-1",
+    "title": "07-linear-models",
+    "section": "Categorical predictor with >2 levels",
+    "text": "Categorical predictor with >2 levels\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in school_pntg\n   <chr>         <dbl> <chr>      \n 1 L1764-2          37 F          \n 2 L1764-3          18 I          \n 3 L1764-4          13 D/FL       \n 4 L1764-5a         14 F          \n 5 L1764-5b         14 F          \n 6 L1764-6           7 I          \n 7 L1764-7a          6 F          \n 8 L1764-7b          6 F          \n 9 L1764-8          15 I          \n10 L1764-9a          9 D/FL       \n11 L1764-9b          9 D/FL       \n12 L1764-10a        16 X          \n13 L1764-10b        16 X          \n14 L1764-10c        16 X          \n15 L1764-11         20 D/FL       \n16 L1764-12a        14 D/FL       \n17 L1764-12b        14 D/FL       \n18 L1764-13a        15 D/FL       \n19 L1764-13b        15 D/FL       \n20 L1764-14         37 F          \n# ℹ 3,373 more rows\n\n\n\n\nschool from which painting came (details in a few slides)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#relationship-between-height-and-school",
+    "href": "content/lectures/07-linear-models-slides.html#relationship-between-height-and-school",
+    "title": "07-linear-models",
+    "section": "Relationship between height and school",
+    "text": "Relationship between height and school\n\nlinear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ school_pntg, data = pp) |>\n  tidy()\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  <chr>              <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#dummy-variables",
+    "href": "content/lectures/07-linear-models-slides.html#dummy-variables",
+    "title": "07-linear-models",
+    "section": "Dummy variables",
+    "text": "Dummy variables\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  <chr>              <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\nWhen the categorical explanatory variable has many levels, they’re encoded to dummy variables\nEach coefficient describes the expected difference between heights in that particular school compared to the baseline level"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#categorical-predictor-with-3-levels",
+    "href": "content/lectures/07-linear-models-slides.html#categorical-predictor-with-3-levels",
+    "title": "07-linear-models",
+    "section": "Categorical predictor with 3+ levels",
+    "text": "Categorical predictor with 3+ levels\n\n\n\n\n\n\n\nschool_pntg\nD_FL\nF\nG\nI\nS\nX\n\n\n\n\nA\n0\n0\n0\n0\n0\n0\n\n\nD/FL\n1\n0\n0\n0\n0\n0\n\n\nF\n0\n1\n0\n0\n0\n0\n\n\nG\n0\n0\n1\n0\n0\n0\n\n\nI\n0\n0\n0\n1\n0\n0\n\n\nS\n0\n0\n0\n0\n1\n0\n\n\nX\n0\n0\n0\n0\n0\n1\n\n\n\n\n\n\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in school_pntg\n   <chr>         <dbl> <chr>      \n 1 L1764-2          37 F          \n 2 L1764-3          18 I          \n 3 L1764-4          13 D/FL       \n 4 L1764-5a         14 F          \n 5 L1764-5b         14 F          \n 6 L1764-6           7 I          \n 7 L1764-7a          6 F          \n 8 L1764-7b          6 F          \n 9 L1764-8          15 I          \n10 L1764-9a          9 D/FL       \n11 L1764-9b          9 D/FL       \n12 L1764-10a        16 X          \n13 L1764-10b        16 X          \n14 L1764-10c        16 X          \n15 L1764-11         20 D/FL       \n16 L1764-12a        14 D/FL       \n17 L1764-12b        14 D/FL       \n18 L1764-13a        15 D/FL       \n19 L1764-13b        15 D/FL       \n20 L1764-14         37 F          \n# ℹ 3,373 more rows"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#the-linear-model-with-multiple-predictors",
+    "href": "content/lectures/07-linear-models-slides.html#the-linear-model-with-multiple-predictors",
+    "title": "07-linear-models",
+    "section": "The linear model with multiple predictors",
+    "text": "The linear model with multiple predictors\n\nPopulation model:\n\n\\[ \\hat{y} = \\beta_0 + \\beta_1~x_1 + \\beta_2~x_2 + \\cdots + \\beta_k~x_k \\]\n\n\nSample model that we use to estimate the population model:\n\n\\[ \\hat{y} = b_0 + b_1~x_1 + b_2~x_2 + \\cdots + b_k~x_k \\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#relationship-bw-height-and-school",
+    "href": "content/lectures/07-linear-models-slides.html#relationship-bw-height-and-school",
+    "title": "07-linear-models",
+    "section": "Relationship b/w height and school",
+    "text": "Relationship b/w height and school\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  <chr>              <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\nAustrian school (A) paintings are expected, on average, to be 14 inches tall.\nDutch/Flemish school (D/FL) paintings are expected, on average, to be 2.33 inches taller than Austrian school paintings.\nFrench school (F) paintings are expected, on average, to be 10.2 inches taller than Austrian school paintings.\nGerman school (G) paintings are expected, on average, to be 1.65 inches taller than Austrian school paintings.\nItalian school (I) paintings are expected, on average, to be 10.3 inches taller than Austrian school paintings.\nSpanish school (S) paintings are expected, on average, to be 30.4 inches taller than Austrian school paintings.\nPaintings whose school is unknown (X) are expected, on average, to be 2.87 inches taller than Austrian school paintings. ]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#predict-height-from-width",
+    "href": "content/lectures/07-linear-models-slides.html#predict-height-from-width",
+    "title": "07-linear-models",
+    "section": "Predict height from width",
+    "text": "Predict height from width\n❓ On average, how tall are paintings that are 60 inches wide? \\[\\widehat{Height_{in}} = 3.62 + 0.78~Width_{in}\\]\n\n\n3.62 + 0.78 * 60\n\n[1] 50.42\n\n\n“On average, we expect paintings that are 60 inches wide to be 50.42 inches high.”\nWarning: We “expect” this to happen, but there will be some variability. (We’ll learn about measuring the variability around the prediction later.)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#prediction-vs.-extrapolation",
+    "href": "content/lectures/07-linear-models-slides.html#prediction-vs.-extrapolation",
+    "title": "07-linear-models",
+    "section": "Prediction vs. extrapolation",
+    "text": "Prediction vs. extrapolation\n❓ On average, how tall are paintings that are 400 inches wide? \\[\\widehat{Height_{in}} = 3.62 + 0.78~Width_{in}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#watch-out-for-extrapolation",
+    "href": "content/lectures/07-linear-models-slides.html#watch-out-for-extrapolation",
+    "title": "07-linear-models",
+    "section": "Watch out for extrapolation!",
+    "text": "Watch out for extrapolation!\n\n“When those blizzards hit the East Coast this winter, it proved to my satisfaction that global warming was a fraud. That snow was freezing cold. But in an alarming trend, temperatures this spring have risen. Consider this: On February 6th it was 10 degrees. Today it hit almost 80. At this rate, by August it will be 220 degrees. So clearly folks the climate debate rages on.”1  Stephen Colbert, April 6th, 2010\n\nIntroduction to Modern Statistics. “Extrapolation is treacherous.”"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#measuring-the-strength-of-the-fit",
+    "href": "content/lectures/07-linear-models-slides.html#measuring-the-strength-of-the-fit",
+    "title": "07-linear-models",
+    "section": "Measuring the strength of the fit",
+    "text": "Measuring the strength of the fit\n\nThe strength of the fit of a linear model is most commonly evaluated using \\(R^2\\).\nIt tells us what percent of variability in the response variable is explained by the model.\nThe remainder of the variability is explained by variables not included in the model.\n\\(R^2\\) is sometimes called the coefficient of determination."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#obtaining-r2-in-r",
+    "href": "content/lectures/07-linear-models-slides.html#obtaining-r2-in-r",
+    "title": "07-linear-models",
+    "section": "Obtaining \\(R^2\\) in R",
+    "text": "Obtaining \\(R^2\\) in R\n\nHeight vs. width\n\n\nglance(m_ht_wt)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC\n      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>\n1     0.683         0.683  8.30     6749.       0     1 -11083. 22173. 22191.\n# ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>\n\nglance(m_ht_wt)$r.squared # extract R-squared\n\n[1] 0.6829468\n\n\nRoughly 68% of the variability in heights of paintings can be explained by their widths.\n\n\nHeight vs. landscape features\n\n\nglance(m_ht_lands)$r.squared\n\n[1] 0.03456724"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#data-paris-paintings-1",
+    "href": "content/lectures/07-linear-models-slides.html#data-paris-paintings-1",
+    "title": "07-linear-models",
+    "section": "Data: Paris Paintings",
+    "text": "Data: Paris Paintings"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#price-vs.-width",
+    "href": "content/lectures/07-linear-models-slides.html#price-vs.-width",
+    "title": "07-linear-models",
+    "section": "Price vs. width",
+    "text": "Price vs. width\n❓ Describe the relationship between price and width of paintings whose width is less than 100in."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#price-vs.-width-1",
+    "href": "content/lectures/07-linear-models-slides.html#price-vs.-width-1",
+    "title": "07-linear-models",
+    "section": "Price vs. width",
+    "text": "Price vs. width\n❓ Which plot shows a more linear relationship?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#price-vs.-width-residuals",
+    "href": "content/lectures/07-linear-models-slides.html#price-vs.-width-residuals",
+    "title": "07-linear-models",
+    "section": "Price vs. width, residuals",
+    "text": "Price vs. width, residuals\n❓ Which plot shows a residuals that are uncorrelated with predicted values from the model?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n❓What’s the unit of residuals?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#transforming-the-data",
+    "href": "content/lectures/07-linear-models-slides.html#transforming-the-data",
+    "title": "07-linear-models",
+    "section": "Transforming the data",
+    "text": "Transforming the data\n\nWe saw that price has a right-skewed distribution, and the relationship between price and width of painting is non-linear.\n\n\n\nIn these situations a transformation applied to the response variable may be useful.\n\n\n\n\nIn order to decide which transformation to use, we should examine the distribution of the response variable.\n\n\n\n\nThe extremely right skewed distribution suggests that a log transformation may be useful.\n\nlog = natural log, \\(ln\\)\nDefault base of the log function in R is the natural log:  log(x, base = exp(1))"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#logged-price-vs.-width",
+    "href": "content/lectures/07-linear-models-slides.html#logged-price-vs.-width",
+    "title": "07-linear-models",
+    "section": "Logged price vs. width",
+    "text": "Logged price vs. width\n❓ How do we interpret the slope of this model?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#interpreting-models-with-log-transformation",
+    "href": "content/lectures/07-linear-models-slides.html#interpreting-models-with-log-transformation",
+    "title": "07-linear-models",
+    "section": "Interpreting models with log transformation",
+    "text": "Interpreting models with log transformation\n\nm_lprice_wt <- lm(log(price) ~ Width_in, data = pp_wt_lt_100)\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#linear-model-with-log-transformation",
+    "href": "content/lectures/07-linear-models-slides.html#linear-model-with-log-transformation",
+    "title": "07-linear-models",
+    "section": "Linear model with log transformation",
+    "text": "Linear model with log transformation\n\\[ \\widehat{log(price)} = 4.67 + 0.02 Width \\]\n\n\nFor each additional inch the painting is wider, the log price of the painting is expected to be higher, on average, by 0.02 livres.\n\n\n\n\nwhich is not a very useful statement…"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#working-with-logs",
+    "href": "content/lectures/07-linear-models-slides.html#working-with-logs",
+    "title": "07-linear-models",
+    "section": "Working with logs",
+    "text": "Working with logs\n\nSubtraction and logs: \\(log(a) − log(b) = log(a / b)\\)\n\n\n\nNatural logarithm: \\(e^{log(x)} = x\\)\n\n\n\n\nWe can use these identities to “undo” the log transformation"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#interpreting-models-with-log-transformation-1",
+    "href": "content/lectures/07-linear-models-slides.html#interpreting-models-with-log-transformation-1",
+    "title": "07-linear-models",
+    "section": "Interpreting models with log transformation",
+    "text": "Interpreting models with log transformation\nThe slope coefficient for the log transformed model is 0.02, meaning the log price difference between paintings whose widths are one inch apart is predicted to be 0.02 log livres.\n\n\\[ log(\\text{price for width x+1}) - log(\\text{price for width x}) = 0.02 \\]\n\n\n\\[ log\\left(\\frac{\\text{price for width x+1}}{\\text{price for width x}}\\right) = 0.02 \\]\n\n\n\\[ e^{log\\left(\\frac{\\text{price for width x+1}}{\\text{price for width x}}\\right)} = e^{0.02} \\]\n\n\n\\[ \\frac{\\text{price for width x+1}}{\\text{price for width x}} \\approx 1.02 \\]\n\n\nFor each additional inch the painting is wider, the price of the painting is expected to be higher, on average, by a factor of 1.02."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#shortcuts-in-r",
+    "href": "content/lectures/07-linear-models-slides.html#shortcuts-in-r",
+    "title": "07-linear-models",
+    "section": "Shortcuts in R",
+    "text": "Shortcuts in R\n\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019\n\n\n\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(exp(estimate), 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)   107.  \n2 Width_in        1.02"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#recap-log-transformations",
+    "href": "content/lectures/07-linear-models-slides.html#recap-log-transformations",
+    "title": "07-linear-models",
+    "section": "Recap: Log Transformations",
+    "text": "Recap: Log Transformations\n\nNon-constant variance is one of the most common model violations, however it is usually fixable by transforming the response (y) variable.\n\n\n\nThe most common transformation when the response variable is right skewed is the log transform: \\(log(y)\\), especially useful when the response variable is (extremely) right skewed.\n\n\n\n\nThis transformation is also useful for variance stabilization.\n\n\n\n\nWhen using a log transformation on the response variable the interpretation of the slope changes: *“For each unit increase in x, y is expected on average to be higher/lower*  by a factor of \\(e^{b_1}\\).”\n\n\n\n\nAnother useful transformation is the square root: \\(\\sqrt{y}\\), especially useful when the response variable is counts."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#aside-when-y-0",
+    "href": "content/lectures/07-linear-models-slides.html#aside-when-y-0",
+    "title": "07-linear-models",
+    "section": "Aside: when \\(y = 0\\)",
+    "text": "Aside: when \\(y = 0\\)\nIn some cases the value of the response variable might be 0, and\n\nlog(0)\n\n[1] -Inf\n\n\n\nThe trick is to add a very small number to the value of the response variable for these cases so that the log function can still be applied:\n\nlog(0 + 0.00001)\n\n[1] -11.51293"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#recap",
+    "href": "content/lectures/07-linear-models-slides.html#recap",
+    "title": "07-linear-models",
+    "section": "Recap",
+    "text": "Recap\n\nCan I carry out linear regression using the tidymodels approach?\nCan I interpret and explain the results from a linear model with a single predictor?\nDo I understand the limitations of modelling data w/ linear regression?\nCan I describe and implement the use of a dummy variable in linear regression?\nCan I determine when logistic transformation may be appropriate? Can I interpret these results?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models-slides.html#suggested-reading",
+    "href": "content/lectures/07-linear-models-slides.html#suggested-reading",
+    "title": "07-linear-models",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html",
+    "href": "content/lectures/07-linear-models.html",
+    "title": "07-linear-models",
+    "section": "",
+    "text": "Q: Do you recommend review some statistics before attending lectures?\nA: This is very much up to you. It certainly wouldn’t hurt! There will be readings connected to each lecture; these are a great place to start. It can be helpful to work through these readings and the exercises either before or after lecture!\n\n\nQ: I am still not quite sure how to do HW part 2 and 3, do we download data into the folder, read the file, and plot it?\nA: Yup! That’s one approach. The other approach (if the data are not available for download) would be to create the dataset on your own, estimating the values as best you can from the plot and creating a dataframe/tibble containing that information directly in your code (similar to what you did in HW01)….and then plot from there.\n\n\n\n\nDue Dates:\n\nLab 04 due tomorrow (2/3; 11:59 PM)\nLecture Participation survey “due” after class\nHW02 due Monday (2/6; 11:59 PM)\n\n\n\nMidterm Exam\n\npractice exam(s) will be released tomorrow; answers posted next week\nwill cover material through “Effective Communication”\nwill be released/posted next Friday after lab\nwill be due Monday Feb 13th at 11:59 PM\nwill be an Rmd document and submitted via GitHub (like everything so far)\nwill be commpleted individually (open Notes; open Google)\n\n\n\n\n\n\n\nLinear Models\n\nQuantitative Predictor\nCategorical Predictor (2 & >2 levels)\nresiduals\ndata transformations"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#data-paris-paintings",
+    "href": "content/lectures/07-linear-models.html#data-paris-paintings",
+    "title": "07-linear-models",
+    "section": "Data: Paris Paintings",
+    "text": "Data: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\"))\n\n\nNumber of observations: 3393\nNumber of variables: 61"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#goal-predict-height-from-width",
+    "href": "content/lectures/07-linear-models.html#goal-predict-height-from-width",
+    "title": "07-linear-models",
+    "section": "Goal: Predict height from width",
+    "text": "Goal: Predict height from width\n\\[\\widehat{height}_{i} = \\beta_0 + \\beta_1 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#tidymodels-1",
+    "href": "content/lectures/07-linear-models.html#tidymodels-1",
+    "title": "07-linear-models",
+    "section": "tidymodels",
+    "text": "tidymodels\n\nNOT a core tidyverse package\nfollows the structure of a tidyverse package\n\n\n\n\n\n\n\n# should already be installed for you on datahub\nlibrary(tidymodels)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#step-1-specify-model",
+    "href": "content/lectures/07-linear-models.html#step-1-specify-model",
+    "title": "07-linear-models",
+    "section": "Step 1: Specify model",
+    "text": "Step 1: Specify model\n\nlinear_reg()\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#step-2-set-model-fitting-engine",
+    "href": "content/lectures/07-linear-models.html#step-2-set-model-fitting-engine",
+    "title": "07-linear-models",
+    "section": "Step 2: Set model fitting engine",
+    "text": "Step 2: Set model fitting engine\n\nlinear_reg() |>\n  set_engine(\"lm\") # lm: linear model\n\nLinear Regression Model Specification (regression)\n\nComputational engine: lm"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#step-3-fit-model-estimate-parameters",
+    "href": "content/lectures/07-linear-models.html#step-3-fit-model-estimate-parameters",
+    "title": "07-linear-models",
+    "section": "Step 3: Fit model & estimate parameters",
+    "text": "Step 3: Fit model & estimate parameters\n… using formula syntax\n\nlinear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ Width_in, data = pp)\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#a-closer-look-at-model-output",
+    "href": "content/lectures/07-linear-models.html#a-closer-look-at-model-output",
+    "title": "07-linear-models",
+    "section": "A closer look at model output",
+    "text": "A closer look at model output\n\n\nparsnip model object\n\n\nCall:\nstats::lm(formula = Height_in ~ Width_in, data = data)\n\nCoefficients:\n(Intercept)     Width_in  \n     3.6214       0.7808  \n\n\n\\[\\widehat{height}_{i} = 3.6214 + 0.7808 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#a-tidy-look-at-model-output",
+    "href": "content/lectures/07-linear-models.html#a-tidy-look-at-model-output",
+    "title": "07-linear-models",
+    "section": "A tidy look at model output",
+    "text": "A tidy look at model output\n\nlinear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ Width_in, data = pp) |>\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)    3.62    0.254        14.3 8.82e-45\n2 Width_in       0.781   0.00950      82.1 0       \n\n\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#slope-and-intercept",
+    "href": "content/lectures/07-linear-models.html#slope-and-intercept",
+    "title": "07-linear-models",
+    "section": "Slope and intercept",
+    "text": "Slope and intercept\n\\[\\widehat{height}_{i} = 3.62 + 0.781 \\times width_{i}\\]\n\n\nSlope: For each additional inch the painting is wider, the height is expected to be higher, on average, by 0.781 inches.\n\n\n\n\nIntercept: Paintings that are 0 inches wide are expected to be 3.62 inches high, on average. (Does this make sense?)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#correlation-does-not-imply-causation",
+    "href": "content/lectures/07-linear-models.html#correlation-does-not-imply-causation",
+    "title": "07-linear-models",
+    "section": "Correlation does not imply causation",
+    "text": "Correlation does not imply causation\nRemember this when interpreting model coefficients\n\n\n\n\n\n\n\nSource: XKCD, Cell phones"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#linear-model-with-a-single-predictor",
+    "href": "content/lectures/07-linear-models.html#linear-model-with-a-single-predictor",
+    "title": "07-linear-models",
+    "section": "Linear model with a single predictor",
+    "text": "Linear model with a single predictor\n\nWe’re interested in \\(\\beta_0\\) (population parameter for the intercept) and \\(\\beta_1\\) (population parameter for the slope) in the following model:\n\n\\[\\hat{y}_{i} = \\beta_0 + \\beta_1~x_{i}\\]\n\n\nTough luck, you can’t have them…\n\n\n\n\nSo we use sample statistics to estimate them:\n\n\\[\\hat{y}_{i} = b_0 + b_1~x_{i}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#least-squares-regression",
+    "href": "content/lectures/07-linear-models.html#least-squares-regression",
+    "title": "07-linear-models",
+    "section": "Least squares regression",
+    "text": "Least squares regression\n\nThe regression line minimizes the sum of squared residuals.\n\n\n\nIf \\(e_i = y_i - \\hat{y}_i\\), then, the regression line minimizes \\(\\sum_{i = 1}^n e_i^2\\)."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#visualizing-residuals",
+    "href": "content/lectures/07-linear-models.html#visualizing-residuals",
+    "title": "07-linear-models",
+    "section": "Visualizing residuals",
+    "text": "Visualizing residuals"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#visualizing-residuals-cont.",
+    "href": "content/lectures/07-linear-models.html#visualizing-residuals-cont.",
+    "title": "07-linear-models",
+    "section": "Visualizing residuals (cont.)",
+    "text": "Visualizing residuals (cont.)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#visualizing-residuals-cont.-1",
+    "href": "content/lectures/07-linear-models.html#visualizing-residuals-cont.-1",
+    "title": "07-linear-models",
+    "section": "Visualizing residuals (cont.)",
+    "text": "Visualizing residuals (cont.)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#properties-of-least-squares-regression",
+    "href": "content/lectures/07-linear-models.html#properties-of-least-squares-regression",
+    "title": "07-linear-models",
+    "section": "Properties of least squares regression",
+    "text": "Properties of least squares regression\n\nThe regression line goes through the center of mass point, the coordinates corresponding to average \\(x\\) and average \\(y\\), \\((\\bar{x}, \\bar{y})\\):\n\n\\[\\bar{y} = b_0 + b_1 \\bar{x} ~ \\rightarrow ~ b_0 = \\bar{y} - b_1 \\bar{x}\\]\n\n\nThe slope has the same sign as the correlation coefficient: \\(b_1 = r \\frac{s_y}{s_x}\\)\n\n\n\n\nThe sum of the residuals is zero: \\(\\sum_{i = 1}^n e_i = 0\\)\n\n\n\n\nThe residuals and \\(x\\) values are uncorrelated"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#categorical-predictor-with-2-levels",
+    "href": "content/lectures/07-linear-models.html#categorical-predictor-with-2-levels",
+    "title": "07-linear-models",
+    "section": "Categorical predictor with 2 levels",
+    "text": "Categorical predictor with 2 levels\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in landsALL\n   <chr>         <dbl>    <dbl>\n 1 L1764-2          37        0\n 2 L1764-3          18        0\n 3 L1764-4          13        1\n 4 L1764-5a         14        1\n 5 L1764-5b         14        1\n 6 L1764-6           7        0\n 7 L1764-7a          6        0\n 8 L1764-7b          6        0\n 9 L1764-8          15        0\n10 L1764-9a          9        0\n11 L1764-9b          9        0\n12 L1764-10a        16        1\n13 L1764-10b        16        1\n14 L1764-10c        16        1\n15 L1764-11         20        0\n16 L1764-12a        14        1\n17 L1764-12b        14        1\n18 L1764-13a        15        1\n19 L1764-13b        15        1\n20 L1764-14         37        0\n# ℹ 3,373 more rows\n\n\n\n\nlandsALL = 0: No landscape features\nlandsALL = 1: Some landscape features"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#height-landscape-features",
+    "href": "content/lectures/07-linear-models.html#height-landscape-features",
+    "title": "07-linear-models",
+    "section": "Height & landscape features",
+    "text": "Height & landscape features\n\nm_ht_lands <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ factor(landsALL), data = pp)\n\nm_ht_lands |> tidy()\n\n# A tibble: 2 × 5\n  term              estimate std.error statistic  p.value\n  <chr>                <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)          22.7      0.328      69.1 0       \n2 factor(landsALL)1    -5.65     0.532     -10.6 7.97e-26"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#height-landscape-features-1",
+    "href": "content/lectures/07-linear-models.html#height-landscape-features-1",
+    "title": "07-linear-models",
+    "section": "Height & landscape features",
+    "text": "Height & landscape features\n\\[\\widehat{Height_{in}} = 22.7 - 5.645~landsALL\\]\n\nSlope: Paintings with landscape features are expected, on average, to be 5.645 inches shorter than paintings that without landscape features\n\nCompares baseline level (landsALL = 0) to the other level (landsALL = 1)\n\nIntercept: Paintings that don’t have landscape features are expected, on average, to be 22.7 inches tall"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#categorical-predictor-with-2-levels-1",
+    "href": "content/lectures/07-linear-models.html#categorical-predictor-with-2-levels-1",
+    "title": "07-linear-models",
+    "section": "Categorical predictor with >2 levels",
+    "text": "Categorical predictor with >2 levels\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in school_pntg\n   <chr>         <dbl> <chr>      \n 1 L1764-2          37 F          \n 2 L1764-3          18 I          \n 3 L1764-4          13 D/FL       \n 4 L1764-5a         14 F          \n 5 L1764-5b         14 F          \n 6 L1764-6           7 I          \n 7 L1764-7a          6 F          \n 8 L1764-7b          6 F          \n 9 L1764-8          15 I          \n10 L1764-9a          9 D/FL       \n11 L1764-9b          9 D/FL       \n12 L1764-10a        16 X          \n13 L1764-10b        16 X          \n14 L1764-10c        16 X          \n15 L1764-11         20 D/FL       \n16 L1764-12a        14 D/FL       \n17 L1764-12b        14 D/FL       \n18 L1764-13a        15 D/FL       \n19 L1764-13b        15 D/FL       \n20 L1764-14         37 F          \n# ℹ 3,373 more rows\n\n\n\n\nschool from which painting came (details in a few slides)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#relationship-between-height-and-school",
+    "href": "content/lectures/07-linear-models.html#relationship-between-height-and-school",
+    "title": "07-linear-models",
+    "section": "Relationship between height and school",
+    "text": "Relationship between height and school\n\nlinear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ school_pntg, data = pp) |>\n  tidy()\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  <chr>              <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#dummy-variables",
+    "href": "content/lectures/07-linear-models.html#dummy-variables",
+    "title": "07-linear-models",
+    "section": "Dummy variables",
+    "text": "Dummy variables\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  <chr>              <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\nWhen the categorical explanatory variable has many levels, they’re encoded to dummy variables\nEach coefficient describes the expected difference between heights in that particular school compared to the baseline level"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#categorical-predictor-with-3-levels",
+    "href": "content/lectures/07-linear-models.html#categorical-predictor-with-3-levels",
+    "title": "07-linear-models",
+    "section": "Categorical predictor with 3+ levels",
+    "text": "Categorical predictor with 3+ levels\n\n\n\n\n\n\n\nschool_pntg\nD_FL\nF\nG\nI\nS\nX\n\n\n\n\nA\n0\n0\n0\n0\n0\n0\n\n\nD/FL\n1\n0\n0\n0\n0\n0\n\n\nF\n0\n1\n0\n0\n0\n0\n\n\nG\n0\n0\n1\n0\n0\n0\n\n\nI\n0\n0\n0\n1\n0\n0\n\n\nS\n0\n0\n0\n0\n1\n0\n\n\nX\n0\n0\n0\n0\n0\n1\n\n\n\n\n\n\n\n\n\n\n# A tibble: 3,393 × 3\n   name      Height_in school_pntg\n   <chr>         <dbl> <chr>      \n 1 L1764-2          37 F          \n 2 L1764-3          18 I          \n 3 L1764-4          13 D/FL       \n 4 L1764-5a         14 F          \n 5 L1764-5b         14 F          \n 6 L1764-6           7 I          \n 7 L1764-7a          6 F          \n 8 L1764-7b          6 F          \n 9 L1764-8          15 I          \n10 L1764-9a          9 D/FL       \n11 L1764-9b          9 D/FL       \n12 L1764-10a        16 X          \n13 L1764-10b        16 X          \n14 L1764-10c        16 X          \n15 L1764-11         20 D/FL       \n16 L1764-12a        14 D/FL       \n17 L1764-12b        14 D/FL       \n18 L1764-13a        15 D/FL       \n19 L1764-13b        15 D/FL       \n20 L1764-14         37 F          \n# ℹ 3,373 more rows"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#the-linear-model-with-multiple-predictors",
+    "href": "content/lectures/07-linear-models.html#the-linear-model-with-multiple-predictors",
+    "title": "07-linear-models",
+    "section": "The linear model with multiple predictors",
+    "text": "The linear model with multiple predictors\n\nPopulation model:\n\n\\[ \\hat{y} = \\beta_0 + \\beta_1~x_1 + \\beta_2~x_2 + \\cdots + \\beta_k~x_k \\]\n\n\nSample model that we use to estimate the population model:\n\n\\[ \\hat{y} = b_0 + b_1~x_1 + b_2~x_2 + \\cdots + b_k~x_k \\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#relationship-bw-height-and-school",
+    "href": "content/lectures/07-linear-models.html#relationship-bw-height-and-school",
+    "title": "07-linear-models",
+    "section": "Relationship b/w height and school",
+    "text": "Relationship b/w height and school\n\n\n# A tibble: 7 × 5\n  term            estimate std.error statistic p.value\n  <chr>              <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)        14.0       10.0     1.40  0.162  \n2 school_pntgD/FL     2.33      10.0     0.232 0.816  \n3 school_pntgF       10.2       10.0     1.02  0.309  \n4 school_pntgG        1.65      11.9     0.139 0.889  \n5 school_pntgI       10.3       10.0     1.02  0.306  \n6 school_pntgS       30.4       11.4     2.68  0.00744\n7 school_pntgX        2.87      10.3     0.279 0.780  \n\n\n\nAustrian school (A) paintings are expected, on average, to be 14 inches tall.\nDutch/Flemish school (D/FL) paintings are expected, on average, to be 2.33 inches taller than Austrian school paintings.\nFrench school (F) paintings are expected, on average, to be 10.2 inches taller than Austrian school paintings.\nGerman school (G) paintings are expected, on average, to be 1.65 inches taller than Austrian school paintings.\nItalian school (I) paintings are expected, on average, to be 10.3 inches taller than Austrian school paintings.\nSpanish school (S) paintings are expected, on average, to be 30.4 inches taller than Austrian school paintings.\nPaintings whose school is unknown (X) are expected, on average, to be 2.87 inches taller than Austrian school paintings. ]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#predict-height-from-width",
+    "href": "content/lectures/07-linear-models.html#predict-height-from-width",
+    "title": "07-linear-models",
+    "section": "Predict height from width",
+    "text": "Predict height from width\n❓ On average, how tall are paintings that are 60 inches wide? \\[\\widehat{Height_{in}} = 3.62 + 0.78~Width_{in}\\]\n\n\n3.62 + 0.78 * 60\n\n[1] 50.42\n\n\n“On average, we expect paintings that are 60 inches wide to be 50.42 inches high.”\nWarning: We “expect” this to happen, but there will be some variability. (We’ll learn about measuring the variability around the prediction later.)"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#prediction-vs.-extrapolation",
+    "href": "content/lectures/07-linear-models.html#prediction-vs.-extrapolation",
+    "title": "07-linear-models",
+    "section": "Prediction vs. extrapolation",
+    "text": "Prediction vs. extrapolation\n❓ On average, how tall are paintings that are 400 inches wide? \\[\\widehat{Height_{in}} = 3.62 + 0.78~Width_{in}\\]"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#watch-out-for-extrapolation",
+    "href": "content/lectures/07-linear-models.html#watch-out-for-extrapolation",
+    "title": "07-linear-models",
+    "section": "Watch out for extrapolation!",
+    "text": "Watch out for extrapolation!\n\n“When those blizzards hit the East Coast this winter, it proved to my satisfaction that global warming was a fraud. That snow was freezing cold. But in an alarming trend, temperatures this spring have risen. Consider this: On February 6th it was 10 degrees. Today it hit almost 80. At this rate, by August it will be 220 degrees. So clearly folks the climate debate rages on.”1  Stephen Colbert, April 6th, 2010"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#measuring-the-strength-of-the-fit",
+    "href": "content/lectures/07-linear-models.html#measuring-the-strength-of-the-fit",
+    "title": "07-linear-models",
+    "section": "Measuring the strength of the fit",
+    "text": "Measuring the strength of the fit\n\nThe strength of the fit of a linear model is most commonly evaluated using \\(R^2\\).\nIt tells us what percent of variability in the response variable is explained by the model.\nThe remainder of the variability is explained by variables not included in the model.\n\\(R^2\\) is sometimes called the coefficient of determination."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#obtaining-r2-in-r",
+    "href": "content/lectures/07-linear-models.html#obtaining-r2-in-r",
+    "title": "07-linear-models",
+    "section": "Obtaining \\(R^2\\) in R",
+    "text": "Obtaining \\(R^2\\) in R\n\nHeight vs. width\n\n\nglance(m_ht_wt)\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df  logLik    AIC    BIC\n      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>   <dbl>  <dbl>  <dbl>\n1     0.683         0.683  8.30     6749.       0     1 -11083. 22173. 22191.\n# ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>\n\nglance(m_ht_wt)$r.squared # extract R-squared\n\n[1] 0.6829468\n\n\nRoughly 68% of the variability in heights of paintings can be explained by their widths.\n\n\nHeight vs. landscape features\n\n\nglance(m_ht_lands)$r.squared\n\n[1] 0.03456724"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#data-paris-paintings-1",
+    "href": "content/lectures/07-linear-models.html#data-paris-paintings-1",
+    "title": "07-linear-models",
+    "section": "Data: Paris Paintings",
+    "text": "Data: Paris Paintings"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#price-vs.-width",
+    "href": "content/lectures/07-linear-models.html#price-vs.-width",
+    "title": "07-linear-models",
+    "section": "Price vs. width",
+    "text": "Price vs. width\n❓ Describe the relationship between price and width of paintings whose width is less than 100in."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#price-vs.-width-1",
+    "href": "content/lectures/07-linear-models.html#price-vs.-width-1",
+    "title": "07-linear-models",
+    "section": "Price vs. width",
+    "text": "Price vs. width\n❓ Which plot shows a more linear relationship?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#price-vs.-width-residuals",
+    "href": "content/lectures/07-linear-models.html#price-vs.-width-residuals",
+    "title": "07-linear-models",
+    "section": "Price vs. width, residuals",
+    "text": "Price vs. width, residuals\n❓ Which plot shows a residuals that are uncorrelated with predicted values from the model?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n❓What’s the unit of residuals?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#transforming-the-data",
+    "href": "content/lectures/07-linear-models.html#transforming-the-data",
+    "title": "07-linear-models",
+    "section": "Transforming the data",
+    "text": "Transforming the data\n\nWe saw that price has a right-skewed distribution, and the relationship between price and width of painting is non-linear.\n\n\n\nIn these situations a transformation applied to the response variable may be useful.\n\n\n\n\nIn order to decide which transformation to use, we should examine the distribution of the response variable.\n\n\n\n\nThe extremely right skewed distribution suggests that a log transformation may be useful.\n\nlog = natural log, \\(ln\\)\nDefault base of the log function in R is the natural log:  log(x, base = exp(1))"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#logged-price-vs.-width",
+    "href": "content/lectures/07-linear-models.html#logged-price-vs.-width",
+    "title": "07-linear-models",
+    "section": "Logged price vs. width",
+    "text": "Logged price vs. width\n❓ How do we interpret the slope of this model?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#interpreting-models-with-log-transformation",
+    "href": "content/lectures/07-linear-models.html#interpreting-models-with-log-transformation",
+    "title": "07-linear-models",
+    "section": "Interpreting models with log transformation",
+    "text": "Interpreting models with log transformation\n\nm_lprice_wt <- lm(log(price) ~ Width_in, data = pp_wt_lt_100)\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#linear-model-with-log-transformation",
+    "href": "content/lectures/07-linear-models.html#linear-model-with-log-transformation",
+    "title": "07-linear-models",
+    "section": "Linear model with log transformation",
+    "text": "Linear model with log transformation\n\\[ \\widehat{log(price)} = 4.67 + 0.02 Width \\]\n\n\nFor each additional inch the painting is wider, the log price of the painting is expected to be higher, on average, by 0.02 livres.\n\n\n\n\nwhich is not a very useful statement…"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#working-with-logs",
+    "href": "content/lectures/07-linear-models.html#working-with-logs",
+    "title": "07-linear-models",
+    "section": "Working with logs",
+    "text": "Working with logs\n\nSubtraction and logs: \\(log(a) − log(b) = log(a / b)\\)\n\n\n\nNatural logarithm: \\(e^{log(x)} = x\\)\n\n\n\n\nWe can use these identities to “undo” the log transformation"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#interpreting-models-with-log-transformation-1",
+    "href": "content/lectures/07-linear-models.html#interpreting-models-with-log-transformation-1",
+    "title": "07-linear-models",
+    "section": "Interpreting models with log transformation",
+    "text": "Interpreting models with log transformation\nThe slope coefficient for the log transformed model is 0.02, meaning the log price difference between paintings whose widths are one inch apart is predicted to be 0.02 log livres.\n\n\\[ log(\\text{price for width x+1}) - log(\\text{price for width x}) = 0.02 \\]\n\n\n\\[ log\\left(\\frac{\\text{price for width x+1}}{\\text{price for width x}}\\right) = 0.02 \\]\n\n\n\\[ e^{log\\left(\\frac{\\text{price for width x+1}}{\\text{price for width x}}\\right)} = e^{0.02} \\]\n\n\n\\[ \\frac{\\text{price for width x+1}}{\\text{price for width x}} \\approx 1.02 \\]\n\n\nFor each additional inch the painting is wider, the price of the painting is expected to be higher, on average, by a factor of 1.02."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#shortcuts-in-r",
+    "href": "content/lectures/07-linear-models.html#shortcuts-in-r",
+    "title": "07-linear-models",
+    "section": "Shortcuts in R",
+    "text": "Shortcuts in R\n\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019\n\n\n\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(exp(estimate), 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)   107.  \n2 Width_in        1.02"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#recap-log-transformations",
+    "href": "content/lectures/07-linear-models.html#recap-log-transformations",
+    "title": "07-linear-models",
+    "section": "Recap: Log Transformations",
+    "text": "Recap: Log Transformations\n\nNon-constant variance is one of the most common model violations, however it is usually fixable by transforming the response (y) variable.\n\n\n\nThe most common transformation when the response variable is right skewed is the log transform: \\(log(y)\\), especially useful when the response variable is (extremely) right skewed.\n\n\n\n\nThis transformation is also useful for variance stabilization.\n\n\n\n\nWhen using a log transformation on the response variable the interpretation of the slope changes: *“For each unit increase in x, y is expected on average to be higher/lower*  by a factor of \\(e^{b_1}\\).”\n\n\n\n\nAnother useful transformation is the square root: \\(\\sqrt{y}\\), especially useful when the response variable is counts."
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#aside-when-y-0",
+    "href": "content/lectures/07-linear-models.html#aside-when-y-0",
+    "title": "07-linear-models",
+    "section": "Aside: when \\(y = 0\\)",
+    "text": "Aside: when \\(y = 0\\)\nIn some cases the value of the response variable might be 0, and\n\nlog(0)\n\n[1] -Inf\n\n\n\nThe trick is to add a very small number to the value of the response variable for these cases so that the log function can still be applied:\n\nlog(0 + 0.00001)\n\n[1] -11.51293"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#recap",
+    "href": "content/lectures/07-linear-models.html#recap",
+    "title": "07-linear-models",
+    "section": "Recap",
+    "text": "Recap\n\nCan I carry out linear regression using the tidymodels approach?\nCan I interpret and explain the results from a linear model with a single predictor?\nDo I understand the limitations of modelling data w/ linear regression?\nCan I describe and implement the use of a dummy variable in linear regression?\nCan I determine when logistic transformation may be appropriate? Can I interpret these results?"
+  },
+  {
+    "objectID": "content/lectures/07-linear-models.html#suggested-reading",
+    "href": "content/lectures/07-linear-models.html#suggested-reading",
+    "title": "07-linear-models",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#course-announcements",
+    "href": "content/lectures/08-effective-communication-slides.html#course-announcements",
+    "title": "08-effective-communication",
+    "section": "Course Announcements",
+    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday after lab\ncompleted individually\n\n\n\n\nPractice Midterm Posted (Answer key posted Wed/tomorrow)\nLab03 & Lab04 Scores & Feedback Posted\nLab04 Notes:\n\nModel Interpretations\nText, code, & viz all matter\n\nLink for Later"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#agenda",
+    "href": "content/lectures/08-effective-communication-slides.html#agenda",
+    "title": "08-effective-communication",
+    "section": "Agenda",
+    "text": "Agenda\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#what-does-this-mean",
+    "href": "content/lectures/08-effective-communication-slides.html#what-does-this-mean",
+    "title": "08-effective-communication",
+    "section": "What does this mean?",
+    "text": "What does this mean?\n❓ What does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#whats-the-right-level",
+    "href": "content/lectures/08-effective-communication-slides.html#whats-the-right-level",
+    "title": "08-effective-communication",
+    "section": "What’s the right level?",
+    "text": "What’s the right level?\n\n\nGeneral Audience\n✔ background\n🚫 limit technical details\n🎉 emphasize take-home\n\n\n\nTechnical Audience\n⬇ limit background\n💻 all-the-details\n🎉 emphasize take-home"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#considerations",
+    "href": "content/lectures/08-effective-communication-slides.html#considerations",
+    "title": "08-effective-communication",
+    "section": "Considerations",
+    "text": "Considerations\n\nPlatform: written? oral?\n\n\n\nSetting: informal? formal?\n\n\n\n\nTiming: never go over your time limit!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#storytelling",
+    "href": "content/lectures/08-effective-communication-slides.html#storytelling",
+    "title": "08-effective-communication",
+    "section": "Storytelling",
+    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\n\n\n\n\nHold the audience’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\nYou should explain your choices and the “why”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#choose-informative-titles",
+    "href": "content/lectures/08-effective-communication-slides.html#choose-informative-titles",
+    "title": "08-effective-communication",
+    "section": "Choose informative titles",
+    "text": "Choose informative titles\nOn presentations: Balance b/w short and informative (goal: concise)\n\n\nAvoid: “Analyzing NHANES”\n\nBetter: “Data from the NHANES study shows that diet is related to overall health”\n\n\nOn visualizations: emphasize the take-home! (what’s learned or what action to take)\n\n\n\nAvoid: “Boxplot of gender”\n\nBetter: “Twice as many females as males included for analysis”\n\n\n\nAvoid: “Tickets vs. Time”\n\nBetter: “Staff unable to respond to incoming tickets; need to hire 2 FTEs”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#student-responses",
+    "href": "content/lectures/08-effective-communication-slides.html#student-responses",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nSpeak loudly and clearly enough for everyone to hear (project your voice!); be engaging so that people are inclined to pay attention\n\n\nMake eye contact with your audience as you speak\n\n\nDon't just read off slides, and (most of the time) don't read from a script\n\n\nloud and clear voice\n\n\nPosture, eye contact, and mannerisms can all influence oral presentation performance. While presenting don't stand in one spot, get up, move around and engage with the audience.\n\n\ntry harder to better word choice\n\n\nLook at the audience when I am talking to them. Speak loud and clear.\n\n\nEye contact!!!\n\n\neye contact, try not to use filler words, talk slower than you would normally, don't just read off of the slides\n\n\ndont overcomplicate the wording, what might make sense to you might be revolutionary to someone else. Using simple words for simple explainations for begginer simple thought processes\n\n\ndrink water constantly\n\n\nmaking enough eye contact"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#presentations-are-for-listening",
+    "href": "content/lectures/08-effective-communication-slides.html#presentations-are-for-listening",
+    "title": "08-effective-communication",
+    "section": "Presentations are for listening",
+    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\nuse animation to build your story (not to distract)\nintroduce your axes\ntext/labels larger\nwatch your speech speed\npractice!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "href": "content/lectures/08-effective-communication-slides.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "title": "08-effective-communication",
+    "section": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood",
+    "text": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood\n\nRed Riding Hood (RRH) has to walk 0.54 mi from Point A (home) to Point B (Grandma’s)\nRRH meets Wolf who (1) runs ahead to Grandma’s, (2) eats her, and (3) dresses in her clothes\nRRH arrives at Grandmas at 2PM, asks her three questions\nIdentified problem: after third question, Wolf eats RRH\nSolution: vendor (Woodsman) employs tool (ax)\nExpected outcome: Grandma and RRH alive, wolf is not"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#student-responses-1",
+    "href": "content/lectures/08-effective-communication-slides.html#student-responses-1",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nYour rough draft should be rough. Don't polish it because it will flush all your great ideas away.\n\n\nInclude data/metrics that highlight quantifiable impact of work.\n\n\nbe concise when writing\n\n\nshorter sentences = good\n\n\nState your main point clearly; use good grammar\n\n\ndon't use crazy fonts and coloring. If things need to be emphasized stick to italics bold and font size generally speaking.\n\n\nDisplay contents of slides in a left to right fashion.\n\n\nUse clear fonts.\n\n\nas concise as possible\n\n\nIf it's a presentation, less wording is often better. Use oral communication to fill in gaps between the main points\n\n\nRead what you write in between every iteration. Try to avoid repeating words - show some variety. Use punctuation well. Split up paragraphs; monolithic walls of text are intimidating and readers will skip them. It's cliche, but for a reason - the topic, argument, evidence structure is effective.\n\n\nExplicitly write out the opposing arguments/concerns in your paper and answer them as best you can. That way the paper feels more like a conversation with the author than just something to read.\n\n\nMake sentences flow well. Include a conclusion to summarize\n\n\nstay on topic, summarize main points at end,\n\n\nRepeat the point you want the readers to remember"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#benefits-of-written-communciation",
+    "href": "content/lectures/08-effective-communication-slides.html#benefits-of-written-communciation",
+    "title": "08-effective-communication",
+    "section": "Benefits of written communciation",
+    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\nVisually: more on a single visualization\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#when-you-have-time-to-digest-read",
+    "href": "content/lectures/08-effective-communication-slides.html#when-you-have-time-to-digest-read",
+    "title": "08-effective-communication",
+    "section": "When you have time to digest (read)",
+    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\nSource: Storytelling wtih data by cole nussbaumer knaflic"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
+    "href": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Data Science Reports in .Rmd",
+    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#controlling-html-document-settings",
+    "href": "content/lectures/08-effective-communication-slides.html#controlling-html-document-settings",
+    "title": "08-effective-communication",
+    "section": "Controlling HTML document settings",
+    "text": "Controlling HTML document settings\n\nTable of Contents\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n---\n\n\nTheme\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    theme: united\n    highlight: tango\n---\n\n\n\nFigure Options\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    fig_width: 7\n    fig_height: 6\n    fig_caption: true\n---\n\n\n\nCode Folding\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    code_folding: hide\n---"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#controlling-code-chunk-output",
+    "href": "content/lectures/08-effective-communication-slides.html#controlling-code-chunk-output",
+    "title": "08-effective-communication",
+    "section": "Controlling code chunk output",
+    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n{r, chunk-label, results='hide', fig.height=4}\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#editing-proofreading",
+    "href": "content/lectures/08-effective-communication-slides.html#editing-proofreading",
+    "title": "08-effective-communication",
+    "section": "Editing & Proofreading",
+    "text": "Editing & Proofreading\n\nDid you end up telling a story?\n\nThings missing?\nThings to delete?\n\n\n\n\nDo not fall in love with your words/code/plots\n\n\n\n\nDo spell check\nDo read it over before sending/presenting/submitting"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#aside-citing-sources",
+    "href": "content/lectures/08-effective-communication-slides.html#aside-citing-sources",
+    "title": "08-effective-communication",
+    "section": "Aside: Citing Sources",
+    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#footnotes-in-.rmd",
+    "href": "content/lectures/08-effective-communication-slides.html#footnotes-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Footnotes in .Rmd",
+    "text": "Footnotes in .Rmd\nHow to specify a footnote in text:\nHere is some body text.[^1]\nHow to include the footnote’s reference:\n[^1]: This footnote will appear at the bottom of the page.\n\n\nNote: .bib files can be included with BibTeX references using the bibliography parameter in your YAML"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#student-responses-2",
+    "href": "content/lectures/08-effective-communication-slides.html#student-responses-2",
+    "title": "08-effective-communication",
+    "section": "Student Responses",
+    "text": "Student Responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nTry to make the title of the plot something descriptive rather than simply, eg, \"Time vs Length\" or \"linear regression of pet sizes\".\"\n\n\nshow the kind of plot that can be understood by audience\n\n\nI heard that when making a visual graphic, you should try remove as much as you can while still showing the necessary information. The less on the screen, the better.\n\n\nWhen giving a presentation, try to keep bullet points shorter than 7 words so it's easier digest/remember\n\n\nWhen displaying data and visualizations. Take note of people with eye color visualization disabilities. Also present things based on intuitive knowledge. Like reading left to right\n\n\nhighlighting only the important bits with color usage\n\n\n(picture / plot / visualization) > words\n\n\nUse appropriate colors and use them to highlight findings.\n\n\nMake plots big and clear\n\n\nSometimes simple is better, try to stay away from distracting visualizations\n\n\nUse appropriate (non-misleading) scales\n\n\nColors choices are important, and also remember about color blind people\n\n\nlabel axis, always include a title, use ticks if they help understand the data, think about color choices, big text\n\n\nInclude visuals only if they are meaningful and/or strengthen your argument"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#the-glamour-of-graphics",
+    "href": "content/lectures/08-effective-communication-slides.html#the-glamour-of-graphics",
+    "title": "08-effective-communication",
+    "section": "The Glamour of Graphics",
+    "text": "The Glamour of Graphics\n\nbuilds on top of the grammar (components) of a graphic\nconsiderations for the design of a graphic\ncolor, typography, layout\ngoing from accurate to 😍effective\n\n\n\nThese ideas and slides are all modified from Will Chase’s rstudio::conf2020 slides/talk"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#left-align-titles-at-top-left",
+    "href": "content/lectures/08-effective-communication-slides.html#left-align-titles-at-top-left",
+    "title": "08-effective-communication",
+    "section": "Left-align titles at top-left",
+    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#avoid-head-tilting",
+    "href": "content/lectures/08-effective-communication-slides.html#avoid-head-tilting",
+    "title": "08-effective-communication",
+    "section": "Avoid head-tilting",
+    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#borders-backgrounds",
+    "href": "content/lectures/08-effective-communication-slides.html#borders-backgrounds",
+    "title": "08-effective-communication",
+    "section": "Borders & Backgrounds: 👎",
+    "text": "Borders & Backgrounds: 👎\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_bw() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#organize-removelighten-as-much-as-possible",
+    "href": "content/lectures/08-effective-communication-slides.html#organize-removelighten-as-much-as-possible",
+    "title": "08-effective-communication",
+    "section": "Organize & Remove/Lighten as much as possible",
+    "text": "Organize & Remove/Lighten as much as possible\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#legends-suck",
+    "href": "content/lectures/08-effective-communication-slides.html#legends-suck",
+    "title": "08-effective-communication",
+    "section": "Legends suck",
+    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 7) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 20) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#additional-guidance",
+    "href": "content/lectures/08-effective-communication-slides.html#additional-guidance",
+    "title": "08-effective-communication",
+    "section": "Additional Guidance",
+    "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#suggested-reading",
+    "href": "content/lectures/08-effective-communication-slides.html#suggested-reading",
+    "title": "08-effective-communication",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html",
+    "href": "content/lectures/08-effective-communication.html",
+    "title": "08-effective-communication",
+    "section": "",
+    "text": "Lecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday after lab\ncompleted individually\n\n\n\n\nPractice Midterm Posted (Answer key posted Wed/tomorrow)\nLab03 & Lab04 Scores & Feedback Posted\nLab04 Notes:\n\nModel Interpretations\nText, code, & viz all matter\n\nLink for Later\n\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#what-does-this-mean",
+    "href": "content/lectures/08-effective-communication.html#what-does-this-mean",
+    "title": "08-effective-communication",
+    "section": "What does this mean?",
+    "text": "What does this mean?\n❓ What does it mean to “consider your audience?”\n\nSimply: You do the work so they don’t have to.\n\n\n…also the aesthetic-usability effect exists."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#whats-the-right-level",
+    "href": "content/lectures/08-effective-communication.html#whats-the-right-level",
+    "title": "08-effective-communication",
+    "section": "What’s the right level?",
+    "text": "What’s the right level?\n\n\nGeneral Audience\n✔ background\n🚫 limit technical details\n🎉 emphasize take-home\n\n\n\nTechnical Audience\n⬇ limit background\n💻 all-the-details\n🎉 emphasize take-home"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#considerations",
+    "href": "content/lectures/08-effective-communication.html#considerations",
+    "title": "08-effective-communication",
+    "section": "Considerations",
+    "text": "Considerations\n\nPlatform: written? oral?\n\n\n\nSetting: informal? formal?\n\n\n\n\nTiming: never go over your time limit!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#storytelling",
+    "href": "content/lectures/08-effective-communication.html#storytelling",
+    "title": "08-effective-communication",
+    "section": "Storytelling",
+    "text": "Storytelling\n\nStories have a beginning, a middle, and an end.\n\n\n\nStories do not need every detail of what you’ve tried\n\n\n\n\nReports and presentations should tell a story\nPlanning out your report/presentation can help\n\n\n\n\nHold the audience’s attention with what needs to be said; do so effectively\nTell your audience why they should care; why it matters\nYou should explain your choices and the “why”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#choose-informative-titles",
+    "href": "content/lectures/08-effective-communication.html#choose-informative-titles",
+    "title": "08-effective-communication",
+    "section": "Choose informative titles",
+    "text": "Choose informative titles\nOn presentations: Balance b/w short and informative (goal: concise)\n\n\nAvoid: “Analyzing NHANES”\n\nBetter: “Data from the NHANES study shows that diet is related to overall health”\n\n\nOn visualizations: emphasize the take-home! (what’s learned or what action to take)\n\n\n\nAvoid: “Boxplot of gender”\n\nBetter: “Twice as many females as males included for analysis”\n\n\n\nAvoid: “Tickets vs. Time”\n\nBetter: “Staff unable to respond to incoming tickets; need to hire 2 FTEs”"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#student-responses",
+    "href": "content/lectures/08-effective-communication.html#student-responses",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nSpeak loudly and clearly enough for everyone to hear (project your voice!); be engaging so that people are inclined to pay attention\n\n\nMake eye contact with your audience as you speak\n\n\nDon't just read off slides, and (most of the time) don't read from a script\n\n\nloud and clear voice\n\n\nPosture, eye contact, and mannerisms can all influence oral presentation performance. While presenting don't stand in one spot, get up, move around and engage with the audience.\n\n\ntry harder to better word choice\n\n\nLook at the audience when I am talking to them. Speak loud and clear.\n\n\nEye contact!!!\n\n\neye contact, try not to use filler words, talk slower than you would normally, don't just read off of the slides\n\n\ndont overcomplicate the wording, what might make sense to you might be revolutionary to someone else. Using simple words for simple explainations for begginer simple thought processes\n\n\ndrink water constantly\n\n\nmaking enough eye contact"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#presentations-are-for-listening",
+    "href": "content/lectures/08-effective-communication.html#presentations-are-for-listening",
+    "title": "08-effective-communication",
+    "section": "Presentations are for listening",
+    "text": "Presentations are for listening\n\nAdvantage: words to explain out loud what you’re showing\n\n\n\nYou are presenting for the person in the back of the room.\n\n\n\nTo accomplish:\n\ndon’t read directly off slides\nrepetition is ok: tell what you’re going to tell them, tell them, tell them what you told them\nuse animation to build your story (not to distract)\nintroduce your axes\ntext/labels larger\nwatch your speech speed\npractice!"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "href": "content/lectures/08-effective-communication.html#for-example-a-happy-ending-for-almost-everyone-in-little-red-riding-hood",
+    "title": "08-effective-communication",
+    "section": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood",
+    "text": "For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood\n\nRed Riding Hood (RRH) has to walk 0.54 mi from Point A (home) to Point B (Grandma’s)\nRRH meets Wolf who (1) runs ahead to Grandma’s, (2) eats her, and (3) dresses in her clothes\nRRH arrives at Grandmas at 2PM, asks her three questions\nIdentified problem: after third question, Wolf eats RRH\nSolution: vendor (Woodsman) employs tool (ax)\nExpected outcome: Grandma and RRH alive, wolf is not"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#student-responses-1",
+    "href": "content/lectures/08-effective-communication.html#student-responses-1",
+    "title": "08-effective-communication",
+    "section": "Student responses",
+    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nYour rough draft should be rough. Don't polish it because it will flush all your great ideas away.\n\n\nInclude data/metrics that highlight quantifiable impact of work.\n\n\nbe concise when writing\n\n\nshorter sentences = good\n\n\nState your main point clearly; use good grammar\n\n\ndon't use crazy fonts and coloring. If things need to be emphasized stick to italics bold and font size generally speaking.\n\n\nDisplay contents of slides in a left to right fashion.\n\n\nUse clear fonts.\n\n\nas concise as possible\n\n\nIf it's a presentation, less wording is often better. Use oral communication to fill in gaps between the main points\n\n\nRead what you write in between every iteration. Try to avoid repeating words - show some variety. Use punctuation well. Split up paragraphs; monolithic walls of text are intimidating and readers will skip them. It's cliche, but for a reason - the topic, argument, evidence structure is effective.\n\n\nExplicitly write out the opposing arguments/concerns in your paper and answer them as best you can. That way the paper feels more like a conversation with the author than just something to read.\n\n\nMake sentences flow well. Include a conclusion to summarize\n\n\nstay on topic, summarize main points at end,\n\n\nRepeat the point you want the readers to remember"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#benefits-of-written-communciation",
+    "href": "content/lectures/08-effective-communication.html#benefits-of-written-communciation",
+    "title": "08-effective-communication",
+    "section": "Benefits of written communciation",
+    "text": "Benefits of written communciation\nYour audience has time to process…but the explanation has to be there!\n\nVisually: more on a single visualization\n\n\nYes, often there are different visualizations for reports/papers than for presentations/lectures."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#when-you-have-time-to-digest-read",
+    "href": "content/lectures/08-effective-communication.html#when-you-have-time-to-digest-read",
+    "title": "08-effective-communication",
+    "section": "When you have time to digest (read)",
+    "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\nSource: Storytelling wtih data by cole nussbaumer knaflic"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
+    "href": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Data Science Reports in .Rmd",
+    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#controlling-html-document-settings",
+    "href": "content/lectures/08-effective-communication.html#controlling-html-document-settings",
+    "title": "08-effective-communication",
+    "section": "Controlling HTML document settings",
+    "text": "Controlling HTML document settings\n\nTable of Contents\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    toc: true\n    toc_float: true\n---\n\n\nTheme\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    theme: united\n    highlight: tango\n---\n\n\n\nFigure Options\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    fig_width: 7\n    fig_height: 6\n    fig_caption: true\n---\n\n\n\nCode Folding\n\n---\ntitle: \"Document Title\"\noutput:\n  html_document:\n    code_folding: hide\n---"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#controlling-code-chunk-output",
+    "href": "content/lectures/08-effective-communication.html#controlling-code-chunk-output",
+    "title": "08-effective-communication",
+    "section": "Controlling code chunk output",
+    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n{r, chunk-label, results='hide', fig.height=4}\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#editing-proofreading",
+    "href": "content/lectures/08-effective-communication.html#editing-proofreading",
+    "title": "08-effective-communication",
+    "section": "Editing & Proofreading",
+    "text": "Editing & Proofreading\n\nDid you end up telling a story?\n\nThings missing?\nThings to delete?\n\n\n\n\nDo not fall in love with your words/code/plots\n\n\n\n\nDo spell check\nDo read it over before sending/presenting/submitting"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#aside-citing-sources",
+    "href": "content/lectures/08-effective-communication.html#aside-citing-sources",
+    "title": "08-effective-communication",
+    "section": "Aside: Citing Sources",
+    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#footnotes-in-.rmd",
+    "href": "content/lectures/08-effective-communication.html#footnotes-in-.rmd",
+    "title": "08-effective-communication",
+    "section": "Footnotes in .Rmd",
+    "text": "Footnotes in .Rmd\nHow to specify a footnote in text:\nHere is some body text.[^1]\nHow to include the footnote’s reference:\n[^1]: This footnote will appear at the bottom of the page.\n\n\nNote: .bib files can be included with BibTeX references using the bibliography parameter in your YAML"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#student-responses-2",
+    "href": "content/lectures/08-effective-communication.html#student-responses-2",
+    "title": "08-effective-communication",
+    "section": "Student Responses",
+    "text": "Student Responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nTry to make the title of the plot something descriptive rather than simply, eg, \"Time vs Length\" or \"linear regression of pet sizes\".\"\n\n\nshow the kind of plot that can be understood by audience\n\n\nI heard that when making a visual graphic, you should try remove as much as you can while still showing the necessary information. The less on the screen, the better.\n\n\nWhen giving a presentation, try to keep bullet points shorter than 7 words so it's easier digest/remember\n\n\nWhen displaying data and visualizations. Take note of people with eye color visualization disabilities. Also present things based on intuitive knowledge. Like reading left to right\n\n\nhighlighting only the important bits with color usage\n\n\n(picture / plot / visualization) > words\n\n\nUse appropriate colors and use them to highlight findings.\n\n\nMake plots big and clear\n\n\nSometimes simple is better, try to stay away from distracting visualizations\n\n\nUse appropriate (non-misleading) scales\n\n\nColors choices are important, and also remember about color blind people\n\n\nlabel axis, always include a title, use ticks if they help understand the data, think about color choices, big text\n\n\nInclude visuals only if they are meaningful and/or strengthen your argument"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#the-glamour-of-graphics",
+    "href": "content/lectures/08-effective-communication.html#the-glamour-of-graphics",
+    "title": "08-effective-communication",
+    "section": "The Glamour of Graphics",
+    "text": "The Glamour of Graphics\n\nbuilds on top of the grammar (components) of a graphic\nconsiderations for the design of a graphic\ncolor, typography, layout\ngoing from accurate to 😍effective\n\n\n\nThese ideas and slides are all modified from Will Chase’s rstudio::conf2020 slides/talk"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#left-align-titles-at-top-left",
+    "href": "content/lectures/08-effective-communication.html#left-align-titles-at-top-left",
+    "title": "08-effective-communication",
+    "section": "Left-align titles at top-left",
+    "text": "Left-align titles at top-left\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1))\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#avoid-head-tilting",
+    "href": "content/lectures/08-effective-communication.html#avoid-head-tilting",
+    "title": "08-effective-communication",
+    "section": "Avoid head-tilting",
+    "text": "Avoid head-tilting\n\n\n😬 Accurate\n\nggplot(penguins, aes(x = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(axis.text.x = element_text(angle = 90, vjust = 0.5, hjust = 1),\n        plot.title.position = \"plot\")\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#borders-backgrounds",
+    "href": "content/lectures/08-effective-communication.html#borders-backgrounds",
+    "title": "08-effective-communication",
+    "section": "Borders & Backgrounds: 👎",
+    "text": "Borders & Backgrounds: 👎\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_bw() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#organize-removelighten-as-much-as-possible",
+    "href": "content/lectures/08-effective-communication.html#organize-removelighten-as-much-as-possible",
+    "title": "08-effective-communication",
+    "section": "Organize & Remove/Lighten as much as possible",
+    "text": "Organize & Remove/Lighten as much as possible\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = species, fill = species)) +\n  geom_bar() +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal() +\n  theme(plot.title.position = \"plot\") \n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#legends-suck",
+    "href": "content/lectures/08-effective-communication.html#legends-suck",
+    "title": "08-effective-communication",
+    "section": "Legends suck",
+    "text": "Legends suck\n\n\n😬 Accurate\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 6) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 18) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank())\n\n\n\n\n\n😍 Effective\n\nggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +\n  geom_bar() +\n  geom_text(stat='count', aes(label=..count..), hjust = 1.5, color = \"white\", size = 7) +\n  scale_x_continuous(expand = c(0, 0)) +\n  scale_fill_manual(values = c(\"#454545\", rep(\"#adadad\", 2))) +\n  labs(title = \"Adelie Penguins are the most common in Antarctica\", \n       subtitle = \"Frequency of each penguin species studied near Palmer Station, Antarctica\") +\n  theme_minimal(base_size = 20) +\n  theme(axis.text.x = element_blank(),\n        plot.title.position = \"plot\", \n        panel.grid.major = element_blank(), panel.grid.minor = element_blank(),\n        axis.title = element_blank(),\n        legend.position = \"none\")"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#additional-guidance",
+    "href": "content/lectures/08-effective-communication.html#additional-guidance",
+    "title": "08-effective-communication",
+    "section": "Additional Guidance",
+    "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#suggested-reading",
+    "href": "content/lectures/08-effective-communication.html#suggested-reading",
+    "title": "08-effective-communication",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
   },
   {
     "objectID": "content/lectures/06-analysis-slides.html#qa",

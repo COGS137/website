@@ -1,0 +1,53 @@
+---
+title: "Lab 04: Modelling course evals (Pt. 1)"
+author: ""
+format:
+  revealjs:
+    embed-resources: true
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: img/cogs137-logo-hex.png
+    footer: <https://cogs137.github.io/website/>
+    execute:
+      echo: true
+---
+
+# Lab 04: Modelling course evals (Pt. 1) {background-color="#0E3A53"}
+
+## Agenda
+
+1. Lab 04: Modelling course evaluations
+2. Getting started with lab
+
+## Lab 06: Modelling course evaluations
+
+- Many college courses give students the opportunity to evaluate the course and the instructor anonymously
+
+- The use of these student evaluations as an indicator of course quality and teaching effectiveness is often criticized because these measures may reflect the influence of non-teaching related characteristics, e.g. the physical appearance of the instructor
+
+## You've all seen something like this...
+
+![](img/04/course-eval.jpg)
+
+
+## and then there's also this
+
+![](img/04/rmp.png)
+
+
+## Data comes from...
+
+"Beauty in the classroom: instructors’ pulchritude and putative pedagogical productivity" 
+
+Daniel S. Hamermesh, Amy Parker, Beauty in the classroom: instructors pulchritude and putative pedagogical productivity, Economics of Education Review, Volume 24, Issue 4, August 2005. http://www.sciencedirect.com/science/article/pii/S0272775704001165
+
+
+## Some new challenges in this lab
+
+- There isn't much code on the lab instructions, you might need to refer to course slides to put the pieces together, however most of the time 
+    + you'll be visualizing with `ggplot`, 
+    + fitting a model with `lm`, 
+    + and viewing some model statistics with `glance`
+- Interpretation *in the context of the data* matters
+    + Numbers need context: saying (for example) "the $\beta_1$ is 5" isn't enough; what does that mean? In particular, what does that mean *for these data* and for *this question*

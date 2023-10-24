@@ -36,7 +36,7 @@ Coming Soon...
 
 . . .
 
-![](images/08/qr.svg)
+![](images/08/qr.png)
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)

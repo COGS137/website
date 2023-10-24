@@ -1,7 +1,7 @@
 ---
 title: "07-linear-models"
 author: "Professor Shannon Ellis"
-date: "2023-02-02"
+date: "2023-10-24"
 
 format:
   html: 
@@ -26,29 +26,36 @@ format:
 
 ## Q&A {.smaller}
 
-> Q: Do you recommend review some statistics before attending lectures?\
-> A: This is very much up to you. It certainly wouldn't hurt! There will be readings connected to each lecture; these are a great place to start. It can be helpful to work through these readings and the exercises either before or after lecture!
+> Q: I was just wondering if you could still provide those videos you talked about with like syntax stuff so that we can follow along. I would also appreciate if it was really through with like a walk through of how you got to each point\
+> A: I like this suggestion, and I'll try to make these. No promises though. Just have to find magical time in the schedule to make them. Note that lectures will be the more detailed walk through with more time on your own to figure it out (rather than detailed walk through outside of class), so you will get the information...the time/location will just differ. But, I'll try to make some supplemental videos for those interested.
 
-> Q: I am still not quite sure how to do HW part 2 and 3, do we download data into the folder, read the file, and plot it?\
-> A: Yup! That's one approach. The other approach (if the data are not available for download) would be to create the dataset on your own, estimating the values as best you can from the plot and creating a dataframe/tibble containing that information directly in your code (similar to what you did in HW01)....and then plot from there.
+> Q: Had a question about the modeling and the last bit showing how decreasing the alpha showed greater clustering at the bottom left corner. If the bottom left corner looks like 0 height and 0 width, how does that translate into the dimensions of an actual painting?\
+> A: Good observation. The follow-up to this is...are there any paintings with zero width or zero height? And, if you dig in the data (i.e. `min(pp$Height_in, na.rm=TRUE)`), you'll see that there are some very small paintings, but that none are zero.
+
+> Q: If we want to built our own model, can we plot them with ggplot2? \
+> A: Yup! [This post](https://stackoverflow.com/questions/44865508/using-ggplot2-to-plot-an-already-existing-linear-model) starts to get at that. It does so for a linear model, but the logic follows for other models.
+
+> Q: For the paintings dataset, how could we perform EDA on specific subject matter, like seeing how many portraits include Jesus as part of the subject? \
+> A: Love this question. There is a whole field of natural language processing that would have sophisticated ways to analyze this. A simple first pass would be to, for example, filter for paintings that include "Jesus" in the `subject` column.
+
+> Q: I think the segmented bar plots based on proportion seem difficult to read. I'm not sure why we should be using this instead of the stacked plots? \
+> A: Grouped bar blots are typically most quickly understood. Proportion stacked plots are then easiest to understand proportion across categories. Stacked plots of raw numbers take longer (for most) to understand and thus are often avoided, but like all viz, it depends on context and audience.
+
+> Q: In the last lecture, we talked about how segmented bar plots might not be the ideal choice for data visualization, but we still demonstrated them in today’s lecture. So, specifically in what cases should we choose segmented bar plots as a data analysis tool? \
+> A: They can be helpful when the audience is familiar with them, but typically are most helpful when you want to display relative proportions rather than counts
+
 
 ## Course Announcements {.incremental}
 
 **Due Dates**:
 
--   **Lab 04** due tomorrow (2/3; 11:59 PM)
+-   **Lab 04** due Friday
+    -   Model Interpretations
+    -   Text, code, & viz all matter
 -   Lecture Participation survey "due" after class
--   **HW02** due Monday (2/6; 11:59 PM)
+-   **HW02** due Monday (10/30; 11:59 PM)
+  - discuss displaying image in Markdown
 
-. . .
-
--   **Midterm Exam**
-    -   practice exam(s) will be released tomorrow; answers posted next week
-    -   will cover material through "Effective Communication"
-    -   will be released/posted next Friday *after* lab
-    -   will be **due Monday Feb 13th at 11:59 PM**
-    -   will be an Rmd document and submitted via GitHub (like everything so far)
-    -   will be commpleted *individually* (open Notes; open Google)
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -69,6 +76,7 @@ color_palette <- list(gray = "#999999",
 knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
 ```
 
+
 ## Agenda
 
 -   Linear Models
@@ -76,6 +84,11 @@ knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, mes
     -   Categorical Predictor (2 & \>2 levels)
     -   residuals
     -   data transformations
+
+## Suggested Reading
+
+-   R4DS Chapter 24: [Model Building](https://r4ds.had.co.nz/model-building.html)
+-   Introduction to Modern Statistics Chapter 7: [Linear Regression with a Single Predictor](https://openintro-ims.netlify.app/model-slr.html)
 
 # `tidymodels` {background-color="#92A86A"}
 
@@ -724,7 +737,4 @@ log(0 + 0.00001)
 -   Can I describe and implement the use of a dummy variable in linear regression?
 -   Can I determine when logistic transformation may be appropriate? Can I interpret these results?
 
-## Suggested Reading
 
--   R4DS Chapter 24: [Model Building](https://r4ds.had.co.nz/model-building.html)
--   Introduction to Modern Statistics Chapter 7: [Linear Regression with a Single Predictor](https://openintro-ims.netlify.app/model-slr.html)

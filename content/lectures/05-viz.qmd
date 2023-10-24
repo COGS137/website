@@ -30,10 +30,10 @@ Slides modified from [datascienceinabox.org](https://datasciencebox.org/)
 
 ## Q&A {.smaller}
 
-> Q: I just think it’s a bit fast and I would appreciate if you made sure to show like how to import and stuff rather then jumping to the final product \
+> Q: I just think it's a bit fast and I would appreciate if you made sure to show like how to import and stuff rather then jumping to the final product\
 > A: That's really valuable feedback. I don't think you're alone. I'm going to work to better get everyone on the same page going forward.
 
-Note: a handful of comments on needing more time on joins & pivots...which makes sense! They're new :) 
+Note: a handful of comments on needing more time on joins & pivots...which makes sense! They're new :)
 
 ## Course Announcements
 
@@ -730,5 +730,3 @@ ggplot(brexit, aes(y = opinion, fill = opinion)) +
 -   Can you determine what needs to be done to improve the effectiveness of your visualizations?
 -   Can you execute said improvements using `ggplot2`?
 -   Can you tell a story with data?
-
-

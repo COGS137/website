@@ -24,37 +24,19 @@ format:
 
 # Effective Communication {background-color="#92A86A"}
 
+## Q&A {.smaller}
 
-<!-- ## Q&A {.smaller} -->
-
-<!-- > Q: \ -->
-<!-- > A:  -->
-
-<!-- > Q: \ -->
-<!-- > A:  -->
-
-<!-- > Q: \ -->
-<!-- > A:  -->
-
-<!-- > Q: \ -->
-<!-- > A:  -->
+Coming Soon
 
 ## Course Announcements
 
-- Lecture Participation survey "due" after class
-- **Midterm** due Monday (2/13; 11:59 PM):
-  + released Friday *after* lab
-  + completed individually
-  
+Coming Soon...
+
+-   [Link for Later](https://docs.google.com/forms/d/e/1FAIpQLSc9dyocixWJGHjmU3P8Peli5FePchGBFoZOfw93ibnjWWJ8xg/viewform?usp=sf_link)
+
 . . .
 
-- Practice Midterm Posted (Answer key posted Wed/tomorrow)
-- Lab03 & Lab04 Scores & Feedback Posted
-- Lab04 Notes:
-  + Model Interpretations
-  + Text, code, & viz all matter
-- [Link for Later](https://docs.google.com/forms/d/e/1FAIpQLSdwapo5AWOZHIZTJ0HAvtdmDK6W6WCKBAfJh-LsE4tIoG09rA/viewform)
-
+![](images/08/qr.svg)
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -77,14 +59,18 @@ color_palette <- list(gray = "#999999",
 knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
 ```
 
-
-
 ## Agenda
 
-- Communicating for your audience
-- Oral Communication
-- Written Communication
-- Visual Communication
+-   Communicating for your audience
+-   Oral Communication
+-   Written Communication
+-   Visual Communication
+
+## Suggested Reading
+
+-   Bookdown [Section 2.6 R Code Chunks & inline R code](https://bookdown.org/yihui/rmarkdown/r-code.html)
+-   Bookdown [Chapter 3: Documents](https://bookdown.org/yihui/rmarkdown/html-document.html)
+-   Will Chase's rstudio::conf2020 talk: "The Glamour of Graphics" \[[slides](https://www.williamrchase.com/slides/assets/player/KeynoteDHTMLPlayer.html)\] \[[video](https://www.youtube.com/watch?v=h5cTacaWE6I)\]
 
 # Consider your audience {background-color="#92A86A"}
 
@@ -104,59 +90,54 @@ Simply: **You do the work so they don't have to.**
 
 ::: columns
 ::: {.column width="50%"}
-**General Audience** \
-✔ background \
-🚫 limit technical details \
-🎉 emphasize take-home \
+**General Audience**\
+✔ background\
+🚫 limit technical details\
+🎉 emphasize take-home\
 
 ![](images/08/general.png)
 :::
 
 ::: {.column width="50%"}
-
-**Technical Audience** \
-⬇ limit background  \
-💻 all-the-details \
-🎉 emphasize take-home \
+**Technical Audience**\
+⬇ limit background\
+💻 all-the-details\
+🎉 emphasize take-home\
 
 ![](images/08/technical.png)
-
 :::
 :::
 
 ## Considerations
 
-- **Platform**: written? oral?
+-   **Platform**: written? oral?
 
 . . .
 
-- **Setting**: informal? formal?
+-   **Setting**: informal? formal?
 
 . . .
 
-- **Timing**: never go over your time limit!
-
-
-
+-   **Timing**: never go over your time limit!
 
 ## Storytelling
 
-- Stories have a beginning, a middle, and an end.
-
-. . . 
-
-- Stories do not need *every* detail of what you've tried
+-   Stories have a beginning, a middle, and an end.
 
 . . .
 
-- Reports and presentations should tell a story
-- Planning out your report/presentation can help
+-   Stories do not need *every* detail of what you've tried
 
 . . .
 
-- Hold the audience's attention with what needs to be said; do so effectively
-- Tell your audience why they should care; why it matters
-- You should explain your choices and the "why"
+-   Reports and presentations should tell a story
+-   Planning out your report/presentation can help
+
+. . .
+
+-   Hold the audience's attention with what needs to be said; do so effectively
+-   Tell your audience why they should care; why it matters
+-   You should explain your choices and the "why"
 
 ## Choose informative titles
 
@@ -167,6 +148,7 @@ On **presentations**: Balance b/w short and informative (goal: concise)
 ::: {.fragment .semi-fade-out}
 Avoid: "Analyzing NHANES"
 :::
+
 Better: "Data from the NHANES study shows that diet is related to overall health"
 
 . . .
@@ -177,9 +159,9 @@ On **visualizations**: emphasize the take-home! (what's learned or what action t
 
 ::: {.fragment .semi-fade-out}
 Avoid: "Boxplot of gender"
-::: 
+:::
 
-Better: "Twice as many females as males included for analysis" 
+Better: "Twice as many females as males included for analysis"
 
 . . .
 
@@ -193,9 +175,11 @@ Better: "Staff unable to respond to incoming tickets; need to hire 2 FTEs"
 
 Brainstorm: Advice You've Been Given?
 
-## Student responses  {.smaller}
+## Student responses {.smaller}
 
-```{r, echo=FALSE, results="asis"}
+Student responses will be added to notes after class...
+
+```{r, eval=FALSE, echo=FALSE, results="asis"}
 student_responses <- read_sheet('1CRNv9Y9tuFIbxb0mO_XWsL94BUOcQq6LMJC5MHVbEP8')
 
 student_responses |> 
@@ -206,58 +190,72 @@ student_responses |>
     scroll_box(width = "100%", height = "500px")
 ```
 
-
 ## Presentations are for listening {.smaller}
 
-- Advantage: words to explain out loud what you’re showing
+-   Advantage: words to explain out loud what you're showing
 
 . . .
 
-- You are presenting for the person in the back of the room.
+-   You are presenting for the person in the back of the room.
 
 . . .
 
 To accomplish:
 
-  - don’t read directly off slides
-  - repetition is ok: tell what you're going to tell them, tell them, tell them what you told them
-  - use animation to build your story (not to distract)
-  - introduce your axes
-  - text/labels larger
-  - watch your speech speed
-  
-  - practice!
+-   don't read directly off slides
+
+-   repetition is ok: tell what you're going to tell them, tell them, tell them what you told them
+
+-   use animation to build your story (not to distract)
+
+-   introduce your axes
+
+-   text/labels larger
+
+-   watch your speech speed
+
+-   practice!
 
 ## For Example: A Happy Ending for (almost) everyone in Little Red Riding Hood {.smaller}
 
-- Red Riding Hood (RRH) has to walk 0.54 mi from Point A (home) to Point B (Grandma’s) 
-- RRH meets Wolf who (1) runs ahead to Grandma’s, (2) eats her, and (3) dresses in her clothes
-- RRH arrives at Grandmas at 2PM, asks her three questions
-- Identified problem: after third question, Wolf eats RRH
-- Solution: vendor (Woodsman) employs tool (ax)
-- Expected outcome: Grandma and RRH alive, wolf is not
+-   Red Riding Hood (RRH) has to walk 0.54 mi from Point A (home) to Point B (Grandma's)
+-   RRH meets Wolf who (1) runs ahead to Grandma's, (2) eats her, and (3) dresses in her clothes
+-   RRH arrives at Grandmas at 2PM, asks her three questions
+-   Identified problem: after third question, Wolf eats RRH
+-   Solution: vendor (Woodsman) employs tool (ax)
+-   Expected outcome: Grandma and RRH alive, wolf is not
 
-# ![](images/08/lrr.png){height="80"} Little Red Riding Hood 
+# ![](images/08/lrr.png){height="80"} Little Red Riding Hood
 
 <!-- Grandma has fallen ill and Red Riding Hood sets out on a walk through the woods with a basket of goodies to deliver to her.  -->
-<!-- On her way, she encounters a woodsman and a wolf.  -->
-<!-- The wolf runs ahead, eats Grandma, and dresses up in her clothes. -->
-<!-- When Red arrives, she senses something is awry. She goes through a series of questions with the wolf, who’s posing as Grandma, -->
-<!-- Red says “Oh Grandma, how big your teeth are!”  -->
-<!-- The wolf replies “The better to eat you with” and swallows Red whole -->
-<!-- The woodsman walks by and, seeing the door to Grandma’s house ajar, decides to investigate.  -->
-<!-- He finds the wolf asleep after his meal. -->
-<!-- The woodsman suspects what has happened and chops the wolf in half.  -->
-<!-- Grandma and Red Riding Hood emerge, safe and sound - a happy ending for all except the wolf -->
 
+<!-- On her way, she encounters a woodsman and a wolf.  -->
+
+<!-- The wolf runs ahead, eats Grandma, and dresses up in her clothes. -->
+
+<!-- When Red arrives, she senses something is awry. She goes through a series of questions with the wolf, who’s posing as Grandma, -->
+
+<!-- Red says “Oh Grandma, how big your teeth are!”  -->
+
+<!-- The wolf replies “The better to eat you with” and swallows Red whole -->
+
+<!-- The woodsman walks by and, seeing the door to Grandma’s house ajar, decides to investigate.  -->
+
+<!-- He finds the wolf asleep after his meal. -->
+
+<!-- The woodsman suspects what has happened and chops the wolf in half.  -->
+
+<!-- Grandma and Red Riding Hood emerge, safe and sound - a happy ending for all except the wolf -->
 
 # Effective Written Communication {background-color="#92A86A"}
 
 Brainstorm: Advice You've Been Given?
 
-## Student responses  {.smaller}
+## Student responses {.smaller}
 
-```{r, echo=FALSE, results="asis"}
+Student responses will be added to notes after class...
+
+```{r, eval=FALSE, echo=FALSE, results="asis"}
 student_responses |> 
   filter(`Type of Communication` == "Writing") |>
   select(`Advice you've received`) |> 
@@ -265,7 +263,6 @@ student_responses |>
     kable_styling() |>
     scroll_box(width = "100%", height = "500px")
 ```
-
 
 ## Benefits of written communciation
 
@@ -279,7 +276,6 @@ Visually: more on a single visualization
 
 Yes, often there are different visualizations for reports/papers than for presentations/lectures.
 
-
 ## When you have time to digest (read)
 
 ![](images/08/written.png)
@@ -290,17 +286,27 @@ Yes, often there are different visualizations for reports/papers than for presen
 
 Source: [Storytelling wtih data](https://www.storytellingwithdata.com/book/downloads) by cole nussbaumer knaflic
 
+## Written Explanations
+
+-   Visualizations should be explained/interpreted
+-   Models should be explained
+    -   should be clear what question is being answered
+    -   what conclusions is being drawn
+    -   and what numbers were used to draw that conclusion
+
 ## Data Science Reports in .Rmd
 
-- As concise as possible
-- Necessary details (for your audience); nothing more
-- Typical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References
+-   As concise as possible
+-   Necessary details (for your audience); nothing more
+    -   Be sure that the knit output contains what you intended (plots displayed; headers etc.)
+    -   ...and does NOT display stuff that doesn't need to be there (messages/warnings suppressed, brainstorming, etc.)
+-   Typical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References
 
 ## Controlling HTML document settings
 
-- Table of Contents
+-   Table of Contents
 
-```
+```         
 ---
 title: "Document Title"
 output:
@@ -312,10 +318,9 @@ output:
 
 . . .
 
+-   Theme
 
-- Theme
-
-```
+```         
 ---
 title: "Document Title"
 output:
@@ -327,9 +332,9 @@ output:
 
 . . .
 
-- Figure Options
+-   Figure Options
 
-```
+```         
 ---
 title: "Document Title"
 output:
@@ -342,9 +347,9 @@ output:
 
 . . .
 
-- Code Folding
+-   Code Folding
 
-```
+```         
 ---
 title: "Document Title"
 output:
@@ -353,47 +358,43 @@ output:
 ---
 ```
 
-
 ## Controlling code chunk output {.smaller}
 
-- Specified in the curly braces, separated by commas
+-   Specified in the curly braces, separated by commas
+
+```{r, chunk-label, results='hide', fig.height=4}
 
 ```
 
-{r, chunk-label, results='hide', fig.height=4}
+. . .
 
-```
+-   `eval`: whether to execute the code chunk
+-   `echo`: whether to include the code in the output
+-   `warning`, `message`, and `error`: whether to show warnings, messages, or errors in the knit document
+-   `fig.width` and `fig.height`: control the width/height of plots
 
-. . . 
+. . .
 
-- `eval`: whether to execute the code chunk
-- `echo`: whether to include the code in the output
-- `warning`, `message`, and `error`: whether to show warnings, messages, or errors in the knit document
-- `fig.width` and `fig.height`: control the width/height of plots
+-   Controlling for the whole document:
 
-. . . 
-
-- Controlling for the whole document:
-
-```{eval=FALSE}
+``` {eval="FALSE"}
 knitr::opts_chunk$set(fig.width = 8, collapse = TRUE)
 ```
 
-
 ## Editing & Proofreading
 
-- Did you end up telling a story?
-  - Things missing?
-  - Things to delete?
-  
-. . .
-
-- Do not fall in love with your words/code/plots
+-   Did you end up telling a story?
+    -   Things missing?
+    -   Things to delete?
 
 . . .
 
-- Do spell check
-- Do read it over before sending/presenting/submitting
+-   Do not fall in love with your words/code/plots
+
+. . .
+
+-   Do spell check
+-   Do read it over before sending/presenting/submitting
 
 ## Aside: Citing Sources {.smaller}
 
@@ -408,13 +409,13 @@ knitr::opts_chunk$set(fig.width = 8, collapse = TRUE)
 . . .
 
 ::: {.fragment .semi-fade-out}
-> "What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue." 
+> "What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue."
 :::
 
 . . .
 
 ::: {.fragment .semi-fade-out}
-> "Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit"
+> "Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they're away from home without a permit"
 :::
 
 . . .
@@ -425,15 +426,14 @@ knitr::opts_chunk$set(fig.width = 8, collapse = TRUE)
 
 . . .
 
-
 ::: {.fragment .semi-fade-out}
 > "In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791."
 :::
 
-. . . 
+. . .
 
 ::: {.fragment .semi-fade-out}
-> "The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.”"
+> "The Right to Carry Laws (RTC) is defined as"a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.""
 :::
 
 . . .
@@ -444,13 +444,13 @@ knitr::opts_chunk$set(fig.width = 8, collapse = TRUE)
 
 How to specify a footnote in text:
 
-```{eval=FALSE}
+``` {eval="FALSE"}
 Here is some body text.[^1]
 ```
 
 How to include the footnote's reference:
 
-```{eval=FALSE}
+``` {eval="FALSE"}
 [^1]: This footnote will appear at the bottom of the page.
 ```
 
@@ -464,7 +464,9 @@ Brainstorm: Advice You've Been Given?
 
 ## Student Responses {.smaller}
 
-```{r, echo=FALSE, results="asis"}
+Student responses will be added to notes after class...
+
+```{r, eval=FALSE, echo=FALSE, results="asis"}
 student_responses |> 
   filter(`Type of Communication` == "Visual", `Advice you've received` != "NA") |>
   select(`Advice you've received`) |> 
@@ -475,10 +477,10 @@ student_responses |>
 
 ## The *Glamour* of Graphics
 
-- builds on top of the grammar (*components*) of a graphic
-- considerations for the *design* of a graphic
-- color, typography, layout
-- going from accurate to 😍effective
+-   builds on top of the grammar (*components*) of a graphic
+-   considerations for the *design* of a graphic
+-   color, typography, layout
+-   going from accurate to 😍effective
 
 ::: aside
 These ideas and slides are all modified from Will Chase's rstudio::conf2020 [slides](https://www.williamrchase.com/slides/assets/player/KeynoteDHTMLPlayer.html)/talk
@@ -489,6 +491,7 @@ These ideas and slides are all modified from Will Chase's rstudio::conf2020 [sli
 ::: columns
 ::: {.column width="50%"}
 **😬 Accurate**
+
 ```{r}
 ggplot(penguins, aes(x = species, fill = species)) +
   geom_bar() +
@@ -500,6 +503,7 @@ ggplot(penguins, aes(x = species, fill = species)) +
 
 ::: {.column width="50%"}
 **😍 Effective**
+
 ```{r}
 ggplot(penguins, aes(x = species, fill = species)) +
   geom_bar() +
@@ -516,6 +520,7 @@ ggplot(penguins, aes(x = species, fill = species)) +
 ::: columns
 ::: {.column width="50%"}
 **😬 Accurate**
+
 ```{r}
 ggplot(penguins, aes(x = species, fill = species)) +
   geom_bar() +
@@ -528,6 +533,7 @@ ggplot(penguins, aes(x = species, fill = species)) +
 
 ::: {.column width="50%"}
 **😍 Effective**
+
 ```{r}
 ggplot(penguins, aes(y = species, fill = species)) +
   geom_bar() +
@@ -537,7 +543,6 @@ ggplot(penguins, aes(y = species, fill = species)) +
 ```
 :::
 :::
-
 
 ## Borders & Backgrounds: 👎
 
@@ -569,8 +574,8 @@ ggplot(penguins, aes(y = species, fill = species)) +
 :::
 :::
 
-
 ## Organize & Remove/Lighten as much as possible
+
 ::: columns
 ::: {.column width="50%"}
 **😬 Accurate**
@@ -605,8 +610,8 @@ ggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +
 :::
 :::
 
-
 ## Legends suck
+
 ::: columns
 ::: {.column width="50%"}
 **😬 Accurate**
@@ -650,15 +655,6 @@ ggplot(penguins, aes(y = fct_rev(fct_infreq(species)), fill = species)) +
 
 ## Additional Guidance
 
-- White space is like garlic - take the amount you need and triple it
-- Fonts Matter
-- Use Color Effectively
-
-
-
-## Suggested Reading
-
-- Bookdown [Section 2.6 R Code Chunks & inline R code](https://bookdown.org/yihui/rmarkdown/r-code.html)
-- Bookdown [Chapter 3: Documents](https://bookdown.org/yihui/rmarkdown/html-document.html)
-- Will Chase's rstudio::conf2020 talk: "The Glamour of Graphics" [[slides](https://www.williamrchase.com/slides/assets/player/KeynoteDHTMLPlayer.html)] [[video](https://www.youtube.com/watch?v=h5cTacaWE6I)]
-
+-   White space is like garlic - take the amount you need and triple it
+-   Fonts Matter
+-   Use Color Effectively

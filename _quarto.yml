@@ -57,10 +57,10 @@ website:
             href: content/lectures/05-viz-slides.html
           - text: "06-analysis"
             href: content/lectures/06-analysis-slides.html
-          # - text: "07-linear-models"
-          #   href: content/lectures/07-linear-models-slides.html
-          # - text: "08-effective-communication"
-          #   href: content/lectures/08-effective-communication-slides.html
+          - text: "07-linear-models"
+            href: content/lectures/07-linear-models-slides.html
+          - text: "08-effective-communication"
+            href: content/lectures/08-effective-communication-slides.html
           # - text: "09-projects"
           #   href: content/lectures/09-projects-slides.html
           # - text: "10-mlr"
@@ -99,10 +99,10 @@ website:
             href: content/lectures/05-viz.qmd
           - text: "06-analysis"
             href: content/lectures/06-analysis.qmd
-          # - text: "07-linear-models"
-          #   href: content/lectures/07-linear-models.html
-          # - text: "08-effective-communication"
-          #   href: content/lectures/08-effective-communication.html
+          - text: "07-linear-models"
+            href: content/lectures/07-linear-models.html
+          - text: "08-effective-communication"
+            href: content/lectures/08-effective-communication.html
           # - text: "09-projects"
           #   href: content/lectures/09-projects.html
           # - text: "10-mlr"

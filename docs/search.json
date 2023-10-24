@@ -956,7 +956,7 @@
     "href": "content/lectures/00-welcome-slides.html#whos-in-this-class-2",
     "title": "00-welcome",
     "section": "Who’s in this class?",
-    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")"
+    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\nWarning: 1 unknown level in `f`: SO\n1 unknown level in `f`: SO"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#id-like-to-know-more",
@@ -1229,7 +1229,7 @@
     "href": "content/lectures/00-welcome.html#whos-in-this-class-2",
     "title": "00-welcome",
     "section": "Who’s in this class?",
-    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")"
+    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\nWarning: 1 unknown level in `f`: SO\n1 unknown level in `f`: SO"
   },
   {
     "objectID": "content/lectures/00-welcome.html#id-like-to-know-more",
@@ -1243,14 +1243,14 @@
     "href": "content/lectures/07-linear-models-slides.html#qa",
     "title": "07-linear-models",
     "section": "Q&A",
-    "text": "Q&A\n\nQ: Do you recommend review some statistics before attending lectures?\nA: This is very much up to you. It certainly wouldn’t hurt! There will be readings connected to each lecture; these are a great place to start. It can be helpful to work through these readings and the exercises either before or after lecture!\n\n\nQ: I am still not quite sure how to do HW part 2 and 3, do we download data into the folder, read the file, and plot it?\nA: Yup! That’s one approach. The other approach (if the data are not available for download) would be to create the dataset on your own, estimating the values as best you can from the plot and creating a dataframe/tibble containing that information directly in your code (similar to what you did in HW01)….and then plot from there."
+    "text": "Q&A\n\nQ: I was just wondering if you could still provide those videos you talked about with like syntax stuff so that we can follow along. I would also appreciate if it was really through with like a walk through of how you got to each point\nA: I like this suggestion, and I’ll try to make these. No promises though. Just have to find magical time in the schedule to make them. Note that lectures will be the more detailed walk through with more time on your own to figure it out (rather than detailed walk through outside of class), so you will get the information…the time/location will just differ. But, I’ll try to make some supplemental videos for those interested.\n\n\nQ: Had a question about the modeling and the last bit showing how decreasing the alpha showed greater clustering at the bottom left corner. If the bottom left corner looks like 0 height and 0 width, how does that translate into the dimensions of an actual painting?\nA: Good observation. The follow-up to this is…are there any paintings with zero width or zero height? And, if you dig in the data (i.e. min(pp$Height_in, na.rm=TRUE)), you’ll see that there are some very small paintings, but that none are zero.\n\n\nQ: If we want to built our own model, can we plot them with ggplot2?\nA: Yup! This post starts to get at that. It does so for a linear model, but the logic follows for other models.\n\n\nQ: For the paintings dataset, how could we perform EDA on specific subject matter, like seeing how many portraits include Jesus as part of the subject?\nA: Love this question. There is a whole field of natural language processing that would have sophisticated ways to analyze this. A simple first pass would be to, for example, filter for paintings that include “Jesus” in the subject column.\n\n\nQ: I think the segmented bar plots based on proportion seem difficult to read. I’m not sure why we should be using this instead of the stacked plots?\nA: Grouped bar blots are typically most quickly understood. Proportion stacked plots are then easiest to understand proportion across categories. Stacked plots of raw numbers take longer (for most) to understand and thus are often avoided, but like all viz, it depends on context and audience.\n\n\nQ: In the last lecture, we talked about how segmented bar plots might not be the ideal choice for data visualization, but we still demonstrated them in today’s lecture. So, specifically in what cases should we choose segmented bar plots as a data analysis tool?\nA: They can be helpful when the audience is familiar with them, but typically are most helpful when you want to display relative proportions rather than counts"
   },
   {
     "objectID": "content/lectures/07-linear-models-slides.html#course-announcements",
     "href": "content/lectures/07-linear-models-slides.html#course-announcements",
     "title": "07-linear-models",
     "section": "Course Announcements",
-    "text": "Course Announcements\nDue Dates:\n\nLab 04 due tomorrow (2/3; 11:59 PM)\nLecture Participation survey “due” after class\nHW02 due Monday (2/6; 11:59 PM)\n\n\n\nMidterm Exam\n\npractice exam(s) will be released tomorrow; answers posted next week\nwill cover material through “Effective Communication”\nwill be released/posted next Friday after lab\nwill be due Monday Feb 13th at 11:59 PM\nwill be an Rmd document and submitted via GitHub (like everything so far)\nwill be commpleted individually (open Notes; open Google)"
+    "text": "Course Announcements\nDue Dates:\n\nLab 04 due Friday\n\nModel Interpretations\nText, code, & viz all matter\n\nLecture Participation survey “due” after class\nHW02 due Monday (10/30; 11:59 PM)\ndiscuss displaying image in Markdown"
   },
   {
     "objectID": "content/lectures/07-linear-models-slides.html#agenda",
@@ -1565,21 +1565,21 @@
     "href": "content/lectures/07-linear-models-slides.html#recap",
     "title": "07-linear-models",
     "section": "Recap",
-    "text": "Recap\n\nCan I carry out linear regression using the tidymodels approach?\nCan I interpret and explain the results from a linear model with a single predictor?\nDo I understand the limitations of modelling data w/ linear regression?\nCan I describe and implement the use of a dummy variable in linear regression?\nCan I determine when logistic transformation may be appropriate? Can I interpret these results?"
+    "text": "Recap\n\nCan I carry out linear regression using the tidymodels approach?\nCan I interpret and explain the results from a linear model with a single predictor?\nDo I understand the limitations of modelling data w/ linear regression?\nCan I describe and implement the use of a dummy variable in linear regression?\nCan I determine when logistic transformation may be appropriate? Can I interpret these results?\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
   {
     "objectID": "content/lectures/07-linear-models-slides.html#suggested-reading",
     "href": "content/lectures/07-linear-models-slides.html#suggested-reading",
     "title": "07-linear-models",
     "section": "Suggested Reading",
-    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor\n\n\n\n\nhttps://cogs137.github.io/website/"
+    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
   },
   {
     "objectID": "content/lectures/07-linear-models.html",
     "href": "content/lectures/07-linear-models.html",
     "title": "07-linear-models",
     "section": "",
-    "text": "Q: Do you recommend review some statistics before attending lectures?\nA: This is very much up to you. It certainly wouldn’t hurt! There will be readings connected to each lecture; these are a great place to start. It can be helpful to work through these readings and the exercises either before or after lecture!\n\n\nQ: I am still not quite sure how to do HW part 2 and 3, do we download data into the folder, read the file, and plot it?\nA: Yup! That’s one approach. The other approach (if the data are not available for download) would be to create the dataset on your own, estimating the values as best you can from the plot and creating a dataframe/tibble containing that information directly in your code (similar to what you did in HW01)….and then plot from there.\n\n\n\n\nDue Dates:\n\nLab 04 due tomorrow (2/3; 11:59 PM)\nLecture Participation survey “due” after class\nHW02 due Monday (2/6; 11:59 PM)\n\n\n\nMidterm Exam\n\npractice exam(s) will be released tomorrow; answers posted next week\nwill cover material through “Effective Communication”\nwill be released/posted next Friday after lab\nwill be due Monday Feb 13th at 11:59 PM\nwill be an Rmd document and submitted via GitHub (like everything so far)\nwill be commpleted individually (open Notes; open Google)\n\n\n\n\n\n\n\nLinear Models\n\nQuantitative Predictor\nCategorical Predictor (2 & >2 levels)\nresiduals\ndata transformations"
+    "text": "Q: I was just wondering if you could still provide those videos you talked about with like syntax stuff so that we can follow along. I would also appreciate if it was really through with like a walk through of how you got to each point\nA: I like this suggestion, and I’ll try to make these. No promises though. Just have to find magical time in the schedule to make them. Note that lectures will be the more detailed walk through with more time on your own to figure it out (rather than detailed walk through outside of class), so you will get the information…the time/location will just differ. But, I’ll try to make some supplemental videos for those interested.\n\n\nQ: Had a question about the modeling and the last bit showing how decreasing the alpha showed greater clustering at the bottom left corner. If the bottom left corner looks like 0 height and 0 width, how does that translate into the dimensions of an actual painting?\nA: Good observation. The follow-up to this is…are there any paintings with zero width or zero height? And, if you dig in the data (i.e. min(pp$Height_in, na.rm=TRUE)), you’ll see that there are some very small paintings, but that none are zero.\n\n\nQ: If we want to built our own model, can we plot them with ggplot2?\nA: Yup! This post starts to get at that. It does so for a linear model, but the logic follows for other models.\n\n\nQ: For the paintings dataset, how could we perform EDA on specific subject matter, like seeing how many portraits include Jesus as part of the subject?\nA: Love this question. There is a whole field of natural language processing that would have sophisticated ways to analyze this. A simple first pass would be to, for example, filter for paintings that include “Jesus” in the subject column.\n\n\nQ: I think the segmented bar plots based on proportion seem difficult to read. I’m not sure why we should be using this instead of the stacked plots?\nA: Grouped bar blots are typically most quickly understood. Proportion stacked plots are then easiest to understand proportion across categories. Stacked plots of raw numbers take longer (for most) to understand and thus are often avoided, but like all viz, it depends on context and audience.\n\n\nQ: In the last lecture, we talked about how segmented bar plots might not be the ideal choice for data visualization, but we still demonstrated them in today’s lecture. So, specifically in what cases should we choose segmented bar plots as a data analysis tool?\nA: They can be helpful when the audience is familiar with them, but typically are most helpful when you want to display relative proportions rather than counts\n\n\n\n\nDue Dates:\n\nLab 04 due Friday\n\nModel Interpretations\nText, code, & viz all matter\n\nLecture Participation survey “due” after class\nHW02 due Monday (10/30; 11:59 PM)\ndiscuss displaying image in Markdown\n\n\n\n\n\nLinear Models\n\nQuantitative Predictor\nCategorical Predictor (2 & >2 levels)\nresiduals\ndata transformations\n\n\n\n\n\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
   },
   {
     "objectID": "content/lectures/07-linear-models.html#data-paris-paintings",
@@ -1901,7 +1901,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#course-announcements",
     "title": "08-effective-communication",
     "section": "Course Announcements",
-    "text": "Course Announcements\n\nLecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday after lab\ncompleted individually\n\n\n\n\nPractice Midterm Posted (Answer key posted Wed/tomorrow)\nLab03 & Lab04 Scores & Feedback Posted\nLab04 Notes:\n\nModel Interpretations\nText, code, & viz all matter\n\nLink for Later"
+    "text": "Course Announcements\nComing Soon…\n\nLink for Later"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#agenda",
@@ -1950,7 +1950,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#student-responses",
     "title": "08-effective-communication",
     "section": "Student responses",
-    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nSpeak loudly and clearly enough for everyone to hear (project your voice!); be engaging so that people are inclined to pay attention\n\n\nMake eye contact with your audience as you speak\n\n\nDon't just read off slides, and (most of the time) don't read from a script\n\n\nloud and clear voice\n\n\nPosture, eye contact, and mannerisms can all influence oral presentation performance. While presenting don't stand in one spot, get up, move around and engage with the audience.\n\n\ntry harder to better word choice\n\n\nLook at the audience when I am talking to them. Speak loud and clear.\n\n\nEye contact!!!\n\n\neye contact, try not to use filler words, talk slower than you would normally, don't just read off of the slides\n\n\ndont overcomplicate the wording, what might make sense to you might be revolutionary to someone else. Using simple words for simple explainations for begginer simple thought processes\n\n\ndrink water constantly\n\n\nmaking enough eye contact"
+    "text": "Student responses\nStudent responses will be added to notes after class…"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#presentations-are-for-listening",
@@ -1971,7 +1971,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#student-responses-1",
     "title": "08-effective-communication",
     "section": "Student responses",
-    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nYour rough draft should be rough. Don't polish it because it will flush all your great ideas away.\n\n\nInclude data/metrics that highlight quantifiable impact of work.\n\n\nbe concise when writing\n\n\nshorter sentences = good\n\n\nState your main point clearly; use good grammar\n\n\ndon't use crazy fonts and coloring. If things need to be emphasized stick to italics bold and font size generally speaking.\n\n\nDisplay contents of slides in a left to right fashion.\n\n\nUse clear fonts.\n\n\nas concise as possible\n\n\nIf it's a presentation, less wording is often better. Use oral communication to fill in gaps between the main points\n\n\nRead what you write in between every iteration. Try to avoid repeating words - show some variety. Use punctuation well. Split up paragraphs; monolithic walls of text are intimidating and readers will skip them. It's cliche, but for a reason - the topic, argument, evidence structure is effective.\n\n\nExplicitly write out the opposing arguments/concerns in your paper and answer them as best you can. That way the paper feels more like a conversation with the author than just something to read.\n\n\nMake sentences flow well. Include a conclusion to summarize\n\n\nstay on topic, summarize main points at end,\n\n\nRepeat the point you want the readers to remember"
+    "text": "Student responses\nStudent responses will be added to notes after class…"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#benefits-of-written-communciation",
@@ -1992,7 +1992,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
     "title": "08-effective-communication",
     "section": "Data Science Reports in .Rmd",
-    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
+    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\n\nBe sure that the knit output contains what you intended (plots displayed; headers etc.)\n…and does NOT display stuff that doesn’t need to be there (messages/warnings suppressed, brainstorming, etc.)\n\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#controlling-html-document-settings",
@@ -2006,7 +2006,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#controlling-code-chunk-output",
     "title": "08-effective-communication",
     "section": "Controlling code chunk output",
-    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n{r, chunk-label, results='hide', fig.height=4}\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
+    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#editing-proofreading",
@@ -2020,7 +2020,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#aside-citing-sources",
     "title": "08-effective-communication",
     "section": "Aside: Citing Sources",
-    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
+    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as”a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#footnotes-in-.rmd",
@@ -2034,7 +2034,7 @@
     "href": "content/lectures/08-effective-communication-slides.html#student-responses-2",
     "title": "08-effective-communication",
     "section": "Student Responses",
-    "text": "Student Responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nTry to make the title of the plot something descriptive rather than simply, eg, \"Time vs Length\" or \"linear regression of pet sizes\".\"\n\n\nshow the kind of plot that can be understood by audience\n\n\nI heard that when making a visual graphic, you should try remove as much as you can while still showing the necessary information. The less on the screen, the better.\n\n\nWhen giving a presentation, try to keep bullet points shorter than 7 words so it's easier digest/remember\n\n\nWhen displaying data and visualizations. Take note of people with eye color visualization disabilities. Also present things based on intuitive knowledge. Like reading left to right\n\n\nhighlighting only the important bits with color usage\n\n\n(picture / plot / visualization) > words\n\n\nUse appropriate colors and use them to highlight findings.\n\n\nMake plots big and clear\n\n\nSometimes simple is better, try to stay away from distracting visualizations\n\n\nUse appropriate (non-misleading) scales\n\n\nColors choices are important, and also remember about color blind people\n\n\nlabel axis, always include a title, use ticks if they help understand the data, think about color choices, big text\n\n\nInclude visuals only if they are meaningful and/or strengthen your argument"
+    "text": "Student Responses\nStudent responses will be added to notes after class…"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#the-glamour-of-graphics",
@@ -2083,21 +2083,21 @@
     "href": "content/lectures/08-effective-communication-slides.html#additional-guidance",
     "title": "08-effective-communication",
     "section": "Additional Guidance",
-    "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
+    "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#suggested-reading",
     "href": "content/lectures/08-effective-communication-slides.html#suggested-reading",
     "title": "08-effective-communication",
     "section": "Suggested Reading",
-    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]\n\n\n\n\nhttps://cogs137.github.io/website/"
+    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html",
     "href": "content/lectures/08-effective-communication.html",
     "title": "08-effective-communication",
     "section": "",
-    "text": "Lecture Participation survey “due” after class\nMidterm due Monday (2/13; 11:59 PM):\n\nreleased Friday after lab\ncompleted individually\n\n\n\n\nPractice Midterm Posted (Answer key posted Wed/tomorrow)\nLab03 & Lab04 Scores & Feedback Posted\nLab04 Notes:\n\nModel Interpretations\nText, code, & viz all matter\n\nLink for Later\n\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+    "text": "Coming Soon\n\n\n\nComing Soon…\n\nLink for Later\n\n\n\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication\n\n\n\n\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#what-does-this-mean",
@@ -2139,7 +2139,7 @@
     "href": "content/lectures/08-effective-communication.html#student-responses",
     "title": "08-effective-communication",
     "section": "Student responses",
-    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nSpeak loudly and clearly enough for everyone to hear (project your voice!); be engaging so that people are inclined to pay attention\n\n\nMake eye contact with your audience as you speak\n\n\nDon't just read off slides, and (most of the time) don't read from a script\n\n\nloud and clear voice\n\n\nPosture, eye contact, and mannerisms can all influence oral presentation performance. While presenting don't stand in one spot, get up, move around and engage with the audience.\n\n\ntry harder to better word choice\n\n\nLook at the audience when I am talking to them. Speak loud and clear.\n\n\nEye contact!!!\n\n\neye contact, try not to use filler words, talk slower than you would normally, don't just read off of the slides\n\n\ndont overcomplicate the wording, what might make sense to you might be revolutionary to someone else. Using simple words for simple explainations for begginer simple thought processes\n\n\ndrink water constantly\n\n\nmaking enough eye contact"
+    "text": "Student responses\nStudent responses will be added to notes after class…"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#presentations-are-for-listening",
@@ -2160,7 +2160,7 @@
     "href": "content/lectures/08-effective-communication.html#student-responses-1",
     "title": "08-effective-communication",
     "section": "Student responses",
-    "text": "Student responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nYour rough draft should be rough. Don't polish it because it will flush all your great ideas away.\n\n\nInclude data/metrics that highlight quantifiable impact of work.\n\n\nbe concise when writing\n\n\nshorter sentences = good\n\n\nState your main point clearly; use good grammar\n\n\ndon't use crazy fonts and coloring. If things need to be emphasized stick to italics bold and font size generally speaking.\n\n\nDisplay contents of slides in a left to right fashion.\n\n\nUse clear fonts.\n\n\nas concise as possible\n\n\nIf it's a presentation, less wording is often better. Use oral communication to fill in gaps between the main points\n\n\nRead what you write in between every iteration. Try to avoid repeating words - show some variety. Use punctuation well. Split up paragraphs; monolithic walls of text are intimidating and readers will skip them. It's cliche, but for a reason - the topic, argument, evidence structure is effective.\n\n\nExplicitly write out the opposing arguments/concerns in your paper and answer them as best you can. That way the paper feels more like a conversation with the author than just something to read.\n\n\nMake sentences flow well. Include a conclusion to summarize\n\n\nstay on topic, summarize main points at end,\n\n\nRepeat the point you want the readers to remember"
+    "text": "Student responses\nStudent responses will be added to notes after class…"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#benefits-of-written-communciation",
@@ -2181,7 +2181,7 @@
     "href": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
     "title": "08-effective-communication",
     "section": "Data Science Reports in .Rmd",
-    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
+    "text": "Data Science Reports in .Rmd\n\nAs concise as possible\nNecessary details (for your audience); nothing more\n\nBe sure that the knit output contains what you intended (plots displayed; headers etc.)\n…and does NOT display stuff that doesn’t need to be there (messages/warnings suppressed, brainstorming, etc.)\n\nTypical Sections: Introduction/Background, Setup, Data, Analysis, Conclusion, References"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#controlling-html-document-settings",
@@ -2195,7 +2195,7 @@
     "href": "content/lectures/08-effective-communication.html#controlling-code-chunk-output",
     "title": "08-effective-communication",
     "section": "Controlling code chunk output",
-    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n{r, chunk-label, results='hide', fig.height=4}\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
+    "text": "Controlling code chunk output\n\nSpecified in the curly braces, separated by commas\n\n\n\neval: whether to execute the code chunk\necho: whether to include the code in the output\nwarning, message, and error: whether to show warnings, messages, or errors in the knit document\nfig.width and fig.height: control the width/height of plots\n\n\n\n\nControlling for the whole document:\n\nknitr::opts_chunk$set(fig.width = 8, collapse = TRUE)"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#editing-proofreading",
@@ -2209,7 +2209,7 @@
     "href": "content/lectures/08-effective-communication.html#aside-citing-sources",
     "title": "08-effective-communication",
     "section": "Aside: Citing Sources",
-    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as “a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
+    "text": "Aside: Citing Sources\nWhen are citations needed?\n\n\n\n“We will be doing our analysis using two different data sets created by two different groups: Donohue and Mustard + Lott, or simply Lott”\n\n\n\n\n\n\n“What turned from the idea of carrying firearms to protect oneself from enemies such as the British monarchy and the unknown frontier of North America has now become a nationwide issue.”\n\n\n\n\n\n\n“Right to Carry Laws refer to laws that specify how citizens are allowed to carry concealed handguns when they’re away from home without a permit”\n\n\n\n\n\n\n“In this case study, we are examining the relationship between unemployment rate, poverty rate, police staffing, and violent crime rate.”\n\n\n\n\n\n\n“In the United States, the second amendment permits the right to bear arms, and this law has not been changed since its creation in 1791.”\n\n\n\n\n\n\n“The Right to Carry Laws (RTC) is defined as”a law that specifies if and how citizens are allowed to have a firearm on their person or nearby in public.””\n\n\n\n\nReminder: You do NOT get docked points for citing others’ work. You can be at risk of AI Violation if you don’t. When in doubt, give credit."
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#footnotes-in-.rmd",
@@ -2223,7 +2223,7 @@
     "href": "content/lectures/08-effective-communication.html#student-responses-2",
     "title": "08-effective-communication",
     "section": "Student Responses",
-    "text": "Student Responses\n\n\n\n\n\nAdvice you've received\n\n\n\n\nTry to make the title of the plot something descriptive rather than simply, eg, \"Time vs Length\" or \"linear regression of pet sizes\".\"\n\n\nshow the kind of plot that can be understood by audience\n\n\nI heard that when making a visual graphic, you should try remove as much as you can while still showing the necessary information. The less on the screen, the better.\n\n\nWhen giving a presentation, try to keep bullet points shorter than 7 words so it's easier digest/remember\n\n\nWhen displaying data and visualizations. Take note of people with eye color visualization disabilities. Also present things based on intuitive knowledge. Like reading left to right\n\n\nhighlighting only the important bits with color usage\n\n\n(picture / plot / visualization) > words\n\n\nUse appropriate colors and use them to highlight findings.\n\n\nMake plots big and clear\n\n\nSometimes simple is better, try to stay away from distracting visualizations\n\n\nUse appropriate (non-misleading) scales\n\n\nColors choices are important, and also remember about color blind people\n\n\nlabel axis, always include a title, use ticks if they help understand the data, think about color choices, big text\n\n\nInclude visuals only if they are meaningful and/or strengthen your argument"
+    "text": "Student Responses\nStudent responses will be added to notes after class…"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#the-glamour-of-graphics",
@@ -4820,7 +4820,7 @@
     "href": "content/lectures/04-ggplot2.html",
     "title": "04-ggplot2",
     "section": "",
-    "text": "Q: What is the difference between pull and select?\nA: select specifies which columns to display in your resulting dataframe. pull extracts the values from a column and stores them in a vector (not a dataframe)\n\n\nQ: I am a bit confused on factors and what levels mean.\nA: Factors store categorical information. The levels of a factor are all the possible unique values in a variable.\n\n\nQ: how similar is R to numpy/which scenarios are each used in the industry?\nA: Basically, anything data science-y you can do in R, you can also do in python. R has linear algebra/working with matrices built directly into its base installation, so no additional package would be need for numpy-like operations. And, dplyr does very similar things to pandas, but with a more readable and consistent syntax overall.\n\n\nQ: would we ever load just dplyr instead of the entire tidyverse package? is there a big difference?\nA: We’ll always just load tidyverse. The difference is that the tidyverse is quite big, so if you ever wanted to just use dplyr functions, you could load just that. This matters more in development where you’re trying to minimize external dependencies and make code run as fast as possible. For our purposes, there’s no real need to only load dplyr\n\n\nQ: I found the demos to be the most confusing part, because it’s very different understanding slides and applying that to actual coding. Personally, I would prefer if the lecture content were put into recordings, or just uploaded earlier so we could learn it on our own, and then have classes be more focused on data science best practices, applications, etc.\nA: I do really like this idea and would love to run this like this in the. I’m curious what y’all think of this and will add a question like this to the post-course survey to get students’ thoughts.\n\n\n\n\nDue Dates:\n\nLab 02 due Friday (11:59 PM)\nHW 01 due Monday (11:59 PM)\nLecture Participation survey “due” after class\n\n\n\n\n\nR4DS Chapter 3: Data Visualization\nData to Viz: https://www.data-to-viz.com/\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n   geom_xxx() +\n   other options\n\n\n\n\n\n\nMeasurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.\n\n\n\n\n\n\n\n\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\n\n\n\nArtwork by @allison_horst \n\n\n\n\npenguins |>\n  datatable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()"
+    "text": "Q: What is the difference between pull and select?\nA: select specifies which columns to display in your resulting dataframe. pull extracts the values from a column and stores them in a vector (not a dataframe)\n\n\nQ: I am a bit confused on factors and what levels mean.\nA: Factors store categorical information. The levels of a factor are all the possible unique values in a variable.\n\n\nQ: how similar is R to numpy/which scenarios are each used in the industry?\nA: Basically, anything data science-y you can do in R, you can also do in python. R has linear algebra/working with matrices built directly into its base installation, so no additional package would be need for numpy-like operations. And, dplyr does very similar things to pandas, but with a more readable and consistent syntax overall.\n\n\nQ: would we ever load just dplyr instead of the entire tidyverse package? is there a big difference?\nA: We’ll always just load tidyverse. The difference is that the tidyverse is quite big, so if you ever wanted to just use dplyr functions, you could load just that. This matters more in development where you’re trying to minimize external dependencies and make code run as fast as possible. For our purposes, there’s no real need to only load dplyr\n\n\nQ: I found the demos to be the most confusing part, because it’s very different understanding slides and applying that to actual coding. Personally, I would prefer if the lecture content were put into recordings, or just uploaded earlier so we could learn it on our own, and then have classes be more focused on data science best practices, applications, etc.\nA: I do really like this idea and would love to run this like this in the. I’m curious what y’all think of this and will add a question like this to the post-course survey to get students’ thoughts.\n\n\n\n\nDue Dates:\n\nLab 02 due Friday (11:59 PM)\nHW 01 due Monday (11:59 PM)\nLecture Participation survey “due” after class\n\n\n\n\n\nR4DS Chapter 3: Data Visualization\nData to Viz: https://www.data-to-viz.com/\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot2 is tidyverse’s data visualization package\nStructure of the code for plots can be summarized as\n\n\nggplot(data = [dataset], \n       mapping = aes(x = [x-variable], \n                     y = [y-variable])) +\n   geom_xxx() +\n   other options\n\n\n\n\n\n\nMeasurements for penguin species, island in Palmer Archipelago, size (flipper length, body mass, bill dimensions), and sex.\n\n\n\n\n\n\n\n\n\n# install.packages(\"palmerpenguins\")\nlibrary(palmerpenguins)\nglimpse(penguins)\n\nRows: 344\nColumns: 8\n$ species           <fct> Adelie, Adelie, Adelie, Adelie, Adelie, Adelie, Adel…\n$ island            <fct> Torgersen, Torgersen, Torgersen, Torgersen, Torgerse…\n$ bill_length_mm    <dbl> 39.1, 39.5, 40.3, NA, 36.7, 39.3, 38.9, 39.2, 34.1, …\n$ bill_depth_mm     <dbl> 18.7, 17.4, 18.0, NA, 19.3, 20.6, 17.8, 19.6, 18.1, …\n$ flipper_length_mm <int> 181, 186, 195, NA, 193, 190, 181, 195, 193, 190, 186…\n$ body_mass_g       <int> 3750, 3800, 3250, NA, 3450, 3650, 3625, 4675, 3475, …\n$ sex               <fct> male, female, female, NA, female, male, female, male…\n$ year              <int> 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007, 2007…\n\n\n\n\n\n\nArtwork by @allison_horst \n\n\n\n\npenguins |>\n  datatable()\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()\n\nWarning: Removed 2 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "content/lectures/04-ggplot2.html#section",
@@ -4904,7 +4904,7 @@
     "href": "content/lectures/04-ggplot2.html#coding-out-loud-1",
     "title": "04-ggplot2",
     "section": "Coding out loud",
-    "text": "Coding out loud\n\nCodePlotNarrative\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()\n\n\n\n\n\n\n\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\nRepresent each observation with a point and map species to the color of each point.\nTitle the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\nFinally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
+    "text": "Coding out loud\n\nCodePlotNarrative\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()\n\nWarning: Removed 2 rows containing missing values (`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\nRepresent each observation with a point and map species to the color of each point.\nTitle the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\nFinally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
   },
   {
     "objectID": "content/lectures/04-ggplot2.html#argument-names",
@@ -4988,7 +4988,7 @@
     "href": "content/lectures/04-ggplot2.html#faceting-1",
     "title": "04-ggplot2",
     "section": "Faceting",
-    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island)"
+    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island) \n\nWarning: Removed 2 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "content/lectures/04-ggplot2.html#various-ways-to-facet",
@@ -5087,5 +5087,26 @@
     "title": "COGS 137",
     "section": "",
     "text": "Week\nDate\nTitle\nType\n\n\n\n\n0\nTh Sep 28\nWelcome & Tooling\nLecture\n\n\n1\nTu Oct 3\nIntro to R\nLecture\n\n\n1\nTh Oct 5\nData Wrangling: dplyr\nLecture\n\n\n1\nFri Oct 6\nLab 01: Intro to R\nLab\n\n\n2\nTu Oct 10\nData Wrangling: tidyr\nLecture\n\n\n2\nTh Oct 12\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n2\nFri Oct 13\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Oct 16\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Oct 17\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nTh Oct 19\nData Analysis & Modeling\nLecture\n\n\n3\nFri Oct 20\nLab 03: Data Visualization\nLab\n\n\n4\nTu Oct 24\nLinear Models Review\nLecture\n\n\n4\nTh Oct 26\nEffective Communication\nLecture\n\n\n4\nFri Oct 27\nLab 04: Modeling\nLab\n\n\n5\nMon Oct 30\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Oct 31\nCase Study & Final Project Info\nLecture\n\n\n5\nTh Nov 2\nMultiple Linear Regression\nLecture\n\n\n5\nFri Nov 3\nLab used for midterm review\nLab\n\n\n6\nMon Nov 6\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Nov 7\nCase Study 01: THC Biomarkers (day 1)\nLecture\n\n\n6\nTh Nov 9\nCase Study 01: THC Biomarkers (day 2)\nLecture\n\n\n6\nFri Nov 10\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nTu Nov 14\nCase Study 01: THC Biomarkers (day 3)\nLecture\n\n\n7\nTh Nov 16\nLogistic Regression\nLecture\n\n\n7\nFri Nov 17\nLab 06: CS01\nLab\n\n\n8\nMon Nov 20\nHW03 due (11:59 PM)\nHW\n\n\n8\nMon Nov 20\nFinal Project Proposal Due\nProject\n\n\n8\nTu Nov 21\nCase Study 02: Vaping Behaviors (day 1)\nLecture\n\n\n8\nTh Nov 23\nNo Class (Thanksgiving)\n--\n\n\n9\nMon Nov 27\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Nov 28\nCase Study 02: Vaping Behaviors (day 2)\nLecture\n\n\n9\nTh Nov 30\nCase Study 02: Vaping Behaviors (day 3)\nLecture\n\n\n9\nFri Dec 1\nLab 07: Logistic Regression & CS02\nLab\n\n\n10\nMon Dec 4\nCS02 Due\nCase Study\n\n\n10\nTu Dec 5\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Dec 7\nNext Steps\nLecture\n\n\n10\nFri Dec 8\nLab 08: Final Project\nLab\n\n\nFinals\nTu Dec 12\nFinal Project Due (11:59 PM)\nProject"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#qa",
+    "href": "content/lectures/08-effective-communication-slides.html#qa",
+    "title": "08-effective-communication",
+    "section": "Q&A",
+    "text": "Q&A\nComing Soon"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#written-explanations",
+    "href": "content/lectures/08-effective-communication-slides.html#written-explanations",
+    "title": "08-effective-communication",
+    "section": "Written Explanations",
+    "text": "Written Explanations\n\nVisualizations should be explained/interpreted\nModels should be explained\n\nshould be clear what question is being answered\nwhat conclusions is being drawn\nand what numbers were used to draw that conclusion"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#written-explanations",
+    "href": "content/lectures/08-effective-communication.html#written-explanations",
+    "title": "08-effective-communication",
+    "section": "Written Explanations",
+    "text": "Written Explanations\n\nVisualizations should be explained/interpreted\nModels should be explained\n\nshould be clear what question is being answered\nwhat conclusions is being drawn\nand what numbers were used to draw that conclusion"
   }
 ]

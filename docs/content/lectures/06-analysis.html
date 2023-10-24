@@ -241,6 +241,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">06-analysis</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/07-linear-models-slides.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -284,6 +289,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link active">06-analysis</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/07-linear-models.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
   </div>
 </li>
       </ul>
@@ -792,7 +802,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Height, in inches"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-6-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-6-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </div>
@@ -802,7 +812,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">5</span>) <span class="sc">+</span></span>
 <span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Width, in inches"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-7-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-7-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </div>
@@ -812,7 +822,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">100</span>) <span class="sc">+</span></span>
 <span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x =</span> <span class="st">"Price"</span>, <span class="at">y =</span> <span class="cn">NULL</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-8-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-8-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </div>
@@ -825,7 +835,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> Height_in)) <span class="sc">+</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-9-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-9-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -835,7 +845,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">y =</span> Height_in, <span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_boxplot</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-10-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-10-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -852,7 +862,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <div class="sourceCode cell-code" id="cb9"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL))) <span class="sc">+</span></span>
 <span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-11-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-11-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -862,7 +872,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.factor</span>(landsALL), <span class="at">fill =</span> materialCat)) <span class="sc">+</span></span>
 <span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-12-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -873,7 +883,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_bar</span>(<span class="at">position =</span> <span class="st">"fill"</span>) <span class="sc">+</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">y =</span> <span class="st">"proportion"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-13-1.png" class="img-fluid" width="2100"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-13-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -930,7 +940,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> pp, <span class="fu">aes</span>(<span class="at">x =</span> price)) <span class="sc">+</span></span>
 <span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_histogram</span>(<span class="at">binwidth =</span> <span class="dv">1000</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-16-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-16-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -952,7 +962,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <p><span style="background-color: #ADD8E6">❗ Describe the relationship between height and width of paintings.</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-17-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-17-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -963,7 +973,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-18-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-18-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -975,7 +985,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>() <span class="sc">+</span></span>
 <span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="co"># lm for linear model</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-19-1.png" class="img-fluid" width="1500"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="1500"></p>
 </div>
 </div>
 </section>
@@ -990,7 +1000,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb18-5"><a href="#cb18-5" aria-hidden="true" tabindex="-1"></a>              <span class="at">lty =</span> <span class="dv">2</span>,           <span class="co"># line type</span></span>
 <span id="cb18-6"><a href="#cb18-6" aria-hidden="true" tabindex="-1"></a>              <span class="at">linewidth =</span> <span class="dv">3</span>)     <span class="co"># line weight</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-20-1.png" class="img-fluid" width="1500"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="1500"></p>
 </div>
 </div>
 </section>
@@ -1027,7 +1037,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <p><span style="background-color: #ADD8E6">❓ What does a negative residual mean? Which paintings on the plot have have negative residuals?</span></p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-21-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -1036,7 +1046,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <p>The plot below displays the relationship between height and width of paintings. It uses a lower alpha level for the points than the previous plots we looked at.</p>
 <div class="cell">
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-22-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 <p><span style="background-color: #ADD8E6">❓ What feature is apparent in this plot that was not (as) apparent in the previous plots? What might be the reason for this feature?</span></p>
@@ -1064,7 +1074,7 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>, <span class="at">se =</span> <span class="cn">FALSE</span>) <span class="sc">+</span></span>
 <span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">color =</span> <span class="st">"landscape"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="06-analysis_files/figure-revealjs/unnamed-chunk-23-1.png" class="img-fluid" width="3000"></p>
+<p><img src="06-analysis_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="2100"></p>
 </div>
 </div>
 </section>
@@ -1119,44 +1129,6 @@ $ other             &lt;dbl&gt; 0</code></pre>
 <li id="fn2"><p>Source: Wikipedia, <a href="https://en.wikipedia.org/wiki/Portrait_painting">Portait painting</a><a href="#fnref2" class="footnote-back" role="doc-backlink">↩︎</a></p></li>
 </ol>
 </section></div></main> <!-- /main -->
-
-<script>
-  // htmlwidgets need to know to resize themselves when slides are shown/hidden.
-  // Fire the "slideenter" event (handled by htmlwidgets.js) when the current
-  // slide changes (different for each slide format).
-  (function () {
-    // dispatch for htmlwidgets
-    function fireSlideEnter() {
-      const event = window.document.createEvent("Event");
-      event.initEvent("slideenter", true, true);
-      window.document.dispatchEvent(event);
-    }
-
-    function fireSlideChanged(previousSlide, currentSlide) {
-      fireSlideEnter();
-
-      // dispatch for shiny
-      if (window.jQuery) {
-        if (previousSlide) {
-          window.jQuery(previousSlide).trigger("hidden");
-        }
-        if (currentSlide) {
-          window.jQuery(currentSlide).trigger("shown");
-        }
-      }
-    }
-
-    // hookup for slidy
-    if (window.w3c_slidy) {
-      window.w3c_slidy.add_observer(function (slide_num) {
-        // slide_num starts at position 1
-        fireSlideChanged(null, w3c_slidy.slides[slide_num - 1]);
-      });
-    }
-
-  })();
-</script>
-
 <script id="quarto-html-after-body" type="application/javascript">
 window.document.addEventListener("DOMContentLoaded", function (event) {
   const toggleBodyColorMode = (bsSheetEl) => {

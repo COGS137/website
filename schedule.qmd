@@ -1,5 +1,5 @@
 | Week   | Date           | Title                                                         | Type           |
-|--------|----------------|---------------------------------------------------------------|----------------|
+|------------|------------|------------------------------------|------------|
 | **0**  | **Th Sep 28**  | **Welcome & Tooling**                                         | **Lecture**    |
 | 1      | Tu Oct 3       | Intro to R                                                    | Lecture        |
 | 1      | Th Oct 5       | Data Wrangling: `dplyr`                                       | Lecture        |
@@ -15,8 +15,8 @@
 | **4**  | **Th Oct 26**  | **Effective Communication**                                   | **Lecture**    |
 | **4**  | **Fri Oct 27** | **Lab 04: Modeling**                                          | **Lab**        |
 | 5      | Mon Oct 30     | <font color="#ABC57D">HW02 due (11:59 PM)</font>              | HW             |
-| 5      | Tu Oct 31      | Case Study & Final Project Info                               | Lecture        |
-| 5      | Th Nov 2       | **Multiple Linear Regression**                                | **Lecture**    |
+| 5      | Tu Oct 31      | Multiple Linear Regression\*                                  | Lecture        |
+| 5      | Th Nov 2       | Case Study & Final Project Info                               | Lecture        |
 | 5      | Fri Nov 3      | Lab used for midterm review                                   | Lab            |
 | **6**  | **Mon Nov 6**  | <font color="#ABC57D">**MIDTERM EXAM (due 11:59 PM)** </font> | **Exam**       |
 | **6**  | **Tu Nov 7**   | **Case Study 01: THC Biomarkers (day 1)**                     | **Lecture**    |

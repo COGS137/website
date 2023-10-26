@@ -1,0 +1,676 @@
+---
+title: "10-projects"
+author: "Professor Shannon Ellis"
+date: "2023-02-09"
+
+format:
+  html: 
+    output-file: 10-projects.html
+    embed-resources: true
+  revealjs:
+    output-file: 10-projects-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# Case Studies & Final Projects {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+> Q: When is the presentation?\
+> A: Discussing this today! It's at the end of the quarter. While written reports will be completed throughout the rest of the quarter as we do case studies, an oral presentation will be part of your final project. These will be able to be recorded or given live in person during finals week.
+
+> Q: Will we have another lab with as many questions as Lab 4? The turnaround was pretty stressful, so just want to be prepared.\
+> A: The next lab (multiple linear regression) is also a tady lengthy, but after that I don't plan on the rest being quite as long. Just as a reminder that you do *not* need to complete the entire lab to receive credit!
+
+> Q: I'm not really comfortable with log transformations yet. Will we get more practice on that?\
+> A: Yup! Last lecture was a first introduction. We'll return to this in upcoming case studies. The midterm does not require any transformations.
+
+## Course Announcements
+
+-   Lecture Participation survey "due" after class
+-   **Midterm** due Monday (2/13; 11:59 PM):
+    -   released Friday (tomorrow) *after* lab
+    -   completed individually
+-   Practice Midterm Answer Key Posted
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+library(knitr)
+library(kableExtra)
+library(palmerpenguins)
+library(googlesheets4)
+
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+
+knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+## Agenda
+
+-   Exam chat
+-   HW02 recap
+-   Case Studies
+-   Final Project
+
+# Midterm {background-color="#92A86A"}
+
+## Midterm Details
+
+::: incremental
+-   Instructions will be posted on the website at 2PM Fri (tomorrow)
+-   You'll be provided a template (link on Canvas) and "submit" on GitHub
+-   You'll be provided with data and a data dictionary
+-   Covers data wrangling/tidying, `dplyr`, viz/`ggplot2`, and linear regression/`tidymodels`
+:::
+
+# HW02 {background-color="#92A86A"}
+
+## HW02 : Q1
+
+Generate a visualization that will allow readers to determine whether male or female penguins are larger (by mass).
+
+## Boxplot
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="boxplot-q1", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r boxplot-q1, fig.show = "hide"}
+penguins |>
+  drop_na() |> 
+  ggplot(aes(x = sex, y = body_mass_g)) +
+  geom_boxplot() +
+  labs(title = "Penguin body mass by sex", 
+       y = "body mass (g)") +
+  theme(plot.title.position = "plot")
+```
+:::
+
+## Histogram
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="histogram-q1", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r histogram-q1, fig.show = "hide"}
+penguins |>
+  filter(!is.na(sex)) |>
+  ggplot(mapping = aes(x = body_mass_g, fill = sex)) +
+  geom_histogram() +
+  labs(
+    title = 'Body Mass Distribution by Sex',
+    x = 'Body Mass (g)',
+    y = 'Count',
+    color = 'Sex'
+  )
+```
+:::
+
+## Faceted Histograms
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="histogram-facet-q1", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r histogram-facet-q1, fig.show = "hide"}
+penguins |>
+  filter(!is.na(body_mass_g)) |>
+  ggplot(., mapping=aes(y=body_mass_g)) + 
+  geom_histogram(binwidth=100) +
+  facet_grid(. ~ sex) + 
+  labs(
+    title='Frequency of Penguins based on their Body mass and Female/Male Penguins',
+    x='Frequency / Count',
+    y='Body Mass (of penguins, in g (grams))')
+
+```
+:::
+
+## HW02 : Q2
+
+Generate a barplot that visualizes how many penguins there are from each species on each island. Each island should be a different panel (in a 1 row x 3 columns visualization), and each chart should visualize the species count.
+
+## Barplot
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="barplot-nocolor-q2", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r barplot-nocolor-q2, fig.show = "hide"}
+ggplot(penguins, aes(x = species)) +
+  geom_bar() +
+  facet_wrap(~ island) +
+  labs(title = "Count of species per island") +
+  theme(plot.title.position = "plot")
+```
+:::
+
+## Barplot with color
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="barplot-color-q2", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r barplot-color-q2, fig.show = "hide"}
+  ggplot(penguins, aes(x = fct_infreq(species), fill = species)) +
+  geom_bar() +
+  facet_wrap(~island, nrow = 1) +
+  guides(fill = "none") + 
+  labs(
+    title = "Count of Penguin Species Across the Palmer Archipelago Islands",
+    x = "Species",
+    y = "Number of Penguins"
+  )
+```
+:::
+
+## HW02 : Q3
+
+Generate a scatterplot that will allow the viewer to determine whether flipper length has differed over time. Be sure to color the points on this plot by species.
+
+## Scatterplot (no jitter)
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="scatterplot-nojitter-q3", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r scatterplot-nojitter-q3, fig.show = "hide"}
+ggplot(penguins, aes(x = year, 
+           y = flipper_length_mm,
+           color = species)) +
+geom_point() + 
+scale_color_viridis_d() +
+scale_x_continuous(n.breaks = 3) +
+labs(
+  title = "Flipper Lengths of Penguin Species Over Time",
+  color = "Species",
+  x = "Year",
+  y = "Flipper Length (mm)"
+)
+```
+:::
+
+## Scatterplot (w/ jitter)
+
+::: panel-tabset
+### Plot
+
+```{r ref.label="scatterplot-jitter-q3", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r scatterplot-jitter-q3, fig.show = "hide"}
+ggplot(penguins,
+       mapping = aes(x = factor(year),
+                     y = flipper_length_mm,
+                     color = species)) +
+  scale_color_viridis_d() +
+  geom_jitter(na.rm = TRUE) +
+  labs(title = "Flipper length of different penguin species by year",
+       y = "Flipper length (mm)",
+       x = "Year") +
+  theme(plot.title.position = "plot")
+```
+:::
+
+## HW02 : Part II
+
+Imitation is the highest form of flattery
+
+Example from: Eric Ko
+
+::: panel-tabset
+### Original
+
+![](images/09/goodplot.png)
+
+### Plot
+
+```{r ref.label="Eric", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Eric, fig.show = "hide"}
+# Eric890916
+chessData <- data.frame(country = c("United States", "Germany", "Canada", "Spain", "Russia", "France", "Bosnia and Herzegovina", "Croatia", "Turkey", "Austria"),
+                        num = c(89, 55, 44, 41, 36, 34, 32, 32, 31, 29))
+
+ggplot(chessData, aes(y = reorder(country, num), x = num)) + 
+  geom_col(fill = "#008080") + 
+  geom_text(aes(label = num), hjust = 1, nudge_x = -.5) +
+  labs(title = "More players transfer to the U.S. than to any other country",
+       subtitle = "Nations that received the highest number of player transfers, 2000-17",
+       caption = "2017 data as of April 11. SOURCE: FIDE",
+       x = "NUMBER OF TRANSFERS", y = "COUNTRY")
+```
+:::
+
+```{r, include=FALSE}
+# JulianBouchard
+# recreation of the data
+parents <- tibble(
+  category = c(rep("", 100), rep("BY RACE", 400), rep("BY INCOME", 300)),
+  name = c(
+    rep("All parents", 100),
+    rep("Black", 100), rep("Hispanic", 100), rep("White", 100), rep("Asian", 100),
+    rep("Lower income", 100), rep("Middle income", 100), rep("Upper income", 100)
+  ),
+  val = c(
+    rep("all", 25), rep("some", 58), rep("other", 17),
+    rep("all", 39), rep("some", 44), rep("other", 17),
+    rep("all", 39), rep("some", 49), rep("other", 12),
+    rep("all", 18), rep("some", 63), rep("other", 19),
+    rep("all", 13), rep("some", 57), rep("other", 30),
+    rep("all", 38), rep("some", 49), rep("other", 13),
+    rep("all", 21), rep("some", 60), rep("other", 19),
+    rep("all", 14), rep("some", 65), rep("other", 21)
+  )
+)
+
+parents |>
+  # adjust the order of all names
+    mutate(
+    name = fct_rev(fct_relevel( 
+      name,
+      "All parents",
+      "Black",
+      "Hispanic",
+      "White",
+      "Asian",
+      "Lower income",
+      "Middle income",
+      "Upper income"
+    ))) |>
+  # adjust the order of the categories
+    mutate(
+    category = fct_relevel( 
+      category,
+      "",
+      "BY RACE",
+      "BY INCOME"
+    )) |>
+  # adjust the order in which the 'all', 'some' or 'other' is shown
+      mutate(
+    val = fct_relevel( 
+      val,
+      "all",
+      "some",
+      "other"
+    )) |>
+  ggplot(aes(y = name, fill=val)) +
+  geom_bar(position = "fill") +
+  scale_x_reverse() +
+  labs(title = "Black and Hispanic parents are more likely to enjoy parenting",
+       subtitle = str_wrap("Share of American parents who said they find being a parent enjoyable, by income group, race and overall", 80),
+       caption = str_wrap("White, Black and Asian parents include those who report being only one race and are not Hispanic. Hispanic parents are of any race. Middle income is defined as two-thirds to double the median annual family income for panelists in Pew's American Trends Panel. Lower income falls below that range and upper income falls above it.", 110),
+       fill="",
+       color = "Species") +
+  facet_wrap(~category, ncol = 1) +
+  scale_fill_manual(
+    values=c("#066971", "#6dcbcd", "#e0e0e0"), 
+    labels=c("ENJOYABLE ALL OF THE TIME", "ENJOYABLE SOME OF THE TIME", "OTHER")) +
+  theme_classic() +
+  # manual theme adjustments
+  theme(axis.title.x = element_blank(),
+        axis.text.x = element_blank(),
+        axis.title.y = element_blank(),
+        legend.position="top",
+        plot.title = element_text(face = "bold"),
+        strip.text.x = element_text(size = 9, color = "black", face = "bold"),
+        plot.caption = element_text(hjust = 0)
+        )
+```
+
+## 
+
+Example from: Christine Kwon
+
+::: panel-tabset
+### Original
+
+![](images/09/chalabi-flowers-feature-commonname-1.webp)
+
+### Plot
+
+```{r ref.label="Christine", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Christine, fig.show = "hide"}
+common_first_names <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/most-common-name/new-top-firstNames.csv")
+
+# editing data
+common_first_names <- common_first_names[1:20, ]
+common_first_names <- common_first_names %>%
+  mutate(sex = case_when (name == "Mary" | 
+                          name == "Jennifer" |
+                          name == "Patricia" |
+                          name == "Linda" |
+                          name == "Elizabeth" ~ "female",
+                          name != "Mary" | 
+                          name != "Jennifer" |
+                          name != "Patricia" |
+                          name != "Linda" |
+                          name != "Elizabeth" ~ "male",),
+         percentage = round(newPerct2013 * 1000, digits = 1))
+
+# creating visualization
+common_first_names %>%
+  ggplot(aes(y = reorder(name, percentage),  x = percentage, fill = sex)) +
+  geom_histogram(stat = "identity") +
+  guides(fill = "none") +
+  annotate("text", x = 9.65, y = 21.7, label = expression(bold("MALE")), cex = 3.85, hjust = 1, vjust = 1, color = "dodgerblue") +
+  annotate("text", x = 11.5, y = 21.7, label = expression(bold("FEMALE")), cex = 3.85, hjust = 1, vjust = 1, color = "gold1") +
+  geom_text(aes(label = signif(percentage)), nudge_x = 0.5) +
+  labs(title = "Most Common First Names",
+       subtitle = "Per 1,000 Americans as of 2013") +
+  scale_fill_manual(values = c("male" = "dodgerblue",
+                               "female" = "gold1")) +
+  theme_classic() +
+  theme(plot.title.position = "plot", 
+        panel.grid.major.y = element_blank(),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        plot.subtitle = element_text(size = 11),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line.x = element_blank(),
+        axis.line.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(color = "black"),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+```
+:::
+
+## 
+
+Example by: Cheng Chang (FA21)
+
+::: panel-tabset
+### Original
+
+![](images/09/biden_pre.png)
+
+### Plot
+
+```{r ref.label="cheng", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r, cheng, fig.show = "hide"}
+# get data
+poll <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls_adjusted.csv")
+poll_mean <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_toplines.csv")
+
+poll <- poll |>
+  filter(subject == "Biden", party != "all") |>
+  mutate(Party=case_when(party == "D" ~ "Democrats",
+                         party == "I" ~ "Independents",
+                         party == "R" ~ "Republicans")) |>
+  mutate(enddate=as.Date(enddate, format="%m/%d/%Y"))
+
+poll_mean <- poll_mean |>
+  filter(subject == "Biden", party != "all") |>
+  mutate(Party=case_when(party == "D" ~ "Democrats",
+                         party == "I" ~ "Independents",
+                         party == "R" ~ "Republicans")) |>
+  mutate(modeldate=as.Date(modeldate, format="%m/%d/%Y"))
+
+ggplot() +
+  geom_point(data=poll,
+             aes(x=enddate, y=approve_adjusted, color=Party),
+             size=1,
+             alpha = 0.5) +
+  geom_path(data=poll_mean, aes(x=modeldate, y=approve_estimate, color=Party)) +
+  labs(title="Approval of Biden’s response varies widely by party",
+       subtitle=
+         "A calculation of the share of Democrats, Republicans and independents who approve of the president’s\nhandling of the coronavirus outbreak",
+       x=NULL,
+       y=NULL) +
+  scale_color_manual(values = c("Democrats" = "#2acaea",
+                                "Independents" = "#ce7e00",
+                                "Republicans" = "#f44336")) +
+  theme(plot.title.position = "plot",
+        panel.grid.major = element_line(color="grey"),
+        panel.border = element_rect(fill=NA, color="grey"),
+        panel.background = element_rect(fill="white"))
+```
+:::
+
+## HW03 : Part III
+
+Take a Sad Plot & Make It Better
+
+Example from: Christine Kwon
+
+::: panel-tabset
+### Original
+
+![](images/09/medals.png)
+
+### Plot
+
+```{r ref.label="Christine2", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Christine2, fig.show = "hide"}
+medals <- tibble(
+  country = c(
+    rep("USA", 79), rep("CHN", 70), rep("ROC", 53), rep("GBR", 48), rep("JPN", 40)),
+  medal_type = c(
+    rep("gold", 25), rep("silver", 31), rep("bronze", 23),
+    rep("gold", 32), rep("silver", 22), rep("bronze", 16),
+    rep("gold", 14), rep("silver", 21), rep("bronze", 18),
+    rep("gold", 15), rep("silver", 18), rep("bronze", 15),
+    rep("gold", 21), rep("silver", 7), rep("bronze", 12)))
+
+# creating visualization
+medal_viz <- medals %>%
+   mutate(country = factor(country, levels = c("JPN", "GBR","ROC", "CHN", "USA"))) %>%
+  ggplot(aes(y = country, fill = factor(medal_type, levels = c("bronze", "silver", "gold")))) + 
+  geom_bar() +
+  annotate("text", x = 4.5, y = 5.05, label = "25", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 30.5, y = 5.05, label = "31", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 61.5, y = 5.05, label = "23", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 86.5, y = 5.05, label = expression(bold("79")), cex = 5, hjust = 1, vjust = 1) +
+  annotate("text", x = 4.5, y = 4.05, label = "32", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 37.5, y = 4.05, label = "22", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 58.5, y = 4.05, label = "16", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 76.5, y = 4.05, label = expression(bold("70")), cex = 5, hjust = 1, vjust = 1) +
+  annotate("text", x = 4.5, y = 3.05, label = "14", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 18.5, y = 3.05, label = "21", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 39.5, y = 3.05, label = "18", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 59.5, y = 3.05, label = expression(bold("53")), cex = 5, hjust = 1, vjust = 1) +
+  annotate("text", x = 4.5, y = 2.05, label = "15", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 19.5, y = 2.05, label = "18", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 38, y = 2.05, label = "15", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 54.5, y = 2.05, label = expression(bold("48")), cex = 5, hjust = 1, vjust = 1) +
+  annotate("text", x = 4.5, y = 1.05, label = "21", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 23.5, y = 1.05, label = "7", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 32.5, y = 1.05, label = "12", cex = 4, hjust = 1, vjust = 1) +
+  annotate("text", x = 46.5, y = 1.05, label = expression(bold("40")) , cex = 5, hjust = 1, vjust = 1) +
+  labs(title = "Medals Won at the Tokyo Olympics (ongoing)", 
+       subtitle = "Distribution of medals won by the top 5 countries (ordered by total)", 
+       fill = "Medal Type") +
+  scale_fill_manual(values = c("gold" = "gold",
+                               "silver" = "gray75",
+                               "bronze" = "tan3")) +
+  theme(#legend.title = element_text(face = "bold"),
+        legend.position = "top") + 
+  guides(fill = guide_legend(title.position = "top")) +
+  theme_classic() +
+  theme(plot.title.position = "plot", 
+        panel.grid.major.y = element_blank(),
+        plot.title = element_text(size = 16,
+                                  face = "bold"),
+        plot.subtitle = element_text(size = 11),
+        axis.ticks.x = element_blank(),
+        axis.ticks.y = element_blank(),
+        axis.line.x = element_blank(),
+        axis.line.y = element_blank(),
+        axis.text.x = element_blank(),
+        axis.text.y = element_text(color = "black", 
+                                   #face = "bold", 
+                                   size = 11),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank())
+
+
+medal_viz +
+  theme(legend.position = c(0.8, 0.25))
+```
+:::
+
+# Case Studies {background-color="#92A86A"}
+
+## OpenCaseStudies
+
+-   [OpenCaseStudies](https://www.opencasestudies.org/)
+-   Uses R/the `tidyverse`
+-   asks public health-centric questions
+-   goal: to teach statistical analysis/data science through case studies
+
+## What We'll Do
+
+For each case study (2), during lecture:
+
+-   Stats: (1-2d)
+-   Background, Data & Wrangling (1-2d)
+-   EDA & Analysis (1d)
+
+. . .
+
+For each case study:
+
+-   you'll also work with case study data in lab.
+-   you'll work in assigned groups of \~3 students to complete a data science report
+
+## Data Science Reports
+
+With your group, you will:
+
+-   carry out all steps of the analysis
+    -   some code will be taken directly from lecture
+-   add text/organize into a report
+
+. . .
+
+-   have to extend the case study
+
+## What does extend the case study mean? {.smaller}
+
+You'll need to do something more on the topic beyond what is presented in class.
+
+. . .
+
+Examples:
+
+1.  Asking an additional question and answering it from the data provided
+2.  Finding an additional dataset and using it to add to the case study
+3.  Generating a handful of additional and very informative visualizations (beyond what's presented in class)
+
+## Grading
+
+Graded on:
+
+-   content (code, text, viz)
+-   effective written communication
+-   extension carried out
+
+# Final Project {background-color="#92A86A"}
+
+## Final Project Logistics
+
+-   will be completed in groups of 3-4 students
+-   you get to choose the group
+-   I will ask at the end of week 7 for your final project groups
+
+## Final Project Details
+
+Two possible Paths:
+
+1.  Create a technical presentation on a statistics topic and/or an R package.
+2.  Carry out a data analysis
+
+## Option 1: Technical Presentation
+
+-   .Rmd document used to make slides
+-   "Teaches" the details of the R package/statistics topic
+-   Demonstrates how to use the package and/or carry out the statistical analysis in R
+-   Topic/Package must go beyond what was taught in this course or what you should have learned in an intro stats course
+-   Presentation Length: 10-15min
+
+## Option 2: Data Analysis
+
+-   .Rmd document used for data science report
+-   Asks a question, finds data, analyzes data (basically: a mini case report, but you find the data and formulate the question)
+-   Presentation Length: 3-5min (brief summary of the full report)
+
+## Where/when for this presentation?
+
+You get to choose:
+
+-   Record ahead of time: submit by Th 3/23 of finals week at 11:59 PM
+-   Present in-person Th of finals week (slots to sign up for a time will be released later; want this option for those interested in getting more practice)
+
+## Should I be working on my final project now?
+
+...probably not
+
+. . .
+
+But, you should start thinking about/**getting a group of 3-4 people together**.
+
+. . .
+
+I'd recommend you start planning/working on your final project around **wk 8**

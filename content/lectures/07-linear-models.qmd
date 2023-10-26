@@ -622,7 +622,10 @@ ggplot(data = pp_wt_lt_100, mapping = aes(x = Width_in, y = log(price))) +
 ## Interpreting models with log transformation {.smaller}
 
 ```{r}
-m_lprice_wt <- lm(log(price) ~ Width_in, data = pp_wt_lt_100)
+m_lprice_wt <- linear_reg() |>
+  set_engine("lm") |>
+  fit(log(price) ~ Width_in, data = pp_wt_lt_100)
+
 m_lprice_wt |>
   tidy() |>
   select(term, estimate) |>

@@ -61,7 +61,7 @@ In this lab you will first read in the data ('evals-mod.csv') from the `data/` f
 ## Codebook
 
 | Variable name   | Description                                                                   |
-|:-----------------|:-----------------------------------------------------|
+|:------------------|:----------------------------------------------------|
 | `score`         | Average professor evaluation score: (1) very unsatisfactory - (5) excellent   |
 | `rank`          | Rank of professor: teaching, tenure track, tenure                             |
 | `ethnicity`     | Ethnicity of professor: not minority, minority                                |
@@ -165,7 +165,7 @@ Fit a new linear model called `m_rank` to predict average professor evaluation `
 See the course slides on using the `forcats` package for changing the order of levels.
 :::
 
-### Exercise 3
+### Exercise 13
 
 Create a new variable called `rank_relevel` where `"tenure track"` is the baseline level.
 

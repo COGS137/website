@@ -26,11 +26,39 @@ format:
 
 ## Q&A {.smaller}
 
-Coming Soon
+> Q: for the last part of lecture 07, I tried glance(m_ht_wt) but it didn't work because m_ht_wt doesn't exist. Is "m_ht_wt" supposed be a model? \
+> A: Yup, this model was the height by weight model:
+
+```{r eval=FALSE}
+m_ht_wt <- linear_reg() |>
+  set_engine("lm") |>
+  fit(Height_in ~ Width_in, data = pp)
+```
+
+> Q: I was not too sure what was going on when talking about the relationship between painting height and school. \
+> A: I don't think you were the only one confused! Briefly here (and I'm happy to chat more before/after class and in OH), we were looking to determine/quantify the relationship between the size (height) of a painting and the school from which the painting originated. This was an example of having more than two categories for a categorical (factor) predictor. The important points were undersatnding that each level is compared to the baseline *and* the linear model that results from multiple categories. Part 4 of the lab gets into this a bit more too. Definitely follow up if you're unsure after doing that part of the lab!
+
+> Q: How do you calculate the linear regression model when you have non-numeric values? For example, on lab 04, when it asks to calculate the linear regression model by gender, the gender appears only as male and female. Suppose male is 1 and female is 0 (interpreted by the function), then male linear regression model is y =ax + 1? \
+A: Close! the "1" would be plugged in as the value of x (in what you suggested)m not for the intercept. So the function would be $y=\beta_1*1 + \beta_0$
+
 
 ## Course Announcements
 
-Coming Soon...
+- Lab04 due Friday
+- HW02 due Monday
+
+. . . 
+
+-   Practice Midterms Now Available 
+    -   answers posted next week
+-   **Midterm Exam**
+    -   will cover material through "Multiple Linear Regression"
+    -   will be released/posted next Friday *after* lab
+    -   will be **due Monday Nov 6th at 11:59 PM**
+    -   will be an Rmd document and submitted via GitHub (like everything so far)
+    -   will be completed *individually* (open Notes; open Internet)
+
+. . .
 
 -   [Link for Later](https://docs.google.com/forms/d/e/1FAIpQLSc9dyocixWJGHjmU3P8Peli5FePchGBFoZOfw93ibnjWWJ8xg/viewform?usp=sf_link)
 

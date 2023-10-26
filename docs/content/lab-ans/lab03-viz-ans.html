@@ -239,6 +239,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">06-analysis</a>
   </div>
 </li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/07-linear-models-slides.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/08-effective-communication-slides.html" class="sidebar-item-text sidebar-link">08-effective-communication</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/09-mlr-slides.html" class="sidebar-item-text sidebar-link">09-mlr</a>
+  </div>
+</li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
@@ -282,6 +297,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/07-linear-models.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/08-effective-communication.html" class="sidebar-item-text sidebar-link">08-effective-communication</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/09-mlr.html" class="sidebar-item-text sidebar-link">09-mlr</a>
   </div>
 </li>
       </ul>
@@ -382,6 +412,26 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
   <a href="../../content/hw/hw-02.html" class="sidebar-item-text sidebar-link">HW02</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Exam</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-fa21.html" class="sidebar-item-text sidebar-link">Practice Midterm (Fa21)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-wi23.html" class="sidebar-item-text sidebar-link">Practice Midterm (Wi23)</a>
   </div>
 </li>
       </ul>
@@ -668,31 +718,33 @@ $ low_wage_jobs               &lt;dbl&gt; 193, 50, 0, 0, 972, 244, 259, 220, 325
 </section>
 <section id="exercise-8" class="level3">
 <h3 class="anchored" data-anchor-id="exercise-8">Exercise 8</h3>
-<p>Which major category is the least popular in this sample? To answer this question we use a new function called <code>count</code>, which first groups the data and then counts the number of observations in each category (see below). Add to the pipeline appropriately to arrange the results so that the major with the lowest observations is on top.</p>
+<p>Which major category is the least popular in this sample? To answer this question we can take advantage of the <code>total</code> column:</p>
 <div class="cell">
 <div class="sourceCode cell-code" id="cb19"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb19-1"><a href="#cb19-1" aria-hidden="true" tabindex="-1"></a>college_recent_grads <span class="sc">|&gt;</span></span>
-<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">count</span>(major_category) <span class="sc">|&gt;</span></span>
-<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(<span class="sc">-</span>n))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<span id="cb19-2"><a href="#cb19-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="fu">is.na</span>(total) <span class="sc">==</span> <span class="cn">FALSE</span>) <span class="sc">|&gt;</span></span>
+<span id="cb19-3"><a href="#cb19-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(major_category) <span class="sc">|&gt;</span></span>
+<span id="cb19-4"><a href="#cb19-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">popularity =</span> <span class="fu">sum</span>(total)) <span class="sc">|&gt;</span></span>
+<span id="cb19-5"><a href="#cb19-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(popularity)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output cell-output-stdout">
 <pre><code># A tibble: 16 × 2
-   major_category                          n
-   &lt;chr&gt;                               &lt;int&gt;
- 1 Interdisciplinary                       1
- 2 Communications &amp; Journalism             4
- 3 Law &amp; Public Policy                     5
- 4 Industrial Arts &amp; Consumer Services     7
- 5 Arts                                    8
- 6 Psychology &amp; Social Work                9
- 7 Social Science                          9
- 8 Agriculture &amp; Natural Resources        10
- 9 Physical Sciences                      10
-10 Computers &amp; Mathematics                11
-11 Health                                 12
-12 Business                               13
-13 Biology &amp; Life Science                 14
-14 Humanities &amp; Liberal Arts              15
-15 Education                              16
-16 Engineering                            29</code></pre>
+   major_category                      popularity
+   &lt;chr&gt;                                    &lt;dbl&gt;
+ 1 Interdisciplinary                        12296
+ 2 Agriculture &amp; Natural Resources          75620
+ 3 Law &amp; Public Policy                     179107
+ 4 Physical Sciences                       185479
+ 5 Industrial Arts &amp; Consumer Services     229792
+ 6 Computers &amp; Mathematics                 299008
+ 7 Arts                                    357130
+ 8 Communications &amp; Journalism             392601
+ 9 Biology &amp; Life Science                  453862
+10 Health                                  463230
+11 Psychology &amp; Social Work                481007
+12 Social Science                          529966
+13 Engineering                             537583
+14 Education                               559129
+15 Humanities &amp; Liberal Arts               713468
+16 Business                               1302376</code></pre>
 </div>
 </div>
 </section>

@@ -494,7 +494,7 @@
     "href": "content/lab-ans/lab03-viz-ans.html#how-do-the-distributions-of-median-income-compare-across-major-categories",
     "title": "Lab 03 - Data Visualization (Ans)",
     "section": "How do the distributions of median income compare across major categories?",
-    "text": "How do the distributions of median income compare across major categories?\n\nExercise 3\nWhy do we often choose the median, rather than the mean, to describe the typical income of a group of people?\nThe mean is more affected by the presence of outliers and by the skew of the distribution. Thus, the presence of a single person with very high income can increase the mean substantively, such that it’s no longer a good impression of the overall distribution. In contrast, the median (or the “middle number”) tells us the income exactly in the middle of the distribution.\n\n\nExercise 4\nTry binwidths of $1000 and $5000 and choose one. Explain your reasoning for your choice. Note that the binwidth is an argument for the geom_histogram function. So to specify a binwidth of $1000, you would use geom_histogram(binwidth = 1000).\n\nggplot(data = college_recent_grads, mapping = aes(x = median)) +\n  geom_histogram(binwidth=5000)\n\n\n\n\nI ended up choosing binwidth=5000. When binwidth=1000, there were too many small differences in income that were thus not grouped together, and it was harder to see the overall shape of the distribution.\nWe can also calculate summary statistics for this distribution using the summarise function:\n\ncollege_recent_grads |>\n  summarise(min = min(median), max = max(median),\n            mean = mean(median), med = median(median),\n            sd = sd(median), \n            q1 = quantile(median, probs = 0.25),\n            q3 = quantile(median, probs = 0.75))\n\n# A tibble: 1 × 7\n    min    max   mean   med     sd    q1    q3\n  <dbl>  <dbl>  <dbl> <dbl>  <dbl> <dbl> <dbl>\n1 22000 110000 40151. 36000 11470. 33000 45000\n\n\n\n\nExercise 5\nBased on the shape of the histogram you created in the previous exercise, determine which of these summary statistics is useful for describing the distribution. Write up your description (remember shape, center, spread, any unusual observations) and include the summary statistic output as well.\nThe underlying distribution of median incomes is somewhat right-skewed, with at least 1-2 majors making a lot of money. Because of this, I’m going to use the median median income.\nIt would be probably be fine to use the mean median income as well—judging by the distribution of median incomes in each major_category, which are relatively normal-ish.\n\n\nExercise 6\nPlot the distribution of median income using a histogram, faceted by major_category. Use the binwidth you chose in the earlier exercise.\n\nggplot(data = college_recent_grads, mapping = aes(x = median)) +\n  geom_histogram(binwidth = 5000) +\n  facet_wrap( ~ major_category, ncol = 4)\n\n\n\n\n\n\nExercise 7\nWhich major category has the highest typical (you’ll need to decide what this means) median income? Use the partial code below, filling it in with the appropriate statistic and function. Also note that we are looking for the highest statistic, so make sure to arrange in the correct direction.\n\ncollege_recent_grads |>\n  group_by(major_category) |>\n  summarise(median = median(median)) |>\n  arrange(desc(median))\n\n# A tibble: 16 × 2\n   major_category                      median\n   <chr>                                <dbl>\n 1 Engineering                          57000\n 2 Computers & Mathematics              45000\n 3 Business                             40000\n 4 Physical Sciences                    39500\n 5 Social Science                       38000\n 6 Biology & Life Science               36300\n 7 Law & Public Policy                  36000\n 8 Agriculture & Natural Resources      35000\n 9 Communications & Journalism          35000\n10 Health                               35000\n11 Industrial Arts & Consumer Services  35000\n12 Interdisciplinary                    35000\n13 Education                            32750\n14 Humanities & Liberal Arts            32000\n15 Arts                                 30750\n16 Psychology & Social Work             30000\n\n\nEngineering.\n\n\nExercise 8\nWhich major category is the least popular in this sample? To answer this question we use a new function called count, which first groups the data and then counts the number of observations in each category (see below). Add to the pipeline appropriately to arrange the results so that the major with the lowest observations is on top.\n\ncollege_recent_grads |>\n  count(major_category) |>\n  arrange(desc(-n))\n\n# A tibble: 16 × 2\n   major_category                          n\n   <chr>                               <int>\n 1 Interdisciplinary                       1\n 2 Communications & Journalism             4\n 3 Law & Public Policy                     5\n 4 Industrial Arts & Consumer Services     7\n 5 Arts                                    8\n 6 Psychology & Social Work                9\n 7 Social Science                          9\n 8 Agriculture & Natural Resources        10\n 9 Physical Sciences                      10\n10 Computers & Mathematics                11\n11 Health                                 12\n12 Business                               13\n13 Biology & Life Science                 14\n14 Humanities & Liberal Arts              15\n15 Education                              16\n16 Engineering                            29"
+    "text": "How do the distributions of median income compare across major categories?\n\nExercise 3\nWhy do we often choose the median, rather than the mean, to describe the typical income of a group of people?\nThe mean is more affected by the presence of outliers and by the skew of the distribution. Thus, the presence of a single person with very high income can increase the mean substantively, such that it’s no longer a good impression of the overall distribution. In contrast, the median (or the “middle number”) tells us the income exactly in the middle of the distribution.\n\n\nExercise 4\nTry binwidths of $1000 and $5000 and choose one. Explain your reasoning for your choice. Note that the binwidth is an argument for the geom_histogram function. So to specify a binwidth of $1000, you would use geom_histogram(binwidth = 1000).\n\nggplot(data = college_recent_grads, mapping = aes(x = median)) +\n  geom_histogram(binwidth=5000)\n\n\n\n\nI ended up choosing binwidth=5000. When binwidth=1000, there were too many small differences in income that were thus not grouped together, and it was harder to see the overall shape of the distribution.\nWe can also calculate summary statistics for this distribution using the summarise function:\n\ncollege_recent_grads |>\n  summarise(min = min(median), max = max(median),\n            mean = mean(median), med = median(median),\n            sd = sd(median), \n            q1 = quantile(median, probs = 0.25),\n            q3 = quantile(median, probs = 0.75))\n\n# A tibble: 1 × 7\n    min    max   mean   med     sd    q1    q3\n  <dbl>  <dbl>  <dbl> <dbl>  <dbl> <dbl> <dbl>\n1 22000 110000 40151. 36000 11470. 33000 45000\n\n\n\n\nExercise 5\nBased on the shape of the histogram you created in the previous exercise, determine which of these summary statistics is useful for describing the distribution. Write up your description (remember shape, center, spread, any unusual observations) and include the summary statistic output as well.\nThe underlying distribution of median incomes is somewhat right-skewed, with at least 1-2 majors making a lot of money. Because of this, I’m going to use the median median income.\nIt would be probably be fine to use the mean median income as well—judging by the distribution of median incomes in each major_category, which are relatively normal-ish.\n\n\nExercise 6\nPlot the distribution of median income using a histogram, faceted by major_category. Use the binwidth you chose in the earlier exercise.\n\nggplot(data = college_recent_grads, mapping = aes(x = median)) +\n  geom_histogram(binwidth = 5000) +\n  facet_wrap( ~ major_category, ncol = 4)\n\n\n\n\n\n\nExercise 7\nWhich major category has the highest typical (you’ll need to decide what this means) median income? Use the partial code below, filling it in with the appropriate statistic and function. Also note that we are looking for the highest statistic, so make sure to arrange in the correct direction.\n\ncollege_recent_grads |>\n  group_by(major_category) |>\n  summarise(median = median(median)) |>\n  arrange(desc(median))\n\n# A tibble: 16 × 2\n   major_category                      median\n   <chr>                                <dbl>\n 1 Engineering                          57000\n 2 Computers & Mathematics              45000\n 3 Business                             40000\n 4 Physical Sciences                    39500\n 5 Social Science                       38000\n 6 Biology & Life Science               36300\n 7 Law & Public Policy                  36000\n 8 Agriculture & Natural Resources      35000\n 9 Communications & Journalism          35000\n10 Health                               35000\n11 Industrial Arts & Consumer Services  35000\n12 Interdisciplinary                    35000\n13 Education                            32750\n14 Humanities & Liberal Arts            32000\n15 Arts                                 30750\n16 Psychology & Social Work             30000\n\n\nEngineering.\n\n\nExercise 8\nWhich major category is the least popular in this sample? To answer this question we can take advantage of the total column:\n\ncollege_recent_grads |>\n  filter(is.na(total) == FALSE) |>\n  group_by(major_category) |>\n  summarise(popularity = sum(total)) |>\n  arrange(popularity)\n\n# A tibble: 16 × 2\n   major_category                      popularity\n   <chr>                                    <dbl>\n 1 Interdisciplinary                        12296\n 2 Agriculture & Natural Resources          75620\n 3 Law & Public Policy                     179107\n 4 Physical Sciences                       185479\n 5 Industrial Arts & Consumer Services     229792\n 6 Computers & Mathematics                 299008\n 7 Arts                                    357130\n 8 Communications & Journalism             392601\n 9 Biology & Life Science                  453862\n10 Health                                  463230\n11 Psychology & Social Work                481007\n12 Social Science                          529966\n13 Engineering                             537583\n14 Education                               559129\n15 Humanities & Liberal Arts               713468\n16 Business                               1302376"
   },
   {
     "objectID": "content/lab-ans/lab03-viz-ans.html#all-stem-fields-arent-the-same",
@@ -511,11 +511,221 @@
     "text": "What types of majors do women tend to major in?\n\nExercise 10\nCreate a scatterplot of median income vs. proportion of women in that major, colored by whether the major is in a STEM field or not. Describe the association between these three variables.\n\ncollege_recent_grads |>\n  drop_na(sharewomen) |> ## This will drop rows for which sharewomen has NA value\n  ggplot(aes(x = median,\n             y = sharewomen,\n             color = major_type)) +\n  geom_point(alpha = .6) +\n  labs(x = \"Median income for major\",\n       y = \"Share of women in major\",\n       color = \"STEM major?\")\n\n\n\n\nIn general, there appears to be a negative relationship between median income and the proportion of women (sharewomen) in a major. Both variables are also correlated with major_type: stem majors tend to have a lower proportion of women (and lower median income), while not stem majors have a higher proportion (and higher median income).\n(Note that the negative relationship with median income is somewhat clearer if log(median) is used instead.)"
   },
   {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html",
+    "href": "content/lab-ans/lab04-modelling-ans.html",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "",
+    "text": "library(tidyverse)\nlibrary(tidymodels)\n\n\n\n\n\nevals <- read_csv(\"data/evals-mod.csv\")"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-1",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-1",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 1",
+    "text": "Part 1\n\nExercise 1\nFirst, we use rowwise to group evals by each row. We then use mutate to compute a new variable (bty_avg) corresponding to the average of the six beauty scores.\nFinally, we ungroup so that the dataframe isn’t still grouped by each row.\n\nevals <- evals |>\n  rowwise() |>\n  mutate(bty_avg = mean( c( bty_f1lower, bty_f1upper,\n                            bty_f2upper, bty_m1lower,\n                            bty_m1upper, bty_m2upper) )) |>\n  ungroup()"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-2",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-2",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 2",
+    "text": "Part 2\n\nExercise 2\nThe distribution is slightly left-skewed, i.e., many scores are on the higher side (between 4-5) with a longer tail going to the left.\nThis is further corroborrated by the fact that the mean is lower than the median. Given that the mean is more affected by skew than the median, this is what we’d expect with negatively skewed data.\n\nevals |>\n  ggplot(aes(x = score))+\n  geom_histogram() +\n  theme_bw()\n\n`stat_bin()` using `bins = 30`. Pick better value with `binwidth`.\n\n\n\n\nevals |>\n  summarise(mean = mean(score),\n            median = median(score),\n            sd = sd(score))\n\n# A tibble: 1 × 3\n   mean median    sd\n  <dbl>  <dbl> <dbl>\n1  4.17    4.3 0.544\n\n\n\n\nExercise 3\nIt seems like there’s a slight positive relationship between bty_avg and score, though it’s hard to tell given that many points overlap and form “bands” along particular values (e.g., many teachers have the same score).\n\nevals |>\n  ggplot(aes(x = bty_avg,\n             y = score))+\n  geom_point() +\n  theme_bw()\n\n\n\n\n\n\nExercise 4\nOne way to deal with the above is to add jitter to the plot, which reveals that certain clusters of points were either larger or smaller than initially thought. (Another apprpoach would be to change the alpha of geom_point, allowing us to detect denser clusters.)\n\nevals |>\n  ggplot(aes(x = bty_avg,\n             y = score))+\n  geom_jitter() +\n  theme_bw()"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-3",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-3",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 3",
+    "text": "Part 3\n\nExercise 5\nAccording to the model, the linear equation would be as follows:\n\\(\\hat{y} = 3.88 + 0.07*X\\)\nWhere \\(X\\) is bty_avg.\nWe use broom::tidy to transform the model object into a tidy dataframe.\n\nm_bty <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ bty_avg, data = evals)\n\nm_bty |>\n  tidy() |>\n  select(term, estimate)\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)   3.88  \n2 bty_avg       0.0666\n\n\n\n\nExercise 6\n\nevals |>\n  ggplot(aes(x = bty_avg,\n             y = score))+\n  geom_point() +\n  geom_smooth(method = \"lm\", \n              color = \"orange\",\n              se = FALSE) +\n  theme_bw()\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\nExercise 7\nProfessors with higher average beauty ratings also tend to receive higher teaching scores.\nThe slope is approximately 0.07, which means that for every 1-unit increase in beauty rating (i.e., from 4 to 5), we can expect that a professor will receive .07 higher teaching scores (with a ~0.02 standard error).\n\nm_bty |>\n  tidy() |>\n  filter(term == \"bty_avg\") |>\n  select(term, estimate, std.error)\n\n# A tibble: 1 × 3\n  term    estimate std.error\n  <chr>      <dbl>     <dbl>\n1 bty_avg   0.0666    0.0163\n\n\n\n\nExercise 8\nThe intercept is 3.88. This is the estimated score for professors with a beauty score of 0, i.e., it is the value of \\(\\hat{y}\\) when the regression line crosses \\(x = 0\\).\nThis may or may not make sense; given that possible beauty scores ranged from 1-6, it is a little strange to imagine a scenario where the beauty score is 0 (and it would be even stranger to imagine scenarios where the beauty scores is negative).\nOn the other hand, it is not inconsistent with other features of the data: the mean score, for example, is 4.17, so it makes sense that the intercept of a linear model would be slightly lower than the mean, allowing the explanatory variable to account for increases in score throughout the data.\n\nm_bty |>\n  tidy() |>\n  filter(term == \"(Intercept)\") |>\n  select(term, estimate, std.error)\n\n# A tibble: 1 × 3\n  term        estimate std.error\n  <chr>          <dbl>     <dbl>\n1 (Intercept)     3.88    0.0761\n\n\n\n\nExercise 9\nHere, we identify the \\(R^2\\) of the model using glance, which identifies model-level characteristics.\nThe value is 0.0350, which means that our explanatory variable accounts for roughly 3.5% of the variance in our response variable.\n\nm_bty |>\n  glance() |>\n  select(r.squared)\n\n# A tibble: 1 × 1\n  r.squared\n      <dbl>\n1    0.0350"
+  },
+  {
+    "objectID": "content/lab-ans/lab04-modelling-ans.html#part-4",
+    "href": "content/lab-ans/lab04-modelling-ans.html#part-4",
+    "title": "Lab 04 - Modelling (Ans)",
+    "section": "Part 4",
+    "text": "Part 4\n\nExercise 10\nThe linear equation would be as follows:\n\\(\\hat{y} = 4.09 + 0.142*X\\)\nWhere \\(X = 1\\) for male professors and \\(X = 0\\) for female professors. In other words, the intercept corresponds to the mean score for female professors, while the slope tells us the difference in mean between the female average and the male average.\n\nm_gen <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit( score ~ gender, data = evals)\n\nm_gen |>\n  tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic p.value\n  <chr>          <dbl>     <dbl>     <dbl>   <dbl>\n1 (Intercept)    4.09     0.0387    106.   0      \n2 gendermale     0.142    0.0508      2.78 0.00558\n\n\n\n\nExercise 11\nAs specified above, the slope coefficient for the \\(X\\) term signifies the difference in means between male and female professors.\n\n\nExercise 12\nHere, the model equation would look as follows:\n\\(\\hat{y} = 4.28 + -0.13*X_1 + -0.145*X_2\\)\nWhere \\(X_1 = 1\\) for tenure track professors and 0 for all else, and \\(X_2 = 1\\) for tenured professors and 0 for all else.\nIn other words: the intercept tells us the mean for teaching professors, and the two slope coefficients tell us the difference between that mean and the two other levels of rank.\n\ntable(evals$rank)\n\n\n    teaching tenure track      tenured \n         102          108          253 \n\nm_rank <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ rank, data = evals)\n\nm_rank |>\n  tidy()\n\n# A tibble: 3 × 5\n  term             estimate std.error statistic   p.value\n  <chr>               <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)         4.28     0.0537     79.9  1.02e-271\n2 ranktenure track   -0.130    0.0748     -1.73 8.37e-  2\n3 ranktenured        -0.145    0.0636     -2.28 2.28e-  2\n\n\n\n\nExercise 13\nHere, we use the factor command (within mutate) to reorder the levels of rank such that tenure track is the first level.\n\nevals <- evals |>\n  mutate(rank_relevel = fct_relevel(factor(rank), c(\"tenure track\",\n                                                    \"teaching\",\n                                                    \"tenured\")))\n\n\n\nExercise 14\nThis model has the same structure as the previous model using rank, but it has reordered the levels of rank (for rank_relevel) such that tenure track is now first.\nThis means that the intercept should now be interpreted as the mean score for tenure track professors, and the coefficients represent the difference in means for teaching and tenured professors, respectively.\n\\(\\hat{y} = 4.15 + 0.13*X_1 + -0.0155*X_2\\)\nWhere \\(X_1 = 1\\) for teaching professors and 0 for all else; and \\(X_2 = 1\\) for tenured professors and 0 for all else.\nWe can compare tehse to the coefficients for the previous model, where teaching was the baseline: in both cases, we see that the difference between teaching and tenure track is 0.13 (just in opposite directions, depending on the baseline).\nThe \\(R^2\\) of the model is 0.0116 in both cases. In other words, the model explains approximately 1.16% of the variance in score.\n\nm_rank_relevel <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ rank_relevel, data = evals)\n\n\nm_rank_relevel |>\n  tidy()\n\n# A tibble: 3 × 5\n  term                 estimate std.error statistic   p.value\n  <chr>                   <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)            4.15      0.0521    79.7   2.58e-271\n2 rank_relevelteaching   0.130     0.0748     1.73  8.37e-  2\n3 rank_releveltenured   -0.0155    0.0623    -0.249 8.04e-  1\n\nm_rank_relevel |>\n  glance() |>\n  select(r.squared)\n\n# A tibble: 1 × 1\n  r.squared\n      <dbl>\n1    0.0116\n\n\n\n\nExercise 15\n\nevals <- evals |>\n  mutate(tenure_eligible = case_when(\n    rank == \"teaching\" ~ \"no\",\n    TRUE ~ \"yes\"\n  ))\n\n## Double check\ntable(evals$rank, evals$tenure_eligible)\n\n              \n                no yes\n  teaching     102   0\n  tenure track   0 108\n  tenured        0 253\n\n\n\n\nExercise 16\nThe linear equation is as follows:\n\\(\\hat{y} = 4.28 + -0.141*X_1\\)\nWhere \\(X_1 = 1\\) for tenure eligible professors and \\(X_1 = 0\\) for non-tenure-eligible professors.\nThus, this means that the mean score for non-tenure-eligible professors is 4.28, and professors that are tenure eligible can expect a score that’s -0.141 lower, on average.\n\nm_tenure_eligible <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(score ~ tenure_eligible, data = evals)\n\nm_tenure_eligible |>\n  tidy()\n\n# A tibble: 2 × 5\n  term               estimate std.error statistic   p.value\n  <chr>                 <dbl>     <dbl>     <dbl>     <dbl>\n1 (Intercept)           4.28     0.0536     79.9  2.72e-272\n2 tenure_eligibleyes   -0.141    0.0607     -2.32 2.10e-  2\n\n\nWe can also calculate the \\(R^2\\), and we see that it is 0.0115. In other words, the model explains approximately 1.15% of the variance in score.\n\nm_tenure_eligible |>\n  glance()\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic p.value    df logLik   AIC   BIC\n      <dbl>         <dbl> <dbl>     <dbl>   <dbl> <dbl>  <dbl> <dbl> <dbl>\n1    0.0115       0.00935 0.541      5.36  0.0210     1  -372.  750.  762.\n# ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>"
+  },
+  {
     "objectID": "content/lab-ans/lab02-wrangling-ans.html",
     "href": "content/lab-ans/lab02-wrangling-ans.html",
     "title": "Lab 02 - Wrangling (Ans)",
     "section": "",
     "text": "Load packages\n\nlibrary(tidyverse) \n\n\n\n\n\n\n\nWarning\n\n\n\nYour numbers/output may differ based on the version of the storms dataset that you have/used to complete. The logic will follow what you see here. This is expected behavior.\n\n\n\n\nExercise 1\nHow many unique hurricanes are included in this dataset?\n(Note the specific value may differ based on the version of the dataset you’re using, but the code would not change.)\n\nn_unique <- storms |> \n  filter(status == \"hurricane\") |>\n  distinct(name, year, .keep_all = TRUE) |>\n  count() |>\n  pull(n)\n\n# OR\n\nstorms |> \n  filter(status == \"hurricane\") |>\n  group_by(year, name) |> \n  count() |>\n  nrow()\n\n[1] 310\n\n\nThere are 310 unique hurricanes.\n(Note that we need to group by name *and* year, as certain storms have the same name...in different years. There might still be instances where the same storm is double-counted if it extends from December into January, which if you accounted for, excellent work!)\n\n\nExercise 2\nNote: If you used storms on datahub, the ts_diameter column has missing information and were likely unable to complete this question. Otherwise…this would have been the approach…\nWhich tropical storm affected the largest area experiencing tropical storm strength winds? And, what was the maximum sustained wind speed for that storm?\n\nstorms |> \n  filter(status == \"tropical storm\", \n         !is.na(ts_diameter)) |> \n  slice_max(ts_diameter)\n\nOR\n\nstorms |>\n  filter(status == \"tropical storm\",\n         !is.na(ts_diameter)) |> \n  filter(ts_diameter == max(ts_diameter, na.rm=TRUE))\n\nSandy (2012) had the largest area affected.\n\n\nExercise 3\nAmong all storms in this dataset, in which month are storms most common? Does this depend on the status of the storm? (In other words, are hurricanes more common in certain months than tropical depressions? or tropical storms?)\n\n# most common month\nstorms |> \n  distinct(name, year, .keep_all=TRUE) |>\n  group_by(month) |>\n  summarise(n = n()) |> # could alternatively use count() here\n  arrange(desc(n))\n\n# A tibble: 10 × 2\n   month     n\n   <dbl> <int>\n 1     9   208\n 2     8   173\n 3    10    99\n 4     7    67\n 5     6    41\n 6    11    29\n 7     5    13\n 8    12     5\n 9     1     2\n10     4     2\n\n\nSeptember is the most common month.\n\n# depend on status?\nstorms |> \n  group_by(status, month) |>\n  summarise(n = n()) |> # could alternatively use count() here\n  slice_max(n)\n\n`summarise()` has grouped output by 'status'. You can override using the\n`.groups` argument.\n\n\n# A tibble: 9 × 3\n# Groups:   status [9]\n  status                 month     n\n  <fct>                  <dbl> <int>\n1 disturbance                7    45\n2 extratropical              9   732\n3 hurricane                  9  2380\n4 other low                  9   446\n5 subtropical depression     8    36\n6 subtropical storm          9    72\n7 tropical depression        9  1315\n8 tropical storm             9  2448\n9 tropical wave              8    55\n\n\nIt does not depend on status. September is the most common for all three storm types.\n\n\nExercise 4\nYour boss asks for the name, year, and status of all category 5 storms that have happened in the 2000s. Carry out the operations that would deliver what they’re looking for.\n\nstorms |>\n  filter(category == 5,\n         between(year, 2000, 2009)) |>\n  select(name, year, status) |>\n  distinct(name, year, .keep_all=TRUE)\n\n# A tibble: 8 × 3\n  name     year status   \n  <chr>   <dbl> <fct>    \n1 Isabel   2003 hurricane\n2 Ivan     2004 hurricane\n3 Emily    2005 hurricane\n4 Katrina  2005 hurricane\n5 Rita     2005 hurricane\n6 Wilma    2005 hurricane\n7 Dean     2007 hurricane\n8 Felix    2007 hurricane\n\n\n\n\nExercise 5\nFilter these data to only include storms that occurred during your lifetime (your code and results may differ from your classmates!). Among storms that have occurred during your lifetime, what’s the mean and median air pressure across all measurements taken?\n\nmy_storms <- storms |>\n  filter(between(year, 1988, 2023)) # alternatively filter(year >= 1988)\n\nmy_storms |>\n  summarise(median_pressure = median(pressure),\n            mean_pressure = mean(pressure))\n\n# A tibble: 1 × 2\n  median_pressure mean_pressure\n            <dbl>         <dbl>\n1            1000          993.\n\n\n\nMedian: 999 millibars\nMean: 991 millibars\n\n\n\nExercise 6\nWhich decade (of the storms included in the dataset) had the largest number of unique reported storms?\n\nstorms |> \n  distinct(name, year) |>\n  mutate(decade = year - year %% 10) |> # there are MANY different ways to approach this!\n  group_by(decade) |>\n  count()\n\n# A tibble: 6 × 2\n# Groups:   decade [6]\n  decade     n\n   <dbl> <int>\n1   1970    40\n2   1980    90\n3   1990   127\n4   2000   169\n5   2010   163\n6   2020    50\n\n\nThe 2000s.\n(Note: we want to be sure to only count each storm once. Could also arrange by desc(n) to have 2000 at top.)\n\n\nExercise 7\nAmong the subset of storms occurring in your lifetime, which storm lasted the longest? Include your code and explain your answer.\n\nmy_storms |>  \n  group_by(name, year) |> \n  count() |> \n  arrange(desc(n))\n\n# A tibble: 532 × 3\n# Groups:   name, year [532]\n   name      year     n\n   <chr>    <dbl> <int>\n 1 Nadine    2012    96\n 2 Ivan      2004    94\n 3 Kyle      2002    90\n 4 Leslie    2018    89\n 5 Paulette  2020    88\n 6 Alberto   2000    87\n 7 Jose      2017    85\n 8 Nicholas  2003    80\n 9 Florence  2018    79\n10 Marilyn   1995    79\n# ℹ 522 more rows\n\n\nNadine lasted the longest (unless you were born after 2012).\n(Note: The logic here is that storms are reported every six hours, per the description of the dataset, so the storm that has the most rows/entries would have lasted the longest)"
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html",
+    "href": "content/exams/practice-exam-fa21-ans.html",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "",
+    "text": "There will be rules spelled out on the real midterm. Be sure to read them before taking the real exam. There will also be an academic integrity statement for you to complete. Replace the ____________ with your name below on the real deal."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#academic-integrity-statement",
+    "href": "content/exams/practice-exam-fa21-ans.html#academic-integrity-statement",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "Academic Integrity Statement",
+    "text": "Academic Integrity Statement\nI, ____________, hereby state that I have not communicated with or gained information in any way from my classmates or anyone during this exam, and that all work is my own.\nA note on sharing / reusing code: We are well aware that a huge volume of code is available on the web to solve any number of problems. For this exam you are allowed to make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). You are also not allowed to ask a question on an external forum, you can only use answers to questions that have already been answered. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. All communication with classmates is explicitly forbidden."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#getting-help",
+    "href": "content/exams/practice-exam-fa21-ans.html#getting-help",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "Getting help",
+    "text": "Getting help\nBecause we cannot be available to all students across the entire length of the (real) exam, there will be no questions of instructional staff about the exam. If you find wording confusing or are unsure, note that in your answer and explain how you interpreted it. This will be taken into consideration during grading. If you are having technical difficulties or think there is an error on the exam, DM or email Prof Ellis immediately and she’ll work with you as soon as possible."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#grading-and-feedback",
+    "href": "content/exams/practice-exam-fa21-ans.html#grading-and-feedback",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "Grading and feedback",
+    "text": "Grading and feedback\nThe (real) exam is worth 16% of your grade. You will be graded on the correctness of your code, correctness of your answers (often there are multiple “correct” answers, by design), the clarity of your explanations, and the overall organization of your document. (There’s no one “right” organization, but we should be able to easily navigate your midterm to find what we’re looking for.)"
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#logistics",
+    "href": "content/exams/practice-exam-fa21-ans.html#logistics",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "Logistics",
+    "text": "Logistics\nAnswer the questions in the document called practice-exam.Rmd. Add your code and narrative in the spaces below each question. Add code chunks as needed. Use as many lines as you need, but keep your narrative concise. Be sure to knit your file to HTML and view the file prior to turning it in."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#packages",
+    "href": "content/exams/practice-exam-fa21-ans.html#packages",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "Packages",
+    "text": "Packages\nYou will need the tidyverse package for this (practice) midterm. (For the real deal, you’ll need tidyverse and tidymodels.) If working on datahub, this package has been installed, but you will need to load it. No other packages are required, but if for some reason you want to load in another package, you are permitted to do so."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#the-data",
+    "href": "content/exams/practice-exam-fa21-ans.html#the-data",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "The data",
+    "text": "The data\nThe dataset you’ll be working with on this practice midterm is all about beach volleyball. The full dataset is explained in detail here and includes match-level data from 76,756 volleyball matches. You should click on that link to see what information is stored in each column in this dataset and what information is included in each column.\nBriefly, what you’ll use for this midterm is a subset of the full dataset, including only the 11,699 observations (rows) from 2018 and 2019 but all of the original columns. Each row summarizes the results from a single, distinct match played in a volleyball tournament.\nTo briefly describe beach volleyball, it is a sport played 2 on 2, so each match involves only 4 players. These data include matches from two different volleyball circuits, the international FIVB and the US-centric AVP. You will not need to know much at all about this sport to complete this midterm, and anything you need to know will be explained.\nThe data are stored in data/vb_matches.csv. You’ll need to read the dataset in prior to answering any questions on the midterm.\n\nlibrary(tidyverse)\n\n── Attaching core tidyverse packages ──────────────────────── tidyverse 2.0.0 ──\n✔ dplyr     1.1.3     ✔ readr     2.1.4\n✔ forcats   1.0.0     ✔ stringr   1.5.0\n✔ ggplot2   3.4.3     ✔ tibble    3.2.1\n✔ lubridate 1.9.2     ✔ tidyr     1.3.0\n✔ purrr     1.0.2     \n── Conflicts ────────────────────────────────────────── tidyverse_conflicts() ──\n✖ dplyr::filter() masks stats::filter()\n✖ dplyr::lag()    masks stats::lag()\nℹ Use the conflicted package (<http://conflicted.r-lib.org/>) to force all conflicts to become errors\n\ndf <- read_csv('data/vb_matches.csv')\n\nRows: 11699 Columns: 65\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr  (17): circuit, tournament, country, gender, w_player1, w_p1_country, w_...\ndbl  (42): year, match_num, w_p1_age, w_p1_hgt, w_p2_age, w_p2_hgt, l_p1_age...\ndate  (5): date, w_p1_birthdate, w_p2_birthdate, l_p1_birthdate, l_p2_birthdate\ntime  (1): duration\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21-ans.html#questions",
+    "href": "content/exams/practice-exam-fa21-ans.html#questions",
+    "title": "COGS 137 - Winter 2023 - Practice Midterm (Answers)",
+    "section": "Questions",
+    "text": "Questions\nQuestion 1 (0.75 points) - How many FIVB and AVP matches are included in this dataset?\n\ndf |> \n  group_by(circuit) |>\n  count()\n\n# A tibble: 2 × 2\n# Groups:   circuit [2]\n  circuit     n\n  <chr>   <int>\n1 AVP      2656\n2 FIVB     9043\n\n\n\n2656 AVP\n9043 FIVB\n\nQuestion 2 (0.75 points) - Find the match with the longest duration. a. Where was this tournament played (City & Country)? b. How long did the match last? c. Who were the two winners?\n\ndf |> \n  slice(which.max(duration))\n\n# A tibble: 1 × 65\n  circuit tournament country        year date       gender match_num w_player1  \n  <chr>   <chr>      <chr>         <dbl> <date>     <chr>      <dbl> <chr>      \n1 AVP     Austin     United States  2018 2018-05-17 M             37 Nathan Yang\n# ℹ 57 more variables: w_p1_birthdate <date>, w_p1_age <dbl>, w_p1_hgt <dbl>,\n#   w_p1_country <chr>, w_player2 <chr>, w_p2_birthdate <date>, w_p2_age <dbl>,\n#   w_p2_hgt <dbl>, w_p2_country <chr>, w_rank <chr>, l_player1 <chr>,\n#   l_p1_birthdate <date>, l_p1_age <dbl>, l_p1_hgt <dbl>, l_p1_country <chr>,\n#   l_player2 <chr>, l_p2_birthdate <date>, l_p2_age <dbl>, l_p2_hgt <dbl>,\n#   l_p2_country <chr>, l_rank <chr>, score <chr>, duration <time>,\n#   bracket <chr>, round <chr>, w_p1_tot_attacks <dbl>, w_p1_tot_kills <dbl>, …\n\n\n\nAustin, USA\n1h 42 min\nNathan Yang & Steven Irvin\n\n\nQuestion 3 (1.5 points) - Across all tournaments included in this dataset, which teams have won the most tournaments? Your response should include both the winning players, their gender, and the number of tournaments they’ve won in descending order. Who has the most wins? How many men’s and how many women’s teams are in the top 10?\nNote: “winning a tournament” is indicated by winning either a “Gold Medal” (FIVB) or “Finals” (AVP) match, specified in the bracket column.\n\ndf |> \n  filter(bracket %in% c(\"Gold Medal\", \"Finals\")) |> \n  group_by(w_player1, w_player2, gender) |>\n  count() |> \n  arrange(desc(n)) |>\n  head(10)\n\n# A tibble: 10 × 4\n# Groups:   w_player1, w_player2, gender [10]\n   w_player1              w_player2                 gender     n\n   <chr>                  <chr>                     <chr>  <int>\n 1 Alix Klineman          \"April Ross\"              W         11\n 2 Anders Mol             \"Christian Sorum\"         M         10\n 3 Melissa Humana-Paredes \"Sarah Pavan\"             W          6\n 4 Nick Lucena            \"Phil Dalhausser\"         M          6\n 5 Jake Gibb              \"Taylor Crabb\"            M          5\n 6 Jingzhe Wang           \"Shuhui Wen\"              W          5\n 7 Agatha Bednarczuk      \"Eduarda \\\"Duda\\\" Lisboa\" W          4\n 8 Aleksandrs Samoilovs   \"Janis Smedins\"           M          4\n 9 Betsi Flint            \"Emily Day\"               W          4\n10 Alexander Brouwer      \"Robert Meeuwsen\"         M          3\n\n\n\nAlix Klineman and April Ross have won the most tournaments\nThere are 5 men’s teams and 5 women’s teams\n\nQuestion 4 (1.5 points) - Of only the AVP tournaments included in this dataset, how many different cities hosted tournaments in 2018 and 2019? And, which cities (if any) hosted a tournament in both 2018 and 2019?\nNote that tournaments are named for the city hosting the tournament.\n\n# distinct locations\ndf |> \n  filter(circuit == 'AVP') |>\n  distinct(tournament)\n\n# A tibble: 9 × 1\n  tournament      \n  <chr>           \n1 Austin          \n2 New York        \n3 Seattle         \n4 San Francisco   \n5 Hermosa Beach   \n6 Manhattan Beach \n7 Chicago         \n8 Waikiki         \n9 Huntington Beach\n\n\n\n9 distinct locations\n\n\nlocations <- df |> \n  filter(circuit == 'AVP') |>\n  group_by(year, date) |> \n    distinct(tournament) \n\ndf |>\n  filter(circuit == \"AVP\") |>\n  group_by(year, date) |>\n  distinct(tournament) |>\n  group_by(tournament) |>\n  count() |>\n  filter(n > 1)\n\n# A tibble: 6 × 2\n# Groups:   tournament [6]\n  tournament          n\n  <chr>           <int>\n1 Austin              2\n2 Chicago             2\n3 Hermosa Beach       2\n4 Manhattan Beach     2\n5 New York            2\n6 Seattle             2\n\n\n\n6 locations were duplicates between 2018 and 2019, including Chicago, Manhattan Beach, Hermosa Beach, Seattle, New York, and Austin\n\nQuestion 5 (2.5 points) - Prof Ellis plays a lot of women’s beach volleyball and is only 5’5” (65 inches). Despite not having the sheer talent or raw athletic ability to make it as a professional volleyball player, she wonders if she ever had a chance at her height. To help her out, answer each of the following: a. Who was the shortest women’s player to compete in a tournament in 2018/2019? b. How tall are they? c. Did they win a tournament in 2018 or 2019?\nReminder: there are 4 players in each match whose height should be considered.\n\n# find shortest in each column\ndf |>\n  filter(gender == \"W\") |>\n  summarize(min_p1 = min(w_p1_hgt, na.rm=TRUE), \n            min_p2  = min(w_p2_hgt, na.rm=TRUE), \n            min_l_p1 = min(l_p1_hgt, na.rm=TRUE),\n            min_l_p2 = min(l_p2_hgt, na.rm=TRUE))\n\n# A tibble: 1 × 4\n  min_p1 min_p2 min_l_p1 min_l_p2\n   <dbl>  <dbl>    <dbl>    <dbl>\n1     63     64       62       61\n\n# determine the shortest player\ndf |> filter(l_p2_hgt == 61)\n\n# A tibble: 2 × 65\n  circuit tournament    country  year date       gender match_num w_player1     \n  <chr>   <chr>         <chr>   <dbl> <date>     <chr>      <dbl> <chr>         \n1 FIVB    Visakhapatnam India    2019 2019-02-28 W              7 Melissa Fuchs…\n2 FIVB    Visakhapatnam India    2019 2019-02-28 W             16 Ekaterina Fil…\n# ℹ 57 more variables: w_p1_birthdate <date>, w_p1_age <dbl>, w_p1_hgt <dbl>,\n#   w_p1_country <chr>, w_player2 <chr>, w_p2_birthdate <date>, w_p2_age <dbl>,\n#   w_p2_hgt <dbl>, w_p2_country <chr>, w_rank <chr>, l_player1 <chr>,\n#   l_p1_birthdate <date>, l_p1_age <dbl>, l_p1_hgt <dbl>, l_p1_country <chr>,\n#   l_player2 <chr>, l_p2_birthdate <date>, l_p2_age <dbl>, l_p2_hgt <dbl>,\n#   l_p2_country <chr>, l_rank <chr>, score <chr>, duration <time>,\n#   bracket <chr>, round <chr>, w_p1_tot_attacks <dbl>, w_p1_tot_kills <dbl>, …\n\n\nPerumal Yogeshwari was the shortest to compete (at 61 inches). By deduction, since this is the l_p2 column, we know that she did not win any tournaments.\nQuestion 6 (3 pts) - Which country has hosted the most FIVB tournaments? Did this differ by year? Generate a visualization that shows how many FIVB tournaments each country hosted. Allow viewer to visualize this by year. And, be sure each tournament is only counted once (regardless of how many games were played).\n\ndf |>\n  filter(circuit == 'FIVB') |>\n  distinct(tournament, year, .keep_all = TRUE) |>\n  ggplot(aes(y=fct_infreq(country))) + \n  geom_bar() + \n  facet_wrap(~year) +\n  labs(y=NULL,\n       x=\"Count\",\n       title = \"Number of FIVB tournaments hosted by each country\") + \n  theme_bw() +\n  theme(plot.title.position = \"plot\")\n\n\n\n\nQuestion 7 (3 pts) - Recreate the plot included below using the data you’ve been working with. Once you have created the visualization, in no more than one paragraph, describe what you think the point of this visualization might be.\nHint: The visualization uses the variable avg_team_height, which is not included in the provided data frame. You will have to create avg_team_height yourself, be determining the average (mean) team height for each winning team.\n\n\ndf |>\n  filter(circuit == 'AVP') |>\n  mutate(avg_team_height = (w_p1_hgt + w_p2_hgt)/2) |>\n  ggplot(aes(x = fct_infreq(w_p1_country), y = avg_team_height, fill=w_p1_country)) +\n  geom_boxplot() + \n  facet_wrap(~gender, \n             scales=\"free_y\", \n             nrow=2) +\n  labs(y = 'Average Team Height (in)',\n       x = 'Country',\n       title = 'Average team heights for AVP match winners in 2018 and 2019') +\n  theme(plot.title.position = \"plot\") +\n  guides(fill=\"none\") \n\nWarning: Removed 1288 rows containing non-finite values (`stat_boxplot()`).\n\n\n\n\n\nVisualizes which countries have the tallest winning teams on average. For men, we see that players from the Netherlands are quite tall. For Women, it’s the US and Canada.\n\nQuestion 8 (1 pts) - If you were in charge of designing the plot you just recreated in the plot above, what changes would you make to improve its effectiveness as a visualization? (You do not have to write any code for this question, just explain the different design/viz choices you would make.)\n\n\nswap axes\naccurate/more informative labelling labeling\nmeaningful ordering of countries (geography?)\nimproved color choices (flag colors?)\nincrease text size\nremove background\netc."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21.html",
+    "href": "content/exams/practice-exam-fa21.html",
+    "title": "COGS 137 - Practice Midterm (Fa21)",
+    "section": "",
+    "text": "There will be rules spelled out on the real midterm. Be sure to read them before taking the real exam. There will also be an academic integrity statement for you to complete. Replace the ____________ with your name below on the real deal.\n\n\n\n\n\n\nNote\n\n\n\nThis is the midterm from when the course was offered in fa21. Linear regression was not covered prior to the midterm the last time this course was offered. There will be a question or two on linear regression and the interpretation of linear models on this year’s midterm."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21.html#logistics",
+    "href": "content/exams/practice-exam-fa21.html#logistics",
+    "title": "COGS 137 - Practice Midterm (Fa21)",
+    "section": "Logistics",
+    "text": "Logistics\nAnswer the questions in the document called practice-exam-fa21.Rmd. Add your code and narrative in the spaces below each question. Add code chunks as needed. Use as many lines as you need, but keep your narrative concise. Be sure to knit your file to HTML and view the file prior to turning it in."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21.html#packages",
+    "href": "content/exams/practice-exam-fa21.html#packages",
+    "title": "COGS 137 - Practice Midterm (Fa21)",
+    "section": "Packages",
+    "text": "Packages\nYou will need the tidyverse package for this (practice) midterm. (For the real deal, you’ll need tidyverse and tidymodels.) If working on datahub, this package has been installed, but you will need to load it. No other packages are required, but if for some reason you want to load in another package, you are permitted to do so."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21.html#the-data",
+    "href": "content/exams/practice-exam-fa21.html#the-data",
+    "title": "COGS 137 - Practice Midterm (Fa21)",
+    "section": "The data",
+    "text": "The data\nThe dataset you’ll be working with on this practice midterm is all about beach volleyball. The full dataset is explained in detail here and includes match-level data from 76,756 volleyball matches. You should click on that link to see what information is stored in each column in this dataset and what information is included in each column.\nBriefly, what you’ll use for this midterm is a subset of the full dataset, including only the 11,699 observations (rows) from 2018 and 2019 but all of the original columns. Each row summarizes the results from a single, distinct match played in a volleyball tournament.\nTo briefly describe beach volleyball, it is a sport played 2 on 2, so each match involves only 4 players. These data include matches from two different volleyball circuits, the international FIVB and the US-centric AVP. You will not need to know much at all about this sport to complete this midterm, and anything you need to know will be explained.\nThe data are stored in data/vb_matches.csv. You’ll need to read the dataset in prior to answering any questions on the midterm."
+  },
+  {
+    "objectID": "content/exams/practice-exam-fa21.html#questions",
+    "href": "content/exams/practice-exam-fa21.html#questions",
+    "title": "COGS 137 - Practice Midterm (Fa21)",
+    "section": "Questions",
+    "text": "Questions\nQuestion 1 (0.75 points) - How many FIVB and AVP matches are included in this dataset?\nQuestion 2 (0.75 points) - Find the match with the longest duration.\na.  Where was this tournament played (City & Country)?\nb.  How long did the match last?\nc.  Who were the two winners? </br>\nQuestion 3 (1.5 points) - Across all tournaments included in this dataset, which teams have won the most tournaments? Your response should include both the winning players, their gender, and the number of tournaments they’ve won in descending order. Who has the most wins? How many men’s and how many women’s teams are in the top 10? Note: “winning a tournament” is indicated by winning either a “Gold Medal” (FIVB) or “Finals” (AVP) match, specified in the bracket column.\nQuestion 4 (1.5 points) - Of only the AVP tournaments included in this dataset, how many different cities hosted tournaments in 2018 and 2019? And, which cities (if any) hosted a tournament in both 2018 and 2019? Note that tournaments are named for the city hosting the tournament.\nQuestion 5 (2.5 points) - Prof Ellis plays a lot of women’s beach volleyball and is only 5’5” (65 inches). Despite not having the sheer talent or raw athletic ability to make it as a professional volleyball player, she wonders if she ever had a chance at her height. (Reminder: there are 4 players in each match whose height should be considered.) To help her out, answer each of the following:\na.  Who was the shortest women's player to compete in a tournament in 2018/2019?\nb.  How tall are they?\nc.  Did they *win* a tournament in 2018 or 2019? </br>\nQuestion 6 (3 points) - Which country has hosted the most FIVB tournaments? Did this differ by year? Generate a visualization that shows how many FIVB tournaments each country hosted. Allow viewer to visualize this by year. And, be sure each tournament is only counted once (regardless of how many games were played).\nQuestion 7 (3 points) - Recreate the plot included below using the data you’ve been working with. Once you have created the visualization, in no more than one paragraph, describe what you think the point of this visualization might be. (Hint: The visualization uses the variable avg_team_height, which is not included in the provided data frame. You will have to create avg_team_height yourself, by determining the average (mean) team height for each winning team.)\n\n\n\n\n\n\n\nNote\n\n\n\nQ7 had a typo when this course was offered previously leading to students spending wayyyyy longer than intended on this exam. That typo has been fixed for this practice midterm.\n\n\nQuestion 8 (1 pts) - If you were in charge of designing the plot you just recreated in the plot above, what changes would you make to improve its effectiveness as a visualization? (You do not have to write any code for this question, just explain the different design/viz choices you would make.)"
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html",
+    "href": "content/exams/practice-exam-wi23-ans.html",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "",
+    "text": "Your solutions must be written up in the R Markdown (Rmd) file called midterm-01.Rmd. This file must include your code and write up (written explanation) for each task.\nBe sure to knit your file to HTML prior to submission and include both the .Rmd and .html files on GitHub. Your “submission” will be whatever is in your exam repository at the deadline.\nIf you cannot figure out the code for a question and this is causing you to not be able to knit your file, set the code chunk to eval = FALSE (but leave your code there - chance for partial credit!) and then knit.\nThis exam is open book, open internet, closed other people. You may use any online or book-based resource you would like, but you must include citations for any code that you use. You may not consult with anyone else about this exam, including any other humans on the internet or one another.\nYou have until 11:59pm on Monday, Feb 13th to complete this exam and turn it in via your personal Github repo - late work will not be accepted. Technical difficulties are not an excuse for late work - do not wait until the last minute to knit / commit / push.\nThere will be no Campuswire posts about questions on the exam. If you are unsure of something, include a note in your exam. We’ll consider this in grading. However, if you think there is a mistake in the exam or are having technical issues, please DM or email Prof Ellis as soon as possible.\nEach question requires a (brief) narrative as well as a (brief) description of your approach. You can use comments in your code, but do not extensively count on these. I should be able to suppress all the code in your document and still be able to read and make sense of your answers to the questions.\nEven if the answer seems obvious from the R output, make sure to state it in your narrative as well. For example, if the question is asking what is 2 + 2, and you have the following in your document, you should additionally have a sentence that states “2 + 2 is 4.” You just want us to be clear that you know the answer to the question.\n\n2 + 2\n# 4"
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html#academic-integrity-statement",
+    "href": "content/exams/practice-exam-wi23-ans.html#academic-integrity-statement",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "Academic Integrity Statement",
+    "text": "Academic Integrity Statement\nI, ____________, hereby state that I have not communicated with or gained information in any way from my classmates or anyone during this exam, and that all work is my own.\nA note on sharing / reusing code: I am well aware that a huge volume of code is available on the web to solve any number of problems. For this exam you are allowed to make use of any online resources (e.g. StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). You are also not allowed to ask a question on an external forum, you can only use answers to questions that have already been answered. Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. All communication with classmates is explicitly forbidden."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html#grading-and-feedback",
+    "href": "content/exams/practice-exam-wi23-ans.html#grading-and-feedback",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "Grading and feedback",
+    "text": "Grading and feedback\nThis exam is worth 14% of your grade. You will be graded on the correctness of your code, correctness of your answers, the clarity of your explanations, and the overall organization of your document. (There’s no one “right” organization but the template gets you started on a well-organized exam. We should be able to easily navigate your midterm to find what we’re looking for.) Organization + Clarity in written communication - 1pt"
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html#logistics",
+    "href": "content/exams/practice-exam-wi23-ans.html#logistics",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "Logistics",
+    "text": "Logistics\nAnswer the questions in the document called midterm-01.Rmd. Add your code and narrative in the spaces below each question. Add code chunks as needed. Use as many lines as you need, but keep your narrative concise. Be sure to knit your file to HTML and view the file prior to turning it in."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html#packages",
+    "href": "content/exams/practice-exam-wi23-ans.html#packages",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "Packages",
+    "text": "Packages\nYou will need the tidyverse and tidymodels packages for this midterm. If working on datahub, these package has been installed, but you will need to load them. You are allowed, but not required, to use additional packages.\n\nlibrary(tidyverse)\nlibrary(tidymodels)"
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html#the-data",
+    "href": "content/exams/practice-exam-wi23-ans.html#the-data",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "The data",
+    "text": "The data\nThe data we’ll be using come from The Axios and Harris Poll and have been provided by the TidyTuesday team.\nThe data are stored in two different files in the data/ folder: poll.csv and reputation.csv. You’ll want to read each table in and understand what each variable represents prior to completing the exam.\nEach variable and the data overall are described in detail here. You should click on that link to see what information is stored in each column in the datasets. But briefly, these two files include data about the 100 “most visible” brands in America. Specifically, reputation.csv includes information from the 2022 poll about these 100 stores across different reputation categories. poll.csv includes information about the same 100 stores but includes information about their rankings across multiple years.\n\npoll <- read_csv(\"data/poll.csv\")\nreputation <- read_csv(\"data/reputation.csv\")"
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23-ans.html#questions",
+    "href": "content/exams/practice-exam-wi23-ans.html#questions",
+    "title": "COGS 137 - Winter 2023 - Midterm (Answer Key)",
+    "section": "Questions",
+    "text": "Questions\n\nQuestion 1 (0.5 points)\nHow many different industries (industry variable) are represented in these data?\n\n# either df can be used here\npoll |> \n  distinct(industry) # |>\n\n# A tibble: 19 × 1\n   industry          \n   <chr>             \n 1 Retail            \n 2 Food & Beverage   \n 3 Groceries         \n 4 Tech              \n 5 Ecommerce         \n 6 Automotive        \n 7 Healthcare        \n 8 Other             \n 9 Logistics         \n10 Financial Services\n11 Industrial        \n12 Consumer Goods    \n13 Pharma            \n14 Telecom           \n15 Insurance         \n16 Media             \n17 Energy            \n18 Airline           \n19 Food Delivery     \n\n  # count() # can optionally include count()\n\n# OR \nn_distinct(poll$industry)\n\n[1] 19\n\n\nThere are 19 different industries represented.\n\n\n\n\n\n\nGrader Note\n\n\n\nStudents largely did well here.\n\n\n\n\nQuestion 2 (0.5 points)\n\nWhich company had the lowest overall ranking in 2022?\nAnd for which category (from the name variable) did this organization score lowest?\n\n\nreputation |>\n  filter(rank == max(rank)) |> # could also hard code rank == 100 as you know 100 companies included in dataset\n  arrange(score)\n\n# A tibble: 7 × 5\n  company                industry name        score  rank\n  <chr>                  <chr>    <chr>       <dbl> <dbl>\n1 The Trump Organization Other    ETHICS       51.2   100\n2 The Trump Organization Other    TRUST        52.9   100\n3 The Trump Organization Other    CULTURE      53.0   100\n4 The Trump Organization Other    CITIZENSHIP  53.6   100\n5 The Trump Organization Other    GROWTH       55.1   100\n6 The Trump Organization Other    P&S          55.7   100\n7 The Trump Organization Other    VISION       59.4   100\n\n# ChatGPT used a really circuitous approach using baseR indexing/filtering that would not work for this dataset\n\n\nThe Trump Organization\nEthics\n\n\n\n\n\n\n\nGrader Note\n\n\n\nStudents largely did well here. Most common error was miscalculating the score within category, due to misunderstanding the structure of the data.\n\n\n\n\nQuestion 3 (1 point)\nWhich company in the reputation.csv dataset has the “best” average (mean) rank across all seven categories?\n\nreputation |> \n  group_by(company) |> \n  summarize(avg_rank = mean(rank)) |> \n  arrange(avg_rank)\n\n# A tibble: 100 × 2\n   company                  avg_rank\n   <chr>                       <dbl>\n 1 Trader Joe's                 4.86\n 2 The Hershey Company          5   \n 3 Patagonia                    6.71\n 4 HEB Grocery                  7   \n 5 Samsung                      8.86\n 6 Wegmans                     10.4 \n 7 Amazon.com                  12.1 \n 8 Toyota Motor Corporation    12.4 \n 9 Honda Motor Company         13.1 \n10 Microsoft                   13.1 \n# ℹ 90 more rows\n\n\nTrader Joe’s has the highest average ranking.\n\n\n\n\n\n\nGrader Note\n\n\n\nStudents largely did well here. Most common error was misreading the question.\n\n\n\n\nQuestion 4 (1 point)\nWhich company had the biggest increase in rank from 2021 to 2022?\n\npoll |> \n  filter(year==2021) |> \n  arrange(desc(change))\n\n# A tibble: 100 × 8\n   company               industry `2022_rank` `2022_rq` change  year  rank    rq\n   <chr>                 <chr>          <dbl>     <dbl>  <dbl> <dbl> <dbl> <dbl>\n 1 The Home Depot        Retail            16      78.9     29  2021    45  75.4\n 2 Google                Tech              31      77.8     29  2021    60  73.3\n 3 IBM                   Tech              11      79.5     28  2021    39  76.3\n 4 Samsung               Tech               6      80.5     25  2021    31  77.5\n 5 Sony                  Tech              10      79.6     24  2021    34  77.3\n 6 Starbucks Corporation Food & …          43      76.6     22  2021    65  72.3\n 7 Microsoft             Tech              15      79       21  2021    36  76.8\n 8 Adidas                Retail            29      77.9     20  2021    49  75.1\n 9 General Motors        Automot…          51      75.4     17  2021    68  72  \n10 Yum! Brands           Food & …          53      75.3     17  2021    70  71.5\n# ℹ 90 more rows\n\n# if \"change\" column not noticed \npoll |> \n  filter(year==2021) |> \n  mutate(rank_diff = rank - `2022_rank`) |> \n  arrange(desc(rank_diff))\n\n# A tibble: 100 × 9\n   company     industry `2022_rank` `2022_rq` change  year  rank    rq rank_diff\n   <chr>       <chr>          <dbl>     <dbl>  <dbl> <dbl> <dbl> <dbl>     <dbl>\n 1 The Home D… Retail            16      78.9     29  2021    45  75.4        29\n 2 Google      Tech              31      77.8     29  2021    60  73.3        29\n 3 IBM         Tech              11      79.5     28  2021    39  76.3        28\n 4 Samsung     Tech               6      80.5     25  2021    31  77.5        25\n 5 Sony        Tech              10      79.6     24  2021    34  77.3        24\n 6 Starbucks … Food & …          43      76.6     22  2021    65  72.3        22\n 7 Microsoft   Tech              15      79       21  2021    36  76.8        21\n 8 Adidas      Retail            29      77.9     20  2021    49  75.1        20\n 9 General Mo… Automot…          51      75.4     17  2021    68  72          17\n10 Yum! Brands Food & …          53      75.3     17  2021    70  71.5        17\n# ℹ 90 more rows\n\n# Chat GPT assumes you need a join/doesn't understand the structure of the data\n\nThe Home Depot and Google saw the biggest jump, each increasing by 29 places.\n\n\n\n\n\n\nGrader Note\n\n\n\nBecause of the wording of the question, suggesting that there was only one company, credit was granted if students said either Home Depot or Google (or both).\n\n\n\n\nQuestion 5 (1.5 points)\nFor the industry with only a single “most visible” company in the dataset, has their RQ score been increasing or decreasing overall since 2017?\n\n# find the industry programmatically (or do a group by and figure out that it's insurance)\nindus <- poll |> \n  group_by(industry) |> \n  count() |> \n  arrange(n) |> \n  ungroup() |> \n  slice(1) |> \n  pull(industry)\n\n# or\n\nindus <- poll |>\n  distinct(company, industry) |>\n  group_by(industry) |>\n  summarise(count = n()) |>\n  filter(count == \"1\") |>\n  pull(industry)\n\n# look at this output\npoll |> \n  filter(industry == indus)\n\n# A tibble: 5 × 8\n  company                industry `2022_rank` `2022_rq` change  year  rank    rq\n  <chr>                  <chr>          <dbl>     <dbl>  <dbl> <dbl> <dbl> <dbl>\n1 Progressive Corporati… Insuran…          57      74.4     NA  2017    NA  72.7\n2 Progressive Corporati… Insuran…          57      74.4     NA  2018    NA  73.2\n3 Progressive Corporati… Insuran…          57      74.4     NA  2019    NA  71.5\n4 Progressive Corporati… Insuran…          57      74.4     NA  2020    NA  74  \n5 Progressive Corporati… Insuran…          57      74.4     NA  2021    NA  NA  \n\n# could also plot to determine but would take more work b/c data are across multiple columns - not tidy!\n\nWhile initially there was some variability, Progressive’s RQ has been increasing overall (74.4 in 2022, lower than that years prior).\n\n\n\n\n\n\nGrader Note\n\n\n\nAvoid hard-coding whenever possible. Porgrammatically determining the industry takes more work here, but avoids possible typos. Credit was granted if hard-coded. Most common error here was likely misreading the question.\n\n\n\n\nQuestion 6 (2 points)\nHow many companies from each industry category are represented in the 2022 ‘100 Most Visible’ companies in America data? Generate a visualization to display the answer to this question. Be sure to follow best visualization practices discussed in class.\n\n# note - should only display 100 companies total\npoll |> distinct(company, .keep_all=TRUE) |>\nggplot(aes(y=fct_rev(fct_infreq(industry)))) +\n  geom_bar() + \n  labs(title = \"Retail Companies Most Common Among 100 'Most Visible' in 2022\",\n       subtitle = \"Industries for the 100 Companies Included in the Axios and Harris Poll\") +\n  scale_x_continuous(expand = c(0, 0)) +\n  theme_classic() +\n  theme(plot.title.position = \"plot\",\n        axis.title = element_blank())\n\n\n\n# ChatGPT does data manipulation first and then plots from there; does include some \"best practices\" for data viz...but their operations are not correct\n\n\n\n\n\n\n\nGrader Note\n\n\n\nPlot should only display 100 companies. Barplot great here. Remember that categorical variables should be ordered meaningfully. Credit was lost if they were not, unless you directly labeled the values. Titles and axis labels are required. Because feedback for hw02 had not yet been returned, points were not deducted if your title was not as informative as it could have been. Most common errors: 1) not considering how to best display the plot so that labels were most readable (for most, this involved putting them on the y-axis); 2) not ordering axis with categorical data; 3) including more than 100 companies.\n\n\n\n\nQuestion 7 (2 points)\nOf industries that have at least 5 companies in the dataset, which industry has the highest median 2022 rank? Generate a visualization that allows you to answer this question. Be sure to follow best practices.\n\nindustries <- poll |> \n  distinct(company, .keep_all=TRUE) |>\n  group_by(industry) |>\n  count() |> \n  filter(n>5) |>\n  pull(industry)\n\npoll |> \n  filter(industry %in% industries) |>\n  ggplot(aes(x=fct_reorder(industry, `2022_rank`), y=`2022_rank`)) +\n  geom_boxplot() +\n  labs(title = \"Automotive Industry Has the Highest Median Rank in 2022\",\n       subtitle = \"...among industries with at least 5 companies on the 'most visible' list\",\n       x = \"Industries\") +\n  theme_classic(base_size = 12) +\n  theme(plot.title.position = \"plot\",\n        axis.title.y = element_blank())\n\n\n\n# a bit more convoluted answer on Chat GPT\n\n\n\n\n\n\n\nGrader Note\n\n\n\nFull credit was granted whether a boxplot or a barplot was used; however, a boxplot displays more information overall. Remember that categorical variables should be ordered meaningfully. Credit was lost if they were not, unless you directly labeled the values. Titles and axis labels are required. Because feedback for hw02 had not yet been returned, points were not deducted if your title was not as informative as it could have been. Most common errors: 1) not filtering w/ correct logic and 2) not ordering axis with categorical information\n\n\n\n\nQuestion 8 (2 points)\nYour boss is curious about how much rankings change from one year to the next. To answer this question, they ask you to determine how well 2021 rankings explain the following year’s 2022 rankings. Generate a linear model to answer this question. Be sure to include your interpretation of the model (in other words your answer to the question “how well do 2021 rankings explain 2022’s rankings?”)\n\ndf <- poll %>% filter(year == 2021)\n\nmod <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(`2022_rank` ~ rank, data = df)\n\nmod |> tidy()\n\n# A tibble: 2 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)    6.63     3.37        1.97 5.27e- 2\n2 rank           0.864    0.0573     15.1  6.08e-25\n\n\n\nmod |>\n  glance()\n\n# A tibble: 1 × 12\n  r.squared adj.r.squared sigma statistic  p.value    df logLik   AIC   BIC\n      <dbl>         <dbl> <dbl>     <dbl>    <dbl> <dbl>  <dbl> <dbl> <dbl>\n1     0.742         0.739  14.8      227. 6.08e-25     1  -332.  671.  678.\n# ℹ 3 more variables: deviance <dbl>, df.residual <int>, nobs <int>\n\n# Chat GPT gets the estimate incorrect (0.8 instead of 0.86) and Rsquared states 60% rather than 74%\n\nWe can see here that the 2021 data explain 74% of the variance in the 2022 data, making it a pretty good model for explaining 2022 rankings. Further, by looking at the coefficient, a company who was ranked in both 2021 and 2022 could expect their rank to increase, on average, by 0.86 in 2022.\n\n\n\n\n\n\nGrader Note\n\n\n\nModel had to be interpreted accurately for full credit and answer the question posed. Most common errors were: 1) flipping the predictor and outcome; 2) not answering the question posed\n\n\n\n\nQuestion 9 (2.5 points)\nRecreate the plot included below using the data you’ve been working with. Once you have created the visualization, in no more than one paragraph, describe what you think the point of this visualization might be.\n\n\nggplot(df, aes(x=rank, y=`2022_rank`)) + \n  geom_point() +\n  geom_smooth(method = \"lm\", col=\"orange\") + \n  theme_classic(base_size = 14) + \n  labs(title = \"2021 Rank Explains 74% of the variance in 2022 rank\",\n       subtitle = \"On average, companies saw their rank increase almost one spot higher in 2022\",\n       x = \"2021 rank\",\n       y = \"2022 rank\") +\n  theme(plot.title.position = \"plot\")\n\n\n\n\n\n\n\n\n\n\nGrader Note\n\n\n\nOn the answer key I have fixed the % variance explained; this original 78% was not meant to trick. It was a mistake by prof. As such, I have graded this question leniently. Most common point deductions here were for: 1) not matching theme; 2) not changing line color; 3) not left-aligning title. No points were lost for not increasing text size as that’s hard to visually see."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23.html",
+    "href": "content/exams/practice-exam-wi23.html",
+    "title": "COGS 137 - Practice Midterm (Wi23)",
+    "section": "",
+    "text": "There will be rules spelled out on the real midterm. Be sure to read them before taking the exam. There will also be an academic integrity statement for you to complete. Replace the `____________` with your name on the real deal.\n\n\n\n\n\n\nNote\n\n\n\nThis is the midterm from when the course was offered in wi23."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23.html#logistics",
+    "href": "content/exams/practice-exam-wi23.html#logistics",
+    "title": "COGS 137 - Practice Midterm (Wi23)",
+    "section": "Logistics",
+    "text": "Logistics\nAnswer the questions in the document called practice-exam-wi23.Rmd. Add your code and narrative in the spaces below each question. Add code chunks as needed. Use as many lines as you need, but keep your narrative concise. Be sure to knit your file to HTML and view the file prior to turning it in."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23.html#packages",
+    "href": "content/exams/practice-exam-wi23.html#packages",
+    "title": "COGS 137 - Practice Midterm (Wi23)",
+    "section": "Packages",
+    "text": "Packages\nYou will need the tidyverse and tidymodels packages for this midterm. If working on datahub, these packages have been installed, but you will need to load them. You are allowed, but not required, to use additional packages."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23.html#the-data",
+    "href": "content/exams/practice-exam-wi23.html#the-data",
+    "title": "COGS 137 - Practice Midterm (Wi23)",
+    "section": "The data",
+    "text": "The data\nThe data we’ll be using come from The Axios and Harris Poll and have been provided by the TidyTuesday team.\nThe data are stored in two different files in the data/ folder: poll.csv and reputation.csv. You’ll want to read each table in and understand what each variable represents prior to completing the exam.\nEach variable and the data overall are described in detail here. You should click on that link to see what information is stored in each column in the datasets. But briefly, these two files include data about the 100 “most visible” brands in America. Specifically, reputation.csv includes information from the 2022 poll about these 100 stores across different reputation categories. poll.csv includes information about the same 100 stores but includes information about their rankings across multiple years."
+  },
+  {
+    "objectID": "content/exams/practice-exam-wi23.html#questions",
+    "href": "content/exams/practice-exam-wi23.html#questions",
+    "title": "COGS 137 - Practice Midterm (Wi23)",
+    "section": "Questions",
+    "text": "Questions\n\nQuestion 1 (0.5 points)\nHow many different industries (industry variable) are represented in these data?\n\n\nQuestion 2 (0.5 points)\n\nWhich company had the lowest overall ranking in 2022?\nAnd for which category (from the name variable) did this organization score lowest?\n\n\n\nQuestion 3 (1 point)\nWhich company in the reputation.csv dataset has the “best” average (mean) rank across all seven categories?\n\n\nQuestion 4 (1 point)\nWhich company had the biggest increase in rank from 2021 to 2022?\n\n\nQuestion 5 (1.5 points)\nFor the industry with only a single “most visible” company in the dataset, has their RQ score been increasing or decreasing overall since 2017?\n\n\nQuestion 6 (2 points)\nHow many companies from each industry category are represented in the 2022 ‘100 Most Visible’ companies in America data? Generate a visualization to display the answer to this question. Be sure to follow best visualization practices discussed in class.\n\n\nQuestion 7 (2 points)\nOf industries that have at least 5 companies in the dataset, which industry has the highest median 2022 rank? Generate a visualization that allows you to answer this question. Be sure to follow best practices.\n\n\nQuestion 8 (2 points)\nYour boss is curious about how much rankings change from one year to the next. To answer this question, they ask you to determine how well 2021 rankings explain the following year’s 2022 rankings. Generate a linear model to answer this question. Be sure to include your interpretation of the model (in other words your answer to the question “how well do 2021 rankings explain 2022’s rankings?”)\n\n\nQuestion 9 (2.5 points)\nRecreate the plot included below using the data you’ve been working with. Once you have created the visualization, in no more than one paragraph, describe what you think the point of this visualization might be."
   },
   {
     "objectID": "content/lectures/03-tidyr-slides.html#ad-data-science-student-society",
@@ -635,6 +845,398 @@
     "title": "03-tidyr",
     "section": "",
     "text": "Join DS3 at their Fall General Body Meeting to learn more about the events they’re offering this quarter, open board positions for the year, and free food! It will be happening on Wednesday (10/11) from 6-8pm, at PC Ballroom West\n\n\n\n\n\nQ: Is it possible to integrate to github using other systems than datahub? Datahub has already been spotty for me in this course and is notorious for slumping at critical pts in the quarter.\nA: Yup. The same steps can be carried out by downloading RStudio onto your computer and connecting it with GitHub.\n\n\nQ: Should we write in the console or in the rmd file first when writing code?\nA: Great question! I’d suggest starting in the Rmd file and editing there. That way you don’t have to copy+paste once you get it right. It’s already there.\n\n\nQ: How do you take notes for coding classes? I know there are lecture notes available, but how would you recommend taking notes for this class?\nA: I would recommend opening a blank Rmd each day for class and saving it with the lecture number. I’d keep notes and things I tried in that file. But, I wouldn’t copy+paste everything, since the other lecture notes are available.\n\n\n\n\nDue Dates:\n\nLab 02 due Friday\nHW01 now available; due Monday (10/16; 11:59 PM)\nLecture Participation survey open until Thursday\n\n\nNotes:\n\nLab01 scores and feedback posted\nDatahub: Launch RStudio (possible solution?)\nStaff office hours updated (see Canvas or website)\n\n\n\n\n\n\nI have been struggling to grasp the material in the course. It feels like we are diving into the content in the labs, but I don’t even feel like I truly understand what I’m doing. It often seems like I’m just copying and pasting code from the website without a clear understanding of the bigger picture. I’m particularly stuck because I feel like I don’t have a solid grasp of the fundamental concepts of coding in R; it feels so new. I understand that the pace of the course may be challenging, but I think a bit more stronger focus on the foundational aspects of coding in R would greatly benefit students like me who are struggling with the content. I’m looking forward to the course and I hope I can grasp the content as we go through the next week. I’m concerned about learning the material and also how that may affect my grade.\n\n\nLet’s see how y’all feel in a week. The first week can be a lot in this course. Often, students feel a lot more comfortable come week 3.\n\n\n\n\n\n89% know Python; 15% know R; most (but not all!) have programmed before\n64% feel confident about effective data science communication\nReasons for taking course: learn R, add to resume, analyze data, improve data science skills\n\n\nMy favorite boring facts:\n\nI was actually born on my birthday\ni don’t like to eat eggs but my roommate loves them\nI like to have a midday nap.\nI can raise my eyebrows really well\nI eat peanut butter straight from the jar\ni have a jack russell terrier.. named jack (we weren’t feeling creative)\n\n\n\n\n\nR4DS:\n\nChapter 12: Tidy Data\nChapter 13: Relational Data\n\n\n\n\nThe opinionated tidyverse is named as such b/c it assumes/necessitates your data be “tidy”.\n\n\nTidy datasets are all alike, but every messy dataset is messy in its own way. —- Hadley Wickham\n\n\n\n\nEach variable must have its own column.\nEach observation must have its own row.\nEach value must have its own cell.\n\n\n\nSource: https://r4ds.had.co.nz/tidy-data.html\n\n\n\n\n❓ Given the rules discussed, is the cat_lovers dataset tidy?\n\ncat_lovers <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/cat-lovers.csv\")\n\nRows: 60 Columns: 3\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \",\"\nchr (3): name, number_of_cats, handedness\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\ncat_lovers |> datatable()\n\n\n\n\n\n\n\n❓ Given the rules discussed, is the bike dataset tidy?\n\nbike <- read_csv2(\"https://raw.githubusercontent.com/COGS137/datasets/main/nc_bike_crash.csv\", \n                  na = c(\"NA\", \"\", \".\"))\n\nℹ Using \"','\" as decimal and \"'.'\" as grouping mark. Use `read_delim()` for more control.\n\n\nRows: 5716 Columns: 54\n── Column specification ────────────────────────────────────────────────────────\nDelimiter: \";\"\nchr  (44): AmbulanceR, BikeAge_Gr, Bike_Alc_D, Bike_Dir, Bike_Injur, Bike_Po...\ndbl   (8): FID, OBJECTID, Bike_Age, Crash_Hour, Crash_Ty_1, Crash_Year, Drvr...\ndttm  (1): Crash_Time\ndate  (1): Crash_Date\n\nℹ Use `spec()` to retrieve the full column specification for this data.\nℹ Specify the column types or set `show_col_types = FALSE` to quiet this message.\n\nbike |> datatable()\n\nWarning in instance$preRenderHook(instance): It seems your data is too big for\nclient-side DataTables. You may consider server-side processing:\nhttps://rstudio.github.io/DT/server.html\n\n\n\n\n\n\n\n\n\n\n\n❓ Which is a dataset? Which is a summary table?\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\n\nThere are four representations of the same data/information provided in the tidyr packages: table1, table2, table3, and the combination of table4a and table4b. Given what we’ve discussed, which is the best (tidiest) way to represent these data?\n\n\nPut a green sticky on the front of your computer when you’re done. Put a pink if you want help/have a question.\n\n\n\n\nOne variable might be spread across multiple columns.\nOne observation might be scattered across multiple rows.\n\n\nSolution: pivoting!\n\n\n\n\n\npivot_longerpivot_widerlong vs. wide\n\n\nFor when some of the column names are not names of variables, but values of a variable…\n\ntable4a\n\n# A tibble: 3 × 3\n  country     `1999` `2000`\n  <chr>        <dbl>  <dbl>\n1 Afghanistan    745   2666\n2 Brazil       37737  80488\n3 China       212258 213766\n\n\n\ntable4a |> \n  pivot_longer(c(`1999`, `2000`), names_to = \"year\", values_to = \"cases\")\n\n# A tibble: 6 × 3\n  country     year   cases\n  <chr>       <chr>  <dbl>\n1 Afghanistan 1999     745\n2 Afghanistan 2000    2666\n3 Brazil      1999   37737\n4 Brazil      2000   80488\n5 China       1999  212258\n6 China       2000  213766\n\n\n❓ Why are there backticks around the years? (Note: we have not discussed this yet)\n\n\nFor when an observation is scattered across multiple rows…\n\ntable2\n\n# A tibble: 12 × 4\n   country      year type            count\n   <chr>       <dbl> <chr>           <dbl>\n 1 Afghanistan  1999 cases             745\n 2 Afghanistan  1999 population   19987071\n 3 Afghanistan  2000 cases            2666\n 4 Afghanistan  2000 population   20595360\n 5 Brazil       1999 cases           37737\n 6 Brazil       1999 population  172006362\n 7 Brazil       2000 cases           80488\n 8 Brazil       2000 population  174504898\n 9 China        1999 cases          212258\n10 China        1999 population 1272915272\n11 China        2000 cases          213766\n12 China        2000 population 1280428583\n\n\n\ntable2 |>\n    pivot_wider(names_from = type, values_from = count)\n\n# A tibble: 6 × 4\n  country      year  cases population\n  <chr>       <dbl>  <dbl>      <dbl>\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\n\n❓ Why aren’t there quotes around column names here…but there were in pivot_longer? (Note: we have not discussed this yet.)\n\n\n\nwide data contains values that do not repeat in the first column.\nlong format contains values that do repeat in the first column.\n\nBoth are good/helpful! We’ll return to this idea and discuss more during dataviz next week.\nBriefly:\n\nwide data: analysis\nlong data: plotting\n\n\n\n\n\n\n\n\nseparateunite\n\n\nFor when multiple pieces of information are stored in a single column…\n\ntable3\n\n# A tibble: 6 × 3\n  country      year rate             \n  <chr>       <dbl> <chr>            \n1 Afghanistan  1999 745/19987071     \n2 Afghanistan  2000 2666/20595360    \n3 Brazil       1999 37737/172006362  \n4 Brazil       2000 80488/174504898  \n5 China        1999 212258/1272915272\n6 China        2000 213766/1280428583\n\n\n\ntable3 |> \n  separate(rate, into = c(\"cases\", \"population\"))\n\n# A tibble: 6 × 4\n  country      year cases  population\n  <chr>       <dbl> <chr>  <chr>     \n1 Afghanistan  1999 745    19987071  \n2 Afghanistan  2000 2666   20595360  \n3 Brazil       1999 37737  172006362 \n4 Brazil       2000 80488  174504898 \n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\n\n…but…but…cases and population should be numeric…\n\ntable3 |> \n  separate(rate, into = c(\"cases\", \"population\"), convert = TRUE)\n\n# A tibble: 6 × 4\n  country      year  cases population\n  <chr>       <dbl>  <int>      <int>\n1 Afghanistan  1999    745   19987071\n2 Afghanistan  2000   2666   20595360\n3 Brazil       1999  37737  172006362\n4 Brazil       2000  80488  174504898\n5 China        1999 212258 1272915272\n6 China        2000 213766 1280428583\n\n\n\n\nUnite is the opposite…it combines data stored across multiple columns.\nThe general syntax is:\n\ndf |>\n  unite(new_col, first_col, second_col)\n\n\n\n\n\n\n\nIf we look at table4a, it’s missing the population information. That’s stored in a separate table…table4b\n\ntable4b\n\n# A tibble: 3 × 3\n  country         `1999`     `2000`\n  <chr>            <dbl>      <dbl>\n1 Afghanistan   19987071   20595360\n2 Brazil       172006362  174504898\n3 China       1272915272 1280428583\n\n\n…which is also in the “wide” format\n\n…so we pivot both tables longer\n\ntidy4a <- table4a |> \n  pivot_longer(c(`1999`, `2000`), names_to = \"year\", values_to = \"cases\")\n\ntidy4b <- table4b |> \n  pivot_longer(c(`1999`, `2000`), names_to = \"year\", values_to = \"population\")\n\ntidy4b\n\n# A tibble: 6 × 3\n  country     year  population\n  <chr>       <chr>      <dbl>\n1 Afghanistan 1999    19987071\n2 Afghanistan 2000    20595360\n3 Brazil      1999   172006362\n4 Brazil      2000   174504898\n5 China       1999  1272915272\n6 China       2000  1280428583\n\n\n\n\n…but how do we get them into a single tidy dataset?\n\n\nA join!\n\nleft_join(tidy4a, tidy4b)\n\nJoining with `by = join_by(country, year)`\n\n\n# A tibble: 6 × 4\n  country     year   cases population\n  <chr>       <chr>  <dbl>      <dbl>\n1 Afghanistan 1999     745   19987071\n2 Afghanistan 2000    2666   20595360\n3 Brazil      1999   37737  172006362\n4 Brazil      2000   80488  174504898\n5 China       1999  212258 1272915272\n6 China       2000  213766 1280428583\n\n\n\n\nSource: R4DS\n\n\n\n\n\nlibrary(nycflights13)\n\n\nairlines : links airline to two letter code\nairports : ID’ed by FAA code\nplanes : ID’ed by tailnum\nairport : weather each hour; id’ed by two letter airport code\n\n\n\n\n\nImage Source: https://r4ds.had.co.nz/relational-data.html)\n\n\n\n\n\nflights connects to planes via a single variable, tailnum.\nflights connects to airlines through the carrier variable.\nflights connects to airports in two ways: via the origin and dest variables.\nflights connects to weather via origin (the location), and year, month, day and hour (the time).\n\n\n\n\n\nmutating joins - add new variables to a data frame from matching observations in another\n\nFor simplicity, we’ll work with only a handful of columns…\n\nflights |> \n  select(year:day, hour, tailnum, carrier) |> \n  left_join(airlines, by = \"carrier\")\n\n# A tibble: 336,776 × 7\n    year month   day  hour tailnum carrier name                    \n   <int> <int> <int> <dbl> <chr>   <chr>   <chr>                   \n 1  2013     1     1     5 N14228  UA      United Air Lines Inc.   \n 2  2013     1     1     5 N24211  UA      United Air Lines Inc.   \n 3  2013     1     1     5 N619AA  AA      American Airlines Inc.  \n 4  2013     1     1     5 N804JB  B6      JetBlue Airways         \n 5  2013     1     1     6 N668DN  DL      Delta Air Lines Inc.    \n 6  2013     1     1     5 N39463  UA      United Air Lines Inc.   \n 7  2013     1     1     6 N516JB  B6      JetBlue Airways         \n 8  2013     1     1     6 N829AS  EV      ExpressJet Airlines Inc.\n 9  2013     1     1     6 N593JB  B6      JetBlue Airways         \n10  2013     1     1     6 N3ALAA  AA      American Airlines Inc.  \n# ℹ 336,766 more rows\n\n\nThere is now a new column name…coming from the airlines data frame.\n\n\nleft_join:\n\nkeeps all rows in first df (here: flights)\nadds all matching information from second df (here: airlines); adds NAs for any observations not in airlines\n\n\n\nOther joins:\nright_join: keeps all observations in second df full_join: keeps all observations in either df\n\n\n\n\n\nImage Source: https://r4ds.had.co.nz/relational-data.html\n\n\n\n\ninner_join:\n\ntakes only rows in both dfs\n\n\n\n\nImage Source: https://r4ds.had.co.nz/relational-data.html"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#qa",
+    "href": "content/lectures/09-mlr-slides.html#qa",
+    "title": "10-mlr",
+    "section": "Q&A",
+    "text": "Q&A\nComing Soon"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#course-announcements",
+    "href": "content/lectures/09-mlr-slides.html#course-announcements",
+    "title": "10-mlr",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nComing soon"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#suggested-reading",
+    "href": "content/lectures/09-mlr-slides.html#suggested-reading",
+    "title": "10-mlr",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#agenda",
+    "href": "content/lectures/09-mlr-slides.html#agenda",
+    "title": "10-mlr",
+    "section": "Agenda",
+    "text": "Agenda\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#packages-data",
+    "href": "content/lectures/09-mlr-slides.html#packages-data",
+    "title": "10-mlr",
+    "section": "Packages & Data",
+    "text": "Packages & Data\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#multiple-predictors",
+    "href": "content/lectures/09-mlr-slides.html#multiple-predictors",
+    "title": "10-mlr",
+    "section": "Multiple predictors",
+    "text": "Multiple predictors\n\nResponse variable: log_price\nExplanatory variables: Width and height\n\n\n\nlin_mod <- linear_reg() |>\n  set_engine(\"lm\")\n\npp_fit <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data = pp)\ntidy(pp_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#linear-model-with-multiple-predictors",
+    "href": "content/lectures/09-mlr-slides.html#linear-model-with-multiple-predictors",
+    "title": "10-mlr",
+    "section": "Linear model with multiple predictors",
+    "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]\n\n❓ How do we interpret this model?"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#price-surface-area-and-living-artist",
+    "href": "content/lectures/09-mlr-slides.html#price-surface-area-and-living-artist",
+    "title": "10-mlr",
+    "section": "Price, surface area, and living artist",
+    "text": "Price, surface area, and living artist\n\nExplore the relationship between price of paintings and surface area, conditioned on whether or not the artist is still living\nFirst visualize and explore, then model\n\n\n\nBut first, prep the data:\n\n\npp <- pp |>\n  mutate(artistliving = case_when(artistliving == 0 ~ \"Deceased\", \n                                  TRUE ~ \"Living\"))\n\npp |>\n  count(artistliving)\n\n# A tibble: 2 × 2\n  artistliving     n\n  <chr>        <int>\n1 Deceased      2937\n2 Living         456"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#typical-surface-area",
+    "href": "content/lectures/09-mlr-slides.html#typical-surface-area",
+    "title": "10-mlr",
+    "section": "Typical surface area",
+    "text": "Typical surface area\n\nPlotCode\n\n\n\n\n\n\n\nTypical surface area appears to be less than 1000 square inches (~ 80cm x 80cm). There are very few paintings that have surface area above 5000 square inches.\n\n\n\nggplot(data = pp, aes(x = Surface, fill = artistliving)) +\n  geom_histogram(binwidth = 500) + \n  facet_grid(artistliving ~ .) +\n  scale_fill_manual(values = c(\"#E48957\", \"#071381\")) +\n  guides(fill = \"none\") +\n  labs(x = \"Surface area\", y = NULL) +\n  geom_vline(xintercept = 1000) +\n  geom_vline(xintercept = 5000, linetype = \"dashed\", color = \"gray\")"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#narrowing-the-scope",
+    "href": "content/lectures/09-mlr-slides.html#narrowing-the-scope",
+    "title": "10-mlr",
+    "section": "Narrowing the scope",
+    "text": "Narrowing the scope\n\nPlotCode\n\n\nFor simplicity let’s focus on the paintings with Surface < 5000:\n\n\n\n\n\n\n\n\npp_Surf_lt_5000 <- pp |>\n  filter(Surface < 5000)\n\nggplot(data = pp_Surf_lt_5000, \n       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +\n  geom_point(alpha = 0.5) +\n  labs(color = \"Artist\", shape = \"Artist\") +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#facet-to-get-a-better-look",
+    "href": "content/lectures/09-mlr-slides.html#facet-to-get-a-better-look",
+    "title": "10-mlr",
+    "section": "Facet to get a better look",
+    "text": "Facet to get a better look\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp_Surf_lt_5000, \n       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +\n  geom_point(alpha = 0.5) +\n  facet_wrap(~artistliving) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\")) +\n  labs(color = \"Artist\", shape = \"Artist\")"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#two-ways-to-model",
+    "href": "content/lectures/09-mlr-slides.html#two-ways-to-model",
+    "title": "10-mlr",
+    "section": "Two ways to model",
+    "text": "Two ways to model\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living.\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#interacting-explanatory-variables",
+    "href": "content/lectures/09-mlr-slides.html#interacting-explanatory-variables",
+    "title": "10-mlr",
+    "section": "Interacting explanatory variables",
+    "text": "Interacting explanatory variables\n\nIncluding an interaction effect in the model allows for different slopes, i.e. nonparallel lines.\nThis implies that the regression coefficient for an explanatory variable would change as another explanatory variable changes.\nThis can be accomplished by adding an interaction variable: the product of two explanatory variables."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#two-ways-to-model-1",
+    "href": "content/lectures/09-mlr-slides.html#two-ways-to-model-1",
+    "title": "10-mlr",
+    "section": "Two ways to model",
+    "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living\n\n\n\n\n\n\n\n\n\n\n❓ Which does your intuition/knowledge of the data suggest is more appropriate?\nPut a green sticky if you think main; pink if you think interaction."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#fit-model-with-main-effects",
+    "href": "content/lectures/09-mlr-slides.html#fit-model-with-main-effects",
+    "title": "10-mlr",
+    "section": "Fit model with main effects",
+    "text": "Fit model with main effects\n\nResponse variable: log_price\nExplanatory variables: Surface area and artistliving\n\n\npp_main_fit <- lin_mod |>\n  fit(log_price ~ Surface + artistliving, data = pp_Surf_lt_5000)\ntidy(pp_main_fit)\n\n# A tibble: 3 × 5\n  term               estimate std.error statistic  p.value\n  <chr>                 <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)        4.88     0.0424       115.   0       \n2 Surface            0.000265 0.0000415      6.39 1.85e-10\n3 artistlivingLiving 0.137    0.0970         1.41 1.57e- 1\n\n\n\n\\[\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times artistliving\\]"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#solving-the-model",
+    "href": "content/lectures/09-mlr-slides.html#solving-the-model",
+    "title": "10-mlr",
+    "section": "Solving the model",
+    "text": "Solving the model\n\nNon-living artist: Plug in 0 for artistliving\n\n\\(\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times 0\\)\n\\(= 4.88 + 0.000265 \\times surface\\)\n\n\nLiving artist: Plug in 1 for artistliving\n\n\\(\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times 1\\)\n\\(= 5.017 + 0.000265 \\times surface\\)"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#visualizing-main-effects",
+    "href": "content/lectures/09-mlr-slides.html#visualizing-main-effects",
+    "title": "10-mlr",
+    "section": "Visualizing main effects",
+    "text": "Visualizing main effects\n\n\n\nSame slope: Rate of change in price as the surface area increases does not vary between paintings by living and non-living artists.\nDifferent intercept: Paintings by living artists are consistently more expensive than paintings by non-living artists."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#interpreting-main-effects",
+    "href": "content/lectures/09-mlr-slides.html#interpreting-main-effects",
+    "title": "10-mlr",
+    "section": "Interpreting main effects",
+    "text": "Interpreting main effects\n\ntidy(pp_main_fit) |> \n  mutate(exp_estimate = exp(estimate)) |>\n  select(term, estimate, exp_estimate)\n\n# A tibble: 3 × 3\n  term               estimate exp_estimate\n  <chr>                 <dbl>        <dbl>\n1 (Intercept)        4.88           132.  \n2 Surface            0.000265         1.00\n3 artistlivingLiving 0.137            1.15\n\n\n\n\nAll else held constant, for each additional square inch in painting’s surface area, the price of the painting is predicted, on average, to be higher by a factor of 1.\nAll else held constant, paintings by a living artist are predicted, on average, to be higher by a factor of 1.15 compared to paintings by an artist who is no longer alive.\nPaintings that are by an artist who is not alive and that have a surface area of 0 square inches are predicted, on average, to be 132 livres."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#main-vs.-interaction-effects",
+    "href": "content/lectures/09-mlr-slides.html#main-vs.-interaction-effects",
+    "title": "10-mlr",
+    "section": "Main vs. interaction effects",
+    "text": "Main vs. interaction effects\n\nThe way we specified our main effects model only lets artistliving affect the intercept.\nModel implicitly assumes that paintings with living and deceased artists have the same slope and only allows for different intercepts.\n\n\n❓ What seems more appropriate in this case?\n\nSame slope and same intercept for both colors\nSame slope and different intercept for both colors\nDifferent slope and different intercept for both colors"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#interaction-surface-artistliving",
+    "href": "content/lectures/09-mlr-slides.html#interaction-surface-artistliving",
+    "title": "10-mlr",
+    "section": "Interaction: Surface * artistliving",
+    "text": "Interaction: Surface * artistliving"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#fit-model-with-interaction-effects",
+    "href": "content/lectures/09-mlr-slides.html#fit-model-with-interaction-effects",
+    "title": "10-mlr",
+    "section": "Fit model with interaction effects",
+    "text": "Fit model with interaction effects\n\nResponse variable: log_price\nExplanatory variables: Surface area, artistliving, and their interaction\n\n\npp_int_fit <- lin_mod |>\n  fit(log_price ~ Surface * artistliving, data = pp_Surf_lt_5000)\ntidy(pp_int_fit)\n\n# A tibble: 4 × 5\n  term                        estimate std.error statistic    p.value\n  <chr>                          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)                 4.91     0.0432       114.   0         \n2 Surface                     0.000206 0.0000442      4.65 0.00000337\n3 artistlivingLiving         -0.126    0.119         -1.06 0.289     \n4 Surface:artistlivingLiving  0.000479 0.000126       3.81 0.000139"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#linear-model-with-interaction-effects",
+    "href": "content/lectures/09-mlr-slides.html#linear-model-with-interaction-effects",
+    "title": "10-mlr",
+    "section": "Linear model with interaction effects",
+    "text": "Linear model with interaction effects\n\n\n# A tibble: 4 × 5\n  term                        estimate std.error statistic    p.value\n  <chr>                          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)                 4.91     0.0432       114.   0         \n2 Surface                     0.000206 0.0000442      4.65 0.00000337\n3 artistlivingLiving         -0.126    0.119         -1.06 0.289     \n4 Surface:artistlivingLiving  0.000479 0.000126       3.81 0.000139  \n\n\n\\[\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface - 0.126 \\times artistliving\\] \\[+ ~ 0.00048 \\times surface * artistliving\\]"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#interpretation-of-interaction-effects",
+    "href": "content/lectures/09-mlr-slides.html#interpretation-of-interaction-effects",
+    "title": "10-mlr",
+    "section": "Interpretation of interaction effects",
+    "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#r-squared",
+    "href": "content/lectures/09-mlr-slides.html#r-squared",
+    "title": "10-mlr",
+    "section": "R-squared",
+    "text": "R-squared\n\n\\(R^2\\) is the percentage of variability in the response variable explained by the regression model.\n\n\nglance(pp_main_fit)$r.squared\n\n[1] 0.01320884\n\nglance(pp_int_fit)$r.squared\n\n[1] 0.0176922\n\n\n\n\nClearly the model with interactions has a higher \\(R^2\\).\n\n\n\n\nHowever using \\(R^2\\) for model selection in models with multiple explanatory variables is not a good idea as \\(R^2\\) increases when any variable is added to the model."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#adjusted-r-squared",
+    "href": "content/lectures/09-mlr-slides.html#adjusted-r-squared",
+    "title": "10-mlr",
+    "section": "Adjusted R-squared",
+    "text": "Adjusted R-squared\nIt appears that adding the interaction actually increased adjusted \\(R^2\\), so we should indeed use the model with the interactions.\n\nglance(pp_main_fit)$adj.r.squared\n\n[1] 0.01258977\n\nglance(pp_int_fit)$adj.r.squared\n\n[1] 0.01676753"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#third-order-interactions",
+    "href": "content/lectures/09-mlr-slides.html#third-order-interactions",
+    "title": "10-mlr",
+    "section": "Third order interactions",
+    "text": "Third order interactions\n\nCan you? Yes\nShould you? Probably not if you want to interpret these interactions in context of the data."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#in-pursuit-of-occams-razor",
+    "href": "content/lectures/09-mlr-slides.html#in-pursuit-of-occams-razor",
+    "title": "10-mlr",
+    "section": "In pursuit of Occam’s razor",
+    "text": "In pursuit of Occam’s razor\n\n\nOccam’s Razor states that among competing hypotheses that predict equally well, the one with the fewest assumptions should be selected.\nModel selection follows this principle.\nWe only want to add another variable to the model if the addition of that variable brings something valuable in terms of predictive power to the model.\nIn other words, we prefer the simplest best model, i.e. parsimonious model."
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#backward-selection",
+    "href": "content/lectures/09-mlr-slides.html#backward-selection",
+    "title": "10-mlr",
+    "section": "Backward selection",
+    "text": "Backward selection\nFor this demo, we’ll ignore interaction effects…and just model main effects to start:\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\n\n\\(R^2\\) (full): 0.0257014\n\n\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\n…Improved variance explained\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\\(R^2\\) (no artistliving or Surface): 0.0223\n\n\n\n…no longer gaining improvement, so we stick with: log_price ~ Width_in + Height_in + Surface"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#other-approach",
+    "href": "content/lectures/09-mlr-slides.html#other-approach",
+    "title": "10-mlr",
+    "section": "Other approach:",
+    "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp_Surf_lt_5000)\n\n\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0261      0.0251    3.8495    12603.7727    1.8315    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\n\n\nStep 2 (alternate): Compare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0260749939  0.0251349118\n2     15 4 Width_in Height_in Surface artistliving 0.0263412027  0.0250876993\n3      5 2                      Width_in Height_in 0.0256902566  0.0250634893\n4     12 3         Width_in Height_in artistliving 0.0259732581  0.0250330779\n5      6 2                        Width_in Surface 0.0249136264  0.0242863596\n6     13 3           Width_in Surface artistliving 0.0251787948  0.0242378477\n7      7 2                   Width_in artistliving 0.0212864021  0.0206568018\n8      1 1                                Width_in 0.0209415833  0.0206267736\n9      8 2                    Surface artistliving 0.0132088377  0.0125897717\n10     2 1                                 Surface 0.0125899681  0.0122803381\n11    14 3          Height_in Surface artistliving 0.0130836930  0.0121310711\n12     9 2                       Height_in Surface 0.0126782901  0.0120431523\n13    10 2                  Height_in artistliving 0.0062698155  0.0056305552\n14     3 1                               Height_in 0.0058797727  0.0055601199\n15     4 1                            artistliving 0.0005531617  0.0002397573\n   Mallow's Cp\n1     3.849487\n2     5.000000\n3     3.077206\n4     4.174132\n5     5.555476\n6     6.709309\n7    17.130153\n8    16.230489\n9    51.971190\n10   52.001268\n11   45.305459\n12   44.599123\n13   65.048926\n14   64.293574\n15   91.485605"
+  },
+  {
+    "objectID": "content/lectures/09-mlr-slides.html#recap",
+    "href": "content/lectures/09-mlr-slides.html#recap",
+    "title": "10-mlr",
+    "section": "Recap",
+    "text": "Recap\n\nCan you model and interpret linear models with multiple predictors?\nCan you explain the difference in a model with main effects vs. interaction effects?\nCan you compare different models and determine how to proceed?\nCan you carry out and explain backward selection?\n\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html",
+    "href": "content/lectures/09-mlr.html",
+    "title": "09-mlr",
+    "section": "",
+    "text": "Coming Soon\n\n\n\nComing soon\n\n\n\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors\n\n\n\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#multiple-predictors",
+    "href": "content/lectures/09-mlr.html#multiple-predictors",
+    "title": "09-mlr",
+    "section": "Multiple predictors",
+    "text": "Multiple predictors\n\nResponse variable: log_price\nExplanatory variables: Width and height\n\n\n\nlin_mod <- linear_reg() |>\n  set_engine(\"lm\")\n\npp_fit <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data = pp)\ntidy(pp_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#linear-model-with-multiple-predictors",
+    "href": "content/lectures/09-mlr.html#linear-model-with-multiple-predictors",
+    "title": "09-mlr",
+    "section": "Linear model with multiple predictors",
+    "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]\n\n❓ How do we interpret this model?"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#price-surface-area-and-living-artist",
+    "href": "content/lectures/09-mlr.html#price-surface-area-and-living-artist",
+    "title": "09-mlr",
+    "section": "Price, surface area, and living artist",
+    "text": "Price, surface area, and living artist\n\nExplore the relationship between price of paintings and surface area, conditioned on whether or not the artist is still living\nFirst visualize and explore, then model\n\n\n\nBut first, prep the data:\n\n\npp <- pp |>\n  mutate(artistliving = case_when(artistliving == 0 ~ \"Deceased\", \n                                  TRUE ~ \"Living\"))\n\npp |>\n  count(artistliving)\n\n# A tibble: 2 × 2\n  artistliving     n\n  <chr>        <int>\n1 Deceased      2937\n2 Living         456"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#typical-surface-area",
+    "href": "content/lectures/09-mlr.html#typical-surface-area",
+    "title": "09-mlr",
+    "section": "Typical surface area",
+    "text": "Typical surface area\n\nPlotCode\n\n\n\n\n\n\n\nTypical surface area appears to be less than 1000 square inches (~ 80cm x 80cm). There are very few paintings that have surface area above 5000 square inches.\n\n\n\nggplot(data = pp, aes(x = Surface, fill = artistliving)) +\n  geom_histogram(binwidth = 500) + \n  facet_grid(artistliving ~ .) +\n  scale_fill_manual(values = c(\"#E48957\", \"#071381\")) +\n  guides(fill = \"none\") +\n  labs(x = \"Surface area\", y = NULL) +\n  geom_vline(xintercept = 1000) +\n  geom_vline(xintercept = 5000, linetype = \"dashed\", color = \"gray\")"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#narrowing-the-scope",
+    "href": "content/lectures/09-mlr.html#narrowing-the-scope",
+    "title": "09-mlr",
+    "section": "Narrowing the scope",
+    "text": "Narrowing the scope\n\nPlotCode\n\n\nFor simplicity let’s focus on the paintings with Surface < 5000:\n\n\n\n\n\n\n\n\npp_Surf_lt_5000 <- pp |>\n  filter(Surface < 5000)\n\nggplot(data = pp_Surf_lt_5000, \n       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +\n  geom_point(alpha = 0.5) +\n  labs(color = \"Artist\", shape = \"Artist\") +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#facet-to-get-a-better-look",
+    "href": "content/lectures/09-mlr.html#facet-to-get-a-better-look",
+    "title": "09-mlr",
+    "section": "Facet to get a better look",
+    "text": "Facet to get a better look\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp_Surf_lt_5000, \n       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +\n  geom_point(alpha = 0.5) +\n  facet_wrap(~artistliving) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\")) +\n  labs(color = \"Artist\", shape = \"Artist\")"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#two-ways-to-model",
+    "href": "content/lectures/09-mlr.html#two-ways-to-model",
+    "title": "09-mlr",
+    "section": "Two ways to model",
+    "text": "Two ways to model\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living.\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#interacting-explanatory-variables",
+    "href": "content/lectures/09-mlr.html#interacting-explanatory-variables",
+    "title": "09-mlr",
+    "section": "Interacting explanatory variables",
+    "text": "Interacting explanatory variables\n\nIncluding an interaction effect in the model allows for different slopes, i.e. nonparallel lines.\nThis implies that the regression coefficient for an explanatory variable would change as another explanatory variable changes.\nThis can be accomplished by adding an interaction variable: the product of two explanatory variables."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#two-ways-to-model-1",
+    "href": "content/lectures/09-mlr.html#two-ways-to-model-1",
+    "title": "09-mlr",
+    "section": "Two ways to model",
+    "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living\n\n\n\n\n\n\n\n\n\n\n❓ Which does your intuition/knowledge of the data suggest is more appropriate?\nPut a green sticky if you think main; pink if you think interaction."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#fit-model-with-main-effects",
+    "href": "content/lectures/09-mlr.html#fit-model-with-main-effects",
+    "title": "09-mlr",
+    "section": "Fit model with main effects",
+    "text": "Fit model with main effects\n\nResponse variable: log_price\nExplanatory variables: Surface area and artistliving\n\n\npp_main_fit <- lin_mod |>\n  fit(log_price ~ Surface + artistliving, data = pp_Surf_lt_5000)\ntidy(pp_main_fit)\n\n# A tibble: 3 × 5\n  term               estimate std.error statistic  p.value\n  <chr>                 <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)        4.88     0.0424       115.   0       \n2 Surface            0.000265 0.0000415      6.39 1.85e-10\n3 artistlivingLiving 0.137    0.0970         1.41 1.57e- 1\n\n\n\n\\[\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times artistliving\\]"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#solving-the-model",
+    "href": "content/lectures/09-mlr.html#solving-the-model",
+    "title": "09-mlr",
+    "section": "Solving the model",
+    "text": "Solving the model\n\nNon-living artist: Plug in 0 for artistliving\n\n\\(\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times 0\\)\n\\(= 4.88 + 0.000265 \\times surface\\)\n\n\nLiving artist: Plug in 1 for artistliving\n\n\\(\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times 1\\)\n\\(= 5.017 + 0.000265 \\times surface\\)"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#visualizing-main-effects",
+    "href": "content/lectures/09-mlr.html#visualizing-main-effects",
+    "title": "09-mlr",
+    "section": "Visualizing main effects",
+    "text": "Visualizing main effects\n\n\n\nSame slope: Rate of change in price as the surface area increases does not vary between paintings by living and non-living artists.\nDifferent intercept: Paintings by living artists are consistently more expensive than paintings by non-living artists."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#interpreting-main-effects",
+    "href": "content/lectures/09-mlr.html#interpreting-main-effects",
+    "title": "09-mlr",
+    "section": "Interpreting main effects",
+    "text": "Interpreting main effects\n\ntidy(pp_main_fit) |> \n  mutate(exp_estimate = exp(estimate)) |>\n  select(term, estimate, exp_estimate)\n\n# A tibble: 3 × 3\n  term               estimate exp_estimate\n  <chr>                 <dbl>        <dbl>\n1 (Intercept)        4.88           132.  \n2 Surface            0.000265         1.00\n3 artistlivingLiving 0.137            1.15\n\n\n\n\nAll else held constant, for each additional square inch in painting’s surface area, the price of the painting is predicted, on average, to be higher by a factor of 1.\nAll else held constant, paintings by a living artist are predicted, on average, to be higher by a factor of 1.15 compared to paintings by an artist who is no longer alive.\nPaintings that are by an artist who is not alive and that have a surface area of 0 square inches are predicted, on average, to be 132 livres."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#main-vs.-interaction-effects",
+    "href": "content/lectures/09-mlr.html#main-vs.-interaction-effects",
+    "title": "09-mlr",
+    "section": "Main vs. interaction effects",
+    "text": "Main vs. interaction effects\n\nThe way we specified our main effects model only lets artistliving affect the intercept.\nModel implicitly assumes that paintings with living and deceased artists have the same slope and only allows for different intercepts.\n\n\n❓ What seems more appropriate in this case?\n\nSame slope and same intercept for both colors\nSame slope and different intercept for both colors\nDifferent slope and different intercept for both colors"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#interaction-surface-artistliving",
+    "href": "content/lectures/09-mlr.html#interaction-surface-artistliving",
+    "title": "09-mlr",
+    "section": "Interaction: Surface * artistliving",
+    "text": "Interaction: Surface * artistliving"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#fit-model-with-interaction-effects",
+    "href": "content/lectures/09-mlr.html#fit-model-with-interaction-effects",
+    "title": "09-mlr",
+    "section": "Fit model with interaction effects",
+    "text": "Fit model with interaction effects\n\nResponse variable: log_price\nExplanatory variables: Surface area, artistliving, and their interaction\n\n\npp_int_fit <- lin_mod |>\n  fit(log_price ~ Surface * artistliving, data = pp_Surf_lt_5000)\ntidy(pp_int_fit)\n\n# A tibble: 4 × 5\n  term                        estimate std.error statistic    p.value\n  <chr>                          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)                 4.91     0.0432       114.   0         \n2 Surface                     0.000206 0.0000442      4.65 0.00000337\n3 artistlivingLiving         -0.126    0.119         -1.06 0.289     \n4 Surface:artistlivingLiving  0.000479 0.000126       3.81 0.000139"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#linear-model-with-interaction-effects",
+    "href": "content/lectures/09-mlr.html#linear-model-with-interaction-effects",
+    "title": "09-mlr",
+    "section": "Linear model with interaction effects",
+    "text": "Linear model with interaction effects\n\n\n# A tibble: 4 × 5\n  term                        estimate std.error statistic    p.value\n  <chr>                          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)                 4.91     0.0432       114.   0         \n2 Surface                     0.000206 0.0000442      4.65 0.00000337\n3 artistlivingLiving         -0.126    0.119         -1.06 0.289     \n4 Surface:artistlivingLiving  0.000479 0.000126       3.81 0.000139  \n\n\n\\[\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface - 0.126 \\times artistliving\\] \\[+ ~ 0.00048 \\times surface * artistliving\\]"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#interpretation-of-interaction-effects",
+    "href": "content/lectures/09-mlr.html#interpretation-of-interaction-effects",
+    "title": "09-mlr",
+    "section": "Interpretation of interaction effects",
+    "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#r-squared",
+    "href": "content/lectures/09-mlr.html#r-squared",
+    "title": "09-mlr",
+    "section": "R-squared",
+    "text": "R-squared\n\n\\(R^2\\) is the percentage of variability in the response variable explained by the regression model.\n\n\nglance(pp_main_fit)$r.squared\n\n[1] 0.01320884\n\nglance(pp_int_fit)$r.squared\n\n[1] 0.0176922\n\n\n\n\nClearly the model with interactions has a higher \\(R^2\\).\n\n\n\n\nHowever using \\(R^2\\) for model selection in models with multiple explanatory variables is not a good idea as \\(R^2\\) increases when any variable is added to the model."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#adjusted-r-squared",
+    "href": "content/lectures/09-mlr.html#adjusted-r-squared",
+    "title": "09-mlr",
+    "section": "Adjusted R-squared",
+    "text": "Adjusted R-squared\nIt appears that adding the interaction actually increased adjusted \\(R^2\\), so we should indeed use the model with the interactions.\n\nglance(pp_main_fit)$adj.r.squared\n\n[1] 0.01258977\n\nglance(pp_int_fit)$adj.r.squared\n\n[1] 0.01676753"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#third-order-interactions",
+    "href": "content/lectures/09-mlr.html#third-order-interactions",
+    "title": "09-mlr",
+    "section": "Third order interactions",
+    "text": "Third order interactions\n\nCan you? Yes\nShould you? Probably not if you want to interpret these interactions in context of the data."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#in-pursuit-of-occams-razor",
+    "href": "content/lectures/09-mlr.html#in-pursuit-of-occams-razor",
+    "title": "09-mlr",
+    "section": "In pursuit of Occam’s razor",
+    "text": "In pursuit of Occam’s razor\n\n\nOccam’s Razor states that among competing hypotheses that predict equally well, the one with the fewest assumptions should be selected.\nModel selection follows this principle.\nWe only want to add another variable to the model if the addition of that variable brings something valuable in terms of predictive power to the model.\nIn other words, we prefer the simplest best model, i.e. parsimonious model."
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#backward-selection",
+    "href": "content/lectures/09-mlr.html#backward-selection",
+    "title": "09-mlr",
+    "section": "Backward selection",
+    "text": "Backward selection\nFor this demo, we’ll ignore interaction effects…and just model main effects to start:\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\n\n\\(R^2\\) (full): 0.0257014\n\n\n\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\n…Improved variance explained\n\n\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\\(R^2\\) (no artistliving or Surface): 0.0223\n\n\n\n…no longer gaining improvement, so we stick with: log_price ~ Width_in + Height_in + Surface"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#other-approach",
+    "href": "content/lectures/09-mlr.html#other-approach",
+    "title": "09-mlr",
+    "section": "Other approach:",
+    "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp_Surf_lt_5000)\n\n\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0261      0.0251    3.8495    12603.7727    1.8315    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\n\n\nStep 2 (alternate): Compare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0260749939  0.0251349118\n2     15 4 Width_in Height_in Surface artistliving 0.0263412027  0.0250876993\n3      5 2                      Width_in Height_in 0.0256902566  0.0250634893\n4     12 3         Width_in Height_in artistliving 0.0259732581  0.0250330779\n5      6 2                        Width_in Surface 0.0249136264  0.0242863596\n6     13 3           Width_in Surface artistliving 0.0251787948  0.0242378477\n7      7 2                   Width_in artistliving 0.0212864021  0.0206568018\n8      1 1                                Width_in 0.0209415833  0.0206267736\n9      8 2                    Surface artistliving 0.0132088377  0.0125897717\n10     2 1                                 Surface 0.0125899681  0.0122803381\n11    14 3          Height_in Surface artistliving 0.0130836930  0.0121310711\n12     9 2                       Height_in Surface 0.0126782901  0.0120431523\n13    10 2                  Height_in artistliving 0.0062698155  0.0056305552\n14     3 1                               Height_in 0.0058797727  0.0055601199\n15     4 1                            artistliving 0.0005531617  0.0002397573\n   Mallow's Cp\n1     3.849487\n2     5.000000\n3     3.077206\n4     4.174132\n5     5.555476\n6     6.709309\n7    17.130153\n8    16.230489\n9    51.971190\n10   52.001268\n11   45.305459\n12   44.599123\n13   65.048926\n14   64.293574\n15   91.485605"
+  },
+  {
+    "objectID": "content/lectures/09-mlr.html#recap",
+    "href": "content/lectures/09-mlr.html#recap",
+    "title": "09-mlr",
+    "section": "Recap",
+    "text": "Recap\n\nCan you model and interpret linear models with multiple predictors?\nCan you explain the difference in a model with main effects vs. interaction effects?\nCan you compare different models and determine how to proceed?\nCan you carry out and explain backward selection?"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#agenda",
@@ -1260,6 +1862,13 @@
     "text": "Agenda\n\nLinear Models\n\nQuantitative Predictor\nCategorical Predictor (2 & >2 levels)\nresiduals\ndata transformations"
   },
   {
+    "objectID": "content/lectures/07-linear-models-slides.html#suggested-reading",
+    "href": "content/lectures/07-linear-models-slides.html#suggested-reading",
+    "title": "07-linear-models",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
+  },
+  {
     "objectID": "content/lectures/07-linear-models-slides.html#data-paris-paintings",
     "href": "content/lectures/07-linear-models-slides.html#data-paris-paintings",
     "title": "07-linear-models",
@@ -1516,7 +2125,7 @@
     "href": "content/lectures/07-linear-models-slides.html#interpreting-models-with-log-transformation",
     "title": "07-linear-models",
     "section": "Interpreting models with log transformation",
-    "text": "Interpreting models with log transformation\n\nm_lprice_wt <- lm(log(price) ~ Width_in, data = pp_wt_lt_100)\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019"
+    "text": "Interpreting models with log transformation\n\nm_lprice_wt <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(log(price) ~ Width_in, data = pp_wt_lt_100)\n\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019"
   },
   {
     "objectID": "content/lectures/07-linear-models-slides.html#linear-model-with-log-transformation",
@@ -1566,13 +2175,6 @@
     "title": "07-linear-models",
     "section": "Recap",
     "text": "Recap\n\nCan I carry out linear regression using the tidymodels approach?\nCan I interpret and explain the results from a linear model with a single predictor?\nDo I understand the limitations of modelling data w/ linear regression?\nCan I describe and implement the use of a dummy variable in linear regression?\nCan I determine when logistic transformation may be appropriate? Can I interpret these results?\n\n\n\n\nhttps://cogs137.github.io/website/"
-  },
-  {
-    "objectID": "content/lectures/07-linear-models-slides.html#suggested-reading",
-    "href": "content/lectures/07-linear-models-slides.html#suggested-reading",
-    "title": "07-linear-models",
-    "section": "Suggested Reading",
-    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
   },
   {
     "objectID": "content/lectures/07-linear-models.html",
@@ -1838,7 +2440,7 @@
     "href": "content/lectures/07-linear-models.html#interpreting-models-with-log-transformation",
     "title": "07-linear-models",
     "section": "Interpreting models with log transformation",
-    "text": "Interpreting models with log transformation\n\nm_lprice_wt <- lm(log(price) ~ Width_in, data = pp_wt_lt_100)\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019"
+    "text": "Interpreting models with log transformation\n\nm_lprice_wt <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(log(price) ~ Width_in, data = pp_wt_lt_100)\n\nm_lprice_wt |>\n  tidy() |>\n  select(term, estimate) |>\n  mutate(estimate = round(estimate, 3))\n\n# A tibble: 2 × 2\n  term        estimate\n  <chr>          <dbl>\n1 (Intercept)    4.67 \n2 Width_in       0.019"
   },
   {
     "objectID": "content/lectures/07-linear-models.html#linear-model-with-log-transformation",
@@ -1890,18 +2492,18 @@
     "text": "Recap\n\nCan I carry out linear regression using the tidymodels approach?\nCan I interpret and explain the results from a linear model with a single predictor?\nDo I understand the limitations of modelling data w/ linear regression?\nCan I describe and implement the use of a dummy variable in linear regression?\nCan I determine when logistic transformation may be appropriate? Can I interpret these results?"
   },
   {
-    "objectID": "content/lectures/07-linear-models.html#suggested-reading",
-    "href": "content/lectures/07-linear-models.html#suggested-reading",
-    "title": "07-linear-models",
-    "section": "Suggested Reading",
-    "text": "Suggested Reading\n\nR4DS Chapter 24: Model Building\nIntroduction to Modern Statistics Chapter 7: Linear Regression with a Single Predictor"
+    "objectID": "content/lectures/08-effective-communication-slides.html#qa",
+    "href": "content/lectures/08-effective-communication-slides.html#qa",
+    "title": "08-effective-communication",
+    "section": "Q&A",
+    "text": "Q&A\n\nQ: for the last part of lecture 07, I tried glance(m_ht_wt) but it didn’t work because m_ht_wt doesn’t exist. Is “m_ht_wt” supposed be a model?\nA: Yup, this model was the height by weight model:\n\n\nm_ht_wt <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ Width_in, data = pp)\n\n\nQ: I was not too sure what was going on when talking about the relationship between painting height and school.\nA: I don’t think you were the only one confused! Briefly here (and I’m happy to chat more before/after class and in OH), we were looking to determine/quantify the relationship between the size (height) of a painting and the school from which the painting originated. This was an example of having more than two categories for a categorical (factor) predictor. The important points were undersatnding that each level is compared to the baseline and the linear model that results from multiple categories. Part 4 of the lab gets into this a bit more too. Definitely follow up if you’re unsure after doing that part of the lab!\n\n\nQ: How do you calculate the linear regression model when you have non-numeric values? For example, on lab 04, when it asks to calculate the linear regression model by gender, the gender appears only as male and female. Suppose male is 1 and female is 0 (interpreted by the function), then male linear regression model is y =ax + 1?\nA: Close! the “1” would be plugged in as the value of x (in what you suggested)m not for the intercept. So the function would be \\(y=\\beta_1*1 + \\beta_0\\)"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#course-announcements",
     "href": "content/lectures/08-effective-communication-slides.html#course-announcements",
     "title": "08-effective-communication",
     "section": "Course Announcements",
-    "text": "Course Announcements\nComing Soon…\n\nLink for Later"
+    "text": "Course Announcements\n\nLab04 due Friday\nHW02 due Monday\n\n\n\nPractice Midterms Now Available\n\nanswers posted next week\n\nMidterm Exam\n\nwill cover material through “Multiple Linear Regression”\nwill be released/posted next Friday after lab\nwill be due Monday Nov 6th at 11:59 PM\nwill be an Rmd document and submitted via GitHub (like everything so far)\nwill be completed individually (open Notes; open Internet)\n\n\n\n\n\nLink for Later"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#agenda",
@@ -1909,6 +2511,13 @@
     "title": "08-effective-communication",
     "section": "Agenda",
     "text": "Agenda\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#suggested-reading",
+    "href": "content/lectures/08-effective-communication-slides.html#suggested-reading",
+    "title": "08-effective-communication",
+    "section": "Suggested Reading",
+    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#what-does-this-mean",
@@ -1986,6 +2595,13 @@
     "title": "08-effective-communication",
     "section": "When you have time to digest (read)",
     "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\nSource: Storytelling wtih data by cole nussbaumer knaflic"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication-slides.html#written-explanations",
+    "href": "content/lectures/08-effective-communication-slides.html#written-explanations",
+    "title": "08-effective-communication",
+    "section": "Written Explanations",
+    "text": "Written Explanations\n\nVisualizations should be explained/interpreted\nModels should be explained\n\nshould be clear what question is being answered\nwhat conclusions is being drawn\nand what numbers were used to draw that conclusion"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#data-science-reports-in-.rmd",
@@ -2086,18 +2702,11 @@
     "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
   {
-    "objectID": "content/lectures/08-effective-communication-slides.html#suggested-reading",
-    "href": "content/lectures/08-effective-communication-slides.html#suggested-reading",
-    "title": "08-effective-communication",
-    "section": "Suggested Reading",
-    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
-  },
-  {
     "objectID": "content/lectures/08-effective-communication.html",
     "href": "content/lectures/08-effective-communication.html",
     "title": "08-effective-communication",
     "section": "",
-    "text": "Coming Soon\n\n\n\nComing Soon…\n\nLink for Later\n\n\n\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication\n\n\n\n\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
+    "text": "Q: for the last part of lecture 07, I tried glance(m_ht_wt) but it didn’t work because m_ht_wt doesn’t exist. Is “m_ht_wt” supposed be a model?\nA: Yup, this model was the height by weight model:\n\n\nm_ht_wt <- linear_reg() |>\n  set_engine(\"lm\") |>\n  fit(Height_in ~ Width_in, data = pp)\n\n\nQ: I was not too sure what was going on when talking about the relationship between painting height and school.\nA: I don’t think you were the only one confused! Briefly here (and I’m happy to chat more before/after class and in OH), we were looking to determine/quantify the relationship between the size (height) of a painting and the school from which the painting originated. This was an example of having more than two categories for a categorical (factor) predictor. The important points were undersatnding that each level is compared to the baseline and the linear model that results from multiple categories. Part 4 of the lab gets into this a bit more too. Definitely follow up if you’re unsure after doing that part of the lab!\n\n\nQ: How do you calculate the linear regression model when you have non-numeric values? For example, on lab 04, when it asks to calculate the linear regression model by gender, the gender appears only as male and female. Suppose male is 1 and female is 0 (interpreted by the function), then male linear regression model is y =ax + 1?\nA: Close! the “1” would be plugged in as the value of x (in what you suggested)m not for the intercept. So the function would be \\(y=\\beta_1*1 + \\beta_0\\)\n\n\n\n\n\nLab04 due Friday\nHW02 due Monday\n\n\n\nPractice Midterms Now Available\n\nanswers posted next week\n\nMidterm Exam\n\nwill cover material through “Multiple Linear Regression”\nwill be released/posted next Friday after lab\nwill be due Monday Nov 6th at 11:59 PM\nwill be an Rmd document and submitted via GitHub (like everything so far)\nwill be completed individually (open Notes; open Internet)\n\n\n\n\n\nLink for Later\n\n\n\n\n\n\n\n\n\nCommunicating for your audience\nOral Communication\nWritten Communication\nVisual Communication\n\n\n\n\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#what-does-this-mean",
@@ -2175,6 +2784,13 @@
     "title": "08-effective-communication",
     "section": "When you have time to digest (read)",
     "text": "When you have time to digest (read)\n\n\n❓ What makes this an effective visualization for a written communication?”\nSource: Storytelling wtih data by cole nussbaumer knaflic"
+  },
+  {
+    "objectID": "content/lectures/08-effective-communication.html#written-explanations",
+    "href": "content/lectures/08-effective-communication.html#written-explanations",
+    "title": "08-effective-communication",
+    "section": "Written Explanations",
+    "text": "Written Explanations\n\nVisualizations should be explained/interpreted\nModels should be explained\n\nshould be clear what question is being answered\nwhat conclusions is being drawn\nand what numbers were used to draw that conclusion"
   },
   {
     "objectID": "content/lectures/08-effective-communication.html#data-science-reports-in-.rmd",
@@ -2273,13 +2889,6 @@
     "title": "08-effective-communication",
     "section": "Additional Guidance",
     "text": "Additional Guidance\n\nWhite space is like garlic - take the amount you need and triple it\nFonts Matter\nUse Color Effectively"
-  },
-  {
-    "objectID": "content/lectures/08-effective-communication.html#suggested-reading",
-    "href": "content/lectures/08-effective-communication.html#suggested-reading",
-    "title": "08-effective-communication",
-    "section": "Suggested Reading",
-    "text": "Suggested Reading\n\nBookdown Section 2.6 R Code Chunks & inline R code\nBookdown Chapter 3: Documents\nWill Chase’s rstudio::conf2020 talk: “The Glamour of Graphics” [slides] [video]"
   },
   {
     "objectID": "content/lectures/06-analysis-slides.html#qa",
@@ -4568,7 +5177,7 @@
     "href": "content/lectures/04-ggplot2-slides.html#a-plot",
     "title": "04-ggplot2",
     "section": "A Plot",
-    "text": "A Plot\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()"
+    "text": "A Plot\n\n\nggplot(data = penguins, \n       mapping = aes(x = bill_depth_mm, y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\") +\n  scale_color_viridis_d()\n\nWarning: Removed 2 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "content/lectures/04-ggplot2-slides.html#section",
@@ -4652,7 +5261,7 @@
     "href": "content/lectures/04-ggplot2-slides.html#coding-out-loud-1",
     "title": "04-ggplot2",
     "section": "Coding out loud",
-    "text": "Coding out loud\n\nCodePlotNarrative\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()\n\n\n\n\n\n\n\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\nRepresent each observation with a point and map species to the color of each point.\nTitle the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\nFinally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
+    "text": "Coding out loud\n\nCodePlotNarrative\n\n\n\nggplot(data = penguins,\n       mapping = aes(x = bill_depth_mm,\n                     y = bill_length_mm,\n                     color = species)) +\n  geom_point() +\n  labs(title = \"Bill depth and length\",\n       subtitle = \"Dimensions for Adelie, Chinstrap, and Gentoo Penguins\",\n       x = \"Bill depth (mm)\", y = \"Bill length (mm)\",\n       color = \"Species\",\n       caption = \"Source: Palmer Station LTER / palmerpenguins package\") +\n  scale_color_viridis_d()\n\nWarning: Removed 2 rows containing missing values (`geom_point()`).\n\n\n\n\n\n\n\n\n\n\n\nStart with the penguins data frame, map bill depth to the x-axis and map bill length to the y-axis.\nRepresent each observation with a point and map species to the color of each point.\nTitle the plot “Bill depth and length”, add the subtitle “Dimensions for Adelie, Chinstrap, and Gentoo Penguins”, label the x and y axes as “Bill depth (mm)” and “Bill length (mm)”, respectively, label the legend “Species”, and add a caption for the data source.\nFinally, use a discrete color scale that is designed to be perceived by viewers with common forms of color blindness."
   },
   {
     "objectID": "content/lectures/04-ggplot2-slides.html#argument-names",
@@ -4736,7 +5345,7 @@
     "href": "content/lectures/04-ggplot2-slides.html#faceting-1",
     "title": "04-ggplot2",
     "section": "Faceting",
-    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island)"
+    "text": "Faceting\n\nSmaller plots that display different subsets of the data\nUseful for exploring conditional relationships and large data\n\n\n\n\n\n\n\n\nggplot(penguins, aes(x = bill_depth_mm, y = bill_length_mm)) + \n  geom_point() +\n  facet_grid(species ~ island) \n\nWarning: Removed 2 rows containing missing values (`geom_point()`)."
   },
   {
     "objectID": "content/lectures/04-ggplot2-slides.html#various-ways-to-facet",
@@ -5086,27 +5695,6 @@
     "href": "schedule.html",
     "title": "COGS 137",
     "section": "",
-    "text": "Week\nDate\nTitle\nType\n\n\n\n\n0\nTh Sep 28\nWelcome & Tooling\nLecture\n\n\n1\nTu Oct 3\nIntro to R\nLecture\n\n\n1\nTh Oct 5\nData Wrangling: dplyr\nLecture\n\n\n1\nFri Oct 6\nLab 01: Intro to R\nLab\n\n\n2\nTu Oct 10\nData Wrangling: tidyr\nLecture\n\n\n2\nTh Oct 12\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n2\nFri Oct 13\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Oct 16\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Oct 17\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nTh Oct 19\nData Analysis & Modeling\nLecture\n\n\n3\nFri Oct 20\nLab 03: Data Visualization\nLab\n\n\n4\nTu Oct 24\nLinear Models Review\nLecture\n\n\n4\nTh Oct 26\nEffective Communication\nLecture\n\n\n4\nFri Oct 27\nLab 04: Modeling\nLab\n\n\n5\nMon Oct 30\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Oct 31\nCase Study & Final Project Info\nLecture\n\n\n5\nTh Nov 2\nMultiple Linear Regression\nLecture\n\n\n5\nFri Nov 3\nLab used for midterm review\nLab\n\n\n6\nMon Nov 6\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Nov 7\nCase Study 01: THC Biomarkers (day 1)\nLecture\n\n\n6\nTh Nov 9\nCase Study 01: THC Biomarkers (day 2)\nLecture\n\n\n6\nFri Nov 10\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nTu Nov 14\nCase Study 01: THC Biomarkers (day 3)\nLecture\n\n\n7\nTh Nov 16\nLogistic Regression\nLecture\n\n\n7\nFri Nov 17\nLab 06: CS01\nLab\n\n\n8\nMon Nov 20\nHW03 due (11:59 PM)\nHW\n\n\n8\nMon Nov 20\nFinal Project Proposal Due\nProject\n\n\n8\nTu Nov 21\nCase Study 02: Vaping Behaviors (day 1)\nLecture\n\n\n8\nTh Nov 23\nNo Class (Thanksgiving)\n--\n\n\n9\nMon Nov 27\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Nov 28\nCase Study 02: Vaping Behaviors (day 2)\nLecture\n\n\n9\nTh Nov 30\nCase Study 02: Vaping Behaviors (day 3)\nLecture\n\n\n9\nFri Dec 1\nLab 07: Logistic Regression & CS02\nLab\n\n\n10\nMon Dec 4\nCS02 Due\nCase Study\n\n\n10\nTu Dec 5\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Dec 7\nNext Steps\nLecture\n\n\n10\nFri Dec 8\nLab 08: Final Project\nLab\n\n\nFinals\nTu Dec 12\nFinal Project Due (11:59 PM)\nProject"
-  },
-  {
-    "objectID": "content/lectures/08-effective-communication-slides.html#qa",
-    "href": "content/lectures/08-effective-communication-slides.html#qa",
-    "title": "08-effective-communication",
-    "section": "Q&A",
-    "text": "Q&A\nComing Soon"
-  },
-  {
-    "objectID": "content/lectures/08-effective-communication-slides.html#written-explanations",
-    "href": "content/lectures/08-effective-communication-slides.html#written-explanations",
-    "title": "08-effective-communication",
-    "section": "Written Explanations",
-    "text": "Written Explanations\n\nVisualizations should be explained/interpreted\nModels should be explained\n\nshould be clear what question is being answered\nwhat conclusions is being drawn\nand what numbers were used to draw that conclusion"
-  },
-  {
-    "objectID": "content/lectures/08-effective-communication.html#written-explanations",
-    "href": "content/lectures/08-effective-communication.html#written-explanations",
-    "title": "08-effective-communication",
-    "section": "Written Explanations",
-    "text": "Written Explanations\n\nVisualizations should be explained/interpreted\nModels should be explained\n\nshould be clear what question is being answered\nwhat conclusions is being drawn\nand what numbers were used to draw that conclusion"
+    "text": "Week\nDate\nTitle\nType\n\n\n\n\n0\nTh Sep 28\nWelcome & Tooling\nLecture\n\n\n1\nTu Oct 3\nIntro to R\nLecture\n\n\n1\nTh Oct 5\nData Wrangling: dplyr\nLecture\n\n\n1\nFri Oct 6\nLab 01: Intro to R\nLab\n\n\n2\nTu Oct 10\nData Wrangling: tidyr\nLecture\n\n\n2\nTh Oct 12\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n2\nFri Oct 13\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Oct 16\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Oct 17\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nTh Oct 19\nData Analysis & Modeling\nLecture\n\n\n3\nFri Oct 20\nLab 03: Data Visualization\nLab\n\n\n4\nTu Oct 24\nLinear Models Review\nLecture\n\n\n4\nTh Oct 26\nEffective Communication\nLecture\n\n\n4\nFri Oct 27\nLab 04: Modeling\nLab\n\n\n5\nMon Oct 30\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Oct 31\nMultiple Linear Regression*\nLecture\n\n\n5\nTh Nov 2\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Nov 3\nLab used for midterm review\nLab\n\n\n6\nMon Nov 6\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Nov 7\nCase Study 01: THC Biomarkers (day 1)\nLecture\n\n\n6\nTh Nov 9\nCase Study 01: THC Biomarkers (day 2)\nLecture\n\n\n6\nFri Nov 10\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nTu Nov 14\nCase Study 01: THC Biomarkers (day 3)\nLecture\n\n\n7\nTh Nov 16\nLogistic Regression\nLecture\n\n\n7\nFri Nov 17\nLab 06: CS01\nLab\n\n\n8\nMon Nov 20\nHW03 due (11:59 PM)\nHW\n\n\n8\nMon Nov 20\nFinal Project Proposal Due\nProject\n\n\n8\nTu Nov 21\nCase Study 02: Vaping Behaviors (day 1)\nLecture\n\n\n8\nTh Nov 23\nNo Class (Thanksgiving)\n--\n\n\n9\nMon Nov 27\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Nov 28\nCase Study 02: Vaping Behaviors (day 2)\nLecture\n\n\n9\nTh Nov 30\nCase Study 02: Vaping Behaviors (day 3)\nLecture\n\n\n9\nFri Dec 1\nLab 07: Logistic Regression & CS02\nLab\n\n\n10\nMon Dec 4\nCS02 Due\nCase Study\n\n\n10\nTu Dec 5\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Dec 7\nNext Steps\nLecture\n\n\n10\nFri Dec 8\nLab 08: Final Project\nLab\n\n\nFinals\nTu Dec 12\nFinal Project Due (11:59 PM)\nProject"
   }
 ]

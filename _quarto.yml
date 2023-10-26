@@ -61,10 +61,10 @@ website:
             href: content/lectures/07-linear-models-slides.html
           - text: "08-effective-communication"
             href: content/lectures/08-effective-communication-slides.html
-          # - text: "09-projects"
-          #   href: content/lectures/09-projects-slides.html
-          # - text: "10-mlr"
-          #   href: content/lectures/10-mlr-slides.html
+          - text: "09-mlr"
+            href: content/lectures/09-mlr-slides.html
+          # - text: "10-projects"
+          #   href: content/lectures/10-projects-slides.html
           # - text: "11-cs01-data"
           #   href: content/lectures/11-cs01-data-slides.html
           # - text: "12-cs01-eda"
@@ -103,10 +103,10 @@ website:
             href: content/lectures/07-linear-models.html
           - text: "08-effective-communication"
             href: content/lectures/08-effective-communication.html
-          # - text: "09-projects"
-          #   href: content/lectures/09-projects.html
-          # - text: "10-mlr"
-          #   href: content/lectures/10-mlr.html
+          - text: "09-mlr"
+            href: content/lectures/09-mlr.html
+          # - text: "10-projects"
+          #   href: content/lectures/10-projects.html
           # - text: "11-cs01-data"
           #   href: content/lectures/11-cs01-data.html
           # - text: "12-cs01-eda"
@@ -177,12 +177,16 @@ website:
             href: content/hw/hw-02.qmd
       #     - text: "HW03"
       #       href: content/hw/hw-03.qmd
-      # - section: "Exam"
-      #   contents:
-      #     - text: "Practice Midterm"
-      #       href: content/exams/practice-exam.qmd
-      #     - text: "Practice Midterm (Ans)"
-      #       href: content/exams/practice-exam-ans.qmd
+      - section: "Exam"
+        contents:
+          - text: "Practice Midterm (Fa21)"
+            href: content/exams/practice-exam-fa21.qmd
+      #     - text: "Practice Midterm (Ans-Fa21)"
+      #       href: content/exams/practice-exam-fa21-ans.qmd
+          - text: "Practice Midterm (Wi23)"
+            href: content/exams/practice-exam-wi23.qmd      
+      #     - text: "Practice Midterm (Ans-Wi23)"
+      #       href: content/exams/practice-exam-wi23-ans.qmd
       #     - text: "Midterm"
       #       href: content/exams/midterm_wi23.qmd
       #     - text: "Midterm (Ans)"

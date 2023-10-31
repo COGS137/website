@@ -1,7 +1,7 @@
 ---
 title: "08-effective-communication"
 author: "Professor Shannon Ellis"
-date: "2023-02-07"
+date: "2023-10-26"
 
 format:
   html: 
@@ -205,10 +205,10 @@ Brainstorm: Advice You've Been Given?
 
 ## Student responses {.smaller}
 
-Student responses will be added to notes after class...
+<!-- Student responses will be added to notes after class... -->
 
-```{r, eval=FALSE, echo=FALSE, results="asis"}
-student_responses <- read_sheet('1CRNv9Y9tuFIbxb0mO_XWsL94BUOcQq6LMJC5MHVbEP8')
+```{r, echo=FALSE, results="asis"}
+student_responses <- read_sheet('1ckX5BMIR2_48v3xsgaZ9bF6NuV9aw9CPflWByBcD5Pk')
 
 student_responses |> 
   filter(`Type of Communication` == "Oral") |>
@@ -281,9 +281,9 @@ Brainstorm: Advice You've Been Given?
 
 ## Student responses {.smaller}
 
-Student responses will be added to notes after class...
+<!-- Student responses will be added to notes after class... -->
 
-```{r, eval=FALSE, echo=FALSE, results="asis"}
+```{r, echo=FALSE, results="asis"}
 student_responses |> 
   filter(`Type of Communication` == "Writing") |>
   select(`Advice you've received`) |> 
@@ -492,9 +492,9 @@ Brainstorm: Advice You've Been Given?
 
 ## Student Responses {.smaller}
 
-Student responses will be added to notes after class...
+<!-- Student responses will be added to notes after class... -->
 
-```{r, eval=FALSE, echo=FALSE, results="asis"}
+```{r, echo=FALSE, results="asis"}
 student_responses |> 
   filter(`Type of Communication` == "Visual", `Advice you've received` != "NA") |>
   select(`Advice you've received`) |> 

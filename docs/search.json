@@ -849,210 +849,210 @@
   {
     "objectID": "content/lectures/09-mlr-slides.html#qa",
     "href": "content/lectures/09-mlr-slides.html#qa",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Q&A",
-    "text": "Q&A\nComing Soon"
+    "text": "Q&A\n\nQ: What are some ways we can make our visuals accessible? For example, how can we account for color blind people when incorporating graphs and figures in our presentation?\nA: Love this question! One way to do this is to use tools built for just this purpose! For example, for color blindness, ColorBrewer2 allows you to toggle for color palletes that are “colorblind safe.” Similarly, for written content online, ensuring that you’re including alt-text for all images, to enable visual understanding by those with vision impariments/differences. For those with learning differences (i.e. dyslexia, ADHD), I’m sure there’s research out there with respect to viz, and I should make myself more familiar, but ensuring that you’re not using very similar acronyms/initialisms for different context or using consistent icons (Rather than letters) across visualizations, etc. can really help individuals with learning differences and overall make your viz more consistent/understandable. This is just the tip of the iceberg. Additional suggestions here."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#course-announcements",
     "href": "content/lectures/09-mlr-slides.html#course-announcements",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Course Announcements",
-    "text": "Course Announcements\nComing soon"
+    "text": "Course Announcements\n\n🎃 Happy Halloween!\n\nNo OH today after class\nMake up: tomorrow 10-11AM (CSB 243)\n\n🔬 There is NO lab to turn in this week\n\nLab will be used for midterm review\nCome to lab with questions!\n\n🏫 Midterm is due next Monday at 11:59PM\n\nwill be released 5PM Friday\ncompleted individually\nopen notes/open Internet\nNOT timed\ntypically takes students ~2.5h to complete (big range: 2-15h)\n\nLab05 & HW03 will be released next Monday"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#suggested-reading",
     "href": "content/lectures/09-mlr-slides.html#suggested-reading",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Suggested Reading",
     "text": "Suggested Reading\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#agenda",
     "href": "content/lectures/09-mlr-slides.html#agenda",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Agenda",
     "text": "Agenda\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#packages-data",
     "href": "content/lectures/09-mlr-slides.html#packages-data",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Packages & Data",
     "text": "Packages & Data\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#multiple-predictors",
     "href": "content/lectures/09-mlr-slides.html#multiple-predictors",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Multiple predictors",
     "text": "Multiple predictors\n\nResponse variable: log_price\nExplanatory variables: Width and height\n\n\n\nlin_mod <- linear_reg() |>\n  set_engine(\"lm\")\n\npp_fit <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data = pp)\ntidy(pp_fit)\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#linear-model-with-multiple-predictors",
     "href": "content/lectures/09-mlr-slides.html#linear-model-with-multiple-predictors",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Linear model with multiple predictors",
     "text": "Linear model with multiple predictors\n\n\n# A tibble: 3 × 5\n  term        estimate std.error statistic  p.value\n  <chr>          <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)   4.77     0.0579      82.4  0       \n2 Width_in      0.0269   0.00373      7.22 6.58e-13\n3 Height_in    -0.0133   0.00395     -3.36 7.93e- 4\n\n\n\n\\[\\widehat{log\\_price} = 4.77 + 0.0269 \\times width - 0.0133 \\times height\\]\n\n❓ How do we interpret this model?"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#price-surface-area-and-living-artist",
     "href": "content/lectures/09-mlr-slides.html#price-surface-area-and-living-artist",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Price, surface area, and living artist",
     "text": "Price, surface area, and living artist\n\nExplore the relationship between price of paintings and surface area, conditioned on whether or not the artist is still living\nFirst visualize and explore, then model\n\n\n\nBut first, prep the data:\n\n\npp <- pp |>\n  mutate(artistliving = case_when(artistliving == 0 ~ \"Deceased\", \n                                  TRUE ~ \"Living\"))\n\npp |>\n  count(artistliving)\n\n# A tibble: 2 × 2\n  artistliving     n\n  <chr>        <int>\n1 Deceased      2937\n2 Living         456"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#typical-surface-area",
     "href": "content/lectures/09-mlr-slides.html#typical-surface-area",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Typical surface area",
     "text": "Typical surface area\n\nPlotCode\n\n\n\n\n\n\n\nTypical surface area appears to be less than 1000 square inches (~ 80cm x 80cm). There are very few paintings that have surface area above 5000 square inches.\n\n\n\nggplot(data = pp, aes(x = Surface, fill = artistliving)) +\n  geom_histogram(binwidth = 500) + \n  facet_grid(artistliving ~ .) +\n  scale_fill_manual(values = c(\"#E48957\", \"#071381\")) +\n  guides(fill = \"none\") +\n  labs(x = \"Surface area\", y = NULL) +\n  geom_vline(xintercept = 1000) +\n  geom_vline(xintercept = 5000, linetype = \"dashed\", color = \"gray\")"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#narrowing-the-scope",
     "href": "content/lectures/09-mlr-slides.html#narrowing-the-scope",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Narrowing the scope",
     "text": "Narrowing the scope\n\nPlotCode\n\n\nFor simplicity let’s focus on the paintings with Surface < 5000:\n\n\n\n\n\n\n\n\npp_Surf_lt_5000 <- pp |>\n  filter(Surface < 5000)\n\nggplot(data = pp_Surf_lt_5000, \n       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +\n  geom_point(alpha = 0.5) +\n  labs(color = \"Artist\", shape = \"Artist\") +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\"))"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#facet-to-get-a-better-look",
     "href": "content/lectures/09-mlr-slides.html#facet-to-get-a-better-look",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Facet to get a better look",
     "text": "Facet to get a better look\n\nPlotCode\n\n\n\n\n\n\n\n\n\n\nggplot(data = pp_Surf_lt_5000, \n       aes(y = log_price, x = Surface, color = artistliving, shape = artistliving)) +\n  geom_point(alpha = 0.5) +\n  facet_wrap(~artistliving) +\n  scale_color_manual(values = c(\"#E48957\", \"#071381\")) +\n  labs(color = \"Artist\", shape = \"Artist\")"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#two-ways-to-model",
     "href": "content/lectures/09-mlr-slides.html#two-ways-to-model",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Two ways to model",
     "text": "Two ways to model\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living.\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#interacting-explanatory-variables",
     "href": "content/lectures/09-mlr-slides.html#interacting-explanatory-variables",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Interacting explanatory variables",
     "text": "Interacting explanatory variables\n\nIncluding an interaction effect in the model allows for different slopes, i.e. nonparallel lines.\nThis implies that the regression coefficient for an explanatory variable would change as another explanatory variable changes.\nThis can be accomplished by adding an interaction variable: the product of two explanatory variables."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#two-ways-to-model-1",
     "href": "content/lectures/09-mlr-slides.html#two-ways-to-model-1",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Two ways to model",
     "text": "Two ways to model\n\n\n\nMain effects: Assuming relationship between surface and logged price does not vary by whether or not the artist is living\nInteraction effects: Assuming relationship between surface and logged price varies by whether or not the artist is living\n\n\n\n\n\n\n\n\n\n\n❓ Which does your intuition/knowledge of the data suggest is more appropriate?\nPut a green sticky if you think main; pink if you think interaction."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#fit-model-with-main-effects",
     "href": "content/lectures/09-mlr-slides.html#fit-model-with-main-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Fit model with main effects",
     "text": "Fit model with main effects\n\nResponse variable: log_price\nExplanatory variables: Surface area and artistliving\n\n\npp_main_fit <- lin_mod |>\n  fit(log_price ~ Surface + artistliving, data = pp_Surf_lt_5000)\ntidy(pp_main_fit)\n\n# A tibble: 3 × 5\n  term               estimate std.error statistic  p.value\n  <chr>                 <dbl>     <dbl>     <dbl>    <dbl>\n1 (Intercept)        4.88     0.0424       115.   0       \n2 Surface            0.000265 0.0000415      6.39 1.85e-10\n3 artistlivingLiving 0.137    0.0970         1.41 1.57e- 1\n\n\n\n\\[\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times artistliving\\]"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#solving-the-model",
     "href": "content/lectures/09-mlr-slides.html#solving-the-model",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Solving the model",
     "text": "Solving the model\n\nNon-living artist: Plug in 0 for artistliving\n\n\\(\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times 0\\)\n\\(= 4.88 + 0.000265 \\times surface\\)\n\n\nLiving artist: Plug in 1 for artistliving\n\n\\(\\widehat{log\\_price} = 4.88 + 0.000265 \\times surface + 0.137 \\times 1\\)\n\\(= 5.017 + 0.000265 \\times surface\\)"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#visualizing-main-effects",
     "href": "content/lectures/09-mlr-slides.html#visualizing-main-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Visualizing main effects",
     "text": "Visualizing main effects\n\n\n\nSame slope: Rate of change in price as the surface area increases does not vary between paintings by living and non-living artists.\nDifferent intercept: Paintings by living artists are consistently more expensive than paintings by non-living artists."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#interpreting-main-effects",
     "href": "content/lectures/09-mlr-slides.html#interpreting-main-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Interpreting main effects",
     "text": "Interpreting main effects\n\ntidy(pp_main_fit) |> \n  mutate(exp_estimate = exp(estimate)) |>\n  select(term, estimate, exp_estimate)\n\n# A tibble: 3 × 3\n  term               estimate exp_estimate\n  <chr>                 <dbl>        <dbl>\n1 (Intercept)        4.88           132.  \n2 Surface            0.000265         1.00\n3 artistlivingLiving 0.137            1.15\n\n\n\n\nAll else held constant, for each additional square inch in painting’s surface area, the price of the painting is predicted, on average, to be higher by a factor of 1.\nAll else held constant, paintings by a living artist are predicted, on average, to be higher by a factor of 1.15 compared to paintings by an artist who is no longer alive.\nPaintings that are by an artist who is not alive and that have a surface area of 0 square inches are predicted, on average, to be 132 livres."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#main-vs.-interaction-effects",
     "href": "content/lectures/09-mlr-slides.html#main-vs.-interaction-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Main vs. interaction effects",
     "text": "Main vs. interaction effects\n\nThe way we specified our main effects model only lets artistliving affect the intercept.\nModel implicitly assumes that paintings with living and deceased artists have the same slope and only allows for different intercepts.\n\n\n❓ What seems more appropriate in this case?\n\nSame slope and same intercept for both colors\nSame slope and different intercept for both colors\nDifferent slope and different intercept for both colors"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#interaction-surface-artistliving",
     "href": "content/lectures/09-mlr-slides.html#interaction-surface-artistliving",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Interaction: Surface * artistliving",
     "text": "Interaction: Surface * artistliving"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#fit-model-with-interaction-effects",
     "href": "content/lectures/09-mlr-slides.html#fit-model-with-interaction-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Fit model with interaction effects",
     "text": "Fit model with interaction effects\n\nResponse variable: log_price\nExplanatory variables: Surface area, artistliving, and their interaction\n\n\npp_int_fit <- lin_mod |>\n  fit(log_price ~ Surface * artistliving, data = pp_Surf_lt_5000)\ntidy(pp_int_fit)\n\n# A tibble: 4 × 5\n  term                        estimate std.error statistic    p.value\n  <chr>                          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)                 4.91     0.0432       114.   0         \n2 Surface                     0.000206 0.0000442      4.65 0.00000337\n3 artistlivingLiving         -0.126    0.119         -1.06 0.289     \n4 Surface:artistlivingLiving  0.000479 0.000126       3.81 0.000139"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#linear-model-with-interaction-effects",
     "href": "content/lectures/09-mlr-slides.html#linear-model-with-interaction-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Linear model with interaction effects",
     "text": "Linear model with interaction effects\n\n\n# A tibble: 4 × 5\n  term                        estimate std.error statistic    p.value\n  <chr>                          <dbl>     <dbl>     <dbl>      <dbl>\n1 (Intercept)                 4.91     0.0432       114.   0         \n2 Surface                     0.000206 0.0000442      4.65 0.00000337\n3 artistlivingLiving         -0.126    0.119         -1.06 0.289     \n4 Surface:artistlivingLiving  0.000479 0.000126       3.81 0.000139  \n\n\n\\[\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface - 0.126 \\times artistliving\\] \\[+ ~ 0.00048 \\times surface * artistliving\\]"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#interpretation-of-interaction-effects",
     "href": "content/lectures/09-mlr-slides.html#interpretation-of-interaction-effects",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Interpretation of interaction effects",
     "text": "Interpretation of interaction effects\n\n\nRate of change in price as the surface area of the painting increases does vary between paintings by living and non-living artists (different slopes)\nSome paintings by living artists are more expensive than paintings by non-living artists, and some are not (different intercept).\n\n\n\n\n\n\n\nNon-living artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 0 + 0.00048 \\times surface \\times 0\\) \\(= 4.91 + 0.00021 \\times surface\\)\nLiving artist: \\(\\widehat{log\\_price} = 4.91 + 0.00021 \\times surface\\) \\(- 0.126 \\times 1 + 0.00048 \\times surface \\times 1\\) \\(= 4.91 + 0.00021 \\times surface\\) \\(- 0.126 + 0.00048 \\times surface\\) \\(= 4.784 + 0.00069 \\times surface\\)"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#r-squared",
     "href": "content/lectures/09-mlr-slides.html#r-squared",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "R-squared",
     "text": "R-squared\n\n\\(R^2\\) is the percentage of variability in the response variable explained by the regression model.\n\n\nglance(pp_main_fit)$r.squared\n\n[1] 0.01320884\n\nglance(pp_int_fit)$r.squared\n\n[1] 0.0176922\n\n\n\n\nClearly the model with interactions has a higher \\(R^2\\).\n\n\n\n\nHowever using \\(R^2\\) for model selection in models with multiple explanatory variables is not a good idea as \\(R^2\\) increases when any variable is added to the model."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#adjusted-r-squared",
     "href": "content/lectures/09-mlr-slides.html#adjusted-r-squared",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Adjusted R-squared",
     "text": "Adjusted R-squared\nIt appears that adding the interaction actually increased adjusted \\(R^2\\), so we should indeed use the model with the interactions.\n\nglance(pp_main_fit)$adj.r.squared\n\n[1] 0.01258977\n\nglance(pp_int_fit)$adj.r.squared\n\n[1] 0.01676753"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#third-order-interactions",
     "href": "content/lectures/09-mlr-slides.html#third-order-interactions",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Third order interactions",
     "text": "Third order interactions\n\nCan you? Yes\nShould you? Probably not if you want to interpret these interactions in context of the data."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#in-pursuit-of-occams-razor",
     "href": "content/lectures/09-mlr-slides.html#in-pursuit-of-occams-razor",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "In pursuit of Occam’s razor",
     "text": "In pursuit of Occam’s razor\n\n\nOccam’s Razor states that among competing hypotheses that predict equally well, the one with the fewest assumptions should be selected.\nModel selection follows this principle.\nWe only want to add another variable to the model if the addition of that variable brings something valuable in terms of predictive power to the model.\nIn other words, we prefer the simplest best model, i.e. parsimonious model."
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#backward-selection",
     "href": "content/lectures/09-mlr-slides.html#backward-selection",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Backward selection",
     "text": "Backward selection\nFor this demo, we’ll ignore interaction effects…and just model main effects to start:\n\npp_full <-  lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp) \n\nglance(pp_full)$adj.r.squared\n\n[1] 0.02570141\n\n\n\n\\(R^2\\) (full): 0.0257014\n\n\nRemove artistliving\n\npp_noartist <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in + Surface, data=pp) \n\nglance(pp_noartist)$adj.r.squared\n\n[1] 0.02579859\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\n…Improved variance explained\n\nRemove Surface\n\npp_noartist_nosurface <- lin_mod |>\n  fit(log_price ~ Width_in + Height_in, data=pp) \n\nglance(pp_noartist_nosurface)$adj.r.squared\n\n[1] 0.02231559\n\n\n\n\n\\(R^2\\) (full): 0.0257\n\\(R^2\\) (no artistliving): 0.0258\n\\(R^2\\) (no artistliving or Surface): 0.0223\n\n\n\n…no longer gaining improvement, so we stick with: log_price ~ Width_in + Height_in + Surface"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#other-approach",
     "href": "content/lectures/09-mlr-slides.html#other-approach",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Other approach:",
     "text": "Other approach:\n\n# requires package installation: \n# install.packages(\"olsrr\")\nlibrary(olsrr)\n\n\nStep 1: Fit model (w/o tidymodels)\n\n# fit the model (not using tidymodels)\nmod <- lm(log_price ~ Width_in + Height_in + Surface + artistliving, data=pp_Surf_lt_5000)\n\n\n\nStep 2: Determine which variables to remove\n\nols_step_backward_p(mod)\n\n\n                             Elimination Summary                               \n------------------------------------------------------------------------------\n        Variable                      Adj.                                        \nStep      Removed       R-Square    R-Square     C(p)        AIC         RMSE     \n------------------------------------------------------------------------------\n   1    artistliving      0.0261      0.0251    3.8495    12603.7727    1.8315    \n------------------------------------------------------------------------------\n\n\n…specifies that artistliving should be removed\n\n\nStep 2 (alternate): Compare all possible models…\n\nols_step_all_possible(mod) |>\n  arrange(desc(adjr))\n\n   Index N                              Predictors     R-Square Adj. R-Square\n1     11 3              Width_in Height_in Surface 0.0260749939  0.0251349118\n2     15 4 Width_in Height_in Surface artistliving 0.0263412027  0.0250876993\n3      5 2                      Width_in Height_in 0.0256902566  0.0250634893\n4     12 3         Width_in Height_in artistliving 0.0259732581  0.0250330779\n5      6 2                        Width_in Surface 0.0249136264  0.0242863596\n6     13 3           Width_in Surface artistliving 0.0251787948  0.0242378477\n7      7 2                   Width_in artistliving 0.0212864021  0.0206568018\n8      1 1                                Width_in 0.0209415833  0.0206267736\n9      8 2                    Surface artistliving 0.0132088377  0.0125897717\n10     2 1                                 Surface 0.0125899681  0.0122803381\n11    14 3          Height_in Surface artistliving 0.0130836930  0.0121310711\n12     9 2                       Height_in Surface 0.0126782901  0.0120431523\n13    10 2                  Height_in artistliving 0.0062698155  0.0056305552\n14     3 1                               Height_in 0.0058797727  0.0055601199\n15     4 1                            artistliving 0.0005531617  0.0002397573\n   Mallow's Cp\n1     3.849487\n2     5.000000\n3     3.077206\n4     4.174132\n5     5.555476\n6     6.709309\n7    17.130153\n8    16.230489\n9    51.971190\n10   52.001268\n11   45.305459\n12   44.599123\n13   65.048926\n14   64.293574\n15   91.485605"
   },
   {
     "objectID": "content/lectures/09-mlr-slides.html#recap",
     "href": "content/lectures/09-mlr-slides.html#recap",
-    "title": "10-mlr",
+    "title": "09-mlr",
     "section": "Recap",
     "text": "Recap\n\nCan you model and interpret linear models with multiple predictors?\nCan you explain the difference in a model with main effects vs. interaction effects?\nCan you compare different models and determine how to proceed?\nCan you carry out and explain backward selection?\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
@@ -1061,7 +1061,7 @@
     "href": "content/lectures/09-mlr.html",
     "title": "09-mlr",
     "section": "",
-    "text": "Coming Soon\n\n\n\nComing soon\n\n\n\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors\n\n\n\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
+    "text": "Q: What are some ways we can make our visuals accessible? For example, how can we account for color blind people when incorporating graphs and figures in our presentation?\nA: Love this question! One way to do this is to use tools built for just this purpose! For example, for color blindness, ColorBrewer2 allows you to toggle for color palletes that are “colorblind safe.” Similarly, for written content online, ensuring that you’re including alt-text for all images, to enable visual understanding by those with vision impariments/differences. For those with learning differences (i.e. dyslexia, ADHD), I’m sure there’s research out there with respect to viz, and I should make myself more familiar, but ensuring that you’re not using very similar acronyms/initialisms for different context or using consistent icons (Rather than letters) across visualizations, etc. can really help individuals with learning differences and overall make your viz more consistent/understandable. This is just the tip of the iceberg. Additional suggestions here.\n\n\n\n\n\n🎃 Happy Halloween!\n\nNo OH today after class\nMake up: tomorrow 10-11AM (CSB 243)\n\n🔭 There is NO lab to turn in this week\n\nLab will be used for midterm review\nCome to lab with questions!\n\n🏫 Midterm is due next Monday at 11:59PM\n\nwill be released 5PM Friday\ncompleted individually\nopen notes/open Internet\nNOT timed\ntypically takes students ~2.5h to complete (big range: 2-15h)\n\nLab05 & HW03 will be released next Monday\n\n\n\n\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors\n\n\n\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
   },
   {
     "objectID": "content/lectures/09-mlr.html#multiple-predictors",
@@ -5696,5 +5696,299 @@
     "title": "COGS 137",
     "section": "",
     "text": "Week\nDate\nTitle\nType\n\n\n\n\n0\nTh Sep 28\nWelcome & Tooling\nLecture\n\n\n1\nTu Oct 3\nIntro to R\nLecture\n\n\n1\nTh Oct 5\nData Wrangling: dplyr\nLecture\n\n\n1\nFri Oct 6\nLab 01: Intro to R\nLab\n\n\n2\nTu Oct 10\nData Wrangling: tidyr\nLecture\n\n\n2\nTh Oct 12\nData Visualization: ggplot2 (day 1)\nLecture\n\n\n2\nFri Oct 13\nLab 02: Data Wrangling\nLab\n\n\n3\nMon Oct 16\nHW01 due (11:59 PM)\nHW\n\n\n3\nTu Oct 17\nData Visualization: ggplot2 (day 2)\nLecture\n\n\n3\nTh Oct 19\nData Analysis & Modeling\nLecture\n\n\n3\nFri Oct 20\nLab 03: Data Visualization\nLab\n\n\n4\nTu Oct 24\nLinear Models Review\nLecture\n\n\n4\nTh Oct 26\nEffective Communication\nLecture\n\n\n4\nFri Oct 27\nLab 04: Modeling\nLab\n\n\n5\nMon Oct 30\nHW02 due (11:59 PM)\nHW\n\n\n5\nTu Oct 31\nMultiple Linear Regression*\nLecture\n\n\n5\nTh Nov 2\nCase Study & Final Project Info\nLecture\n\n\n5\nFri Nov 3\nLab used for midterm review\nLab\n\n\n6\nMon Nov 6\nMIDTERM EXAM (due 11:59 PM) \nExam\n\n\n6\nTu Nov 7\nCase Study 01: THC Biomarkers (day 1)\nLecture\n\n\n6\nTh Nov 9\nCase Study 01: THC Biomarkers (day 2)\nLecture\n\n\n6\nFri Nov 10\nLab 05: Multiple Linear Regression\nLab\n\n\n7\nTu Nov 14\nCase Study 01: THC Biomarkers (day 3)\nLecture\n\n\n7\nTh Nov 16\nLogistic Regression\nLecture\n\n\n7\nFri Nov 17\nLab 06: CS01\nLab\n\n\n8\nMon Nov 20\nHW03 due (11:59 PM)\nHW\n\n\n8\nMon Nov 20\nFinal Project Proposal Due\nProject\n\n\n8\nTu Nov 21\nCase Study 02: Vaping Behaviors (day 1)\nLecture\n\n\n8\nTh Nov 23\nNo Class (Thanksgiving)\n--\n\n\n9\nMon Nov 27\nCS01 Due (11:59 PM)\nCase Study\n\n\n9\nTu Nov 28\nCase Study 02: Vaping Behaviors (day 2)\nLecture\n\n\n9\nTh Nov 30\nCase Study 02: Vaping Behaviors (day 3)\nLecture\n\n\n9\nFri Dec 1\nLab 07: Logistic Regression & CS02\nLab\n\n\n10\nMon Dec 4\nCS02 Due\nCase Study\n\n\n10\nTu Dec 5\nFinal Project Brainstorming\nLecture\n\n\n10\nTh Dec 7\nNext Steps\nLecture\n\n\n10\nFri Dec 8\nLab 08: Final Project\nLab\n\n\nFinals\nTu Dec 12\nFinal Project Due (11:59 PM)\nProject"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html",
+    "href": "content/lectures/10-projects.html",
+    "title": "10-projects",
+    "section": "",
+    "text": "Coming Soon\n\n\n\nComing Soon\n\n\n\n\nCase Studies\nFinal Project"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#biomarkers-of-recent-use",
+    "href": "content/lectures/10-projects.html#biomarkers-of-recent-use",
+    "title": "10-projects",
+    "section": "Biomarkers of Recent Use",
+    "text": "Biomarkers of Recent Use\n\nWe’ll use data from this paper:\n\n\nHubbard et al. Biomarkers of Recent Cannabis Use in Blood, Oral Fluid and Breath. Journal of Analytical Toxicology. 2021. Link to paper."
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#opencasestudies",
+    "href": "content/lectures/10-projects.html#opencasestudies",
+    "title": "10-projects",
+    "section": "OpenCaseStudies",
+    "text": "OpenCaseStudies\n\nOpenCaseStudies\nUses R/the tidyverse\nasks public health-centric questions\ngoal: to teach statistical analysis/data science through case studies"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#what-well-do",
+    "href": "content/lectures/10-projects.html#what-well-do",
+    "title": "10-projects",
+    "section": "What We’ll Do",
+    "text": "What We’ll Do\nFor each case study (2), during lecture:\n\nStats: (1-2d)\nBackground, Data & Wrangling (1-2d)\nEDA & Analysis (1-2d)\n\n\nFor each case study:\n\nyou’ll also work with case study data in lab.\nyou’ll work in assigned groups of ~3 students to complete a data science report\n\n\n\nI will share previous student examples and we’ll discuss pros and cons in coming lectures."
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#data-science-reports",
+    "href": "content/lectures/10-projects.html#data-science-reports",
+    "title": "10-projects",
+    "section": "Data Science Reports",
+    "text": "Data Science Reports\nWith your group, you will:\n\ncarry out all steps of the analysis\n\nsome code will be taken directly from lecture\n\nadd text/organize into a report\n\n\n\nhave to extend the case study\n\n\n\nThis should be written at the level of a data science-knowledgeable undergrad."
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#general-communication-submission",
+    "href": "content/lectures/10-projects.html#general-communication-submission",
+    "title": "10-projects",
+    "section": "General Communication Submission",
+    "text": "General Communication Submission\nThis is (intentionally) very open-ended.\nYou need to communicate the most important aspect/finding/part(s) of your case study to a general audience (any undergrad).\n\nWhat might this look like?\n\nshort TikTok like video\nbrief Youtube video\nslides for an Instagram post\nX (Twitter) thread\nposter to be displayed next to an elevator\nposter to be put on public bulletin boards\neffective email communication"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#what-does-extend-the-case-study-mean",
+    "href": "content/lectures/10-projects.html#what-does-extend-the-case-study-mean",
+    "title": "10-projects",
+    "section": "What does extend the case study mean?",
+    "text": "What does extend the case study mean?\nYou’ll need to do something more on the topic beyond what is presented in class.\n\nExamples:\n\nAsking an additional question and answering it from the data provided\nFinding an additional dataset and using it to add to the case study\nGenerating a handful of additional and very informative visualizations (beyond what’s presented in class)"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#grading",
+    "href": "content/lectures/10-projects.html#grading",
+    "title": "10-projects",
+    "section": "Grading",
+    "text": "Grading\nGraded on:\n\ncontent (code, text, viz)\nreport: effective written communication (clarity/content > grammar/spelling)\n\nextension carried out\n\neffective general communication (effectively conveys message to a general audience)"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#final-project-logistics",
+    "href": "content/lectures/10-projects.html#final-project-logistics",
+    "title": "10-projects",
+    "section": "Final Project Logistics",
+    "text": "Final Project Logistics\n\nwill be completed in groups of 3-4 students\nyou get to choose the group\nI will ask Monday week 7 for your final project groups (If you are not in one, I will help)\nYou will submit a proposal week 8.\nFinal projects are due during Finals week"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#final-project-details",
+    "href": "content/lectures/10-projects.html#final-project-details",
+    "title": "10-projects",
+    "section": "Final Project Details",
+    "text": "Final Project Details\nTwo possible paths:\n\nCreate a technical presentation on a statistics topic and/or an R package.\nCarry out a data analysis"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#option-1-technical-presentation",
+    "href": "content/lectures/10-projects.html#option-1-technical-presentation",
+    "title": "10-projects",
+    "section": "Option 1: Technical Presentation",
+    "text": "Option 1: Technical Presentation\n\n.Rmd document used to make slides\n“Teaches” the details of the R package/statistics topic\nDemonstrates how to use the package and/or carry out the statistical analysis in R\nTopic/Package must go beyond what was taught in this course or what you should have learned in an intro stats course\nPresentation Length: 10-15min"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#option-2-data-analysis",
+    "href": "content/lectures/10-projects.html#option-2-data-analysis",
+    "title": "10-projects",
+    "section": "Option 2: Data Analysis",
+    "text": "Option 2: Data Analysis\n\n.Rmd document used for data science report\nAsks a question, finds data, analyzes data (basically: a mini case report, but you find the data and formulate the question)\nPresentation Length: 3-5min (brief summary of the full report)"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#wherewhen-for-this-presentation",
+    "href": "content/lectures/10-projects.html#wherewhen-for-this-presentation",
+    "title": "10-projects",
+    "section": "Where/when for this presentation?",
+    "text": "Where/when for this presentation?\n\nSubmit by Tues of finals week at 11:59 PM"
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#should-i-be-working-on-my-final-project-now",
+    "href": "content/lectures/10-projects.html#should-i-be-working-on-my-final-project-now",
+    "title": "10-projects",
+    "section": "Should I be working on my final project now?",
+    "text": "Should I be working on my final project now?\n…probably not\n\nBut, you should start thinking about/getting a group of 3-4 people together. You’ll need to submit who’s in your final project group Monday of week 7.\n\n\nYou’ll need to have a general plan for your final project around wk 8. You’ll submit a “proposal” Monday of week 8."
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#what-is-the-general-audience-communication",
+    "href": "content/lectures/10-projects.html#what-is-the-general-audience-communication",
+    "title": "10-projects",
+    "section": "What is the “general audience” communication?",
+    "text": "What is the “general audience” communication?\nConsider who the audience would be -> design for them\n\nFor example, if you present on an R package, who would benefit from knowing about this package? How would you reach them? What can you design to inform them of what it is and get them to use it?\n\n\nOr if you do a data analysis on a particular topic, what would you want others to know? How would you communicate that?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html",
+    "href": "content/lectures/11-cs01-data.html",
+    "title": "11-cs01-data",
+    "section": "",
+    "text": "Background\nData Intro\nWrangle\nCombine!"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#motor-vehicle-accidents-mvas",
+    "href": "content/lectures/11-cs01-data.html#motor-vehicle-accidents-mvas",
+    "title": "11-cs01-data",
+    "section": "Motor Vehicle Accidents (MVAs)",
+    "text": "Motor Vehicle Accidents (MVAs)\n\n2/3 of US trauma center admissions are due to MVAs\n~60% of such patients testing positive for drugs or alcohol\nAlcohol and cannabis are most frequently detected\n\nSource: https://academic.oup.com/clinchem/article/59/3/478/5621997"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#legalization-of-marijuana",
+    "href": "content/lectures/11-cs01-data.html#legalization-of-marijuana",
+    "title": "11-cs01-data",
+    "section": "Legalization of Marijuana",
+    "text": "Legalization of Marijuana\n\nFederally illegal in the US\nDecriminalized in many states\nMedically available in\nLegal for recreational use in …"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#increased-roadside-surveys",
+    "href": "content/lectures/11-cs01-data.html#increased-roadside-surveys",
+    "title": "11-cs01-data",
+    "section": "Increased roadside surveys",
+    "text": "Increased roadside surveys\n\n\n25% increase in use nationwide from 2002 to 2015 (survey)\nTHC detection in drivers increased by 48% from 2007 to 2014\nIncreased prevalence of consumption -> possible intoxication -> possible impaired driving -> public health concern"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#dui-of-alcohol-duia",
+    "href": "content/lectures/11-cs01-data.html#dui-of-alcohol-duia",
+    "title": "11-cs01-data",
+    "section": "DUI of Alcohol (DUIA)",
+    "text": "DUI of Alcohol (DUIA)\n\n\nThe science is there. Don’t do it.\nDUIA has decreased since the 1970s\n\n% of nighttime, weekend drivers testing over the legal limit (BAC > 0.08 g/dL) decreased from 7.5% (1973) to 2.2% (2007)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#dui-of-cannabis",
+    "href": "content/lectures/11-cs01-data.html#dui-of-cannabis",
+    "title": "11-cs01-data",
+    "section": "DUI of Cannabis",
+    "text": "DUI of Cannabis\n\nIn a 2007 survey1, 16.3% of nighttime drivers were drug-positive\n\n8.6% of these tested positive for THC\n\nExperimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:\n\n\n\nEvidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.2"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#per-se-limits",
+    "href": "content/lectures/11-cs01-data.html#per-se-limits",
+    "title": "11-cs01-data",
+    "section": "per se limits",
+    "text": "per se limits"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#experimental-design",
+    "href": "content/lectures/11-cs01-data.html#experimental-design",
+    "title": "11-cs01-data",
+    "section": "Experimental Design",
+    "text": "Experimental Design"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#qa",
+    "href": "content/lectures/10-projects-slides.html#qa",
+    "title": "10-projects",
+    "section": "Q&A",
+    "text": "Q&A\nComing Soon"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#course-announcements",
+    "href": "content/lectures/10-projects-slides.html#course-announcements",
+    "title": "10-projects",
+    "section": "Course Announcements",
+    "text": "Course Announcements\nComing Soon"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#agenda",
+    "href": "content/lectures/10-projects-slides.html#agenda",
+    "title": "10-projects",
+    "section": "Agenda",
+    "text": "Agenda\n\nCase Studies\nFinal Project"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#biomarkers-of-recent-use",
+    "href": "content/lectures/10-projects-slides.html#biomarkers-of-recent-use",
+    "title": "10-projects",
+    "section": "Biomarkers of Recent Use",
+    "text": "Biomarkers of Recent Use\n\nWe’ll use data from this paper:\n\n\nHubbard et al. Biomarkers of Recent Cannabis Use in Blood, Oral Fluid and Breath. Journal of Analytical Toxicology. 2021. Link to paper."
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#opencasestudies",
+    "href": "content/lectures/10-projects-slides.html#opencasestudies",
+    "title": "10-projects",
+    "section": "OpenCaseStudies",
+    "text": "OpenCaseStudies\n\nOpenCaseStudies\nUses R/the tidyverse\nasks public health-centric questions\ngoal: to teach statistical analysis/data science through case studies"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#what-well-do",
+    "href": "content/lectures/10-projects-slides.html#what-well-do",
+    "title": "10-projects",
+    "section": "What We’ll Do",
+    "text": "What We’ll Do\nFor each case study (2), during lecture:\n\nStats: (1-2d)\nBackground, Data & Wrangling (1-2d)\nEDA & Analysis (1-2d)\n\n\nFor each case study:\n\nyou’ll also work with case study data in lab.\nyou’ll work in assigned groups of ~3 students to complete a data science report\n\n\n\nI will share previous student examples and we’ll discuss pros and cons in coming lectures."
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#data-science-reports",
+    "href": "content/lectures/10-projects-slides.html#data-science-reports",
+    "title": "10-projects",
+    "section": "Data Science Reports",
+    "text": "Data Science Reports\nWith your group, you will:\n\ncarry out all steps of the analysis\n\nsome code will be taken directly from lecture\n\nadd text/organize into a report\n\n\n\nhave to extend the case study\n\n\n\nThis should be written at the level of a data science-knowledgeable undergrad."
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#general-communication-submission",
+    "href": "content/lectures/10-projects-slides.html#general-communication-submission",
+    "title": "10-projects",
+    "section": "General Communication Submission",
+    "text": "General Communication Submission\nThis is (intentionally) very open-ended.\nYou need to communicate the most important aspect/finding/part(s) of your case study to a general audience (any undergrad).\n\nWhat might this look like?\n\nshort TikTok like video\nbrief Youtube video\nslides for an Instagram post\nX (Twitter) thread\nposter to be displayed next to an elevator\nposter to be put on public bulletin boards\neffective email communication"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#what-does-extend-the-case-study-mean",
+    "href": "content/lectures/10-projects-slides.html#what-does-extend-the-case-study-mean",
+    "title": "10-projects",
+    "section": "What does extend the case study mean?",
+    "text": "What does extend the case study mean?\nYou’ll need to do something more on the topic beyond what is presented in class.\n\nExamples:\n\nAsking an additional question and answering it from the data provided\nFinding an additional dataset and using it to add to the case study\nGenerating a handful of additional and very informative visualizations (beyond what’s presented in class)"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#grading",
+    "href": "content/lectures/10-projects-slides.html#grading",
+    "title": "10-projects",
+    "section": "Grading",
+    "text": "Grading\nGraded on:\n\ncontent (code, text, viz)\nreport: effective written communication (clarity/content > grammar/spelling)\n\nextension carried out\n\neffective general communication (effectively conveys message to a general audience)"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#final-project-logistics",
+    "href": "content/lectures/10-projects-slides.html#final-project-logistics",
+    "title": "10-projects",
+    "section": "Final Project Logistics",
+    "text": "Final Project Logistics\n\nwill be completed in groups of 3-4 students\nyou get to choose the group\nI will ask Monday week 7 for your final project groups (If you are not in one, I will help)\nYou will submit a proposal week 8.\nFinal projects are due during Finals week"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#final-project-details",
+    "href": "content/lectures/10-projects-slides.html#final-project-details",
+    "title": "10-projects",
+    "section": "Final Project Details",
+    "text": "Final Project Details\nTwo possible paths:\n\nCreate a technical presentation on a statistics topic and/or an R package.\nCarry out a data analysis"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#option-1-technical-presentation",
+    "href": "content/lectures/10-projects-slides.html#option-1-technical-presentation",
+    "title": "10-projects",
+    "section": "Option 1: Technical Presentation",
+    "text": "Option 1: Technical Presentation\n\n.Rmd document used to make slides\n“Teaches” the details of the R package/statistics topic\nDemonstrates how to use the package and/or carry out the statistical analysis in R\nTopic/Package must go beyond what was taught in this course or what you should have learned in an intro stats course\nPresentation Length: 10-15min"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#option-2-data-analysis",
+    "href": "content/lectures/10-projects-slides.html#option-2-data-analysis",
+    "title": "10-projects",
+    "section": "Option 2: Data Analysis",
+    "text": "Option 2: Data Analysis\n\n.Rmd document used for data science report\nAsks a question, finds data, analyzes data (basically: a mini case report, but you find the data and formulate the question)\nPresentation Length: 3-5min (brief summary of the full report)"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#wherewhen-for-this-presentation",
+    "href": "content/lectures/10-projects-slides.html#wherewhen-for-this-presentation",
+    "title": "10-projects",
+    "section": "Where/when for this presentation?",
+    "text": "Where/when for this presentation?\n\nSubmit by Tues of finals week at 11:59 PM"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#should-i-be-working-on-my-final-project-now",
+    "href": "content/lectures/10-projects-slides.html#should-i-be-working-on-my-final-project-now",
+    "title": "10-projects",
+    "section": "Should I be working on my final project now?",
+    "text": "Should I be working on my final project now?\n…probably not\n\nBut, you should start thinking about/getting a group of 3-4 people together. You’ll need to submit who’s in your final project group Monday of week 7.\n\n\nYou’ll need to have a general plan for your final project around wk 8. You’ll submit a “proposal” Monday of week 8."
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#what-is-the-general-audience-communication",
+    "href": "content/lectures/10-projects-slides.html#what-is-the-general-audience-communication",
+    "title": "10-projects",
+    "section": "What is the “general audience” communication?",
+    "text": "What is the “general audience” communication?\nConsider who the audience would be -> design for them\n\nFor example, if you present on an R package, who would benefit from knowing about this package? How would you reach them? What can you design to inform them of what it is and get them to use it?\n\n\nOr if you do a data analysis on a particular topic, what would you want others to know? How would you communicate that?\n\n\n\nhttps://cogs137.github.io/website/"
+  },
+  {
+    "objectID": "content/lectures/10-projects-slides.html#what-is-the-final-project-proposal",
+    "href": "content/lectures/10-projects-slides.html#what-is-the-final-project-proposal",
+    "title": "10-projects",
+    "section": "What is the final project proposal?",
+    "text": "What is the final project proposal?\n\nA short Google Form\nyou’ll submit your topic and a few details about that topic (depending upon which option you choose)\nYour idea can change after you submit your proposal\nThis has been added to help you start your project before finals week."
+  },
+  {
+    "objectID": "content/lectures/10-projects.html#what-is-the-final-project-proposal",
+    "href": "content/lectures/10-projects.html#what-is-the-final-project-proposal",
+    "title": "10-projects",
+    "section": "What is the final project proposal?",
+    "text": "What is the final project proposal?\n\nA short Google Form\nyou’ll submit your topic and a few details about that topic (depending upon which option you choose)\nYour idea can change after you submit your proposal\nThis has been added to help you start your project before finals week."
   }
 ]

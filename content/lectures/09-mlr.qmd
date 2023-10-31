@@ -1,7 +1,7 @@
 ---
 title: "09-mlr"
 author: "Professor Shannon Ellis"
-date: "2023-02-14"
+date: "2023-10-31"
 
 format:
   html: 
@@ -26,11 +26,24 @@ format:
 
 ## Q&A {.smaller}
 
-Coming Soon
+> Q: What are some ways we can make our visuals accessible? For example, how can we account for color blind people when incorporating graphs and figures in our presentation? \
+> A: Love this question! One way to do this is to use tools built for just this purpose! For example, for color blindness, [ColorBrewer2](https://colorbrewer2.org/) allows you to toggle for color palletes that are "colorblind safe." Similarly, for written content online, ensuring that you're including alt-text for all images, to enable visual understanding by those with vision impariments/differences. For those with learning differences (i.e. dyslexia, ADHD), I'm *sure* there's research out there with respect to viz, and I should make myself more familiar, but ensuring that you're not using very similar acronyms/initialisms for different context or using consistent icons (Rather than letters) across visualizations, etc. can really help individuals with learning differences and overall make your viz more consistent/understandable. This is just the tip of the iceberg. Additional suggestions [here](https://www.highcharts.com/blog/tutorials/10-guidelines-for-dataviz-accessibility/).
 
 ## Course Announcements
 
-Coming soon
+- `r emo::ji("halloween")` Happy Halloween! 
+  - No OH today after class
+  - Make up: tomorrow 10-11AM (CSB 243)
+- `r emo::ji("science")` There is NO lab to turn in this week
+  - Lab will be used for midterm review
+  - Come to lab with questions!
+- `r emo::ji("school")` Midterm is due next Monday at 11:59PM
+  - will be released 5PM Friday
+  - completed individually
+  - open notes/open Internet
+  - NOT timed
+  - typically takes students ~2.5h to complete (big range: 2-15h)
+- Lab05 & HW03 will be released next Monday
 
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
@@ -517,6 +530,8 @@ ols_step_backward_p(mod)
 ols_step_all_possible(mod) |>
   arrange(desc(adjr))
 ```
+
+# End of Material Covered on Midterm
 
 ## Recap {.smaller background-color="#92A86A"}
 

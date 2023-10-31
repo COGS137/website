@@ -63,8 +63,8 @@ website:
             href: content/lectures/08-effective-communication-slides.html
           - text: "09-mlr"
             href: content/lectures/09-mlr-slides.html
-          # - text: "10-projects"
-          #   href: content/lectures/10-projects-slides.html
+          - text: "10-projects"
+            href: content/lectures/10-projects-slides.html
           # - text: "11-cs01-data"
           #   href: content/lectures/11-cs01-data-slides.html
           # - text: "12-cs01-eda"
@@ -105,8 +105,8 @@ website:
             href: content/lectures/08-effective-communication.html
           - text: "09-mlr"
             href: content/lectures/09-mlr.html
-          # - text: "10-projects"
-          #   href: content/lectures/10-projects.html
+          - text: "10-projects"
+            href: content/lectures/10-projects.html
           # - text: "11-cs01-data"
           #   href: content/lectures/11-cs01-data.html
           # - text: "12-cs01-eda"
@@ -163,8 +163,8 @@ website:
             href: content/lab-ans/lab02-wrangling-ans.qmd
           - text: "Lab03: Data Viz (Ans)"
             href: content/lab-ans/lab03-viz-ans.qmd
-      #     - text: "Lab04: Modelling (Ans)"
-      #       href: content/lab-ans/lab04-modelling-ans.qmd
+          - text: "Lab04: Modelling (Ans)"
+            href: content/lab-ans/lab04-modelling-ans.qmd
       #     - text: "Lab05: MLR (Ans)"
       #       href: content/lab-ans/lab05-mlr-ans.qmd
       #     - text: "Lab07: Logistic Regression (Ans)"

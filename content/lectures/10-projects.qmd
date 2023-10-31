@@ -1,0 +1,215 @@
+---
+title: "10-projects"
+author: "Professor Shannon Ellis"
+date: "2023-11-02"
+
+format:
+  html: 
+    output-file: 10-projects.html
+    embed-resources: true
+  revealjs:
+    output-file: 10-projects-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# Case Studies & Final Projects {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+Coming Soon
+
+## Course Announcements
+
+Coming Soon
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+library(knitr)
+library(kableExtra)
+library(palmerpenguins)
+library(googlesheets4)
+
+# ggplot2 color palette with gray
+color_palette <- list(gray = "#999999", 
+                      salmon = "#E69F00", 
+                      lightblue = "#56B4E9", 
+                      green = "#009E73", 
+                      yellow = "#F0E442", 
+                      darkblue = "#0072B2", 
+                      red = "#D55E00", 
+                      purple = "#CC79A7")
+
+knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+## Agenda
+
+-   Case Studies
+-   Final Project
+
+# Case Studies {background-color="#92A86A"}
+
+## Biomarkers of Recent Use
+
+-   We'll use data from this paper:
+
+> Hubbard et al. Biomarkers of Recent Cannabis Use in Blood, Oral Fluid and Breath. *Journal of Analytical Toxicology*. 2021. [Link to paper](https://academic.oup.com/jat/article/45/8/820/6311388?login=false#303593274/).
+
+## OpenCaseStudies
+
+-   [OpenCaseStudies](https://www.opencasestudies.org/)
+-   Uses R/the `tidyverse`
+-   asks public health-centric questions
+-   goal: to teach statistical analysis/data science through case studies
+
+## What We'll Do
+
+For each case study (2), during lecture:
+
+-   Stats: (1-2d)
+-   Background, Data & Wrangling (1-2d)
+-   EDA & Analysis (1-2d)
+
+. . .
+
+For each case study:
+
+-   you'll also work with case study data in lab.
+-   you'll work in assigned groups of \~3 students to complete a data science report
+
+. . .
+
+I will share previous student examples and we'll discuss pros and cons in coming lectures.
+
+## Data Science Reports
+
+With your group, you will:
+
+-   carry out all steps of the analysis
+    -   some code will be taken directly from lecture
+-   add text/organize into a report
+
+. . .
+
+-   have to extend the case study
+
+. . .
+
+This should be written at the level of a data science-knowledgeable undergrad.
+
+## General Communication Submission
+
+This is (intentionally) *very* open-ended.
+
+You need to communicate the most important aspect/finding/part(s) of your case study to a general audience (*any* undergrad).
+
+. . .
+
+What *might* this look like? 
+
+- short TikTok like video 
+- brief Youtube video 
+- slides for an Instagram post 
+- X (Twitter) thread 
+- poster to be displayed next to an elevator 
+- poster to be put on public bulletin boards 
+- effective email communication
+
+## What does extend the case study mean? {.smaller}
+
+You'll need to do something more on the topic beyond what is presented in class.
+
+. . .
+
+Examples:
+
+1.  Asking an additional question and answering it from the data provided
+2.  Finding an additional dataset and using it to add to the case study
+3.  Generating a handful of additional and very informative visualizations (beyond what's presented in class)
+
+## Grading
+
+Graded on:
+
+-   content (code, text, viz)
+-   report: effective written communication (clarity/content \> grammar/spelling)
+    -   extension carried out
+-   effective general communication (effectively conveys message to a general audience)
+
+# Final Project {background-color="#92A86A"}
+
+## Final Project Logistics
+
+-   will be completed in groups of 3-4 students
+-   you get to choose the group
+-   I will ask Monday week 7 for your final project groups (If you are not in one, I will help)
+- You will submit a proposal week 8.
+- Final projects are due during Finals week
+
+## What is the final project proposal?
+
+- A short Google Form
+- you'll submit your topic and a few details about that topic (depending upon which option you choose)
+- Your idea *can* change after you submit your proposal
+- This has been added to help you start your project before finals week.
+
+## Final Project Details
+
+Two possible paths:
+
+1.  Create a technical presentation on a statistics topic and/or an R package.
+2.  Carry out a data analysis
+
+## Option 1: Technical Presentation
+
+-   .Rmd document used to make slides
+-   "Teaches" the details of the R package/statistics topic
+-   Demonstrates how to use the package and/or carry out the statistical analysis in R
+-   Topic/Package must go beyond what was taught in this course or what you should have learned in an intro stats course
+-   Presentation Length: 10-15min
+
+## Option 2: Data Analysis
+
+-   .Rmd document used for data science report
+-   Asks a question, finds data, analyzes data (basically: a mini case report, but you find the data and formulate the question)
+-   Presentation Length: 3-5min (brief summary of the full report)
+
+## Where/when for this presentation?
+
+-   Submit by Tues of finals week at 11:59 PM
+
+## Should I be working on my final project now?
+
+...probably not
+
+. . .
+
+But, you should start thinking about/**getting a group of 3-4 people together**. You'll need to submit who's in your final project group Monday of week 7.
+
+. . .
+
+You'll need to have a general plan for your final project around **wk 8**. You'll submit a "proposal" Monday of week 8.
+
+
+## What is the "general audience" communication?
+
+Consider who the audience would be -\> design for them
+
+. . .
+
+For example, if you present on an R package, who would benefit from knowing about this package? How would you reach them? What can you design to inform them of what it is and get them to use it?
+
+. . .
+
+Or if you do a data analysis on a particular topic, what would you want others to know? How would you communicate that?

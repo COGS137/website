@@ -1,0 +1,103 @@
+---
+title: "11-cs01-data"
+author: "Professor Shannon Ellis"
+date: "2023-02-14"
+
+format:
+  html: 
+    output-file: 11-cs01-data.html
+    embed-resources: true
+  revealjs:
+    output-file: 11-cs01-data-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# CS01: Biomarkers of Recent Use (Data) {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+
+## Course Announcements
+
+- 
+
+## Agenda
+
+-   Background
+-   Data Intro
+-   Wrangle
+-   Combine!
+
+# Background {background-color="#92A86A"}
+
+## Motor Vehicle Accidents (MVAs)
+- 2/3 of US trauma center admissions are due to MVAs 
+- ~60% of such patients testing positive for drugs or alcohol 
+- Alcohol and cannabis are most frequently detected
+
+Source: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
+
+## Legalization of Marijuana
+
+- Federally illegal in the US
+- Decriminalized in many states
+- Medically available in
+- Legal for recreational use in ...
+
+## Increased roadside surveys
+
+::: incremental
+- 25% increase in use nationwide from 2002 to 2015 (survey)
+- THC detection in drivers increased by 48% from 2007 to 2014
+- Increased prevalence of consumption -> possible intoxication -> possible impaired driving -> public health concern
+:::
+
+## DUI of Alcohol (DUIA)
+
+::: incremental
+- The science is there. Don't do it.
+- DUIA has decreased since the 1970s 
+  - % of nighttime, weekend drivers testing over the legal limit (BAC > 0.08 g/dL) decreased from 7.5% (1973) to 2.2% (2007)
+:::
+
+## DUI of Cannabis
+
+- In a 2007 survey[^1], 16.3% of nighttime drivers were drug-positive
+  - 8.6% of these tested positive for THC
+- Experimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:
+
+. . .
+
+> Evidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.[^1]
+
+[^1]: [https://rosap.ntl.bts.gov/view/dot/1913]()
+[^2]: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
+
+
+## *per se* limits
+
+
+## 
+
+# Questions {background-color="#92A86A"}
+
+# The Data {background-color="#92A86A"}
+
+## Experimental Design
+
+## 
+
+# Wrangling {background-color="#92A86A"}
+
+
+

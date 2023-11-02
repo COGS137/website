@@ -75,7 +75,7 @@ Source: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
 ## Increased roadside surveys
 
 ::: incremental
-- 25% increase in use nationwide from 2002 to 2015 (survey)
+- 25% increase in use nationwide from 2002 to 2015 ([survey](https://rosap.ntl.bts.gov/view/dot/1913))
 - THC detection in drivers increased by 48% from 2007 to 2014
 - Increased prevalence of consumption -> possible intoxication -> possible impaired driving -> public health concern
 :::
@@ -85,7 +85,7 @@ Source: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
 ::: incremental
 - The science is there. Don't do it.
 - DUIA has decreased since the 1970s 
-  - % of nighttime, weekend drivers testing over the legal limit (BAC > 0.08 g/dL) decreased from 7.5% (1973) to 2.2% (2007)
+  - % of nighttime, weekend drivers testing over the legal limit (BAC > 0.08 g/dL) decreased from 7.5% (1973) to 2.2% (2007) [link]((https://rosap.ntl.bts.gov/view/dot/1913))
 :::
 
 ## DUI of Cannabis
@@ -113,7 +113,7 @@ Source: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
   
 . . .
 
-As of 2021...
+As of 2021...[link](https://www.tandfonline.com/doi/full/10.1080/15389588.2020.1851685)
 
 :::incremental
 - 19 states have *per se* or zero tolerance cannabis laws
@@ -123,6 +123,8 @@ As of 2021...
 contained >5 ng/mL THC at the time of the offense
 - 3 states zero tolerance for THC; 8 states for THC and metabolites
 :::
+
+
 
 ## Metabolism
 

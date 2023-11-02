@@ -2741,7 +2741,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#course-announcements",
     "title": "11-cs01-data",
     "section": "Course Announcements",
-    "text": "Course Announcements\n\n💻 Midterm is due next Monday at 11:59PM (released Friday 5PM)\n\npractice answer heys are on website\n\n❓ Mid-course survey will open with midterm - please complete after finishing midterm; will have a week to complete\n🔬 Lab is for midterm review; Lab05 & HW03 will be released next Monday"
+    "text": "Course Announcements\n\n💻 Midterm is due next Monday at 11:59PM (released Friday 5PM; practice answer keys are on website)\n❓ Mid-course survey will open with midterm - please complete after finishing midterm; will have a week to complete\n🔬 Lab is for midterm review; Lab05 & HW03 will be released next Monday"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#agenda",
@@ -2776,7 +2776,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#dui-of-alcohol-duia",
     "title": "11-cs01-data",
     "section": "DUI of Alcohol (DUIA)",
-    "text": "DUI of Alcohol (DUIA)\n\n\nThe science is there. Don’t do it.\nDUIA has decreased since the 1970s\n\n% of nighttime, weekend drivers testing over the legal limit (BAC > 0.08 g/dL) decreased from 7.5% (1973) to 2.2% (2007)"
+    "text": "DUI of Alcohol (DUIA)\n\n\nThe science is there. Don’t do it.\nDUIA has decreased since the 1970s\n\n% of nighttime, weekend drivers testing over the legal limit (BAC > 0.08 g/dL) decreased from 7.5% (1973) to 2.2% (2007) link"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#dui-of-cannabis",
@@ -2790,7 +2790,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#roadside-detection",
     "title": "11-cs01-data",
     "section": "Roadside Detection",
-    "text": "Roadside Detection\n\nper se laws: “a driver is deemed to have committed an offense if THC is detected at or above a pre-determined cutoff” link\n\n\n\nDefining cutoffs for safe driving is difficult\nTHC concentration differs by:\n\n“smoking topography” (time to smoke; number of puffs)\nfrequency of use\nroute of ingestion\n\n\n\n\nAs of 2021…\n\n\n19 states have per se or zero tolerance cannabis laws\nStates with per se laws (Illinois, Montana, Nevada, Ohio, Pennsylvania, Washington and West Virginia), cutoffs range from 1 to 5 ng/mL THC in whole blood.\nIn 3 states, per se limits also apply to THC metabolites\nColorado: “reasonable inference” - blood contained >5 ng/mL THC at the time of the offense\n3 states zero tolerance for THC; 8 states for THC and metabolites"
+    "text": "Roadside Detection\n\nper se laws: “a driver is deemed to have committed an offense if THC is detected at or above a pre-determined cutoff” link\n\n\n\nDefining cutoffs for safe driving is difficult\nTHC concentration differs by:\n\n“smoking topography” (time to smoke; number of puffs)\nfrequency of use\nroute of ingestion\n\n\n\n\nAs of 2021…link\n\n\n19 states have per se or zero tolerance cannabis laws\nStates with per se laws (Illinois, Montana, Nevada, Ohio, Pennsylvania, Washington and West Virginia), cutoffs range from 1 to 5 ng/mL THC in whole blood.\nIn 3 states, per se limits also apply to THC metabolites\nColorado: “reasonable inference” - blood contained >5 ng/mL THC at the time of the offense\n3 states zero tolerance for THC; 8 states for THC and metabolites"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#metabolism",

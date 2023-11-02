@@ -181,12 +181,12 @@ website:
         contents:
           - text: "Practice Midterm (Fa21)"
             href: content/exams/practice-exam-fa21.qmd
-      #     - text: "Practice Midterm (Ans-Fa21)"
-      #       href: content/exams/practice-exam-fa21-ans.qmd
+          - text: "Practice Midterm (Ans-Fa21)"
+            href: content/exams/practice-exam-fa21-ans.qmd
           - text: "Practice Midterm (Wi23)"
             href: content/exams/practice-exam-wi23.qmd      
-      #     - text: "Practice Midterm (Ans-Wi23)"
-      #       href: content/exams/practice-exam-wi23-ans.qmd
+          - text: "Practice Midterm (Ans-Wi23)"
+            href: content/exams/practice-exam-wi23-ans.qmd
       #     - text: "Midterm"
       #       href: content/exams/midterm_wi23.qmd
       #     - text: "Midterm (Ans)"

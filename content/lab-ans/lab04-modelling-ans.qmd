@@ -29,15 +29,12 @@ evals <- read_csv("data/evals-mod.csv")
 
 First, we use `rowwise` to group `evals` by each *row*. We then use `mutate` to compute a new variable (`bty_avg`) corresponding to the average of the six beauty scores.
 
-Finally, we `ungroup` so that the dataframe isn't still grouped by each row.
-
 ```{r}
 evals <- evals |>
   rowwise() |>
   mutate(bty_avg = mean( c( bty_f1lower, bty_f1upper,
                             bty_f2upper, bty_m1lower,
-                            bty_m1upper, bty_m2upper) )) |>
-  ungroup()
+                            bty_m1upper, bty_m2upper) ))
 
 ```
 

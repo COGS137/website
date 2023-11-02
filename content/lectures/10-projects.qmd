@@ -24,14 +24,6 @@ format:
 
 # Case Studies & Final Projects {background-color="#92A86A"}
 
-## Q&A {.smaller}
-
-Coming Soon
-
-## Course Announcements
-
-Coming Soon
-
 ```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(emo)

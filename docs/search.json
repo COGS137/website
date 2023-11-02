@@ -1061,7 +1061,7 @@
     "href": "content/lectures/09-mlr.html",
     "title": "09-mlr",
     "section": "",
-    "text": "Q: What are some ways we can make our visuals accessible? For example, how can we account for color blind people when incorporating graphs and figures in our presentation?\nA: Love this question! One way to do this is to use tools built for just this purpose! For example, for color blindness, ColorBrewer2 allows you to toggle for color palletes that are “colorblind safe.” Similarly, for written content online, ensuring that you’re including alt-text for all images, to enable visual understanding by those with vision impariments/differences. For those with learning differences (i.e. dyslexia, ADHD), I’m sure there’s research out there with respect to viz, and I should make myself more familiar, but ensuring that you’re not using very similar acronyms/initialisms for different context or using consistent icons (Rather than letters) across visualizations, etc. can really help individuals with learning differences and overall make your viz more consistent/understandable. This is just the tip of the iceberg. Additional suggestions here.\n\n\n\n\n\n🎃 Happy Halloween!\n\nNo OH today after class\nMake up: tomorrow 10-11AM (CSB 243)\n\n🔭 There is NO lab to turn in this week\n\nLab will be used for midterm review\nCome to lab with questions!\n\n🏫 Midterm is due next Monday at 11:59PM\n\nwill be released 5PM Friday\ncompleted individually\nopen notes/open Internet\nNOT timed\ntypically takes students ~2.5h to complete (big range: 2-15h)\n\nLab05 & HW03 will be released next Monday\n\n\n\n\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors\n\n\n\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
+    "text": "Q: What are some ways we can make our visuals accessible? For example, how can we account for color blind people when incorporating graphs and figures in our presentation?\nA: Love this question! One way to do this is to use tools built for just this purpose! For example, for color blindness, ColorBrewer2 allows you to toggle for color palletes that are “colorblind safe.” Similarly, for written content online, ensuring that you’re including alt-text for all images, to enable visual understanding by those with vision impariments/differences. For those with learning differences (i.e. dyslexia, ADHD), I’m sure there’s research out there with respect to viz, and I should make myself more familiar, but ensuring that you’re not using very similar acronyms/initialisms for different context or using consistent icons (Rather than letters) across visualizations, etc. can really help individuals with learning differences and overall make your viz more consistent/understandable. This is just the tip of the iceberg. Additional suggestions here.\n\n\n\n\n\n👻 Happy Halloween!\n\nNo OH today after class\nMake up: tomorrow 10-11AM (CSB 243)\n\n🔭 There is NO lab to turn in this week\n\nLab will be used for midterm review\nCome to lab with questions!\n\n🏫 Midterm is due next Monday at 11:59PM\n\nwill be released 5PM Friday\ncompleted individually\nopen notes/open Internet\nNOT timed\ntypically takes students ~2.5h to complete (big range: 2-15h)\n\nLab05 & HW03 will be released next Monday\n\n\n\n\nIntroduction to Modern Statistics Chapter 8: Linear Regression with Multiple Predictors\n\n\n\n\nMultiple Linear Regression\n\nMultiple predictors\nMain vs interaction effects\nModel comparison\nBackward selection\n\n\n\n\n\n\nlibrary(tidyverse)\nlibrary(tidymodels)\n\n\nData: Paris Paintings\n\npp <- read_csv(\"https://raw.githubusercontent.com/COGS137/datasets/main/paris_paintings.csv\", \n               na = c(\"n/a\", \"\", \"NA\")) |> \n  mutate(log_price = log(price))\n\n\nNumber of observations: 3393\nNumber of variables: 62"
   },
   {
     "objectID": "content/lectures/09-mlr.html#multiple-predictors",
@@ -1558,7 +1558,7 @@
     "href": "content/lectures/00-welcome-slides.html#whos-in-this-class-2",
     "title": "00-welcome",
     "section": "Who’s in this class?",
-    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")"
+    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\nWarning: 1 unknown level in `f`: SO\n1 unknown level in `f`: SO"
   },
   {
     "objectID": "content/lectures/00-welcome-slides.html#id-like-to-know-more",
@@ -1831,7 +1831,7 @@
     "href": "content/lectures/00-welcome.html#whos-in-this-class-2",
     "title": "00-welcome",
     "section": "Who’s in this class?",
-    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")"
+    "text": "Who’s in this class?\n\nroster |>\n  ggplot(aes(fct_relevel(Level, \"SO\", \"JR\", \"SR\"))) +\n  geom_bar() +\n  labs(title = \"COGS 137\",\n       x = \"Level\") +\n  theme_bw(base_size = 14) + \n  theme(plot.title.position = \"plot\")\n\nWarning: 1 unknown level in `f`: SO\n1 unknown level in `f`: SO"
   },
   {
     "objectID": "content/lectures/00-welcome.html#id-like-to-know-more",
@@ -2734,21 +2734,21 @@
     "href": "content/lectures/11-cs01-data-slides.html#qa",
     "title": "11-cs01-data",
     "section": "Q&A",
-    "text": "Q&A"
+    "text": "Q&A\n\nQ: How much time are we expected to spend on the case studies?\nA: That’s hard to say. I would recommend spending a bit of time after each lecture ensuring I understand the code presented. It will eventually be included in your final report, so you’ll need to understand/describe/explain it. After the case study has been presented, I would expect a few hours from each group member to complete the extension and write the report. Last year students reported typically spending 4-6h on case studies (with a big range around that median).\n\n\nQ: For the general project plan how much time should we budget towards working on this?\nA: Students report spending ~10h on their final project\n\n\nQ: Are we allowed to work with some of our case study partners for a final project?\nA: Absolutely! My hope is through the case studies students will get to know one another a bit and hopefully want to work together again!"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#course-announcements",
     "href": "content/lectures/11-cs01-data-slides.html#course-announcements",
     "title": "11-cs01-data",
     "section": "Course Announcements",
-    "text": "Course Announcements"
+    "text": "Course Announcements\n\n💻 Midterm is due next Monday at 11:59PM (released Friday 5PM)\n\npractice answer heys are on website\n\n❓ Mid-course survey will open with midterm - please complete after finishing midterm; will have a week to complete\n🔬 Lab is for midterm review; Lab05 & HW03 will be released next Monday"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#agenda",
     "href": "content/lectures/11-cs01-data-slides.html#agenda",
     "title": "11-cs01-data",
     "section": "Agenda",
-    "text": "Agenda\n\nBackground\nData Intro\nWrangle\nCombine!"
+    "text": "Agenda\n\nBackground\nData Intro\nPaper Results\nWrangle"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#motor-vehicle-accidents-mvas",
@@ -2762,7 +2762,7 @@
     "href": "content/lectures/11-cs01-data-slides.html#legalization-of-marijuana",
     "title": "11-cs01-data",
     "section": "Legalization of Marijuana",
-    "text": "Legalization of Marijuana\n\nFederally illegal in the US\nDecriminalized in many states\nMedically available in\nLegal for recreational use in …"
+    "text": "Legalization of Marijuana\n\nFederally illegal in the US\nDecriminalized in many states\nMedically available in 15 states\nLegal for recreational use in 24 states (including CA)"
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#increased-roadside-surveys",
@@ -2783,28 +2783,238 @@
     "href": "content/lectures/11-cs01-data-slides.html#dui-of-cannabis",
     "title": "11-cs01-data",
     "section": "DUI of Cannabis",
-    "text": "DUI of Cannabis\n\nIn a 2007 survey1, 16.3% of nighttime drivers were drug-positive\n\n8.6% of these tested positive for THC\n\nExperimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:\n\n\n\nEvidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.2\n\n\nhttps://rosap.ntl.bts.gov/view/dot/1913https://rosap.ntl.bts.gov/view/dot/1913"
+    "text": "DUI of Cannabis\n\nIn a 2007 survey, 16.3% of nighttime drivers were drug-positive link\n\n8.6% of these tested positive for THC\n\nExperimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:\n\n\n\nEvidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.link"
   },
   {
-    "objectID": "content/lectures/11-cs01-data-slides.html#per-se-limits",
-    "href": "content/lectures/11-cs01-data-slides.html#per-se-limits",
+    "objectID": "content/lectures/11-cs01-data-slides.html#roadside-detection",
+    "href": "content/lectures/11-cs01-data-slides.html#roadside-detection",
     "title": "11-cs01-data",
-    "section": "per se limits",
-    "text": "per se limits"
+    "section": "Roadside Detection",
+    "text": "Roadside Detection\n\nper se laws: “a driver is deemed to have committed an offense if THC is detected at or above a pre-determined cutoff” link\n\n\n\nDefining cutoffs for safe driving is difficult\nTHC concentration differs by:\n\n“smoking topography” (time to smoke; number of puffs)\nfrequency of use\nroute of ingestion\n\n\n\n\nAs of 2021…\n\n\n19 states have per se or zero tolerance cannabis laws\nStates with per se laws (Illinois, Montana, Nevada, Ohio, Pennsylvania, Washington and West Virginia), cutoffs range from 1 to 5 ng/mL THC in whole blood.\nIn 3 states, per se limits also apply to THC metabolites\nColorado: “reasonable inference” - blood contained >5 ng/mL THC at the time of the offense\n3 states zero tolerance for THC; 8 states for THC and metabolites"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#metabolism",
+    "href": "content/lectures/11-cs01-data-slides.html#metabolism",
+    "title": "11-cs01-data",
+    "section": "Metabolism",
+    "text": "Metabolism\n\n\npeak blood concentrations occur during smoking, then drop rapidly link\nsubjective ‘high’ persists for several hours, varies greatly between individuals\nTHC concentrations remain detectable in frequent users longer than occasional users link\nTHC and certain metabolites can be detected in blood for weeks to months after use and do not necessarily indicate impairment"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#detection",
+    "href": "content/lectures/11-cs01-data-slides.html#detection",
+    "title": "11-cs01-data",
+    "section": "Detection",
+    "text": "Detection\nVarious approaches:\n\nDetect impairment (officers detect DUIC)\nDetect recent use (test for compounds)\nCombine recent use + impairment\n\n\nFocus here: Can we identify a biomarker of recent use?\n\nrecent use: defined here as within 3h\ntesting THC and metabolites in blood, oral fluid (OF), and breath"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#aside-case-study-report",
+    "href": "content/lectures/11-cs01-data-slides.html#aside-case-study-report",
+    "title": "11-cs01-data",
+    "section": "Aside: Case Study Report",
+    "text": "Aside: Case Study Report\n\nYour Case study will need a background section\nIt can use/summarize/paraphrase the information here (you should cite the source, not me)\nBut, you’re not limited to this information\nYou are allowed/encouraged to dig deeper, include what’s most important, add to, remove, etc.\nThere are a lot of citations in this section - go ahead and peruse them/others/use references in these papers"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#participants",
+    "href": "content/lectures/11-cs01-data-slides.html#participants",
+    "title": "11-cs01-data",
+    "section": "Participants",
+    "text": "Participants\n\nplacebo-controlled, double-blinded, randomized study\n\n\n\nrecruited:\n\nvolunteers 21-55y/o\nhad a driver’s license\nself-reported cannabis use >= 4x in the past month\n\n\n\n\n\nParticipants were:\n\ncompensated\nmedically evaluated (for safety)\nasked to refrain from use for 2d prior to participation\nexclusion criteria: OF THC concentration ≥5 ng/mL on day of study (n=7)\n\n\n\n\n\nStudy included 191 participants"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#demographics",
+    "href": "content/lectures/11-cs01-data-slides.html#demographics",
+    "title": "11-cs01-data",
+    "section": "Demographics",
+    "text": "Demographics\n\nSource: Hoffman et al."
   },
   {
     "objectID": "content/lectures/11-cs01-data-slides.html#experimental-design",
     "href": "content/lectures/11-cs01-data-slides.html#experimental-design",
     "title": "11-cs01-data",
     "section": "Experimental Design",
-    "text": "Experimental Design"
+    "text": "Experimental Design\nParticipants were:\n\n\nrandomly assigned to receive a cigarette containing placebo (0.02%), or 5.9% or 13.4% THC\nBlood, OF and breath were collected prior to smoking\nsmoked a 700 mg cigarette ad libitum within 10 min, with a minimum of four puffs.\nAfter smoking, 4 additional OF and breath and 8 blood collections were completed at time points up to ∼6h from the start of smoking.\nParticipants ate and drank water between collections, although not within 10 min of OF collection."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#timeline",
+    "href": "content/lectures/11-cs01-data-slides.html#timeline",
+    "title": "11-cs01-data",
+    "section": "Timeline",
+    "text": "Timeline\n\nSource: Fitzgerald et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#consumption",
+    "href": "content/lectures/11-cs01-data-slides.html#consumption",
+    "title": "11-cs01-data",
+    "section": "Consumption",
+    "text": "Consumption\n Source: Hoffman et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#topography",
+    "href": "content/lectures/11-cs01-data-slides.html#topography",
+    "title": "11-cs01-data",
+    "section": "Topography",
+    "text": "Topography\n Source: Hoffman et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#subjective-highness",
+    "href": "content/lectures/11-cs01-data-slides.html#subjective-highness",
+    "title": "11-cs01-data",
+    "section": "Subjective Highness",
+    "text": "Subjective Highness\n\nSource: Hoffman et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#our-datasets",
+    "href": "content/lectures/11-cs01-data-slides.html#our-datasets",
+    "title": "11-cs01-data",
+    "section": "Our Datasets",
+    "text": "Our Datasets\nThree matrices:\n\nBlood (WB): 8 compounds; 190 participants\nOral Fluid (OF): 7 compounds; 192 participants\nBreath (BR): 1 compound; 191 participants\n\n\nVariables:\n\nID | participants identifier\nTreatment | placebo, 5.90%, 13.40%\nGroup | Occasional user, Frequent user\nTimepoint | indicator of which point in the timeline participant’s collection occurred\ntime.from.start | number of minutes from consumption\n& measurements for individual compounds"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#the-data-1",
+    "href": "content/lectures/11-cs01-data-slides.html#the-data-1",
+    "title": "11-cs01-data",
+    "section": "The Data",
+    "text": "The Data\nYou’ll have access once your groups/repos are created…(today I want people to follow along; there will be time to try on your own soon!)\n\nWB <- read_csv(\"data/Blood.csv\")\nBR <- read_csv(\"data/Breath.csv\")\nOF <- read_csv(\"data/OF.csv\")"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#first-look-at-the-data-wb",
+    "href": "content/lectures/11-cs01-data-slides.html#first-look-at-the-data-wb",
+    "title": "11-cs01-data",
+    "section": "First Look at the data (WB)",
+    "text": "First Look at the data (WB)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#first-look-at-the-data-of",
+    "href": "content/lectures/11-cs01-data-slides.html#first-look-at-the-data-of",
+    "title": "11-cs01-data",
+    "section": "First Look at the data (OF)",
+    "text": "First Look at the data (OF)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#first-look-at-the-data-br",
+    "href": "content/lectures/11-cs01-data-slides.html#first-look-at-the-data-br",
+    "title": "11-cs01-data",
+    "section": "First Look at the data (BR)",
+    "text": "First Look at the data (BR)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#fig-1-pre-smoking",
+    "href": "content/lectures/11-cs01-data-slides.html#fig-1-pre-smoking",
+    "title": "11-cs01-data",
+    "section": "Fig 1: Pre-smoking",
+    "text": "Fig 1: Pre-smoking"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#fig-2-sensitivity-and-specificity",
+    "href": "content/lectures/11-cs01-data-slides.html#fig-2-sensitivity-and-specificity",
+    "title": "11-cs01-data",
+    "section": "Fig 2: Sensitivity and Specificity",
+    "text": "Fig 2: Sensitivity and Specificity"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#fig-3-cross-compound-relationship",
+    "href": "content/lectures/11-cs01-data-slides.html#fig-3-cross-compound-relationship",
+    "title": "11-cs01-data",
+    "section": "Fig 3: Cross-compound relationship",
+    "text": "Fig 3: Cross-compound relationship"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#fig-4-cutoffs",
+    "href": "content/lectures/11-cs01-data-slides.html#fig-4-cutoffs",
+    "title": "11-cs01-data",
+    "section": "Fig 4: Cutoffs",
+    "text": "Fig 4: Cutoffs"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#fig-5-youden",
+    "href": "content/lectures/11-cs01-data-slides.html#fig-5-youden",
+    "title": "11-cs01-data",
+    "section": "Fig 5: Youden",
+    "text": "Fig 5: Youden\n\n\n…and if there’s time PPV and Accuracy post 3h"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#what-came-after",
+    "href": "content/lectures/11-cs01-data-slides.html#what-came-after",
+    "title": "11-cs01-data",
+    "section": "What Came After",
+    "text": "What Came After\n Source: Fitgerald et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#oral-fluid",
+    "href": "content/lectures/11-cs01-data-slides.html#oral-fluid",
+    "title": "11-cs01-data",
+    "section": "Oral Fluid",
+    "text": "Oral Fluid\n\nOF <- OF |>\n  mutate(Treatment = fct_recode(Treatment, \n                                \"5.9% THC (low dose)\" = \"5.90%\",\n                                \"13.4% THC (high dose)\" = \"13.40%\"),\n         Treatment = fct_relevel(Treatment, \"Placebo\", \"5.9% THC (low dose)\"),\n         Group = fct_recode(Group, \n                            \"Occasional user\" = \"Not experienced user\",\n                            \"Frequent user\" = \"Experienced user\" )) |>  \n  janitor::clean_names() |>\n  rename(thcoh = x11_oh_thc,\n         thcv = thc_v)\n\n❓ What’s this accomplishing?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#whole-blood",
+    "href": "content/lectures/11-cs01-data-slides.html#whole-blood",
+    "title": "11-cs01-data",
+    "section": "Whole Blood",
+    "text": "Whole Blood\n\nWB <- WB |> \n  mutate(Treatment = fct_recode(Treatment, \n                                \"5.9% THC (low dose)\" = \"5.90%\",\n                                \"13.4% THC (high dose)\" = \"13.40%\"),\n         Treatment = fct_relevel(Treatment, \"Placebo\", \"5.9% THC (low dose)\")) |> \n  janitor::clean_names() |>\n  rename(thcoh = x11_oh_thc,\n         thccooh = thc_cooh,\n         thccooh_gluc = thc_cooh_gluc,\n         thcv = thc_v)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#breath",
+    "href": "content/lectures/11-cs01-data-slides.html#breath",
+    "title": "11-cs01-data",
+    "section": "Breath",
+    "text": "Breath\n\nBR <- BR |> \n  mutate(Treatment = fct_recode(Treatment, \n                                \"5.9% THC (low dose)\" = \"5.90%\",\n                                \"13.4% THC (high dose)\" = \"13.40%\"),\n         Treatment = fct_relevel(Treatment, \"Placebo\", \"5.9% THC (low dose)\"),\n         Group = fct_recode(Group, \n                            \"Occasional user\" = \"Not experienced user\",\n                            \"Frequent user\" = \"Experienced user\" )) |> \n  janitor::clean_names() |> \n  rename(thc = thc_pg_pad)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#question-1",
+    "href": "content/lectures/11-cs01-data-slides.html#question-1",
+    "title": "11-cs01-data",
+    "section": "Question",
+    "text": "Question\n❓ We’re doing very similar things across three similar (albeit different) datasets. What would be a better approach?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#storing-compounds",
+    "href": "content/lectures/11-cs01-data-slides.html#storing-compounds",
+    "title": "11-cs01-data",
+    "section": "Storing compounds",
+    "text": "Storing compounds\nWe’ll need these later in our functions\n\n# whole blood\ncompounds_WB <-  as.list(colnames(Filter(function(x) !all(is.na(x)), WB[6:13])))\n\n# breath\ncompounds_BR <-  as.list(colnames(Filter(function(x) !all(is.na(x)), BR[6])))\n\n# oral fluid\ncompounds_OF <-  as.list(colnames(Filter(function(x) !all(is.na(x)), OF[6:12])))\n\n\n\n# to get a sense of output\ncompounds_WB\n\n[[1]]\n[1] \"cbn\"\n\n[[2]]\n[1] \"cbd\"\n\n[[3]]\n[1] \"thc\"\n\n[[4]]\n[1] \"thcoh\"\n\n[[5]]\n[1] \"thccooh\"\n\n[[6]]\n[1] \"thccooh_gluc\"\n\n[[7]]\n[1] \"cbg\"\n\n[[8]]\n[1] \"thcv\""
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#storing-timepoints",
+    "href": "content/lectures/11-cs01-data-slides.html#storing-timepoints",
+    "title": "11-cs01-data",
+    "section": "Storing timepoints",
+    "text": "Storing timepoints\n\ntimepoints_WB = tibble(start = c(-400, 0, 30, 70, 100, 180, 210, 240, 270, 300), \n                       stop = c(0, 30, 70, 100, 180, 210, 240, 270, 300, max(WB$time_from_start, na.rm = TRUE)), \n                       timepoint = c(\"pre-smoking\",\"0-30 min\",\"31-70 min\",\n                                     \"71-100 min\",\"101-180 min\",\"181-210 min\",\n                                     \"211-240 min\",\"241-270 min\",\n                                     \"271-300 min\", \"301+ min\") )\n\n\n\ntimepoints_WB\n\n# A tibble: 10 × 3\n   start  stop timepoint  \n   <dbl> <dbl> <chr>      \n 1  -400     0 pre-smoking\n 2     0    30 0-30 min   \n 3    30    70 31-70 min  \n 4    70   100 71-100 min \n 5   100   180 101-180 min\n 6   180   210 181-210 min\n 7   210   240 211-240 min\n 8   240   270 241-270 min\n 9   270   300 271-300 min\n10   300   382 301+ min   \n\n\n\n\n…and in BR and OF\n\ntimepoints_BR = tibble(start = c(-400, 0, 40, 90, 180, 210, 240, 270), \n                       stop = c(0, 40, 90, 180, 210, 240, 270, \n                                max(BR$time_from_start, na.rm = TRUE)), \n                       timepoint = c(\"pre-smoking\",\"0-40 min\",\"41-90 min\",\n                                     \"91-180 min\", \"181-210 min\", \"211-240 min\",\n                                     \"241-270 min\", \"271+ min\"))\ntimepoints_OF = tibble(start = c(-400, 0, 30, 90, 180, 210, 240, 270), \n                       stop = c(0, 30, 90, 180, 210, 240, 270, \n                                max(OF$time_from_start, na.rm = TRUE)), \n                       timepoint = c(\"pre-smoking\",\"0-30 min\",\"31-90 min\",\n                                     \"91-180 min\", \"181-210 min\", \"211-240 min\",\n                                     \"241-270 min\", \"271+ min\") )"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#first-udf-assign_timepoint",
+    "href": "content/lectures/11-cs01-data-slides.html#first-udf-assign_timepoint",
+    "title": "11-cs01-data",
+    "section": "First UDF: assign_timepoint",
+    "text": "First UDF: assign_timepoint\n\nassign_timepoint <- function(x, timepoints){\n  if(!is.na(x)){ \n    timepoints$timepoint[x > timepoints$start & x <= timepoints$stop]\n  }else{\n    NA\n  }\n}\n\n🧠 What’s a UDF? What do you think this is doing?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#timepoints-to-use",
+    "href": "content/lectures/11-cs01-data-slides.html#timepoints-to-use",
+    "title": "11-cs01-data",
+    "section": "Timepoints to use",
+    "text": "Timepoints to use\n\n WB <- WB |> \n  mutate(timepoint_use = map_chr(time_from_start, \n                                 assign_timepoint, \n                                 timepoints=timepoints_WB),\n         timepoint_use = fct_relevel(timepoint_use, timepoints_WB$timepoint))\n\n# let's get a sense for what this did\nlevels(WB$timepoint_use)\n\n [1] \"pre-smoking\" \"0-30 min\"    \"31-70 min\"   \"71-100 min\"  \"101-180 min\"\n [6] \"181-210 min\" \"211-240 min\" \"241-270 min\" \"271-300 min\" \"301+ min\"   \n\n\nNote: map_* allow you to apply a function across multiple “things” (here: across all rows in a dataframe)\n❓What do you think the above is doing?\n\n\nOF <- OF |> \n  mutate(timepoint_use = map_chr(time_from_start, \n                                 assign_timepoint, \n                                 timepoints=timepoints_OF),\n         timepoint_use = fct_relevel(timepoint_use, timepoints_OF$timepoint))\n\nBR <- BR |> \n  mutate(timepoint_use = map_chr(time_from_start, \n                                 assign_timepoint, \n                                 timepoints=timepoints_BR),\n         timepoint_use = fct_relevel(timepoint_use, timepoints_BR$timepoint))"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#drop-duplicates",
+    "href": "content/lectures/11-cs01-data-slides.html#drop-duplicates",
+    "title": "11-cs01-data",
+    "section": "Drop Duplicates",
+    "text": "Drop Duplicates\n\n drop_dups <- function(dataset){\n  out <- dataset |> \n    filter(!is.na(timepoint_use)) |> \n    group_by(timepoint_use) |> \n    distinct(id, .keep_all = TRUE) |> \n    ungroup()\n  return(out)\n} \n\n❓What do you think the above is doing?\n\n\nWB_dups <- drop_dups(WB)\nOF_dups <- drop_dups(OF)\nBR_dups <- drop_dups(BR)\n\n❓What would you do to try to understand what this has done?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data-slides.html#recap",
+    "href": "content/lectures/11-cs01-data-slides.html#recap",
+    "title": "11-cs01-data",
+    "section": "Recap",
+    "text": "Recap\n\nCould you summarize/explain background presented?\nCould you summarize the experiment that was done?\nCould you describe the datasets? (variables, observations, values, etc.)\nDo you understand/could you explain the wrangling that was done?\n\n\n\n\nhttps://cogs137.github.io/website/"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html",
     "href": "content/lectures/11-cs01-data.html",
     "title": "11-cs01-data",
     "section": "",
-    "text": "Background\nData Intro\nWrangle\nCombine!"
+    "text": "Q: How much time are we expected to spend on the case studies?\nA: That’s hard to say. I would recommend spending a bit of time after each lecture ensuring I understand the code presented. It will eventually be included in your final report, so you’ll need to understand/describe/explain it. After the case study has been presented, I would expect a few hours from each group member to complete the extension and write the report. Last year students reported typically spending 4-6h on case studies (with a big range around that median).\n\n\nQ: For the general project plan how much time should we budget towards working on this?\nA: Students report spending ~10h on their final project\n\n\nQ: Are we allowed to work with some of our case study partners for a final project?\nA: Absolutely! My hope is through the case studies students will get to know one another a bit and hopefully want to work together again!\n\n\n\n\n\n💻 Midterm is due next Monday at 11:59PM (released Friday 5PM)\n\npractice answer heys are on website\n\n❓ Mid-course survey will open with midterm - please complete after finishing midterm; will have a week to complete\n🔬 Lab is for midterm review; Lab05 & HW03 will be released next Monday\n\n\n\n\n\nBackground\nData Intro\nPaper Results\nWrangle"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#motor-vehicle-accidents-mvas",
@@ -2818,7 +3028,7 @@
     "href": "content/lectures/11-cs01-data.html#legalization-of-marijuana",
     "title": "11-cs01-data",
     "section": "Legalization of Marijuana",
-    "text": "Legalization of Marijuana\n\nFederally illegal in the US\nDecriminalized in many states\nMedically available in\nLegal for recreational use in …"
+    "text": "Legalization of Marijuana\n\nFederally illegal in the US\nDecriminalized in many states\nMedically available in 15 states\nLegal for recreational use in 24 states (including CA)"
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#increased-roadside-surveys",
@@ -2839,21 +3049,231 @@
     "href": "content/lectures/11-cs01-data.html#dui-of-cannabis",
     "title": "11-cs01-data",
     "section": "DUI of Cannabis",
-    "text": "DUI of Cannabis\n\nIn a 2007 survey1, 16.3% of nighttime drivers were drug-positive\n\n8.6% of these tested positive for THC\n\nExperimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:\n\n\n\nEvidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.2"
+    "text": "DUI of Cannabis\n\nIn a 2007 survey, 16.3% of nighttime drivers were drug-positive link\n\n8.6% of these tested positive for THC\n\nExperimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:\n\n\n\nEvidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.link"
   },
   {
-    "objectID": "content/lectures/11-cs01-data.html#per-se-limits",
-    "href": "content/lectures/11-cs01-data.html#per-se-limits",
+    "objectID": "content/lectures/11-cs01-data.html#roadside-detection",
+    "href": "content/lectures/11-cs01-data.html#roadside-detection",
     "title": "11-cs01-data",
-    "section": "per se limits",
-    "text": "per se limits"
+    "section": "Roadside Detection",
+    "text": "Roadside Detection\n\nper se laws: “a driver is deemed to have committed an offense if THC is detected at or above a pre-determined cutoff” link\n\n\n\nDefining cutoffs for safe driving is difficult\nTHC concentration differs by:\n\n“smoking topography” (time to smoke; number of puffs)\nfrequency of use\nroute of ingestion\n\n\n\n\nAs of 2021…\n\n\n19 states have per se or zero tolerance cannabis laws\nStates with per se laws (Illinois, Montana, Nevada, Ohio, Pennsylvania, Washington and West Virginia), cutoffs range from 1 to 5 ng/mL THC in whole blood.\nIn 3 states, per se limits also apply to THC metabolites\nColorado: “reasonable inference” - blood contained >5 ng/mL THC at the time of the offense\n3 states zero tolerance for THC; 8 states for THC and metabolites"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#metabolism",
+    "href": "content/lectures/11-cs01-data.html#metabolism",
+    "title": "11-cs01-data",
+    "section": "Metabolism",
+    "text": "Metabolism\n\n\npeak blood concentrations occur during smoking, then drop rapidly link\nsubjective ‘high’ persists for several hours, varies greatly between individuals\nTHC concentrations remain detectable in frequent users longer than occasional users link\nTHC and certain metabolites can be detected in blood for weeks to months after use and do not necessarily indicate impairment"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#detection",
+    "href": "content/lectures/11-cs01-data.html#detection",
+    "title": "11-cs01-data",
+    "section": "Detection",
+    "text": "Detection\nVarious approaches:\n\nDetect impairment (officers detect DUIC)\nDetect recent use (test for compounds)\nCombine recent use + impairment\n\n\nFocus here: Can we identify a biomarker of recent use?\n\nrecent use: defined here as within 3h\ntesting THC and metabolites in blood, oral fluid (OF), and breath"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#aside-case-study-report",
+    "href": "content/lectures/11-cs01-data.html#aside-case-study-report",
+    "title": "11-cs01-data",
+    "section": "Aside: Case Study Report",
+    "text": "Aside: Case Study Report\n\nYour Case study will need a background section\nIt can use/summarize/paraphrase the information here (you should cite the source, not me)\nBut, you’re not limited to this information\nYou are allowed/encouraged to dig deeper, include what’s most important, add to, remove, etc.\nThere are a lot of citations in this section - go ahead and peruse them/others/use references in these papers"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#participants",
+    "href": "content/lectures/11-cs01-data.html#participants",
+    "title": "11-cs01-data",
+    "section": "Participants",
+    "text": "Participants\n\nplacebo-controlled, double-blinded, randomized study\n\n\n\nrecruited:\n\nvolunteers 21-55y/o\nhad a driver’s license\nself-reported cannabis use >= 4x in the past month\n\n\n\n\n\nParticipants were:\n\ncompensated\nmedically evaluated (for safety)\nasked to refrain from use for 2d prior to participation\nexclusion criteria: OF THC concentration ≥5 ng/mL on day of study (n=7)\n\n\n\n\n\nStudy included 191 participants"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#demographics",
+    "href": "content/lectures/11-cs01-data.html#demographics",
+    "title": "11-cs01-data",
+    "section": "Demographics",
+    "text": "Demographics\n\nSource: Hoffman et al."
   },
   {
     "objectID": "content/lectures/11-cs01-data.html#experimental-design",
     "href": "content/lectures/11-cs01-data.html#experimental-design",
     "title": "11-cs01-data",
     "section": "Experimental Design",
-    "text": "Experimental Design"
+    "text": "Experimental Design\nParticipants were:\n\n\nrandomly assigned to receive a cigarette containing placebo (0.02%), or 5.9% or 13.4% THC\nBlood, OF and breath were collected prior to smoking\nsmoked a 700 mg cigarette ad libitum within 10 min, with a minimum of four puffs.\nAfter smoking, 4 additional OF and breath and 8 blood collections were completed at time points up to ∼6h from the start of smoking.\nParticipants ate and drank water between collections, although not within 10 min of OF collection."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#timeline",
+    "href": "content/lectures/11-cs01-data.html#timeline",
+    "title": "11-cs01-data",
+    "section": "Timeline",
+    "text": "Timeline\n\nSource: Fitzgerald et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#consumption",
+    "href": "content/lectures/11-cs01-data.html#consumption",
+    "title": "11-cs01-data",
+    "section": "Consumption",
+    "text": "Consumption\n Source: Hoffman et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#topography",
+    "href": "content/lectures/11-cs01-data.html#topography",
+    "title": "11-cs01-data",
+    "section": "Topography",
+    "text": "Topography\n Source: Hoffman et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#subjective-highness",
+    "href": "content/lectures/11-cs01-data.html#subjective-highness",
+    "title": "11-cs01-data",
+    "section": "Subjective Highness",
+    "text": "Subjective Highness\n\nSource: Hoffman et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#our-datasets",
+    "href": "content/lectures/11-cs01-data.html#our-datasets",
+    "title": "11-cs01-data",
+    "section": "Our Datasets",
+    "text": "Our Datasets\nThree matrices:\n\nBlood (WB): 8 compounds; 190 participants\nOral Fluid (OF): 7 compounds; 192 participants\nBreath (BR): 1 compound; 191 participants\n\n\nVariables:\n\nID | participants identifier\nTreatment | placebo, 5.90%, 13.40%\nGroup | Occasional user, Frequent user\nTimepoint | indicator of which point in the timeline participant’s collection occurred\ntime.from.start | number of minutes from consumption\n& measurements for individual compounds"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#the-data-1",
+    "href": "content/lectures/11-cs01-data.html#the-data-1",
+    "title": "11-cs01-data",
+    "section": "The Data",
+    "text": "The Data\nYou’ll have access once your groups/repos are created…(today I want people to follow along; there will be time to try on your own soon!)\n\nWB <- read_csv(\"data/Blood.csv\")\nBR <- read_csv(\"data/Breath.csv\")\nOF <- read_csv(\"data/OF.csv\")"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#first-look-at-the-data-wb",
+    "href": "content/lectures/11-cs01-data.html#first-look-at-the-data-wb",
+    "title": "11-cs01-data",
+    "section": "First Look at the data (WB)",
+    "text": "First Look at the data (WB)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#first-look-at-the-data-of",
+    "href": "content/lectures/11-cs01-data.html#first-look-at-the-data-of",
+    "title": "11-cs01-data",
+    "section": "First Look at the data (OF)",
+    "text": "First Look at the data (OF)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#first-look-at-the-data-br",
+    "href": "content/lectures/11-cs01-data.html#first-look-at-the-data-br",
+    "title": "11-cs01-data",
+    "section": "First Look at the data (BR)",
+    "text": "First Look at the data (BR)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#fig-1-pre-smoking",
+    "href": "content/lectures/11-cs01-data.html#fig-1-pre-smoking",
+    "title": "11-cs01-data",
+    "section": "Fig 1: Pre-smoking",
+    "text": "Fig 1: Pre-smoking"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#fig-2-sensitivity-and-specificity",
+    "href": "content/lectures/11-cs01-data.html#fig-2-sensitivity-and-specificity",
+    "title": "11-cs01-data",
+    "section": "Fig 2: Sensitivity and Specificity",
+    "text": "Fig 2: Sensitivity and Specificity"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#fig-3-cross-compound-relationship",
+    "href": "content/lectures/11-cs01-data.html#fig-3-cross-compound-relationship",
+    "title": "11-cs01-data",
+    "section": "Fig 3: Cross-compound relationship",
+    "text": "Fig 3: Cross-compound relationship"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#fig-4-cutoffs",
+    "href": "content/lectures/11-cs01-data.html#fig-4-cutoffs",
+    "title": "11-cs01-data",
+    "section": "Fig 4: Cutoffs",
+    "text": "Fig 4: Cutoffs"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#fig-5-youden",
+    "href": "content/lectures/11-cs01-data.html#fig-5-youden",
+    "title": "11-cs01-data",
+    "section": "Fig 5: Youden",
+    "text": "Fig 5: Youden\n\n\n…and if there’s time PPV and Accuracy post 3h"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#what-came-after",
+    "href": "content/lectures/11-cs01-data.html#what-came-after",
+    "title": "11-cs01-data",
+    "section": "What Came After",
+    "text": "What Came After\n Source: Fitgerald et al."
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#oral-fluid",
+    "href": "content/lectures/11-cs01-data.html#oral-fluid",
+    "title": "11-cs01-data",
+    "section": "Oral Fluid",
+    "text": "Oral Fluid\n\nOF <- OF |>\n  mutate(Treatment = fct_recode(Treatment, \n                                \"5.9% THC (low dose)\" = \"5.90%\",\n                                \"13.4% THC (high dose)\" = \"13.40%\"),\n         Treatment = fct_relevel(Treatment, \"Placebo\", \"5.9% THC (low dose)\"),\n         Group = fct_recode(Group, \n                            \"Occasional user\" = \"Not experienced user\",\n                            \"Frequent user\" = \"Experienced user\" )) |>  \n  janitor::clean_names() |>\n  rename(thcoh = x11_oh_thc,\n         thcv = thc_v)\n\n❓ What’s this accomplishing?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#whole-blood",
+    "href": "content/lectures/11-cs01-data.html#whole-blood",
+    "title": "11-cs01-data",
+    "section": "Whole Blood",
+    "text": "Whole Blood\n\nWB <- WB |> \n  mutate(Treatment = fct_recode(Treatment, \n                                \"5.9% THC (low dose)\" = \"5.90%\",\n                                \"13.4% THC (high dose)\" = \"13.40%\"),\n         Treatment = fct_relevel(Treatment, \"Placebo\", \"5.9% THC (low dose)\")) |> \n  janitor::clean_names() |>\n  rename(thcoh = x11_oh_thc,\n         thccooh = thc_cooh,\n         thccooh_gluc = thc_cooh_gluc,\n         thcv = thc_v)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#breath",
+    "href": "content/lectures/11-cs01-data.html#breath",
+    "title": "11-cs01-data",
+    "section": "Breath",
+    "text": "Breath\n\nBR <- BR |> \n  mutate(Treatment = fct_recode(Treatment, \n                                \"5.9% THC (low dose)\" = \"5.90%\",\n                                \"13.4% THC (high dose)\" = \"13.40%\"),\n         Treatment = fct_relevel(Treatment, \"Placebo\", \"5.9% THC (low dose)\"),\n         Group = fct_recode(Group, \n                            \"Occasional user\" = \"Not experienced user\",\n                            \"Frequent user\" = \"Experienced user\" )) |> \n  janitor::clean_names() |> \n  rename(thc = thc_pg_pad)"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#question-1",
+    "href": "content/lectures/11-cs01-data.html#question-1",
+    "title": "11-cs01-data",
+    "section": "Question",
+    "text": "Question\n❓ We’re doing very similar things across three similar (albeit different) datasets. What would be a better approach?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#storing-compounds",
+    "href": "content/lectures/11-cs01-data.html#storing-compounds",
+    "title": "11-cs01-data",
+    "section": "Storing compounds",
+    "text": "Storing compounds\nWe’ll need these later in our functions\n\n# whole blood\ncompounds_WB <-  as.list(colnames(Filter(function(x) !all(is.na(x)), WB[6:13])))\n\n# breath\ncompounds_BR <-  as.list(colnames(Filter(function(x) !all(is.na(x)), BR[6])))\n\n# oral fluid\ncompounds_OF <-  as.list(colnames(Filter(function(x) !all(is.na(x)), OF[6:12])))\n\n\n\n# to get a sense of output\ncompounds_WB\n\n[[1]]\n[1] \"cbn\"\n\n[[2]]\n[1] \"cbd\"\n\n[[3]]\n[1] \"thc\"\n\n[[4]]\n[1] \"thcoh\"\n\n[[5]]\n[1] \"thccooh\"\n\n[[6]]\n[1] \"thccooh_gluc\"\n\n[[7]]\n[1] \"cbg\"\n\n[[8]]\n[1] \"thcv\""
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#storing-timepoints",
+    "href": "content/lectures/11-cs01-data.html#storing-timepoints",
+    "title": "11-cs01-data",
+    "section": "Storing timepoints",
+    "text": "Storing timepoints\n\ntimepoints_WB = tibble(start = c(-400, 0, 30, 70, 100, 180, 210, 240, 270, 300), \n                       stop = c(0, 30, 70, 100, 180, 210, 240, 270, 300, max(WB$time_from_start, na.rm = TRUE)), \n                       timepoint = c(\"pre-smoking\",\"0-30 min\",\"31-70 min\",\n                                     \"71-100 min\",\"101-180 min\",\"181-210 min\",\n                                     \"211-240 min\",\"241-270 min\",\n                                     \"271-300 min\", \"301+ min\") )\n\n\n\ntimepoints_WB\n\n# A tibble: 10 × 3\n   start  stop timepoint  \n   <dbl> <dbl> <chr>      \n 1  -400     0 pre-smoking\n 2     0    30 0-30 min   \n 3    30    70 31-70 min  \n 4    70   100 71-100 min \n 5   100   180 101-180 min\n 6   180   210 181-210 min\n 7   210   240 211-240 min\n 8   240   270 241-270 min\n 9   270   300 271-300 min\n10   300   382 301+ min   \n\n\n\n\n…and in BR and OF\n\ntimepoints_BR = tibble(start = c(-400, 0, 40, 90, 180, 210, 240, 270), \n                       stop = c(0, 40, 90, 180, 210, 240, 270, \n                                max(BR$time_from_start, na.rm = TRUE)), \n                       timepoint = c(\"pre-smoking\",\"0-40 min\",\"41-90 min\",\n                                     \"91-180 min\", \"181-210 min\", \"211-240 min\",\n                                     \"241-270 min\", \"271+ min\"))\ntimepoints_OF = tibble(start = c(-400, 0, 30, 90, 180, 210, 240, 270), \n                       stop = c(0, 30, 90, 180, 210, 240, 270, \n                                max(OF$time_from_start, na.rm = TRUE)), \n                       timepoint = c(\"pre-smoking\",\"0-30 min\",\"31-90 min\",\n                                     \"91-180 min\", \"181-210 min\", \"211-240 min\",\n                                     \"241-270 min\", \"271+ min\") )"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#first-udf-assign_timepoint",
+    "href": "content/lectures/11-cs01-data.html#first-udf-assign_timepoint",
+    "title": "11-cs01-data",
+    "section": "First UDF: assign_timepoint",
+    "text": "First UDF: assign_timepoint\n\nassign_timepoint <- function(x, timepoints){\n  if(!is.na(x)){ \n    timepoints$timepoint[x > timepoints$start & x <= timepoints$stop]\n  }else{\n    NA\n  }\n}\n\n🧠 What’s a UDF? What do you think this is doing?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#timepoints-to-use",
+    "href": "content/lectures/11-cs01-data.html#timepoints-to-use",
+    "title": "11-cs01-data",
+    "section": "Timepoints to use",
+    "text": "Timepoints to use\n\n WB <- WB |> \n  mutate(timepoint_use = map_chr(time_from_start, \n                                 assign_timepoint, \n                                 timepoints=timepoints_WB),\n         timepoint_use = fct_relevel(timepoint_use, timepoints_WB$timepoint))\n\n# let's get a sense for what this did\nlevels(WB$timepoint_use)\n\n [1] \"pre-smoking\" \"0-30 min\"    \"31-70 min\"   \"71-100 min\"  \"101-180 min\"\n [6] \"181-210 min\" \"211-240 min\" \"241-270 min\" \"271-300 min\" \"301+ min\"   \n\n\nNote: map_* allow you to apply a function across multiple “things” (here: across all rows in a dataframe)\n❓What do you think the above is doing?\n\n\nOF <- OF |> \n  mutate(timepoint_use = map_chr(time_from_start, \n                                 assign_timepoint, \n                                 timepoints=timepoints_OF),\n         timepoint_use = fct_relevel(timepoint_use, timepoints_OF$timepoint))\n\nBR <- BR |> \n  mutate(timepoint_use = map_chr(time_from_start, \n                                 assign_timepoint, \n                                 timepoints=timepoints_BR),\n         timepoint_use = fct_relevel(timepoint_use, timepoints_BR$timepoint))"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#drop-duplicates",
+    "href": "content/lectures/11-cs01-data.html#drop-duplicates",
+    "title": "11-cs01-data",
+    "section": "Drop Duplicates",
+    "text": "Drop Duplicates\n\n drop_dups <- function(dataset){\n  out <- dataset |> \n    filter(!is.na(timepoint_use)) |> \n    group_by(timepoint_use) |> \n    distinct(id, .keep_all = TRUE) |> \n    ungroup()\n  return(out)\n} \n\n❓What do you think the above is doing?\n\n\nWB_dups <- drop_dups(WB)\nOF_dups <- drop_dups(OF)\nBR_dups <- drop_dups(BR)\n\n❓What would you do to try to understand what this has done?"
+  },
+  {
+    "objectID": "content/lectures/11-cs01-data.html#recap",
+    "href": "content/lectures/11-cs01-data.html#recap",
+    "title": "11-cs01-data",
+    "section": "Recap",
+    "text": "Recap\n\nCould you summarize/explain background presented?\nCould you summarize the experiment that was done?\nCould you describe the datasets? (variables, observations, values, etc.)\nDo you understand/could you explain the wrangling that was done?"
   },
   {
     "objectID": "content/lectures/08-effective-communication-slides.html#qa",

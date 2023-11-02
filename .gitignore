@@ -6,7 +6,7 @@ Thumbs.db
 .Rproj.user
 *.Rproj
 
-# do not include large datasets
+# do not include large datasets/THC data
 content/lectures/data
 content/exams/data
 docs/lectures/data
@@ -15,6 +15,7 @@ content/cs/data/
 content/lectures/13-cs01-analysis_cache
 docs/lectures/13-cs01-analysis_cache
 content/lectures/13-cs01-analysis_files
+
 
 
 # temporarily (while I edit course content)

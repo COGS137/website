@@ -22,21 +22,39 @@ format:
       eval: true
 ---
 
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+
+knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+
 # CS01: Biomarkers of Recent Use (Data) {background-color="#92A86A"}
 
 ## Q&A {.smaller}
 
+>Q: How much time are we expected to spend on the case studies? \
+>A: That's hard to say. I would recommend spending a bit of time after each lecture ensuring I understand the code presented. It will eventually be included in your final report, so you'll need to understand/describe/explain it. After the case study has been presented, I would expect a few hours from each group member to complete the extension and write the report. Last year students reported typically spending 4-6h on case studies (with a big range around that median).
+
+>Q: For the general project plan how much time should we budget towards working on this?\
+>A: Students report spending ~10h on their final project
+
+>Q: Are we allowed to work with some of our case study partners for a final project? \
+>A: Absolutely! My hope is through the case studies students will get to know one another a bit and hopefully want to work together again!
 
 ## Course Announcements
 
-- 
+- `r emo::ji("computer")` **Midterm** is due next Monday at 11:59PM (released Friday 5PM; practice answer keys are on website)
+- `r emo::ji("question")` **Mid-course survey** will open with midterm - please complete after finishing midterm; will have a week to complete
+- `r emo::ji("science")` Lab is for midterm review; Lab05 & HW03 will be released next Monday
 
 ## Agenda
 
 -   Background
 -   Data Intro
+-   Paper Results
 -   Wrangle
--   Combine!
 
 # Background {background-color="#92A86A"}
 
@@ -50,9 +68,9 @@ Source: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
 ## Legalization of Marijuana
 
 - Federally illegal in the US
-- Decriminalized in many states
-- Medically available in
-- Legal for recreational use in ...
+- Decriminalized in many states 
+- Medically available in 15 states
+- Legal for recreational use in 24 states (including CA)
 
 ## Increased roadside surveys
 
@@ -72,32 +90,423 @@ Source: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
 
 ## DUI of Cannabis
 
-- In a 2007 survey[^1], 16.3% of nighttime drivers were drug-positive
+- In a 2007 survey, 16.3% of nighttime drivers were drug-positive [link](https://rosap.ntl.bts.gov/view/dot/1913)
   - 8.6% of these tested positive for THC
 - Experimental and cognitive studies suggest cannabis-induced impairment increases risk of motor vehicle crashes:
 
 . . .
 
-> Evidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.[^1]
-
-[^1]: [https://rosap.ntl.bts.gov/view/dot/1913]()
-[^2]: [https://academic.oup.com/clinchem/article/59/3/478/5621997]()
+> Evidence suggests recent smoking and/or blood THC concentrations 2–5 ng/mL are associated with substantial driving impairment, particularly in occasional smokers.[link](https://academic.oup.com/clinchem/article/59/3/478/5621997)
 
 
-## *per se* limits
+## Roadside Detection
 
+- *per se* laws: "a driver is deemed to have committed an offense if THC is detected at or above a pre-determined cutoff" [link](https://doi.org/10.1080/15389588.2020.1851685)
 
-## 
+. . .
 
-# Questions {background-color="#92A86A"}
+- Defining cutoffs for safe driving is difficult
+- THC concentration differs by:
+  - "smoking topography" (time to smoke; number of puffs)
+  - frequency of use
+  - route of ingestion
+  
+. . .
+
+As of 2021...
+
+:::incremental
+- 19 states have *per se* or zero tolerance cannabis laws
+- States with *per se* laws (Illinois, Montana, Nevada, Ohio, Pennsylvania, Washington and West Virginia), cutoffs range from 1 to 5 ng/mL THC in whole blood.
+- In 3 states, *per se* limits also apply to THC metabolites
+- Colorado: "reasonable inference" - blood
+contained >5 ng/mL THC at the time of the offense
+- 3 states zero tolerance for THC; 8 states for THC and metabolites
+:::
+
+## Metabolism
+
+:::incremental
+- peak blood concentrations occur during smoking, then drop rapidly [link](https://academic.oup.com/jat/article/36/6/405/791790)
+- subjective 'high' persists for several hours, varies greatly between individuals
+- THC concentrations remain detectable in frequent users longer than occasional users [link](https://academic.oup.com/clinchem/article/59/3/519/5622035)
+- THC and certain metabolites can be detected in blood for weeks to months after use and do not necessarily indicate impairment
+:::
+
+## Detection
+
+Various approaches: 
+
+1. Detect impairment (officers detect DUIC)
+2. Detect recent use (test for compounds)
+3. Combine recent use + impairment
+
+. . .
+
+Focus here: Can we identify a biomarker of recent use? 
+
+- recent use: defined here as within 3h
+- testing THC and metabolites in blood, oral fluid (OF), and breath
+
+## Aside: Case Study Report
+
+- Your Case study will need a background section
+- It can use/summarize/paraphrase the information here (you should cite the source, not me)
+- But, you're *not* limited to this information
+- You are allowed/encouraged to dig deeper, include what's most important, add to, remove, etc.
+- There are a lot of citations in this section - go ahead and peruse them/others/use references in these papers
+
+# Question {background-color="#92A86A"}
+
+Which compound, in which matrix, and at what cutoff is the best biomarker of recent use?
 
 # The Data {background-color="#92A86A"}
 
+## Participants
+
+- placebo-controlled, double-blinded, randomized study
+
+. . .
+
+- recruited:
+  - volunteers 21-55y/o
+  - had a driver's license
+  - self-reported cannabis use >= 4x in the past month
+
+. . .
+
+- Participants were:
+  - compensated
+  - medically evaluated (for safety)
+  - asked to refrain from use for 2d prior to participation
+  - exclusion criteria: OF THC concentration ≥5 ng/mL on day of study (n=7)
+  
+. . .
+
+- Study included 191 participants
+
+## Demographics
+
+![](images/11/demographics.png)
+
+Source: [Hoffman et al.](https://academic.oup.com/jat/article/45/8/851/6309824?login=false)
+
 ## Experimental Design
 
-## 
+Participants were:
+
+:::incremental
+- randomly assigned to receive a cigarette containing placebo (0.02%), or 5.9% or 13.4% THC
+- Blood, OF and breath were collected prior to smoking
+- smoked a 700 mg cigarette *ad libitum* within 10 min, with a minimum of four puffs.
+- After smoking, 4 additional OF and breath and 8 blood collections were completed at time points up to ∼6h from the start of smoking. 
+- Participants ate and drank water between collections, although not within 10 min of OF collection.
+:::
+
+## Timeline
+
+![](images/11/experiment.jpeg)
+
+Source: [Fitzgerald et al.](https://academic.oup.com/clinchem/article/69/7/724/7179849?login=false)
+
+## Consumption
+
+![](images/11/puffs.jpeg)
+Source: [Hoffman et al.](https://academic.oup.com/jat/article/45/8/851/6309824?login=false)
+
+## Topography
+
+![](images/11/topography.png)
+Source: [Hoffman et al.](https://academic.oup.com/jat/article/45/8/851/6309824?login=false)
+
+## Subjective Highness
+
+![](images/11/highness.jpeg)
+
+Source: [Hoffman et al.](https://academic.oup.com/jat/article/45/8/851/6309824?login=false)
+
+## Our Datasets
+
+Three matrices: 
+
+  - Blood (WB): 8 compounds; 190 participants
+  - Oral Fluid (OF): 7 compounds; 192 participants
+  - Breath (BR): 1 compound; 191 participants
+
+. . .
+
+Variables:
+
+- `ID` | participants identifier
+- `Treatment` | placebo, 5.90%, 13.40%
+- `Group` | Occasional user, Frequent user
+- `Timepoint` | indicator of which point in the timeline participant's collection occurred
+- `time.from.start` | number of minutes from consumption
+- & measurements for individual compounds
+
+## The Data
+
+You'll have access once your groups/repos are created...(today I want people to follow along; there will be time to try on your own soon!)
+
+```{r,eval=TRUE}
+WB <- read_csv("data/Blood.csv")
+BR <- read_csv("data/Breath.csv")
+OF <- read_csv("data/OF.csv")
+```
+
+```{r,echo=FALSE, eval=FALSE}
+WB <- read_csv("content/lectures/data/Blood.csv")
+BR <- read_csv("content/lectures/data/Breath.csv")
+OF <- read_csv("content/lectures/data/OF.csv")
+```
+
+## First Look at the data (WB)
+
+```{r, echo=FALSE}
+DT::datatable(WB)
+```
+
+## First Look at the data (OF)
+
+```{r, echo=FALSE}
+DT::datatable(OF)
+```
+
+## First Look at the data (BR)
+```{r, echo=FALSE}
+DT::datatable(BR)
+```
+
+# Analysis
+
+Where We're Headed...
+
+Results from: Hubbard et al (2021) Biomarkers of Recent Cannabis Use in Blood, Oral Fluid and Breath [link](https://academic.oup.com/jat/article/45/8/820/6311388?login=false#303593274)
+
+## Fig 1: Pre-smoking
+
+![](images/11/01_concentrations_pre.jpg)
+
+## Fig 2: Sensitivity and Specificity
+
+![](images/11/02_known_cutoffs_THC_combined.jpg)
+
+
+## Fig 3: Cross-compound relationship
+
+![](images/11/03_regression.jpg)
+
+## Fig 4: Cutoffs
+
+![](images/11/04_known_cutoffs_CBN_combined.jpg)
+
+## Fig 5: Youden
+
+![](images/11/05_ss_cutoffs_combined.jpg)
+
+. . .
+
+...and if there's time PPV and Accuracy post 3h
+
+
+## What Came After
+
+![](images/11/duic_toxicology.jpeg)
+Source: [Fitgerald et al.](https://academic.oup.com/clinchem/article/69/7/724/7179849?login=false)
 
 # Wrangling {background-color="#92A86A"}
 
 
+## Oral Fluid
 
+```{r}
+OF <- OF |>
+  mutate(Treatment = fct_recode(Treatment, 
+                                "5.9% THC (low dose)" = "5.90%",
+                                "13.4% THC (high dose)" = "13.40%"),
+         Treatment = fct_relevel(Treatment, "Placebo", "5.9% THC (low dose)"),
+         Group = fct_recode(Group, 
+                            "Occasional user" = "Not experienced user",
+                            "Frequent user" = "Experienced user" )) |>  
+  janitor::clean_names() |>
+  rename(thcoh = x11_oh_thc,
+         thcv = thc_v)
+
+```
+
+[`r emo::ji("question")` What's this accomplishing?]{style="background-color: #ADD8E6"}
+
+
+## Whole Blood
+
+```{r}
+WB <- WB |> 
+  mutate(Treatment = fct_recode(Treatment, 
+                                "5.9% THC (low dose)" = "5.90%",
+                                "13.4% THC (high dose)" = "13.40%"),
+         Treatment = fct_relevel(Treatment, "Placebo", "5.9% THC (low dose)")) |> 
+  janitor::clean_names() |>
+  rename(thcoh = x11_oh_thc,
+         thccooh = thc_cooh,
+         thccooh_gluc = thc_cooh_gluc,
+         thcv = thc_v)
+```
+
+## Breath
+
+```{r}
+BR <- BR |> 
+  mutate(Treatment = fct_recode(Treatment, 
+                                "5.9% THC (low dose)" = "5.90%",
+                                "13.4% THC (high dose)" = "13.40%"),
+         Treatment = fct_relevel(Treatment, "Placebo", "5.9% THC (low dose)"),
+         Group = fct_recode(Group, 
+                            "Occasional user" = "Not experienced user",
+                            "Frequent user" = "Experienced user" )) |> 
+  janitor::clean_names() |> 
+  rename(thc = thc_pg_pad)
+```
+
+## Question
+
+[`r emo::ji("question")` We're doing very similar things across three similar (albeit different) datasets. What would be a better approach?]{style="background-color: #ADD8E6"}
+
+
+## Storing compounds
+
+We'll need these later in our functions
+```{r}
+# whole blood
+compounds_WB <-  as.list(colnames(Filter(function(x) !all(is.na(x)), WB[6:13])))
+
+# breath
+compounds_BR <-  as.list(colnames(Filter(function(x) !all(is.na(x)), BR[6])))
+
+# oral fluid
+compounds_OF <-  as.list(colnames(Filter(function(x) !all(is.na(x)), OF[6:12])))
+```
+
+. . .
+
+```{r}
+# to get a sense of output
+compounds_WB
+```
+
+## Storing timepoints
+
+```{r timepoints}
+timepoints_WB = tibble(start = c(-400, 0, 30, 70, 100, 180, 210, 240, 270, 300), 
+                       stop = c(0, 30, 70, 100, 180, 210, 240, 270, 300, max(WB$time_from_start, na.rm = TRUE)), 
+                       timepoint = c("pre-smoking","0-30 min","31-70 min",
+                                     "71-100 min","101-180 min","181-210 min",
+                                     "211-240 min","241-270 min",
+                                     "271-300 min", "301+ min") )
+```
+
+. . .
+
+```{r}
+timepoints_WB
+```
+
+. . .
+
+...and in BR and OF 
+
+```{r}
+timepoints_BR = tibble(start = c(-400, 0, 40, 90, 180, 210, 240, 270), 
+                       stop = c(0, 40, 90, 180, 210, 240, 270, 
+                                max(BR$time_from_start, na.rm = TRUE)), 
+                       timepoint = c("pre-smoking","0-40 min","41-90 min",
+                                     "91-180 min", "181-210 min", "211-240 min",
+                                     "241-270 min", "271+ min"))
+timepoints_OF = tibble(start = c(-400, 0, 30, 90, 180, 210, 240, 270), 
+                       stop = c(0, 30, 90, 180, 210, 240, 270, 
+                                max(OF$time_from_start, na.rm = TRUE)), 
+                       timepoint = c("pre-smoking","0-30 min","31-90 min",
+                                     "91-180 min", "181-210 min", "211-240 min",
+                                     "241-270 min", "271+ min") )
+```
+
+## First UDF: `assign_timepoint`
+
+```{r}
+assign_timepoint <- function(x, timepoints){
+  if(!is.na(x)){ 
+    timepoints$timepoint[x > timepoints$start & x <= timepoints$stop]
+  }else{
+    NA
+  }
+}
+```
+
+[`r emo::ji("brain")` What's a UDF? What do you think this is doing?]{style="background-color: #ADD8E6"}
+
+
+## Timepoints to use
+
+```{r}
+ WB <- WB |> 
+  mutate(timepoint_use = map_chr(time_from_start, 
+                                 assign_timepoint, 
+                                 timepoints=timepoints_WB),
+         timepoint_use = fct_relevel(timepoint_use, timepoints_WB$timepoint))
+
+# let's get a sense for what this did
+levels(WB$timepoint_use)
+```
+
+Note: `map_*` allow you to apply a function across multiple "things" (here: across all rows in a dataframe)
+
+[`r emo::ji("question")`What do you think the above is doing?]{style="background-color: #ADD8E6"}
+
+
+. . .
+
+
+```{r}
+OF <- OF |> 
+  mutate(timepoint_use = map_chr(time_from_start, 
+                                 assign_timepoint, 
+                                 timepoints=timepoints_OF),
+         timepoint_use = fct_relevel(timepoint_use, timepoints_OF$timepoint))
+
+BR <- BR |> 
+  mutate(timepoint_use = map_chr(time_from_start, 
+                                 assign_timepoint, 
+                                 timepoints=timepoints_BR),
+         timepoint_use = fct_relevel(timepoint_use, timepoints_BR$timepoint))
+```
+
+## Drop Duplicates
+
+```{r}
+ drop_dups <- function(dataset){
+  out <- dataset |> 
+    filter(!is.na(timepoint_use)) |> 
+    group_by(timepoint_use) |> 
+    distinct(id, .keep_all = TRUE) |> 
+    ungroup()
+  return(out)
+} 
+```
+
+[`r emo::ji("question")`What do you think the above is doing?]{style="background-color: #ADD8E6"}
+
+. . .
+
+```{r}
+WB_dups <- drop_dups(WB)
+OF_dups <- drop_dups(OF)
+BR_dups <- drop_dups(BR)
+```
+
+[`r emo::ji("question")`What would you do to try to understand what this has done?]{style="background-color: #ADD8E6"}
+
+## Recap {.smaller background-color="#92A86A"}
+
+- Could you summarize/explain background presented?
+- Could you summarize the experiment that was done?
+- Could you describe the datasets? (variables, observations, values, etc.)
+- Do you understand/could you explain the wrangling that was done?

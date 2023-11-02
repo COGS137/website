@@ -65,8 +65,8 @@ website:
             href: content/lectures/09-mlr-slides.html
           - text: "10-projects"
             href: content/lectures/10-projects-slides.html
-          # - text: "11-cs01-data"
-          #   href: content/lectures/11-cs01-data-slides.html
+          - text: "11-cs01-data"
+            href: content/lectures/11-cs01-data-slides.html
           # - text: "12-cs01-eda"
           #   href: content/lectures/12-cs01-eda-slides.html
           # - text: "13-cs01-analysis"
@@ -107,8 +107,8 @@ website:
             href: content/lectures/09-mlr.html
           - text: "10-projects"
             href: content/lectures/10-projects.html
-          # - text: "11-cs01-data"
-          #   href: content/lectures/11-cs01-data.html
+          - text: "11-cs01-data"
+            href: content/lectures/11-cs01-data.html
           # - text: "12-cs01-eda"
           #   href: content/lectures/12-cs01-eda.html
           # - text: "13-cs01-analysis"

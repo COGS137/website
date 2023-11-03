@@ -2,194 +2,198 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://cogs137.github.io/website/LICENSE.html</loc>
-    <lastmod>2023-11-02T20:19:48.988Z</lastmod>
+    <lastmod>2023-11-03T17:03:43.117Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labs/03-lab-viz.html</loc>
-    <lastmod>2023-11-02T20:19:50.156Z</lastmod>
+    <lastmod>2023-11-03T17:03:44.217Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labs/04-lab-modelling.html</loc>
-    <lastmod>2023-11-02T20:19:50.856Z</lastmod>
+    <lastmod>2023-11-03T17:03:44.872Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labs/05-lab-mlr.html</loc>
-    <lastmod>2023-11-02T20:19:51.199Z</lastmod>
+    <lastmod>2023-11-03T17:03:45.236Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labs/02-lab-wrangling.html</loc>
-    <lastmod>2023-11-02T20:19:51.523Z</lastmod>
+    <lastmod>2023-11-03T17:03:45.571Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labs/01-lab-intro-r.html</loc>
-    <lastmod>2023-11-02T20:19:52.461Z</lastmod>
+    <lastmod>2023-11-03T17:03:46.569Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/hw/hw-01.html</loc>
-    <lastmod>2023-11-02T20:19:52.729Z</lastmod>
+    <lastmod>2023-11-03T17:03:46.838Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/hw/hw-02.html</loc>
-    <lastmod>2023-11-02T20:19:53.106Z</lastmod>
+    <lastmod>2023-11-03T17:10:03.060Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labslides/04-lab-deck.html</loc>
-    <lastmod>2023-11-02T20:19:57.700Z</lastmod>
+    <lastmod>2023-11-03T17:03:51.609Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labslides/03-lab-deck.html</loc>
-    <lastmod>2023-11-02T20:20:02.262Z</lastmod>
+    <lastmod>2023-11-03T17:03:55.965Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labslides/02-lab-deck.html</loc>
-    <lastmod>2023-11-02T20:20:07.404Z</lastmod>
+    <lastmod>2023-11-03T17:04:00.672Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labslides/05-lab-deck.html</loc>
-    <lastmod>2023-11-02T20:20:12.394Z</lastmod>
+    <lastmod>2023-11-03T17:04:05.031Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labslides/07-lab-deck.html</loc>
-    <lastmod>2023-11-02T20:20:18.085Z</lastmod>
+    <lastmod>2023-11-03T17:04:09.673Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/labslides/01-lab-deck.html</loc>
-    <lastmod>2023-11-02T20:20:22.995Z</lastmod>
+    <lastmod>2023-11-03T17:04:14.520Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lab-ans/lab03-viz-ans.html</loc>
-    <lastmod>2023-11-02T20:20:23.777Z</lastmod>
+    <lastmod>2023-11-03T17:04:15.216Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lab-ans/lab04-modelling-ans.html</loc>
-    <lastmod>2023-11-02T20:20:24.435Z</lastmod>
+    <lastmod>2023-11-03T17:04:15.791Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lab-ans/lab02-wrangling-ans.html</loc>
-    <lastmod>2023-11-02T20:20:25.047Z</lastmod>
+    <lastmod>2023-11-03T17:04:16.292Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/exams/practice-exam-fa21-ans.html</loc>
-    <lastmod>2023-11-02T20:20:25.769Z</lastmod>
+    <lastmod>2023-11-03T17:04:16.943Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/exams/practice-exam-fa21.html</loc>
-    <lastmod>2023-11-02T20:20:26.140Z</lastmod>
+    <lastmod>2023-11-03T17:04:17.297Z</lastmod>
+  </url>
+  <url>
+    <loc>https://cogs137.github.io/website/content/exams/midterm-fa23.html</loc>
+    <lastmod>2023-11-03T18:05:59.896Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/exams/practice-exam-wi23-ans.html</loc>
-    <lastmod>2023-11-02T20:20:26.943Z</lastmod>
+    <lastmod>2023-11-03T17:04:18.683Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/exams/practice-exam-wi23.html</loc>
-    <lastmod>2023-11-02T20:20:27.288Z</lastmod>
+    <lastmod>2023-11-03T17:04:19.015Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/03-tidyr-slides.html</loc>
-    <lastmod>2023-11-02T20:20:29.519Z</lastmod>
+    <lastmod>2023-11-03T17:04:21.108Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/03-tidyr.html</loc>
-    <lastmod>2023-11-02T20:20:29.598Z</lastmod>
+    <lastmod>2023-11-03T17:04:21.184Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/09-mlr-slides.html</loc>
-    <lastmod>2023-11-02T20:20:37.436Z</lastmod>
+    <lastmod>2023-11-03T17:04:29.550Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/09-mlr.html</loc>
-    <lastmod>2023-11-02T20:26:05.775Z</lastmod>
+    <lastmod>2023-11-03T22:56:04.261Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/00-welcome-slides.html</loc>
-    <lastmod>2023-11-02T20:20:46.152Z</lastmod>
+    <lastmod>2023-11-03T22:52:46.236Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/00-welcome.html</loc>
-    <lastmod>2023-11-02T20:23:48.965Z</lastmod>
+    <lastmod>2023-11-03T22:56:39.981Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/07-linear-models-slides.html</loc>
-    <lastmod>2023-11-02T20:20:55.983Z</lastmod>
+    <lastmod>2023-11-03T17:04:49.677Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/07-linear-models.html</loc>
-    <lastmod>2023-11-02T20:25:08.147Z</lastmod>
+    <lastmod>2023-11-03T22:55:37.190Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/10-projects-slides.html</loc>
-    <lastmod>2023-11-02T20:21:02.927Z</lastmod>
+    <lastmod>2023-11-03T17:04:57.160Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/10-projects.html</loc>
-    <lastmod>2023-11-02T20:21:03.292Z</lastmod>
+    <lastmod>2023-11-03T17:04:57.487Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/11-cs01-data-slides.html</loc>
-    <lastmod>2023-11-02T20:47:55.209Z</lastmod>
+    <lastmod>2023-11-03T17:05:05.472Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/11-cs01-data.html</loc>
-    <lastmod>2023-11-02T20:21:11.607Z</lastmod>
+    <lastmod>2023-11-03T22:56:07.477Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/08-effective-communication-slides.html</loc>
-    <lastmod>2023-11-02T20:21:20.083Z</lastmod>
+    <lastmod>2023-11-03T17:05:15.099Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/08-effective-communication.html</loc>
-    <lastmod>2023-11-02T20:25:14.393Z</lastmod>
+    <lastmod>2023-11-03T22:55:47.494Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/06-analysis-slides.html</loc>
-    <lastmod>2023-11-02T20:21:29.222Z</lastmod>
+    <lastmod>2023-11-03T17:05:24.846Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/06-analysis.html</loc>
-    <lastmod>2023-11-02T20:24:53.818Z</lastmod>
+    <lastmod>2023-11-03T22:55:20.634Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/05-viz-slides.html</loc>
-    <lastmod>2023-11-02T20:21:36.964Z</lastmod>
+    <lastmod>2023-11-03T17:05:34.272Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/05-viz.html</loc>
-    <lastmod>2023-11-02T20:24:38.803Z</lastmod>
+    <lastmod>2023-11-03T22:55:05.306Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/02-dplyr-slides.html</loc>
-    <lastmod>2023-11-02T20:21:44.688Z</lastmod>
+    <lastmod>2023-11-03T17:05:42.725Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/02-dplyr.html</loc>
-    <lastmod>2023-11-02T20:24:17.009Z</lastmod>
+    <lastmod>2023-11-03T22:52:46.600Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/01-intro-to-r-slides.html</loc>
-    <lastmod>2023-11-02T20:21:47.249Z</lastmod>
+    <lastmod>2023-11-03T17:05:45.113Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/01-intro-to-r.html</loc>
-    <lastmod>2023-11-02T20:21:47.305Z</lastmod>
+    <lastmod>2023-11-03T17:05:45.160Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/04-ggplot2-slides.html</loc>
-    <lastmod>2023-11-02T20:22:08.681Z</lastmod>
+    <lastmod>2023-11-03T17:05:54.574Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/content/lectures/04-ggplot2.html</loc>
-    <lastmod>2023-11-02T20:24:13.525Z</lastmod>
+    <lastmod>2023-11-03T22:53:16.663Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/index.html</loc>
-    <lastmod>2023-11-02T20:21:56.263Z</lastmod>
+    <lastmod>2023-11-03T17:05:54.961Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/policies.html</loc>
-    <lastmod>2023-11-02T20:21:56.813Z</lastmod>
+    <lastmod>2023-11-03T17:05:55.463Z</lastmod>
   </url>
   <url>
     <loc>https://cogs137.github.io/website/schedule.html</loc>
-    <lastmod>2023-11-02T20:21:57.213Z</lastmod>
+    <lastmod>2023-11-03T17:05:55.850Z</lastmod>
   </url>
 </urlset>

@@ -61,7 +61,7 @@ In this lab you will first read in the data ('evals-mod.csv') from the `data/` f
 ## Codebook
 
 | Variable name   | Description                                                                   |
-|:------------------|:----------------------------------------------------|
+|:-------------------|:---------------------------------------------------|
 | `score`         | Average professor evaluation score: (1) very unsatisfactory - (5) excellent   |
 | `rank`          | Rank of professor: teaching, tenure track, tenure                             |
 | `ethnicity`     | Ethnicity of professor: not minority, minority                                |

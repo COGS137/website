@@ -67,8 +67,8 @@ website:
             href: content/lectures/10-projects-slides.html
           - text: "11-cs01-data"
             href: content/lectures/11-cs01-data-slides.html
-          # - text: "12-cs01-eda"
-          #   href: content/lectures/12-cs01-eda-slides.html
+          - text: "12-cs01-eda"
+            href: content/lectures/12-cs01-eda-slides.html
           # - text: "13-cs01-analysis"
           #   href: content/lectures/13-cs01-analysis-slides.html
           # - text: "14-logistic-regression"
@@ -109,8 +109,8 @@ website:
             href: content/lectures/10-projects.html
           - text: "11-cs01-data"
             href: content/lectures/11-cs01-data.html
-          # - text: "12-cs01-eda"
-          #   href: content/lectures/12-cs01-eda.html
+          - text: "12-cs01-eda"
+            href: content/lectures/12-cs01-eda.html
           # - text: "13-cs01-analysis"
           #   href: content/lectures/13-cs01-analysis.html
           # - text: "14-logistic-regression"
@@ -135,8 +135,8 @@ website:
             href: content/labs/03-lab-viz.qmd
           - text: "Lab04: Modelling"
             href: content/labs/04-lab-modelling.qmd
-      #     - text: "Lab05: MLR"
-      #       href: content/labs/05-lab-mlr.qmd
+          - text: "Lab05: MLR"
+            href: content/labs/05-lab-mlr.qmd
       #     - text: "Lab06: CS01"
       #       href: content/labs/06-lab-cs01.qmd
       #     - text: "Lab07: Logistic Regression"
@@ -153,8 +153,8 @@ website:
             href: content/labslides/03-lab-deck.html
           - text: "Lab04"
             href: content/labslides/04-lab-deck.html
-      #     - text: "Lab05"
-      #       href: content/labslides/05-lab-deck.html
+          - text: "Lab05"
+            href: content/labslides/05-lab-deck.html
       #     - text: "Lab07"
       #       href: content/labslides/07-lab-deck.html
       - section: "Lab Answers"
@@ -175,8 +175,8 @@ website:
             href: content/hw/hw-01.qmd
           - text: "HW02"
             href: content/hw/hw-02.qmd
-      #     - text: "HW03"
-      #       href: content/hw/hw-03.qmd
+          - text: "HW03"
+            href: content/hw/hw-03.qmd
       - section: "Exam"
         contents:
           - text: "Practice Midterm (Fa21)"
@@ -191,12 +191,12 @@ website:
             href: content/exams/midterm-fa23.qmd
       #     - text: "Midterm (Ans)"
       #       href: content/exams/midterm_wi23-ans.qmd
-      # - section: "Case Studies"
-      #   contents:
-      #     - text: "CS: Example"
-      #       href: content/cs/cs-example.qmd
-      #     - text: "CS01"
-      #       href: content/cs/cs01.qmd
+      - section: "Case Studies"
+        contents:
+          - text: "CS: Example"
+            href: content/cs/cs-example.qmd
+          - text: "CS01"
+            href: content/cs/cs01.qmd
       #     - text: "CS02"
       #       href: content/cs/cs02.qmd
       # - section: "Final"

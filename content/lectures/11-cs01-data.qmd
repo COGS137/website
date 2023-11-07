@@ -1,7 +1,7 @@
 ---
 title: "11-cs01-data"
 author: "Professor Shannon Ellis"
-date: "2023-02-14"
+date: "2023-11-02"
 
 format:
   html: 
@@ -250,13 +250,13 @@ Variables:
 
 You'll have access once your groups/repos are created...(today I want people to follow along; there will be time to try on your own soon!)
 
-```{r,eval=TRUE}
+```{r, eval=TRUE}
 WB <- read_csv("data/Blood.csv")
 BR <- read_csv("data/Breath.csv")
 OF <- read_csv("data/OF.csv")
 ```
 
-```{r,echo=FALSE, eval=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 WB <- read_csv("content/lectures/data/Blood.csv")
 BR <- read_csv("content/lectures/data/Breath.csv")
 OF <- read_csv("content/lectures/data/OF.csv")
@@ -505,6 +505,38 @@ BR_dups <- drop_dups(BR)
 ```
 
 [`r emo::ji("question")`What would you do to try to understand what this has done?]{style="background-color: #ADD8E6"}
+
+## Saving Intermediate Files
+
+Cleaned/wrangled files as CSVs:
+
+```{r}
+write_csv(WB, "data/WB_clean.csv")
+write_csv(BR, "data/BR_clean.csv")
+write_csv(OF, "data/OF_clean.csv")
+```
+
+Note: can lose "type" of object (factor levels)
+
+. . .
+
+(Alt) Save as RData:
+
+```{r}
+save(compounds_WB, compounds_BR, compounds_OF, file="data/compounds.RData")
+save(timepoints_WB, timepoints_BR, timepoints_OF, file="data/timepoints.RData")
+save(WB, BR, OF, WB_dups, BR_dups, OF_dups, file="data/data_clean.RData")
+
+
+```
+
+```{r, echo=FALSE, eval=FALSE}
+save(compounds_WB, compounds_BR, compounds_OF, file="content/lectures/data/compounds.RData")
+save(timepoints_WB, timepoints_BR, timepoints_OF, file="content/lectures/data/timepoints.RData")
+save(WB, BR, OF, WB_dups, BR_dups, OF_dups, file="content/lectures/data/data_clean.RData")
+
+```
+
 
 ## Recap {.smaller background-color="#92A86A"}
 

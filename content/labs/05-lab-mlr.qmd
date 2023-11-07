@@ -28,6 +28,10 @@ In this lab we revisit the professor evaluations data we modeled in an earlier l
 
 If you don't remember the data, review the modelling lab's introduction before continuing to the exercises.
 
+::: callout-important
+This lab is likely longer than what you'll be able to complete in an hour. We will be looking to see that you minimally ran *and interpreted* a model using multiple linear regression (completed Part 2). If you're able to finish the whole thing, awesome! If not, that's OK.
+:::
+
 # Getting started
 
 To get started, accept the lab05 assignment (link on Canvas), clone the repo (using SSH) into RStudio on datahub. Update the author name at the top of the .Rmd file in the YAML to be your name. And, then you're ready to go!

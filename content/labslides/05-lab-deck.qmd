@@ -21,7 +21,7 @@ format:
 2.  Lab 05: Modelling course evaluations
 3.  Getting started with lab
 
-Reminder to complete [mid-course survey](https://docs.google.com/forms/d/e/1FAIpQLSdpvo3bamtS4ClT8tquYaTehuBw16x2lBF-nKOhVkLbLQK4uw/viewform?usp=sf_link)
+Reminder to complete [mid-course survey](https://docs.google.com/forms/d/e/1FAIpQLSfN_7QJCZM_jcR_21vCkpHOyakuu_dAbGiFcLueTtEy4bL3VQ/viewform?usp=sf_link)
 
 ## Documentation
 

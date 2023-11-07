@@ -8,8 +8,10 @@ Thumbs.db
 
 # do not include large datasets/THC data
 content/lectures/data
+content/lectures/src
 content/exams/data
 docs/lectures/data
+docs/lectures/src
 Docs/content/cs/data
 content/cs/data/
 content/lectures/13-cs01-analysis_cache

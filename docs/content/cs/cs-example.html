@@ -1,0 +1,1535 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
+
+<meta charset="utf-8">
+<meta name="generator" content="quarto-1.3.146">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+
+
+<title>COGS 137 - CS: Example</title>
+<style>
+code{white-space: pre-wrap;}
+span.smallcaps{font-variant: small-caps;}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
+div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
+ul.task-list{list-style: none;}
+ul.task-list li input[type="checkbox"] {
+  width: 0.8em;
+  margin: 0 0.8em 0.2em -1.6em;
+  vertical-align: middle;
+}
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+div.sourceCode { margin: 1em 0; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { color: #008000; } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { color: #008000; font-weight: bold; } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+</style>
+
+
+<script src="../../site_libs/quarto-nav/quarto-nav.js"></script>
+<script src="../../site_libs/quarto-nav/headroom.min.js"></script>
+<script src="../../site_libs/clipboard/clipboard.min.js"></script>
+<script src="../../site_libs/quarto-search/autocomplete.umd.js"></script>
+<script src="../../site_libs/quarto-search/fuse.min.js"></script>
+<script src="../../site_libs/quarto-search/quarto-search.js"></script>
+<meta name="quarto:offset" content="../../">
+<link href="../../images/favicon.ico" rel="icon">
+<script src="../../site_libs/quarto-html/quarto.js"></script>
+<script src="../../site_libs/quarto-html/popper.min.js"></script>
+<script src="../../site_libs/quarto-html/tippy.umd.min.js"></script>
+<script src="../../site_libs/quarto-html/anchor.min.js"></script>
+<link href="../../site_libs/quarto-html/tippy.css" rel="stylesheet">
+<link href="../../site_libs/quarto-html/quarto-syntax-highlighting.css" rel="stylesheet" id="quarto-text-highlighting-styles">
+<script src="../../site_libs/bootstrap/bootstrap.min.js"></script>
+<link href="../../site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
+<link href="../../site_libs/bootstrap/bootstrap.min.css" rel="stylesheet" id="quarto-bootstrap" data-mode="light">
+<script id="quarto-search-options" type="application/json">{
+  "location": "navbar",
+  "copy-button": false,
+  "collapse-after": 3,
+  "panel-placement": "end",
+  "type": "overlay",
+  "limit": 20,
+  "language": {
+    "search-no-results-text": "No results",
+    "search-matching-documents-text": "matching documents",
+    "search-copy-link-title": "Copy link to search",
+    "search-hide-matches-text": "Hide additional matches",
+    "search-more-match-text": "more match in this document",
+    "search-more-matches-text": "more matches in this document",
+    "search-clear-button-title": "Clear",
+    "search-detached-cancel-button-title": "Cancel",
+    "search-submit-button-title": "Submit"
+  }
+}</script>
+
+
+<link rel="stylesheet" href="../../styles.css">
+</head>
+
+<body class="nav-sidebar docked nav-fixed">
+
+<div id="quarto-search-results"></div>
+  <header id="quarto-header" class="headroom fixed-top">
+    <nav class="navbar navbar-expand-lg navbar-dark ">
+      <div class="navbar-container container-fluid">
+      <div class="navbar-brand-container">
+    <a href="../../index.html" class="navbar-brand navbar-brand-logo">
+    <img src="../../images/cogs137-logo-hex.png" alt="" class="navbar-logo">
+    </a>
+    <a class="navbar-brand" href="../../index.html">
+    <span class="navbar-title">COGS 137</span>
+    </a>
+  </div>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+  <span class="navbar-toggler-icon"></span>
+</button>
+          <div class="collapse navbar-collapse" id="navbarCollapse">
+            <ul class="navbar-nav navbar-nav-scroll me-auto">
+  <li class="nav-item">
+    <a class="nav-link" href="../../index.html" rel="" target="">
+ <span class="menu-text">Home</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../schedule.html" rel="" target="">
+ <span class="menu-text">Schedule</span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="../../policies.html" rel="" target="">
+ <span class="menu-text">Policies</span></a>
+  </li>  
+</ul>
+            <ul class="navbar-nav navbar-nav-scroll ms-auto">
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://github.com/COGS137" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item compact">
+    <a class="nav-link" href="https://datahub.ucsd.edu/" rel="" target=""><i class="bi bi-cloud-fill" role="img" aria-label="Datahub">
+</i> 
+ <span class="menu-text"></span></a>
+  </li>  
+</ul>
+              <div id="quarto-search" class="" title="Search"></div>
+          </div> <!-- /navcollapse -->
+      </div> <!-- /container-fluid -->
+    </nav>
+  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+    <div class="container-fluid d-flex justify-content-between">
+      <h1 class="quarto-secondary-nav-title">CS: Example</h1>
+      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
+        <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+  </nav>
+</header>
+<!-- content -->
+<div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
+<!-- sidebar -->
+  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
+      <div class="mt-2 flex-shrink-0 align-items-center">
+        <div class="sidebar-search">
+        <div id="quarto-search" class="" title="Search"></div>
+        </div>
+      </div>
+    <div class="sidebar-menu-container"> 
+    <ul class="list-unstyled mt-1">
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lecture Slides</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/02-dplyr-slides.html" class="sidebar-item-text sidebar-link">02-dplyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/03-tidyr-slides.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/04-ggplot2-slides.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/05-viz-slides.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/07-linear-models-slides.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/08-effective-communication-slides.html" class="sidebar-item-text sidebar-link">08-effective-communication</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/09-mlr-slides.html" class="sidebar-item-text sidebar-link">09-mlr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/10-projects-slides.html" class="sidebar-item-text sidebar-link">10-projects</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/11-cs01-data-slides.html" class="sidebar-item-text sidebar-link">11-cs01-data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/12-cs01-eda-slides.html" class="sidebar-item-text sidebar-link">12-cs01-eda</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Lecture Notes</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/02-dplyr.html" class="sidebar-item-text sidebar-link">02-dplyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/03-tidyr.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/04-ggplot2.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/05-viz.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/07-linear-models.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/08-effective-communication.html" class="sidebar-item-text sidebar-link">08-effective-communication</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/09-mlr.html" class="sidebar-item-text sidebar-link">09-mlr</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/10-projects.html" class="sidebar-item-text sidebar-link">10-projects</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/11-cs01-data.html" class="sidebar-item-text sidebar-link">11-cs01-data</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lectures/12-cs01-eda.html" class="sidebar-item-text sidebar-link">12-cs01-eda</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Labs</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link">Lab01: Tooling and R</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/02-lab-wrangling.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/03-lab-viz.html" class="sidebar-item-text sidebar-link">Lab03: Data Viz</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/04-lab-modelling.html" class="sidebar-item-text sidebar-link">Lab04: Modelling</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labs/05-lab-mlr.html" class="sidebar-item-text sidebar-link">Lab05: MLR</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Lab Slides</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">Lab01</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/02-lab-deck.html" class="sidebar-item-text sidebar-link">Lab02</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/03-lab-deck.html" class="sidebar-item-text sidebar-link">Lab03</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/04-lab-deck.html" class="sidebar-item-text sidebar-link">Lab04</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/labslides/05-lab-deck.html" class="sidebar-item-text sidebar-link">Lab05</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Lab Answers</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lab-ans/lab02-wrangling-ans.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling (Ans)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lab-ans/lab03-viz-ans.html" class="sidebar-item-text sidebar-link">Lab03: Data Viz (Ans)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/lab-ans/lab04-modelling-ans.html" class="sidebar-item-text sidebar-link">Lab04: Modelling (Ans)</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Homework</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hw/hw-01.html" class="sidebar-item-text sidebar-link">HW01</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hw/hw-02.html" class="sidebar-item-text sidebar-link">HW02</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/hw/hw-03.html" class="sidebar-item-text sidebar-link">HW03</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Exam</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-fa21.html" class="sidebar-item-text sidebar-link">Practice Midterm (Fa21)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-fa21-ans.html" class="sidebar-item-text sidebar-link">Practice Midterm (Ans-Fa21)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-wi23.html" class="sidebar-item-text sidebar-link">Practice Midterm (Wi23)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-wi23-ans.html" class="sidebar-item-text sidebar-link">Practice Midterm (Ans-Wi23)</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/midterm-fa23.html" class="sidebar-item-text sidebar-link">Midterm</a>
+  </div>
+</li>
+      </ul>
+  </li>
+        <li class="sidebar-item sidebar-item-section">
+      <div class="sidebar-item-container"> 
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Case Studies</a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <i class="bi bi-chevron-right ms-2"></i>
+          </a> 
+      </div>
+      <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/cs/cs-example.html" class="sidebar-item-text sidebar-link active">CS: Example</a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/cs/cs01.html" class="sidebar-item-text sidebar-link">CS01</a>
+  </div>
+</li>
+      </ul>
+  </li>
+    </ul>
+    </div>
+</nav>
+<!-- margin-sidebar -->
+    <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
+        <nav id="TOC" role="doc-toc" class="toc-active">
+    <h2 id="toc-title">On this page</h2>
+   
+  <ul>
+  <li><a href="#load-packages" id="toc-load-packages" class="nav-link active" data-scroll-target="#load-packages">Load packages</a></li>
+  <li><a href="#introduction" id="toc-introduction" class="nav-link" data-scroll-target="#introduction">Introduction</a></li>
+  <li><a href="#questions" id="toc-questions" class="nav-link" data-scroll-target="#questions">Questions</a></li>
+  <li><a href="#the-data" id="toc-the-data" class="nav-link" data-scroll-target="#the-data">The Data</a>
+  <ul class="collapse">
+  <li><a href="#data-import" id="toc-data-import" class="nav-link" data-scroll-target="#data-import">Data Import</a></li>
+  <li><a href="#data-wrangling" id="toc-data-wrangling" class="nav-link" data-scroll-target="#data-wrangling">Data Wrangling</a></li>
+  <li><a href="#exploratory-data-analysis" id="toc-exploratory-data-analysis" class="nav-link" data-scroll-target="#exploratory-data-analysis">Exploratory Data Analysis</a></li>
+  <li><a href="#data-analysis" id="toc-data-analysis" class="nav-link" data-scroll-target="#data-analysis">Data Analysis</a></li>
+  </ul></li>
+  <li><a href="#resultsdiscussion" id="toc-resultsdiscussion" class="nav-link" data-scroll-target="#resultsdiscussion">Results/Discussion</a></li>
+  <li><a href="#conclusion" id="toc-conclusion" class="nav-link" data-scroll-target="#conclusion">Conclusion</a></li>
+  </ul>
+</nav>
+    </div>
+<!-- main -->
+<main class="content" id="quarto-document-content">
+
+<header id="title-block-header" class="quarto-title-block default">
+<div class="quarto-title">
+<h1 class="title d-none d-lg-block">CS: Example</h1>
+</div>
+
+
+
+<div class="quarto-title-meta">
+
+    
+  
+    
+  </div>
+  
+
+</header>
+
+<section id="load-packages" class="level3">
+<h3 class="anchored" data-anchor-id="load-packages">Load packages</h3>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(OCSdata)</span>
+<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tidyverse)</span>
+<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
+<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(pdftools)</span>
+<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(tesseract)</span>
+<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(magick)</span>
+<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(knitr)</span>
+<span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Kendall)</span>
+<span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(broom)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>I would recommend packages be imported after the introduction, but this is very specific and not something anyone would lose credit for.</p>
+</div>
+</div>
+</section>
+<section id="introduction" class="level2">
+<h2 class="anchored" data-anchor-id="introduction">Introduction</h2>
+<p>In this case study, we seek to analyze the youth disconnection among minority groups within the United States. The disconnected youth are the young people who are between the ages of 16 and 24 who are neither working nor in school. Following the aftermath of the Great Recession in 2008, we witnessed a peak youth disconnection rate of 14.7 percent in 2010 which has since been trending downwards to as low as a youth disconnection rate of 11.5 percent in 2017. While analyzing racial and ethnic groups is imperative for viewing any evident disparities, we also intend on analyzing how gender may play a role in affecting the rates of disconnection. Seeing as how we can already see existing disparities between genders within the workforce, we also want to see to what extent, if at all, gender plays a role in youth disconnection among groups.</p>
+<p>This specific period of young adulthood is one of the most critical in developing the necessary skills and capabilities required of them to be successful in adulthood and their professional careers as youth disconnection during this period stunts development and limits their potential. Measure of America, a nonpartisan project of the nonprofit Social Science Research, claims that “people who experience a period of disconnection as young adults go on to earn less and are less likely to be employed, own a home, or report good health by the time they reach their thirties”. Understanding how these trends among groups arise may be critical for finding solutions to preventing youth disconnection, and analyzing what groups may need more resources in order to prevent further prevent youth disconnection.</p>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>This introduction is missing citations! Statements that are not your own original thoughts must be cited. See Effective Communication lecture for possible ways to cite. We don’t care what format you use. We do care that you cite others’ work. Also, definitely feel free to find information on the topic beyond what was presented in class.</p>
+</div>
+</div>
+</section>
+<section id="questions" class="level2">
+<h2 class="anchored" data-anchor-id="questions">Questions</h2>
+<ol type="1">
+<li>How have youth disconnection rates in American youth changed since 2008?</li>
+<li>In particular, how has this changed for different gender and ethnic groups? Are any groups particularly disconnected?</li>
+<li>Does removing 2008 (pre-Great Recession time period) data points change our answer?</li>
+</ol>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>The third question here was their extension. Note that this is an ok extension all things considered. This was earlier in the quarter, a more straightforward dataset, there wasn’t as much to do as there is in our dataset. Explaining the why this is their focus in introduction would have been great.</p>
+</div>
+</div>
+</section>
+<section id="the-data" class="level2">
+<h2 class="anchored" data-anchor-id="the-data">The Data</h2>
+<p>The data set that we will be using for our case study is provided by two reports from the Measure of America project related to youth disconnect. The data provided will be in the form of images.</p>
+<section id="data-import" class="level3">
+<h3 class="anchored" data-anchor-id="data-import">Data Import</h3>
+<p>In order to begin our analysis, we imported our raw data from the <code>OCSdata</code> library on youth disconnection.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Data is imported so I get overwrite error when not commented - Adrian</span></span>
+<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Download raw data files</span></span>
+<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="co"># load_raw_data("ocs-bp-youth-disconnection", outpath = '.')</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Reminder that you can control chunk behavior for each chunk within the curly braces. This also applies for the warnings that are displayed later on. Best to supress those in final HTML.</p>
+</div>
+</div>
+<p>Since the raw data is in images, we need to convert to a usable R data set. We started with the major racial ethnic groups.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import data for major racial/ethnic groups</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>major_racial_ethnic_groups <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_read</span>(<span class="st">"data/Major_ethnic_groups_screenshot.png"</span>)</span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> magick<span class="sc">::</span><span class="fu">image_ocr</span>(major_racial_ethnic_groups)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For Asian subgroups, we had to import the raw data for 2017 and 2018.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import data for Asian subgroups</span></span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2017 data</span></span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>asian_sub_2017 <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/asian_subgroups_2017.png"</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_A <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/asian_sub_2017_A.png"</span>)</span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_B <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/asian_sub_2017_B.png"</span>)</span>
+<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_C <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/asian_sub_2017_C.png"</span>)</span>
+<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>asian_sub_2017 <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(asian_sub_2017)</span>
+<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_A <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(asian_sub_2017_A)</span>
+<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_B <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(asian_sub_2017_B)</span>
+<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_C <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(asian_sub_2017_C)</span>
+<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="co"># 2018 data</span></span>
+<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>asian_sub_2018_A <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/asian_sub_2018_A.png"</span>)</span>
+<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>asian_sub_2018_A <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(asian_sub_2018_A)</span>
+<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>asian_sub_2018_B <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/asian_sub_2018_B.png"</span>)</span>
+<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>asian_sub_2018_B <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(asian_sub_2018_B)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>For Latinx subgroups, we also imported 2017 and 2018 data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb5"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb5-1"><a href="#cb5-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Import data for Latinx subgroups</span></span>
+<span id="cb5-2"><a href="#cb5-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-3"><a href="#cb5-3" aria-hidden="true" tabindex="-1"></a><span class="co"># 2017 data</span></span>
+<span id="cb5-4"><a href="#cb5-4" aria-hidden="true" tabindex="-1"></a>latinx_imageA <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/latinx_sub_2017_A.png"</span>)</span>
+<span id="cb5-5"><a href="#cb5-5" aria-hidden="true" tabindex="-1"></a>latinx_imageB <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/latinx_sub_2017_B.png"</span>)</span>
+<span id="cb5-6"><a href="#cb5-6" aria-hidden="true" tabindex="-1"></a>latinx_imageC <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/latinx_sub_2017_C.png"</span>)</span>
+<span id="cb5-7"><a href="#cb5-7" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017_A <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(latinx_imageA)</span>
+<span id="cb5-8"><a href="#cb5-8" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017_B <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(latinx_imageB)</span>
+<span id="cb5-9"><a href="#cb5-9" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017_C <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(latinx_imageC)</span>
+<span id="cb5-10"><a href="#cb5-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb5-11"><a href="#cb5-11" aria-hidden="true" tabindex="-1"></a><span class="co"># 2018 data</span></span>
+<span id="cb5-12"><a href="#cb5-12" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> <span class="fu">image_read</span>(<span class="st">"data/latinx_subgroups_2018.png"</span>)</span>
+<span id="cb5-13"><a href="#cb5-13" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> <span class="fu">image_ocr</span>(latinx_sub_2018)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Once the data import is complete, we saved our data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Save data</span></span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a><span class="fu">save</span>(</span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a>  major_groups,</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a>  asian_sub_2017,</span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>  asian_sub_2017_A,</span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>  asian_sub_2017_B,</span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a>  asian_sub_2017_C,</span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>  latinx_sub_2017_A,</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>  latinx_sub_2017_B,</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a>  latinx_sub_2017_C,</span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>  asian_sub_2018_A,</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>  asian_sub_2018_B,</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a>  latinx_sub_2018,</span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>  <span class="at">file =</span> <span class="st">"data/imported_data.rda"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="data-wrangling" class="level3">
+<h3 class="anchored" data-anchor-id="data-wrangling">Data Wrangling</h3>
+<p>Now that we have our data properly imported, we need to wrangle our data in R so we can begin our analysis.</p>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>There is text to guide the viewer, clear code, and code comments as needed. I like this.</p>
+</div>
+</div>
+<section id="major-group-data" class="level4">
+<h4 class="anchored" data-anchor-id="major-group-data">Major Group Data</h4>
+<p>To begin our data wrangling, we took the imported data that is in a single string and separated the data by new line characters and transformed it into a table.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separates string by new line and transforms into a table</span></span>
+<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span></span>
+<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a>  stringr<span class="sc">::</span><span class="fu">str_split</span>(<span class="at">pattern =</span> <span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span> </span>
+<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a>  tibble<span class="sc">::</span><span class="fu">as_tibble</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that our data has rows, we created columns <code>Group</code> and <code>Year</code> and assigned the corresponding values according to the data as well as normalizing the capitalization throughout the data set.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate into columns Group and Year</span></span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> </span>
+<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a>  major_groups <span class="sc">|&gt;</span></span>
+<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="at">col =</span> value, </span>
+<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Group"</span>, <span class="st">"Years"</span>), <span class="co"># Set column names</span></span>
+<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">"(?&lt;=[[:alpha:]])</span><span class="sc">\\</span><span class="st">s(?=[0-9])"</span>)  <span class="co"># Separate after letter string; beginning numerics</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [19].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make capitalization format the same</span></span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span> </span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Group =</span> stringr<span class="sc">::</span><span class="fu">str_to_title</span>(Group))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We have our data in two columns but need to separate our <code>Years</code> column into each individual year. We thus separated the column by every space character, assigned appropriate years for its corresponding values, and made the data values numeric.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb11"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Separate `Years` into columns by individual years</span></span>
+<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span> </span>
+<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">separate</span>(<span class="at">col =</span> Years, </span>
+<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a>                  <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"2008"</span>, <span class="st">"2010"</span>, <span class="st">"2012"</span>, <span class="st">"2014"</span>, <span class="st">"2016"</span>, <span class="st">"2017"</span>),  <span class="co"># Set column names</span></span>
+<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a>                  <span class="at">sep =</span> <span class="st">" "</span>) <span class="co"># Separate by spaces</span></span>
+<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Remove empty rows</span></span>
+<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span> </span>
+<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">drop_na</span>()</span>
+<span id="cb11-10"><a href="#cb11-10" aria-hidden="true" tabindex="-1"></a> </span>
+<span id="cb11-11"><a href="#cb11-11" aria-hidden="true" tabindex="-1"></a><span class="co"># Make data numeric</span></span>
+<span id="cb11-12"><a href="#cb11-12" aria-hidden="true" tabindex="-1"></a>major_groups <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span></span>
+<span id="cb11-13"><a href="#cb11-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(</span>
+<span id="cb11-14"><a href="#cb11-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> <span class="sc">-</span>Group,</span>
+<span id="cb11-15"><a href="#cb11-15" aria-hidden="true" tabindex="-1"></a>           <span class="sc">~</span> <span class="fu">str_remove</span>(<span class="at">string =</span> ., <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>)),  <span class="co"># Remove decimal points from string</span></span>
+<span id="cb11-16"><a href="#cb11-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> <span class="sc">-</span>Group, as.numeric),  <span class="co"># Convert to numeric</span></span>
+<span id="cb11-17"><a href="#cb11-17" aria-hidden="true" tabindex="-1"></a>    <span class="fu">across</span>(<span class="at">.cols =</span> <span class="sc">-</span>Group, <span class="sc">~</span> . <span class="sc">*</span> <span class="fl">0.1</span>)   <span class="co"># Add decimal point back</span></span>
+<span id="cb11-18"><a href="#cb11-18" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We have a lot of information in our <code>Group</code> column, so we separated that information and created two new columns, <code>Race_Ethnicity</code> and <code>Gender</code>, to make it easier to analyze our data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Race_Ethnicity column</span></span>
+<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>major_groups  <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span></span>
+<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># First, create entries for `All_races`</span></span>
+<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> dplyr<span class="sc">::</span><span class="fu">recode</span>(Group, <span class="st">"United States"</span> <span class="ot">=</span> <span class="st">"All_races"</span>,</span>
+<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"Female"</span> <span class="ot">=</span> <span class="st">"All_races"</span>,</span>
+<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a>                                        <span class="st">"Male"</span> <span class="ot">=</span> <span class="st">"All_races"</span>),</span>
+<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Second, create entries for all other races by importing data from group column and removing gender  </span></span>
+<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a>         <span class="at">Race_Ethnicity =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> Race_Ethnicity,</span>
+<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a>                                     <span class="at">pattern =</span> <span class="st">"Female|Male"</span>))</span>
+<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Create Gender column</span></span>
+<span id="cb12-11"><a href="#cb12-11" aria-hidden="true" tabindex="-1"></a>major_groups  <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span></span>
+<span id="cb12-12"><a href="#cb12-12" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Extract gender from `Group` column</span></span>
+<span id="cb12-13"><a href="#cb12-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Gender =</span> <span class="fu">str_extract</span>(<span class="at">string =</span> Group, </span>
+<span id="cb12-14"><a href="#cb12-14" aria-hidden="true" tabindex="-1"></a>                              <span class="at">pattern =</span> <span class="st">"Female|Male"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb12-15"><a href="#cb12-15" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Assign `All' if gender was not in `Group`</span></span>
+<span id="cb12-16"><a href="#cb12-16" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Gender =</span> <span class="fu">replace_na</span>(Gender, <span class="at">replace =</span> <span class="st">"All"</span>))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Now that we have all of our data, we moved the columns containing years into rows and added a new column <code>Percent</code> to log the value contained in the, now former, year column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Puts years in rows instead of columns with percent values</span></span>
+<span id="cb13-2"><a href="#cb13-2" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="ot">&lt;-</span> major_groups <span class="sc">|&gt;</span></span>
+<span id="cb13-3"><a href="#cb13-3" aria-hidden="true" tabindex="-1"></a>  tidyr<span class="sc">::</span><span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="fu">contains</span>(<span class="st">"20"</span>), <span class="co"># any column containing 20</span></span>
+<span id="cb13-4"><a href="#cb13-4" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_to =</span> <span class="st">"Year"</span>, <span class="co"># Assigns column for year</span></span>
+<span id="cb13-5"><a href="#cb13-5" aria-hidden="true" tabindex="-1"></a>                      <span class="at">values_to =</span> <span class="st">"Percent"</span>, <span class="co"># Assigns column for percent</span></span>
+<span id="cb13-6"><a href="#cb13-6" aria-hidden="true" tabindex="-1"></a>                      <span class="at">names_prefix =</span> <span class="st">"Perc_"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb13-7"><a href="#cb13-7" aria-hidden="true" tabindex="-1"></a>  dplyr<span class="sc">::</span><span class="fu">mutate</span>(<span class="at">Year =</span> <span class="fu">as.numeric</span>(Year))</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="subgroup-data" class="level4">
+<h4 class="anchored" data-anchor-id="subgroup-data">Subgroup Data</h4>
+<section id="data-wrangling-functions" class="level5">
+<h5 class="anchored" data-anchor-id="data-wrangling-functions">Data Wrangling Functions</h5>
+<p>We wrangled the major group data but now have to wrangle the subgroup data, which is a little more complicated. We first created a <code>make_rows</code> function to take the imported raw data and convert it into a table with rows separated by new line characters.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create function to separate string into rows</span></span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a>make_rows <span class="ot">&lt;-</span> <span class="cf">function</span>(text){</span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a>  text <span class="sc">|&gt;</span></span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_split</span>(<span class="st">"</span><span class="sc">\n</span><span class="st">"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">unlist</span>() <span class="sc">|&gt;</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">as_tibble</span>()</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We also created two functions <code>clean_table</code> and <code>clean_table_2018</code> to clean our subgroup data just like the major group data – separating <code>Group</code> and <code>Years</code> columns, converting data to numeric, and creating <code>Race_Ethnicity</code> and <code>Gender</code> columns.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb15"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb15-1"><a href="#cb15-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create function to clean 2017 subgroup data </span></span>
+<span id="cb15-2"><a href="#cb15-2" aria-hidden="true" tabindex="-1"></a>clean_table <span class="ot">&lt;-</span> <span class="cf">function</span>(table){</span>
+<span id="cb15-3"><a href="#cb15-3" aria-hidden="true" tabindex="-1"></a>  table <span class="sc">|&gt;</span></span>
+<span id="cb15-4"><a href="#cb15-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span> value,</span>
+<span id="cb15-5"><a href="#cb15-5" aria-hidden="true" tabindex="-1"></a>             <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Group"</span>, <span class="st">"Percentage"</span>), <span class="co"># Create column names</span></span>
+<span id="cb15-6"><a href="#cb15-6" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep =</span>  <span class="st">"(?&lt;=[[:alpha:]])</span><span class="sc">\\</span><span class="st">s(?=[0-9])"</span>) <span class="sc">|&gt;</span> <span class="co"># Split into columns after string of letters</span></span>
+<span id="cb15-7"><a href="#cb15-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> <span class="co"># Remove NA rows</span></span>
+<span id="cb15-8"><a href="#cb15-8" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make percentage data numeric</span></span>
+<span id="cb15-9"><a href="#cb15-9" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">str_to_title</span>(Group)) <span class="sc">|&gt;</span></span>
+<span id="cb15-10"><a href="#cb15-10" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percentage =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> Percentage,</span>
+<span id="cb15-11"><a href="#cb15-11" aria-hidden="true" tabindex="-1"></a>                                   <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>)) <span class="sc">|&gt;</span> <span class="co"># Remove decimal points from string</span></span>
+<span id="cb15-12"><a href="#cb15-12" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(Percentage, <span class="fu">c</span>(<span class="st">"Percent"</span>), <span class="at">sep =</span> <span class="st">" "</span>) <span class="sc">|&gt;</span> <span class="co"># Separate by space</span></span>
+<span id="cb15-13"><a href="#cb15-13" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent =</span> <span class="fu">as.numeric</span>(Percent)) <span class="sc">|&gt;</span> <span class="co"># Convert to numeric</span></span>
+<span id="cb15-14"><a href="#cb15-14" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent =</span> Percent <span class="sc">*</span> <span class="fl">0.1</span>) <span class="sc">|&gt;</span> <span class="co"># Add back decimal point</span></span>
+<span id="cb15-15"><a href="#cb15-15" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create Race_Ethnicity column</span></span>
+<span id="cb15-16"><a href="#cb15-16" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">recode</span>(Group, </span>
+<span id="cb15-17"><a href="#cb15-17" aria-hidden="true" tabindex="-1"></a>                                   <span class="co"># Create entries for All_races</span></span>
+<span id="cb15-18"><a href="#cb15-18" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"United States"</span> <span class="ot">=</span> <span class="st">"All_races"</span>,</span>
+<span id="cb15-19"><a href="#cb15-19" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Female"</span> <span class="ot">=</span> <span class="st">"All_races"</span>,</span>
+<span id="cb15-20"><a href="#cb15-20" aria-hidden="true" tabindex="-1"></a>                                   <span class="st">"Male"</span> <span class="ot">=</span> <span class="st">"All_races"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb15-21"><a href="#cb15-21" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create entries for all other races by importing data from group column and removing gender  </span></span>
+<span id="cb15-22"><a href="#cb15-22" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> Race_Ethnicity, </span>
+<span id="cb15-23"><a href="#cb15-23" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">pattern =</span> <span class="st">" Female| Male"</span>)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-24"><a href="#cb15-24" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create Gender column</span></span>
+<span id="cb15-25"><a href="#cb15-25" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Gender =</span> <span class="fu">str_extract</span>(<span class="at">string =</span> Group,</span>
+<span id="cb15-26"><a href="#cb15-26" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pattern =</span><span class="st">"Female|Male"</span>)) <span class="sc">|&gt;</span> <span class="co"># Extract gender from `Group` column</span></span>
+<span id="cb15-27"><a href="#cb15-27" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Gender =</span> <span class="fu">replace_na</span>(Gender, <span class="at">replace =</span> <span class="st">"All"</span>))  <span class="co"># Assign `All' if gender was not in `Group`</span></span>
+<span id="cb15-28"><a href="#cb15-28" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb15-29"><a href="#cb15-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb15-30"><a href="#cb15-30" aria-hidden="true" tabindex="-1"></a><span class="co"># Create function to clean 2018 subgroup data </span></span>
+<span id="cb15-31"><a href="#cb15-31" aria-hidden="true" tabindex="-1"></a>clean_table_2018 <span class="ot">&lt;-</span> <span class="cf">function</span>(table){</span>
+<span id="cb15-32"><a href="#cb15-32" aria-hidden="true" tabindex="-1"></a>  table <span class="sc">|&gt;</span></span>
+<span id="cb15-33"><a href="#cb15-33" aria-hidden="true" tabindex="-1"></a>    <span class="fu">separate</span>(<span class="at">col =</span> value, </span>
+<span id="cb15-34"><a href="#cb15-34" aria-hidden="true" tabindex="-1"></a>             <span class="at">into =</span> <span class="fu">c</span>(<span class="st">"Group"</span>, <span class="st">"Percent"</span>), <span class="co"># Create column names</span></span>
+<span id="cb15-35"><a href="#cb15-35" aria-hidden="true" tabindex="-1"></a>             <span class="at">sep =</span>  <span class="st">"(?&lt;=[[:alpha:]])</span><span class="sc">\\</span><span class="st">s:</span><span class="sc">\\</span><span class="st">s|</span><span class="sc">\\</span><span class="st">s(?=[0-9])"</span>) <span class="sc">|&gt;</span>  <span class="co"># Split into columns after colon</span></span>
+<span id="cb15-36"><a href="#cb15-36" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> Group, </span>
+<span id="cb15-37"><a href="#cb15-37" aria-hidden="true" tabindex="-1"></a>                            <span class="at">pattern =</span> <span class="st">":"</span>)) <span class="sc">|&gt;</span> <span class="co"># Remove colon</span></span>
+<span id="cb15-38"><a href="#cb15-38" aria-hidden="true" tabindex="-1"></a>    <span class="fu">drop_na</span>() <span class="sc">|&gt;</span> <span class="co"># Remove NA rows</span></span>
+<span id="cb15-39"><a href="#cb15-39" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Make percentage data numeric</span></span>
+<span id="cb15-40"><a href="#cb15-40" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">str_to_title</span>(<span class="at">string =</span> Group)) <span class="sc">|&gt;</span> </span>
+<span id="cb15-41"><a href="#cb15-41" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent =</span> <span class="fu">str_remove</span>(<span class="at">string =</span> Percent, </span>
+<span id="cb15-42"><a href="#cb15-42" aria-hidden="true" tabindex="-1"></a>                               <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">."</span>)) <span class="sc">|&gt;</span> <span class="co"># Remove decimal points from string</span></span>
+<span id="cb15-43"><a href="#cb15-43" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent =</span> <span class="fu">as.numeric</span>(Percent)) <span class="sc">|&gt;</span> <span class="co"># Convert to numeric</span></span>
+<span id="cb15-44"><a href="#cb15-44" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Percent =</span> Percent <span class="sc">*</span> <span class="fl">0.1</span>) <span class="sc">|&gt;</span> <span class="co"># Add back decimal point</span></span>
+<span id="cb15-45"><a href="#cb15-45" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create Race_Ethnicity column</span></span>
+<span id="cb15-46"><a href="#cb15-46" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">str_replace</span>(<span class="at">string =</span> Group,</span>
+<span id="cb15-47"><a href="#cb15-47" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">pattern =</span> <span class="st">"Men|Women"</span>, </span>
+<span id="cb15-48"><a href="#cb15-48" aria-hidden="true" tabindex="-1"></a>                                        <span class="at">replacement =</span> <span class="st">"missing"</span>)) <span class="sc">|&gt;</span> <span class="co"># Replace gender with missing</span></span>
+<span id="cb15-49"><a href="#cb15-49" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">na_if</span>(Race_Ethnicity, <span class="st">"missing"</span>)) <span class="sc">|&gt;</span> <span class="co"># Make missing values NA</span></span>
+<span id="cb15-50"><a href="#cb15-50" aria-hidden="true" tabindex="-1"></a>    <span class="fu">fill</span>(Race_Ethnicity, <span class="at">.direction =</span> <span class="st">"down"</span>) <span class="sc">|&gt;</span> <span class="co"># Fill Race/Ethnicity in missing fields</span></span>
+<span id="cb15-51"><a href="#cb15-51" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Create Gender column</span></span>
+<span id="cb15-52"><a href="#cb15-52" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Gender =</span> <span class="fu">str_extract</span>(<span class="at">string =</span> Group, </span>
+<span id="cb15-53"><a href="#cb15-53" aria-hidden="true" tabindex="-1"></a>                                <span class="at">pattern =</span> <span class="st">"Men|Women"</span>)) <span class="sc">|&gt;</span> <span class="co"># Extract gender from `Group` column</span></span>
+<span id="cb15-54"><a href="#cb15-54" aria-hidden="true" tabindex="-1"></a>    <span class="fu">mutate</span>(<span class="at">Gender =</span> <span class="fu">replace_na</span>(Gender, <span class="at">replace =</span> <span class="st">"All"</span>)) <span class="co"># Assign `All' if gender was not in `Group`</span></span>
+<span id="cb15-55"><a href="#cb15-55" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="asian-subgroup-data" class="level5">
+<h5 class="anchored" data-anchor-id="asian-subgroup-data">Asian Subgroup Data</h5>
+<p>We ran our <code>make_rows</code> function on our raw data and combined the initially wrangled 2017 data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Asian subgroup data</span></span>
+<span id="cb16-2"><a href="#cb16-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2017 data</span></span>
+<span id="cb16-3"><a href="#cb16-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply make_rows function to subgroup data</span></span>
+<span id="cb16-4"><a href="#cb16-4" aria-hidden="true" tabindex="-1"></a>asian_sub_2017 <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(asian_sub_2017)</span>
+<span id="cb16-5"><a href="#cb16-5" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_A <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(asian_sub_2017_A)</span>
+<span id="cb16-6"><a href="#cb16-6" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_B <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(asian_sub_2017_B)</span>
+<span id="cb16-7"><a href="#cb16-7" aria-hidden="true" tabindex="-1"></a>asian_sub_2017_C <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(asian_sub_2017_C)</span>
+<span id="cb16-8"><a href="#cb16-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb16-9"><a href="#cb16-9" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data</span></span>
+<span id="cb16-10"><a href="#cb16-10" aria-hidden="true" tabindex="-1"></a>asian_sub_2017 <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(asian_sub_2017_A, </span>
+<span id="cb16-11"><a href="#cb16-11" aria-hidden="true" tabindex="-1"></a>                            asian_sub_2017_B,</span>
+<span id="cb16-12"><a href="#cb16-12" aria-hidden="true" tabindex="-1"></a>                            asian_sub_2017_C)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Similarly, we applied <code>make_rows</code> to 2018 data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb17"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb17-1"><a href="#cb17-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2018 data</span></span>
+<span id="cb17-2"><a href="#cb17-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data</span></span>
+<span id="cb17-3"><a href="#cb17-3" aria-hidden="true" tabindex="-1"></a>asian_sub_2018 <span class="ot">&lt;-</span> <span class="fu">str_c</span>(asian_sub_2018_A, asian_sub_2018_B)</span>
+<span id="cb17-4"><a href="#cb17-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb17-5"><a href="#cb17-5" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply make_rows function</span></span>
+<span id="cb17-6"><a href="#cb17-6" aria-hidden="true" tabindex="-1"></a>asian_sub_2018 <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(asian_sub_2018)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>We next cleaned both the 2017 and 2018 data using our <code>clean_table</code> and <code>clean_table_2018</code> functions.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply clean table function to both years data</span></span>
+<span id="cb18-2"><a href="#cb18-2" aria-hidden="true" tabindex="-1"></a>asian_sub_2017 <span class="ot">&lt;-</span> <span class="fu">clean_table</span>(asian_sub_2017)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 3 rows [17, 22,
+28].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a>asian_sub_2018 <span class="ot">&lt;-</span> <span class="fu">clean_table_2018</span>(asian_sub_2018)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 6 rows [4, 8, 15, 19, 21,
+23].</code></pre>
+</div>
+</div>
+<p>The imported data was missing part of the data, so we manually added it back in as well as created a <code>Year</code> column.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb22"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb22-1"><a href="#cb22-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Add missing data</span></span>
+<span id="cb22-2"><a href="#cb22-2" aria-hidden="true" tabindex="-1"></a>asian_sub_2018 <span class="ot">&lt;-</span> asian_sub_2018 <span class="sc">|&gt;</span></span>
+<span id="cb22-3"><a href="#cb22-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">Group =</span> <span class="st">"Asian"</span>, <span class="at">Percent =</span> <span class="fl">6.2</span>,</span>
+<span id="cb22-4"><a href="#cb22-4" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="st">"Asian"</span>, <span class="at">Gender =</span> <span class="st">"All"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-5"><a href="#cb22-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">Group =</span> <span class="st">"Asian"</span>, <span class="at">Percent =</span> <span class="fl">6.4</span>,</span>
+<span id="cb22-6"><a href="#cb22-6" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="st">"Asian"</span>, <span class="at">Gender =</span> <span class="st">"Men"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb22-7"><a href="#cb22-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">Group =</span> <span class="st">"Asian"</span>, <span class="at">Percent =</span> <span class="fl">6.1</span>,</span>
+<span id="cb22-8"><a href="#cb22-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="st">"Asian"</span>, <span class="at">Gender =</span> <span class="st">"Women"</span>)</span>
+<span id="cb22-9"><a href="#cb22-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb22-10"><a href="#cb22-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Add years to data</span></span>
+<span id="cb22-11"><a href="#cb22-11" aria-hidden="true" tabindex="-1"></a>asian_sub_2017 <span class="ot">&lt;-</span> asian_sub_2017 <span class="sc">|&gt;</span></span>
+<span id="cb22-12"><a href="#cb22-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="dv">2017</span>)</span>
+<span id="cb22-13"><a href="#cb22-13" aria-hidden="true" tabindex="-1"></a>asian_sub_2018 <span class="ot">&lt;-</span> asian_sub_2018 <span class="sc">|&gt;</span></span>
+<span id="cb22-14"><a href="#cb22-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="dv">2018</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+<p>Since the naming convention for males and females different across the 2017 and 2018 data, we standardized the <code>Gender</code> column to only contain <code>Male</code> and <code>Female</code> entries and then combined the data into one data set, and once again moved the years into rows and added a <code>Percent</code> column, just like our major group data.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb23"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb23-1"><a href="#cb23-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Make Male/Female the values for gender across both datasets</span></span>
+<span id="cb23-2"><a href="#cb23-2" aria-hidden="true" tabindex="-1"></a>asian_sub_2018 <span class="ot">&lt;-</span> asian_sub_2018 <span class="sc">|&gt;</span> </span>
+<span id="cb23-3"><a href="#cb23-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(Gender, Group),</span>
+<span id="cb23-4"><a href="#cb23-4" aria-hidden="true" tabindex="-1"></a>               <span class="sc">~</span> <span class="fu">str_replace</span>(<span class="at">string =</span> ., </span>
+<span id="cb23-5"><a href="#cb23-5" aria-hidden="true" tabindex="-1"></a>                             <span class="at">pattern =</span> <span class="st">"Men"</span>, </span>
+<span id="cb23-6"><a href="#cb23-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">replacement =</span> <span class="st">"Male"</span>)),</span>
+<span id="cb23-7"><a href="#cb23-7" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(Gender, Group),</span>
+<span id="cb23-8"><a href="#cb23-8" aria-hidden="true" tabindex="-1"></a>               <span class="sc">~</span> <span class="fu">str_replace</span>(<span class="at">string =</span> ., </span>
+<span id="cb23-9"><a href="#cb23-9" aria-hidden="true" tabindex="-1"></a>                             <span class="at">pattern =</span> <span class="st">"Women"</span>, </span>
+<span id="cb23-10"><a href="#cb23-10" aria-hidden="true" tabindex="-1"></a>                             <span class="at">replacement =</span> <span class="st">"Female"</span>)))</span>
+<span id="cb23-11"><a href="#cb23-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-12"><a href="#cb23-12" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine 2017 and 2018 data</span></span>
+<span id="cb23-13"><a href="#cb23-13" aria-hidden="true" tabindex="-1"></a>asian_subgroups <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(asian_sub_2017, asian_sub_2018)</span>
+<span id="cb23-14"><a href="#cb23-14" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb23-15"><a href="#cb23-15" aria-hidden="true" tabindex="-1"></a><span class="co"># Add missing categories</span></span>
+<span id="cb23-16"><a href="#cb23-16" aria-hidden="true" tabindex="-1"></a>asian_subgroups <span class="ot">&lt;-</span> asian_subgroups <span class="sc">|&gt;</span> </span>
+<span id="cb23-17"><a href="#cb23-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Group) <span class="sc">|&gt;</span></span>
+<span id="cb23-18"><a href="#cb23-18" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Year, </span>
+<span id="cb23-19"><a href="#cb23-19" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> Percent) <span class="sc">|&gt;</span></span>
+<span id="cb23-20"><a href="#cb23-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Race_Ethnicity, Gender),</span>
+<span id="cb23-21"><a href="#cb23-21" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span> <span class="st">"Year"</span>,</span>
+<span id="cb23-22"><a href="#cb23-22" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to=</span> <span class="st">"Percent"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+<section id="latinx-subgroup-data" class="level5">
+<h5 class="anchored" data-anchor-id="latinx-subgroup-data">Latinx Subgroup Data</h5>
+<p>To wrangle our Latinx subgroup data, we followed the same steps as our Asian subgroup data – applying <code>make_rows</code>, <code>clean_table</code>, and <code>clean_table_2018</code> functions, standardizing the <code>Gender</code> naming convention, combining 2017 and 2018 data, and moving the years into rows while adding a <code>Percent</code> column. For the Latinx data, we also appropriately labeled the Puerto Rican, Dominican, Cuban groups and cleaned the names for Latino/Latina group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb24"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb24-1"><a href="#cb24-1" aria-hidden="true" tabindex="-1"></a><span class="do">## Latinx subgroup data</span></span>
+<span id="cb24-2"><a href="#cb24-2" aria-hidden="true" tabindex="-1"></a><span class="co"># 2017 data</span></span>
+<span id="cb24-3"><a href="#cb24-3" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine data</span></span>
+<span id="cb24-4"><a href="#cb24-4" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017 <span class="ot">&lt;-</span> stringr<span class="sc">::</span><span class="fu">str_c</span>(latinx_sub_2017_A,</span>
+<span id="cb24-5"><a href="#cb24-5" aria-hidden="true" tabindex="-1"></a>                                  latinx_sub_2017_B, </span>
+<span id="cb24-6"><a href="#cb24-6" aria-hidden="true" tabindex="-1"></a>                                  latinx_sub_2017_C)</span>
+<span id="cb24-7"><a href="#cb24-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-8"><a href="#cb24-8" aria-hidden="true" tabindex="-1"></a><span class="co"># Fix typo</span></span>
+<span id="cb24-9"><a href="#cb24-9" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017 <span class="ot">&lt;-</span> latinx_sub_2017 <span class="sc">|&gt;</span></span>
+<span id="cb24-10"><a href="#cb24-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">str_replace</span>(<span class="at">pattern =</span> <span class="st">"DR, Cuban Female 15.7</span><span class="sc">\n</span><span class="st">PR"</span>, <span class="co"># Identify typo</span></span>
+<span id="cb24-11"><a href="#cb24-11" aria-hidden="true" tabindex="-1"></a>              <span class="at">replacement =</span> <span class="st">"DR, Cuban Male 15.7</span><span class="sc">\n</span><span class="st">PR"</span>) <span class="co"># Replace gender</span></span>
+<span id="cb24-12"><a href="#cb24-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb24-13"><a href="#cb24-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply functions to Latinx data</span></span>
+<span id="cb24-14"><a href="#cb24-14" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017 <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(latinx_sub_2017)</span>
+<span id="cb24-15"><a href="#cb24-15" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017 <span class="ot">&lt;-</span> <span class="fu">clean_table</span>(<span class="at">table =</span> latinx_sub_2017)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [19].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb26"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb26-1"><a href="#cb26-1" aria-hidden="true" tabindex="-1"></a><span class="co"># 2018 data</span></span>
+<span id="cb26-2"><a href="#cb26-2" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean the data string</span></span>
+<span id="cb26-3"><a href="#cb26-3" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> <span class="fu">str_replace_all</span>(<span class="at">string =</span> latinx_sub_2018, </span>
+<span id="cb26-4"><a href="#cb26-4" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">pattern =</span> <span class="st">"</span><span class="sc">\\</span><span class="st">s:</span><span class="sc">\n</span><span class="st">{2}|</span><span class="sc">\n</span><span class="st">{2}"</span>, <span class="co">#remove two newline characters</span></span>
+<span id="cb26-5"><a href="#cb26-5" aria-hidden="true" tabindex="-1"></a>                                  <span class="at">replacement =</span> <span class="st">" "</span>)</span>
+<span id="cb26-6"><a href="#cb26-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-7"><a href="#cb26-7" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply make_rows function</span></span>
+<span id="cb26-8"><a href="#cb26-8" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> <span class="fu">make_rows</span>(latinx_sub_2018)</span>
+<span id="cb26-9"><a href="#cb26-9" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb26-10"><a href="#cb26-10" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply clean table function</span></span>
+<span id="cb26-11"><a href="#cb26-11" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> <span class="fu">clean_table_2018</span>(latinx_sub_2018)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Expected 2 pieces. Missing pieces filled with `NA` in 1 rows [12].</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb28"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb28-1"><a href="#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Create function to fix naming issues</span></span>
+<span id="cb28-2"><a href="#cb28-2" aria-hidden="true" tabindex="-1"></a>fix_latinx_naming <span class="ot">&lt;-</span> <span class="cf">function</span>(table){</span>
+<span id="cb28-3"><a href="#cb28-3" aria-hidden="true" tabindex="-1"></a>  table <span class="sc">|&gt;</span></span>
+<span id="cb28-4"><a href="#cb28-4" aria-hidden="true" tabindex="-1"></a>    <span class="co"># Appropriately label Puerto Rican, Dominican, Cuban group</span></span>
+<span id="cb28-5"><a href="#cb28-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Group =</span> <span class="fu">str_replace</span>(<span class="at">string =</span> Group,</span>
+<span id="cb28-6"><a href="#cb28-6" aria-hidden="true" tabindex="-1"></a>                             <span class="at">pattern =</span> <span class="st">"Pr, Dr, Cuban"</span>,</span>
+<span id="cb28-7"><a href="#cb28-7" aria-hidden="true" tabindex="-1"></a>                             <span class="at">replacement =</span> <span class="st">"Puerto Rican, Dominican, Cuban"</span>),</span>
+<span id="cb28-8"><a href="#cb28-8" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="fu">str_replace</span>(<span class="at">string =</span> Race_Ethnicity,</span>
+<span id="cb28-9"><a href="#cb28-9" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">pattern =</span> <span class="st">"Pr, Dr, Cuban"</span>,</span>
+<span id="cb28-10"><a href="#cb28-10" aria-hidden="true" tabindex="-1"></a>                                       <span class="at">replacement =</span> <span class="st">"Puerto Rican, Dominican, Cuban"</span>))</span>
+<span id="cb28-11"><a href="#cb28-11" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb28-12"><a href="#cb28-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-13"><a href="#cb28-13" aria-hidden="true" tabindex="-1"></a><span class="co"># Apply function to both data sets</span></span>
+<span id="cb28-14"><a href="#cb28-14" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017 <span class="ot">&lt;-</span> <span class="fu">fix_latinx_naming</span>(latinx_sub_2017)</span>
+<span id="cb28-15"><a href="#cb28-15" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> <span class="fu">fix_latinx_naming</span>(latinx_sub_2018)</span>
+<span id="cb28-16"><a href="#cb28-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-17"><a href="#cb28-17" aria-hidden="true" tabindex="-1"></a><span class="co"># Add missing data</span></span>
+<span id="cb28-18"><a href="#cb28-18" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> latinx_sub_2018 <span class="sc">|&gt;</span></span>
+<span id="cb28-19"><a href="#cb28-19" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">Group =</span> <span class="st">"Latinx"</span>, <span class="at">Percent =</span> <span class="fl">12.8</span>,</span>
+<span id="cb28-20"><a href="#cb28-20" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="st">"Latinx"</span>, <span class="at">Gender =</span> <span class="st">"All"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-21"><a href="#cb28-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">Group =</span> <span class="st">"Latinx"</span>, <span class="at">Percent =</span> <span class="fl">12.3</span>,</span>
+<span id="cb28-22"><a href="#cb28-22" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="st">"Latinx"</span>, <span class="at">Gender =</span> <span class="st">"Men"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb28-23"><a href="#cb28-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">add_row</span>(<span class="at">Group =</span> <span class="st">"Latinx"</span>, <span class="at">Percent =</span> <span class="fl">13.3</span>,</span>
+<span id="cb28-24"><a href="#cb28-24" aria-hidden="true" tabindex="-1"></a>          <span class="at">Race_Ethnicity =</span> <span class="st">"Latinx"</span>, <span class="at">Gender =</span> <span class="st">"Women"</span>)</span>
+<span id="cb28-25"><a href="#cb28-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-26"><a href="#cb28-26" aria-hidden="true" tabindex="-1"></a><span class="co"># Make Male/Female the values for gender across both datasets</span></span>
+<span id="cb28-27"><a href="#cb28-27" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> latinx_sub_2018 <span class="sc">|&gt;</span></span>
+<span id="cb28-28"><a href="#cb28-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(Gender, Group),</span>
+<span id="cb28-29"><a href="#cb28-29" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">str_replace</span>(<span class="at">string =</span> ., <span class="at">pattern =</span> <span class="st">"Men"</span>, <span class="at">replacement =</span> <span class="st">"Male"</span>)),</span>
+<span id="cb28-30"><a href="#cb28-30" aria-hidden="true" tabindex="-1"></a>         <span class="fu">across</span>(<span class="at">.cols =</span> <span class="fu">c</span>(Gender, Group),</span>
+<span id="cb28-31"><a href="#cb28-31" aria-hidden="true" tabindex="-1"></a>                <span class="sc">~</span> <span class="fu">str_replace</span>(<span class="at">string =</span> ., <span class="at">pattern =</span> <span class="st">"Women"</span>, <span class="at">replacement =</span> <span class="st">"Female"</span>)))</span>
+<span id="cb28-32"><a href="#cb28-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-33"><a href="#cb28-33" aria-hidden="true" tabindex="-1"></a><span class="co"># Add years to data</span></span>
+<span id="cb28-34"><a href="#cb28-34" aria-hidden="true" tabindex="-1"></a>latinx_sub_2017 <span class="ot">&lt;-</span> latinx_sub_2017 <span class="sc">|&gt;</span></span>
+<span id="cb28-35"><a href="#cb28-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="dv">2017</span>)</span>
+<span id="cb28-36"><a href="#cb28-36" aria-hidden="true" tabindex="-1"></a>latinx_sub_2018 <span class="ot">&lt;-</span> latinx_sub_2018 <span class="sc">|&gt;</span></span>
+<span id="cb28-37"><a href="#cb28-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Year =</span> <span class="dv">2018</span>)</span>
+<span id="cb28-38"><a href="#cb28-38" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-39"><a href="#cb28-39" aria-hidden="true" tabindex="-1"></a><span class="co"># Combine 2017 and 2018 data</span></span>
+<span id="cb28-40"><a href="#cb28-40" aria-hidden="true" tabindex="-1"></a>latinx_subgroups <span class="ot">&lt;-</span> <span class="fu">bind_rows</span>(latinx_sub_2017, latinx_sub_2018)</span>
+<span id="cb28-41"><a href="#cb28-41" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-42"><a href="#cb28-42" aria-hidden="true" tabindex="-1"></a><span class="co"># Add missing categories</span></span>
+<span id="cb28-43"><a href="#cb28-43" aria-hidden="true" tabindex="-1"></a>latinx_subgroups <span class="ot">&lt;-</span> latinx_subgroups <span class="sc">|&gt;</span></span>
+<span id="cb28-44"><a href="#cb28-44" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(<span class="sc">-</span>Group) <span class="sc">|&gt;</span></span>
+<span id="cb28-45"><a href="#cb28-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_wider</span>(<span class="at">names_from =</span> Year,</span>
+<span id="cb28-46"><a href="#cb28-46" aria-hidden="true" tabindex="-1"></a>              <span class="at">values_from =</span> Percent) <span class="sc">|&gt;</span></span>
+<span id="cb28-47"><a href="#cb28-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pivot_longer</span>(<span class="at">cols =</span> <span class="sc">-</span><span class="fu">c</span>(Race_Ethnicity, Gender),</span>
+<span id="cb28-48"><a href="#cb28-48" aria-hidden="true" tabindex="-1"></a>               <span class="at">names_to =</span><span class="st">"Year"</span> ,</span>
+<span id="cb28-49"><a href="#cb28-49" aria-hidden="true" tabindex="-1"></a>               <span class="at">values_to=</span><span class="st">"Percent"</span>)</span>
+<span id="cb28-50"><a href="#cb28-50" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb28-51"><a href="#cb28-51" aria-hidden="true" tabindex="-1"></a><span class="co"># Clean up Latinx group names</span></span>
+<span id="cb28-52"><a href="#cb28-52" aria-hidden="true" tabindex="-1"></a>latinx_subgroups <span class="ot">&lt;-</span> latinx_subgroups <span class="sc">|&gt;</span></span>
+<span id="cb28-53"><a href="#cb28-53" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Convert Latino/Latina to Latinx</span></span>
+<span id="cb28-54"><a href="#cb28-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">replace</span>(Race_Ethnicity, Race_Ethnicity <span class="sc">==</span> <span class="st">"Latina"</span>, <span class="st">"Latinx"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb28-55"><a href="#cb28-55" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">replace</span>(Race_Ethnicity, Race_Ethnicity <span class="sc">==</span> <span class="st">"Latino"</span>, <span class="st">"Latinx"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb28-56"><a href="#cb28-56" aria-hidden="true" tabindex="-1"></a>  <span class="fu">drop_na</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="exploratory-data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="exploratory-data-analysis">Exploratory Data Analysis</h3>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Note that plots are clear, have titles, it’s clear what’s plotted, and there’s a corresponding interpretation guiding the reader. This is all good! These could be improved by having more informative titles that make clear to the viewer what the take-home message is and by handling years as factors.</p>
+</div>
+</div>
+<p>To get a glance of our overall data set, we plotted overall youth disconnection over time in the United States.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb29"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb29-1"><a href="#cb29-1" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb29-2"><a href="#cb29-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb29-3"><a href="#cb29-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Percent)) <span class="sc">+</span></span>
+<span id="cb29-4"><a href="#cb29-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb29-5"><a href="#cb29-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb29-6"><a href="#cb29-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb29-7"><a href="#cb29-7" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection over Time"</span>,</span>
+<span id="cb29-8"><a href="#cb29-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Using `size` aesthetic for lines was deprecated in ggplot2 3.4.0.
+ℹ Please use `linewidth` instead.</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-19-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We are able to visualize that from 2008 to 2010 there was an increase in youth disconnect; however, after 2010, there seems to be a consistent downtrend in youth disconnect.</p>
+<p>To account for differences in gender, we plotted overall youth disconnection over time by gender.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb31"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb31-1"><a href="#cb31-1" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb31-2"><a href="#cb31-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">!=</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb31-3"><a href="#cb31-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Percent, <span class="at">color =</span> Gender)) <span class="sc">+</span></span>
+<span id="cb31-4"><a href="#cb31-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb31-5"><a href="#cb31-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb31-6"><a href="#cb31-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb31-7"><a href="#cb31-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb31-8"><a href="#cb31-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection over Time by Gender"</span></span>
+<span id="cb31-9"><a href="#cb31-9" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-20-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Initially in 2008, females faced more disconnect than males. However, throughout the next years, males consistently faced greater disconnect that females. Both male and female disconnect trended downwards 2010 and after.</p>
+<p>We then separated major groups by race/ethnicity and visualized youth disconnect over time.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb32"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb32-1"><a href="#cb32-1" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb32-2"><a href="#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Group <span class="sc">!=</span> <span class="st">"United States"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb32-3"><a href="#cb32-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Percent, <span class="at">color =</span> Race_Ethnicity)) <span class="sc">+</span></span>
+<span id="cb32-4"><a href="#cb32-4" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb32-5"><a href="#cb32-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb32-6"><a href="#cb32-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb32-7"><a href="#cb32-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb32-8"><a href="#cb32-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection over Time by Race/Ethnicity"</span>,</span>
+<span id="cb32-9"><a href="#cb32-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Race/Ethnicity"</span></span>
+<span id="cb32-10"><a href="#cb32-10" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-21-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>We can see that Native Americans faced the most youth disconnect at about 25% and Asian faced the least with about 7.5% throughout all years in our data set. Overall, there is a small downtrend throughout the pass years in all races/ethnicities 2010 and after.</p>
+<p>We visualized male/female youth disconnection by race/ethnicity across the observed years.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb33"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb33-1"><a href="#cb33-1" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb33-2"><a href="#cb33-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">!=</span> <span class="st">"All"</span>) <span class="sc">|&gt;</span> <span class="co"># Filter for only Male and Female</span></span>
+<span id="cb33-3"><a href="#cb33-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Combine Latino and Latina into Latinx</span></span>
+<span id="cb33-4"><a href="#cb33-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">replace</span>(Race_Ethnicity, Race_Ethnicity <span class="sc">==</span> <span class="st">"Latina "</span>, <span class="st">"Latinx"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-5"><a href="#cb33-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">replace</span>(Race_Ethnicity, Race_Ethnicity <span class="sc">==</span> <span class="st">"Latino "</span>, <span class="st">"Latinx"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-6"><a href="#cb33-6" aria-hidden="true" tabindex="-1"></a>  <span class="co">#renaming all races column</span></span>
+<span id="cb33-7"><a href="#cb33-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">Race_Ethnicity =</span> <span class="fu">replace</span>(Race_Ethnicity, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>, <span class="st">"All Races"</span>)) <span class="sc">|&gt;</span></span>
+<span id="cb33-8"><a href="#cb33-8" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot scatter line plot of Percent vs Year by Gender and Ethnicity</span></span>
+<span id="cb33-9"><a href="#cb33-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Percent, <span class="at">color =</span> Gender)) <span class="sc">+</span></span>
+<span id="cb33-10"><a href="#cb33-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb33-11"><a href="#cb33-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb33-12"><a href="#cb33-12" aria-hidden="true" tabindex="-1"></a>  <span class="fu">facet_wrap</span>(<span class="sc">~</span>Race_Ethnicity, <span class="at">nrow =</span> <span class="dv">2</span>) <span class="sc">+</span></span>
+<span id="cb33-13"><a href="#cb33-13" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb33-14"><a href="#cb33-14" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb33-15"><a href="#cb33-15" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection over Time by Race/Ethnicity and Gender"</span></span>
+<span id="cb33-16"><a href="#cb33-16" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-22-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Gender does not seem to affect the percentage much except in Black, Latinx, and Native American groups where there is a marginal difference. However, the main indicator in determining youth disconnection seems to be stronger aligned to Race/Ethnicity as that is where we see the largest disparity, while gender has smaller differences within a group.</p>
+<p>Taking a deeper dive into the Latinx group, we visualized youth disconnection of the different subgroups within the Latinx group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb34"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb34-1"><a href="#cb34-1" aria-hidden="true" tabindex="-1"></a>latinx_subgroups <span class="sc">|&gt;</span></span>
+<span id="cb34-2"><a href="#cb34-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">!=</span> <span class="st">"Latinx"</span>) <span class="sc">|&gt;</span> <span class="co"># Filter by overall not specific gender</span></span>
+<span id="cb34-3"><a href="#cb34-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot Percent vs Year by Ethnicity</span></span>
+<span id="cb34-4"><a href="#cb34-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(Year), <span class="at">y =</span> Percent, <span class="at">color =</span> Race_Ethnicity)) <span class="sc">+</span></span>
+<span id="cb34-5"><a href="#cb34-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb34-6"><a href="#cb34-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb34-7"><a href="#cb34-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb34-8"><a href="#cb34-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb34-9"><a href="#cb34-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection of Latinx Subgroups over Time by Race/Ethnicity"</span>,</span>
+<span id="cb34-10"><a href="#cb34-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Race/Ethnicity"</span>,</span>
+<span id="cb34-11"><a href="#cb34-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span></span>
+<span id="cb34-12"><a href="#cb34-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-23-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Most groups have a relatively similar youth disconnection percentage, however, the South American group clearly has the lowest rate of youth disconnection at around 8% while Puerto Rico, Cuba, Dominican Republic have the highest with around 14.5% across 2017 and 2018.</p>
+<p>Taking a deeper dive into the Asian group, we visualized youth disconnection of the different subgroups within the Asian group.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb35"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb35-1"><a href="#cb35-1" aria-hidden="true" tabindex="-1"></a>asian_subgroups <span class="sc">|&gt;</span></span>
+<span id="cb35-2"><a href="#cb35-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">!=</span> <span class="st">"All_races"</span>) <span class="sc">|&gt;</span> <span class="co"># Filter by overall not specific gender</span></span>
+<span id="cb35-3"><a href="#cb35-3" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Plot Percent vs Year by Ethnicity</span></span>
+<span id="cb35-4"><a href="#cb35-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> <span class="fu">as.numeric</span>(Year), <span class="at">y =</span> Percent, <span class="at">color =</span> Race_Ethnicity)) <span class="sc">+</span></span>
+<span id="cb35-5"><a href="#cb35-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>(<span class="at">size =</span> <span class="fl">0.5</span>) <span class="sc">+</span></span>
+<span id="cb35-6"><a href="#cb35-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb35-7"><a href="#cb35-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">scale_color_viridis_d</span>() <span class="sc">+</span></span>
+<span id="cb35-8"><a href="#cb35-8" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb35-9"><a href="#cb35-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection of Asian Subgroups over Time by Race/Ethnicity"</span>,</span>
+<span id="cb35-10"><a href="#cb35-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">color =</span> <span class="st">"Race/Ethnicity"</span>,</span>
+<span id="cb35-11"><a href="#cb35-11" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span></span>
+<span id="cb35-12"><a href="#cb35-12" aria-hidden="true" tabindex="-1"></a>  )</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values (`geom_line()`).</code></pre>
+</div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: Removed 3 rows containing missing values (`geom_point()`).</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-24-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>Most groups are in the 4-7% range for youth disconnection percentage; however, China has the lowest at about 4% and Hmong and Cambodia have the highest at about 13% across 2017 and 2018.</p>
+</section>
+<section id="data-analysis" class="level3">
+<h3 class="anchored" data-anchor-id="data-analysis">Data Analysis</h3>
+<p>We graphed youth disconnection over time with a line of best-fit layered on top of it.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb38"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb38-1"><a href="#cb38-1" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb38-2"><a href="#cb38-2" aria-hidden="true" tabindex="-1"></a>  <span class="co"># Scatterplot with linear model for overall youth disconnection over time</span></span>
+<span id="cb38-3"><a href="#cb38-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb38-4"><a href="#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Percent)) <span class="sc">+</span></span>
+<span id="cb38-5"><a href="#cb38-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb38-6"><a href="#cb38-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span> </span>
+<span id="cb38-7"><a href="#cb38-7" aria-hidden="true" tabindex="-1"></a>    <span class="fu">labs</span>(</span>
+<span id="cb38-8"><a href="#cb38-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection over Time"</span>,</span>
+<span id="cb38-9"><a href="#cb38-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Includes linear model and standard error"</span>,</span>
+<span id="cb38-10"><a href="#cb38-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-25-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>The line of best-fit exhibits a slight negative relationship, showing there is some correlation with youth disconnection and time; however, there is a decent amount of standard error throughout, which may be due to the 2008 data point defying the trend of the other data points.</p>
+<p>To test our hypothesis that youth disconnection does not have a decreasing trend over time, we did a Mann-Kendall test for monotonicity.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb40"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb40-1"><a href="#cb40-1" aria-hidden="true" tabindex="-1"></a><span class="co"># M-K test</span></span>
+<span id="cb40-2"><a href="#cb40-2" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb40-3"><a href="#cb40-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>) <span class="sc">|&gt;</span></span>
+<span id="cb40-4"><a href="#cb40-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Percent) <span class="sc">|&gt;</span></span>
+<span id="cb40-5"><a href="#cb40-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MannKendall</span>() <span class="sc">|&gt;</span></span>
+<span id="cb40-6"><a href="#cb40-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  statistic p.value kendall_score denominator var_kendall_score
+      &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
+1    -0.600   0.133            -9        15.0              28.3</code></pre>
+</div>
+</div>
+<p>We see there the p-value is 13.3% percent, which is not statistically significant at the traditional 5% level. This means our data is likely not monotonic and we would fail to reject our null hypothesis that youth disconnection is decreasing over time.</p>
+<p>Knowing that the Great Recession occurred in 2008 and could provide an anomaly in our data, we ran a linear model on the data for 2010 and after.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb42"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb42-1"><a href="#cb42-1" aria-hidden="true" tabindex="-1"></a><span class="co"># Scatterplot with linear model for overall youth disconnection over time after 2010</span></span>
+<span id="cb42-2"><a href="#cb42-2" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb42-3"><a href="#cb42-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>, Year <span class="sc">!=</span> <span class="dv">2008</span>) <span class="sc">|&gt;</span></span>
+<span id="cb42-4"><a href="#cb42-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x =</span> Year, <span class="at">y =</span> Percent)) <span class="sc">+</span></span>
+<span id="cb42-5"><a href="#cb42-5" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_point</span>(<span class="at">size =</span> <span class="dv">3</span>) <span class="sc">+</span></span>
+<span id="cb42-6"><a href="#cb42-6" aria-hidden="true" tabindex="-1"></a>    <span class="fu">geom_smooth</span>(<span class="at">method =</span> <span class="st">"lm"</span>) <span class="sc">+</span></span>
+<span id="cb42-7"><a href="#cb42-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(</span>
+<span id="cb42-8"><a href="#cb42-8" aria-hidden="true" tabindex="-1"></a>    <span class="at">title =</span> <span class="st">"Youth Disconnection over Time (2010 and after)"</span>,</span>
+<span id="cb42-9"><a href="#cb42-9" aria-hidden="true" tabindex="-1"></a>    <span class="at">subtitle =</span> <span class="st">"Includes linear model and standard error"</span>,</span>
+<span id="cb42-10"><a href="#cb42-10" aria-hidden="true" tabindex="-1"></a>    <span class="at">x =</span> <span class="st">"Year"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>`geom_smooth()` using formula = 'y ~ x'</code></pre>
+</div>
+<div class="cell-output-display">
+<p><img src="cs-example_files/figure-html/unnamed-chunk-27-1.png" class="img-fluid" width="672"></p>
+</div>
+</div>
+<p>This graph seems to show a stronger linear relationship between youth disconnection over time as there is a steeper slope and less standard error than our first linear model visualization.</p>
+<p>Again, to test our hypothesis that youth disconnection does not have a decreasing trend over time for 2010 and after, we did another Mann-Kendall test.</p>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb44"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb44-1"><a href="#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="co"># M-K test for data after 2008</span></span>
+<span id="cb44-2"><a href="#cb44-2" aria-hidden="true" tabindex="-1"></a>major_groups_long <span class="sc">|&gt;</span></span>
+<span id="cb44-3"><a href="#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(Gender <span class="sc">==</span> <span class="st">"All"</span>, Race_Ethnicity <span class="sc">==</span> <span class="st">"All_races"</span>, Year <span class="sc">!=</span> <span class="dv">2008</span>) <span class="sc">|&gt;</span></span>
+<span id="cb44-4"><a href="#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">pull</span>(Percent) <span class="sc">|&gt;</span></span>
+<span id="cb44-5"><a href="#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">MannKendall</span>() <span class="sc">|&gt;</span></span>
+<span id="cb44-6"><a href="#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">tidy</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code># A tibble: 1 × 5
+  statistic p.value kendall_score denominator var_kendall_score
+      &lt;dbl&gt;   &lt;dbl&gt;         &lt;dbl&gt;       &lt;dbl&gt;             &lt;dbl&gt;
+1        -1  0.0275           -10          10              16.7</code></pre>
+</div>
+</div>
+<p>This time, the p-value is 2.75% and significant at the 5% level. Thus, this data set is likely monotonic and we would reject the null hypothesis that there is no decreasing trend between youth disconnection and time.</p>
+<div class="callout callout-style-default callout-tip callout-captioned">
+<div class="callout-header d-flex align-content-center">
+<div class="callout-icon-container">
+<i class="callout-icon"></i>
+</div>
+<div class="callout-caption-container flex-fill">
+Prof Note
+</div>
+</div>
+<div class="callout-body-container callout-body">
+<p>Model is not fully quantified nor explained in the context of the data. Be sure that if you’re stating numbers, you’re contextualizing them. Be sure if you’re stating things that are true, that you’re quantifying them when possible.</p>
+</div>
+</div>
+</section>
+</section>
+<section id="resultsdiscussion" class="level2">
+<h2 class="anchored" data-anchor-id="resultsdiscussion">Results/Discussion</h2>
+<p>Through our exploratory data analysis, we observed that there does seem to be a decreasing trend of youth disconnection in the United States over the time frame of our data with the 2008 data being a slight anomaly. The decreasing trend with the exception of the initial 2010 spike remained generally consistent regardless of separation by gender, race/ethnicity, and both as seen through out first four visualizations. Although the trend is fairly consistent, there are additional takeaways from our visualizations.</p>
+<p>Race/ethnicity is a major determinant in the magnitude of youth disconnection rates while gender is a much weaker determinant. Through our third visualization we see that the Native American group has a youth disconnection percentage of about 25%, which is over three time the lowest group, Asian, at about 7.5%. The Black group, although not as high as Native American, has a youth disconnection rate higher than the overall average across the years at about 20% versus 13%. Additionally, every group’s rate is 2-5% different from the nearest group with no two groups being similar to each other. This leads us to believe that although a decreasing trend is apparent across all groups, groups still have differences in how disconnected their youth are. Gender, on the other hand, does not show the same disparity. Our second visualization shows that males may be more disconnected, but when broken down into race/ethnicity in our fourth visualization we see the effect of gender depends greatly on the race/ethnic group. Females are more disconnected in Latinx and Asian groups, while the youth disconnection rate is fairly similar across gender overall and in the Asian and White group. The Black group has the most interesting data where males are fairly more disconnected than females but even in other groups such as Latinx and Native American where there is a difference in female and male disconnection, it is not a major difference.</p>
+<p>In taking a deeper dive into the Latinx and Asian subgroups in visualizations five and six, it can be seen that there are not big differences in youth disconnection between subgroups except in two cases. The South American subgroup has a substantially lower rate at about 8% versus the 12-15% range that the other Latinx subgroups are in. Oppositely, Hmong and Cambodia groups have a much higher youth disconnection rate at about 13% versus its Asian peers in the 4-7% range.</p>
+<p>To quantify our observations in our exploratory data analysis, we created a linear model for our major group data and performed a Mann-Kendall test. The linear model shows a decreasing trend in youth disconnection rate over time but it does not seem to be a very strong relationship and has relatively high standard error. When performing the Mann-Kendall test, the p-value was 13.3%, which is not statistically significant at the 5% level, implying that there is not a monotonic trend in the data. We decided to create a second linear model and Mann-Kendall test without the 2008 data since youth disconnection likely increased in 2010 due to the Great Recession that the United States faced. When doing this, a much stronger decreasing trend can be seen in the linear model and the Mann-Kendall test has a p-value of 2.75%, which is statistically significant at the 5%, implying that there is a monotonic trend in the data. In this case, a decreasing trend over time.</p>
+</section>
+<section id="conclusion" class="level2">
+<h2 class="anchored" data-anchor-id="conclusion">Conclusion</h2>
+<p>When taking account our entire data set, we cannot mathematically state that youth disconnection rates have changed over time, although visually and when excluding 2008 data, we can see that youth disconnection has been trending downwards starting in 2010 and after. This trend remains consistent across gender and race/ethnicity; however, there are still differences between groups in how disconnected are youth. Native American and Black are the most disconnected groups with Native American clearly have the highest youth disconnection rate. Although gender is not a major factor in determining youth disconnection in most cases, Black males are notably more disconnected than Black females. All other Latinx groups are more disconnected than the South American group and Hmong and Combodian groups are notably more disconnected than the other Asian groups. In conclusion, youth disconnection rates are experiencing a downward trend in 2010 and after and its magnitude is most heavily influenced by race/ethnicity in most cases.</p>
+
+
+</section>
+
+</main> <!-- /main -->
+<script id="quarto-html-after-body" type="application/javascript">
+window.document.addEventListener("DOMContentLoaded", function (event) {
+  const toggleBodyColorMode = (bsSheetEl) => {
+    const mode = bsSheetEl.getAttribute("data-mode");
+    const bodyEl = window.document.querySelector("body");
+    if (mode === "dark") {
+      bodyEl.classList.add("quarto-dark");
+      bodyEl.classList.remove("quarto-light");
+    } else {
+      bodyEl.classList.add("quarto-light");
+      bodyEl.classList.remove("quarto-dark");
+    }
+  }
+  const toggleBodyColorPrimary = () => {
+    const bsSheetEl = window.document.querySelector("link#quarto-bootstrap");
+    if (bsSheetEl) {
+      toggleBodyColorMode(bsSheetEl);
+    }
+  }
+  toggleBodyColorPrimary();  
+  const icon = "";
+  const anchorJS = new window.AnchorJS();
+  anchorJS.options = {
+    placement: 'right',
+    icon: icon
+  };
+  anchorJS.add('.anchored');
+  const clipboard = new window.ClipboardJS('.code-copy-button', {
+    target: function(trigger) {
+      return trigger.previousElementSibling;
+    }
+  });
+  clipboard.on('success', function(e) {
+    // button target
+    const button = e.trigger;
+    // don't keep focus
+    button.blur();
+    // flash "checked"
+    button.classList.add('code-copy-button-checked');
+    var currentTitle = button.getAttribute("title");
+    button.setAttribute("title", "Copied!");
+    let tooltip;
+    if (window.bootstrap) {
+      button.setAttribute("data-bs-toggle", "tooltip");
+      button.setAttribute("data-bs-placement", "left");
+      button.setAttribute("data-bs-title", "Copied!");
+      tooltip = new bootstrap.Tooltip(button, 
+        { trigger: "manual", 
+          customClass: "code-copy-button-tooltip",
+          offset: [0, -8]});
+      tooltip.show();    
+    }
+    setTimeout(function() {
+      if (tooltip) {
+        tooltip.hide();
+        button.removeAttribute("data-bs-title");
+        button.removeAttribute("data-bs-toggle");
+        button.removeAttribute("data-bs-placement");
+      }
+      button.setAttribute("title", currentTitle);
+      button.classList.remove('code-copy-button-checked');
+    }, 1000);
+    // clear code selection
+    e.clearSelection();
+  });
+  function tippyHover(el, contentFn) {
+    const config = {
+      allowHTML: true,
+      content: contentFn,
+      maxWidth: 500,
+      delay: 100,
+      arrow: false,
+      appendTo: function(el) {
+          return el.parentElement;
+      },
+      interactive: true,
+      interactiveBorder: 10,
+      theme: 'quarto',
+      placement: 'bottom-start'
+    };
+    window.tippy(el, config); 
+  }
+  const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
+  for (var i=0; i<noterefs.length; i++) {
+    const ref = noterefs[i];
+    tippyHover(ref, function() {
+      // use id or data attribute instead here
+      let href = ref.getAttribute('data-footnote-href') || ref.getAttribute('href');
+      try { href = new URL(href).hash; } catch {}
+      const id = href.replace(/^#\/?/, "");
+      const note = window.document.getElementById(id);
+      return note.innerHTML;
+    });
+  }
+      let selectedAnnoteEl;
+      const selectorForAnnotation = ( cell, annotation) => {
+        let cellAttr = 'data-code-cell="' + cell + '"';
+        let lineAttr = 'data-code-annotation="' +  annotation + '"';
+        const selector = 'span[' + cellAttr + '][' + lineAttr + ']';
+        return selector;
+      }
+      const selectCodeLines = (annoteEl) => {
+        const doc = window.document;
+        const targetCell = annoteEl.getAttribute("data-target-cell");
+        const targetAnnotation = annoteEl.getAttribute("data-target-annotation");
+        const annoteSpan = window.document.querySelector(selectorForAnnotation(targetCell, targetAnnotation));
+        const lines = annoteSpan.getAttribute("data-code-lines").split(",");
+        const lineIds = lines.map((line) => {
+          return targetCell + "-" + line;
+        })
+        let top = null;
+        let height = null;
+        let parent = null;
+        if (lineIds.length > 0) {
+            //compute the position of the single el (top and bottom and make a div)
+            const el = window.document.getElementById(lineIds[0]);
+            top = el.offsetTop;
+            height = el.offsetHeight;
+            parent = el.parentElement.parentElement;
+          if (lineIds.length > 1) {
+            const lastEl = window.document.getElementById(lineIds[lineIds.length - 1]);
+            const bottom = lastEl.offsetTop + lastEl.offsetHeight;
+            height = bottom - top;
+          }
+          if (top !== null && height !== null && parent !== null) {
+            // cook up a div (if necessary) and position it 
+            let div = window.document.getElementById("code-annotation-line-highlight");
+            if (div === null) {
+              div = window.document.createElement("div");
+              div.setAttribute("id", "code-annotation-line-highlight");
+              div.style.position = 'absolute';
+              parent.appendChild(div);
+            }
+            div.style.top = top - 2 + "px";
+            div.style.height = height + 4 + "px";
+            let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
+            if (gutterDiv === null) {
+              gutterDiv = window.document.createElement("div");
+              gutterDiv.setAttribute("id", "code-annotation-line-highlight-gutter");
+              gutterDiv.style.position = 'absolute';
+              const codeCell = window.document.getElementById(targetCell);
+              const gutter = codeCell.querySelector('.code-annotation-gutter');
+              gutter.appendChild(gutterDiv);
+            }
+            gutterDiv.style.top = top - 2 + "px";
+            gutterDiv.style.height = height + 4 + "px";
+          }
+          selectedAnnoteEl = annoteEl;
+        }
+      };
+      const unselectCodeLines = () => {
+        const elementsIds = ["code-annotation-line-highlight", "code-annotation-line-highlight-gutter"];
+        elementsIds.forEach((elId) => {
+          const div = window.document.getElementById(elId);
+          if (div) {
+            div.remove();
+          }
+        });
+        selectedAnnoteEl = undefined;
+      };
+      // Attach click handler to the DT
+      const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
+      for (const annoteDlNode of annoteDls) {
+        annoteDlNode.addEventListener('click', (event) => {
+          const clickedEl = event.target;
+          if (clickedEl !== selectedAnnoteEl) {
+            unselectCodeLines();
+            const activeEl = window.document.querySelector('dt[data-target-cell].code-annotation-active');
+            if (activeEl) {
+              activeEl.classList.remove('code-annotation-active');
+            }
+            selectCodeLines(clickedEl);
+            clickedEl.classList.add('code-annotation-active');
+          } else {
+            // Unselect the line
+            unselectCodeLines();
+            clickedEl.classList.remove('code-annotation-active');
+          }
+        });
+      }
+  const findCites = (el) => {
+    const parentEl = el.parentElement;
+    if (parentEl) {
+      const cites = parentEl.dataset.cites;
+      if (cites) {
+        return {
+          el,
+          cites: cites.split(' ')
+        };
+      } else {
+        return findCites(el.parentElement)
+      }
+    } else {
+      return undefined;
+    }
+  };
+  var bibliorefs = window.document.querySelectorAll('a[role="doc-biblioref"]');
+  for (var i=0; i<bibliorefs.length; i++) {
+    const ref = bibliorefs[i];
+    const citeInfo = findCites(ref);
+    if (citeInfo) {
+      tippyHover(citeInfo.el, function() {
+        var popup = window.document.createElement('div');
+        citeInfo.cites.forEach(function(cite) {
+          var citeDiv = window.document.createElement('div');
+          citeDiv.classList.add('hanging-indent');
+          citeDiv.classList.add('csl-entry');
+          var biblioDiv = window.document.getElementById('ref-' + cite);
+          if (biblioDiv) {
+            citeDiv.innerHTML = biblioDiv.innerHTML;
+          }
+          popup.appendChild(citeDiv);
+        });
+        return popup.innerHTML;
+      });
+    }
+  }
+});
+</script>
+</div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="../../LICENSE.html">License</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
+
+
+
+</body></html>

@@ -31,7 +31,7 @@ knitr::opts_chunk$set(dpi=300, echo=TRUE, warning=FALSE, message=FALSE)
 
 # CS01: Biomarkers of Recent Use (EDA) {background-color="#92A86A"}
 
-## Q&A {.smaller}
+## Q&A (Tu 11/7) {.smaller}
 
 > Q: was curious about the sensitivity/cut-offs/specificity, but we mainly discussed it in class already; was still slightly confused about it?\
 > A: We'll discuss this in detail later this week and early next week!
@@ -54,11 +54,11 @@ knitr::opts_chunk$set(dpi=300, echo=TRUE, warning=FALSE, message=FALSE)
 > Q: Regarding the final project, will there be a Google form that we can fill out that will help us form groups if we can't form one ourselves?\  
 > A: Yup - I'd say try to find a group using Piazza, in class, or during lab. However, if you're unable, when you fill out the form to indicate your group next week, you'll select that you'd like to be placed into a group.
 
-## Course Announcements
+## Course Announcements (Tu 11/7)  
 
 Due Dates:
 
-- `r emo::ji("science")` Lab05 (MLR) due Friday
+- `r emo::ji("science")` No Lab this week (holiday) - all students will receive full credit for Lab05 (MLR)
 - `r emo::ji("question")` **Mid-course survey** "due" (for EC) Friday
 - `r emo::ji("computer")` HW03 (MLR) due Mon 11/20
 
@@ -76,6 +76,60 @@ Notes:
 ::: callout-important
 The CS01 data are data for you only. My collaborator is excited that y'all will be working on this...but these are still research data, so please do not share with others or post publicly.
 :::
+
+## Q&A (Th 11/9) {.smaller}
+
+> Q: Are you allowed to share the average midterm scores for the past few quarters? \
+> A: IIRC, they were in the mid-high 80%s
+
+> Q: When describing the dataset in our CSs, would it be okay to format it as a data card rather than a paragraph explanation of the variables structure? Additionally, would it be okay to store this as its own read.me in the repo or should it be a part of the main report?\
+> A: Yes - like the data card idea. And a detailed README in the repo is great. A short description should still be included in the report and can point to the readme.
+
+> Q: When should we cite in our case study? It is just whenever we look up and use code from the internet?\
+> A: There AND any time you get information elsewhere that's not general knowledge. For example, in your background section, you'll likely cite a bunch of sources.
+
+## Course Announcements  (Th 11/9)
+
+Due Dates:
+
+- `r emo::ji("science")` No Lab this week (holiday) - all students will receive full credit for Lab05 (MLR)
+- `r emo::ji("question")` **Mid-course survey** "due" (for EC) Friday
+- `r emo::ji("computer")` HW03 (MLR) due Mon 11/20
+- `r emo::ji("check")` HW02 Scores/Feedback Posted
+
+## Functions in R
+
+- "You should consider writing a function whenever you’ve copied and pasted a block of code more than twice" -Hadley
+
+```{r, eval=FALSE}
+function_name <- function(input){
+  # operations using input
+}
+```
+
+. . . 
+
+For example...
+
+```{r}
+double_value <- function(val){
+  val * 2
+}
+```
+
+. . .
+
+To use/execute:
+
+```{r}
+double_value(3)
+```
+
+. . .
+
+In what we've done so far, we've seen functions that operate on and return the whole dataframe (DF in DF out) (`drop_dups`) and those that carry out operations on each row of a dataframe with a number of inputs (i.e. `assign_timepoint`; these require the function to be `map`-ed)
+
+Additional resource: [https://r4ds.had.co.nz/functions.html]()
 
 ## Agenda
 
@@ -197,7 +251,7 @@ We're going to have a lot of functions throughout...like this helper function to
 ```{r}
 # helper function to clean up name of two compounds
 clean_gluc <- function(df){
-  df <- df %>% 
+  df <- df |> 
     mutate(compound=gsub('GLUC', 'gluc',gsub("_","-",toupper(compound))),
            compound=gsub('THCOH', '11-OH-THC', compound))
   return(df)
@@ -243,7 +297,7 @@ But, with wide data, that's not easy to do for all compounds, so you may want to
 ```{r}
 WB_long <- WB |> 
   pivot_longer(6:13) |>
-  rename("fluid" = "fluid_type")
+  rename("fluid"="fluid_type")
 ```
 
 . . .
@@ -278,7 +332,7 @@ Plotting some of these data...
 
 ```{r}
 df_full |>
-  mutate(group_compound = paste0(fluid,": ", name)) |>
+  mutate(group_compound=paste0(fluid,": ", name)) |>
 ggplot(aes(x=value)) + 
   geom_histogram() + 
   facet_wrap(~group_compound, scales="free")
@@ -334,8 +388,8 @@ These data require a lot of exploration due to the number of compounds, multiple
 compound_scatterplot_group <- function(dataset, compound, timepoints){
   if(max(dataset[,compound],na.rm=TRUE)==0){
     print(
-      dataset %>% 
-        filter(!is.na(time_from_start)) %>%
+      dataset |> 
+        filter(!is.na(time_from_start)) |>
         ggplot(aes_string(x="time_from_start", 
                           y=compound,
                           color="group")) + 
@@ -352,8 +406,8 @@ compound_scatterplot_group <- function(dataset, compound, timepoints){
              y=gsub('GLUC', 'gluc',gsub("_", "-", toupper(compound))))
     )}else{
       print(
-        dataset %>% 
-          filter(!is.na(time_from_start)) %>%
+        dataset |> 
+          filter(!is.na(time_from_start)) |>
           ggplot(aes_string(x="time_from_start", 
                             y=compound,
                             color="group")) + 
@@ -445,88 +499,86 @@ pairs(OF[,unlist(compounds_OF)],
 ### Code
 ```{r}
 compound_boxplot_group_only <- function(dataset, compounds, tissue, legend=TRUE, y_lab=TRUE){
-  timepoint_to_use = levels(dataset$timepoint_use)[1]
-  df <- dataset %>% 
-    filter(timepoint_use == timepoint_to_use) %>%
+  timepoint_to_use=levels(dataset$timepoint_use)[1]
+  df <- dataset |> 
+    filter(timepoint_use == timepoint_to_use) |>
     select(group, all_of(compounds)) 
-  df <- df %>% 
-    gather(compound, value, -group) %>% 
-    clean_gluc() %>% 
-    group_by(compound) %>% 
-    mutate(y_max = 1.2*max(value)) %>% 
-    group_by(compound, group) %>% 
-    mutate(n = n(),
-           my_label = paste0(group, ' N=', n),
-           my_label =  gsub(" ", "\n", my_label))
+  df <- df |> 
+    gather(compound, value, -group) |> 
+    clean_gluc() |> 
+    group_by(compound) |> 
+    mutate(y_max=1.2*max(value)) |> 
+    group_by(compound, group) |> 
+    mutate(n=n(),
+           my_label=paste0(group, ' N=', n),
+           my_label= gsub(" ", "\n", my_label))
   
   if(tissue == "Blood"){
-    df$compound = factor(df$compound, levels=c("THC","11-OH-THC","THCCOOH","THCCOOH-gluc")) 
+    df$compound=factor(df$compound, levels=c("THC","11-OH-THC","THCCOOH","THCCOOH-gluc")) 
   }
   
-  y_pos <- df %>% 
-    group_by(compound) %>% 
-    summarize(y.position = mean(y_max))
+  y_pos <- df |> 
+    group_by(compound) |> 
+    summarize(y.position=mean(y_max))
   
-  stat.test <- df %>%
-    group_by(compound) %>%
-    t_test(value ~ my_label) %>%
-    adjust_pvalue(method = "bonferroni") %>%
+  stat.test <- df |>
+    group_by(compound) |>
+    t_test(value ~ my_label) |>
+    adjust_pvalue(method="bonferroni") |>
     add_significance()
-  test <- stat.test %>%
-    left_join(y_pos) %>%
-    mutate(p.adj.signif = ifelse(p.adj.signif=='?', 'ns', p.adj.signif),
-           p.adj = ifelse(p.adj < 0.001, "<0.001", p.adj))
+  test <- stat.test |>
+    left_join(y_pos) |>
+    mutate(p.adj.signif=ifelse(p.adj.signif=='?', 'ns', p.adj.signif),
+           p.adj=ifelse(p.adj < 0.001, "<0.001", p.adj))
 
   if(legend){
-    leg_position = 'right'
+    leg_position='right'
   }else{
-    leg_position = 'none'
+    leg_position='none'
   }
   
   if(y_lab){
-    y_text = "Concentration (ng/mL)"
+    y_text="Concentration (ng/mL)"
   }else{
-    y_text = ''
+    y_text=''
   }
   
   medianFunction <- function(x){
     return(data.frame(y=round(median(x),1),label=round(median(x,na.rm=T),1)))}
   
-  
   p2 <- ggplot(df, aes(x=my_label, y=value, fill=my_label)) + 
-    geom_jitter(position=position_jitter(width=.3, height=0), size = 0.8, color="gray65")  +
+    geom_jitter(position=position_jitter(width=.3, height=0), size=0.8, color="gray65")  +
     geom_boxplot(outlier.shape=NA, alpha=0.6) +
-    stat_summary(fun = "median", geom = "point", shape = 19, size = 3, fill = "black") + 
-    stat_summary(fun.data = medianFunction, geom ="text", color = "black", size = 3.5, vjust = -0.65) +
+    stat_summary(fun="median", geom="point", shape=19, size=3, fill="black") + 
+    stat_summary(fun.data=medianFunction, geom ="text", color="black", size=3.5, vjust=-0.65) +
     facet_wrap(~compound, scales="free_y", ncol=4) +
-    geom_blank(aes(y = y_max)) + 
-    scale_y_continuous(limits = c(0, NA), expand = expansion(mult = c(0, 0.1))) +
-    # scale_x_discrete(labels = function(x) str_wrap(x, width = 10)) +
+    geom_blank(aes(y=y_max)) + 
+    scale_y_continuous(limits=c(0, NA), expand=expansion(mult=c(0, 0.1))) +
     scale_fill_manual(values=c("#19831C", "#A27FC9")) +
     theme_classic() +
-    theme(text = element_text(size=14),
+    theme(text=element_text(size=14),
           legend.position=leg_position,
           legend.title=element_blank(),
-          panel.grid = element_blank(),
-          strip.background = element_blank()) +
-    labs(title = tissue,
-         x = '',
-         y = y_text) 
+          panel.grid=element_blank(),
+          strip.background=element_blank()) +
+    labs(title=tissue,
+         x='',
+         y=y_text) 
   
-  ann_text <- test %>% 
-    select(compound, p.adj, value = y.position, my_label=group1) %>%
-    filter(p.adj < 0.05) %>% 
-    mutate(x1 = 1, x2 = 2)
+  ann_text <- test |> 
+    select(compound, p.adj, value=y.position, my_label=group1) |>
+    filter(p.adj < 0.05) |> 
+    mutate(x1=1, x2=2)
   
   if(tissue == "Whole Blood"){
-    ann_text$compound = factor(ann_text$compound, 
+    ann_text$compound=factor(ann_text$compound, 
                                levels=c("THC","11-OH-THC","THCCOOH","THCCOOH-gluc")) 
   }
   
-  
-  p2 + geom_text(data = ann_text, label = ann_text$p.adj, nudge_x = 0.5) +
-    geom_segment(data = ann_text, aes(x = x1, xend = x2, 
-                                      y = value - (0.04 * value), yend = value - (0.04*value)))
+  p2 + geom_text(data=ann_text, label=ann_text$p.adj, nudge_x=0.5) +
+    geom_segment(data=ann_text, aes(x=x1, xend=x2,
+                                    y=value - (0.04 * value), 
+                                    yend=value - (0.04*value)))
   
 }
 ```
@@ -558,14 +610,14 @@ compound_boxplot_group_only(BR_dups, compounds=unlist(compounds_BR), tissue="Bre
 ```{r}
 compound_boxplot_treatment <- function(dataset, compounds, tissue){
   timepoint_to_use=levels(dataset$timepoint_use)[2]
-  df <- dataset %>% 
-    filter(timepoint_use == timepoint_to_use) %>%
+  df <- dataset |> 
+    filter(timepoint_use == timepoint_to_use) |>
     select(treatment, group, compounds)
-  df <- df %>% 
-    gather(compound, value, -treatment, -group) %>% 
+  df <- df |> 
+    gather(compound, value, -treatment, -group) |> 
     clean_gluc()
   
-  df %>% 
+  df |> 
     ggplot(aes(x=treatment, y=value, fill=group)) + 
     # geom_jitter(color="gray36") +
     geom_boxplot(outlier.size=0.1) +
@@ -630,14 +682,13 @@ T2A_plot <- function(dataset, compound, timepoint_use=2){
               panel.grid=element_blank(),
               strip.background=element_blank(),
               plot.title.position="plot") +
-        labs(title=paste0('Timepoint: ', 
-                            levels(dataset$timepoint_use)[timepoint_use],
-                            ' post-smoking'),
+        labs(title=paste0('Timepoint: ',
+                          levels(dataset$timepoint_use)[timepoint_use],
+                          ' post-smoking'),
              x='Group',
              y=gsub('GLUC', 'gluc',gsub("_", "-", toupper(compound))))
     )}else{
       print(
-        
         ggplot(subset(dataset, timepoint_use==timepoint_to_use), 
                aes_string(x="group", 
                           y=compound, 
@@ -650,10 +701,10 @@ T2A_plot <- function(dataset, compound, timepoint_use=2){
           theme(legend.position="none",
                 panel.grid=element_blank(),
                 strip.background=element_blank(),
-              plot.title.position="plot") +
-          labs(title=paste0('Timepoint: ', 
-                              levels(dataset$timepoint_use)[timepoint_use],
-                              ' post-smoking'),
+                plot.title.position="plot") +
+          labs(title=paste0('Timepoint: ',
+                            levels(dataset$timepoint_use)[timepoint_use],
+                            ' post-smoking'),
                x='Group',
                y=gsub('GLUC', 'gluc',gsub("_","-",toupper(compound))))
       )
@@ -686,10 +737,561 @@ post_br <- map(compounds_BR, ~ T2A_plot(
 ```
 :::
 
+# HW02 (Revisited) {background-color="#92A86A"}
+
+## HW02 : Part II
+
+Imitation is the highest form of flattery
+
+## Chess Players
+  
+::: panel-tabset
+
+### Original
+
+![](images/12/transfers.png)
+
+### Plot
+
+```{r ref.label="C", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r C, fig.show = "hide"}
+COVID_approval <- read_csv(url("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls.csv"))
+
+
+chess <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/chess-transfers/transfers.csv")
+
+chess_trans <- chess |>
+  count(Federation) |>
+  arrange(desc(n)) |>
+  slice_head(n = 10)
+
+chess_trans <- chess_trans |>
+  mutate(rank = row_number()) |>
+  mutate(Federation = case_when(
+    Federation == "USA" ~ "United States",
+    Federation == "GER" ~ "Germany",
+    Federation == "CAN" ~ "Canada",
+    Federation == "ESP" ~ "Spain",
+    Federation == "RUS" ~ "Russia",
+    Federation == "FRA" ~ "France",
+    Federation == "BIH" ~ "Bosnia and Herzegovina",
+    Federation == "CRO" ~ "Croatia",
+    Federation == "TUR" ~ "Turkey",
+    Federation == "AUT" ~ "Austria",
+    
+    TRUE ~ Federation  # Keep the name as-is for other cases
+  ))
+
+chess_trans <- chess |>
+  count(Federation) |>
+  arrange(desc(n)) |>
+  slice_head(n = 10)
+
+chess_trans <- chess_trans |>
+  mutate(rank = row_number()) |>
+  mutate(Federation = case_when(
+    Federation == "USA" ~ "United States",
+    Federation == "GER" ~ "Germany",
+    Federation == "CAN" ~ "Canada",
+    Federation == "ESP" ~ "Spain",
+    Federation == "RUS" ~ "Russia",
+    Federation == "FRA" ~ "France",
+    Federation == "BIH" ~ "Bosnia and Herzegovina",
+    Federation == "CRO" ~ "Croatia",
+    Federation == "TUR" ~ "Turkey",
+    Federation == "AUT" ~ "Austria",
+    
+    TRUE ~ Federation  # Keep the name as-is for other cases
+  ))
+
+ggplot(chess_trans, aes(y = reorder(Federation, n), x = n)) +
+  geom_bar(stat = "identity",fill = "#1c9099") +
+  geom_text(aes(x = -3, y = Federation, label = n), size = 4) + #add count at the left side of the bars
+  labs(title = bquote(bold("More players transfer to the U.S. than to any other country")),
+       subtitle = "Nations that received the highest number of player transfers, 2000-17",
+       x = "NUMBER OF TRANSFERS",
+       y = "COUNTRY") +
+  scale_fill_identity() +
+  theme_minimal() + 
+  theme(plot.title.position = "plot", 
+        panel.grid.major.y = element_blank()) + 
+  theme(axis.text.y = element_text(size = 10, angle = 0, hjust = 0), #align to the left
+        plot.title = element_text(size=18)) #change font size
+```
+:::
+
+
+## Kushi: Fandango
+
+::: panel-tabset
+### Original
+
+![](images/12/movies.png)
+
+### Plot
+
+```{r ref.label="Kushi", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Kushi, fig.show = "hide"}
+# Kushi also got font working and stars on x-axis that I'd have to spend more time to get working 
+fandango_score_comparison <- read_csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/fandango/fandango_score_comparison.csv")
+
+all_scores_comp <- fandango_score_comparison |>
+  select(FILM, RT_norm_round, RT_user_norm_round, Metacritic_norm_round, Metacritic_user_norm_round, IMDB_norm_round, Fandango_Stars) |>
+  pivot_longer(c(RT_norm_round, RT_user_norm_round, Metacritic_norm_round, Metacritic_user_norm_round, IMDB_norm_round, Fandango_Stars), names_to = "Site", values_to = "Score")
+
+counts_of_scores <- all_scores_comp |>
+  group_by(Site, Score) |>
+  summarize(Count = n())
+
+counts_of_scores <- counts_of_scores |>
+  group_by(Site) |>
+  mutate(Total = sum(Count))
+
+scores_with_percents <- counts_of_scores |>
+  mutate(Percent = Count / Total * 100)
+
+# making percents 0 for any scores that don't have any values
+
+sites <- tibble(Site = c("RT_norm_round", "RT_user_norm_round", "Metacritic_norm_round", "Metacritic_user_norm_round", "IMDB_norm_round", "Fandango_Stars"))
+
+ratings <- tibble(Score = seq(0, 5, by = 0.5))
+
+all_scores <- expand.grid(Site = sites$Site, Score = ratings$Score)
+
+all_scores <- all_scores |>
+  full_join(scores_with_percents, by = c("Site", "Score")) |>
+  mutate(Percent = case_when(is.na(Count) ~ 0,
+                             TRUE ~ Percent))
+
+scores <- ggplot(all_scores, aes(x = Score, y = Percent, color = Site)) +
+  geom_line()  +
+  geom_hline(yintercept = 0, size = 0.7, color = "black") +
+  labs(x = NULL, y = NULL,
+       title = "Fandango LOVES Movies",
+       subtitle = "Normalized ratings distrubution of 146 films in theaters in 2015 that\n had 30+ reviews on Fandango.com") +
+  scale_y_continuous(labels = c("0", "10", "20", "30", "40%")) +
+  scale_x_continuous(labels = c("☆", "★", "★★", "★★★", "★★★★", "★★★★★")) +
+  scale_color_manual(values = c("Fandango_Stars" = "#fa6d54",
+                                "IMDB_norm_round" = "#e5c66a",
+                                "Metacritic_user_norm_round" = "#aeca91",
+                                "RT_user_norm_round" = "#76bde0",
+                                "Metacritic_norm_round" = "#b87eb5",
+                                "RT_norm_round" = "#a3a3a3")) +
+  geom_ribbon(data = filter(all_scores, Site != "Fandango_Stars"), aes(ymin = 0, ymax = Percent), alpha = 0.1) +
+  geom_ribbon(data = filter(all_scores, Site == "Fandango_Stars"), aes(ymin = 0, ymax = Percent, fill = "#fa6d54", alpha = 0.24)) +
+  guides(color = "none", fill = "none", alpha = "none")
+
+scores + 
+  annotate("text", x = 4.9, y = 35, label = "Fandango", size = 5, color = "#fa6d54", fontface = "bold") +
+  annotate("text", x = 2.9, y = 37, label = "IMDb users", size = 5, color = "#e5c66a") +
+  annotate("text", x = 2.7, y = 27, label = "Metacritic\nusers", size = 5, color = "#aeca91") +
+  annotate("text", x = 2.2, y = 20, label = "Rotten\nTomatoes\nusers", size = 5, color = "#76bde0") +
+  annotate("text", x = 1.5, y = 16, label = "Metacritic", size = 5, color = "#b87eb5") +
+  annotate("text", x = 0.7, y = 13, label = "Rotten\nTomatoes", size = 5, color = "#a3a3a3") +
+  theme(#text = element_text(family = "NimbusSan"), 
+        plot.title = element_text(face = "bold", size = 25, hjust = -0.1), 
+        plot.subtitle = element_text(size = 15, hjust = -0.1),
+        plot.background = element_rect(fill = "#f0f0f0"),
+        panel.background = element_rect(fill = "#f0f0f0"),
+        panel.grid.major = element_line(color = "gray75", size = 0.2),
+        panel.grid.minor = element_blank(),
+        axis.text = element_text(size = 14)
+        )
+```
+:::
+  
+## Markus: Congress
+
+::: panel-tabset
+
+### Original
+
+![](images/12/congress.png)
+
+### Plot 
+
+```{r ref.label="Markus", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Markus, fig.show = "hide"}
+congress_data <- read.csv("https://raw.githubusercontent.com/fivethirtyeight/data/master/congress-demographics/data_aging_congress.csv")
+
+congress_ages =
+  congress_data |>
+  select(congress, chamber, age_years) |>
+  mutate(congress_year = case_when(TRUE ~ 1787 + (2 * as.integer(congress)))) |>
+  group_by(congress_year, chamber) |>
+  mutate(mean_age = case_when(TRUE ~ mean(age_years))) |>
+  mutate(chamber = fct_recode(chamber,
+                              SENATE = "Senate",
+                              HOUSE = "House",))
+
+ggplot(data = congress_ages,
+       mapping = aes(y = mean_age,
+                     x = congress_year,
+                     color = fct_rev(chamber),
+                     )) +
+  geom_step(size = 1) + 
+  guides() +
+  labs(title = "The House and Senate are older than ever before",
+       subtitle = "Median age of the U.S. Senate and U.S. House by Congress, 1919 to 2023",
+       caption = "Data is based on all members who served in either the Senate or House in each Congress, which is notated\nby the year in which it was seated. Any member who served in bothchambers in the same Congress was\nassigned to the chamber in which they cast more votes.\n FiveThirtyEight\nSOURCES: BIOGRAPHICAL DIRECTORY OF THE U.S. CONGRESS, U.S. HOUSE OF REPRESENTATIVES,\nU.S. SENATE, UNITEDSTATES GITHUB, VOTEVIEW.COM",
+       y = NULL,
+       x = NULL
+  ) +
+  scale_color_manual(values=c("#6b4ddd","#29ae53")) +
+  theme_minimal(base_size = 13) + 
+  theme(plot.title.position = "plot", 
+        plot.title = element_text(face = "bold"),
+        panel.grid.major.x = element_blank(),
+        panel.grid.minor.x = element_blank(),
+        panel.grid.minor.y = element_blank(),
+        legend.title=element_blank(),
+        legend.position = "top")
+
+```
+:::
+
+## Voter Demographics
+
+::: panel-tabset
+### Original
+
+![](images/12/voters.png)
+
+### Plot
+
+```{r ref.label="B", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r B, fig.show = "hide"}
+library(ggpubr)
+
+voters = read.csv("data/nonvoters_data.csv")
+
+
+#creating subplots
+race = ggplot(data = voters, mapping = aes(y = factor(race), fill = factor(voter_category))) +
+  geom_bar(position = "fill") +
+  ggtitle("Race") +
+  scale_fill_manual(values = c("always" = "#ffbc00","sporadic"="#e082ad", "rarely/never" ="#ae4dff")) +
+  theme_minimal() +
+  theme(axis.title = element_blank(), axis.text.x = element_blank(), axis.ticks = element_blank(), line = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank())+
+    guides(fill = guide_legend(override.aes = list(shape = 16, key_width = 1, key_height = 1))) #trying to change the shape of the legend key
+
+income = ggplot(data = voters, mapping = aes(y = factor(income_cat), fill = factor(voter_category))) +
+  geom_bar(position = "fill") +
+  ggtitle("Income") +
+  scale_fill_manual(values = c("always" = "#ffbc00","sporadic"="#e082ad", "rarely/never" ="#ae4dff")) +
+  theme_minimal() +
+  theme(axis.title = element_blank(), axis.text.x = element_blank(), axis.ticks = element_blank(), line = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank())
+
+age = ggplot(data = voters, mapping = aes(y = factor(race), fill = factor(voter_category))) +
+  geom_bar(position = "fill", show.legend = FALSE) +
+  ggtitle("Age") +
+  scale_fill_manual(values = c("always" = "#ffbc00","sporadic"="#e082ad", "rarely/never" ="#ae4dff")) +
+  theme_minimal() +
+  theme(axis.title = element_blank(), axis.text.x = element_blank(), axis.ticks = element_blank(), line = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank())
+
+education = ggplot(data = voters, mapping = aes(y = factor(educ), fill = factor(voter_category))) +
+  geom_bar(position = "fill", show.legend = FALSE) +
+  ggtitle("Education") +
+  scale_fill_manual(values = c("always" = "#ffbc00","sporadic"="#e082ad", "rarely/never" ="#ae4dff")) +
+  theme_minimal() +
+  theme(axis.title = element_blank(), axis.text.x = element_blank(), axis.ticks = element_blank(), line = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank())
+
+partyID = ggplot(data = voters, mapping = aes(y = factor(race), fill = factor(voter_category))) +
+  geom_bar(position = "fill", show.legend = FALSE) +
+  ggtitle("party ID") +
+  scale_fill_manual(values = c("always" = "#ffbc00","sporadic"="#e082ad", "rarely/never" ="#ae4dff")) +
+  theme_minimal() +
+  theme(axis.title = element_blank(), axis.text.x = element_blank(), axis.ticks = element_blank(), line = element_blank(), panel.border = element_blank(), panel.grid.major = element_blank())
+
+#combining subplots
+ria = ggarrange(race, income, age, ncol = 3, common.legend = TRUE, legend = "top") +
+  theme(plot.margin = margin(0.5, 0,-2, -1,"cm")) 
+
+ep = ggarrange(education, partyID) +
+  theme(plot.margin = margin(2, 4, -2.5, 1, "cm"))
+
+voterplot = ggarrange(ria, ep, nrow = 3) 
+
+
+#titles
+voterplot = annotate_figure(annotate_figure(voterplot, 
+  top = text_grob("Demographic information of survey respondants, by voting history")),
+  top = text_grob("Those who always vote and those who sometimes vote aren't that different", face = "bold")
+)
+
+
+voterplot
+```
+:::
+  
+
+## Fouls
+
+::: panel-tabset
+
+### Original 
+
+![](images/12/fouls.png)    
+
+### Plot I
+
+```{r ref.label="two", echo = FALSE, out.width="100%"}
+```
+
+### Code I
+  
+```{r two, fig.show = "hide"}
+raw_csv_file <- "https://raw.githubusercontent.com/fivethirtyeight/data/master/foul-balls/foul-balls.csv"
+foulballs <- read.csv(url(raw_csv_file))
+
+foulballs <- foulballs |>
+  mutate(over90 = case_when(
+    exit_velocity < 90 ~ "no",
+    exit_velocity >= 90 ~ "yes"
+  ))
+
+ggplot(foulballs,
+       aes (y = used_zone)) +
+  geom_bar(aes(fill = over90),
+           position = position_stack(reverse = TRUE),
+           show.legend = FALSE) +
+  scale_fill_manual(labels = c("< 90 mph", "≥ 90 mph", "Unknown exit velocity"),
+                    values = c("#97c16d", "#63abb0"), na.value = "#d3d3d3") +
+  scale_y_discrete(limits = rev(unique(foulballs$used_zone)))+
+  scale_x_continuous(expand = expansion(mult = c(0, 0))) +
+  theme(panel.grid.minor.y = element_blank(),
+        panel.grid.major.y = element_blank(),
+        panel.grid.major.x = element_line(color = "#ececec"),
+        panel.background = element_rect(fill = "white"),
+        axis.text.x = element_text(color = "#9e9e9e"),
+        plot.caption = element_text(color = "#b5b5b5"),
+        axis.line.y = element_line(colour = "#343434"),
+        axis.title.y = element_text(angle = 0, vjust = 0.12, color = "#343434", size = 9),
+        axis.ticks = element_blank(),
+        legend.title = element_blank()) +
+  labs(title = "The hardest-hit fouls seem to land in unprotected areas",
+       subtitle = str_wrap("Foul balls by the stadium zone they landed in and their exit velocity, among 906 fouls hit this season in the most foul-heavy day at the 10 MLB stadiums that produced the most fouls as of June 5", 85),
+       x = "", y = "Zone",
+       caption = "SOURCE: BASEBALL SAVANT") +
+  annotate("text", x = 75, y = 1, label = "< 90 mph", col = "white") +
+  annotate("text", x = 140, y = 3.3, label = "≥ 90 mph", col = "#63abb0") +
+  annotate("text", x = 215, y = 1, label = "Unknown exit velocity", col = "white")
+```
+
+### Plot (Banso)
+
+```{r ref.label="Banso", echo = FALSE, out.width="100%"}
+```
+
+### Code (Banso)
+
+```{r Banso, fig.show = "hide"}
+ball_data <- foulballs |>
+  mutate(category = case_when(
+    exit_velocity < 90 ~ "<90",
+    exit_velocity >= 90 ~ ">=90",
+    is.na(exit_velocity) ~ "Unknown"
+                           ))
+my_plot <- ggplot(ball_data, aes(y = fct_rev(as.character(used_zone)), fill = category)) +
+  geom_bar(position = position_stack(reverse = TRUE)) +
+  labs(title = "The hardest-hit fouls seem \nto land in unprotected areas",
+       subtitle = "The 906 foul balls hit this season from \nthe most foul-heavy day at each of the \n10 MLB stadiums that produced the \nthe most fouls as of June 5, by zone where \nthe balls landed and their exit velocities",
+       y = "Zone", x = NULL) +
+  scale_fill_manual(values = c("Unknown" = "#DEDEDE", "<90" = "#9ECE88", ">=90" = "#17AFAD")) +
+  scale_x_continuous(breaks = c(0, 50, 100, 150, 200, 250),position = "top") +
+  theme(
+    panel.background = element_rect(fill = "white"),
+    panel.grid.major.x = element_line(size = 0.5, linetype="solid", color="#CECECE"),
+    panel.grid.minor = element_blank(),
+    axis.text.y = element_text(color = "black", face = "bold"),
+    plot.title = element_text(face = "bold"),
+    plot.subtitle = element_text(size = 10, margin = margin(b = 20))
+)
+
+my_plot
+```
+:::
+
+
+## Colin: NBA RAPTOR ratings
+
+::: panel-tabset
+
+### Original
+
+![](images/12/nba_raptor_viz.png)
+
+### Plot
+
+```{r ref.label="Colin", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r Colin, fig.show = "hide"}
+library(plotly)
+raptor <- read.csv("data/latest_RAPTOR_by_player.csv")
+
+raptor_rounded <- raptor |> 
+  filter(mp >= 1137) |>
+  mutate(across(where(is.numeric), round, 1))
+
+raptor_plot <- raptor_rounded |>
+  ggplot(aes(x=raptor_offense, y = raptor_defense)) + 
+  
+  # Annotations
+    # The colored rectangles for the 1 & 3 quadrants
+    annotate("rect", xmin=0, xmax=10, ymin=0, ymax=10, fill = '#c5ecee', alpha = .85) + 
+    annotate("rect", xmin=-10, xmax=0, ymin=-10, ymax=0, fill = '#fecada', alpha = .85) +
+    
+    # The 3rd quadrant text rectangles
+    annotate("rect", xmin=-9.8, xmax=-5.5, ymin = -7.8, ymax = -6.8, fill = '#fd97b6') +
+    annotate("rect", xmin=-9.8, xmax=-5.5, ymin = -9.4, ymax = -8.4, fill = '#fd97b6') +
+    annotate("text", x = -7.8, y = -7.4, label = " -  offense") +
+    annotate("text", x = -7.8, y = -9, label = " -  defense") +
+    
+    # The 1st quadrant text rectangles
+    annotate("rect", xmin=5.5, xmax=9.8, ymin = 6.8, ymax = 7.8, fill = '#8cdadf') +
+    annotate("rect", xmin=5.5, xmax=9.8, ymin = 8.4, ymax = 9.4, fill = '#8cdadf') +
+    annotate("text", x = 7.5, y = 8.8, label = " +  offense") +
+    annotate("text", x = 7.55, y = 7.1, label = " +  defense") +
+  
+    # The 2nd quadrant text rectangles
+    annotate("rect", xmin=-9.8, xmax=-5.5, ymin = 6.8, ymax = 7.8, fill = '#8cdadf') +
+    annotate("rect", xmin=-9.8, xmax=-5.5, ymin = 8.4, ymax = 9.4, fill = '#fd97b6') +
+    annotate("text", x = -7.8, y = 8.8, label = " -  offense") +
+    annotate("text", x = -7.8, y = 7.1, label = " +  defense") +
+  
+    # The 4th quadrant text rectangles
+    annotate("rect", xmin=5.5, xmax=9.8, ymin = -7.8, ymax = -6.8, fill = '#8cdadf') +
+    annotate("rect", xmin=5.5, xmax=9.8, ymin = -9.4, ymax = -8.4, fill = '#fd97b6') +
+    annotate("text", x = 7.55, y = -7.4, label = " +  offense") +
+    annotate("text", x = 7.5, y = -9, label = " -  defense") +
+  
+  geom_point(shape= 21, colour = "black", fill = "white", size = 4) + 
+  
+  labs(
+    x = "Offensive RAPTOR rating", 
+    y = "Defensive RAPTOR rating",
+    title = paste0('Nikola Jokic is the Best NBA Player Based on Overall RAPTOR Rating',
+            '<br>',
+            '<sup>',
+            'An Analytical Approach to the 2022 - 2023 NBA Season','</sup>')
+    ) + 
+    
+  # Theme settings
+  theme_light() + 
+  theme_minimal() +
+  theme(
+    panel.grid.minor = element_blank(), 
+    panel.grid.major = element_line(color = "#cdcdcd", linewidth = 0.5), 
+    plot.margin = margin(l = 100, r = 100, b = 20, t = 10),
+    plot.title = element_text(hjust = 0.5),
+    axis.text = element_text(color = "#cdcdcd", size = 12),
+    axis.title.x = element_text(margin = margin(t=3)),
+    axis.title.y = element_text(margin = margin(r=3)),
+    ) + 
+  coord_fixed(ratio = 1) 
+
+# interactive
+# ggplotly(raptor_plot, text=player_name, hoverinfo='text') 
+
+raptor_plot
+```
+:::
+
+## Biden Approval
+
+::: panel-tabset
+
+### Original
+
+![](images/12/biden_approval.png)
+
+### Plot
+
+```{r ref.label="A", echo = FALSE, out.width="100%"}
+```
+
+### Code
+
+```{r A, fig.show = "hide"}
+COVID_approval <- read_csv(url("https://raw.githubusercontent.com/fivethirtyeight/covid-19-polls/master/covid_approval_polls.csv"))
+
+#getting only data from beginning of COVID to Jan 19, 2021 and getting rid of the "all" category in the party column 
+year_20 <- 
+  COVID_approval |>
+  separate(end_date, into = c("end_year", "end_month", "end_day"),convert = TRUE) |>
+  filter(party != "all", 
+         end_year <= 2020)|>
+  unite(end_date, end_year, end_month, end_day, sep = "-")
+
+year_21 <-
+  COVID_approval |>
+  separate(end_date, into = c("end_year", "end_month", "end_day"),convert = TRUE) |>
+  filter(party != "all", 
+         end_year == 2021 & end_month == 1 & end_day <= 19) |>
+  unite(end_date, end_year, end_month, end_day, sep = "-")
+       #  if (end_year == 2021 & end_month == 1 & end_day <= 19))
+
+select_COVID_approval <-
+  full_join(year_20, year_21)
+
+ggplot(select_COVID_approval, aes(x = as.Date(end_date),
+                           y = approve,
+                           color = party)) +
+  geom_smooth(aes(group = party), span = 0.05, se = FALSE) + 
+  scale_color_manual(values = c("D" = "#008fd5", 
+                               "R" = "#ff2700",
+                               "I" = "#a55330")) +
+  
+  #Important Dates
+  geom_vline(xintercept = as.Date("2020-02-29"), linetype=3) + 
+    annotate("text", x= as.Date("2020-02-29"), y = 95, label="First U.S. \n Death \n Reported", size=3, color="black") +
+  geom_vline(xintercept = as.Date("2020-05-20"), linetype=3) + 
+    annotate("text", x= as.Date("2020-05-20"), y = 95, label="U.S. Deaths \n surpass \n 100,000", size=3, color="black") +
+  geom_vline(xintercept = as.Date("2020-10-02"), linetype=3) + #Trump Diagnosed with COVID-19
+    annotate("text", x= as.Date("2020-10-02"), y = 95, label="Trump \n Diagnosed \n with \n COVID-19", size=3, color="black") +
+  geom_vline(xintercept = as.Date("2020-11-07"), linetype=3) + 
+    annotate("text", x= as.Date("2020-11-07"), y = 95, label="Biden \n declared \n election \n winner", size=3, color="black") +
+  geom_vline(xintercept = as.Date("2021-01-19"), linetype=3) + 
+    annotate("text", x= as.Date("2021-01-19"), y = 95, label="Biden \n sworn \n into \n office", size=3, color="black") +
+  
+  labs(title = "Approval of Trump’s response varies widely by party",
+       subtitle = "A calculation of the share of Democrats, Republicans and independents who approve of the president’s \n handling of the coronavirus outbreak") +
+  scale_y_continuous(limits = c(0, 100)) +
+  theme(plot.title = element_text(face = "bold", hjust = 0.5 ), 
+        plot.subtitle = element_text(hjust = 0.5),
+        axis.title.x = element_blank(),
+        axis.title.y = element_blank(),
+        legend.position="none",
+        panel.border = element_blank(),
+        panel.background = element_blank(),
+        panel.grid.minor = element_line(colour="gray")
+        ) 
+```
+:::
+
 
 ## Recap {.smaller background-color="#92A86A"}
 
 - Can you explain/describe the plots generated in the context of these data?
 - Can you generate EDA plots of your own for these data
-- Can you undersetand/work through the more complicated code provided (even if you couldn't have come up with it on your own)
+- Can you understand/work through the more complicated code provided (even if you couldn't have come up with it on your own)
 

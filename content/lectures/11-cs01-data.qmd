@@ -314,7 +314,7 @@ Results from: Hubbard et al (2021) Biomarkers of Recent Cannabis Use in Blood, O
 ## What Came After
 
 ![](images/11/duic_toxicology.jpeg)
-Source: [Fitgerald et al.](https://academic.oup.com/clinchem/article/69/7/724/7179849?login=false)
+Source: [Fiztgerald et al.](https://academic.oup.com/clinchem/article/69/7/724/7179849?login=false)
 
 # Wrangling {background-color="#92A86A"}
 

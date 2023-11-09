@@ -1,0 +1,14 @@
+{
+  "hash": "00c883c910533e6cd58ad4d3393e7a85",
+  "result": {
+    "markdown": "---\ntitle: \"13-cs01-analysis\"\nauthor: \"Professor Shannon Ellis\"\ndate: \"2023-11-14\"\n\nformat:\n  html: \n    output-file: 13-cs01-analysis.html\n    embed-resources: true\n  revealjs:\n    output-file: 13-cs01-analysis-slides.html\n    slide-number: true\n    chalkboard: false \n    preview-links: auto\n    logo: images/cogs137-logo-hex.png\n    css: slides.css\n    footer: <https://cogs137.github.io/website/>\n    scrollable: true\n    embed-resources: true\n    execute:\n      echo: true\n      eval: true\n---\n\n::: {.cell}\n\n:::\n\n\n# CS01: Biomarkers of Recent Use (Analysis) {background-color=\"#92A86A\"}\n\n## Q&A {.smaller}\n\n> Q: \\\n> A: \n\n\n## Course Announcements\n\nDue Dates:\n\n-   🔭 No Lab this week (holiday) - all students will receive full credit for Lab05 (MLR)\n-   ❓ **Mid-course survey** \"due\" (for EC) Friday\n-   💻 HW03 (MLR) due Mon 11/20\n\n\n## Agenda\n\n-   \n\n# Question {background-color=\"#92A86A\"}\n\nWhich compound, in which matrix, and at what cutoff is the best biomarker of recent use?\n\n# Data & Files {background-color=\"#92A86A\"}\n\n## Packages\n\nTwo additional packages required for these notes:\n\n\n::: {.cell}\n\n```{.r .cell-code}\nlibrary(tidyverse)\nlibrary(purrr)\nlibrary(rstatix)\n```\n:::\n\n\n## The Data\n\nReading in the data from the end of data wrangling notes: \n\n\n::: {.cell}\n\n```{.r .cell-code}\nload(\"data/compounds.RData\")\nload(\"data/timepoints.RData\")\nload(\"data/data_clean.RData\")\n```\n:::\n\n::: {.cell}\n\n:::\n\n\n# Analysis {background-color=\"#92A86A\"}\n\n\n\n## Sensitivity & Specificity\n\n\n::: {.cell}\n\n:::\n\n\n\n## Recap {.smaller background-color=\"#92A86A\"}\n\n-   Can you explain/describe the plots generated in the context of these data?\n-   Can you generate EDA plots of your own for these data\n-   Can you undersetand/work through the more complicated code provided (even if you couldn't have come up with it on your own)\n",
+    "supporting": [],
+    "filters": [
+      "rmarkdown/pagebreak.lua"
+    ],
+    "includes": {},
+    "engineDependencies": {},
+    "preserve": {},
+    "postProcess": true
+  }
+}

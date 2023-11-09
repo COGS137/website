@@ -1,0 +1,101 @@
+---
+title: "13-cs01-analysis"
+author: "Professor Shannon Ellis"
+date: "2023-11-14"
+
+format:
+  html: 
+    output-file: 13-cs01-analysis.html
+    embed-resources: true
+  revealjs:
+    output-file: 13-cs01-analysis-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+
+knitr::opts_chunk$set(dpi=300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+# CS01: Biomarkers of Recent Use (Analysis) {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+> Q: \
+> A: 
+
+
+## Course Announcements
+
+Due Dates:
+
+-   `r emo::ji("science")` No Lab this week (holiday) - all students will receive full credit for Lab05 (MLR)
+-   `r emo::ji("question")` **Mid-course survey** "due" (for EC) Friday
+-   `r emo::ji("computer")` HW03 (MLR) due Mon 11/20
+
+
+## Agenda
+
+-   
+
+# Question {background-color="#92A86A"}
+
+Which compound, in which matrix, and at what cutoff is the best biomarker of recent use?
+
+# Data & Files {background-color="#92A86A"}
+
+## Packages
+
+Two additional packages required for these notes:
+
+```{r}
+library(tidyverse)
+library(purrr)
+library(rstatix)
+```
+
+## The Data
+
+Reading in the data from the end of data wrangling notes: 
+
+```{r}
+load("data/compounds.RData")
+load("data/timepoints.RData")
+load("data/data_clean.RData")
+```
+
+```{r, echo=FALSE,eval=FALSE}
+load("content/lectures/data/compounds.RData")
+load("content/lectures/data/timepoints.RData")
+load("content/lectures/data/data_clean.RData")
+
+```
+
+# Analysis {background-color="#92A86A"}
+
+
+
+## Sensitivity & Specificity
+
+```{r}
+
+```
+
+
+## Recap {.smaller background-color="#92A86A"}
+
+-   Can you explain/describe the plots generated in the context of these data?
+-   Can you generate EDA plots of your own for these data
+-   Can you undersetand/work through the more complicated code provided (even if you couldn't have come up with it on your own)

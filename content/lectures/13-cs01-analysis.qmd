@@ -25,6 +25,7 @@ format:
 ```{r packages, echo=FALSE, message=FALSE, warning=FALSE}
 library(tidyverse)
 library(emo)
+library(googlesheets4)
 
 knitr::opts_chunk$set(dpi=300, echo=TRUE, warning=FALSE, message=FALSE) 
 ```
@@ -33,37 +34,83 @@ knitr::opts_chunk$set(dpi=300, echo=TRUE, warning=FALSE, message=FALSE)
 
 ## Q&A {.smaller}
 
-> Q: \
-> A: 
+> Q: How extensive does our extension component need to be?\
+> A: A bit hard to answer in certain terms. We'll discuss some examples today to hopefully set expectaions well. To explain in writing here, the most typical extension is students using the data provided to ask and answer a question not directly presented in class. Thus, simply generating a visualization not presented in class would NOT be sufficient. At the other end, finding external data on the topic and analyzing that data, while certainly allowed, would far exceed expectations. In between those extremes is what we expect: add significantly to the analysis, beyond what was presented in class.
 
 
 ## Course Announcements
 
 Due Dates:
 
--   `r emo::ji("science")` No Lab this week (holiday) - all students will receive full credit for Lab05 (MLR)
--   `r emo::ji("question")` **Mid-course survey** "due" (for EC) Friday
--   `r emo::ji("computer")` HW03 (MLR) due Mon 11/20
+- **HW03** (MLR) due Mon 11/20
+- **Project Proposal** (it will be a Google Form) due 11/20
+- **CS01** Deadlines:
+  - **Lab06** due Friday - cs01-focused
+  - Report & "General Communication" due 11/27
+  - survey about how working with group went - due 11/28
 
 
+## Mid-course Survey Summary 
+
+- N=46 (~50%)
+- Pacing workload (so far) about right
+- Course notes most helpful in the course overall
+- Also helpful: completing labs, doing homework,
+- Many are not checking labs against answer keys; most are not doing suggested readings
+- Of those that attend lecture, most find it helpful
+
+## Mid-course: Time Spent
+
+![](images/13/time_spent.png)
+
+## Mid-course: What would you change?
+  
+```{r, echo=FALSE}
+survey <- read_sheet('1ilin1aswmvKi32CiFSC783Tw-mtx2uR0L6Y7pNv7D9Q')
+
+DT::datatable(survey |> 
+                    filter(!is.na(`Optional: If you were in charge and could change one thing about COGS 137, what would it be?`)) |> select(`Optional: If you were in charge and could change one thing about COGS 137, what would it be?`)) 
+```
+  
 ## Agenda
 
--   
+- Debugging/Understandig Code Strategies
+- Sensitivity & Specificity
+- Cross-comound correlations
+- Extensions
+
+## Summary: Figuring out what's going on in code
+
+Suggestions (as discussed in class):
+
+:::incremental
+1. Look up documentation (i.e. `?...`) / Google the function
+2. Run it on different input; see how output changing
+3. Run the code line-by-line, understanding output at each step 
+4. Ask ChatGPT
+:::
 
 # Question {background-color="#92A86A"}
 
 Which compound, in which matrix, and at what cutoff is the best biomarker of recent use?
 
+. . .
+
+::: callout-message
+Every group will answer this question.
+:::
+
 # Data & Files {background-color="#92A86A"}
 
 ## Packages
 
-Two additional packages required for these notes:
+Three additional packages required for these notes:
 
 ```{r}
 library(tidyverse)
 library(purrr)
 library(rstatix)
+library(cowplot)
 ```
 
 ## The Data
@@ -80,22 +127,674 @@ load("data/data_clean.RData")
 load("content/lectures/data/compounds.RData")
 load("content/lectures/data/timepoints.RData")
 load("content/lectures/data/data_clean.RData")
+```
 
+And the functions...
+
+```{r}
+source("src/cs01_functions.R")
 ```
 
 # Analysis {background-color="#92A86A"}
 
 
-
 ## Sensitivity & Specificity
 
+**Sensitivity** | the ability of a test to correctly identify patients with a disease/trait/condition. $$TP/(TP + FN)$$
+
+. . .
+
+**Specificity** | the ability of a test to correctly identify people without the disease/trait/condition. $$TN/(TN + FP)$$
+
+. . . 
+
+[`r emo::ji("question")` For this analysis, do you care more about sensitivity? about specificity? equally about both?]{style="background-color: #ADD8E6"}
+
+## What is a TP here? TN? FP? FN? 
+
+**Post-smoking** (cutoff > 0)
+
+:::incremental
+- TP = THC group, value >= cutoff
+- FN = THC group, value < cutoff
+- FP = Placebo group, value >= cutoff
+- TN = Placebo group, value < cutoff
+:::
+
+. . .
+
+**Post-smoking** (cutoff == 0)
+
+Cannot be a TP or FP if zero...
+
+- TP = THC group, value > cutoff),
+- FN = THC group, value <= cutoff),
+- FP = Placebo group, value > cutoff),
+- TN = Placebo group, value < cutoff)
+
+. . . 
+
+**Pre-smoking** 
+
+Cannot be a TP or FN before consuming...
+
+- TP = 0
+- FN = 0
+- FP = value >= cutoff
+- TN = value < cutoff
+
+## ROC
+
+Receiver-Operator Characteristic (ROC) Curve: TPR (Sensitivity) vs FPR (1-Specificity)
+
+![](images/13/Roc_curve.svg.png)
+
+Image Credit: By cmglee, MartinThoma - Roc-draft-xkcd-style.svg, CC BY-SA 4.0, https://commons.wikimedia.org/w/index.php?curid=109730045
+
+
+
+
+## Calculating Sensitivity and Specificity
+
+:::panel-tabset
+
+### Calculate 
+
 ```{r}
+make_calculations <- function(dataset, dataset_removedups, split, compound, 
+                              start = start, stop = stop, tpt_use = tpt_use){
+  ## remove NAs
+  df <- dataset_removedups %>% 
+    dplyr::select(treatment, compound, timepoint_use) %>%
+    rename(compound = 2) %>%
+    filter(complete.cases(.))
+  if(nrow(df)>0){
+    if(stop <= 0){
+      output <- df %>% 
+        summarise(TP = 0,
+                  FN = 0,
+                  FP = sum(compound >= split),
+                  TN = sum(compound < split)) 
+    }else{
+      if(split == 0){
+        output_pre <- df %>% 
+          filter(tpt_use == "pre-smoking") %>%
+          summarise(TP = 0,
+                    FN = 0,
+                    FP = sum(compound >= split),
+                    TN = sum(compound < split)) 
+        
+        output <- df %>% 
+          filter(tpt_use != "pre-smoking") %>%
+          summarise(TP = sum(treatment != "Placebo" & compound > split),
+                    FN = sum(treatment != "Placebo" & compound <= split),
+                    FP = sum(treatment == "Placebo" & compound > split),
+                    TN = sum(treatment == "Placebo" & compound < split))
+        
+        output <- output + output_pre
+      }else{
+        ## calculate values if pre-smoking
+        output_pre <- df %>% 
+          filter(tpt_use == "pre-smoking") %>%
+          summarise(TP = 0,
+                    FN = 0,
+                    FP = sum(compound >= split),
+                    TN = sum(compound < split)) 
+        
+        output <- df %>% 
+          filter(tpt_use != "pre-smoking") %>%
+          summarise(TP = sum(treatment != "Placebo" & compound >= split),
+                    FN = sum(treatment != "Placebo" & compound < split),
+                    FP = sum(treatment == "Placebo" & compound >= split),
+                    TN = sum(treatment == "Placebo" & compound < split))
+        
+        output <- output + output_pre
+      }
+    }
+  }
+  # clean things up; make calculations on above values
+  output <- output %>%
+    mutate(detection_limit = split,
+           compound = compound,
+           time_start = start,
+           time_stop = stop,
+           time_window = tpt_use,
+           NAs = nrow(dataset) - nrow(df),
+           N = nrow(dataset_removedups),
+           N_removed = nrow(dataset) - nrow(dataset_removedups),
+           Sensitivity = (TP/(TP + FN)), 
+           Specificity = (TN /(TN + FP)),
+           PPV = (TP/(TP+FP)),
+           NPV = (TN/(TN + FN)),
+           Efficiency = ((TP + TN)/(TP + TN + FP + FN))*100
+    )
+  
+  return(output)
+}
+```
+
+### Run
+
+- determine what cutoff values to try
+- carry out above function on those cutoffs
+
+```{r}
+sens_spec <- function(dataset, compound, start, stop, tpt_use, 
+                      lowest_value = 0.5, splits = NULL, ...){
+  # if it's not all NAs...
+  if(sum(is.na(dataset[,compound])) != nrow(dataset)){
+    # specify what splits should be used for calculations
+    if(is.null(splits)){
+      limits <- dataset[is.finite(rowSums(dataset[,compound])),compound]
+      ## define lower and upper limits
+      lower = min(limits, na.rm=TRUE)
+      upper = max(limits, na.rm=TRUE)
+      ## determine splits to use for calculations
+      tosplit = pull(limits[,1])[limits[,1]>0]
+      ## only split if there are detectable limits:
+      if(length(tosplit)>=1){
+        splits = c(lowest_value, quantile(tosplit, probs=seq(0, 1, by = 0.01), na.rm=TRUE))
+        splits = unique(splits)
+      }else{
+        splits = 0
+      }
+    }else{
+      splits = splits
+    }
+    # filter to include timepoint of interest
+    dataset <- dataset %>% 
+      filter(time_from_start > start & time_from_start <= stop & !is.na(timepoint_use))
+    dataset_removedups <- dataset %>%
+      filter(!is.na(timepoint_use)) %>% 
+      group_by(timepoint_use) %>% 
+      distinct(id, .keep_all = TRUE) %>% 
+      ungroup()
+
+    ## create empty output variable which we'll fill in
+    ## iterate through each possible dose and calculate
+    output <- map_dfr(as.list(splits), ~make_calculations(dataset, 
+                                                          dataset_removedups, 
+                                                          split = .x,
+                                                          compound,
+                                                          start = start,
+                                                          stop = stop, 
+                                                          tpt_use = tpt_use))
+  }
+  
+  return(output)
+}
+```
+
+### Apply
+
+Map the above for each matrix...
+
+```{r}
+sens_spec_cpd <- function(dataset, cpd, timepoints, splits = NULL){
+  args2 <- list(start = timepoints$start, 
+                stop = timepoints$stop, 
+                tpt_use = timepoints$timepoint)
+  out <- args2 %>% 
+    pmap_dfr(sens_spec, dataset, compound = cpd, splits = splits)
+  return(out)
+}
 
 ```
+
+### Do it!
+
+This takes a few minutes to run... (reminder: `cache=TRUE`)
+
+```{r, cache=TRUE}
+output_WB <- map_dfr(compounds_WB, 
+                     ~sens_spec_cpd(dataset = WB, cpd = all_of(.x), 
+                                    timepoints = timepoints_WB)) %>% clean_gluc()
+
+output_BR <- map_dfr(compounds_BR, 
+                     ~sens_spec_cpd(dataset = BR,  cpd = all_of(.x),
+                                    timepoints = timepoints_BR))  %>% clean_gluc()
+
+output_OF <- map_dfr(compounds_OF, 
+                     ~sens_spec_cpd(dataset = OF, cpd = all_of(.x),
+                                    timepoints = timepoints_OF))  %>% clean_gluc()
+
+```
+
+::: 
+
+## ROC 
+
+:::panel-tabset
+
+### Code
+
+```{r}
+ss_plot <- function(output, tpts=8, tissue){
+  to_include = output %>%
+    group_by(compound) %>% 
+    summarize(mean_detection = mean(detection_limit)) %>% 
+    filter(mean_detection > 0)
+  
+  output <-  output %>% 
+    mutate(iszero = ifelse(time_start<0,TRUE,FALSE),
+           Sensitivity = round(Sensitivity*100,0),
+           Specificity = round(Specificity*100,0)) %>%
+    filter(compound %in% to_include$compound,
+           time_window != "pre-smoking") %>%
+    clean_gluc() %>% 
+    mutate(compound = fct_relevel(as.factor(compound), "THC"))
+  
+  output <- output %>%  mutate(
+    legend = paste0(time_window,' (N=', N,')'))
+  
+  blue_colors = c('#C2F8FF', '#A2DDED', '#86BEDC', '#6C9FCA', 
+                  '#547EB9', '#3F5EA8', '#2D4096', '#1E2385',
+                  '#181173', '#180762', '#180051')
+  values = c(blue_colors[1:tpts])
+  
+  print(ggplot(output, aes(x = detection_limit, y = Sensitivity, group = fct_inorder(legend))) + 
+          geom_point(aes(color=fct_inorder(legend)), size = 0.9, show.legend = FALSE) +
+          geom_path(aes(color=fct_inorder(legend)), size=1.2) + 
+          facet_grid(~compound, scales = "free_x") +
+          labs(x = 'Detection Limit',
+               y = 'Sensitivity') +
+          ylim(0,1) +
+          scale_color_manual(values = values, name = 'Time Window') +
+          theme_classic(base_size = 12) + 
+          theme(axis.title = element_text(size=16), 
+                panel.grid = element_blank(),
+                strip.background = element_blank(),
+                strip.text.x = element_text(size = 12))  
+  )
+  print(
+    ggplot(output, aes(x = detection_limit, y = Specificity, group = fct_inorder(legend))) + 
+      geom_point(aes(color=fct_inorder(legend)), size = 0.9, show.legend = FALSE) +
+      geom_path(aes(color=fct_inorder(legend)), size=1.2) + 
+      facet_grid(~compound, scales = "free_x") +
+      ylim(0,100) +
+      labs(title = tissue,
+           x = 'Detection Limit',
+           y = 'Specificity') +
+      scale_color_manual(values = values, name = 'Time Window') +
+      theme_classic(base_size = 12) + 
+      theme(axis.title = element_text(size=16),
+            panel.grid = element_blank(),
+            strip.background = element_blank(),
+            strip.text.x = element_text(size = 12))
+  )
+  print(
+    ggplot(output, aes(x=(100-Specificity), y = Sensitivity, group = fct_inorder(legend))) +
+      geom_point(aes(color=fct_inorder(legend)), size = 0.9, show.legend = FALSE) +
+      geom_path(aes(color=fct_inorder(legend)), size=1.2) + 
+      facet_grid(~compound) +
+      xlim(0, 100) +
+      ylim(0, 100) +
+      labs(title = tissue,
+           x = '(100-Specificity)',
+           y = 'Sensitivity') +
+      scale_color_manual(values = values, name = 'Time Window') +
+      theme_classic(base_size = 12) + 
+      theme(axis.title = element_text(size=16),
+            panel.grid = element_blank(),
+            strip.background = element_blank(),
+            strip.text.x = element_text(size = 12),
+            axis.text = element_text(size=12))
+  )
+}
+
+roc_plot <- function(output, tpts=8, tissue){
+  to_include = output %>%
+    group_by(compound) %>% 
+    summarize(mean_detection = mean(detection_limit)) %>% 
+    filter(mean_detection > 0)
+  
+  output <-  output %>% 
+    mutate(iszero = ifelse(time_start<0,TRUE,FALSE),
+           Sensitivity = round(Sensitivity*100,0),
+           Specificity = round(Specificity*100,0)) %>%
+    filter(compound %in% to_include$compound,
+           time_window != "pre-smoking") %>%
+    clean_gluc() %>% 
+    mutate(compound = fct_relevel(as.factor(compound), "THC"))
+  
+  output <- output %>% mutate(
+    legend = paste0(time_window,' (N=', N,')'))
+  
+  blue_colors = c('#C2F8FF', '#86BEDC', 
+                  '#547EB9', '#2D4096',
+                  '#181173', '#180051')
+  values = c(blue_colors[1:tpts])
+  print(
+    ggplot(output, aes(x=(100-Specificity), y = Sensitivity, group = fct_inorder(legend))) +
+      geom_point(aes(color=fct_inorder(legend)), size = 0.9, show.legend = FALSE) +
+      geom_path(aes(color=fct_inorder(legend)), size=1.2) + 
+      facet_grid(~compound) +
+      xlim(0, 100) +
+      ylim(0, 100) +
+      labs(title = tissue,
+           x = '(100-Specificity)',
+           y = 'Sensitivity') +
+      scale_color_manual(values = values, name = 'Time Window') +
+      theme_classic(base_size = 12) + 
+      theme(axis.title = element_text(size=16),
+            panel.grid = element_blank(),
+            strip.background = element_blank(),
+            strip.text.x = element_text(size = 12),
+            axis.text = element_text(size=12) )
+  )
+}
+```
+
+### Calculate
+
+```{r}
+ss1_a <- ss_plot(output_WB, tpts = length(unique(output_WB$time_start)), tissue = "Blood")
+
+ss2_a <- ss_plot(output_OF, tpts = length(unique(output_OF$time_start)), tissue = "Oral Fluid")
+
+ss3_a <- roc_plot(output_BR, tpts = length(unique(output_BR$time_start)), tissue = "Breath")
+```
+
+### Plot
+```{r}
+bottom_row <- plot_grid(ss2_a, ss3_a, labels = c('B', 'C'), label_size = 12, ncol = 2, rel_widths = c(0.66, .33))
+plot_grid(ss1_a, bottom_row, labels = c('A', ''), label_size = 12, ncol = 1)
+```
+
+:::
+
+## Calculate: THC
+
+Reminder: Currently, states have laws on the books from zero tolerance (detection of any level) to 5ng/mL
+
+:::panel-tabset
+
+### WB
+
+```{r}
+cutoffs = c(0.5, 1, 2, 5, 10)
+WB_THC <- sens_spec_cpd(dataset = WB, cpd = 'thc',
+                        timepoints = timepoints_WB,
+                        splits = cutoffs) %>% clean_gluc()
+
+WB_THC
+```
+
+### OF
+
+```{r}
+OF_THC <- sens_spec_cpd(dataset = OF, cpd = 'thc',
+                        timepoints = timepoints_OF,
+                        splits = cutoffs) %>% clean_gluc()
+
+OF_THC
+```
+
+### BR
+
+Why is there no calculation for breath?
+
+
+:::
+
+## Cutoffs
+
+:::panel-tabset
+
+### Code
+```{r}
+plot_cutoffs <- function(dataset, timepoint_use_variable, tissue, labels = c("A", "B"), vertline, cpd, x_labels){
+    col_val = c("#D9D9D9", "#BDBDBD", "#969696", "#636363", "#252525")
+    lines = rep("solid", 5)
+    
+  df_ss <- dataset %>% 
+    mutate(time_window = fct_relevel(as.factor(time_window), 
+                                     levels(timepoint_use_variable)),
+           detection_limit = as.factor(detection_limit),
+           Sensitivity =  round(Sensitivity*100,0),
+           Specificity =  round(Specificity*100,0),
+           my_label = paste0(time_window, ' N=', N),
+           my_label =  gsub(" ", "\n", my_label),
+           my_label = fct_relevel(as.factor(my_label), x_labels)) #%>%          
+    
+    p1 <- df_ss %>% 
+    ggplot(aes(x = my_label, y = Sensitivity, 
+               colour = detection_limit)) + 
+    geom_line(size = 1.2, aes(group = detection_limit, 
+                              linetype = detection_limit)) + 
+    geom_vline(xintercept=vertline, linetype = 'dotted') +
+    geom_point(show.legend=FALSE) + 
+    ylim(0,100) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 5)) +
+    scale_linetype_manual(values=lines) +
+      scale_color_manual(values = col_val, name = "Cutoff \n (ng/mL)",
+                         guide = guide_legend(override.aes = list(linetype = c(1),
+                                                                  shape = rep(NA, length(lines))) )) +
+    theme_classic() +
+    theme( axis.title = element_text(size=16),
+           axis.text = element_text(size=10),
+           legend.position = c(0.08, 0.4),
+           panel.grid = element_blank(),
+           strip.background = element_blank()
+           ) +
+      guides(linetype = FALSE) +
+    labs(x = "Time Window", 
+         y = "Sensitivity", 
+         title = paste0(tissue,": ", cpd) )
+ 
+  p2 <- df_ss %>% 
+    ggplot(aes(x = my_label, y = Specificity,
+               group = detection_limit, 
+               colour = detection_limit, 
+               linetype = detection_limit)) + 
+    geom_line(size = 1.2) +
+    geom_vline(xintercept=vertline, linetype = 'dotted') +
+    geom_point() + 
+    ylim(0,100) +
+    scale_color_manual(values = col_val) +
+    scale_x_discrete(labels = function(x) str_wrap(x, width = 5)) +
+    scale_linetype_manual(values = lines, 
+                          guide = guide_legend(override.aes = list(linetype = "solid",
+                                                                   shape = rep(NA, length(lines))) )) +
+    theme_classic() +
+    theme(axis.title = element_text(size=16),
+          axis.text = element_text(size=10),
+          legend.position = "none", 
+          panel.grid = element_blank(),
+          strip.background = element_blank()) +
+    labs(x = "Time Window", 
+         y = "Specificity",
+         title = "" )
+  
+  title <- ggdraw() + 
+    draw_label(
+      tissue,
+      x = 0.05,
+      hjust = 0
+    )
+  
+  plot_row <- plot_grid(p1, p2, labels = labels, label_size = 12)
+  
+  plot_grid(
+    title, plot_row,
+    ncol = 1,
+    # rel_heights values control vertical title margins
+    rel_heights = c(0.1, 1)
+  )
+  
+  return(list(plot_row, df_ss))
+
+}
+```
+
+### WB
+
+```{r}
+blood_levels <- c("pre-smoking\nN=189", "0-30\nmin\nN=187", "31-70\nmin\nN=165",
+                  "71-100\nmin\nN=157", "101-180\nmin\nN=168", "181-210\nmin\nN=103",
+                  "211-240\nmin\nN=127", "241-270\nmin\nN=137", "271-300\nmin\nN=120",
+                  "301+\nmin\nN=88")
+
+plot_cutoffs(dataset=WB_THC, 
+             timepoint_use_variable=WB$timepoint_use, 
+             tissue="Blood", 
+             vertline=levels(WB$timepoint_use)[5], 
+             cpd="THC", 
+             x_labels=blood_levels)
+```
+
+### OF
+
+```{r}
+of_levels <- c("pre-smoking\nN=192", "0-30\nmin\nN=192", "31-90\nmin\nN=117",
+               "91-180\nmin\nN=99", "181-210\nmin\nN=102", "211-240\nmin\nN=83",
+               "241-270\nmin\nN=90",  "271+\nmin\nN=76")
+
+plot_cutoffs(OF_THC, OF$timepoint_use, tissue = "Oral Fluid", labels = c("A", "B"), vertline=levels(OF$timepoint_use)[4], cpd="THC", x_labels=of_levels)
+
+```
+
+:::
+
+
+## Calculate: CBN
+Reminder: Currently, states have laws on the books from zero tolerance (detection of any level) to 5ng/mL
+
+:::panel-tabset
+
+### WB
+
+```{r}
+WB_CBN =  sens_spec_cpd(dataset = WB, cpd = 'cbn',
+                        timepoints = timepoints_WB,
+                        splits = cutoffs) %>% clean_gluc()
+
+blood_levels <- c("pre-smoking\nN=189", "0-30\nmin\nN=187", "31-70\nmin\nN=165",
+                  "71-100\nmin\nN=157", "101-180\nmin\nN=168", "181-210\nmin\nN=103",
+                  "211-240\nmin\nN=127", "241-270\nmin\nN=137", "271-300\nmin\nN=120",
+                  "301+\nmin\nN=88")
+
+plot_cutoffs(WB_CBN, WB$timepoint_use, tissue = "Blood", vertline=levels(WB$timepoint_use)[5], cpd="CBN", x_labels=blood_levels)
+
+```
+
+### OF
+
+```{r}
+OF_CBN =  sens_spec_cpd(dataset = OF, cpd = 'cbn',
+                        timepoints = timepoints_OF,
+                        splits = cutoffs) %>% clean_gluc()
+
+of_levels <- c("pre-smoking\nN=192", "0-30\nmin\nN=192", "31-90\nmin\nN=117",
+               "91-180\nmin\nN=99", "181-210\nmin\nN=102", "211-240\nmin\nN=83",
+               "241-270\nmin\nN=90",  "271+\nmin\nN=76")
+
+plot_cutoffs(OF_CBN, OF$timepoint_use, tissue = "Oral Fluid", labels = c("A", "B"), vertline=levels(OF$timepoint_use)[4], cpd="CBN", x_labels=of_levels)
+```
+
+:::
+
+
+## Compound Correlations
+
+:::panel-tabset
+
+### Code
+```{r}
+ggplotRegression <- function (x, y, xlab, ylab, x_text, y_text,  y_text2, title) {
+  fit <- lm(y ~ x)
+  if(max(fit$model[,1],na.rm=TRUE)!=0){
+    ggplot(fit$model, aes_string(x = names(fit$model)[2], 
+                                 y = names(fit$model)[1])) + 
+      geom_point() +
+      stat_smooth(method = "lm", col = "#B73239", size = 1.5, se = FALSE) +
+      annotate("text", x=x_text, y=y_text, 
+               label = paste("R^2 == ", format(signif(summary(fit)$adj.r.squared, 5), 
+                                               digits=2)),
+               vjust=1, hjust=0, parse=TRUE,size=4.5) +
+      labs(x = xlab, 
+           y = ylab, 
+           title = title ) +
+      annotate("text", x=x_text, y=y_text2, label = paste(
+        "y = ", format(signif(fit$coef[[2]], 5),digits=2),
+        "x + ",
+        format(signif(fit$coef[[1]],5 ),digits=2),
+        paste0("\nN = ", length(x))),
+        vjust=1, hjust=0, size=4.5) + 
+      theme_minimal(base_size=14) +
+      theme(panel.grid = element_blank(),
+            axis.line = element_line(size = 0.5, linetype = "solid",
+                                     colour = "black"),
+            legend.position="none") 
+  } else{
+    ggplot(fit$model, aes_string(x = names(fit$model)[2], 
+                                 y = names(fit$model)[1])) + 
+      geom_point() +
+      scale_y_continuous(limits = c(0,3)) +
+      stat_smooth(method = "lm", col = "#B73239", size = 1.5, se = FALSE) +
+      annotate("text", x=x_text, y=y_text, 
+               label = paste("R^2 == ", format(signif(summary(fit)$adj.r.squared, 5), digits=2)),vjust=1, hjust=1, parse=TRUE,size=4.5) +
+      labs(x = xlab, 
+           y = ylab, 
+           title = title ) +
+      annotate("text", x=x_text, y=y_text2, label = paste(
+        "y = ", format(signif(fit$coef[[2]], 5),digits=2),
+        "x + ",
+        format(signif(fit$coef[[1]],5 ),digits=2),
+        paste0("\nN = ", length(x))), vjust=1, hjust=1,size=4.5) + 
+      theme_minimal(base_size = 14) +
+      theme(panel.grid = element_blank(),
+            axis.line = element_line(size = 0.5, linetype = "solid",
+                                     colour = "black"),
+            legend.position="none") 
+    
+    
+  }
+}
+
+```
+
+### Plot
+```{r}
+wb_reg <- ggplotRegression(WB$thc, WB$cbn, xlab = 'THC (ng/mL)', ylab = 'CBN  (ng/mL)', x_text= 150, y_text = 7, y_text2 = 5, title = "Blood")
+
+of_reg <- ggplotRegression(OF$thc, OF$cbn, xlab = 'THC  (ng/mL)', ylab = 'CBN  (ng/mL)', x_text= 12500, y_text = 750, y_text2 = 500, title = "Oral Fluid")
+
+plot_grid(wb_reg, of_reg, labels = 'AUTO', label_size = 12, ncol = 2, scale = 1)
+```
+
+:::
+
+## Possible Extensions
+
+Our current question asks for a *single* compound...and you'll need to decide that.
+
+. . . 
+
+...but you could imagine a world where more than one compound or more than one matrix could be measured at the roadside.
+
+. . . 
+
+So:
+
+:::incremental
+- combination of the oral fluid and blood that would better predict recent use? (For example if an officer stopped a driver and got a high oral fluid, but could not get a blood sample for a couple of hours and got a relatively low result would this predict recent use better than blood (or OF) alone? 
+- Is there a ratio of OF/blood that predicts recent use?
+- Machine learning model to determine optimal combination of measurements/cutoffs to detect recent use?
+:::
+
+. . . 
+
+Things to keep in mind:
+
+- some matrices are easier to get at the roadside
+- time from use matters (trying to detect *recent* use)
+- we may not care equally about sensitivity and specificity
 
 
 ## Recap {.smaller background-color="#92A86A"}
 
--   Can you explain/describe the plots generated in the context of these data?
--   Can you generate EDA plots of your own for these data
--   Can you undersetand/work through the more complicated code provided (even if you couldn't have come up with it on your own)
+- Can you describe sensitivity? Specificity?
+- Can you explain how TP, TN, FP, and FN were calculated/defined *in this experiment*?
+- Can you describe the code used to carry out the calculations?
+- Can you interpret the results from these data?

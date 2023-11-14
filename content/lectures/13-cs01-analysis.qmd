@@ -26,6 +26,7 @@ format:
 library(tidyverse)
 library(emo)
 library(googlesheets4)
+library(patchwork)
 
 knitr::opts_chunk$set(dpi=300, echo=TRUE, warning=FALSE, message=FALSE) 
 ```
@@ -49,10 +50,22 @@ Due Dates:
   - Report & "General Communication" due 11/27
   - survey about how working with group went - due 11/28
 
+. . .
+
+Notes:
+
+Midterm scores & Feedback posted
+
+- overall, did very well
+  - avg: 13.85/15 (92%)
+  - 6 perfect scores
+- answer key on course website
+
+I am behind on emails and Piazza posts.
 
 ## Mid-course Survey Summary 
 
-- N=46 (~50%)
+- N=73 (~75%)
 - Pacing workload (so far) about right
 - Course notes most helpful in the course overall
 - Also helpful: completing labs, doing homework,
@@ -61,22 +74,52 @@ Due Dates:
 
 ## Mid-course: Time Spent
 
-![](images/13/time_spent.png)
+```{r, echo=FALSE}
+survey <- read_sheet('1ilin1aswmvKi32CiFSC783Tw-mtx2uR0L6Y7pNv7D9Q')
+
+hw01 <- ggplot(survey, aes(x=`Approximately how many hours did you spend completing hw01?`)) + 
+  geom_histogram(binwidth=0.5) + theme_classic(base_size = 8) + 
+  geom_vline(xintercept = median(survey$`Approximately how many hours did you spend completing hw01?`), 
+             col='#92a86a', size=1) + 
+  labs(title = 'Most students spent ~2h completing hw01', x='Hours spent completing hw01') + 
+  scale_x_continuous(n.breaks=14) + theme(plot.title.position = 'plot')
+
+hw02 <- ggplot(survey, aes(x=`Approximately how many hours did you spend completing hw02?`)) +
+  geom_histogram(binwidth=0.5) + theme_classic(base_size = 8) + 
+  geom_vline(xintercept = median(survey$`Approximately how many hours did you spend completing hw02?`), 
+             col='#92a86a', size=1) + 
+  labs(title = 'Most students spent ~3-6h completing hw02', x='Hours spent completing hw02') + 
+  scale_x_continuous(n.breaks=14) + theme(plot.title.position = 'plot', axis.title.y = element_blank()) 
+
+midterm_complete <- ggplot(survey, aes(x=`Approximately how many hours did you spend completing the midterm?`)) + 
+  geom_histogram(binwidth=0.5) + theme_classic(base_size = 8) + 
+  geom_vline(xintercept = median(survey$`Approximately how many hours did you spend completing the midterm?`), 
+             col='#92a86a', size=1) + labs(title = 'Most students spent  ~5h completing the midterm', x='Hours spent completing the midterm') + scale_x_continuous(n.breaks=14) + 
+  theme(plot.title.position = 'plot', axis.title.y = element_blank())
+
+midterm_study <- ggplot(survey, aes(x=`Approximately how many hours did you spend studying for the midterm?`)) + 
+  geom_histogram(binwidth=0.5) + 
+  theme_classic(base_size = 8) + 
+  geom_vline(xintercept = median(survey$`Approximately how many hours did you spend studying for the midterm?`), 
+             col='#92a86a', size=1) + 
+  labs(title = 'Most students spent  ~3h studying for the midterm', x='Hours spent studying for the midterm') + theme(plot.title.position = 'plot')
+
+hw01 + hw02 + midterm_study + midterm_complete
+
+```
 
 ## Mid-course: What would you change?
   
 ```{r, echo=FALSE}
-survey <- read_sheet('1ilin1aswmvKi32CiFSC783Tw-mtx2uR0L6Y7pNv7D9Q')
-
 DT::datatable(survey |> 
                     filter(!is.na(`Optional: If you were in charge and could change one thing about COGS 137, what would it be?`)) |> select(`Optional: If you were in charge and could change one thing about COGS 137, what would it be?`)) 
 ```
   
 ## Agenda
 
-- Debugging/Understandig Code Strategies
+- Debugging/Understanding Code Strategies
 - Sensitivity & Specificity
-- Cross-comound correlations
+- Cross-compound correlations
 - Extensions
 
 ## Summary: Figuring out what's going on in code

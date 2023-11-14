@@ -1,0 +1,232 @@
+---
+title: "COGS 137 - Midterm (Fa23)"
+output: 
+  html: 
+    embed-resources: true
+    highlight: pygments
+    css: lab.css
+    preview-links: auto
+    execute:
+      eval: false
+---
+
+## Packages
+
+You will need the `tidyverse` and `tidymodels` packages for this midterm. If working on datahub, these packages have been installed, but you will need to load them. You are allowed, but not required, to use additional packages.
+
+```{r, message=FALSE}
+library(tidyverse)
+library(tidymodels)
+
+richmondway <- read_csv("data/richmondway.csv")
+```
+
+## The data
+
+The data we'll be using come from The [Richmondway R Pacakge](https://github.com/deepshamenghani/richmondway) and have been provided by the [TidyTuesday](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26) team.
+
+The data are stored in `data/richmondway.csv` You'll want to read each table in and understand what each variable represents prior to completing the exam.
+
+Each variable and the data overall are described in detail [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2023/2023-09-26/readme.md#data-dictionary). You should click on that link to see what information is stored in each column in the datasets. But briefly, this dataset includes data from three seasons of the TV show Ted Lasso. Each observation is a single episode of the show. The variables, generally, relate to the number of times Roy Kent (a foul-mouthed character on the show) and the entire cast say the F-word (often referred to as dropping the **"F bomb"**).
+
+## Questions
+
+### Question 1 (0.5 points)
+
+F-bomb summary:
+
+1)  Calculate how many times total Roy Kent said the F-word within each season.
+2)  Comment on in which season Roy Kent said the F-word the most overall.
+
+```{r}
+richmondway |>
+  group_by(Season) |>
+  summarize(count = sum(F_count_RK))
+```
+
+1)  Season 1: 56; Season 2: 106; Season 3: 138
+2)  Season 3
+
+### Question 2 (0.5 points)
+
+Determine how many episodes had more F bombs by Roy Kent than every other character on the show combined (*excluding Roy Kent*)?
+
+```{r}
+# utilizing F_perc column
+richmondway |> filter(F_perc > 50)
+
+# OR 
+
+# calculating diff if you didn't see/underestand F_perc column
+richmondway |> 
+  mutate(not_roy = F_count_total - F_count_RK) |>
+  filter(F_count_RK > not_roy)
+```
+
+There were nine episodes where Roy Kent had more F bombs than all of the other characters combined.
+
+### Question 3 (1.5 points)
+
+Generate an exploratory\* visualization that displays the typical range of Roy Kent F-bombs in an episode, broken down by season and explain three things you've learned about the data from this plot.
+
+::: aside
+\*Note: exploratory here means that it does NOT have to be polished. Do NOT worry about title, axis labels, etc. We just care about understanding the data here. (If you do customize, you will NOT be penalized. It's just not required for this question.)
+:::
+
+```{r}
+ggplot(richmondway, aes(x=factor(Season), y=F_count_RK)) +
+  geom_boxplot()
+```
+
+Here we see that the median value increases from season 1 to season 3, with a typical season 1 episode having approximately 6 F bombs from Roy Kent. (However, there was an outlier episode with almost 15 in Season 1). By season 3, the median value was more than 10. The episode with the most Roy Kent F bombs was season 2, with more than 25!
+
+Rubric:
+
+- handles season as a factor 
+- correct variables 
+- boxplot (or other viz that displays range) 
+- three things observed are accurate
+
+### Question 4 (1 point)
+
+Generate an exploratory\* visualization that displays the relationship between `Imdb_rating` and Roy Kent F-bombs. Describe the relationship you see in this plot.
+
+::: aside
+\*Note: exploratory here means that it does NOT have to be polished. Do NOT worry about title, axis labels, etc. We just care about understanding the data here. (If you do customize, you will NOT be penalized. It's just not required for this question.)
+:::
+
+```{r}
+ggplot(richmondway, aes(x=Imdb_rating, y=F_count_RK)) + 
+  geom_point()
+```
+
+Rubric:
+
+- scatterplot most typical 
+- correct variables plotted 
+- interpretation correct (little to no relationship)
+
+### Question 5 (1 point)
+
+Background: Keeley is a character on Ted Lasso who is dating Roy Kent for some but not all of the episodes.
+
+Generate a visualization that enables you to answer the questions below: - Does the median number of Roy Kent F bombs differ when Roy is dating Keeley (vs. when he is not)? - In the episode when Roy Kent dropped the most F bombs, was Roy dating Keeley?
+
+```{r}
+ggplot(richmondway, aes(x=Dating_flag, y=F_count_RK)) + 
+  geom_boxplot()  +
+  geom_jitter(width=0.25)
+```
+
+-   boxplot most typical
+-   answers correct (fewer when dating Keeley; most when he is dating Keeley)
+
+### Question 6 (1.5 points)
+
+What is the effect of dating Keeley on the number of Roy Kent F bombs? Generate a linear model that answers this question. Interpret the results.
+
+```{r}
+linear_reg() |>
+  set_engine("lm") |>
+  fit(F_count_RK ~ factor(Dating_flag) , data = richmondway) |>
+  tidy()
+```
+
+Rubric: 
+
+- outcome is F bombs 
+- dating handled as a factor 
+- interpretation is correct. (A typical episode when they're not dating has 8.84 F bombs. And, on average there are slightly fewer F bombs when Keeley and Roy are dating (-0.04); however, this effect is quite small (in magnitude and significance) ). Must interpret intercept and effect/slope.
+
+### Question 7 (1.5 points)
+
+Background: In Season 1, Roy Kent is a player. After retiring, he eventually becomes a coach. So, Roy is a coach in some but not all of the episodes.
+
+What is the effect of whether or not Roy Kent is coaching on the number of Roy Kent F bombs? Generate a linear model that answers this question. Interpret the results. Then, comment on whether coaching or dating Keeley is a better predictor of Roy Kent F bombs and explain how you came to that conclusion.
+
+```{r}
+linear_reg() |>
+  set_engine("lm") |>
+  fit(F_count_RK ~ factor(Coaching_flag) , data = richmondway) |>
+  tidy()
+```
+
+Rubric: 
+
+- model correct 
+- interpretation is correct. (When not coaching, 5.79 F bombs; when coaching 5.16 more (on average)). Must interpret intercept and effect/slope. 
+- comment states that coaching is better (likely uses R\^2 and/or p-value; effect size not appropriate for model comparison)
+
+### Question 8 (2.5 points)
+
+Generate a **polished** visualization that allows viewers to compare proportion/percentage of F-bombs broken down by season for Roy Kent vs those by everyone other than Roy Kent. Be sure to consider effective visualization principles discussed in class in this plot.
+
+```{r}
+df <- richmondway |>
+  mutate(`All Other Characters` = F_count_total - F_count_RK,
+         `Roy Kent` = F_count_RK) |>
+  select(Season, `Roy Kent`, `All Other Characters` ) |>
+  pivot_longer(cols=-Season, names_to="character")
+
+ggplot(df, aes(x=value, y=str_wrap(character, width = 10), fill=factor(Season), group=character)) + 
+  geom_col(position="fill") +
+  scale_fill_manual(values = c("1" = "#deebf7",
+                                "2" = "#9ecae1",
+                                "3" = "#3182bd")) +
+  labs(title="Third Season of Ted Lasso comprises almost half of the total F bombs", 
+       subtitle="Similar proportion of F bombs across seasons for Roy Kent vs. all other characters",
+       x = "Proportion of F Bombs",
+       y = NULL,
+       fill = "Season") +
+  guides(color = "none") +
+  theme_classic(base_size = 14) + 
+  theme(plot.title.position = "plot")
+```
+
+Rubric: 
+
+- determined/calculated number of not-roy 
+- proportions displayed 
+- title describes take-home 
+- axes labeled correctly 
+- good design principles (colors, labels, etc.)
+
+### Question 9 (3 points)
+
+Recreate the plot included below using the data you've been working with. Once you have created the visualization, describe at least one change that you would make to improve the design of the plot.
+
+Note: the hex values for the colors used in this plot are: "#deebf7" (lightest), "#9ecae1", and "#3182bd" (darkest)
+
+![](img/plot-to-recreate-fa23.png)
+
+Code to reproduce plot:
+
+```{r, eval=FALSE}
+ggplot(richmondway, aes(x=Episode, y=F_count_total, group=Season, color=as.factor(Season))) + 
+  geom_line(linewidth=2) +
+  geom_point(size=3) +
+  scale_x_continuous(n.breaks=12) +
+  scale_color_manual(values = c("1" = "#deebf7",
+                                "2" = "#9ecae1",
+                                "3" = "#3182bd")) + 
+  theme_classic() +
+  labs(title = "Ted Lasso Episodes always have at least a handful of F bombs, but typically there are at least 20",
+       subtitle = "Number of F Bombs Dropped by all characters per episode across 3 seasons of Ted Lasso",
+       y="F Count",
+       color="Season") +
+  theme(plot.title.position = "plot")
+```
+
+### Question 10 (1 point)
+
+Describe at least 1) two things you like about how the plot in Question 9 communicates the data and 2) two things you would do differently to make this a more effective visualization for communication.
+
+Lots of possible answers here. Most common cons: title too wordy!, line color, text size, would add grid lines, woudl visualize differently
+
+# Submit
+
+::: callout-important
+You'll always want to knit your RMarkdown document to HTML and review that HTML document to ensure it includes all the information you want and looks as you intended, as we grade from the knit HTML.
+:::
+
+*Yay, you're done! To finish up and submit, first **knit** your file to HTML. Be sure to select both your .Rmd and .html documents when choosing what to commit! Then, commit all remaining changes and push. Before you wrap up the assignment, make sure all documents are updated on your GitHub repo.*

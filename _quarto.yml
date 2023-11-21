@@ -71,10 +71,10 @@ website:
             href: content/lectures/12-cs01-eda-slides.html
           - text: "13-cs01-analysis"
             href: content/lectures/13-cs01-analysis-slides.html
-          # - text: "14-logistic-regression"
-          #   href: content/lectures/14-logistic-regression-slides.html
-          # - text: "15-cs02-data"
-          #   href: content/lectures/15-cs02-data-slides.html  
+          - text: "14-tidymodels"
+            href: content/lectures/14-tidymodels-slides.html
+          - text: "15-cs02-data"
+            href: content/lectures/15-cs02-data-slides.html
           # - text: "16-cs02-eda"
           #   href: content/lectures/16-cs02-eda-slides.html 
           # - text: "17-cs02-analysis"
@@ -113,10 +113,10 @@ website:
             href: content/lectures/12-cs01-eda.html
           - text: "13-cs01-analysis"
             href: content/lectures/13-cs01-analysis.html
-          # - text: "14-logistic-regression"
-          #   href: content/lectures/14-logistic-regression.html
-          # - text: "15-cs02-data"
-          #   href: content/lectures/15-cs02-data.html  
+          - text: "14-tidymodels"
+            href: content/lectures/14-tidymodels.html
+          - text: "15-cs02-data"
+            href: content/lectures/15-cs02-data.html
           # - text: "16-cs02-eda"
           #   href: content/lectures/16-cs02-eda.html  
           # - text: "17-cs02-analysis"

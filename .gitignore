@@ -12,11 +12,13 @@ content/lectures/src
 content/exams/data
 docs/lectures/data
 docs/lectures/src
-Docs/content/cs/data
+docs/content/cs/data
 content/cs/data/
 content/lectures/13-cs01-analysis_cache
 docs/lectures/13-cs01-analysis_cache
 content/lectures/13-cs01-analysis_files
+OCS_data/
+docs/OCS_data
 
 
 

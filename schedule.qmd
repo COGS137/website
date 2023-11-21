@@ -1,5 +1,5 @@
 | Week   | Date           | Title                                                         | Type           |
-|--------|----------------|---------------------------------------------------------------|----------------|
+|--------------|--------------|-------------------------------|--------------|
 | **0**  | **Th Sep 28**  | **Welcome & Tooling**                                         | **Lecture**    |
 | 1      | Tu Oct 3       | Intro to R                                                    | Lecture        |
 | 1      | Th Oct 5       | Data Wrangling: `dplyr`                                       | Lecture        |
@@ -23,16 +23,16 @@
 | **6**  | **Th Nov 9**   | **Case Study 01: THC Biomarkers (day 2)**                     | **Lecture**    |
 | **6**  | **Fri Nov 10** | **Lab 05: Multiple Linear Regression**                        | **Lab**        |
 | 7      | Tu Nov 14      | Case Study 01: THC Biomarkers (day 3)                         | Lecture        |
-| 7      | Th Nov 16      | Logistic Regression                                           | Lecture        |
-| 7      | Fri Nov 17     | Lab 06: CS01                                                  | Lab            |
+| 7      | Th Nov 16      | `tidymodels`                                                  | Lecture        |
+| 7      | Sun Nov 19     | Lab 06: CS01 \[Note: Due date was extended to Sunday\]        | Lab            |
 | **8**  | **Mon Nov 20** | <font color="#ABC57D">HW03 due (11:59 PM)</font>              | **HW**         |
 | **8**  | **Mon Nov 20** | <font color="#ABC57D">Final Project Proposal Due</font>       | **Project**    |
-| **8**  | **Tu Nov 21**  | **Case Study 02: Vaping Behaviors (day 1)**                   | **Lecture**    |
+| **8**  | **Tu Nov 21**  | **Case Study 02: Air Pollution (day 1)**                      | **Lecture**    |
 | **8**  | **Th Nov 23**  | **No Class (Thanksgiving)**                                   | **\--**        |
 | 9      | Mon Nov 27     | <font color="#ABC57D">CS01 Due (11:59 PM)</font>              | Case Study     |
-| 9      | Tu Nov 28      | Case Study 02: Vaping Behaviors (day 2)                       | Lecture        |
-| 9      | Th Nov 30      | Case Study 02: Vaping Behaviors (day 3)                       | Lecture        |
-| 9      | Fri Dec 1      | Lab 07: Logistic Regression & CS02                            | Lab            |
+| 9      | Tu Nov 28      | Case Study 02: Air Pollution (day 2)                          | Lecture        |
+| 9      | Th Nov 30      | Case Study 02: Air Pollution (day 3)                          | Lecture        |
+| 9      | Fri Dec 1      | Lab 07: CS02                                                  | Lab            |
 | **10** | **Mon Dec 4**  | <font color="#ABC57D">**CS02 Due**</font>                     | **Case Study** |
 | **10** | **Tu Dec 5**   | **Final Project Brainstorming**                               | **Lecture**    |
 | **10** | **Th Dec 7**   | **Next Steps**                                                | **Lecture**    |

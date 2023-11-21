@@ -834,6 +834,36 @@ Things to keep in mind:
 - time from use matters (trying to detect *recent* use)
 - we may not care equally about sensitivity and specificity
 
+## cs01: what to do now?
+
+1. Communicate with your group!
+2. Discuss possible extensions
+3. Make a plan; figure out who's doing what; set deadlines
+4. Implement the plan!
+
+
+## What has to be done:
+
+:::incremental
+- Question | include in Rmd; add extension if applicable
+- Background | summarize and add to what was discussed in classed
+- Data
+  - Describe data & variables
+  - Data wrangling | likely copy + paste from notes; add explanation as you go
+- Analysis
+  - EDA | likely borrowing parts from notes and adding more in; be sure to include interpretations of output & guide the reader
+  - Analysis | likely borrowing *most/all* from class; interpretations/guiding reader/contextualizing is essential
+  - Extension | must be completed
+- Conclusion | summarize
+- Proofread | ensure it makes sense from top to bottom
+- General Audience communication (submit on Canvas; 1 submission per group)
+:::
+
+## Collaborating on GitHub
+
+- Be sure to pull changes every time you sit down to work
+- Avoid working on the same part of the same file as another teammate OR work in separate files and combine at the end
+- push your changes once you're ready to add them to the group
 
 ## Recap {.smaller background-color="#92A86A"}
 

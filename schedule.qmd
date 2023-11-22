@@ -1,5 +1,5 @@
 | Week   | Date           | Title                                                         | Type           |
-|--------------|--------------|-------------------------------|--------------|
+|----------------|----------------|------------------------|----------------|
 | **0**  | **Th Sep 28**  | **Welcome & Tooling**                                         | **Lecture**    |
 | 1      | Tu Oct 3       | Intro to R                                                    | Lecture        |
 | 1      | Th Oct 5       | Data Wrangling: `dplyr`                                       | Lecture        |
@@ -29,12 +29,12 @@
 | **8**  | **Mon Nov 20** | <font color="#ABC57D">Final Project Proposal Due</font>       | **Project**    |
 | **8**  | **Tu Nov 21**  | **Case Study 02: Air Pollution (day 1)**                      | **Lecture**    |
 | **8**  | **Th Nov 23**  | **No Class (Thanksgiving)**                                   | **\--**        |
-| 9      | Mon Nov 27     | <font color="#ABC57D">CS01 Due (11:59 PM)</font>              | Case Study     |
 | 9      | Tu Nov 28      | Case Study 02: Air Pollution (day 2)                          | Lecture        |
 | 9      | Th Nov 30      | Case Study 02: Air Pollution (day 3)                          | Lecture        |
+| 9      | Th Nov 30      | <font color="#ABC57D">CS01 Due (11:59 PM)</font>              | Case Study     |
 | 9      | Fri Dec 1      | Lab 07: CS02                                                  | Lab            |
-| **10** | **Mon Dec 4**  | <font color="#ABC57D">**CS02 Due**</font>                     | **Case Study** |
 | **10** | **Tu Dec 5**   | **Final Project Brainstorming**                               | **Lecture**    |
 | **10** | **Th Dec 7**   | **Next Steps**                                                | **Lecture**    |
+| **10** | **Th Dec 7**   | <font color="#ABC57D">**CS02 Due**</font>                     | **Case Study** |
 | **10** | **Fri Dec 8**  | **Lab 08: Final Project**                                     | **Lab**        |
 | Finals | Tu Dec 12      | <font color="#ABC57D">Final Project Due (11:59 PM)</font>     | Project        |

@@ -1,0 +1,68 @@
+---
+title: "Final Project"
+date: "Due: Dec 12, 2023 (11:59 PM)"
+output: 
+  html: 
+    highlight: pygments
+    preview-links: auto
+    execute:
+      eval: false
+---
+
+## Introduction
+
+For the final project, you and your group mates (groups of 3-4 people) get to choose one of the following two options: 1) Technical Presentation or 2) Data Analysis.
+
+Each group will be provided with a private repo that all members as well as course instructional staff will have access to. Final projects will be "submitted" by pushing the project requirements to the group repo by the deadline.
+
+Presentations will be submitted on Canvas.
+
+Written, visual, and presented content will be graded on their technical merits as well as the effectiveness of their communication.
+
+## Option 1: Technical Presentation
+
+Groups who choose the technical presentation route will make slides for a presentation that effectively communicates/teaches an advanced statistical topic[^1] and/or an R package[^2].
+
+[^1]: Advanced statistical topics are any topics beyond what would be covered in an intro stats course or any topics covered in depth in this course.
+
+[^2]: R Packages that can be chosen in this course are any R package that is not covered in detail in this course. (i.e. `tidyverse` packages, `tidymodels` and `broom` would *not* be options). If a package was used but only briefly mentioned in class, you *can* choose that. If you're unsure, ask!
+
+### Deliverable: R Markdown + Slides
+
+Slides will be required for the presentation and they must be generated from either an RMarkdown document or a quarto document. Chapters 4, 7, and 8 of the [R Markdown: The Definitive Guide](https://bookdown.org/yihui/rmarkdown/) discussion options for generating slides/presentations from R Markdown documents. (Presentations from quarto have similar documentation [here](https://quarto.org/docs/presentations/).) **Students should commit both the .Rmd (or .qmd) document *and* the rendered slides to their GitHub repo.**
+
+This presentation must teach the details of the R package, the statistical topic, or both at a level appropriate for students in this course. (i.e. You can assume your audience knows how to program in R, know about the tidyverse, know linear regression, etc.) And, you must demonstrate how to use the package and/or carry out the statistical analysis in R.
+
+### Deliverable: Presentation
+
+Students must also present their slides in a presentation that is **10-15min long**. This presentation can either be pre-recorded and submitted on Canvas *or* groups can sign up for a presentation slot to present in-person Thursday of finals week. For this option, **all students must participate in the presentation**. There is no grade difference for those who choose to pre-record or present in person.
+
+### Deliverable: General Communication
+
+This will be a communication targeted to the people who you think should know about this package/statistical analysis. Here, you can assume your audience knows about R/data analysis in general, but you want to distill your presentation down to the most important aspect someone would want/need to know if they were going to use what you've chosen to present on.
+
+## Option 2: Data Analysis
+
+Groups who choose the data analysis route will carry out a full data science project. This will include question formation, finding the data, doing background research, wrangling the data, doing EDA, analyzing the data, and answering your question of interest.
+
+You can think of this as a mini case report in the fact that the process is the same, but we would not expect the data wrangling to be quite as extensive as what was done in the case studies. That said, we want to see demonstration of the skills you've learned in the class, so **we will be looking for some data wrangling in your case study**. If you have a single dataset that requires no wrangling, consider if additional datasets could be incorporated to answer your question(s) of interest more deeply.
+
+You are strongly encouraged to think of your topic/question before looking for datasets. More interesting case studies start with the topic/question. Boring case studies look for the dataset first.
+
+### Deliverable: Report (.Rmd + HTML)
+
+Your analysis will be submitted as an .Rmd document and rendered to HTML (both of which should be pushed to GitHub).
+
+This will likely *not* be quite as long as a case study in this course, but will likely have the same sections.
+
+### Deliverable: Presentation
+
+Students must present their case study in a presentation that is **3-5min long**. What you use to visually support this presentation (slides, or something else) is up to you but should follow the effective communication aspects discussed in class. This presentation can either be pre-recorded and submitted on Canvas *or* groups can sign up for a presentation slot to present in-person Thursday of finals week. For this option, **at least one group member must present the project** (in other words, not everyone has to "speak" but everyone in the group is responsible for the contents). There is no grade difference for those who choose to pre-record or present in person.
+
+### Deliverable: General Communication
+
+This will be a communication targeted to the general public (non-technical, non-data scientists) conveying the most important finding(s) from your project.
+
+## Group Feedback
+
+There will be a form to submit upon submission of the final project to provide feedback about working with your group mates. As with the case studies, this is meant to motivate not scare. Most groups work out really really well and everyone contributes to the best of their ability. However, if and when that doesn't happen, I want to be sure I'm aware of the circumstances and follow up as necessary.

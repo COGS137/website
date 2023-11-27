@@ -1,0 +1,206 @@
+---
+title: "16-cs02-eda"
+author: "Professor Shannon Ellis"
+date: "2023-11-21"
+
+format:
+  html: 
+    output-file: 16-cs02-eda.html
+    embed-resources: true
+  revealjs:
+    output-file: 16-cs02-eda-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+library(tidyverse)
+library(emo)
+
+knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+# CS02: Predicting Air Pollution (EDA) {background-color="#92A86A"}
+
+## Q&A {.smaller}
+
+> Q: I'm a bit unclear about the direction of case studies. Do just try to visualize data differently to find out the best biomarkers or do we use other methods like modeling to do so? \
+> A: A little bit of both. If you can rule out a matrix/compound during EDA by looking at visualizations, do that. But, once you have a set of compounds that you want to include for analysis, then you would turn to sensitivity/specificity/ROC curves to help you decide. Modelling is also an option.
+
+> Q: I saw in the dataset, in some variables I think it's the log values  ( so I assumed it's already normalized?). Why is it better to use the log data and not the raw values? \
+> A: Great question! We'll get to this a bit today!
+
+> Q: If the monitors are not localized at the granularity of zip code level, how do we assess the accuracy of our predictions? Seems like we can't know the correct result. \
+> A: We'll get to this in the next set of notes!
+
+## Course Announcements
+
+- **CS01** due Thursday (group work survey due Friday)
+- **Lab07** due Friday
+- **CS02** due next Friday
+- **Final Project** due Tues of Finals week (report + presentation)
+
+. . .
+
+CS02 and Final Project repos + emails went out yesterday
+
+- please look for your repo/make sure you have access!
+- please get in communication with your groups if you're not already in communication
+
+
+# Question {background-color="#92A86A"}
+
+> Can we predict US annual average air pollution concentrations at the granularity of zip code regional levels using predictors such as data about population density, urbanization, road density, as well as, satellite pollution data and chemical modeling data?
+
+
+# EDA {background-color="#92A86A"}
+
+Getting to "know" the data
+
+## The Data
+
+```{r}
+pm <- readr::read_csv(here::here("OCS_data", "data","raw", "pm25_data.csv"))
+```
+
+
+## `skimr` {.smaller}
+
+```{r}
+skimr::skim(pm)
+```
+
+
+## Why 49 "states"?
+
+```{r}
+pm %>% 
+  distinct(state) 
+```
+
+- DC is included
+- Alaska and Hawaii are not
+
+## Number of monitors per city?
+
+```{r}
+pm %>% filter(city == "San Diego")
+```
+
+```{r}
+pm %>% filter(city == "Baltimore")
+```
+
+. . .
+
+San Diego has 2, while Baltimore has 5, despite having very similar population densities (`popdens_county`)...and San Diego having a much larger population (`county_pop`) and land area (`county_area`).
+
+## Feature Correlation
+
+Why do we care if variables in our dataset are correlated?
+
+- we don’t want to include redundant variables
+- can add unnecessary noise to our algorithm causing a reduction in prediction accuracy
+- can cause our algorithm to be slower
+- can also make it difficult to interpret what variables are actually predictive
+
+. . . 
+
+Taking a look at our numeric variables...
+
+```{r}
+PM_cor <- cor(pm %>% dplyr::select_if(is.numeric))
+corrplot::corrplot(PM_cor, tl.cex = 0.5)
+```
+
+- deep blue | strongly, positively correlated
+- deep red | strongly, negatively correlated
+
+. . .
+
+If we don't care about direction, but only strength...*and* using [hierarchical clustering](https://en.wikipedia.org/wiki/Hierarchical_clustering):
+
+```{r}
+corrplot::corrplot(abs(PM_cor), order = "hclust", tl.cex = 0.5, cl.lim = c(0, 1))
+
+```
+
+. . .
+
+Observations:
+
+- development variables (`imp`), road density (`pri`), and the emission (`nei`) variables all seem to be correlated with their group
+- none of the predictors are correlated with `value` (our outcome)
+
+## Development (`imp`)
+
+```{r}
+# we used GGally in a previous set of notes
+# will need to install if you haven't yet
+select(pm, contains("imp")) %>%
+  GGally::ggpairs()
+```
+
+## Emmissoins (`nei`)
+
+```{r}
+select(pm, contains("nei")) %>%
+  GGally::ggpairs()
+```
+
+. . .
+
+## Road Density (`pri`)
+
+```{r}
+select(pm, contains("pri")) %>%
+  GGally::ggcorr(hjust = .85, size = 3,
+       layout.exp=2, label = TRUE)
+```
+
+Warning: colors are reversed from above. If included in final report, you'd want consistency.
+
+## Are the categories correlated with one another?
+
+```{r}
+ pm %>%
+select(log_nei_2008_pm25_sum_10000, popdens_county, 
+       log_pri_length_10000, imp_a10000, county_pop) %>%
+  GGally::ggpairs()
+```
+
+Reminder:
+
+- **log_nei_2008_pm25_sum_10000** | Tons of emissions from major sources data base (annual data) sum of all sources within a circle with a radius of 10000 meters of distance around the monitor (Natural log)    
+- **popdens_county** | Population density (number of people per kilometer squared area of the county)
+- **log_pri_length_10000** | Count of primary road length in meters in a circle with a radius of 10000 meters around the monitor (Natural log) <br> -- Highways only  
+- **imp_a10000** | Impervious surface measure <br> --  Within a circle with a radius of 10000 meters around the monitor   
+- **county_pop** | Population of the county of the monitor  
+
+## Log-transforming right-skewed data
+
+```{r}
+pm %>%
+  mutate(log_popdens_county=log(popdens_county),
+         log_pop_county = log(county_pop)) %>%
+  select(log_nei_2008_pm25_sum_10000, log_popdens_county, 
+       log_pri_length_10000, imp_a10000, log_pop_county) %>%
+  GGally::ggpairs()
+```
+
+## Your Turn
+
+[`r emo::ji("muscle")` Try to learn at least three things about the data that we haven't yet discussed now on your own.]{style="background-color: #ADD8E6"}
+
+::: aside
+Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
+:::

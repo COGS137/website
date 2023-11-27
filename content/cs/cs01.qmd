@@ -1,6 +1,6 @@
 ---
 title: "CS01: Biomarkers of Recent Use"
-date: "Due: Nov 27, 2023 (11:59 PM)"
+date: "Due: Nov 30, 2023 (11:59 PM)"
 output: 
   html: 
     highlight: pygments
@@ -37,20 +37,20 @@ You are allowed to import whichever packages you like for this case study report
 
 Your case study can be organized however you see best fit, but we'll be looking for the following *general* sections:
 
-- Title
-- Authors
-- Background/Introduction
-- Question(s)
-- Data
-  -   Data Explanation
-  -   Data Import
-  -   Data Wrangling
-- Analysis
-  -   Exploratory Data Analysis
-  -   Data Analysis
-- Results
-- Discussion of results
-- Conclusion
+-   Title
+-   Authors
+-   Background/Introduction
+-   Question(s)
+-   Data
+    -   Data Explanation
+    -   Data Import
+    -   Data Wrangling
+-   Analysis
+    -   Exploratory Data Analysis
+    -   Data Analysis
+-   Results
+-   Discussion of results
+-   Conclusion
 
 Now, you may want to combine some of these sections (i.e. include your results and discussion among your analysis code). That's *totally* allowed, but we'll be looking to see that your report includes sufficient information to understand what you did, why you did it, and what your results are.
 
@@ -59,6 +59,18 @@ Now, you may want to combine some of these sections (i.e. include your results a
 In addition to getting the code presented in class working, adding explanatory text to your report, and generating polished visualizations, you and your group must "extend the analysis" presented in class in a meaningful way. Now "meaningful" is not a very-easily-measured term. A meaningful extension could be carrying out analysis to answer an additional sub-question beyond what was presented in class, or including a really extensive exploratory data analysis, or generating a really superb set of visualizations to convey your groups' results, or finding a related dataset and incorporating it into your case study. To determine whether your extension is "meaningful," you and your group should be able to answer "yes" to the question "Does our extension add something important to this report beyond what was presented in class?"
 
 This extension should be included/weaved into your report, meaning it should only be "separated out" as its own section if it makes most sense for the story you're telling.
+
+## General Communication 
+
+Each group will need to convey the most important finding(s) to a *general audience* through some form of communication.
+
+This is very open-ended in its format. It could be a short video, an infographic, an effective email, a graphic, instagram slides, a short presentation, etc. It will be submitted by one group member on Canvas. (All group members will receive credit.)
+
+The specific audience you want to target can be specified (i.e. police officers, undergraduate students, parents, etc.); however, the assumption is that these are NOT data scientists.
+
+Your communication SHOULD include your take-home message…and that may be all it includes! Basically, we want you to distill down your case study to its most important message and then convey that to the general public in an effective manner.
+
+It should NOT contain specifics of your analysis or anywhere near all the information included in your report.
 
 ## Group Feedback
 

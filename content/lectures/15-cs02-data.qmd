@@ -447,4 +447,42 @@ Many of these features have to do with the circular area around the monitor call
 
 # Wrangling {background-color="#92A86A"}
 
-Coming soon
+## `skimr` {.smaller}
+
+`skimr` | A helpful way to get an overall sense of a dataset
+
+```{r}
+# install.packages("skimr")
+skimr::skim(pm)
+```
+
+. . .
+
+[`r emo::ji("question")` Given the dataset we're working with, what wrangling should we consider doing here?"]{style="background-color: #ADD8E6"}
+
+[`r emo::ji("question")` What's something you've learned about the data from the <code>skimr</code> output?]{style="background-color: #ADD8E6"}
+
+Reminder: to read the data in and run `skimr` if you haven't already:
+
+```{r, eval=FALSE}
+# install.packages("OCSdata")
+# install.packages("here")
+# install.packages("skimr")
+
+OCSdata::raw_data("ocs-bp-air-pollution", outpath = getwd())
+pm <- readr::read_csv(here::here("OCS_data", "data","raw", "pm25_data.csv"))
+skimr::skim(pm)
+
+```
+
+. . .
+
+Things to note: 
+
+:::incremental
+- data are summarized by variable type
+- `empty`/`n_missing` gives you a sense of how much data are missing for each variable
+- `n_unique` for `state` indicates that we have data for 49 states
+- many different distributions for continuous data, but many show bimodal distribution
+- large range of possible values for many variables (i.e. population)
+:::

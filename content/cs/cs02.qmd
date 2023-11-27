@@ -1,0 +1,83 @@
+---
+title: "CS02: Predicting Annual Air Pollution"
+date: "Due: Dec 7, 2023 (11:59 PM)"
+output: 
+  html: 
+    highlight: pygments
+    preview-links: auto
+    execute:
+      eval: false
+---
+
+This is your second case study report, so you get to incorporate the general feedback from cs01 and carry out another complete data science project! This report will include your analysis from top (the background and question) to bottom (your analysis, interpretation, and conclusions.)
+
+We'll be grading to see that you have: 1) all necessary code for each section of the project; 2) explanatory text that guides the reader from start to finish; 3) polished visualizations that allow the reader to both understand the data you're working with an your conclusions.
+
+This will be submitted and graded as a group. **One submission per group.**
+
+## Getting started
+
+Here are the steps for getting started:
+
+-   This will be completed in cs02 group repository that has been created for you and your group mates.
+-   Make any changes needed as outlined by the tasks you need to complete for the assignment
+-   Periodically knit and commit changes (for example, once per each new part)[^1]
+-   Push all your changes back to your GitHub repo
+-   This case study will be graded from GitHub.
+
+[^1]: Avoid waiting until the end to knit for the first time. It will be better/easier/less of a headache if you knit periodically and know it's all working as intended.
+
+Your final GitHub push prior to the deadline will be used for grading.
+
+### Imports
+
+You are allowed to import whichever packages you like for this case study report.
+
+## Case Study Report
+
+Your case study can be organized however you see best fit, but we'll be looking for the following *general* sections:
+
+-   Title
+-   Authors
+-   Background/Introduction
+-   Question(s)
+-   Data
+    -   Data Explanation
+    -   Data Import
+    -   Data Wrangling
+-   Analysis
+    -   Exploratory Data Analysis
+    -   Data Analysis
+-   Results
+-   Discussion of results
+-   Conclusion
+
+Now, you may want to combine some of these sections (i.e. include your results and discussion among your analysis code). That's *totally* allowed, but we'll be looking to see that your report includes sufficient information to understand what you did, why you did it, and what your results are.
+
+### Required Questions
+
+All groups will analyze the data and answer the following question in their report:
+
+Can we predict US annual average air pollution concentrations at the granularity of zip code regional levels using predictors such as data about population density, urbanization, road density, as well as, satellite pollution data and chemical modeling data?
+
+### Extending the Analysis
+
+In addition to getting the code presented in class working, adding explanatory text to your report, and generating polished visualizations, you and your group must "extend the analysis" presented in class in a meaningful way. Now "meaningful" is not a very-easily-measured term. A meaningful extension could be carrying out analysis to answer an additional sub-question beyond what was presented in class, or including a really extensive exploratory data analysis, including data from additional years, and/or or generating a really superb set of visualizations to convey your groups' results, or finding a related dataset and incorporating it into your case study. To determine whether your extension is "meaningful," you and your group should be able to answer "yes" to the question "Does our extension add something important to this report beyond what was presented in class?"
+
+This extension should be included/weaved into your report, meaning it should only be "separated out" as its own section if it makes most sense for the story you're telling.
+
+## General Communication 
+
+Each group will need to convey the most important finding(s) to a *general audience* through some form of communication.
+
+This is very open-ended in its format. It could be a short video, an infographic, an effective email, a graphic, instagram slides, a short presentation, etc. It will be submitted by one group member on Canvas. (All group members will receive credit.)
+
+The specific audience you want to target can be specified (i.e. undergraduate students, policy makers, local government officials, etc.); however, the assumption is that these are NOT data scientists.
+
+Your communication SHOULD include your take-home message…and that may be all it includes! Basically, we want you to distill down your case study to its most important message and then convey that to the general public in an effective manner.
+
+It should NOT contain specifics of your analysis or anywhere near all the information included in your report.
+
+## Group Feedback
+
+There will be a form to submit upon submission of the case study to provide feedback about working with your group mates. This is meant to motivate not scare. Most groups work out really really well and everyone contributes to the best of their ability. However, if and when that doesn't happen, I want to be sure I'm aware of the circumstances and follow up as necessary. This form is "due" 24h after the case study, to give you time to reflect/complete your feedback after completing the case study itself.

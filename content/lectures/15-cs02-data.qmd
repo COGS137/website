@@ -462,6 +462,10 @@ skimr::skim(pm)
 
 [`r emo::ji("question")` What's something you've learned about the data from the <code>skimr</code> output?]{style="background-color: #ADD8E6"}
 
+- Consider variable type - need more factors?
+- Understand why ID is not uniformally distributed; figure out which are overrepresented; decide what to do
+- log or other transformations necessary? decide during EDA
+
 Reminder: to read the data in and run `skimr` if you haven't already:
 
 ```{r, eval=FALSE}

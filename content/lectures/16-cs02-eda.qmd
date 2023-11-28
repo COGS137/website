@@ -1,7 +1,7 @@
 ---
 title: "16-cs02-eda"
 author: "Professor Shannon Ellis"
-date: "2023-11-21"
+date: "2023-11-28"
 
 format:
   html: 
@@ -51,6 +51,15 @@ knitr::opts_chunk$set(dpi = 300, echo=TRUE, warning=FALSE, message=FALSE)
 
 . . .
 
+Vote:
+
+- *Option 1*: Continue as planned cs01 (12.5) + cs02 (12.5) + final project (18)
+- *Option 2*: 
+  - CS01 due Thursday (17)
+  - Complete *either* CS02 w/ external data req'd for extension OR Final Project (**with final project group**; due Finals week) (26) 
+
+. . .
+
 CS02 and Final Project repos + emails went out yesterday
 
 - please look for your repo/make sure you have access!
@@ -95,6 +104,8 @@ pm %>%
 ```{r}
 pm %>% filter(city == "San Diego")
 ```
+
+. . . 
 
 ```{r}
 pm %>% filter(city == "Baltimore")
@@ -172,11 +183,13 @@ Warning: colors are reversed from above. If included in final report, you'd want
 ## Are the categories correlated with one another?
 
 ```{r}
- pm %>%
+pm %>%
 select(log_nei_2008_pm25_sum_10000, popdens_county, 
        log_pri_length_10000, imp_a10000, county_pop) %>%
   GGally::ggpairs()
 ```
+
+. . .
 
 Reminder:
 

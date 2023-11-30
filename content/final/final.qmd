@@ -35,7 +35,7 @@ This presentation must teach the details of the R package, the statistical topic
 
 ### Deliverable: Presentation
 
-Students must also present their slides in a presentation that is **10-15min long**. This presentation can either be pre-recorded and submitted on Canvas *or* groups can sign up for a presentation slot to present in-person Thursday of finals week. For this option, **all students must participate in the presentation**. There is no grade difference for those who choose to pre-record or present in person.
+Students must also present their slides in a presentation that is **10-15min long**. This presentation will be pre-recorded and submitted on Canvas. For this option, **all students must participate in the presentation**.
 
 ### Deliverable: General Communication
 
@@ -57,11 +57,19 @@ This will likely *not* be quite as long as a case study in this course, but will
 
 ### Deliverable: Presentation
 
-Students must present their case study in a presentation that is **3-5min long**. What you use to visually support this presentation (slides, or something else) is up to you but should follow the effective communication aspects discussed in class. This presentation can either be pre-recorded and submitted on Canvas *or* groups can sign up for a presentation slot to present in-person Thursday of finals week. For this option, **at least one group member must present the project** (in other words, not everyone has to "speak" but everyone in the group is responsible for the contents). There is no grade difference for those who choose to pre-record or present in person.
+Students must present their case study in a presentation that is **3-5min long**. What you use to visually support this presentation (slides, or something else) is up to you but should follow the effective communication aspects discussed in class. This presentation will pre-recorded and submitted on Canvas. For this option, **at least one group member must present the project** (in other words, not everyone has to "speak" but everyone in the group is responsible for the contents).
 
 ### Deliverable: General Communication
 
 This will be a communication targeted to the general public (non-technical, non-data scientists) conveying the most important finding(s) from your project.
+
+## Option 3: CS02 + Additional Data
+
+Students can choose to carry out CS02 for their final project; however, students will have to find an additional dataset on a related topic (pollution, climate change, etc.) and incorporate that into the ir final report. See [CS02](https://cogs137.github.io/website/content/cs/cs02.html) documentation for details on report and general communication deliverables. 
+
+### Deliverable: Presentation
+
+Students must also present their project in a presentation that is **10-15min long**. This presentation will be pre-recorded and submitted on Canvas. For this option, **all students must participate in the presentation**.
 
 ## Group Feedback
 

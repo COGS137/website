@@ -9,6 +9,10 @@ output:
       eval: false
 ---
 
+::: callout-important
+CS02 is not required fa23 quarter. Students have the option to complete CS02 in lieu of the typical final project. This will be completed in your **final project groups** and will require use of some outside source of data.
+:::
+
 This is your second case study report, so you get to incorporate the general feedback from cs01 and carry out another complete data science project! This report will include your analysis from top (the background and question) to bottom (your analysis, interpretation, and conclusions.)
 
 We'll be grading to see that you have: 1) all necessary code for each section of the project; 2) explanatory text that guides the reader from start to finish; 3) polished visualizations that allow the reader to both understand the data you're working with an your conclusions.

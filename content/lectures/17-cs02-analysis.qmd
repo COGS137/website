@@ -113,6 +113,9 @@ test_pm <- rsample::testing(pm_split)
 count(train_pm, state)
 ```
 
+[`r emo::ji("question")` What do you observe about the output?]{style="background-color: #ADD8E6"}
+
+
 ## Pre-processing: `recipe()` + `bake()`
 
 Need to:
@@ -168,6 +171,9 @@ simple_rec <- recipe(train_pm) %>%
 simple_rec
 ```
 
+[`r emo::ji("question")` Can someone summarize what this code is specifying?]{style="background-color: #ADD8E6"}
+
+
 . . .
 
 Summarizing our recipe thus far:
@@ -218,6 +224,8 @@ One-hot encoding categorical variables:
 simple_rec %>%
   step_dummy(state, county, city, zcta, one_hot = TRUE)
 ```
+
+[`r emo::ji("question")` Can anyone remind us what one-hot encoding does?]{style="background-color: #ADD8E6"}
 
 . . .
 
@@ -334,7 +342,7 @@ glimpse(baked_test_pm)
 
 Hmm....lots of NAs now in `city_Not.in.a.city`
 
-Likely b/c there are cities in our testing dataaset that were not in our training dataset...
+Likely b/c there are cities in our testing dataset that were not in our training dataset...
 
 ```{r}
 traincities <- train_pm %>% distinct(city)
@@ -441,6 +449,8 @@ PM_wflow <- workflows::workflow() %>%
             workflows::add_model(lm_PM_model)
 PM_wflow
 ```
+
+[`r emo::ji("question")` Who can explain the difference between a recipe, baking, and a workflow?]{style="background-color: #ADD8E6"}
 
 
 ## Step 3: Prepare the recipe (estimate the parameters)
@@ -690,6 +700,9 @@ RF_wflow_fit %>%
   extract_fit_parsnip() %>% 
   vip::vip(num_features = 10)
 ```
+
+[`r emo::ji("question")` What's your interpretation of these results?]{style="background-color: #ADD8E6"}
+
 
 ## Assess Model Performance
 
@@ -1014,3 +1027,4 @@ library(patchwork)
                                 plot.subtitle = element_text(size = 8)))
 ```
 
+[`r emo::ji("question")` What do you learn from these results? ]{style="background-color: #ADD8E6"}

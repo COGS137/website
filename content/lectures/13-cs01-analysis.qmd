@@ -577,6 +577,13 @@ OF_THC
 
 Why is there no calculation for breath?
 
+```{r}
+BR_THC <- sens_spec_cpd(dataset = BR, cpd = 'thc',
+                        timepoints = timepoints_BR,
+                        splits = cutoffs) %>% clean_gluc()
+
+BR_THC
+```
 
 :::
 

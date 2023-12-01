@@ -217,3 +217,20 @@ pm %>%
 ::: aside
 Put a <font color="#32cb31">green</font> sticky on the front of your computer when you're done. Put a <font color="#ff65a3">pink</font> if you want help/have a question.
 :::
+
+Outcome variable
+
+```{r}
+summary(pm$value)
+
+ggplot(pm, aes(value)) + geom_histogram()
+```
+
+What do we know about the monitors that have very high values?
+
+```{r}
+pm |> 
+  filter(value > 20) |>
+  select(state) 
+```
+

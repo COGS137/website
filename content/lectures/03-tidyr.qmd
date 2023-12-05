@@ -33,7 +33,7 @@ knitr::opts_chunk$set(fig.height = 2.65, dpi = 300, echo=TRUE)
 htmltools::tagList(rmarkdown::html_dependency_font_awesome())
 ```
 
-## [ad] Data Science Student Society
+## \[ad\] Data Science Student Society
 
 Join DS3 at their Fall General Body Meeting to learn more about the events they're offering this quarter, open board positions for the year, and free food! It will be happening on Wednesday (10/11) from 6-8pm, at PC Ballroom West
 
@@ -41,14 +41,14 @@ Join DS3 at their Fall General Body Meeting to learn more about the events they'
 
 ## Q&A {.smaller}
 
-> Q: Is it possible to integrate to github using other systems than datahub? Datahub has already been spotty for me in this course and is notorious for slumping at critical pts in the quarter.  
+> Q: Is it possible to integrate to github using other systems than datahub? Datahub has already been spotty for me in this course and is notorious for slumping at critical pts in the quarter.\
 > A: Yup. The same steps can be carried out by [downloading RStudio](https://posit.co/download/rstudio-desktop/) onto your computer and connecting it with GitHub.
 
-> Q: Should we write in the console or in the rmd file first when writing code?  
+> Q: Should we write in the console or in the rmd file first when writing code?\
 > A: Great question! I'd suggest starting in the Rmd file and editing there. That way you don't have to copy+paste once you get it right. It's already there.
 
-> Q: How do you take notes for coding classes? I know there are lecture notes available, but how would you recommend taking notes for this class?  
-> A: I would recommend opening a blank Rmd each day for class and saving it with the lecture number. I'd keep notes and things I tried in that file. But, I wouldn't copy+paste everything, since the other lecture notes are available. 
+> Q: How do you take notes for coding classes? I know there are lecture notes available, but how would you recommend taking notes for this class?\
+> A: I would recommend opening a blank Rmd each day for class and saving it with the lecture number. I'd keep notes and things I tried in that file. But, I wouldn't copy+paste everything, since the other lecture notes are available.
 
 ## Course Announcements {.scrollable .smaller}
 
@@ -70,9 +70,9 @@ Join DS3 at their Fall General Body Meeting to learn more about the events they'
 
 > I have been struggling to grasp the material in the course. It feels like we are diving into the content in the labs, but I don't even feel like I truly understand what I'm doing. It often seems like I'm just copying and pasting code from the website without a clear understanding of the bigger picture. I'm particularly stuck because I feel like I don't have a solid grasp of the fundamental concepts of coding in R; it feels so new. I understand that the pace of the course may be challenging, but I think a bit more stronger focus on the foundational aspects of coding in R would greatly benefit students like me who are struggling with the content. I'm looking forward to the course and I hope I can grasp the content as we go through the next week. I'm concerned about learning the material and also how that may affect my grade.
 
-. . . 
+. . .
 
-Let's see how y'all feel in a week. The first week can be *a lot* in this course. Often, students feel a lot more comfortable come week 3. 
+Let's see how y'all feel in a week. The first week can be *a lot* in this course. Often, students feel a lot more comfortable come week 3.
 
 ## Student Survey
 
@@ -369,5 +369,3 @@ Other joins:
 -   What is the difference been long data and wide data?
 -   Can I take long data to wide data? And wide to long?
 -   Can I carry out mutating joins on data?
-
-

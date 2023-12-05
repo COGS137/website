@@ -1,0 +1,270 @@
+---
+title: "18-brainstorming"
+author: "Professor Shannon Ellis"
+date: "2023-12-05"
+
+format:
+  html: 
+    output-file: 18-brainstorming.html
+    embed-resources: true
+  revealjs:
+    output-file: 18-brainstorming-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# Brainstorming {background-color="#92A86A"}
+
+## Q&A
+
+> Q: How does recipe work? I don't fully understand it.\
+> A Recipe allows you to specify the steps you want to carry out on your dataset during modeling. For example, we used it to specify our outcome & predictors and to preprocess the data. You don't actually DO anything with the recipe...until you `bake()`, when then carries out your recipe on your data.
+
+> Q: Why did you specify CMAQ and aod when making the recipe? Why those two? \
+> A: We wanted to be sure these were not removed from the analysis, given their inportance to predicting the outcome variable (check the data dictionary to see what these variables are!). To see if this was necessary, you could remove their specification and see if/how the results change! 
+
+> Q: Is there any dataset available online so that we can try machine learning on our own?\
+> A: Yes! In fact there are good/helpful tutorials and datasets on the `tidymodels` documentation [here](https://www.tidymodels.org/start/).
+
+> Q: What's a good R^2 to aim for generally?\
+> A: This is very analysis specific. A model can be useful with a low $R^2$, if prediction is otherwise very difficult. And the reverse can also be true.
+
+## Course Announcements {.smaller}
+
+-   Please fill out your [SET course evaluations](https://academicaffairs.ucsd.edu/Modules/Evals) (due Sat 12/9 at 8AM)
+- Final Project due Tues 12/12 at 11:59 PM
+  - .Rmd (report/slides)
+  - Presentation (recording; submit on Canvas)
+  - General Communication
+  
+. . .
+
+- HW03 and lab07 scores/feedback now posted
+- CS01 Feedback/Scores by Friday
+
+## Agenda
+
+-   HW03 Review
+-   Lab07 Comments
+-   Storytelling Discussion
+-   Final Project Brainstorming/Q&A
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+# HW03: Bike Rentals {background-color="#92A86A"}
+
+Linear regression
+
+## Part I: Wrangling
+
+-   refactoring & getting all the variables of the specified type
+-   part of this class is retaining from one assignment to the next (lots of questions in logistic regression lab about type)
+
+## Part II: EDA
+
+-   Included Plots
+-   Interpreted Plots
+
+. . .
+
+-   Most common mistakes:
+    -   forgetting to include interpretation
+    -   using a barplot when displaying a continuous variable and a categorical variable (Q9)
+
+## HW03: Part III {.smaller}
+
+-   Q9-Q11: fit three different models, building up to a full model
+-   Q12: backward elimination to settle on a final model
+-   Q13: interpreting final model
+-   Q14: contextualizing full model to determine the best day for biking
+
+. . .
+
+-   Comments:
+    -   (Q11) Think about what an interaction term *actually* means in the model
+        -   i.e. what would it mean for a holiday and temperature to interact? what would it mean for `weathersit` and temperature to interact? Which of these makes better sense?
+    -   (Q13) if interpreting a categorical variable, must include what you're comparing against (the baseline)
+
+. . .
+
+-   Most common mistakes:
+    -   Not including an interaction term
+    -   Not including season as a factor
+    -   Not considering that all other variables must be held constant in interpretation
+    
+# Lab 07: Comments {background-color="#92A86A"}
+
+## EDA
+
+- required something beyond what was presented in class
+- stating what was plotted not enough
+  - i.e. "the relationship between variable X and variable Y"
+  - DESCRIBE that relationship
+  - what does that MEAN in the context of tehse data? this question?
+
+## Possible Extensions
+
+:::incremental
+- additional models
+- additional features/data
+- looking more closely at one aspect of the data (i.e. poverty, education, etc.)
+- analysis over time
+- related question (weather, demographics, public health)
+:::
+
+# Storytelling {background-color="#92A86A"}
+
+## Feedback: Group Work Survey
+
+Pros: 
+
+> It was interesting! I enjoyed the process of figuring out how to work with a group on a bigger project that involved using a lot of GitHub. It did end up taking a lot longer than I thought it would.
+
+> Hard work, but rewarding.
+
+> Great thanks to both teammates, the project is going very well and everyone is making a real contribution.
+
+. . .
+
+Cons:
+
+> I felt like level of difficulty suddenly leaped...having random group makes it hard to communicate... felt the rubric for this project is all over the place
+
+. . .
+
+> The workload was a lot more than I expected. 
+
+> Overall I think the case study was a lot of work especially during a busy part of the quarter.
+
+. . .
+
+> CS01 has too much unexpected workload. (GitHub)
+
+. . .
+
+> I actually wished we can have more teammate for this assignment.
+
+
+## CS01 Discussion
+
+- How did it go?
+- What went well? What was difficult?
+- General thoughts? 
+- Feedback?
+
+## General Communication
+
+Example: email
+
+![](images/18/email.png)
+
+. . . 
+
+Example: Infographic
+
+![](images/18/infographic.png)
+
+Group: Katie, Andrew, & Sidney
+
+. . . 
+
+Example: IG slides
+
+Link [here](https://www.canva.com/design/DAF1alZjz2Q/TsnYWt6FBRhD-pjVUh0kuA/view?utm_content=DAF1alZjz2Q&utm_campaign=designshare&utm_medium=link&utm_source=viewer)
+
+. . .
+
+Example: infographic
+
+![](images/18/infographic2.png)
+
+Group: Dhathry, Markus & Linus
+
+. . . 
+
+Example: Report
+
+{{< pdf report.pdf width=100% height=800 >}}
+
+. . . 
+
+Example: Infographic
+
+
+![](images/18/infographic3.png)
+
+Group: Sid, Derek, Kushi
+
+. . . 
+
+
+
+
+## Storytelling
+
+...so how do you make sure your case study/final project/data analysis tells a story/makes sense from start to finish? How did you all approach it?
+
+. . .
+
+We're going to work through [this document](https://docs.google.com/document/d/1dsWDtxtT4tQ03qeVLMclPlyWtSN1s13_18MlXLwuawA/edit?usp=sharing).
+
+
+# Final Project {background-color="#92A86A"}
+
+::: incremental
+-   Who has a plan for what they're doing for the final project?
+-   What questions do you have about the final project?
+:::
+
+# Books, Slides and Personal Websites {background-color="#92A86A"}
+
+`bookdown`, `xaringan`, `blogdown`, and `quarto`
+
+An ode to [Yihui Xie](https://yihui.org/en/)
+
+## Books: `bookdown` {.smaller}
+
+An R package by Yihui Xie to write online books, with the philosophy that it "should be technically easy to write a book, visually pleasant to view the book, fun to interact with the book, convenient to navigate through the book, straightforward for readers to contribute or leave feedback to the book author(s), and more importantly, authors should not always be distracted by typesetting details"
+
+-   [`bookdown`: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/), by Yihui Xie
+-   [`bookdown` gallery](https://bookdown.org/home/archive/)
+-   Example: [What they forgot to teach you about R](https://rstats.wtf/), by Jenny Bryan and Jim Hester
+
+## Slides: `xaringan`
+
+An RMarkdown extension (based on JS library remark.js) to generate slides from .Rmd documents.
+
+-   Book Chapter: [`xaringan Presentations`](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+-   Slide Show: [Meet Xaringan](https://arm.rbind.io/slides/xaringan.html#1), by Alison Hill
+
+## Websites: `blogdown`
+
+Enables personal website creation using R Markdown and Hugo (or Jekyll)
+
+-   Book: [`blogdown`: Creating websites with R Markdown](https://bookdown.org/yihui/blogdown/), by Yihui Xie, Amber Thomas, and Alison Presmanes Hill
+-   Blogpost [Up & running with blogdown in 2021](https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/), by Alison Presmanes Hill
+-   Some examples: [Alison Hill](https://www.apreshill.com/), [Yihui](https://yihui.org/), [Prof](http://www.shanellis.com/)
+
+## Quarto
+
+> an open-source scientific and technical publishing system built on Pandoc
+
+-   outputs: HTML, PDF, MS Word, ePub, etc.
+-   language-agnostic
+-   allows for multiple programming languages in a single document
+-   Website: [Quarto](https://quarto.org/)
+
+::: aside
+Class notes, slides, and website for COGS 137 were all [built utilizing quarto](https://github.com/COGS137/website/tree/master/content/lectures). Generating slides for technical presentation using quarto is an option for the final project. (.qmd rather than .Rmd)
+:::

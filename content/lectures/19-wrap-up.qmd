@@ -1,0 +1,345 @@
+---
+title: "19-wrap-up"
+author: "Professor Shannon Ellis"
+date: "2023-12-06"
+
+format:
+  html: 
+    output-file: 19-wrap-up.html
+    embed-resources: true
+  revealjs:
+    output-file: 19-wrap-up-slides.html
+    slide-number: true
+    chalkboard: false 
+    preview-links: auto
+    logo: images/cogs137-logo-hex.png
+    css: slides.css
+    footer: <https://cogs137.github.io/website/>
+    scrollable: true
+    embed-resources: true
+    execute:
+      echo: true
+      eval: true
+---
+
+# Wrap-up {background-color="#92A86A"}
+
+## Q&A
+
+> Q: Are we required to try models other than linear models/random forest if we are doing cs02 as our final project?\
+> A: No. In fact, I think you could just do the random forest model (and not discuss the linear regression models.) Using additional models would be a good extension. Of course, you'd also need to consider some outside dataset as well.
+
+> Q: How much workload are you expecting for the final project compared to CS01? Our group spent like at least 14 hours on CS01 when your expectation was to spend 4-6 hours if I remember correctly. Should I expect to spend a similar amount of time for the final project or more?\
+> A: Historically groups have spend less time on the final relative to the case studies b/c they choose more straightforward datasets/questions.
+
+> Q: I am still curious about presentation styles, and what is the most effective manner. In my time taking courses in the COGS and DSC departments at UCSD, I have noticed the usage of emojis a lot in programming assignments (esp. Jupyter notebook) but recently got some mixed opinions of emoji use in my Jupyter notebook by someone looking over a personal project. I am curious to know what the conventions are, and to delve deeper into presenting things catered to a specific audience. Additionally, I was wondering if there are any resources on how to make a data science portfolio/website for graduate school and internship/job applications.\
+> A: We'll discuss a bit about the second question soon. As for the first, my response is that it depends on your audience and the setting. If it's a very serios/stuffy conference, maybe be more formal (fewer emojis)....but in data science, typically presentations are more casual/fun (relative to other fields), so I'd say do what you're comfortable with.
+
+## Course Announcements {.smaller}
+
+-   Please fill out your [SET course evaluations](https://academicaffairs.ucsd.edu/Modules/Evals) (due Sat 12/9 at 8AM)
+-   Final Project due Tues 12/12 at 11:59 PM
+    -   .Rmd (report/slides)
+    -   Presentation (recording; submit on Canvas)
+    -   General Communication
+    -   group work survey (due Wednesday)
+-   Post-course survey "due" next Wednesday (for EC)
+
+```{r packages, echo = FALSE, message=FALSE, warning=FALSE}
+knitr::opts_chunk$set(fig.height = 3.5, dpi = 300, echo=TRUE, warning=FALSE, message=FALSE) 
+```
+
+## Final Project Details
+
+::: incremental
+-   Data Analysis option
+    -   if wrangling not needed...don't make wrangling up
+    -   want you to demonstrate your skills across the final project
+-   **Presentation**: at the level of a COGS 137 student
+    -   pre-recorded
+    -   the time limit *matters*
+    -   probably best to reference the effective communication notes
+-   **General communication**: to a non-technical audience
+    -   for a technical presentation, likely best to think of it as an "ad" for the package/statistical approach
+:::
+
+# Final Project {background-color="#92A86A"}
+
+-   Who has a plan for what they're doing for the final project?
+-   What questions do you have about the final project?
+
+
+## Open Q&A
+
+What questions do you have about data science, stats, R, jobs/internships, life, analysis, communication, my life/opinions, etc.?
+
+## Where is R used?
+
+::: incremental
+-   R is used by data scientists
+-   particularly popular in certain fields: (bio)statistics, biology, economics, psychology, finance, healthcare, business analytics, government/public policy, data journalism, education, etc.
+-   It is less popular than Python
+-   Really great for: data wrangling, visualization, and modelling
+:::
+
+## Next Steps in R
+
+-   Interactive Visualization
+-   Package Development
+-   Books, Slides, and Personal websites
+-   Shiny Apps
+
+. . .
+
+Note: Any packages described today *ARE* allowed to be used for the final project, if you're going the technical presentation route.
+
+## Packages
+
+```{r}
+library(ggplot2)
+library(plotly)
+library(gganimate)
+library(gapminder) # the dataset being used
+```
+
+## The Data: Gapminder
+
+The [gapminder visualization](https://www.gapminder.org/tools/?from=world) was made famous by [Hans Rosling](https://www.ted.com/talks/hans_rosling_the_best_stats_you_ve_ever_seen). The dataset used here includes life expectancy, population, and GDP across 142 countries and 5 continents from 1952-2007.
+
+# Interactive Viz {background-color="#92A86A"}
+
+`plotly`, `gganimate`, and `r2d3`
+
+## `plotly`
+
+-   wrapper around `ggplot` plots: `ggplotly()`
+-   when it works, it works
+-   less control over specifics
+
+::: panel-tabset
+### Code
+
+```{r plotly}
+p <- gapminder |>
+  filter(year==1977) |>
+  ggplot(aes(gdpPercap, lifeExp, size = pop, color=continent)) +
+  geom_point() +
+  theme_bw()
+
+p <- ggplotly(p)
+```
+
+### Plot
+
+```{r,  echo = FALSE, out.height="80%", out.width="100%"}
+p
+```
+:::
+
+## `plotly`
+
+::: panel-tabset
+### Code
+
+```{r plotly-animate}
+gg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +
+  geom_point() +
+  theme_bw()
+
+gg <- ggplotly(gg) |> 
+  highlight("plotly_hover")
+```
+
+### Plot
+
+```{r, echo = FALSE, out.height="80%", out.width="100%"}
+gg
+```
+:::
+
+## `gganimate` {.smaller}
+
+Extends grammar of graphics for use in animation:
+
+-   `transition_*()` defines how the data should be spread out and how it relates to itself across time.
+-   `view_*()` defines how the positional scales should change along the animation.
+-   `shadow_*()` defines how data from other points in time should be presented in the given point in time.
+-   `enter_*()`/`exit_*()` defines how new data should appear and how old data should disappear during the course of the animation.
+-   `ease_aes()` defines how different aesthetics should be eased during transitions.
+
+Source: <https://gganimate.com/>
+
+. . .
+
+-   more control
+-   slower to render
+-   generates GIFs
+
+. . .
+
+For example...
+
+```{r, eval=FALSE}
+gg <- ggplot(gapminder, aes(gdpPercap, lifeExp, size = pop, color = continent, frame = year)) +
+  geom_point() +
+  theme_bw() +
+  #gganimate specific bits
+  labs(title = 'Year: {frame_time}', x = 'GDP per capita', y = 'life expectancy') +
+  transition_time(year) +
+  ease_aes('linear')
+```
+
+## `r2d3`
+
+-   D3 is a javascript library for producing viz for HTML
+-   able to use custom D3 Visualizations within R
+-   create D3.js scripts
+-   call them from RMarkdown/Shiny/etc.
+-   Example [here](https://observablehq.com/@mbostock/the-wealth-health-of-nations)
+
+# Package Development {background-color="#92A86A"}
+
+## Why develop an R package? {.smaller}
+
+-   reproducibility
+-   include data + code
+-   organize a project
+-   tools needed: `devtools` and `usethis`
+
+::: aside
+-   Book: [R Packages](https://r-pkgs.org/), by Jenny Bryan and Hadley Wickham
+-   Blogpost: [Writing an R Package from Scratch](https://hilaryparker.com/2014/04/29/writing-an-r-package-from-scratch/), by Hilary Parker (Disclaimer: this is from 2014 and does not implement `usethis`)
+-   Blogpost: [Your First Package in 1 hour](https://www.pipinghotdata.com/posts/2020-10-25-your-first-r-package-in-1-hour/), by Shannon Pileggi for R-Ladies Philly in 2020
+:::
+
+## Other Package Suggestsions
+
+-   Dataviz: [handful of packages](https://exts.ggplot2.tidyverse.org/gallery/) that extend the functionality of `ggplot2`; Good Tables: `gt`, `formattable`, and `reactable`
+-   Modelling: we only really used the `tidymodels` and `broom` packages, so the [other packages in tidymodels](https://www.tidymodels.org/) are options
+-   There are lots of packages for doing machine learning. `caret` is a precursor to tidymodels and good for this
+-   Webscraping: `rvest`
+-   Sports: [`nwslR`](https://rdrr.io/github/adror1/nwslR/), [`baseballr`](https://www.rdocumentation.org/packages/baseballr/versions/0.8.6), [NFL](https://nflverse.nflverse.com/)
+-   A whole more curated [here](https://github.com/qinwf/awesome-R)
+
+# Books, Slides and Personal Websites {background-color="#92A86A"}
+
+`bookdown`, `xaringan`, `blogdown`, and `quarto`
+
+An ode to [Yihui Xie](https://yihui.org/en/)
+
+## Books: `bookdown` {.smaller}
+
+An R package by Yihui Xie to write online books, with the philosophy that it "should be technically easy to write a book, visually pleasant to view the book, fun to interact with the book, convenient to navigate through the book, straightforward for readers to contribute or leave feedback to the book author(s), and more importantly, authors should not always be distracted by typesetting details"
+
+-   [`bookdown`: Authoring Books and Technical Documents with R Markdown](https://bookdown.org/yihui/bookdown/), by Yihui Xie
+-   [`bookdown` gallery](https://bookdown.org/home/archive/)
+-   Example: [What they forgot to teach you about R](https://rstats.wtf/), by Jenny Bryan and Jim Hester
+
+## Slides: `xaringan`
+
+An RMarkdown extension (based on JS library remark.js) to generate slides from .Rmd documents.
+
+-   Book Chapter: [`xaringan Presentations`](https://bookdown.org/yihui/rmarkdown/xaringan.html)
+-   Slide Show: [Meet Xaringan](https://arm.rbind.io/slides/xaringan.html#1), by Alison Hill
+
+## Websites: `blogdown`
+
+Enables personal website creation using R Markdown and Hugo (or Jekyll)
+
+-   Book: [`blogdown`: Creating websites with R Markdown](https://bookdown.org/yihui/blogdown/), by Yihui Xie, Amber Thomas, and Alison Presmanes Hill
+-   Blogpost [Up & running with blogdown in 2021](https://www.apreshill.com/blog/2020-12-new-year-new-blogdown/), by Alison Presmanes Hill
+-   Some examples: [Alison Hill](https://www.apreshill.com/), [Yihui](https://yihui.org/), [Prof](http://www.shanellis.com/)
+
+## Quarto
+
+> an open-source scientific and technical publishing system built on Pandoc
+
+-   outputs: HTML, PDF, MS Word, ePub, etc.
+-   language-agnostic
+-   allows for multiple programming languages in a single document
+-   Website: [Quarto](https://quarto.org/)
+
+::: aside
+Class notes, slides, and website for COGS 137 were all [built utilizing quarto](https://github.com/COGS137/website/tree/master/content/lectures). Generating slides for technical presentation using quarto is an option for the final project. (.qmd rather than .Rmd)
+:::
+
+# Shiny Apps {background-color="#92A86A"}
+
+## `Shiny`
+
+`Shiny` is an R package that allows you to build interactive web apps directly from R (initially developed by Winston Chang)
+
+-   Website: [`Shiny`](https://shiny.rstudio.com/)
+-   Examples: [Freedom of the Press Index](https://gallery.shinyapps.io/freedom-press-index/?_ga=2.140525554.1338940047.1638313659-880303198.1633642213#home), [COVID-19 Tracker](https://vac-lshtm.shinyapps.io/ncov_tracker/?_ga=2.73694034.1338940047.1638313659-880303198.1633642213), and [recount](https://jhubiostatistics.shinyapps.io/recount/)
+-   How-To: [How To Build a `Shiny` app](https://shiny.rstudio.com/articles/build.html)
+
+## Quarto Dashboards
+
+In the upcoming release of quarto, dashboards will be even simpler to generate...(currently available in pre-release)...[here](https://quarto.org/docs/dashboards/)
+
+# Tidy Tuesday {.smaller background-color="#92A86A"}
+
+An online community that works with a new dataset every week. You could continue your R practice. There is a Twitter hashtag to share your work: [#TidyTuesday](https://twitter.com/search?q=%23TidyTuesday&src=hashtag_click)
+
+-   [Tidy Tuesday](https://www.tidytuesday.com/)
+-   [Repo](https://github.com/rfordatascience/tidytuesday)
+
+Note: your first midterm dataset came from Tidy Tuesday.
+
+. . .
+
+These are also options for portfolios/personal projects...
+
+## What's a DS portfolio?
+
+A public showcase of your work!
+
+. . .
+
+Kaggle is a great place to get practice, but not necessarily for personal projects for your portfolio
+
+. . .
+
+...b/c literally millions of other people have already worked with the data/done the project.
+
+. . .
+
+You want your portfolio to 1) demonstrate your skills and 2) set you apart
+
+## DS Portfolio Examples
+
+-   [Enrique Sanchez](https://www.sanchezenrique.com/)
+-   [Myra Haider](https://acsweb.ucsd.edu/~myhaider/)
+-   [Tyler Richards](https://www.tylerjrichards.com/)
+-   [Vivian Peng](https://www.vivianpeng.com/)
+-   [Mac Strelioff](https://macstrelioff.github.io/MacStrelioff/)
+
+## Your Turn: Get started on one of these...
+
+Always wanted a personal website? Get Started with `blogdown`! Have a data-centric app you want to share with the world? `Shiny` it up! Have slides that need to be created for a final project? Give `xaringan` a go! Have a visualization that needs animation? Make it move!
+
+# The Wrap Up {background-color="#92A86A"}
+
+## COGS 137: Where We've Been
+
+-   R, RMarkdown & RStudio
+-   Data Wrangling w/ the `tidyverse`
+-   Dataviz w/ `ggplot2`
+-   CS01: Biomarkers of Recent THC Use (Inference)
+-   CS02: Predicting Air Pollution (ML)
+-   Next Steps in R: `Shiny`, `bookdown`, `blogdown`, `plotly`/`gganimate`
+
+## COGS 137: A Semi-New Course
+
+**Lots of thanks!**
+
+::: incremental
+-   course staff! (Kunal & Shenova - feedback, grading, labs, office hours, etc.)
+-   all of you
+-   [Mine Çetinkaya-Rundel](https://mine-cr.com/), [Open Case Studies](https://www.opencasestudies.org/) Team, Posit (RStudio, quarto & tidyverse teams)
+-   Sean Kross & Prof Drew Walker
+:::
+
+##  {background-color="#92A86A"}
+
+### Good Luck on Finals, Get Sleep, Be Safe, Drink Water, Take Care of Yourselves, & Have a Wonderful Winter Break! {background-color="#92A86A"}

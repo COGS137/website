@@ -69,7 +69,9 @@ Students can choose to carry out CS02 for their final project; however, students
 
 ### Deliverable: Presentation
 
-Students must also present their project in a presentation that is **10-15min long**. This presentation will be pre-recorded and submitted on Canvas. For this option, **all students must participate in the presentation**.
+Students must also present their project in a presentation that is **3-5min long**. This presentation will be pre-recorded and submitted on Canvas. For this option, **at least one group member must present the project** (in other words, not everyone has to "speak" but everyone in the group is responsible for the contents).
+
+NOTE: Prior to 12/11 The above paragraph was incorrect. As a result, if a CS02 + additional data group submits a longer presentation 10-15min presentation, there will NOT be a deduction given the error I made. 
 
 ## Group Feedback
 

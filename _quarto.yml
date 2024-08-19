@@ -157,16 +157,16 @@ website:
             href: content/labslides/05-lab-deck.html
       #     - text: "Lab07"
       #       href: content/labslides/07-lab-deck.html
-      - section: "Lab Answers"
-        contents:
-          - text: "Lab02: Wrangling (Ans)"
-            href: content/lab-ans/lab02-wrangling-ans.qmd
-          - text: "Lab03: Data Viz (Ans)"
-            href: content/lab-ans/lab03-viz-ans.qmd
-          - text: "Lab04: Modelling (Ans)"
-            href: content/lab-ans/lab04-modelling-ans.qmd
-          - text: "Lab05: MLR (Ans)"
-            href: content/lab-ans/lab05-mlr-ans.qmd
+      # - section: "Lab Answers"
+      #   contents:
+      #     - text: "Lab02: Wrangling (Ans)"
+      #       href: content/lab-ans/lab02-wrangling-ans.qmd
+      #     - text: "Lab03: Data Viz (Ans)"
+      #       href: content/lab-ans/lab03-viz-ans.qmd
+      #     - text: "Lab04: Modelling (Ans)"
+      #       href: content/lab-ans/lab04-modelling-ans.qmd
+      #     - text: "Lab05: MLR (Ans)"
+      #       href: content/lab-ans/lab05-mlr-ans.qmd
       #     - text: "Lab07: Logistic Regression (Ans)"
       #       href: content/lab-ans/lab07-logistic-regression-ans.qmd
       - section: "Homework"

@@ -1,3 +1,7 @@
+::: callout-warning
+This is the course website for COGS 137 from Fall 2023. While some material may look similar to your current course, be sure you're on *this quarter's* course website as many things have changed.
+:::
+
 | Week   | Date           | Title                                                         | Type        |
 |----------------|----------------|------------------------|----------------|
 | **0**  | **Th Sep 28**  | **Welcome & Tooling**                                         | **Lecture** |

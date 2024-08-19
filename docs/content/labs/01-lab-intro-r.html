@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.3.146">
+<meta name="generator" content="quarto-1.4.554">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -18,11 +18,12 @@ div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
   width: 0.8em;
-  margin: 0 0.8em 0.2em -1.6em;
+  margin: 0 0.8em 0.2em -1em; /* quarto-specific, see https://github.com/quarto-dev/quarto-cli/issues/4556 */ 
   vertical-align: middle;
 }
+/* CSS for syntax highlighting */
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -47,43 +48,13 @@ pre.numberSource code > span > a:first-child::before
     -khtml-user-select: none; -moz-user-select: none;
     -ms-user-select: none; user-select: none;
     padding: 0 4px; width: 4em;
-    color: #aaaaaa;
   }
-pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+pre.numberSource { margin-left: 3em;  padding-left: 4px; }
 div.sourceCode
   {   }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
-code span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code span.at { color: #7d9029; } /* Attribute */
-code span.bn { color: #40a070; } /* BaseN */
-code span.bu { color: #008000; } /* BuiltIn */
-code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code span.ch { color: #4070a0; } /* Char */
-code span.cn { color: #880000; } /* Constant */
-code span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code span.dt { color: #902000; } /* DataType */
-code span.dv { color: #40a070; } /* DecVal */
-code span.er { color: #ff0000; font-weight: bold; } /* Error */
-code span.ex { } /* Extension */
-code span.fl { color: #40a070; } /* Float */
-code span.fu { color: #06287e; } /* Function */
-code span.im { color: #008000; font-weight: bold; } /* Import */
-code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
-code span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code span.op { color: #666666; } /* Operator */
-code span.ot { color: #007020; } /* Other */
-code span.pp { color: #bc7a00; } /* Preprocessor */
-code span.sc { color: #4070a0; } /* SpecialChar */
-code span.ss { color: #bb6688; } /* SpecialString */
-code span.st { color: #4070a0; } /* String */
-code span.va { color: #19177c; } /* Variable */
-code span.vs { color: #4070a0; } /* VerbatimString */
-code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -110,7 +81,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   "collapse-after": 3,
   "panel-placement": "end",
   "type": "overlay",
-  "limit": 20,
+  "limit": 50,
+  "keyboard-shortcut": [
+    "f",
+    "/",
+    "s"
+  ],
+  "show-item-context": false,
   "language": {
     "search-no-results-text": "No results",
     "search-matching-documents-text": "matching documents",
@@ -119,12 +96,42 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     "search-more-match-text": "more match in this document",
     "search-more-matches-text": "more matches in this document",
     "search-clear-button-title": "Clear",
+    "search-text-placeholder": "",
     "search-detached-cancel-button-title": "Cancel",
-    "search-submit-button-title": "Submit"
+    "search-submit-button-title": "Submit",
+    "search-label": "Search"
   }
 }</script>
 
+  <script src="https://polyfill.io/v3/polyfill.min.js?features=es6"></script>
   <script src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-chtml-full.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+const typesetMath = (el) => {
+  if (window.MathJax) {
+    // MathJax Typeset
+    window.MathJax.typeset([el]);
+  } else if (window.katex) {
+    // KaTeX Render
+    var mathElements = el.getElementsByClassName("math");
+    var macros = [];
+    for (var i = 0; i < mathElements.length; i++) {
+      var texText = mathElements[i].firstChild;
+      if (mathElements[i].tagName == "SPAN") {
+        window.katex.render(texText.data, mathElements[i], {
+          displayMode: mathElements[i].classList.contains('display'),
+          throwOnError: false,
+          macros: macros,
+          fleqn: false
+        });
+      }
+    }
+  }
+}
+window.Quarto = {
+  typesetMath
+};
+</script>
 
 <link rel="stylesheet" href="../../styles.css">
 </head>
@@ -133,9 +140,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 
 <div id="quarto-search-results"></div>
   <header id="quarto-header" class="headroom fixed-top">
-    <nav class="navbar navbar-expand-lg navbar-dark ">
+    <nav class="navbar navbar-expand-lg " data-bs-theme="dark">
       <div class="navbar-container container-fluid">
-      <div class="navbar-brand-container">
+      <div class="navbar-brand-container mx-auto">
     <a href="../../index.html" class="navbar-brand navbar-brand-logo">
     <img src="../../images/cogs137-logo-hex.png" alt="" class="navbar-logo">
     </a>
@@ -143,45 +150,52 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     <span class="navbar-title">COGS 137</span>
     </a>
   </div>
+            <div id="quarto-search" class="" title="Search"></div>
           <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
   <span class="navbar-toggler-icon"></span>
 </button>
           <div class="collapse navbar-collapse" id="navbarCollapse">
             <ul class="navbar-nav navbar-nav-scroll me-auto">
   <li class="nav-item">
-    <a class="nav-link" href="../../index.html" rel="" target="">
- <span class="menu-text">Home</span></a>
+    <a class="nav-link" href="../../index.html"> 
+<span class="menu-text">Home</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../schedule.html" rel="" target="">
- <span class="menu-text">Schedule</span></a>
+    <a class="nav-link" href="../../schedule.html"> 
+<span class="menu-text">Schedule</span></a>
   </li>  
   <li class="nav-item">
-    <a class="nav-link" href="../../policies.html" rel="" target="">
- <span class="menu-text">Policies</span></a>
+    <a class="nav-link" href="../../policies.html"> 
+<span class="menu-text">Policies</span></a>
   </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
-    <a class="nav-link" href="https://github.com/COGS137" rel="" target=""><i class="bi bi-github" role="img" aria-label="GitHub">
+    <a class="nav-link" href="https://github.com/COGS137"> <i class="bi bi-github" role="img" aria-label="GitHub">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
   <li class="nav-item compact">
-    <a class="nav-link" href="https://datahub.ucsd.edu/" rel="" target=""><i class="bi bi-cloud-fill" role="img" aria-label="Datahub">
+    <a class="nav-link" href="https://datahub.ucsd.edu/"> <i class="bi bi-cloud-fill" role="img" aria-label="Datahub">
 </i> 
- <span class="menu-text"></span></a>
+<span class="menu-text"></span></a>
   </li>  
 </ul>
-              <div id="quarto-search" class="" title="Search"></div>
           </div> <!-- /navcollapse -->
+          <div class="quarto-navbar-tools">
+</div>
       </div> <!-- /container-fluid -->
     </nav>
-  <nav class="quarto-secondary-nav" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
-    <div class="container-fluid d-flex justify-content-between">
-      <h1 class="quarto-secondary-nav-title">Lab 01 - Tooling</h1>
-      <button type="button" class="quarto-btn-toggle btn" aria-label="Show secondary navigation">
-        <i class="bi bi-chevron-right"></i>
+  <nav class="quarto-secondary-nav">
+    <div class="container-fluid d-flex">
+      <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
+        <i class="bi bi-layout-text-sidebar-reverse"></i>
+      </button>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/labs/01-lab-intro-r.html">Labs</a></li><li class="breadcrumb-item"><a href="../../content/labs/01-lab-intro-r.html">Lab01: Tooling and R</a></li></ol></nav>
+        <a class="flex-grow-1" role="button" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
+        </a>
+      <button type="button" class="btn quarto-search-button" aria-label="" onclick="window.quartoOpenSearch();">
+        <i class="bi bi-search"></i>
       </button>
     </div>
   </nav>
@@ -189,445 +203,488 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- content -->
 <div id="quarto-content" class="quarto-container page-columns page-rows-contents page-layout-article page-navbar">
 <!-- sidebar -->
-  <nav id="quarto-sidebar" class="sidebar collapse sidebar-navigation docked overflow-auto">
-      <div class="mt-2 flex-shrink-0 align-items-center">
+  <nav id="quarto-sidebar" class="sidebar collapse collapse-horizontal quarto-sidebar-collapse-item sidebar-navigation docked overflow-auto">
+        <div class="mt-2 flex-shrink-0 align-items-center">
         <div class="sidebar-search">
         <div id="quarto-search" class="" title="Search"></div>
         </div>
-      </div>
+        </div>
     <div class="sidebar-menu-container"> 
     <ul class="list-unstyled mt-1">
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">Lecture Slides</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true">
+ <span class="menu-text">Lecture Slides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-1" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-1" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  <a href="../../content/lectures/00-welcome-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00-welcome</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  <a href="../../content/lectures/01-intro-to-r-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01-intro-to-r</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/02-dplyr-slides.html" class="sidebar-item-text sidebar-link">02-dplyr</a>
+  <a href="../../content/lectures/02-dplyr-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02-dplyr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/03-tidyr-slides.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
+  <a href="../../content/lectures/03-tidyr-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03-tidyr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/04-ggplot2-slides.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  <a href="../../content/lectures/04-ggplot2-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04-ggplot2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/05-viz-slides.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  <a href="../../content/lectures/05-viz-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05-viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  <a href="../../content/lectures/06-analysis-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06-analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/07-linear-models-slides.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  <a href="../../content/lectures/07-linear-models-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07-linear-models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/08-effective-communication-slides.html" class="sidebar-item-text sidebar-link">08-effective-communication</a>
+  <a href="../../content/lectures/08-effective-communication-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08-effective-communication</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/09-mlr-slides.html" class="sidebar-item-text sidebar-link">09-mlr</a>
+  <a href="../../content/lectures/09-mlr-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09-mlr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/10-projects-slides.html" class="sidebar-item-text sidebar-link">10-projects</a>
+  <a href="../../content/lectures/10-projects-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10-projects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/11-cs01-data-slides.html" class="sidebar-item-text sidebar-link">11-cs01-data</a>
+  <a href="../../content/lectures/11-cs01-data-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11-cs01-data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/12-cs01-eda-slides.html" class="sidebar-item-text sidebar-link">12-cs01-eda</a>
+  <a href="../../content/lectures/12-cs01-eda-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12-cs01-eda</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/13-cs01-analysis-slides.html" class="sidebar-item-text sidebar-link">13-cs01-analysis</a>
+  <a href="../../content/lectures/13-cs01-analysis-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13-cs01-analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/14-tidymodels-slides.html" class="sidebar-item-text sidebar-link">14-tidymodels</a>
+  <a href="../../content/lectures/14-tidymodels-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14-tidymodels</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/15-cs02-data-slides.html" class="sidebar-item-text sidebar-link">15-cs02-data</a>
+  <a href="../../content/lectures/15-cs02-data-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15-cs02-data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/16-cs02-eda-slides.html" class="sidebar-item-text sidebar-link">16-cs02-eda</a>
+  <a href="../../content/lectures/16-cs02-eda-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16-cs02-eda</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/17-cs02-analysis-slides.html" class="sidebar-item-text sidebar-link">17-cs02-analysis</a>
+  <a href="../../content/lectures/17-cs02-analysis-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17-cs02-analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/18-brainstorming-slides.html" class="sidebar-item-text sidebar-link">18-brainstorming</a>
+  <a href="../../content/lectures/18-brainstorming-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18-brainstorming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/19-wrap-up-slides.html" class="sidebar-item-text sidebar-link">19-wrap-up</a>
+  <a href="../../content/lectures/19-wrap-up-slides.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19-wrap-up</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">Lecture Notes</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true">
+ <span class="menu-text">Lecture Notes</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-2" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-2" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">00-welcome</a>
+  <a href="../../content/lectures/00-welcome.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">00-welcome</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link">01-intro-to-r</a>
+  <a href="../../content/lectures/01-intro-to-r.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">01-intro-to-r</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/02-dplyr.html" class="sidebar-item-text sidebar-link">02-dplyr</a>
+  <a href="../../content/lectures/02-dplyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">02-dplyr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/03-tidyr.html" class="sidebar-item-text sidebar-link">03-tidyr</a>
+  <a href="../../content/lectures/03-tidyr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">03-tidyr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/04-ggplot2.html" class="sidebar-item-text sidebar-link">04-ggplot2</a>
+  <a href="../../content/lectures/04-ggplot2.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">04-ggplot2</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/05-viz.html" class="sidebar-item-text sidebar-link">05-viz</a>
+  <a href="../../content/lectures/05-viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">05-viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link">06-analysis</a>
+  <a href="../../content/lectures/06-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">06-analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/07-linear-models.html" class="sidebar-item-text sidebar-link">07-linear-models</a>
+  <a href="../../content/lectures/07-linear-models.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">07-linear-models</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/08-effective-communication.html" class="sidebar-item-text sidebar-link">08-effective-communication</a>
+  <a href="../../content/lectures/08-effective-communication.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">08-effective-communication</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/09-mlr.html" class="sidebar-item-text sidebar-link">09-mlr</a>
+  <a href="../../content/lectures/09-mlr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">09-mlr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/10-projects.html" class="sidebar-item-text sidebar-link">10-projects</a>
+  <a href="../../content/lectures/10-projects.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">10-projects</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/11-cs01-data.html" class="sidebar-item-text sidebar-link">11-cs01-data</a>
+  <a href="../../content/lectures/11-cs01-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">11-cs01-data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/12-cs01-eda.html" class="sidebar-item-text sidebar-link">12-cs01-eda</a>
+  <a href="../../content/lectures/12-cs01-eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">12-cs01-eda</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/13-cs01-analysis.html" class="sidebar-item-text sidebar-link">13-cs01-analysis</a>
+  <a href="../../content/lectures/13-cs01-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">13-cs01-analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/14-tidymodels.html" class="sidebar-item-text sidebar-link">14-tidymodels</a>
+  <a href="../../content/lectures/14-tidymodels.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">14-tidymodels</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/15-cs02-data.html" class="sidebar-item-text sidebar-link">15-cs02-data</a>
+  <a href="../../content/lectures/15-cs02-data.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">15-cs02-data</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/16-cs02-eda.html" class="sidebar-item-text sidebar-link">16-cs02-eda</a>
+  <a href="../../content/lectures/16-cs02-eda.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">16-cs02-eda</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/17-cs02-analysis.html" class="sidebar-item-text sidebar-link">17-cs02-analysis</a>
+  <a href="../../content/lectures/17-cs02-analysis.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">17-cs02-analysis</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/18-brainstorming.html" class="sidebar-item-text sidebar-link">18-brainstorming</a>
+  <a href="../../content/lectures/18-brainstorming.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">18-brainstorming</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lectures/19-wrap-up.html" class="sidebar-item-text sidebar-link">19-wrap-up</a>
+  <a href="../../content/lectures/19-wrap-up.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">19-wrap-up</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">Labs</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true">
+ <span class="menu-text">Labs</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-3" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link active">Lab01: Tooling and R</a>
+  <a href="../../content/labs/01-lab-intro-r.html" class="sidebar-item-text sidebar-link active">
+ <span class="menu-text">Lab01: Tooling and R</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/02-lab-wrangling.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling</a>
+  <a href="../../content/labs/02-lab-wrangling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab02: Wrangling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/03-lab-viz.html" class="sidebar-item-text sidebar-link">Lab03: Data Viz</a>
+  <a href="../../content/labs/03-lab-viz.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab03: Data Viz</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/04-lab-modelling.html" class="sidebar-item-text sidebar-link">Lab04: Modelling</a>
+  <a href="../../content/labs/04-lab-modelling.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab04: Modelling</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/05-lab-mlr.html" class="sidebar-item-text sidebar-link">Lab05: MLR</a>
+  <a href="../../content/labs/05-lab-mlr.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab05: MLR</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/06-lab-cs01.html" class="sidebar-item-text sidebar-link">Lab06: CS01</a>
+  <a href="../../content/labs/06-lab-cs01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab06: CS01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labs/07-lab-cs02.html" class="sidebar-item-text sidebar-link">Lab07: CS02</a>
+  <a href="../../content/labs/07-lab-cs02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab07: CS02</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">Lab Slides</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true">
+ <span class="menu-text">Lab Slides</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-4" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-4" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">Lab01</a>
+  <a href="../../content/labslides/01-lab-deck.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labslides/02-lab-deck.html" class="sidebar-item-text sidebar-link">Lab02</a>
+  <a href="../../content/labslides/02-lab-deck.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labslides/03-lab-deck.html" class="sidebar-item-text sidebar-link">Lab03</a>
+  <a href="../../content/labslides/03-lab-deck.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab03</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labslides/04-lab-deck.html" class="sidebar-item-text sidebar-link">Lab04</a>
+  <a href="../../content/labslides/04-lab-deck.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab04</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/labslides/05-lab-deck.html" class="sidebar-item-text sidebar-link">Lab05</a>
+  <a href="../../content/labslides/05-lab-deck.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Lab05</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">Lab Answers</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true">
+ <span class="menu-text">Homework</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-5" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-5" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lab-ans/lab02-wrangling-ans.html" class="sidebar-item-text sidebar-link">Lab02: Wrangling (Ans)</a>
+  <a href="../../content/hw/hw-01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lab-ans/lab03-viz-ans.html" class="sidebar-item-text sidebar-link">Lab03: Data Viz (Ans)</a>
+  <a href="../../content/hw/hw-02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW02</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/lab-ans/lab04-modelling-ans.html" class="sidebar-item-text sidebar-link">Lab04: Modelling (Ans)</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/lab-ans/lab05-mlr-ans.html" class="sidebar-item-text sidebar-link">Lab05: MLR (Ans)</a>
+  <a href="../../content/hw/hw-03.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">HW03</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">Homework</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true">
+ <span class="menu-text">Exam</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-6" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-6" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/hw/hw-01.html" class="sidebar-item-text sidebar-link">HW01</a>
+  <a href="../../content/exams/practice-exam-fa21.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Midterm (Fa21)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/hw/hw-02.html" class="sidebar-item-text sidebar-link">HW02</a>
+  <a href="../../content/exams/practice-exam-fa21-ans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Midterm (Ans-Fa21)</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/hw/hw-03.html" class="sidebar-item-text sidebar-link">HW03</a>
+  <a href="../../content/exams/practice-exam-wi23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Midterm (Wi23)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/practice-exam-wi23-ans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Practice Midterm (Ans-Wi23)</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/midterm-fa23.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm</span></a>
+  </div>
+</li>
+          <li class="sidebar-item">
+  <div class="sidebar-item-container"> 
+  <a href="../../content/exams/midterm-fa23-ans.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Midterm (Ans)</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">Exam</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true">
+ <span class="menu-text">Case Studies</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-7" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-7" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/exams/practice-exam-fa21.html" class="sidebar-item-text sidebar-link">Practice Midterm (Fa21)</a>
+  <a href="../../content/cs/cs-example.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CS: Example</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/exams/practice-exam-fa21-ans.html" class="sidebar-item-text sidebar-link">Practice Midterm (Ans-Fa21)</a>
+  <a href="../../content/cs/cs01.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CS01</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/exams/practice-exam-wi23.html" class="sidebar-item-text sidebar-link">Practice Midterm (Wi23)</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/exams/practice-exam-wi23-ans.html" class="sidebar-item-text sidebar-link">Practice Midterm (Ans-Wi23)</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/exams/midterm-fa23.html" class="sidebar-item-text sidebar-link">Midterm</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/exams/midterm-fa23-ans.html" class="sidebar-item-text sidebar-link">Midterm (Ans)</a>
+  <a href="../../content/cs/cs02.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">CS02</span></a>
   </div>
 </li>
       </ul>
   </li>
         <li class="sidebar-item sidebar-item-section">
       <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">Case Studies</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true">
+ <span class="menu-text">Final</span></a>
+          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-8" aria-expanded="true" aria-label="Toggle section">
             <i class="bi bi-chevron-right ms-2"></i>
           </a> 
       </div>
       <ul id="quarto-sidebar-section-8" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="../../content/cs/cs-example.html" class="sidebar-item-text sidebar-link">CS: Example</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/cs/cs01.html" class="sidebar-item-text sidebar-link">CS01</a>
-  </div>
-</li>
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/cs/cs02.html" class="sidebar-item-text sidebar-link">CS02</a>
-  </div>
-</li>
-      </ul>
-  </li>
-        <li class="sidebar-item sidebar-item-section">
-      <div class="sidebar-item-container"> 
-            <a class="sidebar-item-text sidebar-link text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">Final</a>
-          <a class="sidebar-item-toggle text-start" data-bs-toggle="collapse" data-bs-target="#quarto-sidebar-section-9" aria-expanded="true">
-            <i class="bi bi-chevron-right ms-2"></i>
-          </a> 
-      </div>
-      <ul id="quarto-sidebar-section-9" class="collapse list-unstyled sidebar-section depth1 show">  
-          <li class="sidebar-item">
-  <div class="sidebar-item-container"> 
-  <a href="../../content/final/final.html" class="sidebar-item-text sidebar-link">Final Project</a>
+  <a href="../../content/final/final.html" class="sidebar-item-text sidebar-link">
+ <span class="menu-text">Final Project</span></a>
   </div>
 </li>
       </ul>
@@ -635,6 +692,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
     </ul>
     </div>
 </nav>
+<div id="quarto-sidebar-glass" class="quarto-sidebar-collapse-item" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item"></div>
 <!-- margin-sidebar -->
     <div id="quarto-margin-sidebar" class="sidebar margin-sidebar">
         <nav id="TOC" role="doc-toc" class="toc-active">
@@ -687,9 +745,9 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <!-- main -->
 <main class="content page-columns page-full" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default">
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="../../content/labs/01-lab-intro-r.html">Labs</a></li><li class="breadcrumb-item"><a href="../../content/labs/01-lab-intro-r.html">Lab01: Tooling and R</a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title d-none d-lg-block">Lab 01 - Tooling</h1>
+<h1 class="title">Lab 01 - Tooling</h1>
 </div>
 
 
@@ -708,17 +766,19 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
   </div>
   
 
+
 </header>
+
 
 <section id="introduction" class="level1 page-columns page-full">
 <h1>Introduction</h1>
 <p>The main goal of this lab is to introduce you to R and RStudio, which we will be using throughout the course to learn and practice programming and analyze data.</p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>R is the name of the programming language itself and RStudio is a convenient interface.</p>
 </div></div><p>An additional goal is to introduce you to git and GitHub, which is the collaboration and version control system that we will be using throughout the course.</p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>git is a version control system (like “Track Changes” features from Microsoft Word on steroids) and GitHub is the home for your Git-based projects on the internet (like DropBox but much, much better).</p>
 </div></div><p>As the labs progress, you are encouraged to explore beyond what the labs say directly; a willingness to experiment will make you a much better programmer. Before we get to that stage, however, you need to build some basic fluency in R. Today we begin with the fundamental building blocks of R and RStudio: the interface, reading in data, and basic commands.</p>
 <p>You are encouraged to ask one another questions and work together, but each individual must turn in their own lab each week.</p>
@@ -740,12 +800,12 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul>
 <section id="github-housekeeping" class="level2">
 <h2 class="anchored" data-anchor-id="github-housekeeping">GitHub Housekeeping</h2>
-<div class="callout callout-style-default callout-note callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -754,12 +814,12 @@ Note
 </div>
 </div>
 <p>Before we can get started we need to take care of some required housekeeping (if you didn’t complete it during class). Specifically, we need to configure your git so that RStudio can communicate with GitHub…and so you do not have to type in your username and password every time you want to communicate with GitHub from RStudio. These steps will be demo-ed during lab and you’ll have time to walk through the steps!</p>
-<div class="callout callout-style-default callout-note callout-captioned">
+<div class="callout callout-style-default callout-note callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -832,19 +892,23 @@ Note
 <p>Each of your assignments will begin with the following steps. You saw these once in class and, they’re outlined in detail here again. Going forward each lab will start with a “Getting started” section but details will be a bit more sparse than this. You can always refer back to this lab for a detailed list of the steps involved for getting started with an assignment.</p>
 <p>Click on the assignment link for this week’s lab on the Canvas homepage. You will have to <strong>Accept</strong> before proceeding. <strong>Refresh the page</strong> and follow the link to the repo created for you. This repo contains a template you can build on to complete your lab.</p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
-<p><img src="img/01-hello-r/accept_assignment.png" class="img-fluid" width="605"></p>
+<div>
+<figure class="figure">
+<p><img src="img/01-hello-r/accept_assignment.png" class="img-fluid figure-img" width="605"></p>
+</figure>
+</div>
 </div>
 </div>
 </div></div><p>On this page on GitHub, click the URL provided for you. This will bring you to <em>your copy</em> of the repo on GitHub. Click on the green <code>&lt;&gt; Code</code> button to clone the repo. <strong>Be sure that SSH is selected and copy this URL</strong>.</p>
-<div class="callout callout-style-default callout-important callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -853,19 +917,27 @@ Important
 </div>
 </div>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
-<p><img src="img/01-hello-r/ssh_github.png" class="img-fluid" width="442"></p>
+<div>
+<figure class="figure">
+<p><img src="img/01-hello-r/ssh_github.png" class="img-fluid figure-img" width="442"></p>
+</figure>
+</div>
 </div>
 </div>
 </div></div><p>Go to datahub and open RStudio. Go to <strong>File &gt; New Project</strong>… and select to create a <strong>New Project from Version Control</strong>. On the following menu, select <strong>Git</strong>.</p>
 <p>Copy and paste the URL of your assignment repo into the “Repository URL” dialog box:</p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
-<p><img src="img/01-hello-r/repo_in_r.png" class="img-fluid" width="529"></p>
+<div>
+<figure class="figure">
+<p><img src="img/01-hello-r/repo_in_r.png" class="img-fluid figure-img" width="529"></p>
+</figure>
+</div>
 </div>
 </div>
 </div></div><p>Hit <strong>Create Project</strong>. Open up <code>lab-01.Rmd</code> and continue through this lab. Your work/answers for this lab will be submitted in that document.</p>
@@ -883,7 +955,7 @@ Important
 <div class="sourceCode cell-code" id="cb7"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">install.packages</span>(<span class="st">"datasauRus"</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </div>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Note that often packages will already be installed for you on datahub in this course, but we want you to know how to install them if you need to install one at any point.</p>
 </div></div><p>Note that package installation happens a single time. But, any time you want to <em>use</em> a package (after it’s been installed), it has to be loaded, as we do here:</p>
 <div class="cell">
@@ -896,12 +968,16 @@ Important
 <section id="yaml" class="level2 page-columns page-full">
 <h2 class="anchored" data-anchor-id="yaml">YAML:</h2>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>The top portion of your R Markdown file (between the three dashed lines) is called YAML. It stands for “Yet Another Markup Language”. It is a human-friendly data serialization standard for all programming languages. All you need to know is that this area is called the YAML (we will refer to it as such) and that it contains meta information about your document.</p>
 </div></div><p>Open the R Markdown (Rmd) file in your project, change the author name to your name and <strong>knit the document</strong>. This will generate an HTML document.</p>
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output-display">
-<p><img src="img/01-hello-r/yaml-raw-to-rendered.png" class="img-fluid" width="472"></p>
+<div>
+<figure class="figure">
+<p><img src="img/01-hello-r/yaml-raw-to-rendered.png" class="img-fluid figure-img" width="472"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
@@ -910,10 +986,14 @@ Important
 <p>Then Go to the Git pane in your RStudio on Datahub.</p>
 <p>If you have made changes to your Rmd file, you should see it listed here. Click on it in this list and then click on <strong>Diff</strong>. This shows you the <em>diff</em>erence between the last committed state of the document and its current state that includes your changes. Be sure to also select your HTML document. Once you’re happy with these changes, write “Update author name” in the <strong>Commit message</strong> box and hit <strong>Commit</strong>.</p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <div class="cell" data-fig.fullwidth="true">
 <div class="cell-output-display">
-<p><img src="img/01-hello-r/update-author-name-commit.png" class="img-fluid" width="1000"></p>
+<div>
+<figure class="figure">
+<p><img src="img/01-hello-r/update-author-name-commit.png" class="img-fluid figure-img" width="1000"></p>
+</figure>
+</div>
 </div>
 </div>
 </div></div><p>You don’t have to commit after every change, this would get quite cumbersome. You should consider committing states that are <em>meaningful to you</em> for inspection, comparison, or restoration. In the first few assignments we will tell you exactly when to commit and in some cases, what commit message to use. As the quarter progresses, we will let you make these decisions.</p>
@@ -922,12 +1002,12 @@ Important
 <h2 class="anchored" data-anchor-id="pushing-changes">Pushing changes:</h2>
 <p>Now that you have made an update and committed this change, it’s time to push these changes to the web! Or more specifically, to your repo on GitHub. Why? So that others can see your changes. And by others, we mean the course teaching team (your repos in this course are private to you and us, only).</p>
 <p>In order to push your changes to GitHub, click on <strong>Push</strong>. Go check your repo on GitHub - you’ll see your updated documents there!</p>
-<div class="callout callout-style-default callout-note no-icon callout-captioned">
+<div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Thought exercise
 </div>
 </div>
@@ -991,14 +1071,18 @@ Thought exercise
 <div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data =</span> dino_data, <span class="at">mapping =</span> <span class="fu">aes</span>(<span class="at">x =</span> x, <span class="at">y =</span> y)) <span class="sc">+</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>()</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
-<p><img src="01-lab-intro-r_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid" width="672"></p>
+<div>
+<figure class="figure">
+<p><img src="01-lab-intro-r_files/figure-html/unnamed-chunk-12-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
 </div>
 </div>
 <p>If this seems like a lot, it is. And you will learn about the philosophy of building data visualizations in layer in detail next week. For now, follow along with the code that is provided.</p>
 <p>For the second part of this exercises, we need to calculate a summary statistic: the correlation coefficient. Correlation coefficient, often referred to as <span class="math inline">\(r\)</span> in statistics, measures the linear association between two variables. You will see that some of the pairs of variables we plot do not have a linear relationship between them. This is exactly why we want to visualize first: visualize to assess the form of the relationship, and calculate <span class="math inline">\(r\)</span> only if relevant. In this case, calculating a correlation coefficient really doesn’t make sense since the relationship between <code>x</code> and <code>y</code> is definitely not linear – it’s dinosaurial!</p>
 <p>But, for illustrative purposes, let’s calculate correlation coefficient between <code>x</code> and <code>y</code>.</p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Start with <code>dino_data</code> and calculate a summary statistic that we will call <code>r</code> as the <code>cor</code>relation between <code>x</code> and <code>y</code>.</p>
 </div></div><div class="cell">
 <div class="sourceCode cell-code" id="cb13"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb13-1"><a href="#cb13-1" aria-hidden="true" tabindex="-1"></a>dino_data <span class="sc">|&gt;</span></span>
@@ -1022,7 +1106,7 @@ Thought exercise
 <p>Plot <code>y</code> vs.&nbsp;<code>x</code> for the <code>circle</code> dataset. You can (and should) reuse code we introduced above, just replace the dataset name with the desired dataset. Then, calculate the correlation coefficient between <code>x</code> and <code>y</code> for this dataset. How does this value compare to the <code>r</code> of <code>dino</code>?</p>
 <p><em>You should pause again, commit changes with the commit message “Added answer for Ex 4”, and push.</em></p>
 
-<div class="no-row-height column-margin column-container"><div class="">
+<div class="no-row-height column-margin column-container"><div class="margin-aside">
 <p>Facet by the dataset variable, placing the plots in a 3 column grid, and don’t add a legend.</p>
 </div></div></section>
 <section id="exercise-5" class="level3">
@@ -1043,10 +1127,14 @@ Thought exercise
 <p>You’re done with the data analysis exercises, but we’d like you to do two more things:</p>
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
-<div id="fig-resize-global" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/01-hello-r/fig-resize-global.png" class="img-fluid figure-img" width="468"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;1: <strong>?(caption)</strong></figcaption><p></p>
+<div id="fig-resize-global" class="quarto-figure quarto-figure-center quarto-float anchored" width="468">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resize-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/01-hello-r/fig-resize-global.png" id="fig-resize-global" class="img-fluid figure-img" width="468">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-resize-global-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;1
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1061,10 +1149,14 @@ Thought exercise
 <p>Click on the gear icon in on top of the R Markdown document, and select “Output Options…” in the dropdown menu. In the pop up dialogue box go to the Figures tab and change the height and width of the figures, and hit OK when done. Then, knit your document and see how you like the new sizes. Change and knit again and again until you’re happy with the figure sizes. Note that these values get saved in the YAML.</p>
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
-<div id="fig-resize-local" class="quarto-figure quarto-figure-center anchored">
-<figure class="figure">
-<p><img src="img/01-hello-r/fig-resize-local.png" class="img-fluid figure-img" width="634"></p>
-<p></p><figcaption class="figure-caption">Figure&nbsp;2: <strong>?(caption)</strong></figcaption><p></p>
+<div id="fig-resize-local" class="quarto-figure quarto-figure-center quarto-float anchored" width="634">
+<figure class="quarto-float quarto-float-fig figure">
+<div aria-describedby="fig-resize-local-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+<img src="img/01-hello-r/fig-resize-local.png" id="fig-resize-local" class="img-fluid figure-img" width="634">
+</div>
+<figcaption class="quarto-float-caption-bottom quarto-float-caption quarto-float-fig quarto-uncaptioned" id="fig-resize-local-caption-0ceaefa1-69ba-4598-a22c-09a6ac19f8ca">
+Figure&nbsp;2
+</figcaption>
 </figure>
 </div>
 </div>
@@ -1072,19 +1164,23 @@ Thought exercise
 <p>You can also use different figure sizes for different figures. To do so click on the gear icon within the chunk where you want to make a change. Changing the figure sizes added new options to these chunks: <code>fig.width</code> and <code>fig.height</code>. You can change them by defining different values directly in your R Markdown document as well.</p>
 <div class="cell" data-fig.margin="true">
 <div class="cell-output-display">
-<p><img src="img/01-hello-r/theme-highlight.png" class="img-fluid" width="467"></p>
+<div>
+<figure class="figure">
+<p><img src="img/01-hello-r/theme-highlight.png" class="img-fluid figure-img" width="467"></p>
+</figure>
+</div>
 </div>
 </div>
 </section>
 <section id="change-the-look-of-your-report" class="level3">
 <h3 class="anchored" data-anchor-id="change-the-look-of-your-report">Change the look of your report</h3>
 <p>Once again click on the gear icon in on top of the R Markdown document, and select “Output Options…” in the dropdown menu. In the General tab of the pop up dialogue box try out different Syntax highlighting and theme options. Hit OK and knit your document to see how it looks. Play around with these until you’re happy with the look.</p>
-<div class="callout callout-style-default callout-note no-icon callout-captioned">
+<div class="callout callout-style-default callout-note no-icon callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon no-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Note
 </div>
 </div>
@@ -1097,12 +1193,12 @@ Note
 </section>
 <section id="submit" class="level1">
 <h1>Submit</h1>
-<div class="callout callout-style-default callout-important callout-captioned">
+<div class="callout callout-style-default callout-important callout-titled">
 <div class="callout-header d-flex align-content-center">
 <div class="callout-icon-container">
 <i class="callout-icon"></i>
 </div>
-<div class="callout-caption-container flex-fill">
+<div class="callout-title-container flex-fill">
 Important
 </div>
 </div>
@@ -1151,9 +1247,23 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     icon: icon
   };
   anchorJS.add('.anchored');
+  const isCodeAnnotation = (el) => {
+    for (const clz of el.classList) {
+      if (clz.startsWith('code-annotation-')) {                     
+        return true;
+      }
+    }
+    return false;
+  }
   const clipboard = new window.ClipboardJS('.code-copy-button', {
-    target: function(trigger) {
-      return trigger.previousElementSibling;
+    text: function(trigger) {
+      const codeEl = trigger.previousElementSibling.cloneNode(true);
+      for (const childEl of codeEl.children) {
+        if (isCodeAnnotation(childEl)) {
+          childEl.remove();
+        }
+      }
+      return codeEl.innerText;
     }
   });
   clipboard.on('success', function(e) {
@@ -1189,10 +1299,27 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
     // clear code selection
     e.clearSelection();
   });
-  function tippyHover(el, contentFn) {
+    var localhostRegex = new RegExp(/^(?:http|https):\/\/localhost\:?[0-9]*\//);
+    var mailtoRegex = new RegExp(/^mailto:/);
+      var filterRegex = new RegExp("https:\/\/cogs137\.github\.io\/website\/");
+    var isInternal = (href) => {
+        return filterRegex.test(href) || localhostRegex.test(href) || mailtoRegex.test(href);
+    }
+    // Inspect non-navigation links and adorn them if external
+ 	var links = window.document.querySelectorAll('a[href]:not(.nav-link):not(.navbar-brand):not(.toc-action):not(.sidebar-link):not(.sidebar-item-toggle):not(.pagination-link):not(.no-external):not([aria-hidden]):not(.dropdown-item):not(.quarto-navigation-tool)');
+    for (var i=0; i<links.length; i++) {
+      const link = links[i];
+      if (!isInternal(link.href)) {
+        // undo the damage that might have been done by quarto-nav.js in the case of
+        // links that we want to consider external
+        if (link.dataset.originalHref !== undefined) {
+          link.href = link.dataset.originalHref;
+        }
+      }
+    }
+  function tippyHover(el, contentFn, onTriggerFn, onUntriggerFn) {
     const config = {
       allowHTML: true,
-      content: contentFn,
       maxWidth: 500,
       delay: 100,
       arrow: false,
@@ -1202,8 +1329,17 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       interactive: true,
       interactiveBorder: 10,
       theme: 'quarto',
-      placement: 'bottom-start'
+      placement: 'bottom-start',
     };
+    if (contentFn) {
+      config.content = contentFn;
+    }
+    if (onTriggerFn) {
+      config.onTrigger = onTriggerFn;
+    }
+    if (onUntriggerFn) {
+      config.onUntrigger = onUntriggerFn;
+    }
     window.tippy(el, config); 
   }
   const noterefs = window.document.querySelectorAll('a[role="doc-noteref"]');
@@ -1215,7 +1351,130 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
       try { href = new URL(href).hash; } catch {}
       const id = href.replace(/^#\/?/, "");
       const note = window.document.getElementById(id);
-      return note.innerHTML;
+      if (note) {
+        return note.innerHTML;
+      } else {
+        return "";
+      }
+    });
+  }
+  const xrefs = window.document.querySelectorAll('a.quarto-xref');
+  const processXRef = (id, note) => {
+    // Strip column container classes
+    const stripColumnClz = (el) => {
+      el.classList.remove("page-full", "page-columns");
+      if (el.children) {
+        for (const child of el.children) {
+          stripColumnClz(child);
+        }
+      }
+    }
+    stripColumnClz(note)
+    if (id === null || id.startsWith('sec-')) {
+      // Special case sections, only their first couple elements
+      const container = document.createElement("div");
+      if (note.children && note.children.length > 2) {
+        container.appendChild(note.children[0].cloneNode(true));
+        for (let i = 1; i < note.children.length; i++) {
+          const child = note.children[i];
+          if (child.tagName === "P" && child.innerText === "") {
+            continue;
+          } else {
+            container.appendChild(child.cloneNode(true));
+            break;
+          }
+        }
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(container);
+        }
+        return container.innerHTML
+      } else {
+        if (window.Quarto?.typesetMath) {
+          window.Quarto.typesetMath(note);
+        }
+        return note.innerHTML;
+      }
+    } else {
+      // Remove any anchor links if they are present
+      const anchorLink = note.querySelector('a.anchorjs-link');
+      if (anchorLink) {
+        anchorLink.remove();
+      }
+      if (window.Quarto?.typesetMath) {
+        window.Quarto.typesetMath(note);
+      }
+      // TODO in 1.5, we should make sure this works without a callout special case
+      if (note.classList.contains("callout")) {
+        return note.outerHTML;
+      } else {
+        return note.innerHTML;
+      }
+    }
+  }
+  for (var i=0; i<xrefs.length; i++) {
+    const xref = xrefs[i];
+    tippyHover(xref, undefined, function(instance) {
+      instance.disable();
+      let url = xref.getAttribute('href');
+      let hash = undefined; 
+      if (url.startsWith('#')) {
+        hash = url;
+      } else {
+        try { hash = new URL(url).hash; } catch {}
+      }
+      if (hash) {
+        const id = hash.replace(/^#\/?/, "");
+        const note = window.document.getElementById(id);
+        if (note !== null) {
+          try {
+            const html = processXRef(id, note.cloneNode(true));
+            instance.setContent(html);
+          } finally {
+            instance.enable();
+            instance.show();
+          }
+        } else {
+          // See if we can fetch this
+          fetch(url.split('#')[0])
+          .then(res => res.text())
+          .then(html => {
+            const parser = new DOMParser();
+            const htmlDoc = parser.parseFromString(html, "text/html");
+            const note = htmlDoc.getElementById(id);
+            if (note !== null) {
+              const html = processXRef(id, note);
+              instance.setContent(html);
+            } 
+          }).finally(() => {
+            instance.enable();
+            instance.show();
+          });
+        }
+      } else {
+        // See if we can fetch a full url (with no hash to target)
+        // This is a special case and we should probably do some content thinning / targeting
+        fetch(url)
+        .then(res => res.text())
+        .then(html => {
+          const parser = new DOMParser();
+          const htmlDoc = parser.parseFromString(html, "text/html");
+          const note = htmlDoc.querySelector('main.content');
+          if (note !== null) {
+            // This should only happen for chapter cross references
+            // (since there is no id in the URL)
+            // remove the first header
+            if (note.children.length > 0 && note.children[0].tagName === "HEADER") {
+              note.children[0].remove();
+            }
+            const html = processXRef(null, note);
+            instance.setContent(html);
+          } 
+        }).finally(() => {
+          instance.enable();
+          instance.show();
+        });
+      }
+    }, function(instance) {
     });
   }
       let selectedAnnoteEl;
@@ -1259,6 +1518,7 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
             }
             div.style.top = top - 2 + "px";
             div.style.height = height + 4 + "px";
+            div.style.left = 0;
             let gutterDiv = window.document.getElementById("code-annotation-line-highlight-gutter");
             if (gutterDiv === null) {
               gutterDiv = window.document.createElement("div");
@@ -1284,6 +1544,32 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
         });
         selectedAnnoteEl = undefined;
       };
+        // Handle positioning of the toggle
+    window.addEventListener(
+      "resize",
+      throttle(() => {
+        elRect = undefined;
+        if (selectedAnnoteEl) {
+          selectCodeLines(selectedAnnoteEl);
+        }
+      }, 10)
+    );
+    function throttle(fn, ms) {
+    let throttle = false;
+    let timer;
+      return (...args) => {
+        if(!throttle) { // first call gets through
+            fn.apply(this, args);
+            throttle = true;
+        } else { // all the others get throttled
+            if(timer) clearTimeout(timer); // cancel #2
+            timer = setTimeout(() => {
+              fn.apply(this, args);
+              timer = throttle = false;
+            }, ms);
+        }
+      };
+    }
       // Attach click handler to the DT
       const annoteDls = window.document.querySelectorAll('dt[data-target-cell]');
       for (const annoteDlNode of annoteDls) {
@@ -1346,16 +1632,24 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </div> <!-- /content -->
 <footer class="footer">
   <div class="nav-footer">
-    <div class="nav-footer-left">This page is built with <a href="https://quarto.org/">Quarto</a>.</div>   
+    <div class="nav-footer-left">
+<p>This page is built with <a href="https://quarto.org/">Quarto</a>.</p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
     <div class="nav-footer-right">
       <ul class="footer-items list-unstyled">
     <li class="nav-item">
-    <a class="nav-link" href="../../LICENSE.html">License</a>
+    <a class="nav-link" href="../../LICENSE.html">
+<p>License</p>
+</a>
   </li>  
 </ul>
     </div>
   </div>
 </footer>
+
 
 
 

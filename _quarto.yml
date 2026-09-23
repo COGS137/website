@@ -205,6 +205,7 @@ website:
             href: content/final/final.qmd
 format:
   html:
+    include-in-header: _includes/archive-banner.html
     theme: material
     css: styles.css
     toc: true
